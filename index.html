@@ -165,10 +165,11 @@
       background: var(--accent-blue);
     }
     
-    /* Hero Section */
+    /* Hero Section - FIXED LAYOUT */
     .hero-section {
       min-height: 100vh;
-      padding: 140px 2rem 100px;
+      /* Reduced top padding to eliminate the big gap */
+      padding: 100px 2rem 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -207,16 +208,23 @@
       width: 100%;
     }
     
+    /* Enhanced logo styling for better centering */
     .hero-logo {
-      margin-bottom: 3rem;
+      /* Reduced bottom margin for better vertical balance */
+      margin-bottom: 2rem;
       opacity: 0;
       animation: fadeInUp 1.2s ease-out forwards;
+      /* Added flex properties for perfect centering */
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     
     .hero-logo img {
-      height: 140px;
+      /* Increased logo size to match the prominence in your reference image */
+      height: 160px;
       width: auto;
-      margin: 0 auto;
+      /* Removed margin auto since parent is now flex */
       display: block;
       filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
       transition: all 0.3s ease;
@@ -231,7 +239,8 @@
       font-family: 'Sora', sans-serif;
       font-size: clamp(2.8rem, 5.5vw, 4.5rem);
       font-weight: 300;
-      margin-bottom: 2rem;
+      /* Reduced margin for tighter spacing */
+      margin-bottom: 1.5rem;
       opacity: 0;
       animation: fadeInUp 1.2s ease-out 0.3s forwards;
       letter-spacing: -0.02em;
@@ -243,7 +252,7 @@
       color: var(--text-secondary);
       line-height: 1.8;
       max-width: 750px;
-      margin: 0 auto 3.5rem;
+      margin: 0 auto 3rem;
       opacity: 0;
       animation: fadeInUp 1.2s ease-out 0.6s forwards;
       font-weight: 400;
@@ -517,12 +526,13 @@
         display: flex;
       }
       
+      /* Mobile hero adjustments */
       .hero-section {
-        padding: 120px 1.5rem 80px;
+        padding: 90px 1.5rem 60px;
       }
       
       .hero-logo img {
-        height: 100px;
+        height: 120px;
       }
       
       .cta-container {
@@ -566,7 +576,7 @@
       }
       
       .hero-logo img {
-        height: 80px;
+        height: 100px;
       }
       
       .service-item {
