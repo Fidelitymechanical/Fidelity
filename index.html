@@ -6,35 +6,47 @@
   <title>Fidelity Mechanical Solutions | Premium HVAC Services</title>
   <meta name="description" content="Experience mechanical excellence. Premium HVAC diagnostics and solutions delivered with uncompromising integrity and technical mastery.">
   
-  <!-- Premium fonts -->
+  <!-- Premium typography system -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      /* Modern vibrant gradient system inspired by contemporary UI design */
-      --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%);
-      --secondary-gradient: linear-gradient(135deg, #f59e0b 0%, #ef4444 50%, #ec4899 100%);
-      --dark-gradient: linear-gradient(135deg, #0f0f23 0%, #1e1b4b 50%, #1e293b 100%);
-      --accent-gradient: linear-gradient(90deg, #8b5cf6 0%, #3b82f6 100%);
-      --text-primary: #ffffff;
-      --text-secondary: #cbd5e1;
-      --text-muted: #94a3b8;
-      --accent-purple: #8b5cf6;
+      /* Sophisticated monochromatic palette - builds trust through restraint */
+      --primary-white: #ffffff;
+      --soft-white: #fafafa;
+      --light-gray: #f5f7fa;
+      --medium-gray: #e2e8f0;
+      --text-gray: #64748b;
+      --dark-gray: #475569;
+      --charcoal: #334155;
+      --deep-charcoal: #1e293b;
+      
+      /* Subtle accent system - used sparingly for maximum impact */
       --accent-blue: #3b82f6;
-      --accent-cyan: #06b6d4;
-      --surface-dark: rgba(15, 15, 35, 0.95);
-      --surface-card: rgba(139, 92, 246, 0.05);
-      --surface-card-hover: rgba(139, 92, 246, 0.1);
-      --border-subtle: rgba(203, 213, 225, 0.1);
-      --border-accent: rgba(139, 92, 246, 0.3);
-      --shadow-premium: 0 25px 50px rgba(139, 92, 246, 0.15);
-      --shadow-card: 0 10px 40px rgba(59, 130, 246, 0.15);
-      --glow-purple: rgba(139, 92, 246, 0.4);
-      --glow-blue: rgba(59, 130, 246, 0.4);
+      --accent-hover: #2563eb;
+      --success-green: #10b981;
+      
+      /* Shadow system - creates depth without harshness */
+      --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.12);
+      --shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      
+      /* Typography scale - creates visual hierarchy */
+      --text-xs: 0.75rem;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.25rem;
+      --text-2xl: 1.5rem;
+      --text-3xl: 1.875rem;
+      --text-4xl: 2.25rem;
+      --text-5xl: 3rem;
     }
     
+    /* Reset and base styles - ensures consistency across browsers */
     * {
       margin: 0;
       padding: 0;
@@ -43,10 +55,9 @@
     
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--dark-gradient);
-      color: var(--text-primary);
-      line-height: 1.7;
-      overflow-x: hidden;
+      background: var(--soft-white);
+      color: var(--charcoal);
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -60,87 +71,82 @@
       color: white;
     }
     
-    /* Premium Navigation */
+    /* Navigation - Clean and unobtrusive */
     .nav-container {
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
-      background: rgba(10, 14, 23, 0.8);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-subtle);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--medium-gray);
+      transition: all 0.3s ease;
     }
     
     .nav-container.scrolled {
-      background: var(--surface-dark);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      box-shadow: var(--shadow-card);
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-medium);
     }
     
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1400px;
-      padding: 1.25rem 2rem;
+      max-width: 1200px;
+      padding: 1rem 2rem;
       margin: 0 auto;
     }
     
     .logo-text {
-      font-family: 'Sora', sans-serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--deep-charcoal);
       text-decoration: none;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
+      letter-spacing: -0.02em;
+      transition: color 0.3s ease;
     }
     
     .logo-text:hover {
-      color: var(--accent-light);
-      transform: scale(1.02);
+      color: var(--accent-blue);
     }
     
     .nav-links {
       display: flex;
-      gap: 3rem;
+      gap: 2rem;
       align-items: center;
     }
     
     .nav-links a {
-      color: var(--text-secondary);
+      color: var(--text-gray);
       text-decoration: none;
-      font-weight: 400;
-      font-size: 0.95rem;
+      font-weight: 500;
+      font-size: var(--text-sm);
+      transition: color 0.3s ease;
       position: relative;
-      transition: all 0.3s ease;
-      padding: 0.5rem 0;
     }
     
     .nav-links a:hover {
-      color: var(--text-primary);
+      color: var(--charcoal);
     }
     
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: -4px;
+      left: 0;
       width: 0;
       height: 2px;
-      background: var(--primary-gradient);
-      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 1px;
+      background: var(--accent-blue);
+      transition: width 0.3s ease;
     }
     
     .nav-links a:hover::after {
       width: 100%;
     }
     
+    /* Mobile navigation */
     .nav-toggle {
       display: none;
       flex-direction: column;
@@ -150,124 +156,107 @@
     
     .bar {
       height: 2px;
-      width: 26px;
-      background: var(--text-secondary);
-      margin: 3px 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 2px;
+      width: 20px;
+      background: var(--charcoal);
+      margin: 2px 0;
+      transition: all 0.3s ease;
     }
     
-    .nav-toggle.active .bar:nth-child(1) {
-      transform: rotate(45deg) translate(6px, 6px);
-      background: var(--accent-blue);
-    }
-    
-    .nav-toggle.active .bar:nth-child(2) {
-      opacity: 0;
-    }
-    
-    .nav-toggle.active .bar:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-      background: var(--accent-blue);
-    }
-    
-    /* Hero Section - VIBRANT GRADIENT REDESIGN */
+    /* Hero section - Confident and spacious */
     .hero-section {
       min-height: 100vh;
-      /* Reduced top padding to eliminate the big gap */
-      padding: 100px 2rem 80px;
+      padding: 120px 2rem 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+      background: linear-gradient(135deg, var(--primary-white) 0%, var(--light-gray) 100%);
       position: relative;
-      background: 
-        radial-gradient(ellipse at top center, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
     }
     
+    /* Subtle geometric accent - adds visual interest without distraction */
     .hero-section::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 30% 40%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 70% 70%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
-      animation: subtleFloat 25s ease-in-out infinite;
-      pointer-events: none;
+      top: 20%;
+      right: 10%;
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(45deg, var(--medium-gray), transparent);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s ease-in-out infinite;
     }
     
-    @keyframes subtleFloat {
-      0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
-      50% { transform: translateY(-30px) scale(1.05); opacity: 0.8; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
     }
     
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 1000px;
+      max-width: 800px;
       width: 100%;
     }
     
-    /* Enhanced logo styling for better centering */
+    /* Logo placeholder with elegant styling */
     .hero-logo {
-      /* Reduced bottom margin for better vertical balance */
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       opacity: 0;
-      animation: fadeInUp 1.2s ease-out forwards;
-      /* Added flex properties for perfect centering */
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    
+    .logo-placeholder {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
+      background: var(--charcoal);
+      border-radius: 16px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      box-shadow: var(--shadow-strong);
+      transition: transform 0.3s ease;
     }
     
-    .hero-logo img {
-      /* Increased logo size to match the prominence in your reference image */
-      height: 160px;
-      width: auto;
-      /* Removed margin auto since parent is now flex */
-      display: block;
-      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
-      transition: all 0.3s ease;
-    }
-    
-    .hero-logo img:hover {
-      transform: scale(1.02);
-      filter: drop-shadow(0 15px 40px rgba(74, 144, 226, 0.2));
+    .logo-placeholder:hover {
+      transform: translateY(-2px) scale(1.02);
     }
     
     .hero-title {
-      font-family: 'Sora', sans-serif;
-      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
-      font-weight: 300;
-      /* Reduced margin for tighter spacing */
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 500;
+      color: var(--deep-charcoal);
       margin-bottom: 1.5rem;
       opacity: 0;
-      animation: fadeInUp 1.2s ease-out 0.3s forwards;
+      animation: fadeInUp 1s ease-out 0.3s forwards;
       letter-spacing: -0.02em;
       line-height: 1.1;
     }
     
     .hero-subtitle {
-      font-size: clamp(1.15rem, 2.2vw, 1.4rem);
-      color: var(--text-secondary);
-      line-height: 1.8;
-      max-width: 750px;
+      font-size: var(--text-xl);
+      color: var(--text-gray);
+      line-height: 1.7;
+      max-width: 600px;
       margin: 0 auto 3rem;
       opacity: 0;
-      animation: fadeInUp 1.2s ease-out 0.6s forwards;
+      animation: fadeInUp 1s ease-out 0.6s forwards;
       font-weight: 400;
     }
     
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
@@ -277,117 +266,82 @@
     
     .cta-container {
       display: flex;
-      gap: 2rem;
+      gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
       opacity: 0;
-      animation: fadeInUp 1.2s ease-out 0.9s forwards;
+      animation: fadeInUp 1s ease-out 0.9s forwards;
     }
     
+    /* Button system - Refined and purposeful */
     .cta-primary, .cta-secondary {
-      padding: 1.2rem 3rem;
-      border-radius: 60px;
+      padding: 1rem 2rem;
+      border-radius: 8px;
       font-weight: 500;
-      font-size: 1rem;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: var(--text-base);
+      transition: all 0.3s ease;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      position: relative;
-      overflow: hidden;
+      cursor: pointer;
     }
     
     .cta-primary {
-      background: var(--primary-gradient);
+      background: var(--accent-blue);
       color: white;
-      box-shadow: 0 8px 32px var(--glow-purple);
       border: none;
-    }
-    
-    .cta-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
-    }
-    
-    .cta-primary:hover::before {
-      left: 100%;
+      box-shadow: var(--shadow-medium);
     }
     
     .cta-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 50px var(--glow-purple);
-      filter: brightness(1.1);
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-strong);
     }
     
     .cta-secondary {
-      border: 1.5px solid var(--border-accent);
-      color: var(--text-secondary);
-      background: var(--surface-card);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: transparent;
+      color: var(--charcoal);
+      border: 2px solid var(--medium-gray);
     }
     
     .cta-secondary:hover {
-      background: var(--surface-card-hover);
-      border-color: var(--accent-purple);
-      color: var(--text-primary);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 40px var(--glow-blue);
+      background: var(--charcoal);
+      color: white;
+      border-color: var(--charcoal);
     }
     
-    /* Content Sections */
+    /* Content sections - Clear hierarchy and generous spacing */
     section {
-      padding: 8rem 2rem;
+      padding: 5rem 2rem;
       max-width: 1200px;
       margin: 0 auto;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
     }
     
-    h2 {
-      font-family: 'Sora', sans-serif;
-      font-size: clamp(2.2rem, 3.5vw, 3rem);
-      font-weight: 400;
-      margin-bottom: 2.5rem;
-      color: var(--text-primary);
-      position: relative;
-      padding-bottom: 1.5rem;
-      letter-spacing: -0.01em;
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--text-4xl);
+      font-weight: 500;
+      color: var(--deep-charcoal);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
     }
     
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 80px;
-      height: 3px;
-      background: var(--primary-gradient);
-      border-radius: 2px;
+    .section-subtitle {
+      font-size: var(--text-lg);
+      color: var(--text-gray);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
     }
     
-    section p {
-      font-size: 1.15rem;
-      line-height: 1.8;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      font-weight: 400;
-    }
-    
-    /* Services Grid */
+    /* Services grid - Clean and scannable */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -395,121 +349,103 @@
       margin-top: 3rem;
     }
     
-    .service-item {
-      padding: 2.5rem;
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    .service-card {
+      background: var(--primary-white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--medium-gray);
+      transition: all 0.3s ease;
       position: relative;
-      overflow: hidden;
     }
     
-    .service-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--primary-gradient);
-      transform: scaleX(0);
-      transition: transform 0.4s ease;
-    }
-    
-    .service-item:hover::before {
-      transform: scaleX(1);
-    }
-    
-    .service-item:hover {
-      background: var(--surface-card-hover);
-      border-color: var(--border-accent);
+    .service-card:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-strong);
     }
     
-    .service-item strong {
-      color: var(--text-primary);
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--light-gray);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      color: var(--accent-blue);
+    }
+    
+    .service-title {
+      font-size: var(--text-xl);
       font-weight: 600;
-      display: block;
+      color: var(--deep-charcoal);
       margin-bottom: 1rem;
-      font-size: 1.25rem;
-      font-family: 'Sora', sans-serif;
     }
     
-    .service-item p {
-      color: var(--text-secondary);
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.7;
+    .service-description {
+      color: var(--text-gray);
+      line-height: 1.6;
     }
     
-    /* Contact Section */
-    #contact {
-      background: var(--surface-card);
-      border-radius: 24px;
-      border: 1px solid var(--border-subtle);  
+    /* Contact section - Professional and approachable */
+    .contact-section {
+      background: var(--light-gray);
+      border-radius: 16px;
       margin: 4rem auto;
       position: relative;
-      overflow: hidden;
-    }
-    
-    #contact::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at top right, rgba(74, 144, 226, 0.05) 0%, transparent 50%);
-      pointer-events: none;
     }
     
     .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
       margin-top: 3rem;
-      padding: 3rem;
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 16px;
-      border: 1px solid var(--border-subtle);
-      position: relative;
     }
     
-    .contact-info p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
+    .contact-item {
+      background: var(--primary-white);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow-soft);
+      text-align: center;
     }
     
-    .contact-info a {
+    .contact-item h3 {
+      color: var(--deep-charcoal);
+      margin-bottom: 1rem;
+      font-size: var(--text-lg);
+    }
+    
+    .contact-item a {
       color: var(--accent-blue);
       text-decoration: none;
-      transition: all 0.3s ease;
       font-weight: 500;
+      transition: color 0.3s ease;
     }
     
-    .contact-info a:hover {
-      color: var(--accent-light);
-      text-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
+    .contact-item a:hover {
+      color: var(--accent-hover);
     }
     
-    /* Footer */
+    /* Footer - Understated and professional */
     .footer {
-      background: rgba(10, 14, 23, 0.8);
+      background: var(--deep-charcoal);
+      color: var(--text-gray);
       text-align: center;
-      padding: 4rem 2rem;
-      border-top: 1px solid var(--border-subtle);
-      margin-top: 6rem;
+      padding: 3rem 2rem;
+      margin-top: 4rem;
     }
     
     .footer p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      max-width: 700px;
+      font-size: var(--text-sm);
+      line-height: 1.6;
+      max-width: 600px;
       margin: 0 auto;
-      font-style: italic;
     }
     
-    /* Responsive Design */
+    /* Responsive design - Maintains elegance at all sizes */
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -518,12 +454,11 @@
         left: 0;
         right: 0;
         flex-direction: column;
-        background: var(--surface-dark);
+        background: white;
         padding: 2rem;
-        gap: 2rem;
-        border-bottom: 1px solid var(--border-subtle);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--medium-gray);
+        box-shadow: var(--shadow-medium);
       }
       
       .nav-links.active {
@@ -534,74 +469,28 @@
         display: flex;
       }
       
-      /* Mobile hero adjustments */
       .hero-section {
-        padding: 90px 1.5rem 60px;
-      }
-      
-      .hero-logo img {
-        height: 120px;
+        padding: 100px 1.5rem 60px;
       }
       
       .cta-container {
         flex-direction: column;
         width: 100%;
-        max-width: 320px;
-        gap: 1rem;
+        max-width: 300px;
       }
       
       .cta-primary, .cta-secondary {
         width: 100%;
         justify-content: center;
-        padding: 1rem 2rem;
       }
       
       section {
-        padding: 5rem 1.5rem;
+        padding: 4rem 1.5rem;
       }
       
       .services-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
       }
-      
-      .service-item {
-        padding: 2rem;
-      }
-      
-      .contact-info {
-        padding: 2rem;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .nav {
-        padding: 1rem 1.5rem;
-      }
-      
-      .logo-text {
-        font-size: 1.3rem;
-      }
-      
-      .hero-logo img {
-        height: 100px;
-      }
-      
-      .service-item {
-        padding: 1.5rem;
-      }
-    }
-    
-    /* Loading states and micro-interactions */
-    @keyframes shimmer {
-      0% { background-position: -200px 0; }
-      100% { background-position: calc(200px + 100%) 0; }
-    }
-    
-    .loading {
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
-      background-size: 200px 100%;
-      animation: shimmer 1.5s infinite;
     }
   </style>
 </head>
@@ -629,7 +518,10 @@
   <section id="home" class="hero-section">
     <div class="hero-content">
       <div class="hero-logo">
-        <img src="https://raw.githubusercontent.com/Fidelitymechanical/Fidelity/main/fidelity-logo-light.png" alt="Fidelity Mechanical Solutions Logo" loading="lazy">
+        <!-- Elegant placeholder - easily replaceable with your final logo -->
+        <div class="logo-placeholder">
+          F
+        </div>
       </div>
       <h1 class="hero-title">Fidelity Mechanical Solutions</h1>
       <p class="hero-subtitle">More than service — this is how we think, how we move, and how we work in your space with respect and clarity.</p>
@@ -641,127 +533,128 @@
   </section>
   
   <section id="approach">
-    <h2>Our Approach</h2>
-    <p>We are a mechanical service company organized around one premise: that technical work, client understanding, and professional development are not separate functions — they are the work that defines where work is — our work.</p>
-    <p>A theoretical framework grounded in one premise: they're "the work — they're the work itself are — the work truth respect" for both the system and the client. <em>Eveisinate</em> without condescension, and to solve problems at their root rather than their surface.</p>
-    <p>Every interaction becomes an opportunity to demonstrate mastery through simplicity, to educate without condescension, and to solve problems with systematic precision that honors both technical excellence and human understanding.</p>
+    <div class="section-header">
+      <h2 class="section-title">Our Approach</h2>
+      <p class="section-subtitle">Technical excellence delivered with systematic precision and genuine care for your mechanical environment.</p>
+    </div>
+    <p>We are a mechanical service company organized around one premise: that technical work, client understanding, and professional development are not separate functions — they are the integrated disciplines that define exceptional service delivery.</p>
+    <p>Our theoretical framework emphasizes root-cause methodology over surface-level fixes. We educate without condescension and solve problems with systematic precision that honors both technical excellence and human understanding.</p>
+    <p>Every interaction becomes an opportunity to demonstrate mastery through clarity, building long-term relationships based on competence, transparency, and measurable results.</p>
   </section>
   
   <section id="services">
-    <h2>Services</h2>
+    <div class="section-header">
+      <h2 class="section-title">Services</h2>
+      <p class="section-subtitle">Comprehensive mechanical solutions designed for performance, longevity, and peace of mind.</p>
+    </div>
     <div class="services-grid">
-      <div class="service-item">
-        <strong>System Installation</strong>
-        <p>Full HVAC setups with built-in monitoring, comprehensive startup and configuration. We don't install — we establish integrated mechanical ecosystems designed for longevity and performance.</p>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3 class="service-title">System Installation</h3>
+        <p class="service-description">Complete HVAC installations with integrated monitoring, comprehensive commissioning, and performance validation. We establish mechanical ecosystems designed for optimal efficiency and longevity.</p>
       </div>
-      <div class="service-item">
-        <strong>Diagnostics & Repair</strong>
-        <p>Root-cause methodology, prevention education, and system optimization. Every diagnosis includes comprehensive analysis with measurable outcomes and prevention strategies.</p>
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <h3 class="service-title">Diagnostics & Repair</h3>
+        <p class="service-description">Root-cause analysis with comprehensive system evaluation. Every diagnosis includes detailed reporting, prevention education, and optimization recommendations with measurable outcomes.</p>
       </div>
-      <div class="service-item">
-        <strong>Preventive Maintenance</strong>
-        <p>Four annual checkups, trend analysis, predictive insights, proactive component care. Stay ahead of problems with data-driven maintenance protocols tailored to your system's unique operational profile.</p>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3 class="service-title">Preventive Maintenance</h3>
+        <p class="service-description">Proactive maintenance protocols with trend analysis and predictive insights. Scheduled inspections designed to prevent failures and optimize system performance year-round.</p>
       </div>
-      <div class="service-item">
-        <strong>System Optimization</strong>
-        <p>Efficiency tuning for older or non-Fidelity installed systems with measurable performance gains. Breathing new life into existing mechanical infrastructure through precision calibration and strategic upgrades.</p>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3 class="service-title">System Optimization</h3>
+        <p class="service-description">Performance tuning and efficiency improvements for existing systems. Data-driven optimization that extends equipment life and reduces operational costs.</p>
       </div>
     </div>
   </section>
   
   <section id="team">
-    <h2>Team Development</h2>
-    <p>Technicians are reciprocally perceived as educators — not just workers. Growth is built into the workflow, with service requests serving as both service and skill refinement opportunities.</p>
-    <p>Training methodology emphasizes instinctive clarity and mentorship-based advancement. We invest in continuous education because mechanical excellence is a discipline that demands perpetual refinement and knowledge synthesis.</p>
-    <p>This commitment to professional development ensures that every Fidelity technician brings not just technical competency, but systematic thinking and educational perspective to your mechanical challenges.</p>
+    <div class="section-header">
+      <h2 class="section-title">Professional Development</h2>
+      <p class="section-subtitle">Continuous learning and systematic growth are built into every aspect of our service delivery.</p>
+    </div>
+    <p>Our technicians function as mechanical educators, not just service providers. Professional development is integrated into our workflow, with each service call serving as both problem resolution and skill refinement opportunity.</p>
+    <p>We emphasize systematic thinking and mentorship-based advancement. Continuous education ensures that every team member brings both technical competency and analytical perspective to your mechanical challenges.</p>
+    <p>This commitment to excellence means you benefit from a team that approaches every project with curiosity, precision, and the kind of systematic thinking that prevents problems before they occur.</p>
   </section>
   
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Ready to experience mechanical service executed with precision and clarity? We provide rapid response with thoughtful, systematic solutions.</p>
+  <section id="contact" class="contact-section">
+    <div class="section-header">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">Ready to experience mechanical service delivered with precision and clarity.</p>
+    </div>
     <div class="contact-info">
-      <p>Text preferred for fastest response coordination. Service requests are typically confirmed within 2 hours during standard operating hours.</p>
-      <p>📱 <strong><a href="sms:713-201-2842">713-201-2842</a></strong> (Text preferred)<br>
-      📧 <strong><a href="mailto:m.perez@fidelitymechanicalsolutions.com">M. Perez</a></strong></p>
+      <div class="contact-item">
+        <h3>Phone & Text</h3>
+        <p><strong><a href="tel:713-201-2842">713-201-2842</a></strong></p>
+        <p>Text preferred for fastest response</p>
+      </div>
+      <div class="contact-item">
+        <h3>Email</h3>
+        <p><strong><a href="mailto:m.perez@fidelitymechanicalsolutions.com">m.perez@fidelitymechanicalsolutions.com</a></strong></p>
+        <p>Detailed inquiries welcome</p>
+      </div>
+      <div class="contact-item">
+        <h3>Response Time</h3>
+        <p><strong>2 hours or less</strong></p>
+        <p>During standard operating hours</p>
+      </div>
     </div>
   </section>
   
   <footer class="footer">
-    <p>&copy; 2025 Fidelity Mechanical Solutions. Built with systematic precision. Operated with uncompromising clarity. Revenue emerges as a natural consequence of competent service delivery, not as its primary objective.</p>
+    <p>&copy; 2025 Fidelity Mechanical Solutions. Professional excellence delivered through systematic precision and uncompromising clarity. Revenue emerges as a natural consequence of competent service delivery, not as its primary objective.</p>
   </footer>
   
   <script>
-    // Enhanced navigation with premium interactions
+    // Enhanced navigation with smooth interactions
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     
-    // Mobile menu toggle with enhanced animation
+    // Mobile menu functionality
     navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('active');
       navLinks.classList.toggle('active');
       
-      // Prevent body scroll when menu is open
-      if (navLinks.classList.contains('active')) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
+      // Animate hamburger bars
+      const bars = navToggle.querySelectorAll('.bar');
+      bars.forEach((bar, index) => {
+        if (navLinks.classList.contains('active')) {
+          if (index === 0) bar.style.transform = 'rotate(45deg) translate(5px, 5px)';
+          if (index === 1) bar.style.opacity = '0';
+          if (index === 2) bar.style.transform = 'rotate(-45deg) translate(7px, -6px)';
+        } else {
+          bar.style.transform = '';
+          bar.style.opacity = '';
+        }
+      });
     });
     
     // Close mobile menu when clicking links
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
         navLinks.classList.remove('active');
-        document.body.style.overflow = '';
+        const bars = navToggle.querySelectorAll('.bar');
+        bars.forEach(bar => {
+          bar.style.transform = '';
+          bar.style.opacity = '';
+        });
       });
     });
     
-    // Premium scroll effects with performance optimization
-    let ticking = false;
-    let lastScroll = 0;
-    
-    function updateNav() {
-      const currentScroll = window.pageYOffset;
-      
-      if (currentScroll > 100) {
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
       }
-      
-      lastScroll = currentScroll;
-      ticking = false;
-    }
-    
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateNav);
-        ticking = true;
-      }
     });
     
-    // Intersection Observer for section animations
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: '0px 0px -80px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-    
-    // Observe all content sections
-    document.querySelectorAll('section:not(.hero-section)').forEach(section => {
-      observer.observe(section);
-    });
-    
-    // Enhanced smooth scrolling with offset for fixed nav
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -776,16 +669,10 @@
       });
     });
     
-    // Add loading states for images
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('load', function() {
-        this.classList.add('loaded');
-      });
+    // Add loading animation complete class
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
     });
-    
-    // Preload critical resources
-    const preloadLogo = new Image();
-    preloadLogo.src = 'https://raw.githubusercontent.com/Fidelitymechanical/Fidelity/main/fidelity-logo-light.png';
   </script>
 </body>
 </html>
