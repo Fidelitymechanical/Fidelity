@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fidelity Mechanical Solutions | Premium HVAC Services</title>
+  <meta name="description" content="Experience mechanical excellence. Premium HVAC diagnostics and solutions delivered with uncompromising integrity and technical mastery.">
+  <meta property="og:title" content="Fidelity Mechanical Solutions">
+  <meta property="og:description" content="Where mechanical precision meets thoughtful service. Houston's premier diagnostic-forward HVAC company.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fidelitymechanical.com">
+  <meta property="og:image" content="https://fidelitymechanical.com/fidelity-logo-dark.png">
+  
+  <!-- Premium fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Fidelity Mechanical Solutions",
+      "description": "Premium diagnostic-forward HVAC and mechanical repair services",
+      "telephone": "713-201-2842",
+      "email": "nvvtruelife@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Houston",
+        "addressRegion": "TX",
+        "addressCountry": "USA"
+      },
+      "url": "https://fidelitymechanical.com"
+    }
+  </script>
+  
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #5a9fd4 0%, #7ec8e3 100%);
+      --dark-gradient: linear-gradient(135deg, #0a0c0f 0%, #1a1d24 100%);
+      --text-primary: #ffffff;
+      --text-secondary: #b8c5d1;
+      --accent-blue: #5a9fd4;
+      --surface-dark: rgba(13, 16, 20, 0.95);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--dark-gradient);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Premium typography */
+    h1, h2, h3 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+    
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Selection styling */
+    ::selection {
+      background: var(--accent-blue);
+      color: white;
+    }
+    
+    /* Premium navigation */
+    .nav-container {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(13, 16, 20, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .nav-container.scrolled {
+      background: var(--surface-dark);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      padding: 1.25rem 2rem;
+      margin: auto;
+    }
+    
+    /* Logo styling */
+    .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    
+    .logo-img {
+      height: 45px;
+      width: auto;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-link:hover .logo-img {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+    
+    /* Hero logo */
+    .hero-logo {
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    
+    .hero-logo img {
+      height: 120px;
+      width: auto;
+      margin: 0 auto;
+      display: block;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 0.5rem 0;
+    }
+    
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1px;
+      background: var(--primary-gradient);
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* Mobile menu with premium animation */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    
+    .bar {
+      height: 2px;
+      width: 24px;
+      background: var(--text-secondary);
+      margin: 3px 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 2px;
+    }
+    
+    .nav-toggle.active .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .nav-toggle.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .nav-toggle.active .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    
+    /* Hero section with premium feel */
+    .hero-section {
+      min-height: auto;
+      padding: 120px 2rem 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(ellipse at top center, rgba(90, 159, 212, 0.15) 0%, transparent 60%);
+    }
+    
+    /* Subtle animated background effect */
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(90, 159, 212, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(126, 200, 227, 0.08) 0%, transparent 50%);
+      animation: subtleFloat 20s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes subtleFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+    }
+    
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.2s forwards;
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.4s forwards;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Premium CTA buttons */
+    .cta-container {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.6s forwards;
+    }
+    
+    .cta-primary, .cta-secondary {
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .cta-primary {
+      background: var(--primary-gradient);
+      color: white;
+      box-shadow: 0 4px 20px rgba(90, 159, 212, 0.3);
+    }
+    
+    .cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(90, 159, 212, 0.4);
+    }
+    
+    .cta-secondary {
+      border: 1px solid rgba(184, 197, 209, 0.3);
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    
+    .cta-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(184, 197, 209, 0.5);
+      color: var(--text-primary);
+    }
+    
+    /* Content sections with refined styling */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    h2 {
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+    }
+    
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Premium service cards */
+    .services-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .service-item {
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .service-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(90, 159, 212, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    .service-item strong {
+      color: var(--text-primary);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+    }
+    
+    /* Contact section refinements */
+    #contact p {
+      font-size: 1.15rem;
+    }
+    
+    .contact-info {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+    }
+    
+    .contact-info a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-info a:hover {
+      color: #7ec8e3;
+    }
+    
+    /* Premium footer */
+    .footer {
+      background: rgba(13, 16, 20, 0.6);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 4rem;
+    }
+    
+    .footer p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--surface-dark);
+        padding: 2rem;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
+      .nav-toggle {
+        display: flex;
+      }
+      
+      .hero-logo img {
+        height: 80px;
+      }
+      
+      .cta-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .cta-primary, .cta-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    
+    /* Loading animation for sections */
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-container" id="navbar">
+    <div class="nav">
+      <a href="#home" class="logo-link">
+        <img src="fidelity-logo-dark.png" alt="Fidelity Mechanical Solutions" class="logo-img">
+      </a>
+      
+      <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#approach">Our Approach</a>
+        <a href="#services">Services</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+  
+  <section id="home" class="hero-section">
+    <div class="hero-content">
+      <div class="hero-logo">
+        <img src="fidelity-logo-dark.png" alt="Fidelity Mechanical Solutions">
+      </div>
+      <h1 class="hero-title">Fidelity Mechanical Solutions</h1>
+      <p class="hero-subtitle">More than service — this is how we think, how we move, and how we work in your space with respect and clarity.</p>
+      <div class="cta-container">
+        <a href="#contact" class="cta-primary">Get Free Estimate</a>
+        <a href="#services" class="cta-secondary">View Services</a>
+      </div>
+    </div>
+  </section>
+  
+  <section id="approach">
+    <h2>Our Approach</h2>
+    <p>We are a mechanical service company organized around one premise: that technical work, client understanding, and professional development are not separate functions—they are the work itself.</p>
+    <p>Our role is to install, maintain, and optimize mechanical systems using methods grounded in evidence, clarity, and respect for both the system and the client.</p>
+    <p>Every interaction is an opportunity to demonstrate mastery through simplicity, to educate without condescension, and to solve problems at their root rather than their surface.</p>
+  </section>
+  
+  <section id="services">
+    <h2>Services</h2>
+    <div class="services-grid">
+      <div class="service-item">
+        <strong>System Installation</strong>
+        Full HVAC setups with built-in monitoring, comprehensive startup protocol, and detailed client walkthrough. We don't just install—we integrate.
+      </div>
+      <div class="service-item">
+        <strong>Diagnostics & Repair</strong>
+        Root-cause focused methodology, not symptom-chasing. Every diagnosis includes prevention education and system optimization recommendations.
+      </div>
+      <div class="service-item">
+        <strong>Preventive Maintenance</strong>
+        Four annual checkups with trend analysis, predictive insights, and proactive component care. Stay ahead of problems, not behind them.
+      </div>
+      <div class="service-item">
+        <strong>System Optimization</strong>
+        Breathing new life into existing systems. Efficiency tuning for older or non-Fidelity installed systems with measurable performance gains.
+      </div>
+    </div>
+  </section>
+  
+  <section id="team">
+    <h2>Team Development</h2>
+    <p>Our technicians are evolving craftspeople and educators—not just workers. Growth is built into the workflow, with each project serving as both service delivery and skill refinement.</p>
+    <p>Training guides toward instinctive clarity and mentorship-based advancement. We invest in continuous education because excellence is a journey, not a destination.</p>
+    <p>This commitment to growth ensures that every Fidelity technician brings not just technical skill, but wisdom and perspective to your mechanical challenges.</p>
+  </section>
+  
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Ready to experience mechanical service at its finest? We're here to help with rapid response and thoughtful solutions.</p>
+    <div class="contact-info">
+      <p>Text preferred for fastest response. Service requests are typically confirmed within 2 hours during operating hours.</p>
+      <p>📱 <strong><a href="sms:713-201-2842">713-201-2842</a></strong> (Text preferred)<br>
+      📧 <strong><a href="mailto:nvvtruelife@outlook.com">nvvtruelife@outlook.com</a></strong></p>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <p>&copy; 2025 Fidelity Mechanical Solutions. Built with purpose. Run with clarity. Revenue is a result of competent service, not its goal.</p>
+  </footer>
+  
+  <script>
+    // Premium navigation behavior
+    const navbar = document.getElementById('navbar');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    // Toggle mobile menu with animation
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+    
+    // Premium scroll effects
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      // Add scrolled class for enhanced nav styling
+      if (currentScroll > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      
+      lastScroll = currentScroll;
+    });
+    
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all sections
+    document.querySelectorAll('section:not(.hero-section)').forEach(section => {
+      observer.observe(section);
+    });
+    
+    // Smooth scroll behavior for browsers that don't support CSS scroll-behavior
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
