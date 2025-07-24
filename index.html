@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fidelity Mechanical Solutions | Premium HVAC Services</title>
+  <meta name="description" content="Experience mechanical excellence. Premium HVAC diagnostics and solutions delivered with uncompromising integrity and technical mastery.">
+  
+  <!-- Premium fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #4a90e2 0%, #5ba0f2 100%);
+      --dark-gradient: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 100%);
+      --text-primary: #ffffff;
+      --text-secondary: #a8b6c8;
+      --text-muted: #6b7684;
+      --accent-blue: #4a90e2;
+      --accent-light: #5ba0f2;
+      --surface-dark: rgba(10, 14, 23, 0.95);
+      --surface-card: rgba(255, 255, 255, 0.03);
+      --surface-card-hover: rgba(255, 255, 255, 0.06);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(74, 144, 226, 0.3);
+      --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.3);
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--dark-gradient);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    ::selection {
+      background: var(--accent-blue);
+      color: white;
+    }
+    
+    /* Premium Navigation */
+    .nav-container {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 14, 23, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .nav-container.scrolled {
+      background: var(--surface-dark);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: var(--shadow-card);
+    }
+    
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      padding: 1.25rem 2rem;
+      margin: 0 auto;
+    }
+    
+    .logo-text {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-text:hover {
+      color: var(--accent-light);
+      transform: scale(1.02);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 0.5rem 0;
+    }
+    
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--primary-gradient);
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 1px;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    
+    .bar {
+      height: 2px;
+      width: 26px;
+      background: var(--text-secondary);
+      margin: 3px 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 2px;
+    }
+    
+    .nav-toggle.active .bar:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+      background: var(--accent-blue);
+    }
+    
+    .nav-toggle.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .nav-toggle.active .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+      background: var(--accent-blue);
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      min-height: 100vh;
+      padding: 140px 2rem 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: 
+        radial-gradient(ellipse at top center, rgba(74, 144, 226, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 20% 50%, rgba(91, 160, 242, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(74, 144, 226, 0.06) 0%, transparent 50%);
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 40%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(91, 160, 242, 0.08) 0%, transparent 50%);
+      animation: subtleFloat 25s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes subtleFloat {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+      50% { transform: translateY(-30px) scale(1.05); opacity: 0.8; }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      width: 100%;
+    }
+    
+    .hero-logo {
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+    
+    .hero-logo img {
+      height: 140px;
+      width: auto;
+      margin: 0 auto;
+      display: block;
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+      transition: all 0.3s ease;
+    }
+    
+    .hero-logo img:hover {
+      transform: scale(1.02);
+      filter: drop-shadow(0 15px 40px rgba(74, 144, 226, 0.2));
+    }
+    
+    .hero-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInUp 1.2s ease-out 0.3s forwards;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 750px;
+      margin: 0 auto 3.5rem;
+      opacity: 0;
+      animation: fadeInUp 1.2s ease-out 0.6s forwards;
+      font-weight: 400;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .cta-container {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeInUp 1.2s ease-out 0.9s forwards;
+    }
+    
+    .cta-primary, .cta-secondary {
+      padding: 1.2rem 3rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-primary {
+      background: var(--primary-gradient);
+      color: white;
+      box-shadow: 0 6px 25px rgba(74, 144, 226, 0.35);
+    }
+    
+    .cta-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .cta-primary:hover::before {
+      left: 100%;
+    }
+    
+    .cta-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(74, 144, 226, 0.45);
+    }
+    
+    .cta-secondary {
+      border: 1.5px solid rgba(184, 197, 209, 0.3);
+      color: var(--text-secondary);
+      background: var(--surface-card);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .cta-secondary:hover {
+      background: var(--surface-card-hover);
+      border-color: var(--border-accent);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(74, 144, 226, 0.15);
+    }
+    
+    /* Content Sections */
+    section {
+      padding: 8rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+      color: var(--text-primary);
+      position: relative;
+      padding-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+    }
+    
+    section p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+    
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .service-item {
+      padding: 2.5rem;
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--primary-gradient);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    
+    .service-item:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .service-item:hover {
+      background: var(--surface-card-hover);
+      border-color: var(--border-accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+    }
+    
+    .service-item strong {
+      color: var(--text-primary);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-family: 'Sora', sans-serif;
+    }
+    
+    .service-item p {
+      color: var(--text-secondary);
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    
+    /* Contact Section */
+    #contact {
+      background: var(--surface-card);
+      border-radius: 24px;
+      border: 1px solid var(--border-subtle);  
+      margin: 4rem auto;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at top right, rgba(74, 144, 226, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .contact-info {
+      margin-top: 3rem;
+      padding: 3rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+    }
+    
+    .contact-info p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-info a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .contact-info a:hover {
+      color: var(--accent-light);
+      text-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
+    }
+    
+    /* Footer */
+    .footer {
+      background: rgba(10, 14, 23, 0.8);
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 6rem;
+    }
+    
+    .footer p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--surface-dark);
+        padding: 2rem;
+        gap: 2rem;
+        border-bottom: 1px solid var(--border-subtle);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
+      .nav-toggle {
+        display: flex;
+      }
+      
+      .hero-section {
+        padding: 120px 1.5rem 80px;
+      }
+      
+      .hero-logo img {
+        height: 100px;
+      }
+      
+      .cta-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        gap: 1rem;
+      }
+      
+      .cta-primary, .cta-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 2rem;
+      }
+      
+      section {
+        padding: 5rem 1.5rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .service-item {
+        padding: 2rem;
+      }
+      
+      .contact-info {
+        padding: 2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .nav {
+        padding: 1rem 1.5rem;
+      }
+      
+      .logo-text {
+        font-size: 1.3rem;
+      }
+      
+      .hero-logo img {
+        height: 80px;
+      }
+      
+      .service-item {
+        padding: 1.5rem;
+      }
+    }
+    
+    /* Loading states and micro-interactions */
+    @keyframes shimmer {
+      0% { background-position: -200px 0; }
+      100% { background-position: calc(200px + 100%) 0; }
+    }
+    
+    .loading {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+      background-size: 200px 100%;
+      animation: shimmer 1.5s infinite;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-container" id="navbar">
+    <div class="nav">
+      <a href="#home" class="logo-text">FIDELITY</a>
+      
+      <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#approach">Our Approach</a>
+        <a href="#services">Services</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+  
+  <section id="home" class="hero-section">
+    <div class="hero-content">
+      <div class="hero-logo">
+        <img src="https://raw.githubusercontent.com/Fidelitymechanical/Fidelity/main/fidelity-logo-dark.png" alt="Fidelity Mechanical Solutions Logo" loading="lazy">
+      </div>
+      <h1 class="hero-title">Fidelity Mechanical Solutions</h1>
+      <p class="hero-subtitle">More than service — this is how we think, how we move, and how we work in your space with respect and clarity.</p>
+      <div class="cta-container">
+        <a href="#contact" class="cta-primary">Get Free Estimate</a>
+        <a href="#services" class="cta-secondary">View Services</a>
+      </div>
+    </div>
+  </section>
+  
+  <section id="approach">
+    <h2>Our Approach</h2>
+    <p>We are a mechanical service company organized around one premise: that technical work, client understanding, and professional development are not separate functions — they are the work that defines where work is — our work.</p>
+    <p>A theoretical framework grounded in one premise: they're "the work — they're the work itself are — the work truth respect" for both the system and the client. <em>Eveisinate</em> without condescension, and to solve problems at their root rather than their surface.</p>
+    <p>Every interaction becomes an opportunity to demonstrate mastery through simplicity, to educate without condescension, and to solve problems with systematic precision that honors both technical excellence and human understanding.</p>
+  </section>
+  
+  <section id="services">
+    <h2>Services</h2>
+    <div class="services-grid">
+      <div class="service-item">
+        <strong>System Installation</strong>
+        <p>Full HVAC setups with built-in monitoring, comprehensive startup and configuration. We don't install — we establish integrated mechanical ecosystems designed for longevity and performance.</p>
+      </div>
+      <div class="service-item">
+        <strong>Diagnostics & Repair</strong>
+        <p>Root-cause methodology, prevention education, and system optimization. Every diagnosis includes comprehensive analysis with measurable outcomes and prevention strategies.</p>
+      </div>
+      <div class="service-item">
+        <strong>Preventive Maintenance</strong>
+        <p>Four annual checkups, trend analysis, predictive insights, proactive component care. Stay ahead of problems with data-driven maintenance protocols tailored to your system's unique operational profile.</p>
+      </div>
+      <div class="service-item">
+        <strong>System Optimization</strong>
+        <p>Efficiency tuning for older or non-Fidelity installed systems with measurable performance gains. Breathing new life into existing mechanical infrastructure through precision calibration and strategic upgrades.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="team">
+    <h2>Team Development</h2>
+    <p>Technicians are reciprocally perceived as educators — not just workers. Growth is built into the workflow, with service requests serving as both service and skill refinement opportunities.</p>
+    <p>Training methodology emphasizes instinctive clarity and mentorship-based advancement. We invest in continuous education because mechanical excellence is a discipline that demands perpetual refinement and knowledge synthesis.</p>
+    <p>This commitment to professional development ensures that every Fidelity technician brings not just technical competency, but systematic thinking and educational perspective to your mechanical challenges.</p>
+  </section>
+  
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Ready to experience mechanical service executed with precision and clarity? We provide rapid response with thoughtful, systematic solutions.</p>
+    <div class="contact-info">
+      <p>Text preferred for fastest response coordination. Service requests are typically confirmed within 2 hours during standard operating hours.</p>
+      <p>📱 <strong><a href="sms:713-201-2842">713-201-2842</a></strong> (Text preferred)<br>
+      📧 <strong><a href="mailto:m.perez@fidelitymechanicalsolutions.com">m.perez@fidelitymechanicalsolutions.com</a></strong></p>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <p>&copy; 2025 Fidelity Mechanical Solutions. Built with systematic precision. Operated with uncompromising clarity. Revenue emerges as a natural consequence of competent service delivery, not as its primary objective.</p>
+  </footer>
+  
+  <script>
+    // Enhanced navigation with premium interactions
+    const navbar = document.getElementById('navbar');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    // Mobile menu toggle with enhanced animation
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      
+      // Prevent body scroll when menu is open
+      if (navLinks.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Close mobile menu when clicking links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Premium scroll effects with performance optimization
+    let ticking = false;
+    let lastScroll = 0;
+    
+    function updateNav() {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      
+      lastScroll = currentScroll;
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateNav);
+        ticking = true;
+      }
+    });
+    
+    // Intersection Observer for section animations
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -80px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all content sections
+    document.querySelectorAll('section:not(.hero-section)').forEach(section => {
+      observer.observe(section);
+    });
+    
+    // Enhanced smooth scrolling with offset for fixed nav
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Add loading states for images
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('load', function() {
+        this.classList.add('loaded');
+      });
+    });
+    
+    // Preload critical resources
+    const preloadLogo = new Image();
+    preloadLogo.src = 'https://raw.githubusercontent.com/Fidelitymechanical/Fidelity/main/fidelity-logo-dark.png';
+  </script>
+</body>
+</html>
