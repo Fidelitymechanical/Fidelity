@@ -201,34 +201,178 @@
       width: 100%;
     }
     
-    /* Logo placeholder with elegant styling */
+    /* Shield logo design with thermometer - inspired by the actual logo */
     .hero-logo {
       margin-bottom: 3rem;
       opacity: 0;
       animation: fadeInUp 1s ease-out forwards;
     }
     
-    .logo-placeholder {
-      width: 120px;
-      height: 120px;
+    .logo-design {
+      width: 140px;
+      height: 160px;
       margin: 0 auto;
-      background: var(--charcoal);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      box-shadow: var(--shadow-strong);
+      position: relative;
       transition: transform 0.3s ease;
     }
     
-    .logo-placeholder:hover {
+    .logo-design:hover {
       transform: translateY(-2px) scale(1.02);
     }
+    
+    /* Shield shape container */
+    .logo-shield {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Shield background shape */
+    .shield-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--deep-charcoal);
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 75%,
+        50% 100%,
+        0 75%
+      );
+      box-shadow: var(--shadow-strong);
+    }
+    
+    /* Shield border/outline */
+    .shield-border {
+      position: absolute;
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+      top: 4px;
+      left: 4px;
+      background: linear-gradient(135deg, var(--accent-blue) 0%, #2563eb 100%);
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 75%,
+        50% 100%,
+        0 75%
+      );
+    }
+    
+    /* Inner shield area */
+    .shield-inner {
+      position: absolute;
+      width: calc(100% - 16px);
+      height: calc(100% - 16px);
+      top: 8px;
+      left: 8px;
+      background: var(--deep-charcoal);
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 75%,
+        50% 100%,
+        0 75%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Thermometer icon container */
+    .thermometer-icon {
+      position: relative;
+      z-index: 3;
+      width: 40px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -10px;
+    }
+    
+    /* Thermometer tube */
+    .thermometer-tube {
+      position: absolute;
+      width: 20px;
+      height: 70px;
+      background: rgba(59, 130, 246, 0.2);
+      border: 3px solid var(--accent-blue);
+      border-radius: 10px 10px 20px 20px;
+      top: 0;
+    }
+    
+    /* Thermometer bulb */
+    .thermometer-bulb {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      bottom: 5px;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    
+    /* Mercury fill */
+    .mercury-fill {
+      position: absolute;
+      width: 8px;
+      height: 45px;
+      background: linear-gradient(to top, var(--accent-blue) 60%, transparent 100%);
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 4px;
+    }
+    
+    /* Temperature markings */
+    .temp-marks {
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      top: 10px;
+      left: 0;
+    }
+    
+    .temp-mark {
+      position: absolute;
+      width: 25px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.5);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .temp-mark:nth-child(1) { top: 5px; }
+    .temp-mark:nth-child(2) { top: 15px; }
+    .temp-mark:nth-child(3) { top: 25px; }
+    .temp-mark:nth-child(4) { top: 35px; }
+    
+    /* Small accent marks for detail */
+    .accent-marks {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    
+    .accent-dot {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(59, 130, 246, 0.6);
+      border-radius: 50%;
+    }
+    
+    .accent-dot:nth-child(1) { top: 20%; left: 25%; }
+    .accent-dot:nth-child(2) { top: 20%; right: 25%; }
+    .accent-dot:nth-child(3) { top: 40%; left: 20%; }
+    .accent-dot:nth-child(4) { top: 40%; right: 20%; }
     
     .hero-title {
       font-family: 'Playfair Display', serif;
@@ -518,9 +662,31 @@
   <section id="home" class="hero-section">
     <div class="hero-content">
       <div class="hero-logo">
-        <!-- Elegant placeholder - easily replaceable with your final logo -->
-        <div class="logo-placeholder">
-          F
+        <!-- Shield logo design with thermometer inspired by Fidelity branding -->
+        <div class="logo-design">
+          <div class="logo-shield">
+            <div class="shield-bg"></div>
+            <div class="shield-border"></div>
+            <div class="shield-inner">
+              <div class="thermometer-icon">
+                <div class="thermometer-tube"></div>
+                <div class="thermometer-bulb"></div>
+                <div class="mercury-fill"></div>
+                <div class="temp-marks">
+                  <div class="temp-mark"></div>
+                  <div class="temp-mark"></div>
+                  <div class="temp-mark"></div>
+                  <div class="temp-mark"></div>
+                </div>
+              </div>
+              <div class="accent-marks">
+                <div class="accent-dot"></div>
+                <div class="accent-dot"></div>
+                <div class="accent-dot"></div>
+                <div class="accent-dot"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <h1 class="hero-title">Fidelity Mechanical Solutions</h1>
@@ -594,7 +760,7 @@
       </div>
       <div class="contact-item">
         <h3>Email</h3>
-        <p><strong><a href="mailto:m.perez@fidelitymechanicalsolutions.com">m.perez@fidelitymechanicalsolutions.com</a></strong></p>
+        <p><strong><a href="mailto:m.perez@fidelitymechanicalsolutions.com">M. Pérez</a></strong></p>
         <p>Detailed inquiries welcome</p>
       </div>
       <div class="contact-item">
