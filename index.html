@@ -1,442 +1,1183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fidelity Mechanical Solutions</title>
-  <meta name="description" content="Transparent, technical HVAC solutions for all. Comfort. Trust. Clarity.">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #183c4d;
-      --accent: #299ec7;
-      --secondary: #f4d35e;
-      --neutral: #f5f7fa;
-      --shadow-lg: 0 6px 24px rgba(24,60,77,0.08);
-      --font-main: 'Montserrat', Arial, sans-serif;
-    }
-    body {
-      background: var(--neutral);
-      color: var(--primary);
-      font-family: var(--font-main);
-      margin: 0;
-      min-height: 100vh;
-      line-height: 1.6;
-    }
-    a, button {
-      font-family: inherit;
-      text-decoration: none;
-      cursor: pointer;
-      outline: none;
-      transition: background 0.18s, color 0.18s;
-    }
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-    header {
-      position: sticky;
-      top: 0;
-      background: #fff;
-      z-index: 100;
-      border-bottom: 1.5px solid #d9e4ea;
-      box-shadow: 0 1px 6px rgba(24,60,77,0.06);
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0.7rem 1.5rem;
-    }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    nav ul {
-      display: flex;
-      gap: 2.2rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    nav li a {
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 7px 2px;
-      border-radius: 7px;
-    }
-    nav li a:hover {
-      color: var(--accent);
-    }
-    .hero {
-      background: #fff;
-      text-align: center;
-      padding: 4rem 1rem 3rem 1rem;
-      border-bottom: 1px solid #e0e6ec;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      margin-bottom: 1rem;
-      color: var(--primary);
-      letter-spacing: -1px;
-    }
-    .hero h1 span { color: var(--accent); }
-    .hero p {
-      color: #465669;
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-      max-width: 540px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hero .cta-row {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.3rem;
-    }
-    @media (min-width: 500px) {
-      .hero .cta-row { flex-direction: row; justify-content: center; }
-    }
-    .cta-main, .cta-alt {
-      font-size: 1.13rem;
-      font-weight: 600;
-      border-radius: 2rem;
-      padding: 0.82em 2.5em;
-      display: inline-block;
-      border: none;
-      transition: background 0.18s, color 0.18s, border 0.18s;
-    }
-    .cta-main {
-      background: var(--accent);
-      color: #fff;
-    }
-    .cta-main:hover {
-      background: var(--primary);
-      color: #fff;
-    }
-    .cta-alt {
-      background: #fff;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-    .cta-alt:hover {
-      background: #f5f7fa;
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .badges {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1rem;
-      align-items: center;
-    }
-    .badges img, .badges svg {
-      height: 35px;
-      display: block;
-      filter: grayscale(0.15);
-      opacity: 0.88;
-    }
-    /* --- Services --- */
-    .services-section {
-      padding: 3rem 1rem;
-      background: #f7fafd;
-      text-align: center;
-    }
-    .services-list {
-      max-width: 1000px;
-      margin: 2rem auto 0 auto;
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 700px) {
-      .services-list { grid-template-columns: repeat(2,1fr);}
-    }
-    @media (min-width: 1080px) {
-      .services-list { grid-template-columns: repeat(4,1fr);}
-    }
-    .service-card {
-      background: #fff;
-      border-radius: 1.5rem;
-      box-shadow: 0 2px 12px rgba(24,60,77,0.07);
-      padding: 2.2rem 1.5rem 1.7rem 1.5rem;
-      text-align: center;
-      transition: box-shadow 0.17s;
-      border: 1px solid #e6edf1;
-    }
-    .service-card:hover { box-shadow: 0 8px 28px rgba(41,158,199,0.11);}
-    .service-card .icon {
-      font-size: 2.6rem;
-      margin-bottom: 0.7rem;
-      display: flex;
-      justify-content: center;
-    }
-    .service-card h3 {
-      font-size: 1.16rem;
-      margin: 0 0 0.5rem 0;
-      color: var(--primary);
-      font-weight: 700;
-    }
-    .service-card p { color: #54617b; font-size: 1rem; }
-    /* --- HVAC Diagram --- */
-    .hvac-section {
-      padding: 2.7rem 1rem 2.5rem 1rem;
-      background: #fff;
-      border-bottom: 1px solid #e0e6ec;
-    }
-    .hvac-section h2 { text-align: center; font-size: 1.5rem; margin-bottom: 1.3rem;}
-    .hvac-diagram-wrap { display: flex; justify-content: center; }
-    .hvac-tooltip {
-      display: inline-block;
-      background: #f1f8fa;
-      color: var(--primary);
-      border-radius: 10px;
-      box-shadow: 0 1px 7px rgba(24,60,77,0.06);
-      padding: 0.5rem 1.1rem;
-      margin: 0 auto;
-      font-size: 1rem;
-      min-height: 34px;
-      margin-top: 1rem;
-    }
-    /* --- Diagnostic Tool --- */
-    .diagnostic-tool {
-      position: fixed;
-      bottom: 1.3rem;
-      right: 1.3rem;
-      background: #fff;
-      border-radius: 1.4rem;
-      box-shadow: var(--shadow-lg);
-      max-width: 325px;
-      width: 92vw;
-      z-index: 999;
-      border: 1px solid #e6edf1;
-      padding: 1.2rem 1.2rem 1rem 1.2rem;
-      font-size: 1rem;
-      display: none;
-      transition: opacity 0.21s;
-    }
-    .diagnostic-tool.visible { display: block; }
-    .diagnostic-tool h2 { margin-top: 0; font-size: 1.12rem;}
-    .diagnostic-tool .diag-btns {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-    .diag-btn {
-      border-radius: 1.1rem;
-      padding: 0.54em 1.3em;
-      background: #d6eaff;
-      color: var(--primary);
-      border: none;
-      font-weight: 600;
-      transition: background 0.14s, color 0.14s;
-    }
-    .diag-btn:hover { background: var(--accent); color: #fff;}
-    .diag-restart {
-      background: var(--accent);
-      color: #fff;
-      margin-top: 0.8em;
-      border: none;
-      border-radius: 1em;
-      padding: 0.48em 1.5em;
-      font-weight: 700;
-      font-size: 1rem;
-    }
-    /* Quick Links Bar */
-    .quick-links {
-      display: flex;
-      justify-content: space-around;
-      position: fixed;
-      bottom: 0;
-      left: 0; right: 0;
-      z-index: 100;
-      background: #fff;
-      border-top: 1px solid #e6edf1;
-      box-shadow: 0 -2px 18px rgba(41,158,199,0.07);
-      padding: 0;
-      height: 54px;
-    }
-    .quick-link {
-      flex: 1 1 0;
-      text-align: center;
-      padding: 0.7em 0 0.1em 0;
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 1.04rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.2em;
-      text-decoration: none;
-      transition: background 0.13s;
-    }
-    .quick-link span {
-      font-size: 1.38em;
-      display: block;
-      line-height: 1.1;
-    }
-    .quick-link:active, .quick-link:hover {
-      background: #f4faff;
-    }
-    @media (min-width: 770px) {
-      .quick-links { display: none;}
-    }
-    /* --- Educational/Content Sections --- */
-    .edu-section {
-      background: #f7fafd;
-      padding: 2.2rem 1rem 2.2rem 1rem;
-      border-bottom: 1px solid #e0e6ec;
-    }
-    .edu-section h2 {
-      font-size: 1.33rem;
-      margin-bottom: 1.2em;
-      text-align: center;
-    }
-    .edu-section ol {
-      max-width: 550px;
-      margin: 1.5em auto 0 auto;
-      padding: 0;
-      list-style-position: inside;
-      font-size: 1.07rem;
-      color: #485c75;
-    }
-    .faq-section {
-      background: #fff;
-      padding: 2.2rem 1rem 2.2rem 1rem;
-      border-bottom: 1px solid #e0e6ec;
-    }
-    .faq-list { max-width: 570px; margin: 0 auto;}
-    .faq-item { border-bottom: 1px solid #e6edf1;}
-    .faq-question {
-      background: none;
-      width: 100%;
-      text-align: left;
-      font-weight: 600;
-      color: var(--primary);
-      padding: 1rem 0;
-      border: none;
-      cursor: pointer;
-      font-size: 1.07rem;
-      transition: color 0.14s;
-    }
-    .faq-question[aria-expanded="true"], .faq-question:hover {
-      color: var(--accent);
-    }
-    .faq-answer {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.3s;
-      color: #54617b;
-      font-size: 0.99rem;
-      padding: 0 0.5em;
-    }
-    .faq-answer.open {
-      max-height: 160px;
-      padding-bottom: 1em;
-    }
-    /* Glossary */
-    .glossary-section {
-      background: #f7fafd;
-      padding: 2.2rem 1rem 2.2rem 1rem;
-    }
-    .glossary-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    @media (min-width: 600px) {
-      .glossary-grid { grid-template-columns: 1fr 1fr;}
-    }
-    .glossary-term {
-      background: #fff;
-      border: 1px solid #e6edf1;
-      border-radius: 1rem;
-      padding: 1rem;
-    }
-    .glossary-term dt {
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.3em;
-    }
-    .glossary-term dd {
-      color: #6d7f94;
-      margin-left: 0;
-    }
-    /* Footer */
-    footer {
-      padding: 2.1rem 1rem 1.1rem 1rem;
-      background: #183c4d;
-      color: #fff;
-      text-align: center;
-      font-size: 1rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fidelity Mechanical Solutions - Where Engineering Meets Artistry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --warm: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --surface: #f8fafc;
+            --glass: rgba(248, 250, 252, 0.8);
+            --shadow-depth: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --gradient-primary: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            line-height: 1.7;
+        }
+
+        .font-display { font-family: 'Playfair Display', serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Advanced Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+        }
+
+        @keyframes slide-in-up {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #3b82f6; }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .animate-slide-up { animation: slide-in-up 0.8s ease-out forwards; }
+
+        /* Glass Morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Neural Network Background */
+        .neural-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neural-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        /* Advanced Typography */
+        .text-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid;
+            white-space: nowrap;
+            animation: typewriter 4s steps(40) 1s forwards, blink 1s infinite;
+            width: 0;
+        }
+
+        /* Interactive Elements */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-depth);
+        }
+
+        .perspective-card {
+            perspective: 1000px;
+        }
+
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+
+        /* System Diagram Styles */
+        .system-node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .system-node:hover {
+            filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.8));
+            transform: scale(1.1);
+        }
+
+        .connection-line {
+            stroke-dasharray: 5,5;
+            animation: dash 2s linear infinite;
+        }
+
+        @keyframes dash {
+            to { stroke-dashoffset: -10; }
+        }
+
+        /* Diagnostic Widget */
+        .diagnostic-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            max-width: 400px;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .diagnostic-widget.active {
+            transform: translateX(0);
+        }
+
+        /* Responsive Grid */
+        .masonry {
+            column-count: 1;
+            column-gap: 2rem;
+        }
+
+        @media (min-width: 768px) { .masonry { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry { column-count: 3; } }
+
+        .masonry > * {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+        }
+
+        /* Focus States */
+        .focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 4px;
+            border-radius: 8px;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; line-height: 1.1; }
+            .neural-bg::before { animation: none; }
+        }
+    </style>
 </head>
-<body>
 
-<header>
-  <div class="nav-inner">
-    <a href="/" class="nav-logo" aria-label="Home">
-      <!-- Animated Logo SVG (no JS, but animated stroke with SMIL for modern browsers) -->
-      <svg width="120" height="40" viewBox="0 0 240 70" aria-label="Fidelity Mechanical Solutions logo" role="img">
-        <!-- Shield outline -->
-        <path d="M40,16 Q72,29 72,50 Q72,90 40,105 Q8,90 8,50 Q8,29 40,16 Z"
-              fill="none" stroke="#183c4d" stroke-width="3.5" stroke-dasharray="180" stroke-dashoffset="180">
-          <animate attributeName="stroke-dashoffset" from="180" to="0" dur="1s" fill="freeze"/>
-        </path>
-        <!-- Thermometer Stem -->
-        <rect x="34" y="32" width="12" height="25" rx="6" fill="#183c4d"/>
-        <!-- Mercury (animated) -->
-        <rect x="38" y="48" width="4" height="0" rx="2" fill="#299ec7">
-          <animate attributeName="height" from="0" to="10" dur="1s" fill="freeze" begin="0.4s"/>
-          <animate attributeName="y" from="58" to="48" dur="1s" fill="freeze" begin="0.4s"/>
-        </rect>
-        <!-- Bulb -->
-        <circle cx="40" cy="65" r="7" fill="#183c4d"/>
-        <circle cx="40" cy="65" r="3.5" fill="#299ec7"/>
-        <!-- Tick marks -->
-        <rect x="46" y="35" width="10" height="2" fill="#183c4d" rx="1"/>
-        <rect x="46" y="48" width="10" height="2" fill="#183c4d" rx="1"/>
-        <!-- Brand Text -->
-        <text x="85" y="45" font-size="31" font-family="Montserrat, Arial, sans-serif" font-weight="bold" fill="#183c4d">FIDELITY</text>
-        <text x="85" y="62" font-size="13" font-family="Montserrat, Arial, sans-serif" fill="#183c4d" opacity="0.84">MECHANICAL SOLUTIONS</text>
-      </svg>
-    </a>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#diagnostic">Diagnostics</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<body class="text-slate-800">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 glass border-b border-white/20">
+        <nav class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <!-- Animated Technical Logo -->
+                        <svg width="60" height="60" viewBox="0 0 100 100" class="animate-float">
+                            <!-- Outer Ring -->
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#grad1)" stroke-width="2" opacity="0.6"/>
+                            
+                            <!-- Central Mechanism -->
+                            <circle cx="50" cy="50" r="20" fill="url(#grad2)" opacity="0.9"/>
+                            
+                            <!-- Precision Indicators -->
+                            <g stroke="#3b82f6" stroke-width="2" fill="none">
+                                <path d="M50,10 L50,25" opacity="0.8"/>
+                                <path d="M50,75 L50,90" opacity="0.8"/>
+                                <path d="M10,50 L25,50" opacity="0.8"/>
+                                <path d="M75,50 L90,50" opacity="0.8"/>
+                            </g>
+                            
+                            <!-- Rotating Elements -->
+                            <g transform-origin="50 50">
+                                <animateTransform attributeName="transform" type="rotate" values="0;360" dur="20s" repeatCount="indefinite"/>
+                                <circle cx="35" cy="35" r="3" fill="#f59e0b"/>
+                                <circle cx="65" cy="35" r="3" fill="#10b981"/>
+                                <circle cx="65" cy="65" r="3" fill="#ef4444"/>
+                                <circle cx="35" cy="65" r="3" fill="#8b5cf6"/>
+                            </g>
+                            
+                            <!-- Gradients -->
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    
+                    <div>
+                        <h1 class="font-display text-xl font-bold text-slate-900">FIDELITY</h1>
+                        <p class="font-mono text-xs text-slate-600 tracking-wider">MECHANICAL.SOLUTIONS</p>
+                    </div>
+                </div>
 
-<main>
+                <!-- Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#philosophy" class="text-slate-700 hover:text-blue-600 font-medium transition-colors focus-visible">Philosophy</a>
+                    <a href="#systems" class="text-slate-700 hover:text-blue-600 font-medium transition-colors focus-visible">Systems</a>
+                    <a href="#process" class="text-slate-700 hover:text-blue-600 font-medium transition-colors focus-visible">Process</a>
+                    <a href="#intelligence" class="text-slate-700 hover:text-blue-600 font-medium transition-colors focus-visible">Intelligence</a>
+                    <button onclick="toggleDiagnostic()" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl focus-visible">
+                        System Analysis
+                    </button>
+                </div>
 
-  <section class="hero" id="home">
-    <h1>Comfort. Trust. <span>Clarity.</span></h1>
-    <p>
-      Transparent, technical HVAC solutions for every space.
-      Serving property managers, businesses, and homeowners with proven reliability.
-    </p>
-    <div class="cta-row">
-      <a href="#services" class="cta-main">Request Service</a>
-      <a href="#estimate" class="cta-alt">Get Estimate</a>
+                <!-- Mobile Menu -->
+                <button class="md:hidden text-slate-700 hover:text-blue-600" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Panel -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-white/20">
+                <div class="space-y-4 pt-4">
+                    <a href="#philosophy" class="block text-slate-700 hover:text-blue-600 font-medium">Philosophy</a>
+                    <a href="#systems" class="block text-slate-700 hover:text-blue-600 font-medium">Systems</a>
+                    <a href="#process" class="block text-slate-700 hover:text-blue-600 font-medium">Process</a>
+                    <a href="#intelligence" class="block text-slate-700 hover:text-blue-600 font-medium">Intelligence</a>
+                    <button onclick="toggleDiagnostic()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full">
+                        System Analysis
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen neural-bg flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 py-20">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Content -->
+                <div class="space-y-8 animate-slide-up">
+                    <div class="space-y-4">
+                        <p class="font-mono text-sm text-blue-600 tracking-wider uppercase">Engineering Excellence</p>
+                        <h1 class="hero-title font-display text-6xl lg:text-7xl font-bold text-gradient leading-tight">
+                            Precision Meets
+                            <span class="block typewriter">Innovation</span>
+                        </h1>
+                    </div>
+                    
+                    <p class="text-xl text-slate-600 leading-relaxed max-w-2xl">
+                        We don't just service mechanical systems—we engineer solutions. 
+                        Every installation, every diagnostic, every interaction is guided by 
+                        <strong>evidence, clarity, and relentless pursuit of excellence</strong>.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#philosophy" class="group bg-gradient-to-r from-slate-900 to-slate-800 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-slate-800 hover:to-slate-700 transition-all shadow-xl hover:shadow-2xl focus-visible">
+                            <span class="flex items-center">
+                                Explore Our Approach
+                                <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </span>
+                        </a>
+                        
+                        <a href="mailto:M.Perez@fidelitymechanicalsolutions.com" class="group glass text-slate-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all shadow-xl hover:shadow-2xl focus-visible">
+                            <span class="flex items-center">
+                                Start Conversation
+                                <svg class="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Interactive System Visualization -->
+                <div class="perspective-card">
+                    <div class="card-3d glass-dark p-8 rounded-2xl">
+                        <h3 class="font-display text-2xl font-bold text-white mb-6">System Intelligence</h3>
+                        <svg viewBox="0 0 400 300" class="w-full h-64">
+                            <!-- System Components with hover effects -->
+                            <g class="system-node" onclick="showInfo('hvac')">
+                                <rect x="50" y="50" width="80" height="60" rx="8" fill="url(#hvacGrad)" opacity="0.9"/>
+                                <text x="90" y="85" text-anchor="middle" fill="white" font-size="12" font-weight="bold">HVAC</text>
+                            </g>
+                            
+                            <g class="system-node" onclick="showInfo('controls')">
+                                <rect x="200" y="50" width="80" height="60" rx="8" fill="url(#controlGrad)" opacity="0.9"/>
+                                <text x="240" y="85" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Controls</text>
+                            </g>
+                            
+                            <g class="system-node" onclick="showInfo('monitoring')">
+                                <rect x="50" y="150" width="80" height="60" rx="8" fill="url(#monitorGrad)" opacity="0.9"/>
+                                <text x="90" y="185" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Monitor</text>
+                            </g>
+                            
+                            <g class="system-node" onclick="showInfo('optimization')">
+                                <rect x="200" y="150" width="80" height="60" rx="8" fill="url(#optimizeGrad)" opacity="0.9"/>
+                                <text x="240" y="185" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Optimize</text>
+                            </g>
+                            
+                            <!-- Animated Connections -->
+                            <line x1="130" y1="80" x2="200" y2="80" stroke="#3b82f6" stroke-width="2" class="connection-line"/>
+                            <line x1="90" y1="110" x2="90" y2="150" stroke="#10b981" stroke-width="2" class="connection-line"/>
+                            <line x1="130" y1="180" x2="200" y2="180" stroke="#f59e0b" stroke-width="2" class="connection-line"/>
+                            <line x1="240" y1="110" x2="240" y2="150" stroke="#8b5cf6" stroke-width="2" class="connection-line"/>
+                            
+                            <!-- Gradients for components -->
+                            <defs>
+                                <linearGradient id="hvacGrad"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient>
+                                <linearGradient id="controlGrad"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+                                <linearGradient id="monitorGrad"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+                                <linearGradient id="optimizeGrad"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient>
+                            </defs>
+                        </svg>
+                        
+                        <div id="system-info" class="mt-4 p-4 bg-white/10 rounded-lg border border-white/20 min-h-[60px]">
+                            <p class="text-white/80 text-sm">Click any system component to learn more about our integrated approach.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl font-bold text-gradient mb-6">Our Foundation</h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                    Technical work, client understanding, and professional development are not separate functions—they are the work itself.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Principle Cards -->
+                <div class="hover-lift glass p-8 rounded-2xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Evidence-Based Service</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Every recommendation is grounded in data, diagnostics, and proven methodology. 
+                        No guesswork, no shortcuts—only verified solutions.
+                    </p>
+                </div>
+
+                <div class="hover-lift glass p-8 rounded-2xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Education First</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Every client interaction increases understanding. We don't just fix—we teach, 
+                        empowering informed decisions without pressure.
+                    </p>
+                </div>
+
+                <div class="hover-lift glass p-8 rounded-2xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Continuous Evolution</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Growth through daily work, not scheduled training. Every team member evolves 
+                        from installer to technician to leader through practice.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quote Section -->
+            <div class="mt-20 glass-dark p-12 rounded-3xl text-center">
+                <blockquote class="font-display text-2xl lg:text-3xl text-white leading-relaxed mb-8">
+                    "We don't position ourselves as an alternative or premium service. 
+                    This is simply how the work should be done."
+                </blockquote>
+                <cite class="text-blue-300 font-medium">— M. Pérez, Founder</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Systems & Services -->
+    <section id="systems" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl font-bold text-gradient mb-6">Integrated Systems</h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                    Comprehensive mechanical solutions with embedded intelligence and continuous optimization.
+                </p>
+            </div>
+
+            <div class="masonry">
+                <!-- Installation -->
+                <div class="hover-lift bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-slate-900">Precision Installation</h3>
+                    </div>
+                    <p class="text-slate-600 mb-4">
+                        Every installation includes integrated monitoring as standard—not an add-on. 
+                        Complete documentation, baseline establishment, and comprehensive client education.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>Performance monitoring integration</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>Baseline performance documentation</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>Complete system education</li>
+                    </ul>
+                </div>
+
+                <!-- Diagnostics -->
+                <div class="hover-lift bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-slate-900">Root Cause Analysis</h3>
+                    </div>
+                    <p class="text-slate-600 mb-4">
+                        Comprehensive system evaluation focused on understanding, not quick fixes. 
+                        Transparent presentation of findings with educational context.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>Evidence-based diagnostics</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>Visual documentation</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>Transparent option presentation</li>
+                    </ul>
+                </div>
+
+                <!-- Preventive Maintenance -->
+                <div class="hover-lift bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-slate-900">Predictive Maintenance</h3>
+                    </div>
+                    <p class="text-slate-600 mb-4">
+                        Data-driven maintenance aligned with system performance trends. 
+                        Prevention through understanding, not scheduled guesswork.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-amber-500 rounded-full mr-3"></span>Performance trend analysis</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-amber-500 rounded-full mr-3"></span>Seasonal optimization</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-amber-500 rounded-full mr-3"></span>Progressive client education</li>
+                    </ul>
+                </div>
+
+                <!-- System Optimization -->
+                <div class="hover-lift bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-slate-900">Performance Enhancement</h3>
+                    </div>
+                    <p class="text-slate-600 mb-4">
+                        Systematic improvement of existing systems through proper setup, 
+                        monitoring integration, and evidence-based modifications.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>Efficiency optimization</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>Monitoring system integration</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>Performance documentation</li>
+                    </ul>
+                </div>
+
+                <!-- Emergency Response -->
+                <div class="hover-lift bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.864-.833-2.634 0L4.18 16.5C3.41 17.333 4.372 19 5.912 19z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-slate-900">Critical Response</h3>
+                    </div>
+                    <p class="text-slate-600 mb-4">
+                        Rapid response for system failures with full diagnostic approach. 
+                        Emergency repairs handled with the same educational standards.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>24/7 availability</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Rapid assessment</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Prevention planning</li>
+                    </ul>
+                </div>
+
+                <!-- Indoor Air Quality -->
+                <div class="hover-lift bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2h4a1 1 0 110 2h-1v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6H3a1 1 0 110-2h4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-slate-900">Air Quality Engineering</h3>
+                    </div>
+                    <p class="text-slate-600 mb-4">
+                        Scientific assessment and improvement of indoor air quality. 
+                        Solutions based on actual testing, not product pushing.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>Comprehensive air testing</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>Evidence-based solutions</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>Verification testing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl font-bold text-gradient mb-6">Our Process</h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                    A systematic approach that prioritizes understanding over urgency, education over transaction.
+                </p>
+            </div>
+
+            <div class="space-y-16">
+                <!-- Step 1 -->
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mr-6">
+                                <span class="text-2xl font-bold text-white">01</span>
+                            </div>
+                            <h3 class="font-display text-3xl font-bold text-slate-900">Initial Understanding</h3>
+                        </div>
+                        <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                            Our trained representatives—not salespeople—conduct thorough discovery calls. 
+                            We listen completely, ask clarifying questions, and schedule based on genuine need and priority.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Comprehensive situation assessment
+                            </div>
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Priority-based scheduling
+                            </div>
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Clear expectation setting
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="glass-dark p-8 rounded-2xl">
+                            <div class="w-full h-48 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center">
+                                <svg class="w-20 h-20 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mr-6">
+                                <span class="text-2xl font-bold text-white">02</span>
+                            </div>
+                            <h3 class="font-display text-3xl font-bold text-slate-900">Diagnostic Excellence</h3>
+                        </div>
+                        <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                            Comprehensive system evaluation using proven diagnostic methods. 
+                            Every finding is documented, photographed, and explained in clear terms—no technical jargon unless requested.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-emerald-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Evidence-based diagnostics
+                            </div>
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-emerald-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Visual documentation
+                            </div>
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-emerald-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Clear explanation of findings
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="glass-dark p-8 rounded-2xl">
+                            <div class="w-full h-48 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-xl flex items-center justify-center">
+                                <svg class="w-20 h-20 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mr-6">
+                                <span class="text-2xl font-bold text-white">03</span>
+                            </div>
+                            <h3 class="font-display text-3xl font-bold text-slate-900">Transparent Options</h3>
+                        </div>
+                        <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                            All options presented plainly with visual evidence when possible. 
+                            No pressure, no artificial deadlines—clients decide with complete information and understanding.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-amber-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Multiple solution options
+                            </div>
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-amber-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Transparent pricing
+                            </div>
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-amber-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                No-pressure decision making
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="glass-dark p-8 rounded-2xl">
+                            <div class="w-full h-48 bg-gradient-to-br from-amber-100 to-amber-200 rounded-xl flex items-center justify-center">
+                                <svg class="w-20 h-20 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mr-6">
+                                <span class="text-2xl font-bold text-white">04</span>
+                            </div>
+                            <h3 class="font-display text-3xl font-bold text-slate-900">Precise Execution</h3>
+                        </div>
+                        <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                            Work completed to exacting standards with continuous quality oversight. 
+                            Clean workspace maintenance and thorough documentation throughout the process.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-purple-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Exacting quality standards
+                            </div>
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-purple-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Clean workspace maintenance
+                            </div>
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-purple-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Complete documentation
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="glass-dark p-8 rounded-2xl">
+                            <div class="w-full h-48 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center">
+                                <svg class="w-20 h-20 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mr-6">
+                                <span class="text-2xl font-bold text-white">05</span>
+                            </div>
+                            <h3 class="font-display text-3xl font-bold text-slate-900">Ongoing Partnership</h3>
+                        </div>
+                        <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                            Continuous support through preventive care programs and performance monitoring. 
+                            Relationships built on trust, maintained through consistent excellence and ongoing education.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-teal-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Preventive maintenance programs
+                            </div>
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-teal-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Continuous performance monitoring
+                            </div>
+                            <div class="flex items-center text-slate-700">
+                                <svg class="w-5 h-5 text-teal-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Ongoing education and support
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="glass-dark p-8 rounded-2xl">
+                            <div class="w-full h-48 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center">
+                                <svg class="w-20 h-20 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intelligence Section -->
+    <section id="intelligence" class="py-24 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl font-bold text-white mb-6">System Intelligence</h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                    Advanced monitoring and analysis capabilities that transform reactive maintenance into predictive optimization.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="font-display text-3xl font-bold mb-8">Beyond Traditional Service</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xl mb-2">Predictive Analytics</h4>
+                                <p class="text-slate-300">Performance trends analyzed to identify potential issues before they become failures.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xl mb-2">Performance Optimization</h4>
+                                <p class="text-slate-300">Continuous refinement based on actual operational data and environmental conditions.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xl mb-2">Educational Integration</h4>
+                                <p class="text-slate-300">Data presented in understandable formats that increase client system knowledge.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-dark p-8 rounded-2xl">
+                    <h4 class="font-display text-2xl font-bold mb-6">Real-Time System Status</h4>
+                    <div class="space-y-4">
+                        <!-- Simulated Performance Metrics -->
+                        <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                            <span class="text-slate-300">System Efficiency</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-24 bg-slate-700 rounded-full h-2">
+                                    <div class="bg-emerald-500 h-2 rounded-full w-5/6"></div>
+                                </div>
+                                <span class="text-emerald-400 font-mono">94%</span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                            <span class="text-slate-300">Temperature Differential</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-24 bg-slate-700 rounded-full h-2">
+                                    <div class="bg-blue-500 h-2 rounded-full w-4/5"></div>
+                                </div>
+                                <span class="text-blue-400 font-mono">18°F</span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                            <span class="text-slate-300">Static Pressure</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-24 bg-slate-700 rounded-full h-2">
+                                    <div class="bg-amber-500 h-2 rounded-full w-3/4"></div>
+                                </div>
+                                <span class="text-amber-400 font-mono">0.6" WC</span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                            <span class="text-slate-300">Runtime Optimization</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-24 bg-slate-700 rounded-full h-2">
+                                    <div class="bg-purple-500 h-2 rounded-full w-5/6"></div>
+                                </div>
+                                <span class="text-purple-400 font-mono">91%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                        <p class="text-blue-300 text-sm">
+                            <strong>Next Maintenance:</strong> System performing optimally. 
+                            Preventive service scheduled for Q1 2024 based on performance trends.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="font-display text-5xl font-bold text-gradient mb-8">Begin the Conversation</h2>
+            <p class="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
+                Ready to experience mechanical service as it should be—precise, educational, and genuinely focused on your needs?
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+                <a href="mailto:M.Perez@fidelitymechanicalsolutions.com" 
+                   class="group bg-gradient-to-r from-slate-900 to-slate-800 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-slate-800 hover:to-slate-700 transition-all shadow-xl hover:shadow-2xl focus-visible">
+                    <span class="flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Email M. Pérez Directly
+                    </span>
+                </a>
+
+                <button onclick="toggleDiagnostic()" 
+                        class="group glass text-slate-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/30 transition-all shadow-xl hover:shadow-2xl focus-visible">
+                    <span class="flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                        Start System Analysis
+                    </span>
+                </button>
+            </div>
+
+            <div class="text-center">
+                <p class="text-slate-500 text-sm mb-4">Serving the greater Texas region with precision and dedication</p>
+                <div class="inline-flex items-center text-slate-400 text-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    Texas • Licensed & Insured
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <svg width="40" height="40" viewBox="0 0 100 100" class="opacity-80">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                            <circle cx="50" cy="50" r="20" fill="#3b82f6" opacity="0.6"/>
+                        </svg>
+                        <div>
+                            <h3 class="font-display text-lg font-bold">FIDELITY</h3>
+                            <p class="font-mono text-xs text-slate-400">MECHANICAL.SOLUTIONS</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Precision engineering meets client understanding. 
+                        This is simply how mechanical service should be done.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>System Installation & Integration</li>
+                        <li>Diagnostic & Repair Services</li>
+                        <li>Predictive Maintenance Programs</li>
+                        <li>Performance Optimization</li>
+                        <li>Air Quality Engineering</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Philosophy</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>Evidence-Based Solutions</li>
+                        <li>Education Before Transaction</li>
+                        <li>Transparent Communication</li>
+                        <li>Continuous Professional Growth</li>
+                        <li>Long-term Client Partnership</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center">
+                <p class="text-slate-400 text-sm">
+                    © 2024 Fidelity Mechanical Solutions. Licensed, insured, and committed to excellence.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Advanced Diagnostic Widget -->
+    <div id="diagnostic-widget" class="diagnostic-widget glass-dark border border-white/20">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-display text-xl font-bold text-white">System Diagnostic</h3>
+                <button onclick="toggleDiagnostic()" class="text-slate-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="diagnostic-content">
+                <div class="mb-4">
+                    <p class="text-slate-300 mb-4">Let's identify your system's current status. What best describes your situation?</p>
+                    <div class="space-y-3">
+                        <button onclick="diagnosticStep('performance')" class="w-full text-left p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors text-white">
+                            <div class="font-medium">Performance Issues</div>
+                            <div class="text-sm text-slate-400">System running but not performing optimally</div>
+                        </button>
+                        <button onclick="diagnosticStep('failure')" class="w-full text-left p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors text-white">
+                            <div class="font-medium">System Failure</div>
+                            <div class="text-sm text-slate-400">System not operating at all</div>
+                        </button>
+                        <button onclick="diagnosticStep('maintenance')" class="w-full text-left p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors text-white">
+                            <div class="font-medium">Preventive Care</div>
+                            <div class="text-sm text-slate-400">Proactive maintenance and optimization</div>
+                        </button>
+                        <button onclick="diagnosticStep('consultation')" class="w-full text-left p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors text-white">
+                            <div class="font-medium">System Consultation</div>
+                            <div class="text-sm text-slate-400">Planning new installation or upgrades</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="badges">
-      <!-- Placeholder SVGs (replace with real ones for production) -->
-      <svg width="80
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Diagnostic widget toggle
+        function toggleDiagnostic() {
+            const widget = document.getElementById('diagnostic-widget');
+            widget.classList.toggle('active');
+        }
+
+        // System info display
+        const systemInfo = {
+            hvac: "Primary heating, ventilation, and air conditioning systems with integrated performance monitoring and predictive maintenance capabilities.",
+            controls: "Advanced building automation and control systems that optimize performance based on occupancy, weather, and usage patterns.",
+            monitoring: "Real-time system monitoring with data analysis to predict maintenance needs and optimize performance before issues occur.",
+            optimization: "Continuous performance enhancement through data-driven adjustments and evidence-based system modifications."
+        };
+
+        function showInfo(system) {
+            const infoDiv = document.getElementById('system-info');
+            infoDiv.innerHTML = `<p class="text-white/90 text-sm">${systemInfo[system]}</p>`;
+        }
+
+        // Diagnostic flow
+        const diagnosticResponses = {
+            performance: {
+                title: "Performance Analysis",
+                content: "Our diagnostic approach for performance issues includes comprehensive system evaluation, efficiency analysis, and identification of optimization opportunities. We'll provide transparent findings with visual documentation.",
+                action: "Schedule comprehensive performance diagnostic"
+            },
+            failure: {
+                title: "Emergency Response",
+                content: "For system failures, we provide rapid response with complete diagnostic approach. Even emergency repairs follow our educational standards—you'll understand what happened and how to prevent recurrence.",
+                action: "Request immediate diagnostic service"
+            },
+            maintenance: {
+                title: "Preventive Partnership",
+                content: "Our maintenance programs are built on performance data and predictive analysis. Regular service includes system education, trend analysis, and optimization recommendations based on actual operational data.",
+                action: "Explore maintenance programs"
+            },
+            consultation: {
+                title: "System Planning",
+                content: "New installations and major upgrades include integrated monitoring as standard. We'll provide complete system education, baseline documentation, and ongoing performance optimization.",
+                action: "Begin consultation process"
+            }
+        };
+
+        function diagnosticStep(type) {
+            const response = diagnosticResponses[type];
+            const content = document.getElementById('diagnostic-content');
+            
+            content.innerHTML = `
+                <div class="mb-4">
+                    <h4 class="font-semibold text-lg text-white mb-3">${response.title}</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">${response.content}</p>
+                    <div class="space-y-3">
+                        <a href="mailto:M.Perez@fidelitymechanicalsolutions.com?subject=${encodeURIComponent(response.title)}" 
+                           class="block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg font-medium text-center transition-colors">
+                            ${response.action}
+                        </a>
+                        <button onclick="resetDiagnostic()" class="block w-full bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-colors">
+                            Start Over
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function resetDiagnostic() {
+            location.reload();
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.hover-lift, .masonry > *');
+            animateElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
