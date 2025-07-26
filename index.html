@@ -1,0 +1,755 @@
+<App>
+ ├─ <HeaderNav>
+ │   ├─ <AnimatedLogo />
+ │   └─ <NavLinks />
+ ├─ <HeroSection>
+ │   └─ <PrimaryCTA />
+ ├─ <ServicesOverview>
+ │   ├─ <ServiceCard /> × N
+ ├─ <HVACDiagramSection>
+ │   ├─ <AnimatedSVGDiagram />
+ ├─ <DiagnosticToolWidget />
+ ├─ <EducationalContent>
+ │   ├─ <HowItWorks />
+ │   ├─ <FAQAccordion />
+ │   └─ <Glossary />
+ ├─ <SupportWidget />
+ ├─ <QuickLinksBar />
+ └─ <Footer />// components/AnimatedLogo.jsx
+import React from "react";
+
+export default function AnimatedLogo() {
+  return (
+    <svg
+      width="64"
+      height="64"
+      viewBox="0 0 64 64"
+      aria-label="Fidelity Mechanical Solutions logo"
+      role="img"
+    >
+      {/* Shield */}
+      <path
+        d="M32 4 Q54 12 54 28 Q54 52 32 60 Q10 52 10 28 Q10 12 32 4 Z"
+        fill="none"
+        stroke="#183c4d"
+        strokeWidth="3.5"
+        strokeDasharray="168"
+        strokeDashoffset="168"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          from="168"
+          to="0"
+          dur="1.1s"
+          fill="freeze"
+        />
+      </path>
+      {/* Thermometer Stem */}
+      <rect x="29" y="22" width="6" height="18" rx="3" fill="#183c4d" opacity="0.7" />
+      {/* Mercury (Animated) */}
+      <rect x="31" y="32" width="2" height="8" rx="1" fill="#299ec7">
+        <animate
+          attributeName="height"
+          from="2"
+          to="8"
+          dur="1s"
+          fill="freeze"
+          begin="0.7s"
+        />
+        <animate
+          attributeName="y"
+          from="38"
+          to="32"
+          dur="1s"
+          fill="freeze"
+          begin="0.7s"
+        />
+      </rect>
+      {/* Bulb */}
+      <circle cx="32" cy="44" r="5" fill="#183c4d" />
+      <circle cx="32" cy="44" r="2" fill="#299ec7" />
+      {/* Ticks */}
+      <rect x="36" y="25" width="5" height="1.5" fill="#183c4d">
+        <animate
+          attributeName="fill"
+          values="#183c4d;#299ec7;#183c4d"
+          dur="1.5s"
+          repeatCount="indefinite"
+          begin="1.3s"
+        />
+      </rect>
+    </svg>
+  );
+}// components/HeaderNav.jsx
+import React from "react";
+import AnimatedLogo from "./AnimatedLogo";
+
+export default function HeaderNav() {
+  return (
+    <header className="sticky top-0 bg-white border-b z-50">
+      <nav aria-label="Main navigation" className="flex items-center justify-between max-w-7xl mx-auto px-4 py-3">
+        <a href="/" aria-label="Home"><AnimatedLogo /></a>
+        <ul className="flex gap-7" role="menubar">
+          <li role="none"><a role="menuitem" href="#services" tabIndex="0" className="focus-visible:ring">Services</a></li>
+          <li role="none"><a role="menuitem" href="#diagnostic" tabIndex="0" className="focus-visible:ring">Diagnostics</a></li>
+          <li role="none"><a role="menuitem" href="#education" tabIndex="0" className="focus-visible:ring">Education</a></li>
+          <li role="none"><a role="menuitem" href="#contact" tabIndex="0" className="focus-visible:ring">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+  );
+}// components/ServicesOverview.jsx
+const services = [
+  {
+    name: "HVAC Systems",
+    icon: "🔥", // Replace with mini SVG per service
+    description: "Installation, repair, and preventive maintenance for all major HVAC brands.",
+    link: "#"
+  },
+  {
+    name: "Automation & Controls",
+    icon: "⚙️",
+    description: "Custom building automation for efficiency, safety, and energy savings.",
+    link: "#"
+  },
+  {
+    name: "Energy Solutions",
+    icon: "🌱",
+    description: "Energy audits, retrofits, and upgrades to cut costs and reduce emissions.",
+    link: "#"
+  },
+  {
+    name: "Emergency Power",
+    icon: "🔋",
+    description: "Critical backup power and generator service for peace of mind.",
+    link: "#"
+  },
+];
+
+export default function ServicesOverview() {
+  return (
+    <section id="services" aria-labelledby="services-heading" className="py-10 bg-slate-50">
+      <h2 id="services-heading" className="text-3xl font-bold mb-8">Our Services</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        {services.map(s => (
+          <a
+            href={s.link}
+            key={s.name}
+            className="rounded-2xl p-6 bg-white shadow hover:shadow-lg transition focus-visible:ring outline-none block"
+            aria-label={s.name}
+          >
+            <div className="text-5xl mb-3">{s.icon}</div>
+            <h3 className="text-xl font-semibold mb-2">{s.name}</h3>
+            <p className="text-slate-600">{s.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}// components/HVACDiagram.jsx
+export default function HVACDiagram() {
+  return (
+    <section id="education" aria-labelledby="hvac-diagram-title" className="py-8">
+      <h2 id="hvac-diagram-title" className="text-2xl font-bold mb-4">How Your HVAC System Works</h2>
+      <svg viewBox="0 0 360 140" width="100%" height="140" aria-label="Animated HVAC system diagram" role="img">
+        {/* Ductwork */}
+        <rect x="10" y="60" width="60" height="20" rx="6" fill="#d6eaff" />
+        {/* Animated airflow */}
+        <g>
+          <circle cx="25" cy="70" r="4" fill="#299ec7">
+            <animate attributeName="cx" values="25;60" dur="2s" repeatCount="indefinite" />
+          </circle>
+        </g>
+        {/* Furnace */}
+        <rect x="80" y="50" width="32" height="40" rx="8" fill="#6a7587" />
+        {/* Coil */}
+        <rect x="122" y="60" width="42" height="20" rx="5" fill="#f4d35e" />
+        {/* Condenser */}
+        <rect x="180" y="50" width="32" height="40" rx="8" fill="#7fcbc9" />
+        {/* Legend/labels */}
+        <text x="15" y="55" fontSize="13">Duct</text>
+        <text x="80" y="105" fontSize="13">Furnace</text>
+        <text x="122" y="105" fontSize="13">Coil</text>
+        <text x="180" y="105" fontSize="13">Condenser</text>
+      </svg>
+      <p className="text-slate-600 mt-4">Tap each part to learn more about its role in comfort and efficiency.</p>
+    </section>
+  );
+}// components/DiagnosticToolWidget.jsx
+import React, { useState } from "react";
+const steps = [
+  {
+    question: "Is your HVAC system turning on?",
+    options: [
+      { label: "Yes", next: 1 },
+      { label: "No", next: 2 }
+    ]
+  },
+  {
+    question: "Is air coming from the vents?",
+    options: [
+      { label: "Yes", next: 3 },
+      { label: "No", next: 4 }
+    ]
+  },
+  { question: "Try adjusting thermostat. Still no change?", options: [ { label: "Request Service", next: null } ] },
+  { question: "System is likely operating normally.", options: [ { label: "Return Home", next: null } ] }
+];
+
+export default function DiagnosticToolWidget() {
+  const [step, setStep] = useState(0);
+  if (step == null) return null;
+  return (
+    <aside
+      aria-label="Diagnostic Tool"
+      className="fixed bottom-4 right-4 z-40 bg-white rounded-2xl shadow-lg p-6 max-w-xs"
+    >
+      <h3 className="text-lg font-bold mb-2">System Diagnostic</h3>
+      <p>{steps[step].question}</p>
+      <div className="flex gap-2 mt-3">
+        {steps[step].options.map((opt, i) => (
+          <button
+            key={i}
+            onClick={() => setStep(opt.next)}
+            className="px-3 py-1.5 rounded bg-blue-100 hover:bg-blue-200 focus-visible:ring"
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+    </aside>
+  );
+}<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 340 100"
+  width="340"
+  height="100"
+  aria-label="Fidelity Mechanical Solutions logo"
+  role="img"
+>
+  <!-- Shield -->
+  <path
+    d="M60,20 Q100,40 100,70 Q100,120 60,140 Q20,120 20,70 Q20,40 60,20 Z"
+    fill="none"
+    stroke="#183c4d"
+    stroke-width="6"
+  />
+  <!-- Thermometer Stem -->
+  <rect x="54" y="50" width="12" height="38" rx="6" fill="#183c4d" />
+  <!-- Mercury Column -->
+  <rect x="58" y="70" width="4" height="18" rx="2" fill="#299ec7" />
+  <!-- Bulb -->
+  <circle cx="60" cy="118" r="10" fill="#183c4d" />
+  <circle cx="60" cy="118" r="5" fill="#299ec7" />
+  <!-- Tick marks -->
+  <rect x="66" y="65" width="14" height="3" fill="#183c4d" rx="1.5"/>
+  <rect x="66" y="85" width="14" height="3" fill="#183c4d" rx="1.5"/>
+  <!-- Brand Text -->
+  <text x="120" y="65" font-size="50" font-family="Montserrat, Arial, sans-serif" font-weight="bold" fill="#183c4d">FIDELITY</text>
+  <text x="120" y="90" font-size="24" font-family="Montserrat, Arial, sans-serif" fill="#183c4d" opacity="0.8">MECHANICAL SOLUTIONS</text>
+</svg>// components/AnimatedLogo.jsx
+import React from "react";
+
+export default function AnimatedLogo() {
+  return (
+    <svg
+      width="180"
+      height="54"
+      viewBox="0 0 340 100"
+      aria-label="Fidelity Mechanical Solutions logo"
+      role="img"
+      style={{ display: 'block' }}
+    >
+      {/* Shield outline - animated draw */}
+      <path
+        d="M60,20 Q100,40 100,70 Q100,120 60,140 Q20,120 20,70 Q20,40 60,20 Z"
+        fill="none"
+        stroke="#183c4d"
+        strokeWidth="6"
+        strokeDasharray="340"
+        strokeDashoffset="0"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          from="340"
+          to="0"
+          dur="0.9s"
+          fill="freeze"
+        />
+      </path>
+      {/* Thermometer Stem */}
+      <rect x="54" y="50" width="12" height="38" rx="6" fill="#183c4d" />
+      {/* Mercury Column, animates rise */}
+      <rect x="58" y="88" width="4" height="0" rx="2" fill="#299ec7">
+        <animate
+          attributeName="height"
+          from="0"
+          to="18"
+          dur="0.9s"
+          fill="freeze"
+          begin="0.6s"
+        />
+        <animate
+          attributeName="y"
+          from="106"
+          to="88"
+          dur="0.9s"
+          fill="freeze"
+          begin="0.6s"
+        />
+      </rect>
+      {/* Bulb */}
+      <circle cx="60" cy="118" r="10" fill="#183c4d" />
+      <circle cx="60" cy="118" r="5" fill="#299ec7" />
+      {/* Tick marks */}
+      <rect x="66" y="65" width="14" height="3" fill="#183c4d" rx="1.5"/>
+      <rect x="66" y="85" width="14" height="3" fill="#183c4d" rx="1.5"/>
+      {/* Brand Text */}
+      <text x="120" y="65" fontSize="50" fontFamily="Montserrat, Arial, sans-serif" fontWeight="bold" fill="#183c4d">FIDELITY</text>
+      <text x="120" y="90" fontSize="24" fontFamily="Montserrat, Arial, sans-serif" fill="#183c4d" opacity="0.8">MECHANICAL SOLUTIONS</text>
+    </svg>
+  );
+}// components/HeaderNav.jsx
+import React from "react";
+import AnimatedLogo from "./AnimatedLogo";
+
+export default function HeaderNav() {
+  return (
+    <header className="sticky top-0 bg-white shadow z-50 border-b">
+      <nav
+        aria-label="Main"
+        className="flex items-center justify-between max-w-7xl mx-auto px-4 py-3"
+      >
+        <a href="/" aria-label="Home">
+          <AnimatedLogo />
+        </a>
+        <ul className="flex gap-8 text-lg font-medium" role="menubar">
+          <li role="none">
+            <a role="menuitem" href="#services" tabIndex="0" className="focus-visible:ring-2 focus-visible:ring-blue-400 rounded">Services</a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#diagnostic" tabIndex="0" className="focus-visible:ring-2 focus-visible:ring-blue-400 rounded">Diagnostics</a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#education" tabIndex="0" className="focus-visible:ring-2 focus-visible:ring-blue-400 rounded">Education</a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#contact" tabIndex="0" className="focus-visible:ring-2 focus-visible:ring-blue-400 rounded">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+}:root {
+  --primary: #183c4d;
+  --accent: #299ec7;
+  --secondary: #f4d35e;
+  --neutral: #f5f7fa;
+  --shadow-lg: 0 6px 24px rgba(24,60,77,0.08);
+  --font-main: 'Montserrat', 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+body {
+  background: var(--neutral);
+  color: var(--primary);
+  font-family: var(--font-main);
+}
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  transition: outline 0.18s;
+}-----------------------------------------------------
+|  [AnimatedLogo]      Fidelity Mechanical Solutions |
+|    (left)           [Navigation - right/top]      |
+-----------------------------------------------------
+|           [Headline: Comfort. Trust. Clarity.]    |
+|  "Transparent, technical HVAC solutions for all." |
+|    [CTA: Request Service]   [CTA: Get Estimate]   |
+|  [Trust badges: Certifications, Reviews, etc.]    |
+-----------------------------------------------------// components/HeroSection.jsx
+export default function HeroSection() {
+  return (
+    <section className="bg-white pt-16 pb-12 text-center border-b" id="home">
+      <h1 className="text-4xl md:text-5xl font-extrabold text-[#183c4d] mb-4">
+        Comfort. Trust. <span className="text-[#299ec7]">Clarity.</span>
+      </h1>
+      <p className="max-w-xl mx-auto text-lg md:text-xl text-slate-700 mb-7">
+        Transparent, technical HVAC solutions for every space. 
+        Serving property managers, businesses, and homeowners with proven reliability.
+      </p>
+      <div className="flex flex-col sm:flex-row justify-center gap-4 mb-7">
+        <a href="#services" className="px-8 py-3 rounded-2xl bg-[#299ec7] text-white font-semibold text-lg hover:bg-[#183c4d] transition focus-visible:ring-2 focus-visible:ring-[#299ec7]">
+          Request Service
+        </a>
+        <a href="#estimate" className="px-8 py-3 rounded-2xl bg-white text-[#183c4d] border border-[#183c4d] font-semibold text-lg hover:bg-slate-100 transition focus-visible:ring-2 focus-visible:ring-[#183c4d]">
+          Get Estimate
+        </a>
+      </div>
+      {/* Trust Badges */}
+      <div className="flex justify-center gap-6 mt-4">
+        {/* Replace with real images or SVGs of certifications, e.g., EPA, BBB, NATE, Google Reviews */}
+        <img src="/badges/bbb.svg" alt="BBB Accredited" className="h-8" />
+        <img src="/badges/nate.svg" alt="NATE Certified" className="h-8" />
+        <img src="/badges/google.svg" alt="Google 5-star" className="h-8" />
+      </div>
+    </section>
+  );
+}|----------- Our Services ------------|
+|  [Card: HVAC]   [Card: Automation]  |
+|  [Card: Energy] [Card: Power]       |// components/ServicesOverview.jsx
+import { HVACIcon, AutomationIcon, EnergyIcon, PowerIcon } from './ServiceIcons';
+
+const services = [
+  {
+    name: "HVAC Systems",
+    icon: <HVACIcon />,
+    description: "Installation, repair, and preventive maintenance for all major HVAC brands.",
+    link: "#"
+  },
+  {
+    name: "Automation & Controls",
+    icon: <AutomationIcon />,
+    description: "Building automation and smart controls for efficiency, safety, and peace of mind.",
+    link: "#"
+  },
+  {
+    name: "Energy Solutions",
+    icon: <EnergyIcon />,
+    description: "Audits, retrofits, and upgrades to optimize energy usage and reduce costs.",
+    link: "#"
+  },
+  {
+    name: "Emergency Power",
+    icon: <PowerIcon />,
+    description: "Reliable backup power and generator service for mission-critical facilities.",
+    link: "#"
+  },
+];
+
+export default function ServicesOverview() {
+  return (
+    <section id="services" aria-labelledby="services-heading" className="py-14 bg-slate-50">
+      <h2 id="services-heading" className="text-3xl font-bold mb-8 text-center">Our Services</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7 max-w-6xl mx-auto">
+        {services.map(s => (
+          <a
+            href={s.link}
+            key={s.name}
+            className="rounded-2xl p-6 bg-white shadow hover:shadow-lg transition block focus-visible:ring-2 focus-visible:ring-[#299ec7] outline-none"
+            aria-label={s.name}
+          >
+            <div className="flex justify-center mb-3">{s.icon}</div>
+            <h3 className="text-xl font-semibold mb-2 text-[#183c4d]">{s.name}</h3>
+            <p className="text-slate-600">{s.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}-------------------------------------------------
+| [SVG Diagram: Duct, Furnace, Coil, Condenser] |
+|    Click/tap each for more info tooltip       |
+| "Tap each part to learn more..." (caption)    |
+-------------------------------------------------// components/HVACDiagram.jsx
+import { useState } from 'react';
+
+const parts = [
+  { id: 'duct', label: 'Duct', x: 30, y: 70, desc: "Carries air throughout the building." },
+  { id: 'furnace', label: 'Furnace', x: 90, y: 60, desc: "Heats air before distribution." },
+  { id: 'coil', label: 'Coil', x: 145, y: 70, desc: "Cools or heats air as needed." },
+  { id: 'condenser', label: 'Condenser', x: 200, y: 60, desc: "Transfers heat outside." },
+];
+
+export default function HVACDiagram() {
+  const [active, setActive] = useState(null);
+
+  return (
+    <section id="education" aria-labelledby="hvac-diagram-title" className="py-12 bg-white border-b">
+      <h2 id="hvac-diagram-title" className="text-2xl font-bold mb-4 text-center">How Your HVAC System Works</h2>
+      <div className="flex justify-center">
+        <svg viewBox="0 0 260 140" width="320" height="140" aria-label="Animated HVAC system diagram" role="img">
+          {/* Duct */}
+          <rect x="10" y="60" width="60" height="20" rx="6" fill="#d6eaff"
+            tabIndex="0"
+            onMouseEnter={() => setActive('duct')}
+            onFocus={() => setActive('duct')}
+            onMouseLeave={() => setActive(null)}
+            onBlur={() => setActive(null)}
+          />
+          {/* Furnace */}
+          <rect x="80" y="50" width="32" height="40" rx="8" fill="#6a7587"
+            tabIndex="0"
+            onMouseEnter={() => setActive('furnace')}
+            onFocus={() => setActive('furnace')}
+            onMouseLeave={() => setActive(null)}
+            onBlur={() => setActive(null)}
+          />
+          {/* Coil */}
+          <rect x="122" y="60" width="42" height="20" rx="5" fill="#f4d35e"
+            tabIndex="0"
+            onMouseEnter={() => setActive('coil')}
+            onFocus={() => setActive('coil')}
+            onMouseLeave={() => setActive(null)}
+            onBlur={() => setActive(null)}
+          />
+          {/* Condenser */}
+          <rect x="180" y="50" width="32" height="40" rx="8" fill="#7fcbc9"
+            tabIndex="0"
+            onMouseEnter={() => setActive('condenser')}
+            onFocus={() => setActive('condenser')}
+            onMouseLeave={() => setActive(null)}
+            onBlur={() => setActive(null)}
+          />
+          {/* Labels */}
+          {parts.map(p => (
+            <text key={p.id} x={p.x} y={p.y + 32} fontSize="13" textAnchor="middle" fill="#183c4d">{p.label}</text>
+          ))}
+        </svg>
+      </div>
+      {/* Tooltip / Info */}
+      <div className="text-center mt-3 min-h-[36px]">
+        {active
+          ? <span className="inline-block bg-slate-100 rounded px-3 py-2 shadow text-[#183c4d]">{parts.find(p => p.id === active).desc}</span>
+          : <span className="text-slate-500">Tap or hover each part to learn more.</span>
+        }
+      </div>
+    </section>
+  );
+}// components/DiagnosticToolWidget.jsx
+import { useState } from "react";
+
+const diagnosticSteps = [
+  {
+    question: "Is your system turning on?",
+    options: [
+      { label: "Yes", next: 1 },
+      { label: "No", next: 2 }
+    ]
+  },
+  {
+    question: "Is the thermostat set correctly?",
+    options: [
+      { label: "Yes", next: 3 },
+      { label: "No", next: "advice-thermostat" }
+    ]
+  },
+  {
+    question: "Check the circuit breaker. Did resetting help?",
+    options: [
+      { label: "Yes", next: "resolved" },
+      { label: "No", next: "advice-breaker" }
+    ]
+  },
+  { id: "advice-thermostat", advice: "Adjust your thermostat settings. If issues persist, schedule service." },
+  { id: "advice-breaker", advice: "If the breaker trips again, you may need a technician." },
+  { id: "resolved", advice: "Glad it’s resolved! Need more help? Contact us anytime." }
+];
+
+export default function DiagnosticToolWidget() {
+  const [step, setStep] = useState(0);
+  const current = typeof step === "number"
+    ? diagnosticSteps[step]
+    : diagnosticSteps.find(s => s.id === step);
+
+  if (!current) return null;
+
+  return (
+    <aside
+      aria-label="HVAC Diagnostic Tool"
+      className="fixed bottom-5 right-5 z-50 w-80 max-w-[94vw] bg-white rounded-2xl shadow-2xl p-5 border"
+      style={{ boxShadow: "var(--shadow-lg)" }}
+    >
+      <h2 className="text-lg font-bold mb-2">Troubleshoot Your System</h2>
+      {current.question ? (
+        <>
+          <p className="mb-4">{current.question}</p>
+          <div className="flex flex-wrap gap-3">
+            {current.options.map((opt, idx) => (
+              <button
+                key={idx}
+                className="px-4 py-2 rounded-xl bg-blue-100 hover:bg-blue-200 transition focus-visible:ring-2 focus-visible:ring-[#299ec7]"
+                onClick={() => setStep(opt.next)}
+                tabIndex="0"
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="mb-3">{current.advice}</p>
+          <button
+            onClick={() => setStep(0)}
+            className="mt-2 px-4 py-2 rounded-xl bg-[#299ec7] text-white font-semibold focus-visible:ring-2 focus-visible:ring-[#183c4d]"
+          >
+            Start Over
+          </button>
+        </>
+      )}
+    </aside>
+  );
+}// components/QuickLinksBar.jsx
+export default function QuickLinksBar() {
+  return (
+    <nav
+      aria-label="Quick Actions"
+      className="fixed bottom-0 inset-x-0 z-40 bg-white border-t shadow flex justify-around md:hidden"
+      role="navigation"
+    >
+      <a href="tel:+18005551234" className="flex flex-col items-center py-2 flex-1 focus-visible:ring-2 focus-visible:ring-[#299ec7]">
+        <span className="text-2xl">📞</span>
+        <span className="text-xs mt-1 font-semibold text-[#183c4d]">Call</span>
+      </a>
+      <a href="#estimate" className="flex flex-col items-center py-2 flex-1 focus-visible:ring-2 focus-visible:ring-[#299ec7]">
+        <span className="text-2xl">📝</span>
+        <span className="text-xs mt-1 font-semibold text-[#183c4d]">Estimate</span>
+      </a>
+      <a href="#support" className="flex flex-col items-center py-2 flex-1 focus-visible:ring-2 focus-visible:ring-[#299ec7]">
+        <span className="text-2xl">💬</span>
+        <span className="text-xs mt-1 font-semibold text-[#183c4d]">Help</span>
+      </a>
+    </nav>
+  );
+}// components/HowItWorks.jsx
+export default function HowItWorks() {
+  return (
+    <section id="how-it-works" className="py-12 bg-slate-50 border-b">
+      <h2 className="text-2xl font-bold text-center mb-5">How Our Service Works</h2>
+      <ol className="max-w-3xl mx-auto space-y-6">
+        <li>
+          <span className="font-bold text-[#183c4d]">1. Schedule:</span> Request service or a free estimate via phone, web, or quick links.
+        </li>
+        <li>
+          <span className="font-bold text-[#183c4d]">2. Diagnosis:</span> Our expert techs diagnose issues onsite—explaining all findings up front.
+        </li>
+        <li>
+          <span className="font-bold text-[#183c4d]">3. Approval:</span> You approve all work before we proceed, with transparent, itemized pricing.
+        </li>
+        <li>
+          <span className="font-bold text-[#183c4d]">4. Service:</span> We complete repairs, installations, or upgrades—leaving the space clean and safe.
+        </li>
+        <li>
+          <span className="font-bold text-[#183c4d]">5. Ongoing Care:</span> Preventive plans and easy follow-up ensure reliable comfort year-round.
+        </li>
+      </ol>
+    </section>
+  );
+}// components/HowItWorks.jsx
+export default function HowItWorks() {
+  return (
+    <section id="how-it-works" className="py-12 bg-slate-50 border-b">
+      <h2 className="text-2xl font-bold text-center mb-5">How Our Service Works</h2>
+      <ol className="max-w-3xl mx-auto space-y-6">
+        <li>
+          <span className="font-bold text-[#183c4d]">1. Schedule:</span> Request service or a free estimate via phone, web, or quick links.
+        </li>
+        <li>
+          <span className="font-bold text-[#183c4d]">2. Diagnosis:</span> Our expert techs diagnose issues onsite—explaining all findings up front.
+        </li>
+        <li>
+          <span className="font-bold text-[#183c4d]">3. Approval:</span> You approve all work before we proceed, with transparent, itemized pricing.
+        </li>
+        <li>
+          <span className="font-bold text-[#183c4d]">4. Service:</span> We complete repairs, installations, or upgrades—leaving the space clean and safe.
+        </li>
+        <li>
+          <span className="font-bold text-[#183c4d]">5. Ongoing Care:</span> Preventive plans and easy follow-up ensure reliable comfort year-round.
+        </li>
+      </ol>
+    </section>
+  );
+}// components/FAQAccordion.jsx
+import { useState } from "react";
+const faqs = [
+  {
+    q: "Do you offer 24/7 emergency HVAC repair?",
+    a: "Yes! We provide round-the-clock emergency service for all clients."
+  },
+  {
+    q: "What areas do you serve?",
+    a: "We cover the entire region and all surrounding counties. Call or email for specifics."
+  },
+  {
+    q: "Are estimates really free?",
+    a: "Absolutely. Our quotes are always honest and without obligation."
+  },
+  {
+    q: "How soon can you arrive?",
+    a: "Many calls are answered same-day. Use our quick links to see available times."
+  }
+];
+
+export default function FAQAccordion() {
+  const [open, setOpen] = useState(null);
+  return (
+    <section id="faq" className="py-12 bg-white">
+      <h2 className="text-2xl font-bold text-center mb-7">Frequently Asked Questions</h2>
+      <div className="max-w-2xl mx-auto">
+        {faqs.map((f, i) => (
+          <div key={i} className="border-b">
+            <button
+              onClick={() => setOpen(open === i ? null : i)}
+              className="w-full text-left py-4 font-semibold text-[#183c4d] focus-visible:ring-2 focus-visible:ring-[#299ec7] transition"
+              aria-expanded={open === i}
+            >
+              {f.q}
+            </button>
+            <div
+              className={`overflow-hidden transition-[max-height] duration-300 ${open === i ? 'max-h-40' : 'max-h-0'}`}
+              aria-hidden={open !== i}
+            >
+              <div className="px-4 py-2 text-slate-600">{f.a}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}// components/Glossary.jsx
+const terms = [
+  { term: "HVAC", def: "Heating, Ventilation, and Air Conditioning." },
+  { term: "SEER", def: "Seasonal Energy Efficiency Ratio—measures AC efficiency." },
+  { term: "Thermostat", def: "Device for controlling system temperature." },
+  { term: "Condenser", def: "Outdoor unit of your air conditioning or heat pump." },
+];
+export default function Glossary() {
+  return (
+    <section id="glossary" className="py-10 bg-slate-50">
+      <h2 className="text-xl font-bold text-center mb-6">Glossary</h2>
+      <dl className="max-w-2xl mx-auto grid grid-cols-1 gap-4">
+        {terms.map((t, i) => (
+          <div key={i} className="bg-white rounded-lg p-4 border">
+            <dt className="font-semibold text-[#183c4d]">{t.term}</dt>
+            <dd className="text-slate-600">{t.def}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  );
+}fidelity-mechanical-solutions/
+├── public/
+│   ├── badges/              # BBB, NATE, Google, etc. SVGs
+│   ├── favicon.svg
+│   └── robots.txt
+├── src/
+│   ├── components/
+│   │   ├── AnimatedLogo.jsx
+│   │   ├── HeaderNav.jsx
+│   │   ├── HeroSection.jsx
+│   │   ├── ServicesOverview.jsx
+│   │   ├── ServiceIcons.jsx
+│   │   ├── HVACDiagram.jsx
+│   │   ├── DiagnosticToolWidget.jsx
+│   │   ├── QuickLinksBar.jsx
+│   │   ├── SupportWidget.jsx
+│   │   ├── HowItWorks.jsx
+│   │   ├── FAQAccordion.jsx
+│   │   ├── Glossary.jsx
+│   │   └── Footer.jsx
+│   ├── App.jsx
+│   ├── index.css            # Tailwind or modular CSS
+│   └── main.jsx
+├── package.json
+├── tailwind.config.js       # (if using Tailwind)
+├── README.md
+└── vite.config.js           # (or Next.js config)
