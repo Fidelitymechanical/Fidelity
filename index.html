@@ -3,49 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fidelity Mechanical Solutions | Precision Through Transparency</title>
-    <meta name="description" content="HVAC excellence through transparent diagnostics, education-first service, and systematic precision. Real solutions, honest pricing, Greater Houston.">
+    <title>Fidelity Mechanical Solutions | Engineering Excellence in HVAC</title>
+    <meta name="description" content="Precision HVAC services through transparent diagnostics, systematic engineering, and uncompromising integrity. Serving Greater Houston with technical excellence.">
     
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Design System */
+        /* Enhanced Design System */
         :root {
-            /* Core Brand Colors */
-            --fidelity-navy: #003a5d;
-            --fidelity-navy-dark: #002844;
-            --fidelity-blue: #3b82f6;
-            --fidelity-blue-light: #60a5fa;
-            --fidelity-accent: #0ea5e9;
+            /* Refined Brand Colors */
+            --fidelity-navy: #002844;
+            --fidelity-navy-light: #003a5d;
+            --fidelity-blue: #0066cc;
+            --fidelity-blue-light: #3b82f6;
+            --fidelity-accent: #00a6fb;
+            --fidelity-gold: #f59e0b;
             
             /* Semantic Colors */
-            --color-success: #10b981;
-            --color-warning: #f59e0b;
-            --color-error: #ef4444;
-            --color-info: #06b6d4;
+            --color-success: #059669;
+            --color-warning: #d97706;
+            --color-error: #dc2626;
+            --color-info: #0891b2;
             
-            /* Neutral Palette */
+            /* Enhanced Neutral Palette */
             --white: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
+            --gray-50: #fafafa;
+            --gray-100: #f4f4f5;
+            --gray-200: #e4e4e7;
+            --gray-300: #d4d4d8;
+            --gray-400: #a1a1aa;
+            --gray-500: #71717a;
+            --gray-600: #52525b;
+            --gray-700: #3f3f46;
+            --gray-800: #27272a;
+            --gray-900: #18181b;
             
             /* Typography */
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
             --font-serif: 'Playfair Display', Georgia, serif;
-            --font-mono: 'Space Mono', 'Courier New', monospace;
             
-            /* Spacing Scale */
+            /* Enhanced Spacing */
             --space-xs: 0.5rem;
             --space-sm: 0.75rem;
             --space-md: 1rem;
@@ -53,30 +54,25 @@
             --space-xl: 2rem;
             --space-2xl: 3rem;
             --space-3xl: 4rem;
+            --space-4xl: 6rem;
             
-            /* Shadows */
+            /* Premium Shadows */
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.5);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+            --shadow-glow: 0 0 20px rgba(0, 102, 204, 0.4);
             
-            /* Transitions */
+            /* Smooth Transitions */
             --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-            
-            /* Z-Index Scale */
-            --z-dropdown: 1000;
-            --z-sticky: 1020;
-            --z-fixed: 1030;
-            --z-modal-backdrop: 1040;
-            --z-modal: 1050;
-            --z-popover: 1060;
-            --z-tooltip: 1070;
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 600ms cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        /* Reset & Base Styles */
+        /* Enhanced Reset */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -89,117 +85,95 @@
         html {
             scroll-behavior: smooth;
             -webkit-text-size-adjust: 100%;
+            font-size: 16px;
         }
         
         body {
             font-family: var(--font-sans);
-            font-size: 16px;
+            font-size: 1rem;
             line-height: 1.6;
             color: var(--gray-900);
             background: var(--white);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
         
-        /* Focus Styles - WCAG AAA */
-        :focus {
-            outline: 3px solid var(--fidelity-blue);
-            outline-offset: 2px;
-        }
-        
-        :focus:not(:focus-visible) {
-            outline: none;
-        }
-        
-        :focus-visible {
-            outline: 3px solid var(--fidelity-blue);
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-        
-        /* Typography */
+        /* Enhanced Typography */
         h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-serif);
-            font-weight: 600;
-            line-height: 1.2;
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.1;
             color: var(--gray-900);
+            letter-spacing: -0.02em;
         }
         
-        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
-        h2 { font-size: clamp(2rem, 4vw, 3rem); }
-        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
-        h4 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+        h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h3 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+        h4 { font-size: clamp(1.25rem, 3vw, 1.875rem); }
         
-        p {
-            margin-bottom: 1rem;
+        /* Premium Animations */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
         }
         
-        a {
-            color: var(--fidelity-blue);
-            text-decoration: none;
-            transition: color var(--transition-fast);
-        }
-        
-        a:hover {
-            color: var(--fidelity-blue-light);
-        }
-        
-        /* Utility Classes */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-md);
-        }
-        
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            50% { transform: translateY(0) rotate(-1deg); }
+            75% { transform: translateY(-5px) rotate(0.5deg); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
         
         @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
         }
         
-        /* Header Navigation */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Premium Header */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            z-index: var(--z-sticky);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
             transition: all var(--transition-base);
         }
         
@@ -212,103 +186,40 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: var(--space-md) 0;
+            padding: 1rem 0;
         }
         
         .nav-logo {
             display: flex;
             align-items: center;
-            gap: var(--space-sm);
+            gap: var(--space-md);
             text-decoration: none;
             color: var(--gray-900);
+            transition: transform var(--transition-base);
         }
         
-        .nav-links {
-            display: flex;
-            gap: var(--space-xl);
-            align-items: center;
-            list-style: none;
+        .nav-logo:hover {
+            transform: translateX(2px);
         }
         
-        .nav-link {
-            position: relative;
-            color: var(--gray-700);
-            font-weight: 500;
-            transition: color var(--transition-fast);
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--fidelity-navy) 0%, var(--fidelity-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .nav-link:hover {
-            color: var(--fidelity-blue);
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--fidelity-blue);
-            transition: width var(--transition-base);
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .nav-cta {
-            background: var(--fidelity-blue);
-            color: var(--white);
-            padding: var(--space-sm) var(--space-lg);
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all var(--transition-base);
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .nav-cta:hover {
-            background: var(--fidelity-blue-light);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        /* Mobile Navigation */
-        .mobile-nav-toggle {
-            display: none;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: var(--space-sm);
-        }
-        
-        .mobile-nav-toggle span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--gray-700);
-            margin: 5px 0;
-            transition: all var(--transition-base);
-        }
-        
-        .mobile-nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        
-        .mobile-nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .mobile-nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-        
-        /* Hero Section */
+        /* Enhanced Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: calc(80px + var(--space-2xl)) 0 var(--space-3xl);
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+            padding-top: 80px;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 50%, var(--gray-50) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -320,8 +231,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,58,93,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            animation: float 30s linear infinite;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(0, 102, 204, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 166, 251, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
         
         .hero-content {
@@ -334,15 +247,12 @@
         }
         
         .hero-text {
-            animation: slideIn 0.8s ease-out;
+            animation: fadeInUp 0.8s ease-out;
         }
         
         .hero-title {
             margin-bottom: var(--space-lg);
-            background: linear-gradient(135deg, var(--fidelity-navy) 0%, var(--fidelity-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 800;
         }
         
         .hero-subtitle {
@@ -350,82 +260,95 @@
             color: var(--gray-600);
             margin-bottom: var(--space-xl);
             line-height: 1.8;
+            font-weight: 400;
         }
         
         .hero-tagline {
-            font-family: var(--font-mono);
+            font-family: var(--font-display);
             font-size: 1.125rem;
             color: var(--fidelity-blue);
-            margin-bottom: var(--space-xl);
-            letter-spacing: 0.05em;
+            margin-bottom: var(--space-2xl);
+            letter-spacing: 0.02em;
+            font-weight: 600;
         }
         
-        .hero-cta-group {
-            display: flex;
-            gap: var(--space-md);
-            flex-wrap: wrap;
-        }
-        
+        /* Enhanced Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             gap: var(--space-sm);
-            padding: var(--space-md) var(--space-xl);
-            border-radius: 8px;
+            padding: 1rem 2rem;
+            border-radius: 12px;
             font-weight: 600;
-            font-size: 1.125rem;
+            font-size: 1.0625rem;
             transition: all var(--transition-base);
             cursor: pointer;
             border: none;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
         
         .btn-primary {
-            background: var(--fidelity-blue);
+            background: linear-gradient(135deg, var(--fidelity-blue) 0%, var(--fidelity-blue-light) 100%);
             color: var(--white);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 4px 14px 0 rgba(0, 102, 204, 0.3);
         }
         
         .btn-primary:hover {
-            background: var(--fidelity-blue-light);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 8px 20px 0 rgba(0, 102, 204, 0.4);
         }
         
         .btn-secondary {
             background: var(--white);
             color: var(--fidelity-navy);
-            border: 2px solid var(--fidelity-navy);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
         
         .btn-secondary:hover {
-            background: var(--fidelity-navy);
-            color: var(--white);
+            border-color: var(--fidelity-blue);
+            color: var(--fidelity-blue);
+            box-shadow: var(--shadow-md);
         }
         
-        /* Interactive Logo */
+        /* New Professional Logo Design */
         .hero-logo-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: slideIn 0.8s ease-out 0.2s both;
-        }
-        
-        .interactive-logo {
-            width: 400px;
-            height: 400px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
             position: relative;
-            cursor: pointer;
-            transition: transform var(--transition-base);
         }
         
-        .interactive-logo:hover {
-            transform: scale(1.05);
+        .professional-logo {
+            width: 500px;
+            height: 500px;
+            position: relative;
         }
         
-        /* Trust Indicators */
+        /* Trust Indicators Enhanced */
         .trust-indicators {
-            margin-top: var(--space-xl);
+            margin-top: var(--space-2xl);
             display: flex;
             gap: var(--space-xl);
             align-items: center;
@@ -436,119 +359,131 @@
             display: flex;
             align-items: center;
             gap: var(--space-sm);
-            color: var(--gray-600);
-            font-size: 0.875rem;
+            padding: var(--space-sm) var(--space-md);
+            background: var(--gray-50);
+            border-radius: 8px;
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition-base);
         }
         
-        .trust-badge-icon {
-            width: 24px;
-            height: 24px;
-            color: var(--color-success);
+        .trust-badge:hover {
+            border-color: var(--fidelity-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
         
-        /* Interactive Diagnostic Section */
-        .diagnostic-section {
-            padding: var(--space-3xl) 0;
+        /* Comprehensive System Diagram Section */
+        .system-diagram-section {
+            padding: var(--space-4xl) 0;
             background: var(--white);
             position: relative;
         }
         
-        .diagnostic-header {
+        .system-diagram-header {
             text-align: center;
             margin-bottom: var(--space-3xl);
         }
         
-        .diagnostic-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-3xl);
-            align-items: center;
-        }
-        
-        .diagnostic-visual {
+        .system-diagram-container {
+            max-width: 1200px;
+            margin: 0 auto;
             background: var(--gray-50);
-            border-radius: 16px;
+            border-radius: 24px;
             padding: var(--space-2xl);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-xl);
             position: relative;
             overflow: hidden;
         }
         
-        .diagnostic-controls {
-            background: var(--gray-50);
+        .system-diagram-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 102, 204, 0.03) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        /* Enhanced Diagnostic Section */
+        .diagnostic-section {
+            padding: var(--space-4xl) 0;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            position: relative;
+        }
+        
+        .diagnostic-intro {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--white);
             border-radius: 16px;
-            padding: var(--space-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
         }
         
-        .diagnostic-step {
-            margin-bottom: var(--space-lg);
+        .diagnostic-intro h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--fidelity-navy);
         }
         
-        .diagnostic-question {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: var(--space-md);
-        }
-        
-        .diagnostic-options {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-sm);
+        .diagnostic-controls {
+            background: var(--white);
+            border-radius: 16px;
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-100);
         }
         
         .diagnostic-button {
             background: var(--white);
             border: 2px solid var(--gray-200);
-            padding: var(--space-md) var(--space-lg);
-            border-radius: 8px;
+            padding: 1.25rem var(--space-xl);
+            border-radius: 12px;
             font-weight: 500;
             text-align: left;
             cursor: pointer;
             transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagnostic-button::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--fidelity-blue);
+            transform: scaleY(0);
+            transition: transform var(--transition-base);
         }
         
         .diagnostic-button:hover {
             border-color: var(--fidelity-blue);
-            background: var(--fidelity-blue);
-            color: var(--white);
-            transform: translateX(4px);
-        }
-        
-        .diagnostic-result {
-            background: var(--color-info);
-            color: var(--white);
-            padding: var(--space-lg);
-            border-radius: 8px;
-            margin-top: var(--space-lg);
-        }
-        
-        /* Service Cards */
-        .services-section {
-            padding: var(--space-3xl) 0;
             background: var(--gray-50);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
         }
         
-        .services-header {
-            text-align: center;
-            margin-bottom: var(--space-3xl);
+        .diagnostic-button:hover::before {
+            transform: scaleY(1);
         }
         
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-xl);
-        }
-        
+        /* Enhanced Service Cards */
         .service-card {
             background: var(--white);
-            border-radius: 12px;
-            padding: var(--space-xl);
-            box-shadow: var(--shadow-md);
-            transition: all var(--transition-base);
+            border-radius: 16px;
+            padding: var(--space-2xl);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all var(--transition-smooth);
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--gray-100);
         }
         
         .service-card::before {
@@ -558,15 +493,16 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: var(--fidelity-blue);
+            background: linear-gradient(90deg, var(--fidelity-blue) 0%, var(--fidelity-accent) 100%);
             transform: scaleX(0);
             transition: transform var(--transition-base);
             transform-origin: left;
         }
         
         .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--fidelity-blue);
         }
         
         .service-card:hover::before {
@@ -574,196 +510,6 @@
         }
         
         .service-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--fidelity-blue) 0%, var(--fidelity-accent) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--space-md);
-            color: var(--white);
-            font-size: 24px;
-        }
-        
-        .service-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: var(--space-sm);
-            color: var(--gray-900);
-        }
-        
-        .service-description {
-            color: var(--gray-600);
-            line-height: 1.6;
-        }
-        
-        /* Education Section */
-        .education-section {
-            padding: var(--space-3xl) 0;
-            background: var(--white);
-        }
-        
-        .education-header {
-            text-align: center;
-            margin-bottom: var(--space-3xl);
-        }
-        
-        .knowledge-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--space-xl);
-        }
-        
-        .knowledge-card {
-            background: var(--gray-50);
-            border: 1px solid var(--gray-200);
-            border-radius: 12px;
-            padding: var(--space-xl);
-            cursor: pointer;
-            transition: all var(--transition-base);
-            position: relative;
-        }
-        
-        .knowledge-card:hover {
-            border-color: var(--fidelity-blue);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .knowledge-card.active {
-            border-color: var(--fidelity-blue);
-            background: var(--white);
-        }
-        
-        .knowledge-icon {
-            font-size: 2rem;
-            margin-bottom: var(--space-md);
-        }
-        
-        .knowledge-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: var(--space-sm);
-            color: var(--gray-900);
-        }
-        
-        .knowledge-description {
-            color: var(--gray-600);
-            margin-bottom: var(--space-md);
-        }
-        
-        .knowledge-detail {
-            display: none;
-            padding-top: var(--space-md);
-            border-top: 1px solid var(--gray-200);
-            animation: slideIn 0.3s ease-out;
-        }
-        
-        .knowledge-detail.show {
-            display: block;
-        }
-        
-        /* Process Timeline */
-        .process-section {
-            padding: var(--space-3xl) 0;
-            background: linear-gradient(135deg, var(--fidelity-navy) 0%, var(--fidelity-navy-dark) 100%);
-            color: var(--white);
-        }
-        
-        .process-header {
-            text-align: center;
-            margin-bottom: var(--space-3xl);
-        }
-        
-        .process-header h2 {
-            color: var(--white);
-        }
-        
-        .process-timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .process-step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: var(--space-2xl);
-            position: relative;
-        }
-        
-        .process-step:last-child {
-            margin-bottom: 0;
-        }
-        
-        .process-step::before {
-            content: '';
-            position: absolute;
-            left: 24px;
-            top: 48px;
-            bottom: -48px;
-            width: 2px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .process-step:last-child::before {
-            display: none;
-        }
-        
-        .process-number {
-            width: 48px;
-            height: 48px;
-            background: var(--fidelity-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-            margin-right: var(--space-xl);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .process-content h3 {
-            color: var(--white);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .process-content p {
-            color: rgba(255, 255, 255, 0.8);
-            margin: 0;
-        }
-        
-        /* Contact Section */
-        .contact-section {
-            padding: var(--space-3xl) 0;
-            background: var(--gray-50);
-        }
-        
-        .contact-header {
-            text-align: center;
-            margin-bottom: var(--space-3xl);
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-xl);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .contact-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: var(--space-xl);
-            text-align: center;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .contact-icon {
             width: 64px;
             height: 64px;
             background: linear-gradient(135deg, var(--fidelity-blue) 0%, var(--fidelity-accent) 100%);
@@ -771,194 +517,191 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto var(--space-md);
-            color: var(--white);
+            margin-bottom: var(--space-lg);
             font-size: 28px;
+            box-shadow: 0 8px 16px rgba(0, 102, 204, 0.2);
+            transition: transform var(--transition-base);
         }
         
-        .contact-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: var(--space-sm);
-            color: var(--gray-900);
+        .service-card:hover .service-icon {
+            transform: rotate(5deg) scale(1.1);
         }
         
-        .contact-link {
-            color: var(--fidelity-blue);
-            font-weight: 500;
-            font-size: 1.125rem;
+        /* Enhanced Knowledge Cards */
+        .knowledge-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: var(--space-xl);
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Footer */
-        .footer {
-            background: var(--gray-900);
+        .knowledge-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 102, 204, 0.05) 100%);
+            transition: height var(--transition-base);
+        }
+        
+        .knowledge-card:hover::after {
+            height: 100%;
+        }
+        
+        .knowledge-card.active {
+            border-color: var(--fidelity-blue);
+            background: var(--white);
+            box-shadow: 0 8px 32px rgba(0, 102, 204, 0.15);
+        }
+        
+        /* Premium Process Timeline */
+        .process-section {
+            padding: var(--space-4xl) 0;
+            background: linear-gradient(135deg, var(--fidelity-navy) 0%, var(--fidelity-navy-light) 100%);
             color: var(--white);
-            padding: var(--space-2xl) 0;
+            position: relative;
+            overflow: hidden;
         }
         
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: var(--space-xl);
-            margin-bottom: var(--space-xl);
+        .process-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 166, 251, 0.1) 0%, transparent 40%);
+            pointer-events: none;
         }
         
-        .footer-brand h3 {
-            color: var(--white);
-            margin-bottom: var(--space-sm);
+        .process-number {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--fidelity-blue) 0%, var(--fidelity-accent) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-right: var(--space-xl);
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 24px rgba(0, 166, 251, 0.3);
         }
         
-        .footer-description {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-        }
-        
-        .footer-links h4 {
-            color: var(--white);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: var(--space-md);
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            transition: color var(--transition-fast);
-        }
-        
-        .footer-links a:hover {
-            color: var(--white);
-        }
-        
-        .footer-bottom {
-            padding-top: var(--space-xl);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        /* Premium Contact Section */
+        .contact-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: var(--space-2xl);
             text-align: center;
-            color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: all var(--transition-smooth);
+            border: 1px solid var(--gray-100);
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Floating Support Widget */
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 102, 204, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+        
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* Support Widget Enhanced */
         .support-widget {
             position: fixed;
-            bottom: var(--space-xl);
-            right: var(--space-xl);
-            z-index: var(--z-fixed);
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 900;
         }
         
         .support-bubble {
-            width: 64px;
-            height: 64px;
-            background: var(--fidelity-blue);
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--fidelity-blue) 0%, var(--fidelity-accent) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-size: 28px;
+            font-size: 32px;
             cursor: pointer;
-            box-shadow: var(--shadow-xl);
+            box-shadow: 0 8px 32px rgba(0, 102, 204, 0.3);
             transition: all var(--transition-base);
-            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .support-bubble::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.6s;
+        }
+        
+        .support-bubble:hover::before {
+            transform: scale(2);
+            opacity: 0;
         }
         
         .support-bubble:hover {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-glow);
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 12px 40px rgba(0, 102, 204, 0.4);
         }
         
-        /* Mobile Responsiveness */
+        /* Mobile Responsiveness Enhanced */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: var(--space-xl);
-                box-shadow: var(--shadow-xl);
-                gap: var(--space-md);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .mobile-nav-toggle {
-                display: block;
-            }
-            
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
             
-            .hero-logo-container {
-                order: -1;
-                margin-bottom: var(--space-xl);
-            }
-            
-            .interactive-logo {
-                width: 300px;
-                height: 300px;
+            .professional-logo {
+                width: 350px;
+                height: 350px;
             }
             
             .diagnostic-container {
                 grid-template-columns: 1fr;
             }
             
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: var(--space-xl);
+            .system-diagram-container {
+                padding: var(--space-lg);
             }
             
-            .support-widget {
-                bottom: var(--space-md);
-                right: var(--space-md);
+            .trust-indicators {
+                justify-content: center;
             }
-        }
-        
-        /* Skip to Content Link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--fidelity-blue);
-            color: var(--white);
-            padding: var(--space-sm) var(--space-md);
-            text-decoration: none;
-            border-radius: 0 0 8px 0;
-            z-index: var(--z-tooltip);
-        }
-        
-        .skip-link:focus {
-            top: 0;
-        }
-        
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--white);
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Shimmer Effect */
-        .shimmer {
-            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-            background-size: 200% 100%;
-            animation: shimmer 2s infinite;
         }
     </style>
 </head>
@@ -966,154 +709,69 @@
     <!-- Skip to Content -->
     <a href="#main" class="skip-link">Skip to main content</a>
     
-    <!-- Header Navigation -->
+    <!-- Premium Header -->
     <header class="header" id="header">
         <nav class="nav container" role="navigation" aria-label="Main navigation">
             <a href="#home" class="nav-logo" aria-label="Fidelity Mechanical Solutions Home">
-                <!-- Animated Logo SVG -->
-                <svg width="48" height="48" viewBox="0 0 160 180" aria-hidden="true">
-                    <!-- Shield -->
-                    <path d="M80 20 Q130 35 130 85 Q130 150 80 170 Q30 150 30 85 Q30 35 80 20 Z" 
-                          fill="none" 
-                          stroke="#003a5d" 
-                          stroke-width="4"
-                          stroke-dasharray="400"
-                          stroke-dashoffset="400">
-                        <animate attributeName="stroke-dashoffset" 
-                                 from="400" 
-                                 to="0" 
-                                 dur="1.5s" 
-                                 fill="freeze" />
-                    </path>
-                    
-                    <!-- Shield Fill -->
-                    <path d="M80 20 Q130 35 130 85 Q130 150 80 170 Q30 150 30 85 Q30 35 80 20 Z" 
-                          fill="#003a5d" 
-                          opacity="0">
-                        <animate attributeName="opacity" 
-                                 from="0" 
-                                 to="1" 
-                                 dur="0.5s" 
-                                 begin="1.5s" 
-                                 fill="freeze" />
-                    </path>
-                    
-                    <!-- Thermometer Circle -->
-                    <circle cx="80" cy="90" r="35" 
-                            fill="none" 
-                            stroke="white" 
-                            stroke-width="3" 
-                            opacity="0">
-                        <animate attributeName="opacity" 
-                                 from="0" 
-                                 to="1" 
-                                 dur="0.5s" 
-                                 begin="2s" 
-                                 fill="freeze" />
+                <!-- Enhanced Professional Logo -->
+                <svg width="56" height="56" viewBox="0 0 200 200" aria-hidden="true">
+                    <!-- Outer Ring -->
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="#002844" stroke-width="2" opacity="0">
+                        <animate attributeName="opacity" from="0" to="0.3" dur="1s" fill="freeze" />
+                        <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="30s" repeatCount="indefinite" />
                     </circle>
                     
-                    <!-- Thermometer -->
+                    <!-- Main Hexagon -->
+                    <path d="M100 30 L150 65 L150 135 L100 170 L50 135 L50 65 Z" 
+                          fill="#002844" 
+                          stroke="#002844" 
+                          stroke-width="2"
+                          opacity="0">
+                        <animate attributeName="opacity" from="0" to="1" dur="0.8s" fill="freeze" />
+                    </path>
+                    
+                    <!-- Inner Tech Pattern -->
                     <g opacity="0">
-                        <animate attributeName="opacity" 
-                                 from="0" 
-                                 to="1" 
-                                 dur="0.5s" 
-                                 begin="2.5s" 
-                                 fill="freeze" />
+                        <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.8s" fill="freeze" />
                         
-                        <!-- Tube -->
-                        <rect x="74" y="60" width="12" height="45" rx="6" fill="white" />
+                        <!-- Central Core -->
+                        <circle cx="100" cy="100" r="25" fill="none" stroke="white" stroke-width="2" />
+                        <circle cx="100" cy="100" r="15" fill="white" />
                         
-                        <!-- Bulb -->
-                        <circle cx="80" cy="115" r="10" fill="white" />
+                        <!-- Data Flow Lines -->
+                        <path d="M100 75 L100 60 M100 125 L100 140 M75 100 L60 100 M125 100 L140 100" 
+                              stroke="white" 
+                              stroke-width="2" 
+                              stroke-linecap="round" />
                         
-                        <!-- Mercury -->
-                        <rect x="77" y="85" width="6" height="0" rx="3" fill="#3b82f6">
-                            <animate attributeName="height" 
-                                     from="0" 
-                                     to="25" 
-                                     dur="1s" 
-                                     begin="3s" 
-                                     fill="freeze" />
-                            <animate attributeName="y" 
-                                     from="105" 
-                                     to="85" 
-                                     dur="1s" 
-                                     begin="3s" 
-                                     fill="freeze" />
-                        </rect>
-                        <circle cx="80" cy="115" r="6" fill="#3b82f6" />
+                        <!-- Corner Nodes -->
+                        <circle cx="100" cy="60" r="4" fill="white" />
+                        <circle cx="100" cy="140" r="4" fill="white" />
+                        <circle cx="60" cy="100" r="4" fill="white" />
+                        <circle cx="140" cy="100" r="4" fill="white" />
                         
-                        <!-- Temperature Marks -->
-                        <rect x="88" y="70" width="8" height="2" fill="white" opacity="0">
-                            <animate attributeName="opacity" 
-                                     from="0" 
-                                     to="1" 
-                                     dur="0.2s" 
-                                     begin="3.5s" 
-                                     fill="freeze" />
-                        </rect>
-                        <rect x="88" y="80" width="8" height="2" fill="white" opacity="0">
-                            <animate attributeName="opacity" 
-                                     from="0" 
-                                     to="1" 
-                                     dur="0.2s" 
-                                     begin="3.7s" 
-                                     fill="freeze" />
-                        </rect>
-                        <rect x="88" y="90" width="8" height="2" fill="white" opacity="0">
-                            <animate attributeName="opacity" 
-                                     from="0" 
-                                     to="1" 
-                                     dur="0.2s" 
-                                     begin="3.9s" 
-                                     fill="freeze" />
-                        </rect>
+                        <!-- Pulse Effect -->
+                        <circle cx="100" cy="100" r="15" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0">
+                            <animate attributeName="r" values="15;30;15" dur="2s" begin="1.5s" repeatCount="indefinite" />
+                            <animate attributeName="opacity" values="0.8;0;0.8" dur="2s" begin="1.5s" repeatCount="indefinite" />
+                        </circle>
                     </g>
                     
-                    <!-- Accent Dots -->
-                    <circle cx="55" cy="50" r="2" fill="#3b82f6" opacity="0">
-                        <animate attributeName="opacity" 
-                                 from="0" 
-                                 to="0.6" 
-                                 dur="0.3s" 
-                                 begin="4.1s" 
-                                 fill="freeze" />
-                    </circle>
-                    <circle cx="105" cy="50" r="2" fill="#3b82f6" opacity="0">
-                        <animate attributeName="opacity" 
-                                 from="0" 
-                                 to="0.6" 
-                                 dur="0.3s" 
-                                 begin="4.2s" 
-                                 fill="freeze" />
-                    </circle>
-                    <circle cx="50" cy="100" r="2" fill="#3b82f6" opacity="0">
-                        <animate attributeName="opacity" 
-                                 from="0" 
-                                 to="0.6" 
-                                 dur="0.3s" 
-                                 begin="4.3s" 
-                                 fill="freeze" />
-                    </circle>
-                    <circle cx="110" cy="100" r="2" fill="#3b82f6" opacity="0">
-                        <animate attributeName="opacity" 
-                                 from="0" 
-                                 to="0.6" 
-                                 dur="0.3s" 
-                                 begin="4.4s" 
-                                 fill="freeze" />
-                    </circle>
+                    <!-- F Letter Integration -->
+                    <text x="100" y="108" text-anchor="middle" fill="#0066cc" font-family="Space Grotesk" font-size="32" font-weight="700" opacity="0">
+                        <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.3s" fill="freeze" />
+                        F
+                    </text>
                 </svg>
-                <span style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600;">FIDELITY</span>
+                <span class="logo-text">FIDELITY</span>
             </a>
             
             <ul class="nav-links" id="navLinks">
+                <li><a href="#system-overview" class="nav-link">System Overview</a></li>
                 <li><a href="#diagnostics" class="nav-link">Diagnostics</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#process" class="nav-link">Process</a></li>
                 <li><a href="#education" class="nav-link">Learn</a></li>
-                <li><a href="#contact" class="nav-cta">Get Free Estimate</a></li>
+                <li><a href="#contact" class="nav-cta">Get Expert Consultation</a></li>
             </ul>
             
             <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -1126,171 +784,418 @@
     
     <!-- Main Content -->
     <main id="main">
-        <!-- Hero Section -->
+        <!-- Enhanced Hero Section -->
         <section class="hero" id="home">
             <div class="container hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-title">Precision Through Transparency</h1>
+                    <h1 class="hero-title">Engineering Excellence<br>in Climate Control</h1>
                     <p class="hero-subtitle">
-                        We don't just service mechanical systems—we educate, diagnose with evidence, 
-                        and deliver solutions grounded in honesty. This is HVAC service as it should be.
+                        We bring aerospace-grade precision to HVAC service. Every diagnosis backed by data, 
+                        every solution engineered for longevity, every interaction grounded in integrity.
                     </p>
-                    <p class="hero-tagline">Honest Diagnosis • Real Solutions • Fair Value</p>
+                    <p class="hero-tagline">Precision Diagnostics • Engineered Solutions • Transparent Process</p>
                     
                     <div class="hero-cta-group">
                         <a href="#contact" class="btn btn-primary">
-                            Get Free Estimate
+                            Schedule Consultation
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
                         </a>
-                        <button onclick="toggleDiagnostic()" class="btn btn-secondary">
-                            Self-Diagnose First
+                        <button onclick="scrollToSection('diagnostics')" class="btn btn-secondary">
+                            System Analysis Tool
                         </button>
                     </div>
                     
                     <div class="trust-indicators">
                         <div class="trust-badge">
-                            <svg class="trust-badge-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <svg class="trust-badge-icon" width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            EPA Certified
+                        </div>
+                        <div class="trust-badge">
+                            <svg class="trust-badge-icon" width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
-                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 1 1 0 000 2H4v10a2 2 0 002 2h8a2 2 0 002-2V5h-2a1 1 0 100-2 2 2 0 012 2v10a4 4 0 01-4 4H6a4 4 0 01-4-4V5z"/>
+                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 1 1 0 000 2H4v10a2 2 0 002 2h8a2 2 0 002-2V5h-2a1 1 0 100-2 2 2 0 012 2v10a4 4 0 01-4 4H6a4 4 0 01-4-4V5z" clip-rule="evenodd"/>
                             </svg>
-                            Licensed & Insured
+                            Factory Authorized
                         </div>
                         <div class="trust-badge">
-                            <svg class="trust-badge-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            <svg class="trust-badge-icon" width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
-                            Transparent Pricing
-                        </div>
-                        <div class="trust-badge">
-                            <svg class="trust-badge-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/>
-                            </svg>
-                            Education First
+                            Certified Excellence
                         </div>
                     </div>
                 </div>
                 
                 <div class="hero-logo-container">
-                    <div class="interactive-logo" onclick="animateLogo()">
-                        <!-- Large Interactive Logo -->
-                        <svg viewBox="0 0 400 400" width="100%" height="100%">
-                            <!-- Background Circle -->
-                            <circle cx="200" cy="200" r="180" fill="#f3f4f6" opacity="0.5" />
-                            
-                            <!-- Animated Shield -->
-                            <path d="M200 50 Q300 80 300 180 Q300 320 200 360 Q100 320 100 180 Q100 80 200 50 Z" 
-                                  fill="#003a5d" 
-                                  stroke="#003a5d" 
-                                  stroke-width="2"
-                                  filter="url(#shadow)" />
-                            
-                            <!-- Data Flow Lines -->
-                            <g stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.3">
-                                <path d="M150 150 L250 150" stroke-dasharray="5,5">
-                                    <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1s" repeatCount="indefinite" />
-                                </path>
-                                <path d="M150 200 L250 200" stroke-dasharray="5,5">
-                                    <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1s" begin="0.3s" repeatCount="indefinite" />
-                                </path>
-                                <path d="M150 250 L250 250" stroke-dasharray="5,5">
-                                    <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1s" begin="0.6s" repeatCount="indefinite" />
-                                </path>
-                            </g>
-                            
-                            <!-- Central Monitor -->
-                            <rect x="170" y="170" width="60" height="60" rx="8" fill="white" stroke="#3b82f6" stroke-width="3" />
-                            <circle cx="200" cy="200" r="10" fill="#3b82f6">
-                                <animate attributeName="r" values="10;15;10" dur="2s" repeatCount="indefinite" />
-                                <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
-                            </circle>
-                            
-                            <!-- Filter for shadow -->
+                    <div class="professional-logo">
+                        <!-- Premium Animated Logo -->
+                        <svg viewBox="0 0 500 500" width="100%" height="100%">
+                            <!-- Background Gradient Circle -->
                             <defs>
+                                <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#f3f4f6;stop-opacity:0.3" />
+                                    <stop offset="100%" style="stop-color:#e5e7eb;stop-opacity:0.5" />
+                                </linearGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
                                 <filter id="shadow">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.2"/>
+                                    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.15"/>
                                 </filter>
                             </defs>
+                            
+                            <!-- Animated Background -->
+                            <circle cx="250" cy="250" r="220" fill="url(#bgGradient)" opacity="0.5">
+                                <animate attributeName="r" values="220;230;220" dur="4s" repeatCount="indefinite" />
+                            </circle>
+                            
+                            <!-- Outer Technical Ring -->
+                            <g transform="translate(250, 250)">
+                                <circle r="200" fill="none" stroke="#002844" stroke-width="1" opacity="0.2" stroke-dasharray="5,10">
+                                    <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="60s" repeatCount="indefinite" />
+                                </circle>
+                                <circle r="180" fill="none" stroke="#0066cc" stroke-width="1" opacity="0.2" stroke-dasharray="10,5">
+                                    <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="45s" repeatCount="indefinite" />
+                                </circle>
+                            </g>
+                            
+                            <!-- Main Shield Structure -->
+                            <path d="M250 80 Q350 110 350 210 Q350 360 250 420 Q150 360 150 210 Q150 110 250 80 Z" 
+                                  fill="#002844" 
+                                  filter="url(#shadow)" />
+                            
+                            <!-- Inner Tech Grid -->
+                            <g opacity="0.3">
+                                <path d="M200 150 L300 150 M200 200 L300 200 M200 250 L300 250 M200 300 L300 300" 
+                                      stroke="#0066cc" 
+                                      stroke-width="1" />
+                                <path d="M200 150 L200 300 M250 150 L250 300 M300 150 L300 300" 
+                                      stroke="#0066cc" 
+                                      stroke-width="1" />
+                            </g>
+                            
+                            <!-- Central System Display -->
+                            <g transform="translate(250, 250)">
+                                <!-- Monitor Frame -->
+                                <rect x="-60" y="-60" width="120" height="120" rx="12" fill="#0066cc" filter="url(#glow)" />
+                                <rect x="-55" y="-55" width="110" height="110" rx="10" fill="white" />
+                                
+                                <!-- System Status Display -->
+                                <g clip-path="url(#screen)">
+                                    <defs>
+                                        <clipPath id="screen">
+                                            <rect x="-50" y="-50" width="100" height="100" rx="8" />
+                                        </clipPath>
+                                    </defs>
+                                    
+                                    <!-- Waveform Animation -->
+                                    <path d="M-50 0 Q-25 -20 0 0 T50 0" 
+                                          fill="none" 
+                                          stroke="#0066cc" 
+                                          stroke-width="3">
+                                        <animate attributeName="d" 
+                                                 values="M-50 0 Q-25 -20 0 0 T50 0;
+                                                         M-50 0 Q-25 20 0 0 T50 0;
+                                                         M-50 0 Q-25 -20 0 0 T50 0" 
+                                                 dur="2s" 
+                                                 repeatCount="indefinite" />
+                                    </path>
+                                    
+                                    <!-- Status Dots -->
+                                    <circle cx="-30" cy="30" r="4" fill="#10b981">
+                                        <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="0" cy="30" r="4" fill="#10b981">
+                                        <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="0.5s" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="30" cy="30" r="4" fill="#10b981">
+                                        <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="1s" repeatCount="indefinite" />
+                                    </circle>
+                                </g>
+                            </g>
+                            
+                            <!-- Orbital Elements -->
+                            <g transform="translate(250, 250)">
+                                <g>
+                                    <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite" />
+                                    <circle cx="150" cy="0" r="8" fill="#00a6fb" filter="url(#glow)">
+                                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" />
+                                    </circle>
+                                </g>
+                                <g>
+                                    <animateTransform attributeName="transform" type="rotate" from="180" to="540" dur="15s" repeatCount="indefinite" />
+                                    <circle cx="120" cy="0" r="6" fill="#3b82f6" filter="url(#glow)">
+                                        <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite" />
+                                    </circle>
+                                </g>
+                            </g>
                         </svg>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Interactive Diagnostic Tool -->
+        <!-- Comprehensive HVAC System Diagram -->
+        <section class="system-diagram-section" id="system-overview">
+            <div class="container">
+                <div class="system-diagram-header">
+                    <h2>Understanding Your Complete HVAC System</h2>
+                    <p>Every component plays a critical role in comfort and efficiency</p>
+                </div>
+                
+                <div class="system-diagram-container">
+                    <svg viewBox="0 0 1000 600" width="100%" height="600">
+                        <!-- Title -->
+                        <text x="500" y="30" text-anchor="middle" font-family="Space Grotesk" font-size="24" font-weight="700" fill="#002844">
+                            Residential HVAC System Components
+                        </text>
+                        
+                        <!-- Outdoor Unit (Condensing Unit) -->
+                        <g id="outdoor-unit">
+                            <rect x="50" y="200" width="200" height="250" rx="12" fill="#374151" stroke="#1f2937" stroke-width="2" />
+                            <text x="150" y="190" text-anchor="middle" font-weight="600" font-size="16" fill="#002844">OUTDOOR UNIT</text>
+                            
+                            <!-- Compressor -->
+                            <circle cx="150" cy="300" r="40" fill="#6b7280" stroke="#4b5563" stroke-width="2" />
+                            <text x="150" y="305" text-anchor="middle" font-size="12" fill="white">Compressor</text>
+                            
+                            <!-- Condenser Coil -->
+                            <rect x="70" y="240" width="160" height="8" fill="#9ca3af" rx="2" />
+                            <rect x="70" y="252" width="160" height="8" fill="#9ca3af" rx="2" />
+                            <rect x="70" y="264" width="160" height="8" fill="#9ca3af" rx="2" />
+                            <text x="150" y="235" text-anchor="middle" font-size="11" fill="#374151">Condenser Coil</text>
+                            
+                            <!-- Fan -->
+                            <circle cx="150" cy="380" r="25" fill="none" stroke="#6b7280" stroke-width="2" />
+                            <path d="M150 355 L150 405 M125 380 L175 380" stroke="#6b7280" stroke-width="2" />
+                            <text x="150" y="420" text-anchor="middle" font-size="11" fill="#374151">Condenser Fan</text>
+                        </g>
+                        
+                        <!-- Indoor Unit -->
+                        <g id="indoor-unit">
+                            <rect x="600" y="150" width="180" height="300" rx="12" fill="#4b5563" stroke="#374151" stroke-width="2" />
+                            <text x="690" y="140" text-anchor="middle" font-weight="600" font-size="16" fill="#002844">INDOOR UNIT</text>
+                            
+                            <!-- Air Handler/Furnace -->
+                            <rect x="620" y="170" width="140" height="80" rx="8" fill="#6b7280" />
+                            <text x="690" y="210" text-anchor="middle" font-size="12" fill="white">Air Handler/</text>
+                            <text x="690" y="225" text-anchor="middle" font-size="12" fill="white">Furnace</text>
+                            
+                            <!-- Evaporator Coil -->
+                            <rect x="620" y="270" width="140" height="60" rx="8" fill="#9ca3af" />
+                            <line x1="630" y1="280" x2="750" y2="280" stroke="#6b7280" stroke-width="2" />
+                            <line x1="630" y1="290" x2="750" y2="290" stroke="#6b7280" stroke-width="2" />
+                            <line x1="630" y1="300" x2="750" y2="300" stroke="#6b7280" stroke-width="2" />
+                            <line x1="630" y1="310" x2="750" y2="310" stroke="#6b7280" stroke-width="2" />
+                            <line x1="630" y1="320" x2="750" y2="320" stroke="#6b7280" stroke-width="2" />
+                            <text x="690" y="265" text-anchor="middle" font-size="11" fill="#374151">Evaporator Coil</text>
+                            
+                            <!-- Blower -->
+                            <circle cx="690" cy="380" r="30" fill="#6b7280" stroke="#4b5563" stroke-width="2" />
+                            <text x="690" y="385" text-anchor="middle" font-size="12" fill="white">Blower</text>
+                            <text x="690" y="425" text-anchor="middle" font-size="11" fill="#374151">Blower Motor</text>
+                        </g>
+                        
+                        <!-- Refrigerant Lines -->
+                        <g id="refrigerant-lines">
+                            <!-- Liquid Line (High Pressure) -->
+                            <path d="M250 300 Q400 300 600 300" fill="none" stroke="#dc2626" stroke-width="8" stroke-linecap="round" />
+                            <text x="425" y="290" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="600">Liquid Line</text>
+                            <text x="425" y="305" text-anchor="middle" font-size="10" fill="#7f1d1d">(High Pressure)</text>
+                            
+                            <!-- Suction Line (Low Pressure) -->
+                            <path d="M250 350 Q400 350 600 350" fill="none" stroke="#2563eb" stroke-width="12" stroke-linecap="round" />
+                            <text x="425" y="340" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">Suction Line</text>
+                            <text x="425" y="355" text-anchor="middle" font-size="10" fill="#1e3a8a">(Low Pressure)</text>
+                        </g>
+                        
+                        <!-- Additional Components -->
+                        <g id="additional-components">
+                            <!-- Filter -->
+                            <rect x="820" y="200" width="120" height="80" rx="8" fill="#e5e7eb" stroke="#9ca3af" stroke-width="2" />
+                            <line x1="830" y1="210" x2="930" y2="210" stroke="#6b7280" stroke-width="1" />
+                            <line x1="830" y1="220" x2="930" y2="220" stroke="#6b7280" stroke-width="1" />
+                            <line x1="830" y1="230" x2="930" y2="230" stroke="#6b7280" stroke-width="1" />
+                            <line x1="830" y1="240" x2="930" y2="240" stroke="#6b7280" stroke-width="1" />
+                            <line x1="830" y1="250" x2="930" y2="250" stroke="#6b7280" stroke-width="1" />
+                            <line x1="830" y1="260" x2="930" y2="260" stroke="#6b7280" stroke-width="1" />
+                            <line x1="830" y1="270" x2="930" y2="270" stroke="#6b7280" stroke-width="1" />
+                            <text x="880" y="195" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">Air Filter</text>
+                            
+                            <!-- Thermostat -->
+                            <rect x="820" y="320" width="120" height="100" rx="12" fill="#1f2937" stroke="#111827" stroke-width="2" />
+                            <rect x="835" y="335" width="90" height="50" rx="4" fill="#3b82f6" />
+                            <text x="880" y="365" text-anchor="middle" font-size="18" font-weight="700" fill="white">72°F</text>
+                            <text x="880" y="315" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">Thermostat</text>
+                            <circle cx="850" cy="400" r="8" fill="#10b981" />
+                            <circle cx="880" cy="400" r="8" fill="#6b7280" />
+                            <circle cx="910" cy="400" r="8" fill="#6b7280" />
+                        </g>
+                        
+                        <!-- Ductwork -->
+                        <g id="ductwork">
+                            <!-- Supply Ducts -->
+                            <path d="M780 200 L850 100 L900 100" fill="none" stroke="#ef4444" stroke-width="20" opacity="0.3" />
+                            <path d="M780 200 L850 150 L900 150" fill="none" stroke="#ef4444" stroke-width="20" opacity="0.3" />
+                            <text x="850" y="90" text-anchor="middle" font-size="11" fill="#7f1d1d">Supply Air</text>
+                            
+                            <!-- Return Ducts -->
+                            <path d="M780 400 L850 480 L900 480" fill="none" stroke="#3b82f6" stroke-width="20" opacity="0.3" />
+                            <text x="850" y="500" text-anchor="middle" font-size="11" fill="#1e3a8a">Return Air</text>
+                        </g>
+                        
+                        <!-- Component Labels and Arrows -->
+                        <g id="labels">
+                            <!-- Refrigerant Flow Arrows -->
+                            <defs>
+                                <marker id="arrowred" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                    <path d="M0,0 L0,6 L9,3 z" fill="#dc2626" />
+                                </marker>
+                                <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                    <path d="M0,0 L0,6 L9,3 z" fill="#2563eb" />
+                                </marker>
+                            </defs>
+                            
+                            <path d="M300 295 L550 295" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowred)" />
+                            <path d="M550 355 L300 355" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowblue)" />
+                        </g>
+                        
+                        <!-- Process Description -->
+                        <g id="process-description">
+                            <rect x="50" y="480" width="900" height="100" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" />
+                            <text x="500" y="505" text-anchor="middle" font-size="14" font-weight="600" fill="#002844">
+                                The Refrigeration Cycle
+                            </text>
+                            <text x="70" y="530" font-size="12" fill="#374151">
+                                1. Compressor pressurizes refrigerant gas → 2. Hot gas flows to condenser coil → 3. Fan removes heat, gas becomes liquid
+                            </text>
+                            <text x="70" y="550" font-size="12" fill="#374151">
+                                4. Liquid passes through expansion valve → 5. Pressure drops, refrigerant cools → 6. Cold refrigerant absorbs indoor heat
+                            </text>
+                            <text x="70" y="570" font-size="12" fill="#374151">
+                                7. Refrigerant evaporates back to gas → 8. Warm gas returns to compressor → Cycle repeats continuously
+                            </text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Enhanced Diagnostic Tool -->
         <section class="diagnostic-section" id="diagnostics">
             <div class="container">
                 <div class="diagnostic-header">
-                    <h2>Self-Diagnose Your System</h2>
-                    <p>Answer a few questions to understand potential issues and solutions</p>
+                    <h2>Professional System Analysis</h2>
+                    <p>Identify potential issues with our intelligent diagnostic tool</p>
                 </div>
                 
-                <div class="diagnostic-note" style="max-width: 800px; margin: 2rem auto; padding: 1.5rem; background: rgba(59, 130, 246, 0.05); border-left: 4px solid var(--fidelity-blue); border-radius: 4px;">
-                    <p><strong>Real talk about repairs:</strong> Every system is unique. Age, model, accessibility, and what actually failed all affect repair complexity. This tool gives you likely scenarios, but your actual situation needs hands-on diagnosis. We'll always explain what we find and your options before any work begins.</p>
+                <div class="diagnostic-intro">
+                    <h3>Understanding Your System's Behavior</h3>
+                    <p>Every HVAC system exhibits specific symptoms when components begin to fail. Our diagnostic tool uses pattern recognition based on thousands of service calls to help identify the most likely causes of your system's issues. While this provides valuable insight, remember that accurate diagnosis requires hands-on inspection by a qualified technician.</p>
+                    <p style="margin-top: 1rem; color: var(--gray-600);"><strong>Important:</strong> System age, maintenance history, local conditions, and component accessibility all influence repair complexity and cost. This tool provides general guidance based on common scenarios.</p>
                 </div>
                 
                 <div class="diagnostic-container">
                     <div class="diagnostic-visual">
-                        <!-- Animated HVAC System -->
-                        <svg viewBox="0 0 400 300" width="100%" height="300">
-                            <!-- Outdoor Unit -->
-                            <g id="outdoor-unit">
-                                <rect x="50" y="100" width="80" height="100" rx="8" fill="#374151" />
-                                <text x="90" y="155" text-anchor="middle" fill="white" font-size="14" font-weight="600">OUTDOOR</text>
-                                <text x="90" y="175" text-anchor="middle" fill="white" font-size="14" font-weight="600">UNIT</text>
+                        <!-- System Status Visualization -->
+                        <svg viewBox="0 0 600 400" width="100%" height="400">
+                            <text x="300" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#002844">
+                                System Status Indicators
+                            </text>
+                            
+                            <!-- System Components Status -->
+                            <g id="status-display">
+                                <!-- Outdoor Unit Status -->
+                                <g transform="translate(100, 80)">
+                                    <rect x="0" y="0" width="180" height="120" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="2" />
+                                    <text x="90" y="25" text-anchor="middle" font-weight="600" font-size="14">Outdoor Unit</text>
+                                    
+                                    <circle cx="30" cy="50" r="8" fill="#10b981" />
+                                    <text x="50" y="55" font-size="12">Compressor</text>
+                                    
+                                    <circle cx="30" cy="75" r="8" fill="#10b981" />
+                                    <text x="50" y="80" font-size="12">Fan Motor</text>
+                                    
+                                    <rect x="120" y="40" width="50" height="50" rx="4" fill="#e5e7eb" />
+                                    <text x="145" y="70" text-anchor="middle" font-size="18" font-weight="700">OK</text>
+                                </g>
                                 
-                                <!-- Fan Animation -->
-                                <circle cx="90" cy="130" r="15" fill="none" stroke="white" stroke-width="2" opacity="0.5">
-                                    <animateTransform attributeName="transform" type="rotate" from="0 90 130" to="360 90 130" dur="2s" repeatCount="indefinite" />
-                                </circle>
+                                <!-- Indoor Unit Status -->
+                                <g transform="translate(320, 80)">
+                                    <rect x="0" y="0" width="180" height="120" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="2" />
+                                    <text x="90" y="25" text-anchor="middle" font-weight="600" font-size="14">Indoor Unit</text>
+                                    
+                                    <circle cx="30" cy="50" r="8" fill="#10b981" />
+                                    <text x="50" y="55" font-size="12">Blower</text>
+                                    
+                                    <circle cx="30" cy="75" r="8" fill="#10b981" />
+                                    <text x="50" y="80" font-size="12">Heat/Cool</text>
+                                    
+                                    <rect x="120" y="40" width="50" height="50" rx="4" fill="#e5e7eb" />
+                                    <text x="145" y="70" text-anchor="middle" font-size="18" font-weight="700">OK</text>
+                                </g>
+                                
+                                <!-- Electrical Status -->
+                                <g transform="translate(100, 220)">
+                                    <rect x="0" y="0" width="180" height="120" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="2" />
+                                    <text x="90" y="25" text-anchor="middle" font-weight="600" font-size="14">Electrical</text>
+                                    
+                                    <circle cx="30" cy="50" r="8" fill="#10b981" />
+                                    <text x="50" y="55" font-size="12">Power Supply</text>
+                                    
+                                    <circle cx="30" cy="75" r="8" fill="#10b981" />
+                                    <text x="50" y="80" font-size="12">Controls</text>
+                                    
+                                    <rect x="120" y="40" width="50" height="50" rx="4" fill="#e5e7eb" />
+                                    <text x="145" y="65" text-anchor="middle" font-size="14" font-weight="700">240V</text>
+                                    <text x="145" y="80" text-anchor="middle" font-size="10">Normal</text>
+                                </g>
+                                
+                                <!-- Refrigerant Status -->
+                                <g transform="translate(320, 220)">
+                                    <rect x="0" y="0" width="180" height="120" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="2" />
+                                    <text x="90" y="25" text-anchor="middle" font-weight="600" font-size="14">Refrigerant</text>
+                                    
+                                    <circle cx="30" cy="50" r="8" fill="#10b981" />
+                                    <text x="50" y="55" font-size="12">Pressure</text>
+                                    
+                                    <circle cx="30" cy="75" r="8" fill="#10b981" />
+                                    <text x="50" y="80" font-size="12">Temperature</text>
+                                    
+                                    <rect x="120" y="40" width="50" height="50" rx="4" fill="#e5e7eb" />
+                                    <text x="145" y="65" text-anchor="middle" font-size="14" font-weight="700">PSI</text>
+                                    <text x="145" y="80" text-anchor="middle" font-size="10">In Range</text>
+                                </g>
                             </g>
-                            
-                            <!-- Indoor Unit -->
-                            <g id="indoor-unit">
-                                <rect x="270" y="100" width="80" height="100" rx="8" fill="#374151" />
-                                <text x="310" y="155" text-anchor="middle" fill="white" font-size="14" font-weight="600">INDOOR</text>
-                                <text x="310" y="175" text-anchor="middle" fill="white" font-size="14" font-weight="600">UNIT</text>
-                            </g>
-                            
-                            <!-- Flow Lines -->
-                            <g stroke="#3b82f6" stroke-width="3" fill="none">
-                                <!-- Supply Line -->
-                                <path d="M130 140 L270 140" stroke-dasharray="10,5">
-                                    <animate attributeName="stroke-dashoffset" from="0" to="-15" dur="1s" repeatCount="indefinite" />
-                                </path>
-                                <!-- Return Line -->
-                                <path d="M270 160 L130 160" stroke-dasharray="10,5" opacity="0.5">
-                                    <animate attributeName="stroke-dashoffset" from="0" to="-15" dur="1s" repeatCount="indefinite" />
-                                </path>
-                            </g>
-                            
-                            <!-- Labels -->
-                            <text x="200" y="130" text-anchor="middle" fill="#6b7280" font-size="12">Refrigerant Flow</text>
-                            
-                            <!-- Click Indicators -->
-                            <circle cx="90" cy="100" r="20" fill="#3b82f6" opacity="0">
-                                <animate attributeName="opacity" values="0;0.3;0" dur="2s" repeatCount="indefinite" />
-                            </circle>
-                            <circle cx="310" cy="100" r="20" fill="#3b82f6" opacity="0">
-                                <animate attributeName="opacity" values="0;0.3;0" dur="2s" begin="1s" repeatCount="indefinite" />
-                            </circle>
                         </svg>
                     </div>
                     
                     <div class="diagnostic-controls">
                         <div class="diagnostic-step" id="diagnosticStep">
-                            <h3 class="diagnostic-question">Is your system turning on at all?</h3>
+                            <h3 class="diagnostic-question">What is your primary concern?</h3>
                             <div class="diagnostic-options">
-                                <button class="diagnostic-button" onclick="nextDiagnostic('yes-on')">
-                                    Yes, it turns on
+                                <button class="diagnostic-button" onclick="nextDiagnostic('no-power')">
+                                    System won't turn on at all
                                 </button>
-                                <button class="diagnostic-button" onclick="nextDiagnostic('no-on')">
-                                    No, completely dead
+                                <button class="diagnostic-button" onclick="nextDiagnostic('no-cooling')">
+                                    Running but not cooling/heating
                                 </button>
-                                <button class="diagnostic-button" onclick="nextDiagnostic('sometimes')">
-                                    Sometimes/Intermittent
+                                <button class="diagnostic-button" onclick="nextDiagnostic('poor-performance')">
+                                    Weak performance or efficiency
+                                </button>
+                                <button class="diagnostic-button" onclick="nextDiagnostic('strange-sounds')">
+                                    Unusual sounds or behaviors
+                                </button>
+                                <button class="diagnostic-button" onclick="nextDiagnostic('cycling-issues')">
+                                    Short cycling or won't stay on
                                 </button>
                             </div>
                         </div>
@@ -1305,62 +1210,62 @@
         <section class="services-section" id="services">
             <div class="container">
                 <div class="services-header">
-                    <h2>Comprehensive Mechanical Services</h2>
-                    <p>Every service delivered with transparency, education, and genuine care</p>
+                    <h2>Comprehensive HVAC Solutions</h2>
+                    <p>Engineering-driven service backed by transparency and expertise</p>
                 </div>
                 
                 <div class="services-grid">
                     <div class="service-card">
-                        <div class="service-icon">🔧</div>
-                        <h3 class="service-title">System Installation</h3>
+                        <div class="service-icon">⚙️</div>
+                        <h3 class="service-title">Precision Installation</h3>
                         <p class="service-description">
-                            Complete HVAC installations with integrated monitoring, comprehensive commissioning, 
-                            and client education. Quality that lasts, explained clearly.
+                            Factory-certified installation with meticulous attention to sizing, airflow, and efficiency. 
+                            Every system commissioned to manufacturer specifications with comprehensive documentation.
                         </p>
                     </div>
                     
                     <div class="service-card">
-                        <div class="service-icon">🔍</div>
-                        <h3 class="service-title">Diagnostics & Repair</h3>
+                        <div class="service-icon">🔬</div>
+                        <h3 class="service-title">Advanced Diagnostics</h3>
                         <p class="service-description">
-                            Root-cause analysis with visual documentation. We show you what we find, 
-                            explain your options, and let you decide—no pressure, ever.
+                            Multi-point inspection using digital tools to identify root causes, not just symptoms. 
+                            Complete transparency with photo documentation and detailed explanations.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🛡️</div>
+                        <h3 class="service-title">Preventive Maintenance</h3>
+                        <p class="service-description">
+                            Comprehensive maintenance programs designed to prevent failures, optimize efficiency, 
+                            and extend equipment life. Detailed reporting after every visit.
                         </p>
                     </div>
                     
                     <div class="service-card">
                         <div class="service-icon">📊</div>
-                        <h3 class="service-title">Preventive Maintenance</h3>
+                        <h3 class="service-title">Performance Optimization</h3>
                         <p class="service-description">
-                            Proactive care based on performance data, not just calendars. 
-                            Catch problems before they happen, understand your system better each visit.
+                            System analysis and tuning to achieve peak efficiency. Airflow balancing, 
+                            refrigerant optimization, and control calibration for maximum comfort and savings.
                         </p>
                     </div>
                     
                     <div class="service-card">
-                        <div class="service-icon">⚡</div>
-                        <h3 class="service-title">System Optimization</h3>
+                        <div class="service-icon">🌡️</div>
+                        <h3 class="service-title">Indoor Air Quality</h3>
                         <p class="service-description">
-                            Performance tuning for existing systems. We make what you have work better, 
-                            last longer, and cost less to operate.
+                            Comprehensive air quality assessment and solutions. From filtration upgrades 
+                            to humidity control and purification systems, engineered for your specific needs.
                         </p>
                     </div>
                     
                     <div class="service-card">
-                        <div class="service-icon">🌬️</div>
-                        <h3 class="service-title">Air Quality Solutions</h3>
+                        <div class="service-icon">🚀</div>
+                        <h3 class="service-title">Smart Integration</h3>
                         <p class="service-description">
-                            Scientific assessment and improvement of indoor air. Real testing, 
-                            real solutions—not product pushing.
-                        </p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">📡</div>
-                        <h3 class="service-title">Smart Monitoring (R&D)</h3>
-                        <p class="service-description">
-                            Currently developing predictive diagnostic tools that help prevent failures. 
-                            Privacy-respecting, value-adding technology. Coming soon.
+                            Modern control systems and monitoring solutions that provide real-time insights 
+                            and remote management capabilities while respecting your privacy.
                         </p>
                     </div>
                 </div>
@@ -1371,181 +1276,217 @@
         <section class="education-section" id="education">
             <div class="container">
                 <div class="education-header">
-                    <h2>Understand Your System</h2>
-                    <p>Knowledge helps you make informed decisions. Click any topic to learn more.</p>
+                    <h2>HVAC Knowledge Center</h2>
+                    <p>Empowering informed decisions through technical education</p>
                 </div>
                 
                 <div class="knowledge-grid">
                     <div class="knowledge-card" onclick="toggleKnowledge(this)">
-                        <div class="knowledge-icon">🌡️</div>
-                        <h3 class="knowledge-title">How Refrigerant Actually Works</h3>
-                        <p class="knowledge-description">The pressure-temperature relationship explained in plain English.</p>
+                        <div class="knowledge-icon">🔄</div>
+                        <h3 class="knowledge-title">The Refrigeration Cycle Explained</h3>
+                        <p class="knowledge-description">Understanding the physics behind your comfort system.</p>
                         <div class="knowledge-detail">
-                            <p>Refrigerant is the lifeblood of your AC system, but it doesn't get "used up" like gas in your car. Here's what's really happening:</p>
+                            <p>Your HVAC system operates on fundamental thermodynamic principles that haven't changed since Willis Carrier's first design. Here's the engineering behind your comfort:</p>
                             
-                            <h4>The Basic Cycle:</h4>
+                            <h4>The Four Critical Stages:</h4>
                             <ul>
-                                <li><strong>Compression:</strong> The compressor squeezes refrigerant gas, making it hot (like a bike pump gets warm)</li>
-                                <li><strong>Condensation:</strong> Hot gas flows through outdoor coils, releasing heat and turning to liquid</li>
-                                <li><strong>Expansion:</strong> Liquid passes through a valve, pressure drops, temperature plummets</li>
-                                <li><strong>Evaporation:</strong> Cold refrigerant absorbs heat from your home, turning back to gas</li>
+                                <li><strong>Compression:</strong> The compressor increases refrigerant pressure from ~70 PSI to ~300 PSI, raising its temperature to ~180°F. This requires significant energy - about 80% of your system's power consumption.</li>
+                                <li><strong>Condensation:</strong> Hot, high-pressure gas enters the outdoor coil where ambient air removes heat. As temperature drops below the saturation point, refrigerant condenses to liquid while maintaining high pressure.</li>
+                                <li><strong>Expansion:</strong> Liquid refrigerant passes through a precision metering device (TXV or fixed orifice), experiencing a dramatic pressure drop. This causes flash evaporation and temperature plummet to ~40°F.</li>
+                                <li><strong>Evaporation:</strong> Cold refrigerant absorbs heat from indoor air, evaporating completely. This phase change absorbs 970 BTU per pound of refrigerant - the key to cooling capacity.</li>
                             </ul>
                             
-                            <h4>Common Misconceptions:</h4>
+                            <h4>Critical Factors for Efficiency:</h4>
                             <ul>
-                                <li>❌ "Just needs a top-off" - If it's low, you have a leak that needs fixing</li>
-                                <li>❌ "Refrigerant goes bad" - It doesn't expire or wear out</li>
-                                <li>✅ Proper charge is critical - Too much is as bad as too little</li>
+                                <li><strong>Superheat/Subcooling:</strong> Precise refrigerant charge ensures complete phase changes</li>
+                                <li><strong>Temperature Differential:</strong> Greater ΔT between coils and air improves heat transfer</li>
+                                <li><strong>Mass Flow Rate:</strong> Proper refrigerant velocity optimizes heat exchange</li>
+                                <li><strong>Coil Cleanliness:</strong> Fouling creates insulation, reducing efficiency by up to 30%</li>
                             </ul>
                             
-                            <p><strong>Key Insight:</strong> Refrigerant issues are usually symptoms, not causes. Low refrigerant means a leak. High pressure might mean airflow problems. The real diagnosis comes from understanding the whole system.</p>
+                            <p><strong>Bottom Line:</strong> A properly functioning system maintains specific pressure-temperature relationships. Deviations indicate specific problems we can diagnose with precision instruments.</p>
                         </div>
                     </div>
                     
                     <div class="knowledge-card" onclick="toggleKnowledge(this)">
                         <div class="knowledge-icon">⚡</div>
-                        <h3 class="knowledge-title">Electrical Components Decoded</h3>
-                        <p class="knowledge-description">Capacitors, contactors, and breakers - what they do and why they fail.</p>
+                        <h3 class="knowledge-title">Electrical Component Analysis</h3>
+                        <p class="knowledge-description">Critical electrical components and failure patterns.</p>
                         <div class="knowledge-detail">
-                            <h4>Capacitor - The Kick Starter</h4>
-                            <p>Think of it as a battery that gives motors the extra push to start spinning. Like a running start for your compressor and fan.</p>
+                            <h4>Capacitors - The Power Factor Correctors</h4>
+                            <p>Capacitors provide phase shift to create rotating magnetic fields in motors. They store and release energy 120 times per second, enabling efficient motor operation.</p>
                             <ul>
-                                <li><strong>Signs of failure:</strong> Humming but not starting, slow fan, system cycling</li>
-                                <li><strong>Why they fail:</strong> Heat, age, power surges (especially in summer)</li>
-                                <li><strong>What to know:</strong> Common failure, especially in hot weather. Relatively straightforward repair when caught early</li>
+                                <li><strong>Run Capacitors:</strong> Continuous duty, typically 370-440VAC rated. Failure causes reduced torque, overheating, and increased amp draw.</li>
+                                <li><strong>Start Capacitors:</strong> High capacity, momentary duty. Provides 300-500% starting torque boost. Failure prevents motor startup.</li>
+                                <li><strong>Dual Capacitors:</strong> Combined run capacitors for compressor and fan in single housing. Cost-effective but creates single point of failure.</li>
+                                <li><strong>Testing:</strong> Microfarad rating must be ±6% of specification. Under-reading indicates dielectric breakdown.</li>
                             </ul>
                             
-                            <h4>Contactor - The On/Off Switch</h4>
-                            <p>A heavy-duty relay that connects power to your outdoor unit. When your thermostat calls for cooling, this closes the circuit.</p>
+                            <h4>Contactors - The Heavy-Duty Switches</h4>
+                            <p>Electromagnetic relays handling 30-150 amps at 240VAC. Typical life: 100,000-200,000 cycles.</p>
                             <ul>
-                                <li><strong>Signs of failure:</strong> System won't turn on, chattering sounds, stuck on</li>
-                                <li><strong>Why they fail:</strong> Burnt contacts from arcing, mechanical wear over thousands of cycles</li>
-                                <li><strong>What to know:</strong> Another wear item that typically fails gradually, giving warning signs</li>
+                                <li><strong>Contact Wear:</strong> Arcing causes pitting and resistance increase. Results in voltage drop and heat generation.</li>
+                                <li><strong>Coil Failure:</strong> Usually 24VAC control voltage. Open coil = no operation. Shorted coil = blown transformer.</li>
+                                <li><strong>Mechanical Issues:</strong> Spring tension loss causes chattering. Misalignment creates uneven wear.</li>
                             </ul>
                             
-                            <h4>Circuit Breaker - The Safety Guard</h4>
-                            <p>Protects your system from electrical damage. If it trips repeatedly, something's wrong.</p>
+                            <h4>Circuit Protection Hierarchy</h4>
                             <ul>
-                                <li><strong>Warning:</strong> Never just keep resetting - find out why it's tripping</li>
-                                <li><strong>Common causes:</strong> Short circuit, ground fault, overload, failing component</li>
-                                <li><strong>What to know:</strong> The breaker is doing its job. The real question is what's causing it</li>
+                                <li><strong>Main Breaker:</strong> Protects wiring from overcurrent. Should never be oversized.</li>
+                                <li><strong>Fuses:</strong> Faster response than breakers for short circuits. Time-delay types prevent nuisance trips.</li>
+                                <li><strong>Internal Overloads:</strong> Embedded in motor windings. Last line of defense against overheating.</li>
                             </ul>
+                            
+                            <p><strong>Professional Insight:</strong> Electrical failures often cascade. A weak capacitor causes high amp draw, overheating the contactor, potentially damaging the compressor. Early intervention prevents expensive consequences.</p>
                         </div>
                     </div>
                     
                     <div class="knowledge-card" onclick="toggleKnowledge(this)">
-                        <div class="knowledge-icon">🔊</div>
-                        <h3 class="knowledge-title">Diagnose by Sound</h3>
-                        <p class="knowledge-description">What different HVAC sounds mean and when to worry.</p>
+                        <div class="knowledge-icon">🎵</div>
+                        <h3 class="knowledge-title">Acoustic Diagnostics</h3>
+                        <p class="knowledge-description">What system sounds reveal about component health.</p>
                         <div class="knowledge-detail">
-                            <h4>Normal Sounds:</h4>
+                            <h4>Normal Operating Sounds:</h4>
                             <ul>
-                                <li><strong>Whoosh on startup:</strong> Air beginning to flow</li>
-                                <li><strong>Click before running:</strong> Contactor engaging</li>
-                                <li><strong>Steady hum:</strong> Compressor and fan motors</li>
+                                <li><strong>Soft Whoosh:</strong> Air movement through properly sized ductwork (velocity &lt;900 FPM)</li>
+                                <li><strong>Low Hum:</strong> Compressor and motor operation at designed frequencies</li>
+                                <li><strong>Single Click:</strong> Contactor engagement/disengagement during cycling</li>
+                                <li><strong>Brief Gurgle:</strong> Refrigerant flow changes during startup/shutdown</li>
                             </ul>
                             
-                            <h4>Warning Sounds:</h4>
+                            <h4>Warning Sounds - Immediate Attention Required:</h4>
                             <ul>
-                                <li><strong>Clicking repeatedly:</strong> Failing contactor or control board</li>
-                                <li><strong>Buzzing/humming without starting:</strong> Bad capacitor</li>
-                                <li><strong>Squealing/screeching:</strong> Belt issue or motor bearings</li>
-                                <li><strong>Banging/clanking:</strong> Loose part or compressor issue</li>
-                                <li><strong>Hissing:</strong> Refrigerant leak (serious)</li>
-                                <li><strong>Gurgling:</strong> Low refrigerant or drain issue</li>
+                                <li><strong>High-Pitched Squeal:</strong> Belt slippage or bearing failure. Frequency indicates specific component.</li>
+                                <li><strong>Metallic Grinding:</strong> Compressor mechanical failure or fan blade interference. Shut down immediately.</li>
+                                <li><strong>Rapid Clicking:</strong> Control board relay failure or low voltage condition causing contactor chatter.</li>
+                                <li><strong>Loud Banging:</strong> Compressor slugging (liquid flood-back) or loose components. Risk of catastrophic damage.</li>
+                                <li><strong>Continuous Hissing:</strong> Significant refrigerant leak. System will fail completely if not addressed.</li>
+                                <li><strong>Electrical Buzzing:</strong> Failing contactor, loose connections, or capacitor breakdown.</li>
                             </ul>
                             
-                            <h4>What to Do:</h4>
-                            <p>Record the sound on your phone. Note when it happens (startup, running, shutdown). This helps us diagnose faster and more accurately.</p>
+                            <h4>Diagnostic Value:</h4>
+                            <p>Sound frequency analysis reveals specific issues:</p>
+                            <ul>
+                                <li>60 Hz buzz = Electrical issue</li>
+                                <li>120-180 Hz = Compressor mechanical</li>
+                                <li>400-800 Hz = Air turbulence</li>
+                                <li>1000+ Hz = Bearing wear</li>
+                            </ul>
+                            
+                            <p><strong>Pro Tip:</strong> Record unusual sounds on your phone. Audio helps technicians prepare proper parts and tools before arrival, reducing diagnostic time and cost.</p>
                         </div>
                     </div>
                     
                     <div class="knowledge-card" onclick="toggleKnowledge(this)">
-                        <div class="knowledge-icon">💰</div>
-                        <h3 class="knowledge-title">Repair vs Replace Calculator</h3>
-                        <p class="knowledge-description">Data-driven decision making for your system.</p>
+                        <div class="knowledge-icon">💡</div>
+                        <h3 class="knowledge-title">Economic Decision Framework</h3>
+                        <p class="knowledge-description">Data-driven approach to repair vs. replacement decisions.</p>
                         <div class="knowledge-detail">
-                            <h4>Age vs Repair Frequency:</h4>
-                            <p>A good rule of thumb: If your system is over 10 years old and you're facing a major repair, it's time to weigh your options carefully.</p>
+                            <h4>The 5,000 Rule:</h4>
+                            <p>Multiply system age × repair cost. If exceeds $5,000, replacement often makes economic sense.</p>
                             
-                            <h4>Key Decision Factors:</h4>
+                            <h4>Total Cost of Ownership Analysis:</h4>
                             <ul>
-                                <li><strong>Efficiency gains:</strong> New units can cut energy bills by 30-50%</li>
-                                <li><strong>Repair pattern:</strong> Multiple repairs per year signals declining reliability</li>
-                                <li><strong>Refrigerant type:</strong> Older R-22 systems are increasingly expensive to maintain</li>
-                                <li><strong>Comfort issues:</strong> Can't maintain temperature? System may be failing or undersized</li>
-                                <li><strong>Peace of mind:</strong> New systems come with warranties and reliability</li>
+                                <li><strong>Energy Efficiency:</strong> Modern 16-20 SEER systems use 30-50% less energy than 10 SEER units</li>
+                                <li><strong>Annual Savings:</strong> Typical home saves $200-600/year with high-efficiency upgrade</li>
+                                <li><strong>Repair Frequency:</strong> Systems 12+ years old average 1-2 repairs annually</li>
+                                <li><strong>Refrigerant Factor:</strong> R-22 costs $150+/pound vs. R-410A at $30/pound</li>
+                                <li><strong>Warranty Value:</strong> New systems include 10-year parts warranties worth $2,000-4,000</li>
                             </ul>
                             
-                            <h4>Questions to Consider:</h4>
+                            <h4>Hidden Costs of Old Systems:</h4>
                             <ul>
-                                <li>How many times have you repaired it in the last 2 years?</li>
-                                <li>Are your energy bills climbing despite repairs?</li>
-                                <li>Is your home comfortable, or are you fighting hot/cold spots?</li>
-                                <li>How long do you plan to stay in your home?</li>
+                                <li>Reduced comfort from inability to maintain temperature</li>
+                                <li>Higher humidity causing mold/comfort issues</li>
+                                <li>Increased repair frequency and emergency service premiums</li>
+                                <li>Incompatibility with modern thermostats and controls</li>
                             </ul>
                             
-                            <p><strong>Bottom line:</strong> We'll help you make a decision based on your specific situation, not a one-size-fits-all formula. Every home and budget is different.</p>
+                            <h4>Investment Considerations:</h4>
+                            <ul>
+                                <li><strong>&lt;5 years in home:</strong> Minimal repairs unless affecting sale</li>
+                                <li><strong>5-10 years:</strong> Balance repair costs with efficiency gains</li>
+                                <li><strong>10+ years:</strong> New system pays for itself through savings</li>
+                            </ul>
+                            
+                            <p><strong>Professional Perspective:</strong> We provide honest assessments based on your specific situation. Sometimes a $500 repair extends life by 5 years. Other times, that same $500 is better invested toward inevitable replacement.</p>
                         </div>
                     </div>
                     
                     <div class="knowledge-card" onclick="toggleKnowledge(this)">
-                        <div class="knowledge-icon">🛠️</div>
-                        <h3 class="knowledge-title">Safe DIY vs Call a Pro</h3>
-                        <p class="knowledge-description">What you can handle yourself and when you need expertise.</p>
+                        <div class="knowledge-icon">🔧</div>
+                        <h3 class="knowledge-title">Maintenance vs. Repair Boundaries</h3>
+                        <p class="knowledge-description">What homeowners can safely handle vs. professional territory.</p>
                         <div class="knowledge-detail">
-                            <h4>Safe DIY Tasks:</h4>
+                            <h4>Homeowner-Safe Maintenance:</h4>
                             <ul>
-                                <li>✅ Change air filters monthly</li>
-                                <li>✅ Clean debris around outdoor unit</li>
-                                <li>✅ Check and clean condensate drain</li>
-                                <li>✅ Replace thermostat batteries</li>
-                                <li>✅ Reset breakers (once)</li>
-                                <li>✅ Level outdoor unit if settling</li>
+                                <li>✅ <strong>Filter Changes:</strong> Monthly during peak season. Match arrow to airflow direction.</li>
+                                <li>✅ <strong>Thermostat Management:</strong> Battery replacement, programming, basic troubleshooting</li>
+                                <li>✅ <strong>Outdoor Unit Care:</strong> Remove debris, maintain 2-foot clearance, gentle coil cleaning</li>
+                                <li>✅ <strong>Condensate Line:</strong> Pour cup of vinegar monthly to prevent algae</li>
+                                <li>✅ <strong>Register Adjustment:</strong> Balance airflow between rooms (never close more than 20%)</li>
+                                <li>✅ <strong>Visual Inspection:</strong> Check for ice, water leaks, unusual sounds</li>
                             </ul>
                             
-                            <h4>Always Call a Pro:</h4>
+                            <h4>Professional-Only Territory:</h4>
                             <ul>
-                                <li>❌ Anything involving refrigerant</li>
-                                <li>❌ Electrical work beyond breakers</li>
-                                <li>❌ Gas furnace repairs</li>
-                                <li>❌ Compressor or motor replacement</li>
-                                <li>❌ Repeated breaker trips</li>
-                                <li>❌ Any repair you're unsure about</li>
+                                <li>❌ <strong>Refrigerant Handling:</strong> EPA certification required. Improper handling = $40,000 fines</li>
+                                <li>❌ <strong>Electrical Work:</strong> 240V can kill. Even 24V control circuits can damage components</li>
+                                <li>❌ <strong>Gas Connections:</strong> Leak potential creates explosion/poisoning risk</li>
+                                <li>❌ <strong>Blower/Motor Service:</strong> High-speed rotating equipment requires proper tools/knowledge</li>
+                                <li>❌ <strong>Control Board Diagnosis:</strong> Complex electronics easily damaged by static/improper handling</li>
+                                <li>❌ <strong>Coil Cleaning (Deep):</strong> Wrong chemicals/pressure destroys fins, costing thousands</li>
                             </ul>
                             
-                            <h4>Why It Matters:</h4>
-                            <p>HVAC systems involve high voltage, pressurized refrigerant, and in some cases, natural gas. Mistakes can be dangerous and expensive. We're always happy to guide you over the phone for simple issues - no charge for friendly advice.</p>
+                            <h4>Why Professional Service Matters:</h4>
+                            <ul>
+                                <li><strong>Diagnostic Tools:</strong> Digital manifolds, combustion analyzers, megohmmeters - $10,000+ in specialized equipment</li>
+                                <li><strong>Safety Equipment:</strong> Lock-out/tag-out, gas detectors, proper PPE</li>
+                                <li><strong>Insurance/Liability:</strong> We assume risk for property damage or injury</li>
+                                <li><strong>Warranty Preservation:</strong> DIY repairs often void manufacturer coverage</li>
+                            </ul>
+                            
+                            <p><strong>Our Promise:</strong> We'll always explain what we're doing and why. If something is genuinely simple, we'll teach you. Complex or dangerous work stays in professional hands for your safety.</p>
                         </div>
                     </div>
                     
                     <div class="knowledge-card" onclick="toggleKnowledge(this)">
                         <div class="knowledge-icon">📈</div>
-                        <h3 class="knowledge-title">Efficiency Optimization</h3>
-                        <p class="knowledge-description">Simple ways to reduce costs without sacrificing comfort.</p>
+                        <h3 class="knowledge-title">Efficiency Maximization Strategies</h3>
+                        <p class="knowledge-description">Engineering-based approaches to reduce operating costs.</p>
                         <div class="knowledge-detail">
-                            <h4>Quick Wins (No Cost):</h4>
+                            <h4>Thermodynamic Optimization:</h4>
                             <ul>
-                                <li>Set thermostat to 78°F in summer (each degree saves significantly)</li>
-                                <li>Use ceiling fans - they make 78°F feel like 74°F</li>
-                                <li>Close blinds on sunny windows during peak heat</li>
-                                <li>Keep all vents open - closed vents increase pressure and reduce efficiency</li>
-                                <li>Switch fan setting to "Auto" instead of "On"</li>
+                                <li><strong>Temperature Setpoint Economics:</strong> Each degree of cooling costs 3-5% more in energy. 78°F vs 72°F = 18-30% savings.</li>
+                                <li><strong>Thermal Mass Programming:</strong> Pre-cool during off-peak hours when efficiency is highest (early morning)</li>
+                                <li><strong>Humidity Control:</strong> 78°F at 45% RH feels like 73°F at 60% RH. Dehumidification costs less than cooling.</li>
                             </ul>
                             
-                            <h4>Small Improvements (Minimal Investment):</h4>
+                            <h4>System Performance Enhancements:</h4>
                             <ul>
-                                <li>Programmable thermostat: Automates savings while you're away</li>
-                                <li>Seal visible duct leaks: Recover lost cooling capacity</li>
-                                <li>Add weatherstripping: Stop conditioned air from escaping</li>
-                                <li>Change filters regularly: Improves airflow and efficiency</li>
+                                <li><strong>Airflow Optimization:</strong> Proper static pressure (0.5" w.c.) ensures rated capacity</li>
+                                <li><strong>Coil Maintenance:</strong> Clean coils transfer heat 30% more efficiently</li>
+                                <li><strong>Refrigerant Charge:</strong> ±5% from specification reduces capacity by 20%</li>
+                                <li><strong>Duct Sealing:</strong> Average home loses 20-30% through leaks. Sealing pays back in 2-3 years.</li>
                             </ul>
                             
-                            <h4>The Temperature Truth:</h4>
-                            <p>Each degree of cooling costs more than the last. The difference between 72°F and 78°F can be substantial on your monthly bill. Find your comfort/cost balance.</p>
+                            <h4>Control Strategy Optimization:</h4>
+                            <ul>
+                                <li><strong>Smart Recovery:</strong> Gradually adjust temperature to avoid peak demand charges</li>
+                                <li><strong>Zoning Benefits:</strong> Condition only occupied spaces - 25-40% energy reduction</li>
+                                <li><strong>Variable Speed Advantages:</strong> Continuous low-speed operation uses 80% less power than cycling</li>
+                                <li><strong>Economizer Operation:</strong> Free cooling when outdoor temp &lt; indoor temp</li>
+                            </ul>
                             
-                            <h4>Maintenance Value:</h4>
-                            <p>Regular tune-ups keep your system running efficiently and catch problems early. Like changing oil in your car - small investment, big protection.</p>
+                            <h4>Building Envelope Factors:</h4>
+                            <ul>
+                                <li>Attic insulation: First 6" saves most, R-38 optimal for Houston</li>
+                                <li>Air sealing: Reduces load more than insulation upgrades</li>
+                                <li>Window films: Reject 70% solar heat gain for south/west exposures</li>
+                                <li>Radiant barriers: 5-10% cooling reduction in hot climates</li>
+                            </ul>
+                            
+                            <p><strong>Engineering Reality:</strong> No single solution fits all. We analyze your specific system, usage patterns, and building characteristics to create a customized efficiency plan with measurable ROI.</p>
                         </div>
                     </div>
                 </div>
@@ -1556,48 +1497,56 @@
         <section class="process-section" id="process">
             <div class="container">
                 <div class="process-header">
-                    <h2>Our Service Process</h2>
-                    <p>Systematic approach, transparent communication, quality results</p>
+                    <h2>Our Service Excellence Process</h2>
+                    <p>Systematic approach delivering consistent, exceptional results</p>
                 </div>
                 
                 <div class="process-timeline">
                     <div class="process-step">
                         <div class="process-number">1</div>
                         <div class="process-content">
-                            <h3>Initial Understanding</h3>
-                            <p>We listen completely, ask clarifying questions, and schedule based on genuine need and priority. No sales pressure, just understanding.</p>
+                            <h3>Initial Consultation</h3>
+                            <p>Comprehensive discussion of your concerns, system history, and comfort goals. We listen first, diagnose second, ensuring we understand the complete picture before recommending solutions.</p>
                         </div>
                     </div>
                     
                     <div class="process-step">
                         <div class="process-number">2</div>
                         <div class="process-content">
-                            <h3>Comprehensive Diagnosis</h3>
-                            <p>Evidence-based evaluation with visual documentation. We show you what we find and explain it in terms you understand.</p>
+                            <h3>Systematic Diagnosis</h3>
+                            <p>Multi-point inspection using calibrated instruments. Every finding documented with photos and measurements. We explain what we discover in clear terms, ensuring you understand the issue completely.</p>
                         </div>
                     </div>
                     
                     <div class="process-step">
                         <div class="process-number">3</div>
                         <div class="process-content">
-                            <h3>Transparent Options</h3>
-                            <p>All solutions presented clearly with honest guidance. You make informed decisions without artificial urgency or pressure tactics.</p>
+                            <h3>Transparent Solutions</h3>
+                            <p>All options presented with honest assessment of value, longevity, and cost. No high-pressure tactics - just professional recommendations based on your specific situation and budget.</p>
                         </div>
                     </div>
                     
                     <div class="process-step">
                         <div class="process-number">4</div>
                         <div class="process-content">
-                            <h3>Quality Execution</h3>
-                            <p>Work performed to exacting standards with respect for your space. Clean, professional, and thoroughly documented.</p>
+                            <h3>Precision Execution</h3>
+                            <p>Work performed to manufacturer specifications with attention to every detail. Clean, professional installation with respect for your home. Quality that's visible in the craftsmanship.</p>
                         </div>
                     </div>
                     
                     <div class="process-step">
                         <div class="process-number">5</div>
                         <div class="process-content">
-                            <h3>Ongoing Partnership</h3>
-                            <p>Continuous support through education and preventive care. We're invested in your system's long-term performance.</p>
+                            <h3>Verification & Education</h3>
+                            <p>System commissioning with performance verification. We teach you optimal operation and maintenance, ensuring you get maximum value from your investment.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="process-number">6</div>
+                        <div class="process-content">
+                            <h3>Continuous Support</h3>
+                            <p>Ongoing partnership through preventive maintenance and priority service. We track your system's performance over time, anticipating needs before they become problems.</p>
                         </div>
                     </div>
                 </div>
@@ -1608,30 +1557,30 @@
         <section class="contact-section" id="contact">
             <div class="container">
                 <div class="contact-header">
-                    <h2>Ready to Experience the Difference?</h2>
-                    <p>Transparent service, honest pricing, real expertise</p>
+                    <h2>Connect with Excellence</h2>
+                    <p>Experience the difference of truly professional HVAC service</p>
                 </div>
                 
                 <div class="contact-grid">
                     <div class="contact-card">
                         <div class="contact-icon">💬</div>
-                        <h3 class="contact-title">Text Us</h3>
+                        <h3 class="contact-title">Text Consultation</h3>
                         <a href="sms:713-201-2842" class="contact-link">713-201-2842</a>
-                        <p style="color: var(--gray-600); margin-top: 0.5rem;">Fastest response</p>
+                        <p style="color: var(--gray-600); margin-top: 0.5rem;">Quick responses, even send photos</p>
                     </div>
                     
                     <div class="contact-card">
                         <div class="contact-icon">📞</div>
-                        <h3 class="contact-title">Call Direct</h3>
+                        <h3 class="contact-title">Direct Line</h3>
                         <a href="tel:713-201-2842" class="contact-link">713-201-2842</a>
-                        <p style="color: var(--gray-600); margin-top: 0.5rem;">Available 24/7</p>
+                        <p style="color: var(--gray-600); margin-top: 0.5rem;">24/7 emergency service available</p>
                     </div>
                     
                     <div class="contact-card">
-                        <div class="contact-icon">✉️</div>
+                        <div class="contact-icon">📧</div>
                         <h3 class="contact-title">Email</h3>
-                        <a href="mailto:Martinperez@fidelitymechanicalsolutions.com" class="contact-link">Send Message</a>
-                        <p style="color: var(--gray-600); margin-top: 0.5rem;">Detailed inquiries</p>
+                        <a href="mailto:Martinperez@fidelitymechanicalsolutions.com" class="contact-link">Send Inquiry</a>
+                        <p style="color: var(--gray-600); margin-top: 0.5rem;">Detailed questions welcome</p>
                     </div>
                 </div>
             </div>
@@ -1645,27 +1594,28 @@
                 <div class="footer-brand">
                     <h3>Fidelity Mechanical Solutions</h3>
                     <p class="footer-description">
-                        Technical excellence through systematic precision and uncompromising clarity. 
-                        This is simply how mechanical service should be done.
+                        Engineering excellence in HVAC service through systematic precision, 
+                        transparent communication, and unwavering integrity. This is climate control 
+                        as it should be - professional, honest, and focused on long-term value.
                     </p>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="#services">System Installation</a></li>
-                        <li><a href="#services">Diagnostics & Repair</a></li>
+                        <li><a href="#services">Precision Installation</a></li>
+                        <li><a href="#services">Advanced Diagnostics</a></li>
                         <li><a href="#services">Preventive Maintenance</a></li>
-                        <li><a href="#services">Air Quality Solutions</a></li>
+                        <li><a href="#services">Performance Optimization</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
-                    <h4>Learn</h4>
+                    <h4>Resources</h4>
                     <ul>
-                        <li><a href="#education">How Systems Work</a></li>
-                        <li><a href="#education">Common Issues</a></li>
-                        <li><a href="#diagnostics">Self-Diagnosis Tool</a></li>
+                        <li><a href="#system-overview">System Overview</a></li>
+                        <li><a href="#education">Knowledge Center</a></li>
+                        <li><a href="#diagnostics">Diagnostic Tool</a></li>
                         <li><a href="#process">Our Process</a></li>
                     </ul>
                 </div>
@@ -1673,8 +1623,8 @@
                 <div class="footer-links">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#home">About Fidelity</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#home">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
                         <li><a href="#">Service Area</a></li>
                         <li><a href="#">Certifications</a></li>
                     </ul>
@@ -1682,21 +1632,21 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Fidelity Mechanical Solutions. Licensed, insured, and committed to excellence.</p>
+                <p>&copy; 2025 Fidelity Mechanical Solutions LLC. EPA Certified, State Licensed, Factory Authorized.</p>
             </div>
         </div>
     </footer>
     
-    <!-- Support Widget -->
+    <!-- Enhanced Support Widget -->
     <div class="support-widget">
-        <button class="support-bubble" onclick="toggleSupport()" aria-label="Get support">
+        <button class="support-bubble" onclick="toggleSupport()" aria-label="Get immediate support">
             💬
         </button>
     </div>
     
-    <!-- Scripts -->
+    <!-- Enhanced Scripts -->
     <script>
-        // Mobile Navigation
+        // Mobile Navigation Enhanced
         const mobileNavToggle = document.getElementById('mobileNavToggle');
         const navLinks = document.getElementById('navLinks');
         
@@ -1706,7 +1656,7 @@
             mobileNavToggle.setAttribute('aria-expanded', isActive);
         });
         
-        // Scroll Header Effect
+        // Premium Scroll Header Effect
         const header = document.getElementById('header');
         let lastScroll = 0;
         
@@ -1722,219 +1672,34 @@
             lastScroll = currentScroll;
         });
         
-        // Interactive Logo Animation
-        function animateLogo() {
-            const logo = event.currentTarget;
-            logo.style.transform = 'scale(1.1) rotate(5deg)';
-            setTimeout(() => {
-                logo.style.transform = 'scale(1) rotate(0deg)';
-            }, 300);
-        }
-        
-        // Diagnostic Tool Logic
+        // Enhanced Diagnostic Tool
         const diagnosticFlows = {
-            'yes-on': {
-                question: "Is it cooling/heating properly?",
+            'no-power': {
+                question: "Have you verified power supply?",
                 options: [
-                    { text: "No, not at all", value: "no-cooling" },
-                    { text: "Weak cooling/heating", value: "weak-cooling" },
-                    { text: "Uneven temperatures", value: "uneven-temps" }
+                    { text: "Breaker is on, thermostat has power", value: "power-verified" },
+                    { text: "No power at thermostat", value: "no-thermostat-power" },
+                    { text: "Haven't checked yet", value: "check-power" }
                 ]
             },
-            'no-on': {
-                question: "Have you checked the basics?",
-                options: [
-                    { text: "Thermostat is set correctly", value: "thermostat-ok" },
-                    { text: "Breaker hasn't tripped", value: "breaker-ok" },
-                    { text: "Haven't checked yet", value: "check-basics" }
-                ]
-            },
-            'sometimes': {
-                question: "When does it fail?",
-                options: [
-                    { text: "During peak heat/cold", value: "peak-fail" },
-                    { text: "Random times", value: "random-fail" },
-                    { text: "After running for a while", value: "runtime-fail" }
-                ]
-            }
-        };
-        
-        const diagnosticResults = {
             'no-cooling': {
-                title: "Complete Cooling/Heating Failure",
-                content: "Likely causes: Failed compressor, major refrigerant leak, or electrical component failure. This typically requires professional diagnosis to identify the exact cause.",
-                urgency: "HIGH",
-                action: "Schedule immediate service to prevent further damage."
+                question: "What do you observe when the system runs?",
+                options: [
+                    { text: "Outdoor unit not running", value: "outdoor-dead" },
+                    { text: "Indoor fan only, no cooling", value: "no-refrigeration" },
+                    { text: "Everything runs but air is warm", value: "warm-air" }
+                ]
             },
-            'weak-cooling': {
-                title: "Reduced Performance",
-                content: "Likely causes: Low refrigerant (indicating a leak), dirty coils, or aging components. The system is working harder than it should, increasing energy costs.",
-                urgency: "MEDIUM",
-                action: "Schedule service soon to restore efficiency and prevent breakdown."
+            'poor-performance': {
+                question: "How does the performance issue manifest?",
+                options: [
+                    { text: "Takes too long to cool/heat", value: "slow-response" },
+                    { text: "Can't reach set temperature", value: "cant-reach-temp" },
+                    { text: "High energy bills", value: "high-bills" }
+                ]
             },
-            'uneven-temps': {
-                title: "Comfort Issues",
-                content: "Likely causes: Ductwork problems, improper system sizing, or zoning issues. This affects comfort and efficiency.",
-                urgency: "LOW-MEDIUM",
-                action: "A comprehensive evaluation can identify solutions for better comfort."
-            },
-            'check-basics': {
-                title: "Start with Basic Checks",
-                content: "Check your thermostat settings and circuit breaker first. These simple fixes solve many 'dead' system calls.",
-                urgency: "START HERE",
-                action: "If basics check out, we're here to help diagnose the real issue."
-            }
-        };
-        
-        function nextDiagnostic(answer) {
-            const step = document.getElementById('diagnosticStep');
-            const result = document.getElementById('diagnosticResult');
-            
-            if (diagnosticFlows[answer]) {
-                const flow = diagnosticFlows[answer];
-                step.innerHTML = `
-                    <h3 class="diagnostic-question">${flow.question}</h3>
-                    <div class="diagnostic-options">
-                        ${flow.options.map(opt => `
-                            <button class="diagnostic-button" onclick="showDiagnosticResult('${opt.value}')">
-                                ${opt.text}
-                            </button>
-                        `).join('')}
-                    </div>
-                `;
-            } else {
-                showDiagnosticResult(answer);
-            }
-        }
-        
-        function showDiagnosticResult(key) {
-            const step = document.getElementById('diagnosticStep');
-            const resultDiv = document.getElementById('diagnosticResult');
-            const result = diagnosticResults[key] || diagnosticResults['check-basics'];
-            
-            step.style.display = 'none';
-            resultDiv.style.display = 'block';
-            resultDiv.innerHTML = `
-                <div class="diagnostic-result">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">${result.title}</h3>
-                    <p style="margin-bottom: 1rem;">${result.content}</p>
-                    <p style="margin-bottom: 1rem;"><strong>Urgency: ${result.urgency}</strong></p>
-                    <p style="margin-bottom: 1.5rem;">${result.action}</p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="#contact" class="btn btn-primary" style="background: white; color: var(--color-info);">
-                            Get Professional Help
-                        </a>
-                        <button onclick="resetDiagnostic()" class="btn btn-secondary" style="background: transparent; border: 1px solid white; color: white;">
-                            Start Over
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-        
-        function resetDiagnostic() {
-            const step = document.getElementById('diagnosticStep');
-            const result = document.getElementById('diagnosticResult');
-            
-            step.style.display = 'block';
-            result.style.display = 'none';
-            
-            step.innerHTML = `
-                <h3 class="diagnostic-question">Is your system turning on at all?</h3>
-                <div class="diagnostic-options">
-                    <button class="diagnostic-button" onclick="nextDiagnostic('yes-on')">
-                        Yes, it turns on
-                    </button>
-                    <button class="diagnostic-button" onclick="nextDiagnostic('no-on')">
-                        No, completely dead
-                    </button>
-                    <button class="diagnostic-button" onclick="nextDiagnostic('sometimes')">
-                        Sometimes/Intermittent
-                    </button>
-                </div>
-            `;
-        }
-        
-        function toggleDiagnostic() {
-            const diagnosticSection = document.getElementById('diagnostics');
-            diagnosticSection.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Knowledge Card Toggle
-        function toggleKnowledge(card) {
-            const detail = card.querySelector('.knowledge-detail');
-            const allCards = document.querySelectorAll('.knowledge-card');
-            const allDetails = document.querySelectorAll('.knowledge-detail');
-            
-            // Close all other cards
-            allCards.forEach(c => {
-                if (c !== card) c.classList.remove('active');
-            });
-            allDetails.forEach(d => {
-                if (d !== detail) d.classList.remove('show');
-            });
-            
-            // Toggle current card
-            card.classList.toggle('active');
-            detail.classList.toggle('show');
-        }
-        
-        // Support Widget
-        function toggleSupport() {
-            if (confirm('Would you like to text us for the fastest response?')) {
-                window.location.href = 'sms:713-201-2842';
-            } else {
-                window.location.href = 'tel:713-201-2842';
-            }
-        }
-        
-        // Smooth Scroll for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
-                    mobileNavToggle.classList.remove('active');
-                }
-            });
-        });
-        
-        // Intersection Observer for Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        // Observe elements for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const animateElements = document.querySelectorAll('.service-card, .knowledge-card, .process-step, .contact-card');
-            animateElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-        });
-    </script>
-</body>
-</html>
+            'strange-sounds': {
+                question: "Describe the sound you're hearing:",
+                options: [
+                    { text: "Clicking or buzzing", value: "electrical-sound" },
+                    {
