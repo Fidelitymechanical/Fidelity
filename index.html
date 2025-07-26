@@ -1,231 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fidelity Mechanical Solutions</title>
+  <meta name="description" content="Transparent, technical HVAC solutions for all. Comfort. Trust. Clarity.">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #183c4d;
+      --accent: #299ec7;
+      --secondary: #f4d35e;
+      --neutral: #f5f7fa;
+      --shadow-lg: 0 6px 24px rgba(24,60,77,0.08);
+      --font-main: 'Montserrat', Arial, sans-serif;
+    }
+    body {
+      background: var(--neutral);
+      color: var(--primary);
+      font-family: var(--font-main);
+      margin: 0;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    a, button {
+      font-family: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      outline: none;
+      transition: background 0.18s, color 0.18s;
+    }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 100;
+      border-bottom: 1.5px solid #d9e4ea;
+      box-shadow: 0 1px 6px rgba(24,60,77,0.06);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.7rem 1.5rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav ul {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav li a {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 7px 2px;
+      border-radius: 7px;
+    }
+    nav li a:hover {
+      color: var(--accent);
+    }
+    .hero {
+      background: #fff;
+      text-align: center;
+      padding: 4rem 1rem 3rem 1rem;
+      border-bottom: 1px solid #e0e6ec;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      letter-spacing: -1px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      color: #465669;
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero .cta-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.3rem;
+    }
+    @media (min-width: 500px) {
+      .hero .cta-row { flex-direction: row; justify-content: center; }
+    }
+    .cta-main, .cta-alt {
+      font-size: 1.13rem;
+      font-weight: 600;
+      border-radius: 2rem;
+      padding: 0.82em 2.5em;
+      display: inline-block;
+      border: none;
+      transition: background 0.18s, color 0.18s, border 0.18s;
+    }
+    .cta-main {
+      background: var(--accent);
+      color: #fff;
+    }
+    .cta-main:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .cta-alt {
+      background: #fff;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .cta-alt:hover {
+      background: #f5f7fa;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .badges {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      align-items: center;
+    }
+    .badges img, .badges svg {
+      height: 35px;
+      display: block;
+      filter: grayscale(0.15);
+      opacity: 0.88;
+    }
+    /* --- Services --- */
+    .services-section {
+      padding: 3rem 1rem;
+      background: #f7fafd;
+      text-align: center;
+    }
+    .services-list {
+      max-width: 1000px;
+      margin: 2rem auto 0 auto;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .services-list { grid-template-columns: repeat(2,1fr);}
+    }
+    @media (min-width: 1080px) {
+      .services-list { grid-template-columns: repeat(4,1fr);}
+    }
+    .service-card {
+      background: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 2px 12px rgba(24,60,77,0.07);
+      padding: 2.2rem 1.5rem 1.7rem 1.5rem;
+      text-align: center;
+      transition: box-shadow 0.17s;
+      border: 1px solid #e6edf1;
+    }
+    .service-card:hover { box-shadow: 0 8px 28px rgba(41,158,199,0.11);}
+    .service-card .icon {
+      font-size: 2.6rem;
+      margin-bottom: 0.7rem;
+      display: flex;
+      justify-content: center;
+    }
+    .service-card h3 {
+      font-size: 1.16rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .service-card p { color: #54617b; font-size: 1rem; }
+    /* --- HVAC Diagram --- */
+    .hvac-section {
+      padding: 2.7rem 1rem 2.5rem 1rem;
+      background: #fff;
+      border-bottom: 1px solid #e0e6ec;
+    }
+    .hvac-section h2 { text-align: center; font-size: 1.5rem; margin-bottom: 1.3rem;}
+    .hvac-diagram-wrap { display: flex; justify-content: center; }
+    .hvac-tooltip {
+      display: inline-block;
+      background: #f1f8fa;
+      color: var(--primary);
+      border-radius: 10px;
+      box-shadow: 0 1px 7px rgba(24,60,77,0.06);
+      padding: 0.5rem 1.1rem;
+      margin: 0 auto;
+      font-size: 1rem;
+      min-height: 34px;
+      margin-top: 1rem;
+    }
+    /* --- Diagnostic Tool --- */
+    .diagnostic-tool {
+      position: fixed;
+      bottom: 1.3rem;
+      right: 1.3rem;
+      background: #fff;
+      border-radius: 1.4rem;
+      box-shadow: var(--shadow-lg);
+      max-width: 325px;
+      width: 92vw;
+      z-index: 999;
+      border: 1px solid #e6edf1;
+      padding: 1.2rem 1.2rem 1rem 1.2rem;
+      font-size: 1rem;
+      display: none;
+      transition: opacity 0.21s;
+    }
+    .diagnostic-tool.visible { display: block; }
+    .diagnostic-tool h2 { margin-top: 0; font-size: 1.12rem;}
+    .diagnostic-tool .diag-btns {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+    .diag-btn {
+      border-radius: 1.1rem;
+      padding: 0.54em 1.3em;
+      background: #d6eaff;
+      color: var(--primary);
+      border: none;
+      font-weight: 600;
+      transition: background 0.14s, color 0.14s;
+    }
+    .diag-btn:hover { background: var(--accent); color: #fff;}
+    .diag-restart {
+      background: var(--accent);
+      color: #fff;
+      margin-top: 0.8em;
+      border: none;
+      border-radius: 1em;
+      padding: 0.48em 1.5em;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    /* Quick Links Bar */
+    .quick-links {
+      display: flex;
+      justify-content: space-around;
+      position: fixed;
+      bottom: 0;
+      left: 0; right: 0;
+      z-index: 100;
+      background: #fff;
+      border-top: 1px solid #e6edf1;
+      box-shadow: 0 -2px 18px rgba(41,158,199,0.07);
+      padding: 0;
+      height: 54px;
+    }
+    .quick-link {
+      flex: 1 1 0;
+      text-align: center;
+      padding: 0.7em 0 0.1em 0;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1.04rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2em;
+      text-decoration: none;
+      transition: background 0.13s;
+    }
+    .quick-link span {
+      font-size: 1.38em;
+      display: block;
+      line-height: 1.1;
+    }
+    .quick-link:active, .quick-link:hover {
+      background: #f4faff;
+    }
+    @media (min-width: 770px) {
+      .quick-links { display: none;}
+    }
+    /* --- Educational/Content Sections --- */
+    .edu-section {
+      background: #f7fafd;
+      padding: 2.2rem 1rem 2.2rem 1rem;
+      border-bottom: 1px solid #e0e6ec;
+    }
+    .edu-section h2 {
+      font-size: 1.33rem;
+      margin-bottom: 1.2em;
+      text-align: center;
+    }
+    .edu-section ol {
+      max-width: 550px;
+      margin: 1.5em auto 0 auto;
+      padding: 0;
+      list-style-position: inside;
+      font-size: 1.07rem;
+      color: #485c75;
+    }
+    .faq-section {
+      background: #fff;
+      padding: 2.2rem 1rem 2.2rem 1rem;
+      border-bottom: 1px solid #e0e6ec;
+    }
+    .faq-list { max-width: 570px; margin: 0 auto;}
+    .faq-item { border-bottom: 1px solid #e6edf1;}
+    .faq-question {
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 1rem 0;
+      border: none;
+      cursor: pointer;
+      font-size: 1.07rem;
+      transition: color 0.14s;
+    }
+    .faq-question[aria-expanded="true"], .faq-question:hover {
+      color: var(--accent);
+    }
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s;
+      color: #54617b;
+      font-size: 0.99rem;
+      padding: 0 0.5em;
+    }
+    .faq-answer.open {
+      max-height: 160px;
+      padding-bottom: 1em;
+    }
+    /* Glossary */
+    .glossary-section {
+      background: #f7fafd;
+      padding: 2.2rem 1rem 2.2rem 1rem;
+    }
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    @media (min-width: 600px) {
+      .glossary-grid { grid-template-columns: 1fr 1fr;}
+    }
+    .glossary-term {
+      background: #fff;
+      border: 1px solid #e6edf1;
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+    .glossary-term dt {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.3em;
+    }
+    .glossary-term dd {
+      color: #6d7f94;
+      margin-left: 0;
+    }
+    /* Footer */
+    footer {
+      padding: 2.1rem 1rem 1.1rem 1rem;
+      background: #183c4d;
+      color: #fff;
+      text-align: center;
+      font-size: 1rem;
+    }
+  </style>
+</head>
 <body>
-  <!-- HEADER / NAVIGATION -->
-  <header>
-    <nav class="nav-bar" aria-label="Main">
-      <a href="#home" class="brand" aria-label="Home">
-        <!-- SVG Shield/Logo -->
-        <svg class="brand-logo" viewBox="0 0 64 64" aria-label="Logo">
-          <path d="M32 4 Q54 12 54 28 Q54 52 32 60 Q10 52 10 28 Q10 12 32 4 Z"
-            fill="none" stroke="#183c4d" stroke-width="3.2"/>
-          <rect x="29" y="22" width="6" height="18" rx="3" fill="#183c4d" opacity="0.8"/>
-          <rect x="31" y="32" width="2" height="8" rx="1" fill="#299ec7"/>
-          <circle cx="32" cy="44" r="5" fill="#183c4d"/>
-          <circle cx="32" cy="44" r="2" fill="#299ec7"/>
-          <rect x="36" y="25" width="5" height="1.5" fill="#183c4d"/>
-        </svg>
-        <span class="brand-name">FIDELITY</span>
-      </a>
-      <div class="nav-links" role="menubar">
-        <a href="#services" role="menuitem">Services</a>
-        <a href="#diagnostics" role="menuitem">Diagnostics</a>
-        <a href="#approach" role="menuitem">Approach</a>
-        <a href="#education" role="menuitem">Learn</a>
-        <a href="#contact" role="menuitem">Contact</a>
-      </div>
-    </nav>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <!-- You can swap the static logo for an animated SVG/GIF version later -->
-    <div>
-      <svg class="brand-logo" viewBox="0 0 64 64" aria-label="Logo" style="margin-bottom: 1.3rem;">
-        <path d="M32 4 Q54 12 54 28 Q54 52 32 60 Q10 52 10 28 Q10 12 32 4 Z"
-          fill="none" stroke="#183c4d" stroke-width="3.2"/>
-        <rect x="29" y="22" width="6" height="18" rx="3" fill="#183c4d" opacity="0.8"/>
-        <rect x="31" y="32" width="2" height="8" rx="1" fill="#299ec7"/>
-        <circle cx="32" cy="44" r="5" fill="#183c4d"/>
-        <circle cx="32" cy="44" r="2" fill="#299ec7"/>
-        <rect x="36" y="25" width="5" height="1.5" fill="#183c4d"/>
+<header>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Home">
+      <!-- Animated Logo SVG (no JS, but animated stroke with SMIL for modern browsers) -->
+      <svg width="120" height="40" viewBox="0 0 240 70" aria-label="Fidelity Mechanical Solutions logo" role="img">
+        <!-- Shield outline -->
+        <path d="M40,16 Q72,29 72,50 Q72,90 40,105 Q8,90 8,50 Q8,29 40,16 Z"
+              fill="none" stroke="#183c4d" stroke-width="3.5" stroke-dasharray="180" stroke-dashoffset="180">
+          <animate attributeName="stroke-dashoffset" from="180" to="0" dur="1s" fill="freeze"/>
+        </path>
+        <!-- Thermometer Stem -->
+        <rect x="34" y="32" width="12" height="25" rx="6" fill="#183c4d"/>
+        <!-- Mercury (animated) -->
+        <rect x="38" y="48" width="4" height="0" rx="2" fill="#299ec7">
+          <animate attributeName="height" from="0" to="10" dur="1s" fill="freeze" begin="0.4s"/>
+          <animate attributeName="y" from="58" to="48" dur="1s" fill="freeze" begin="0.4s"/>
+        </rect>
+        <!-- Bulb -->
+        <circle cx="40" cy="65" r="7" fill="#183c4d"/>
+        <circle cx="40" cy="65" r="3.5" fill="#299ec7"/>
+        <!-- Tick marks -->
+        <rect x="46" y="35" width="10" height="2" fill="#183c4d" rx="1"/>
+        <rect x="46" y="48" width="10" height="2" fill="#183c4d" rx="1"/>
+        <!-- Brand Text -->
+        <text x="85" y="45" font-size="31" font-family="Montserrat, Arial, sans-serif" font-weight="bold" fill="#183c4d">FIDELITY</text>
+        <text x="85" y="62" font-size="13" font-family="Montserrat, Arial, sans-serif" fill="#183c4d" opacity="0.84">MECHANICAL SOLUTIONS</text>
       </svg>
-    </div>
-    <h1>Fidelity Mechanical Solutions</h1>
-    <p class="subtitle">
-      More than service — this is how we think, how we move, and how we work in your space with respect and clarity.
-    </p>
-    <div class="tagline">Honest Diagnosis. Real Solutions. Fair Value.</div>
-    <div class="ctas">
-      <a class="cta" href="#estimate">Get Free Estimate</a>
-      <a class="cta-secondary" href="#diagnostics">Self-Diagnose First</a>
-    </div>
-    <div class="trust-badges" aria-label="Our Certifications">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/BBB-accredited.svg/1200px-BBB-accredited.svg.png" alt="BBB Accredited">
-      <img src="https://www.natex.org/images/certifiedlogo.png" alt="NATE Certified">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Google_2015_logo.svg/512px-Google_2015_logo.svg.png" alt="Google Reviews">
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <h2>Our Services</h2>
-    <div class="service-grid">
-      <div class="service-card">
-        <div class="service-icon">🌬️</div>
-        <h3>HVAC Systems</h3>
-        <p>Installation, repair, and preventive maintenance for all major HVAC brands.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📡</div>
-        <h3>Automation & Controls</h3>
-        <p>Building automation and smart controls for efficiency, safety, and peace of mind.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">⚡</div>
-        <h3>Energy Solutions</h3>
-        <p>Audits, retrofits, and upgrades to optimize energy usage and reduce costs.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🔋</div>
-        <h3>Emergency Power</h3>
-        <p>Reliable backup power and generator service for mission-critical facilities.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SELF-DIAGNOSTIC TOOL -->
-  <section class="diagnostic-section" id="diagnostics">
-    <h2 class="diagnostic-title">Self-Diagnose Your System</h2>
-    <div class="diagnostic-note">
-      <strong>Real talk about repairs:</strong> Every system is unique. Age, model, accessibility, and what actually failed all affect repair complexity. This tool gives you likely scenarios, but your actual situation needs hands-on diagnosis. We'll always explain what we find and your options before any work begins.
-    </div>
-    <div class="diagnostic-widget-wrap">
-      <div class="system-viz">
-        <!-- Stylized system diagram, swap for animated SVG as needed -->
-        <img src="https://cdn-icons-png.flaticon.com/512/2917/2917994.png" alt="Thermostat Illustration" style="width: 120px; opacity:0.8;">
-      </div>
-      <div class="diagnostic-panel">
-        <h3>Click a Symptom:</h3>
-        <button class="symptom-btn">System won't turn on at all</button>
-        <button class="symptom-btn">Cooling but not enough</button>
-        <button class="symptom-btn">Strange noises (clicking, buzzing)</button>
-        <button class="symptom-btn">Higher than normal energy bills</button>
-        <button class="symptom-btn">Ice forming on outdoor unit</button>
-        <div class="diagnosis-result">
-          <strong>Example Guidance:</strong>  
-          <ul>
-            <li><b>System won't turn on:</b> Check your thermostat settings, batteries, and breaker. Still nothing? Likely causes: blown fuse, failed capacitor, or control board issue. <a href="#contact">Text us for help.</a></li>
-            <li><b>Ice forming:</b> Dirty filter, low refrigerant, or restricted airflow. Shut off your system and let it thaw before running again. Call for service if the issue repeats.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- APPROACH / PHILOSOPHY -->
-  <section class="approach-section" id="approach">
-    <h2 class="approach-title">Our Service Philosophy</h2>
-    <div class="diagram-caption">Every service call follows these principles</div>
-    <div class="approach-grid">
-      <div class="approach-card">
-        <div class="approach-icon">📊</div>
-        <h3>Show the Data</h3>
-        <p>We document every reading, show you the numbers, and explain what they mean. No mysterious diagnoses or hidden information.</p>
-      </div>
-      <div class="approach-card">
-        <div class="approach-icon">🛠️</div>
-        <h3>Root Cause Focus</h3>
-        <p>We don't just fix symptoms. Every diagnosis traces back to the source, preventing repeat failures and unnecessary costs.</p>
-      </div>
-      <div class="approach-card">
-        <div class="approach-icon">🧑‍🏫</div>
-        <h3>Educate First</h3>
-        <p>Understanding your system is part of the repair. We explain what failed, why it happened, and how to prevent it. Knowledge prevents surprises.</p>
-      </div>
-      <div class="approach-card">
-        <div class="approach-icon">🤝</div>
-        <h3>Options, Not Pressure</h3>
-        <p>Every diagnosis comes with options. Repair vs replace, immediate vs planned, premium vs standard. We present the facts, you make the decision that fits your situation.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION LIBRARY -->
-  <section class="education-section" id="education">
-    <h2 class="education-title">Understand Your System</h2>
-    <div class="diagram-caption">Click any topic to learn more. Knowledge helps you make informed decisions.</div>
-    <div class="service-grid">
-      <div class="service-card">
-        <div class="service-icon">💧</div>
-        <h3>How Refrigerant Actually Works</h3>
-        <p>The pressure-temperature relationship explained in plain English.<br>
-        <span style="font-size:0.98em; color:#5e6c7b;">Debunks common myths and shows what matters most.</span></p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">⚡</div>
-        <h3>Electrical Components Decoded</h3>
-        <p>Capacitors, contactors, breakers—what they do, why they fail, and what you can check safely.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🔊</div>
-        <h3>Diagnose by Sound</h3>
-        <p>Normal vs warning HVAC sounds—what to record, when to call, and what to ignore.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">⚖️</div>
-        <h3>Repair vs Replace Calculator</h3>
-        <p>How to weigh repair frequency, system age, efficiency, and comfort vs cost for your next step.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🛡️</div>
-        <h3>Safe DIY vs Call a Pro</h3>
-        <p>What you can handle yourself and what needs licensed expertise, for safety and savings.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🌱</div>
-        <h3>Efficiency Optimization</h3>
-        <p>Simple ways to reduce costs without sacrificing comfort. Regular maintenance and small upgrades pay off.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="contact">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Our Philosophy</h3>
-        <p>Mechanical work grounded in transparency, education, and genuine care for your comfort and understanding.<br>
-        We believe in showing the work, explaining the why, and empowering you with knowledge.</p>
-      </div>
-      <div class="footer-section">
-        <h3>About Fidelity</h3>
-        <p>Founded on the principle that HVAC service should be transparent, not mysterious.<br>
-        Every diagnosis documented. Every option explained. Every interaction educational.<br>
-        Real pricing depends on real diagnosis – we'll always explain before we begin. This is mechanical fidelity.</p>
-      </div>
-      <div class="footer-section">
-        <h3>Direct Contact</h3>
-        <p>💬 <a href="sms:7132012842">713-201-2842</a> (Text preferred)<br>
-        📱 <a href="tel:7132012842">713-201-2842</a> (Call)<br>
-        ✉️ <a href="mailto:martinperez@fidelitymechanicalsolutions.com">martinperez@fidelitymechanicalsolutions.com</a><br>
-        Response time: 2 hours or less<br>
-        Service area: Greater Houston</p>
-      </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <a href="#diagnostics">Self-Diagnose Tool</a><br>
-        <a href="#approach">Our Approach</a><br>
-        <a href="#education">Education Library</a><br>
-        <a href="#estimate">Request Service</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      © 2025 Fidelity Mechanical Solutions. Professional excellence through systematic precision and clarity.
-    </div>
-  </footer>
-
-  <!-- SUPPORT WIDGET (FLOATING) -->
-  <div class="support-widget">
-    <button class="support-bubble" aria-label="Chat, text, or call">
-      💬
-    </button>
-    <!-- On click, you could show options to text or call -->
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#diagnostic">Diagnostics</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <!-- MOBILE QUICK LINKS BAR -->
-  <nav class="quick-links" aria-label="Quick Navigation">
-    <a class="quick-link" href="tel:7132012842">📞<span style="font-size:0.88em;">Call</span></a>
-    <a class="quick-link" href="#estimate">💰<span style="font-size:0.88em;">Estimate</span></a>
-    <a class="quick-link" href="#diagnostics">🩺<span style="font-size:0.88em;">Self-Diagnose</span></a>
-    <a class="quick-link" href="#contact">🆘<span style="font-size:0.88em;">Get Help</span></a>
-  </nav>
-</body>
+<main>
+
+  <section class="hero" id="home">
+    <h1>Comfort. Trust. <span>Clarity.</span></h1>
+    <p>
+      Transparent, technical HVAC solutions for every space.
+      Serving property managers, businesses, and homeowners with proven reliability.
+    </p>
+    <div class="cta-row">
+      <a href="#services" class="cta-main">Request Service</a>
+      <a href="#estimate" class="cta-alt">Get Estimate</a>
+    </div>
+    <div class="badges">
+      <!-- Placeholder SVGs (replace with real ones for production) -->
+      <svg width="80
