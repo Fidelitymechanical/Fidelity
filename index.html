@@ -1,260 +1,231 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <meta name="description" content="Fidelity Mechanical Solutions: Transparent, technical HVAC services for homes and businesses."/>
-  <title>Fidelity Mechanical Solutions</title>
-  <link rel="icon" href="/badges/bbb.svg" />
-  <style>
-    :root {
-      --primary: #183c4d;
-      --accent: #299ec7;
-      --secondary: #f4d35e;
-      --neutral: #f5f7fa;
-      --font-main: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-      --shadow-lg: 0 6px 24px rgba(24,60,77,0.08);
-    }
-    html { box-sizing: border-box; }
-    *, *:before, *:after { box-sizing: inherit; }
-    body {
-      margin: 0; padding: 0;
-      font-family: var(--font-main);
-      background: var(--neutral);
-      color: var(--primary);
-      min-height: 100vh;
-      line-height: 1.6;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover, a:focus { text-decoration: underline; }
-    h1,h2,h3,h4,h5,h6 { margin: 0; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-    /* Header */
-    header {
-      background: #fff; border-bottom: 1.5px solid #e2e8f0;
-      position: sticky; top: 0; z-index: 1000;
-      box-shadow: 0 2px 10px 0 rgba(24,60,77,0.04);
-    }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.7rem 0;
-    }
-    .nav-links {
-      display: flex; gap: 2rem;
-      font-size: 1.15rem;
-    }
-    .nav-links a {
-      color: var(--primary); padding: 0.3em 0.7em; border-radius: 0.5em;
-      transition: background .15s;
-    }
-    .nav-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .nav-links a:hover { background: var(--accent); color: #fff; }
-    /* Hero */
-    .hero { text-align: center; background: #fff; padding: 4rem 0 2rem 0; border-bottom: 1.5px solid #e2e8f0; }
-    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; }
-    .hero .cta { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
-    .hero .cta a {
-      padding: 0.9em 2.2em; border-radius: 2em; font-size: 1.12rem; font-weight: 600;
-      background: var(--accent); color: #fff; border: none; transition: background .18s;
-      box-shadow: var(--shadow-lg);
-      text-decoration: none;
-      outline: none;
-    }
-    .hero .cta a.secondary { background: #fff; color: var(--primary); border: 2px solid var(--primary);}
-    .hero .cta a:focus-visible { outline: 2px solid var(--secondary); }
-    .trust-badges { display: flex; gap: 1.3rem; justify-content: center; align-items: center; margin-top: 1.2rem; }
-    .trust-badges img { height: 36px; width: auto; }
-    /* Section titles */
-    section { padding: 3.5rem 0; }
-    section h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 2rem; }
-    /* Services Cards */
-    .services-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 0 auto; max-width: 1000px; }
-    .service-card {
-      background: #fff; border-radius: 1.4em; box-shadow: var(--shadow-lg);
-      padding: 2.1rem 1.4rem 1.6rem 1.4rem; text-align: center;
-      transition: box-shadow .15s;
-    }
-    .service-card:focus-within, .service-card:hover { box-shadow: 0 6px 32px 0 rgba(41,158,199,0.10);}
-    .service-card .icon { font-size: 2.5rem; margin-bottom: 0.9rem; }
-    /* Diagram */
-    .diagram-container { display: flex; flex-direction: column; align-items: center; }
-    .diagram-caption { color: #888; margin-top: 0.7rem; }
-    .diagram-tooltip {
-      display: inline-block; background: #e7f6fa; color: var(--primary);
-      padding: 0.45em 1.1em; border-radius: 1.2em; margin-top: 1em;
-      box-shadow: 0 1px 8px #183c4d22;
-    }
-    /* Diagnostic Widget */
-    .diagnostic-widget {
-      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 3000;
-      width: 330px; max-width: 96vw;
-      background: #fff; border-radius: 1.4em; box-shadow: 0 8px 40px 0 rgba(24,60,77,0.14);
-      padding: 1.7rem 1.4rem; border: 1.5px solid #e2e8f0;
-      font-size: 1.1rem;
-    }
-    .diagnostic-widget h2 { font-size: 1.19rem; font-weight: bold; margin-bottom: 0.8rem; }
-    .diagnostic-widget .options { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.7rem;}
-    .diagnostic-widget button {
-      background: var(--accent); color: #fff; border: none; border-radius: 1.1em;
-      padding: 0.65em 1.5em; font-size: 1rem; font-weight: 500; cursor: pointer;
-      transition: background .14s;
-    }
-    .diagnostic-widget button:focus-visible { outline: 2px solid var(--secondary); }
-    /* Quick Links Bar */
-    .quick-links {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 2200;
-      background: #fff; border-top: 1.5px solid #e2e8f0;
-      display: flex; justify-content: space-around; align-items: center;
-      padding: 0.4rem 0;
-    }
-    .quick-links a {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 0.7rem 0; color: var(--primary); text-decoration: none; font-weight: 600;
-      font-size: 1.2rem;
-    }
-    .quick-links a:focus-visible { outline: 2px solid var(--accent);}
-    .quick-links span { font-size: 1.65rem; }
-    @media (min-width: 768px) {
-      .quick-links { display: none; }
-      .diagnostic-widget { right: 2.5rem; bottom: 2.5rem; }
-    }
-    /* Support Widget */
-    .support-widget { position: fixed; bottom: 6rem; right: 1.5rem; z-index: 2800; }
-    .support-fab {
-      background: var(--accent); color: #fff; border: none; border-radius: 50%;
-      width: 54px; height: 54px; font-size: 2.1rem; box-shadow: var(--shadow-lg);
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background .14s;
-    }
-    .support-fab:focus-visible { outline: 2px solid var(--secondary);}
-    .support-popup {
-      margin-top: 1rem; background: #fff; border-radius: 1.1em;
-      box-shadow: 0 6px 24px rgba(41,158,199,0.11);
-      padding: 1.3em 1.2em; width: 285px;
-    }
-    .support-popup h3 { margin-bottom: 0.6em; color: var(--primary); }
-    .support-popup ul { margin: 0; padding: 0; list-style: none;}
-    .support-popup li + li { margin-top: 0.6em;}
-    .support-popup a { color: var(--accent);}
-    /* How it Works, FAQ, Glossary */
-    .how-steps { max-width: 700px; margin: 0 auto; padding: 0; }
-    .how-steps li { margin-bottom: 1.2em; font-size: 1.07rem;}
-    .faq-list { max-width: 680px; margin: 0 auto; }
-    .faq-item { border-bottom: 1px solid #e2e8f0; }
-    .faq-q { background: none; border: none; width: 100%; text-align: left; font-size: 1.09rem; font-weight: bold; color: var(--primary); padding: 1em 0; }
-    .faq-q:focus-visible { outline: 2px solid var(--accent);}
-    .faq-a { padding: 0 0.5em 1em 1.3em; color: #45515b; font-size: 1rem;}
-    .glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3em; max-width: 720px; margin: 0 auto;}
-    .glossary dt { font-weight: bold; color: var(--primary);}
-    .glossary dd { margin: 0 0 0.8em 0;}
-    /* Footer */
-    footer {
-      background: var(--primary); color: #fff; padding: 2.2rem 0;
-      margin-top: 2.4rem;
-    }
-    .footer-content { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; align-items: center;}
-    @media (min-width: 700px) {
-      .footer-content { flex-direction: row; justify-content: space-between;}
-    }
-    .footer-badges { display: flex; gap: 1.4em; align-items: center;}
-    .footer-badges img { height: 40px; width: auto; }
-    .footer-legal { color: #c6d4e1; font-size: 0.97rem; margin-top: 0.5em;}
-    .footer-legal a { color: var(--secondary); }
-  </style>
-</head>
 <body>
-  <!-- Header -->
+  <!-- HEADER / NAVIGATION -->
   <header>
-    <nav class="container nav" aria-label="Main navigation">
-      <a href="#" aria-label="Home">
-        <!-- SVG LOGO (animated on load using SMIL) -->
-        <svg viewBox="0 0 340 100" width="180" height="54" aria-label="Fidelity Mechanical Solutions logo" role="img">
-          <!-- Shield outline -->
-          <path id="shield-outline"
-            d="M60,20 Q100,40 100,70 Q100,120 60,140 Q20,120 20,70 Q20,40 60,20 Z"
-            fill="none"
-            stroke="#183c4d"
-            stroke-width="6"
-            stroke-dasharray="340"
-            stroke-dashoffset="340">
-            <animate attributeName="stroke-dashoffset" from="340" to="0" dur="1s" fill="freeze"/>
-          </path>
-          <!-- Thermometer stem -->
-          <rect x="54" y="50" width="12" height="38" rx="6" fill="#183c4d" />
-          <!-- Mercury column -->
-          <rect x="58" y="88" width="4" height="0" rx="2" fill="#299ec7">
-            <animate attributeName="height" from="0" to="18" dur="1s" fill="freeze" begin="0.6s"/>
-            <animate attributeName="y" from="106" to="88" dur="1s" fill="freeze" begin="0.6s"/>
-          </rect>
-          <!-- Bulb -->
-          <circle cx="60" cy="118" r="10" fill="#183c4d"/>
-          <circle cx="60" cy="118" r="5" fill="#299ec7"/>
-          <!-- Ticks -->
-          <rect x="66" y="65" width="14" height="3" fill="#183c4d" rx="1.5"/>
-          <rect x="66" y="85" width="14" height="3" fill="#183c4d" rx="1.5"/>
-          <!-- Brand Text -->
-          <text x="120" y="65" font-size="50" font-family="Montserrat, Arial, sans-serif" font-weight="bold" fill="#183c4d">FIDELITY</text>
-          <text x="120" y="90" font-size="24" font-family="Montserrat, Arial, sans-serif" fill="#183c4d" opacity="0.8">MECHANICAL SOLUTIONS</text>
+    <nav class="nav-bar" aria-label="Main">
+      <a href="#home" class="brand" aria-label="Home">
+        <!-- SVG Shield/Logo -->
+        <svg class="brand-logo" viewBox="0 0 64 64" aria-label="Logo">
+          <path d="M32 4 Q54 12 54 28 Q54 52 32 60 Q10 52 10 28 Q10 12 32 4 Z"
+            fill="none" stroke="#183c4d" stroke-width="3.2"/>
+          <rect x="29" y="22" width="6" height="18" rx="3" fill="#183c4d" opacity="0.8"/>
+          <rect x="31" y="32" width="2" height="8" rx="1" fill="#299ec7"/>
+          <circle cx="32" cy="44" r="5" fill="#183c4d"/>
+          <circle cx="32" cy="44" r="2" fill="#299ec7"/>
+          <rect x="36" y="25" width="5" height="1.5" fill="#183c4d"/>
         </svg>
+        <span class="brand-name">FIDELITY</span>
       </a>
       <div class="nav-links" role="menubar">
-        <a role="menuitem" href="#services" tabindex="0">Services</a>
-        <a role="menuitem" href="#diagnostic" tabindex="0">Diagnostics</a>
-        <a role="menuitem" href="#education" tabindex="0">Education</a>
-        <a role="menuitem" href="#contact" tabindex="0">Contact</a>
+        <a href="#services" role="menuitem">Services</a>
+        <a href="#diagnostics" role="menuitem">Diagnostics</a>
+        <a href="#approach" role="menuitem">Approach</a>
+        <a href="#education" role="menuitem">Learn</a>
+        <a href="#contact" role="menuitem">Contact</a>
       </div>
     </nav>
   </header>
-  
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Comfort. Trust. <span style="color:#299ec7;">Clarity.</span></h1>
-    <p style="max-width:600px;margin:0 auto 1.8em auto;font-size:1.21rem;color:#384968;">
-      Transparent, technical HVAC solutions for every space.<br>
-      Serving property managers, businesses, and homeowners with proven reliability.
-    </p>
-    <div class="cta">
-      <a href="#services">Request Service</a>
-      <a href="#estimate" class="secondary">Get Estimate</a>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <!-- You can swap the static logo for an animated SVG/GIF version later -->
+    <div>
+      <svg class="brand-logo" viewBox="0 0 64 64" aria-label="Logo" style="margin-bottom: 1.3rem;">
+        <path d="M32 4 Q54 12 54 28 Q54 52 32 60 Q10 52 10 28 Q10 12 32 4 Z"
+          fill="none" stroke="#183c4d" stroke-width="3.2"/>
+        <rect x="29" y="22" width="6" height="18" rx="3" fill="#183c4d" opacity="0.8"/>
+        <rect x="31" y="32" width="2" height="8" rx="1" fill="#299ec7"/>
+        <circle cx="32" cy="44" r="5" fill="#183c4d"/>
+        <circle cx="32" cy="44" r="2" fill="#299ec7"/>
+        <rect x="36" y="25" width="5" height="1.5" fill="#183c4d"/>
+      </svg>
     </div>
-    <div class="trust-badges">
-      <img src="badges/bbb.svg" alt="BBB Accredited"/>
-      <img src="badges/nate.svg" alt="NATE Certified"/>
-      <img src="badges/google.svg" alt="Google Reviews"/>
+    <h1>Fidelity Mechanical Solutions</h1>
+    <p class="subtitle">
+      More than service — this is how we think, how we move, and how we work in your space with respect and clarity.
+    </p>
+    <div class="tagline">Honest Diagnosis. Real Solutions. Fair Value.</div>
+    <div class="ctas">
+      <a class="cta" href="#estimate">Get Free Estimate</a>
+      <a class="cta-secondary" href="#diagnostics">Self-Diagnose First</a>
+    </div>
+    <div class="trust-badges" aria-label="Our Certifications">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/BBB-accredited.svg/1200px-BBB-accredited.svg.png" alt="BBB Accredited">
+      <img src="https://www.natex.org/images/certifiedlogo.png" alt="NATE Certified">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Google_2015_logo.svg/512px-Google_2015_logo.svg.png" alt="Google Reviews">
     </div>
   </section>
-  
-  <!-- Services Overview -->
-  <section id="services">
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
     <h2>Our Services</h2>
-    <div class="services-grid">
-      <div class="service-card" tabindex="0">
-        <div class="icon">🔥</div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">🌬️</div>
         <h3>HVAC Systems</h3>
         <p>Installation, repair, and preventive maintenance for all major HVAC brands.</p>
       </div>
-      <div class="service-card" tabindex="0">
-        <div class="icon">⚙️</div>
+      <div class="service-card">
+        <div class="service-icon">📡</div>
         <h3>Automation & Controls</h3>
         <p>Building automation and smart controls for efficiency, safety, and peace of mind.</p>
       </div>
-      <div class="service-card" tabindex="0">
-        <div class="icon">🌱</div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
         <h3>Energy Solutions</h3>
         <p>Audits, retrofits, and upgrades to optimize energy usage and reduce costs.</p>
       </div>
-      <div class="service-card" tabindex="0">
-        <div class="icon">🔋</div>
+      <div class="service-card">
+        <div class="service-icon">🔋</div>
         <h3>Emergency Power</h3>
         <p>Reliable backup power and generator service for mission-critical facilities.</p>
       </div>
     </div>
   </section>
-  
-  <!-- Interactive HVAC Diagram -->
-  <section id="education">
-    <h2>How Your HVAC System Works</h2>
-    <div class="diagram-container">
-      <svg viewBox="0 0 260 140" width="320" height="140" aria-label="Animated HVAC system diagram" id="hvac-diagram">
-        <rect id="duct" x="10" y="60" width="60" height="20" rx="6" fill="#d6eaff"/>
-        <rect id="furnace" x="80" y="50
+
+  <!-- SELF-DIAGNOSTIC TOOL -->
+  <section class="diagnostic-section" id="diagnostics">
+    <h2 class="diagnostic-title">Self-Diagnose Your System</h2>
+    <div class="diagnostic-note">
+      <strong>Real talk about repairs:</strong> Every system is unique. Age, model, accessibility, and what actually failed all affect repair complexity. This tool gives you likely scenarios, but your actual situation needs hands-on diagnosis. We'll always explain what we find and your options before any work begins.
+    </div>
+    <div class="diagnostic-widget-wrap">
+      <div class="system-viz">
+        <!-- Stylized system diagram, swap for animated SVG as needed -->
+        <img src="https://cdn-icons-png.flaticon.com/512/2917/2917994.png" alt="Thermostat Illustration" style="width: 120px; opacity:0.8;">
+      </div>
+      <div class="diagnostic-panel">
+        <h3>Click a Symptom:</h3>
+        <button class="symptom-btn">System won't turn on at all</button>
+        <button class="symptom-btn">Cooling but not enough</button>
+        <button class="symptom-btn">Strange noises (clicking, buzzing)</button>
+        <button class="symptom-btn">Higher than normal energy bills</button>
+        <button class="symptom-btn">Ice forming on outdoor unit</button>
+        <div class="diagnosis-result">
+          <strong>Example Guidance:</strong>  
+          <ul>
+            <li><b>System won't turn on:</b> Check your thermostat settings, batteries, and breaker. Still nothing? Likely causes: blown fuse, failed capacitor, or control board issue. <a href="#contact">Text us for help.</a></li>
+            <li><b>Ice forming:</b> Dirty filter, low refrigerant, or restricted airflow. Shut off your system and let it thaw before running again. Call for service if the issue repeats.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH / PHILOSOPHY -->
+  <section class="approach-section" id="approach">
+    <h2 class="approach-title">Our Service Philosophy</h2>
+    <div class="diagram-caption">Every service call follows these principles</div>
+    <div class="approach-grid">
+      <div class="approach-card">
+        <div class="approach-icon">📊</div>
+        <h3>Show the Data</h3>
+        <p>We document every reading, show you the numbers, and explain what they mean. No mysterious diagnoses or hidden information.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">🛠️</div>
+        <h3>Root Cause Focus</h3>
+        <p>We don't just fix symptoms. Every diagnosis traces back to the source, preventing repeat failures and unnecessary costs.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">🧑‍🏫</div>
+        <h3>Educate First</h3>
+        <p>Understanding your system is part of the repair. We explain what failed, why it happened, and how to prevent it. Knowledge prevents surprises.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">🤝</div>
+        <h3>Options, Not Pressure</h3>
+        <p>Every diagnosis comes with options. Repair vs replace, immediate vs planned, premium vs standard. We present the facts, you make the decision that fits your situation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION LIBRARY -->
+  <section class="education-section" id="education">
+    <h2 class="education-title">Understand Your System</h2>
+    <div class="diagram-caption">Click any topic to learn more. Knowledge helps you make informed decisions.</div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">💧</div>
+        <h3>How Refrigerant Actually Works</h3>
+        <p>The pressure-temperature relationship explained in plain English.<br>
+        <span style="font-size:0.98em; color:#5e6c7b;">Debunks common myths and shows what matters most.</span></p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>Electrical Components Decoded</h3>
+        <p>Capacitors, contactors, breakers—what they do, why they fail, and what you can check safely.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔊</div>
+        <h3>Diagnose by Sound</h3>
+        <p>Normal vs warning HVAC sounds—what to record, when to call, and what to ignore.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚖️</div>
+        <h3>Repair vs Replace Calculator</h3>
+        <p>How to weigh repair frequency, system age, efficiency, and comfort vs cost for your next step.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3>Safe DIY vs Call a Pro</h3>
+        <p>What you can handle yourself and what needs licensed expertise, for safety and savings.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌱</div>
+        <h3>Efficiency Optimization</h3>
+        <p>Simple ways to reduce costs without sacrificing comfort. Regular maintenance and small upgrades pay off.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Our Philosophy</h3>
+        <p>Mechanical work grounded in transparency, education, and genuine care for your comfort and understanding.<br>
+        We believe in showing the work, explaining the why, and empowering you with knowledge.</p>
+      </div>
+      <div class="footer-section">
+        <h3>About Fidelity</h3>
+        <p>Founded on the principle that HVAC service should be transparent, not mysterious.<br>
+        Every diagnosis documented. Every option explained. Every interaction educational.<br>
+        Real pricing depends on real diagnosis – we'll always explain before we begin. This is mechanical fidelity.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Direct Contact</h3>
+        <p>💬 <a href="sms:7132012842">713-201-2842</a> (Text preferred)<br>
+        📱 <a href="tel:7132012842">713-201-2842</a> (Call)<br>
+        ✉️ <a href="mailto:martinperez@fidelitymechanicalsolutions.com">martinperez@fidelitymechanicalsolutions.com</a><br>
+        Response time: 2 hours or less<br>
+        Service area: Greater Houston</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="#diagnostics">Self-Diagnose Tool</a><br>
+        <a href="#approach">Our Approach</a><br>
+        <a href="#education">Education Library</a><br>
+        <a href="#estimate">Request Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Fidelity Mechanical Solutions. Professional excellence through systematic precision and clarity.
+    </div>
+  </footer>
+
+  <!-- SUPPORT WIDGET (FLOATING) -->
+  <div class="support-widget">
+    <button class="support-bubble" aria-label="Chat, text, or call">
+      💬
+    </button>
+    <!-- On click, you could show options to text or call -->
+  </div>
+
+  <!-- MOBILE QUICK LINKS BAR -->
+  <nav class="quick-links" aria-label="Quick Navigation">
+    <a class="quick-link" href="tel:7132012842">📞<span style="font-size:0.88em;">Call</span></a>
+    <a class="quick-link" href="#estimate">💰<span style="font-size:0.88em;">Estimate</span></a>
+    <a class="quick-link" href="#diagnostics">🩺<span style="font-size:0.88em;">Self-Diagnose</span></a>
+    <a class="quick-link" href="#contact">🆘<span style="font-size:0.88em;">Get Help</span></a>
+  </nav>
+</body>
