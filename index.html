@@ -11,6 +11,36 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
   
+  <!-- Schema.org structured data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HVACBusiness",
+    "name": "Fidelity Mechanical Solutions",
+    "description": "Premium HVAC diagnostics and solutions delivered with technical mastery and clarity",
+    "url": "https://fidelitymechanicalsolutions.com",
+    "telephone": "+1-713-201-2842",
+    "email": "Martinperez@fidelitymechanicalsolutions.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "TX",
+      "addressCountry": "US"
+    },
+    "priceRange": "$$",
+    "openingHours": "Mo-Fr 08:00-18:00",
+    "sameAs": [],
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 30.1445,
+        "longitude": -95.3698
+      },
+      "geoRadius": "50000"
+    }
+  }
+  </script>
+  
   <style>
     :root {
       /* Sophisticated monochromatic palette - builds trust through restraint */
@@ -201,15 +231,15 @@
       width: 100%;
     }
     
-    /* Shield logo design with thermometer - inspired by the actual logo */
+    /* Abstract geometric logo design - represents precision and system flow */
     .hero-logo {
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       opacity: 0;
       animation: fadeInUp 1s ease-out forwards;
     }
     
     .logo-design {
-      width: 140px;
+      width: 160px;
       height: 160px;
       margin: 0 auto;
       position: relative;
@@ -220,8 +250,8 @@
       transform: translateY(-2px) scale(1.02);
     }
     
-    /* Shield shape container */
-    .logo-shield {
+    /* Geometric precision pattern - interlocking arcs representing system flow */
+    .logo-geometric {
       width: 100%;
       height: 100%;
       position: relative;
@@ -230,149 +260,127 @@
       justify-content: center;
     }
     
-    /* Shield background shape */
-    .shield-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
+    /* Central circle foundation */
+    .geo-center {
+      width: 80px;
+      height: 80px;
       background: var(--deep-charcoal);
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 75%,
-        50% 100%,
-        0 75%
-      );
+      border-radius: 50%;
+      position: relative;
+      z-index: 5;
       box-shadow: var(--shadow-strong);
     }
     
-    /* Shield border/outline */
-    .shield-border {
+    /* Interlocking precision arcs */
+    .arc {
       position: absolute;
-      width: calc(100% - 8px);
-      height: calc(100% - 8px);
-      top: 4px;
-      left: 4px;
-      background: linear-gradient(135deg, var(--accent-blue) 0%, #2563eb 100%);
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 75%,
-        50% 100%,
-        0 75%
-      );
-    }
-    
-    /* Inner shield area */
-    .shield-inner {
-      position: absolute;
-      width: calc(100% - 16px);
-      height: calc(100% - 16px);
-      top: 8px;
-      left: 8px;
-      background: var(--deep-charcoal);
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 75%,
-        50% 100%,
-        0 75%
-      );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    /* Thermometer icon container */
-    .thermometer-icon {
-      position: relative;
-      z-index: 3;
-      width: 40px;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: -10px;
-    }
-    
-    /* Thermometer tube */
-    .thermometer-tube {
-      position: absolute;
-      width: 20px;
-      height: 70px;
-      background: rgba(59, 130, 246, 0.2);
       border: 3px solid var(--accent-blue);
-      border-radius: 10px 10px 20px 20px;
-      top: 0;
+      border-radius: 50%;
+      opacity: 0.9;
     }
     
-    /* Thermometer bulb */
-    .thermometer-bulb {
+    .arc-1 {
+      width: 120px;
+      height: 120px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-color: transparent var(--accent-blue) transparent transparent;
+      animation: rotate 8s linear infinite;
+    }
+    
+    .arc-2 {
+      width: 100px;
+      height: 100px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(120deg);
+      border-color: transparent transparent var(--accent-blue) transparent;
+      animation: rotate-reverse 10s linear infinite;
+    }
+    
+    .arc-3 {
+      width: 140px;
+      height: 140px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(240deg);
+      border-color: var(--accent-blue) transparent transparent transparent;
+      animation: rotate 12s linear infinite;
+    }
+    
+    @keyframes rotate {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    
+    @keyframes rotate-reverse {
+      from { transform: translate(-50%, -50%) rotate(360deg); }
+      to { transform: translate(-50%, -50%) rotate(0deg); }
+    }
+    
+    /* Central precision indicator */
+    .precision-core {
       position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 30px;
       height: 30px;
+      background: rgba(59, 130, 246, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .precision-dot {
+      width: 8px;
+      height: 8px;
       background: var(--accent-blue);
       border-radius: 50%;
-      bottom: 5px;
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
     }
     
-    /* Mercury fill */
-    .mercury-fill {
-      position: absolute;
-      width: 8px;
-      height: 45px;
-      background: linear-gradient(to top, var(--accent-blue) 60%, transparent 100%);
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 4px;
-    }
-    
-    /* Temperature markings */
-    .temp-marks {
-      position: absolute;
-      width: 100%;
-      height: 50px;
-      top: 10px;
-      left: 0;
-    }
-    
-    .temp-mark {
-      position: absolute;
-      width: 25px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.5);
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    .temp-mark:nth-child(1) { top: 5px; }
-    .temp-mark:nth-child(2) { top: 15px; }
-    .temp-mark:nth-child(3) { top: 25px; }
-    .temp-mark:nth-child(4) { top: 35px; }
-    
-    /* Small accent marks for detail */
-    .accent-marks {
+    /* Grid lines suggesting measurement and precision */
+    .grid-lines {
       position: absolute;
       width: 100%;
       height: 100%;
       top: 0;
       left: 0;
+      pointer-events: none;
     }
     
-    .accent-dot {
+    .grid-line {
       position: absolute;
-      width: 3px;
-      height: 3px;
-      background: rgba(59, 130, 246, 0.6);
-      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.2);
     }
     
-    .accent-dot:nth-child(1) { top: 20%; left: 25%; }
-    .accent-dot:nth-child(2) { top: 20%; right: 25%; }
-    .accent-dot:nth-child(3) { top: 40%; left: 20%; }
-    .accent-dot:nth-child(4) { top: 40%; right: 20%; }
+    .grid-line-h {
+      width: 100%;
+      height: 1px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .grid-line-v {
+      width: 1px;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* Logo descriptor text */
+    .logo-descriptor {
+      margin-top: 1rem;
+      font-size: var(--text-sm);
+      color: var(--text-gray);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
     
     .hero-title {
       font-family: 'Playfair Display', serif;
@@ -391,10 +399,19 @@
       color: var(--text-gray);
       line-height: 1.7;
       max-width: 600px;
-      margin: 0 auto 3rem;
+      margin: 0 auto 1rem;
       opacity: 0;
       animation: fadeInUp 1s ease-out 0.6s forwards;
       font-weight: 400;
+    }
+    
+    .hero-tagline {
+      font-size: var(--text-lg);
+      color: var(--charcoal);
+      font-weight: 500;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.7s forwards;
     }
     
     @keyframes fadeInUp {
@@ -485,6 +502,65 @@
       line-height: 1.7;
     }
     
+    /* Why Fidelity section */
+    .why-fidelity {
+      background: var(--light-gray);
+      border-radius: 16px;
+      padding: 4rem 3rem;
+      margin: 2rem 0;
+    }
+    
+    .why-fidelity p {
+      font-size: var(--text-lg);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      color: var(--charcoal);
+    }
+    
+    .why-fidelity p:last-child {
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+    
+    /* Process section */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .process-step {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .process-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: var(--accent-blue);
+      color: white;
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      border-radius: 50%;
+      margin-bottom: 1.5rem;
+    }
+    
+    .process-title {
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--deep-charcoal);
+      margin-bottom: 1rem;
+    }
+    
+    .process-description {
+      color: var(--text-gray);
+      line-height: 1.6;
+    }
+    
     /* Services grid - Clean and scannable */
     .services-grid {
       display: grid;
@@ -531,6 +607,85 @@
     .service-description {
       color: var(--text-gray);
       line-height: 1.6;
+    }
+    
+    /* Case study section */
+    .case-study {
+      background: var(--primary-white);
+      border: 1px solid var(--medium-gray);
+      border-radius: 12px;
+      padding: 3rem;
+      margin: 3rem 0;
+      box-shadow: var(--shadow-soft);
+    }
+    
+    .case-header {
+      border-bottom: 2px solid var(--light-gray);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .case-title {
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      color: var(--deep-charcoal);
+      margin-bottom: 0.5rem;
+    }
+    
+    .case-meta {
+      font-size: var(--text-sm);
+      color: var(--text-gray);
+    }
+    
+    .case-section {
+      margin-bottom: 2rem;
+    }
+    
+    .case-section h4 {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .case-section ul {
+      list-style: none;
+      margin-left: 1.5rem;
+    }
+    
+    .case-section li {
+      margin-bottom: 0.5rem;
+      color: var(--text-gray);
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .case-section li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+    }
+    
+    .case-data {
+      background: var(--light-gray);
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: var(--text-sm);
+      margin: 1rem 0;
+    }
+    
+    .case-insight {
+      background: var(--soft-white);
+      border-left: 4px solid var(--accent-blue);
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      font-style: italic;
+      color: var(--charcoal);
     }
     
     /* Contact section - Professional and approachable */
@@ -632,8 +787,16 @@
         padding: 4rem 1.5rem;
       }
       
-      .services-grid {
+      .services-grid, .process-grid {
         grid-template-columns: 1fr;
+      }
+      
+      .why-fidelity {
+        padding: 3rem 2rem;
+      }
+      
+      .case-study {
+        padding: 2rem 1.5rem;
       }
     }
   </style>
@@ -651,9 +814,11 @@
       
       <div class="nav-links" id="navLinks">
         <a href="#home">Home</a>
+        <a href="#philosophy">Philosophy</a>
         <a href="#approach">Our Approach</a>
         <a href="#services">Services</a>
-        <a href="#team">Team</a>
+        <a href="#process">Process</a>
+        <a href="#case-studies">Case Studies</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -662,40 +827,48 @@
   <section id="home" class="hero-section">
     <div class="hero-content">
       <div class="hero-logo">
-        <!-- Shield logo design with thermometer inspired by Fidelity branding -->
+        <!-- Abstract geometric logo representing precision and system flow -->
         <div class="logo-design">
-          <div class="logo-shield">
-            <div class="shield-bg"></div>
-            <div class="shield-border"></div>
-            <div class="shield-inner">
-              <div class="thermometer-icon">
-                <div class="thermometer-tube"></div>
-                <div class="thermometer-bulb"></div>
-                <div class="mercury-fill"></div>
-                <div class="temp-marks">
-                  <div class="temp-mark"></div>
-                  <div class="temp-mark"></div>
-                  <div class="temp-mark"></div>
-                  <div class="temp-mark"></div>
-                </div>
+          <div class="logo-geometric">
+            <div class="geo-center">
+              <div class="precision-core">
+                <div class="precision-dot"></div>
               </div>
-              <div class="accent-marks">
-                <div class="accent-dot"></div>
-                <div class="accent-dot"></div>
-                <div class="accent-dot"></div>
-                <div class="accent-dot"></div>
-              </div>
+            </div>
+            <div class="arc arc-1"></div>
+            <div class="arc arc-2"></div>
+            <div class="arc arc-3"></div>
+            <div class="grid-lines">
+              <div class="grid-line grid-line-h"></div>
+              <div class="grid-line grid-line-v"></div>
             </div>
           </div>
         </div>
+        <div class="logo-descriptor">Precision • Clarity • Fidelity</div>
       </div>
       <h1 class="hero-title">Fidelity Mechanical Solutions</h1>
       <p class="hero-subtitle">More than service — this is how we think, how we move, and how we work in your space with respect and clarity.</p>
+      <p class="hero-tagline">Fidelity is the foundation.</p>
       <div class="cta-container">
         <a href="#contact" class="cta-primary">Get Free Estimate</a>
         <a href="#services" class="cta-secondary">View Services</a>
       </div>
     </div>
+  </section>
+  
+  <section id="philosophy">
+    <div class="section-header">
+      <h2 class="section-title">Our Philosophy</h2>
+      <p class="section-subtitle">Fidelity means more than showing up — it means showing the work, standing by the outcome, and doing it again with clarity.</p>
+    </div>
+    
+    <p>We don't sell services — we diagnose systems, educate clients, and build solutions that make sense technically and financially. Our job isn't to be the hero of your system. It's to become invisible through competence.</p>
+    
+    <p>There's no upsell pressure here. Just real diagnostics, documented work, and informed decisions — because clarity creates control, and your understanding is part of the repair.</p>
+    
+    <p>Our commitment is to the craft, the client, and the principle that systems tell the truth — we just have to listen well enough to catch it before it breaks.</p>
+    
+    <p>This is how mechanical work should be done. This is Fidelity.</p>
   </section>
   
   <section id="approach">
@@ -706,6 +879,30 @@
     <p>We are a mechanical service company organized around one premise: that technical work, client understanding, and professional development are not separate functions — they are the integrated disciplines that define exceptional service delivery.</p>
     <p>Our theoretical framework emphasizes root-cause methodology over surface-level fixes. We educate without condescension and solve problems with systematic precision that honors both technical excellence and human understanding.</p>
     <p>Every interaction becomes an opportunity to demonstrate mastery through clarity, building long-term relationships based on competence, transparency, and measurable results.</p>
+  </section>
+  
+  <section id="process">
+    <div class="section-header">
+      <h2 class="section-title">How We Work</h2>
+      <p class="section-subtitle">A systematic approach that puts clarity and control in your hands.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-number">1</div>
+        <h3 class="process-title">Assess with Precision</h3>
+        <p class="process-description">We collect comprehensive system data and diagnose root causes. No guesswork, just methodical analysis backed by measurable evidence.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">2</div>
+        <h3 class="process-title">Educate Clearly</h3>
+        <p class="process-description">You receive real-time understanding and documented recommendations. We explain what we found, why it matters, and what your options are.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">3</div>
+        <h3 class="process-title">Solve Systemically</h3>
+        <p class="process-description">We implement solutions with care, transparency, and follow-up. Every repair addresses the root cause and includes preventive insights.</p>
+      </div>
+    </div>
   </section>
   
   <section id="services">
@@ -734,6 +931,87 @@
         <h3 class="service-title">System Optimization</h3>
         <p class="service-description">Performance tuning and efficiency improvements for existing systems. Data-driven optimization that extends equipment life and reduces operational costs.</p>
       </div>
+      <div class="service-card">
+        <div class="service-icon">📡</div>
+        <h3 class="service-title">Monitoring Systems (R&D)</h3>
+        <p class="service-description">Currently developing smart diagnostic tools that help predict maintenance needs before failures occur. Our research focuses on non-invasive system health indicators that protect your investment while respecting your privacy. Coming soon.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="case-studies">
+    <div class="section-header">
+      <h2 class="section-title">Field Case Studies</h2>
+      <p class="section-subtitle">Real diagnostics, real decisions, real results. This is how we work.</p>
+    </div>
+    
+    <div class="case-study">
+      <div class="case-header">
+        <h3 class="case-title">🔍 Commercial Facility No-Cooling Diagnostic</h3>
+        <p class="case-meta">July 2025 | 3.5 Ton Split System | Complete System Recovery</p>
+      </div>
+      
+      <div class="case-section">
+        <h4>📍 Initial Situation</h4>
+        <ul>
+          <li>Outdoor unit completely non-operational</li>
+          <li>Indoor temperature at 85°F during peak summer</li>
+          <li>No previous service documentation available</li>
+          <li>Critical cooling needed for facility operations</li>
+        </ul>
+      </div>
+      
+      <div class="case-section">
+        <h4>🔧 Diagnostic Process</h4>
+        <ul>
+          <li>Electrical testing revealed intermittent power delivery</li>
+          <li>Capacitor tested at 35/3 μF (rated 45/5 μF) - clear failure</li>
+          <li>Manual contactor test confirmed relay functionality</li>
+          <li>Breaker showed physical resistance indicating internal failure</li>
+        </ul>
+      </div>
+      
+      <div class="case-section">
+        <h4>📊 System Analysis</h4>
+        <div class="case-data">
+Initial Readings:
+• Subcooling: 13.5°F (Target: 10°F)
+• Superheat: 10.5°F
+• Suction: 163 psi | Head: 387 psi
+• System overcharged by ~1.8 lbs
+        </div>
+        <p>Progressive refrigerant recovery performed in 4-6 oz increments, monitoring system response between adjustments.</p>
+        <div class="case-data">
+Final Readings:
+• Subcooling: 10.2°F ✓
+• Superheat: 11.8°F ✓
+• Suction: 159 psi | Head: 377 psi
+• Supply temp: 53°F | VSAT: 56°F
+        </div>
+      </div>
+      
+      <div class="case-section">
+        <h4>💡 Technical Insights</h4>
+        <div class="case-insight">
+          "System was cooling under heavy load, but the overcharge was causing inefficiency and potential compressor stress. Incremental recovery allowed precise charge adjustment without overshooting targets. This methodical approach ensures longevity and efficiency."
+        </div>
+      </div>
+      
+      <div class="case-section">
+        <h4>✅ Results & Recommendations</h4>
+        <ul>
+          <li>Replaced failed capacitor with American-made Century Supply unit</li>
+          <li>Restored system to manufacturer specifications</li>
+          <li>Identified breaker issue - recommended licensed electrician</li>
+          <li>System operating at peak efficiency with documented baseline</li>
+          <li>Follow-up scheduled to verify charge stability</li>
+        </ul>
+      </div>
+      
+      <div class="case-section">
+        <h4>🎯 Why This Matters</h4>
+        <p>This case demonstrates our commitment to systematic diagnosis over quick fixes. By taking time to properly analyze and adjust the refrigerant charge, we prevented future compressor damage and ensured optimal efficiency. The client received not just a repair, but understanding and documentation for informed decision-making.</p>
+      </div>
     </div>
   </section>
   
@@ -760,7 +1038,7 @@
       </div>
       <div class="contact-item">
         <h3>Email</h3>
-        <p><strong><a href="mailto:martin.p@fidelitymechanicalsolutions.com">M. Pérez</a></strong></p>
+        <p><strong><a href="mailto:Martinperez@fidelitymechanicalsolutions.com">M. Pérez</a></strong></p>
         <p>Detailed inquiries welcome</p>
       </div>
       <div class="contact-item">
