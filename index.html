@@ -3,80 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fidelity Mechanical Solutions | Premium HVAC Services</title>
-  <meta name="description" content="Experience mechanical excellence. Premium HVAC diagnostics and solutions delivered with uncompromising integrity and technical mastery.">
+  <title>Fidelity Mechanical Solutions | Transparent HVAC Service</title>
+  <meta name="description" content="We show you exactly what your HVAC system needs. Real diagnostics, transparent service, and education-first approach.">
   
-  <!-- Premium typography system -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Schema.org structured data for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HVACBusiness",
-    "name": "Fidelity Mechanical Solutions",
-    "description": "Premium HVAC diagnostics and solutions delivered with technical mastery and clarity",
-    "url": "https://fidelitymechanicalsolutions.com",
-    "telephone": "+1-713-201-2842",
-    "email": "Martinperez@fidelitymechanicalsolutions.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "TX",
-      "addressCountry": "US"
-    },
-    "priceRange": "$$",
-    "openingHours": "Mo-Fr 08:00-18:00",
-    "sameAs": [],
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": 30.1445,
-        "longitude": -95.3698
-      },
-      "geoRadius": "50000"
-    }
-  }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      /* Sophisticated monochromatic palette - builds trust through restraint */
-      --primary-white: #ffffff;
-      --soft-white: #fafafa;
-      --light-gray: #f5f7fa;
-      --medium-gray: #e2e8f0;
-      --text-gray: #64748b;
-      --dark-gray: #475569;
-      --charcoal: #334155;
-      --deep-charcoal: #1e293b;
+      --pure-white: #ffffff;
+      --ghost-white: #f8f9fa;
+      --system-gray: #e9ecef;
+      --data-gray: #868e96;
+      --carbon: #212529;
+      --void: #000000;
+      --thermal-blue: #3b82f6;
+      --thermal-red: #ff3333;
+      --success-green: #00c851;
+      --warning-amber: #ffbb33;
+      --fidelity-navy: #003a5d;
       
-      /* Subtle accent system - used sparingly for maximum impact */
-      --accent-blue: #3b82f6;
-      --accent-hover: #2563eb;
-      --success-green: #10b981;
-      
-      /* Shadow system - creates depth without harshness */
-      --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.05);
-      --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.08);
-      --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.12);
-      --shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.1);
-      
-      /* Typography scale - creates visual hierarchy */
-      --text-xs: 0.75rem;
-      --text-sm: 0.875rem;
-      --text-base: 1rem;
-      --text-lg: 1.125rem;
-      --text-xl: 1.25rem;
-      --text-2xl: 1.5rem;
-      --text-3xl: 1.875rem;
-      --text-4xl: 2.25rem;
-      --text-5xl: 3rem;
+      --font-mono: 'Space Mono', monospace;
+      --font-sans: 'Inter', -apple-system, sans-serif;
     }
     
-    /* Reset and base styles - ensures consistency across browsers */
     * {
       margin: 0;
       padding: 0;
@@ -84,340 +35,533 @@
     }
     
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--soft-white);
-      color: var(--charcoal);
+      font-family: var(--font-sans);
+      background: var(--pure-white);
+      color: var(--carbon);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
     
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    ::selection {
-      background: var(--accent-blue);
-      color: white;
-    }
-    
-    /* Navigation - Clean and unobtrusive */
-    .nav-container {
+    /* Navigation */
+    .main-nav {
       position: fixed;
-      width: 100%;
       top: 0;
-      z-index: 1000;
+      width: 100%;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--medium-gray);
-      transition: all 0.3s ease;
-    }
-    
-    .nav-container.scrolled {
-      background: rgba(255, 255, 255, 0.98);
-      box-shadow: var(--shadow-medium);
-    }
-    
-    .nav {
+      padding: 1rem 2rem;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1200px;
-      padding: 1rem 2rem;
-      margin: 0 auto;
+      border-bottom: 1px solid var(--system-gray);
     }
     
-    .logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--deep-charcoal);
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       text-decoration: none;
-      letter-spacing: -0.02em;
-      transition: color 0.3s ease;
+      color: var(--carbon);
     }
     
-    .logo-text:hover {
-      color: var(--accent-blue);
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success-green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .brand-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
     
     .nav-links {
       display: flex;
       gap: 2rem;
-      align-items: center;
     }
     
     .nav-links a {
-      color: var(--text-gray);
+      color: var(--carbon);
       text-decoration: none;
       font-weight: 500;
-      font-size: var(--text-sm);
-      transition: color 0.3s ease;
-      position: relative;
+      transition: color 0.3s;
     }
     
     .nav-links a:hover {
-      color: var(--charcoal);
+      color: var(--thermal-blue);
     }
     
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent-blue);
-      transition: width 0.3s ease;
-    }
-    
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-    
-    /* Mobile navigation */
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-    
-    .bar {
-      height: 2px;
-      width: 20px;
-      background: var(--charcoal);
-      margin: 2px 0;
-      transition: all 0.3s ease;
-    }
-    
-    /* Hero section - Confident and spacious */
+    /* Hero Section */
     .hero-section {
       min-height: 100vh;
-      padding: 120px 2rem 80px;
+      padding: 100px 2rem 2rem;
+      background: var(--ghost-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hero-container {
+      max-width: 1200px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    /* Fidelity Logo */
+    .fidelity-logo {
+      margin-bottom: 3rem;
+      display: inline-block;
+      position: relative;
+    }
+    
+    .logo-container {
+      width: 160px;
+      height: 180px;
+      position: relative;
+      margin: 0 auto;
+    }
+    
+    /* Data flow shield design */
+    .data-shield {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    
+    .shield-frame {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--fidelity-navy);
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 75%,
+        50% 100%,
+        0 75%
+      );
+    }
+    
+    /* Data flow visualization inside shield */
+    .data-flow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: 60%;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      text-align: center;
-      background: linear-gradient(135deg, var(--primary-white) 0%, var(--light-gray) 100%);
-      position: relative;
+      align-items: center;
+      gap: 4px;
+      padding-top: 10px;
     }
     
-    /* Subtle geometric accent - adds visual interest without distraction */
-    .hero-section::before {
-      content: '';
+    .data-line {
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .data-pulse {
       position: absolute;
-      top: 20%;
-      right: 10%;
-      width: 200px;
-      height: 200px;
-      background: linear-gradient(45deg, var(--medium-gray), transparent);
-      border-radius: 50%;
-      opacity: 0.3;
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      width: 100%;
-    }
-    
-    /* Abstract geometric logo design - represents precision and system flow */
-    .hero-logo {
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out forwards;
-    }
-    
-    .logo-design {
-      width: 160px;
-      height: 160px;
-      margin: 0 auto;
-      position: relative;
-      transition: transform 0.3s ease;
-    }
-    
-    .logo-design:hover {
-      transform: translateY(-2px) scale(1.02);
-    }
-    
-    /* Geometric precision pattern - interlocking arcs representing system flow */
-    .logo-geometric {
-      width: 100%;
       height: 100%;
-      position: relative;
+      width: 30%;
+      background: linear-gradient(90deg, transparent, var(--thermal-blue), transparent);
+      animation: data-flow 2s linear infinite;
+    }
+    
+    .data-line:nth-child(1) .data-pulse { animation-delay: 0s; }
+    .data-line:nth-child(2) .data-pulse { animation-delay: 0.5s; }
+    .data-line:nth-child(3) .data-pulse { animation-delay: 1s; }
+    .data-line:nth-child(4) .data-pulse { animation-delay: 1.5s; }
+    
+    @keyframes data-flow {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(400%); }
+    }
+    
+    /* Central monitoring icon */
+    .monitor-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border: 3px solid white;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     
-    /* Central circle foundation */
-    .geo-center {
-      width: 80px;
-      height: 80px;
-      background: var(--deep-charcoal);
-      border-radius: 50%;
-      position: relative;
-      z-index: 5;
-      box-shadow: var(--shadow-strong);
-    }
-    
-    /* Interlocking precision arcs */
-    .arc {
-      position: absolute;
-      border: 3px solid var(--accent-blue);
-      border-radius: 50%;
-      opacity: 0.9;
-    }
-    
-    .arc-1 {
-      width: 120px;
-      height: 120px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-color: transparent var(--accent-blue) transparent transparent;
-      animation: rotate 8s linear infinite;
-    }
-    
-    .arc-2 {
-      width: 100px;
-      height: 100px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(120deg);
-      border-color: transparent transparent var(--accent-blue) transparent;
-      animation: rotate-reverse 10s linear infinite;
-    }
-    
-    .arc-3 {
-      width: 140px;
-      height: 140px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(240deg);
-      border-color: var(--accent-blue) transparent transparent transparent;
-      animation: rotate 12s linear infinite;
-    }
-    
-    @keyframes rotate {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    
-    @keyframes rotate-reverse {
-      from { transform: translate(-50%, -50%) rotate(360deg); }
-      to { transform: translate(-50%, -50%) rotate(0deg); }
-    }
-    
-    /* Central precision indicator */
-    .precision-core {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 30px;
-      height: 30px;
-      background: rgba(59, 130, 246, 0.2);
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .precision-dot {
+    .monitor-dot {
       width: 8px;
       height: 8px;
-      background: var(--accent-blue);
+      background: white;
       border-radius: 50%;
-      box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      animation: monitor-pulse 2s ease-in-out infinite;
     }
     
-    /* Grid lines suggesting measurement and precision */
-    .grid-lines {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-    }
-    
-    .grid-line {
-      position: absolute;
-      background: rgba(59, 130, 246, 0.2);
-    }
-    
-    .grid-line-h {
-      width: 100%;
-      height: 1px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    
-    .grid-line-v {
-      width: 1px;
-      height: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    /* Logo descriptor text */
-    .logo-descriptor {
-      margin-top: 1rem;
-      font-size: var(--text-sm);
-      color: var(--text-gray);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 500;
+    @keyframes monitor-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.7; }
     }
     
     .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 500;
-      color: var(--deep-charcoal);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.3s forwards;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
       letter-spacing: -0.02em;
-      line-height: 1.1;
     }
     
     .hero-subtitle {
-      font-size: var(--text-xl);
-      color: var(--text-gray);
-      line-height: 1.7;
+      font-size: 1.25rem;
+      color: var(--data-gray);
+      font-weight: 300;
       max-width: 600px;
-      margin: 0 auto 1rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.6s forwards;
-      font-weight: 400;
+      margin: 0 auto 3rem;
     }
     
     .hero-tagline {
-      font-size: var(--text-lg);
-      color: var(--charcoal);
-      font-weight: 500;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.7s forwards;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--thermal-blue);
+      margin-bottom: 4rem;
     }
     
-    @keyframes fadeInUp {
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .cta-primary, .cta-secondary {
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+    
+    .cta-primary {
+      background: var(--thermal-blue);
+      color: white;
+      border: 2px solid var(--thermal-blue);
+    }
+    
+    .cta-primary:hover {
+      background: var(--fidelity-navy);
+      border-color: var(--fidelity-navy);
+      transform: translateY(-2px);
+    }
+    
+    .cta-secondary {
+      background: transparent;
+      color: var(--carbon);
+      border: 2px solid var(--carbon);
+    }
+    
+    .cta-secondary:hover {
+      background: var(--carbon);
+      color: white;
+    }
+    
+    /* Interactive diagnostic tool */
+    .diagnostic-section {
+      background: var(--pure-white);
+      padding: 5rem 2rem;
+    }
+    
+    .diagnostic-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .diagnostic-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .diagnostic-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .diagnostic-interface {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .system-visual {
+      position: relative;
+      height: 400px;
+      background: var(--ghost-white);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    /* Animated HVAC system visualization */
+    .hvac-diagram {
+      position: relative;
+      width: 300px;
+      height: 300px;
+    }
+    
+    .unit-outdoor {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: var(--carbon);
+      border-radius: 8px;
+      top: 20%;
+      left: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+    
+    .unit-indoor {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: var(--carbon);
+      border-radius: 8px;
+      bottom: 20%;
+      right: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+    
+    .flow-line {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: var(--thermal-blue);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    
+    .flow-particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--thermal-blue);
+      border-radius: 50%;
+      animation: flow 2s linear infinite;
+    }
+    
+    @keyframes flow {
+      from { 
+        transform: translateY(0);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      to { 
+        transform: translateY(120px);
+        opacity: 0;
+      }
+    }
+    
+    .diagnostic-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .control-group {
+      background: var(--ghost-white);
+      padding: 2rem;
+      border-radius: 8px;
+    }
+    
+    .control-label {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--data-gray);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .symptom-btn {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      background: var(--pure-white);
+      border: 1px solid var(--system-gray);
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+    }
+    
+    .symptom-btn:hover {
+      background: var(--thermal-blue);
+      color: white;
+      border-color: var(--thermal-blue);
+    }
+    
+    /* Service approach section */
+    .approach-section {
+      background: var(--fidelity-navy);
+      color: var(--pure-white);
+      padding: 5rem 2rem;
+    }
+    
+    .approach-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .approach-header {
+      margin-bottom: 3rem;
+    }
+    
+    .approach-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    
+    .approach-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: left;
+    }
+    
+    .approach-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .approach-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .approach-card p {
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+    
+    /* Education library */
+    .education-section {
+      padding: 5rem 2rem;
+      background: var(--ghost-white);
+    }
+    
+    .education-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .education-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .knowledge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .knowledge-card {
+      background: var(--pure-white);
+      border: 1px solid var(--system-gray);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .knowledge-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+    
+    .knowledge-card.active {
+      border-color: var(--thermal-blue);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+    }
+    
+    .knowledge-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .knowledge-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .knowledge-description {
+      color: var(--data-gray);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    
+    .knowledge-detail {
+      display: none;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--system-gray);
+    }
+    
+    .knowledge-detail.show {
+      display: block;
+      animation: slideDown 0.3s ease-out;
+    }
+    
+    @keyframes slideDown {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(-10px);
       }
       to {
         opacity: 1;
@@ -425,697 +569,571 @@
       }
     }
     
-    .cta-container {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.9s forwards;
+    .detail-content {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--carbon);
     }
     
-    /* Button system - Refined and purposeful */
-    .cta-primary, .cta-secondary {
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: 500;
-      font-size: var(--text-base);
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
+    .detail-content h4 {
+      font-size: 1rem;
+      margin: 1rem 0 0.5rem;
+      color: var(--thermal-blue);
     }
     
-    .cta-primary {
-      background: var(--accent-blue);
-      color: white;
-      border: none;
-      box-shadow: var(--shadow-medium);
+    .detail-content ul {
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
     }
     
-    .cta-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-strong);
+    .detail-content li {
+      margin-bottom: 0.5rem;
     }
     
-    .cta-secondary {
-      background: transparent;
-      color: var(--charcoal);
-      border: 2px solid var(--medium-gray);
+    /* Footer */
+    .main-footer {
+      background: var(--carbon);
+      color: var(--pure-white);
+      padding: 5rem 2rem 3rem;
     }
     
-    .cta-secondary:hover {
-      background: var(--charcoal);
-      color: white;
-      border-color: var(--charcoal);
-    }
-    
-    /* Content sections - Clear hierarchy and generous spacing */
-    section {
-      padding: 5rem 2rem;
+    .footer-container {
       max-width: 1200px;
       margin: 0 auto;
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: var(--text-4xl);
-      font-weight: 500;
-      color: var(--deep-charcoal);
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-    
-    .section-subtitle {
-      font-size: var(--text-lg);
-      color: var(--text-gray);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-    
-    /* Why Fidelity section */
-    .why-fidelity {
-      background: var(--light-gray);
-      border-radius: 16px;
-      padding: 4rem 3rem;
-      margin: 2rem 0;
-    }
-    
-    .why-fidelity p {
-      font-size: var(--text-lg);
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-      color: var(--charcoal);
-    }
-    
-    .why-fidelity p:last-child {
-      margin-bottom: 0;
-      font-weight: 600;
-    }
-    
-    /* Process section */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    
-    .process-step {
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .process-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      background: var(--accent-blue);
-      color: white;
-      font-size: var(--text-2xl);
-      font-weight: 600;
-      border-radius: 50%;
-      margin-bottom: 1.5rem;
-    }
-    
-    .process-title {
-      font-size: var(--text-xl);
-      font-weight: 600;
-      color: var(--deep-charcoal);
-      margin-bottom: 1rem;
-    }
-    
-    .process-description {
-      color: var(--text-gray);
-      line-height: 1.6;
-    }
-    
-    /* Services grid - Clean and scannable */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    
-    .service-card {
-      background: var(--primary-white);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid var(--medium-gray);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-strong);
-    }
-    
-    .service-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--light-gray);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-      color: var(--accent-blue);
-    }
-    
-    .service-title {
-      font-size: var(--text-xl);
-      font-weight: 600;
-      color: var(--deep-charcoal);
-      margin-bottom: 1rem;
-    }
-    
-    .service-description {
-      color: var(--text-gray);
-      line-height: 1.6;
-    }
-    
-    /* Case study section */
-    .case-study {
-      background: var(--primary-white);
-      border: 1px solid var(--medium-gray);
-      border-radius: 12px;
-      padding: 3rem;
-      margin: 3rem 0;
-      box-shadow: var(--shadow-soft);
-    }
-    
-    .case-header {
-      border-bottom: 2px solid var(--light-gray);
-      padding-bottom: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    
-    .case-title {
-      font-size: var(--text-2xl);
-      font-weight: 600;
-      color: var(--deep-charcoal);
-      margin-bottom: 0.5rem;
-    }
-    
-    .case-meta {
-      font-size: var(--text-sm);
-      color: var(--text-gray);
-    }
-    
-    .case-section {
-      margin-bottom: 2rem;
-    }
-    
-    .case-section h4 {
-      font-size: var(--text-lg);
-      font-weight: 600;
-      color: var(--charcoal);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .case-section ul {
-      list-style: none;
-      margin-left: 1.5rem;
-    }
-    
-    .case-section li {
-      margin-bottom: 0.5rem;
-      color: var(--text-gray);
-      position: relative;
-      padding-left: 1.5rem;
-    }
-    
-    .case-section li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--accent-blue);
-    }
-    
-    .case-data {
-      background: var(--light-gray);
-      padding: 1rem;
-      border-radius: 8px;
-      font-family: monospace;
-      font-size: var(--text-sm);
-      margin: 1rem 0;
-    }
-    
-    .case-insight {
-      background: var(--soft-white);
-      border-left: 4px solid var(--accent-blue);
-      padding: 1rem 1.5rem;
-      margin: 1rem 0;
-      font-style: italic;
-      color: var(--charcoal);
-    }
-    
-    /* Contact section - Professional and approachable */
-    .contact-section {
-      background: var(--light-gray);
-      border-radius: 16px;
-      margin: 4rem auto;
-      position: relative;
-    }
-    
-    .contact-info {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
+      gap: 3rem;
     }
     
-    .contact-item {
-      background: var(--primary-white);
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: var(--shadow-soft);
-      text-align: center;
+    .footer-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: var(--thermal-blue);
     }
     
-    .contact-item h3 {
-      color: var(--deep-charcoal);
-      margin-bottom: 1rem;
-      font-size: var(--text-lg);
-    }
-    
-    .contact-item a {
-      color: var(--accent-blue);
+    .footer-section p, .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      display: block;
     }
     
-    .contact-item a:hover {
-      color: var(--accent-hover);
+    .footer-section a:hover {
+      color: var(--pure-white);
     }
     
-    /* Footer - Understated and professional */
-    .footer {
-      background: var(--deep-charcoal);
-      color: var(--text-gray);
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
-      padding: 3rem 2rem;
-      margin-top: 4rem;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.6);
     }
     
-    .footer p {
-      font-size: var(--text-sm);
-      line-height: 1.6;
-      max-width: 600px;
-      margin: 0 auto;
+    /* Support Widget */
+    .support-widget {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
     }
     
-    /* Responsive design - Maintains elegance at all sizes */
+    .support-bubble {
+      width: 60px;
+      height: 60px;
+      background: var(--thermal-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+      transition: transform 0.3s;
+    }
+    
+    .support-bubble:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Mobile responsiveness */
     @media (max-width: 768px) {
+      .main-nav {
+        padding: 1rem;
+      }
+      
       .nav-links {
         display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        background: white;
-        padding: 2rem;
-        gap: 1.5rem;
-        border-bottom: 1px solid var(--medium-gray);
-        box-shadow: var(--shadow-medium);
       }
       
-      .nav-links.active {
-        display: flex;
-      }
-      
-      .nav-toggle {
-        display: flex;
+      .diagnostic-interface {
+        grid-template-columns: 1fr;
       }
       
       .hero-section {
-        padding: 100px 1.5rem 60px;
+        padding: 80px 1rem 2rem;
       }
       
-      .cta-container {
+      .cta-buttons {
         flex-direction: column;
         width: 100%;
         max-width: 300px;
+        margin: 0 auto;
       }
       
       .cta-primary, .cta-secondary {
         width: 100%;
-        justify-content: center;
-      }
-      
-      section {
-        padding: 4rem 1.5rem;
-      }
-      
-      .services-grid, .process-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .why-fidelity {
-        padding: 3rem 2rem;
-      }
-      
-      .case-study {
-        padding: 2rem 1.5rem;
+        text-align: center;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="nav-container" id="navbar">
-    <div class="nav">
-      <a href="#home" class="logo-text">FIDELITY</a>
-      
-      <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-      
-      <div class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#philosophy">Philosophy</a>
-        <a href="#approach">Our Approach</a>
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#case-studies">Case Studies</a>
-        <a href="#contact">Contact</a>
-      </div>
+  <!-- Main Navigation -->
+  <nav class="main-nav">
+    <a href="#home" class="nav-brand">
+      <div class="status-dot"></div>
+      <span class="brand-name">FIDELITY</span>
+    </a>
+    <div class="nav-links">
+      <a href="#diagnostics">Diagnostics</a>
+      <a href="#approach">Approach</a>
+      <a href="#learn">Learn</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
   
+  <!-- Hero Section -->
   <section id="home" class="hero-section">
-    <div class="hero-content">
-      <div class="hero-logo">
-        <!-- Abstract geometric logo representing precision and system flow -->
-        <div class="logo-design">
-          <div class="logo-geometric">
-            <div class="geo-center">
-              <div class="precision-core">
-                <div class="precision-dot"></div>
-              </div>
+    <div class="hero-container">
+      <!-- Fidelity Logo -->
+      <div class="fidelity-logo">
+        <div class="logo-container">
+          <div class="data-shield">
+            <div class="shield-frame"></div>
+            <div class="data-flow">
+              <div class="data-line"><div class="data-pulse"></div></div>
+              <div class="data-line"><div class="data-pulse"></div></div>
+              <div class="data-line"><div class="data-pulse"></div></div>
+              <div class="data-line"><div class="data-pulse"></div></div>
             </div>
-            <div class="arc arc-1"></div>
-            <div class="arc arc-2"></div>
-            <div class="arc arc-3"></div>
-            <div class="grid-lines">
-              <div class="grid-line grid-line-h"></div>
-              <div class="grid-line grid-line-v"></div>
+            <div class="monitor-icon">
+              <div class="monitor-dot"></div>
             </div>
           </div>
         </div>
-        <div class="logo-descriptor">Precision • Clarity • Fidelity</div>
       </div>
+      
       <h1 class="hero-title">Fidelity Mechanical Solutions</h1>
       <p class="hero-subtitle">More than service — this is how we think, how we move, and how we work in your space with respect and clarity.</p>
-      <p class="hero-tagline">Fidelity is the foundation.</p>
-      <div class="cta-container">
+      <p class="hero-tagline">Your HVAC System's Real-Time Truth</p>
+      
+      <div class="cta-buttons">
         <a href="#contact" class="cta-primary">Get Free Estimate</a>
-        <a href="#services" class="cta-secondary">View Services</a>
+        <a href="#diagnostics" class="cta-secondary">Self-Diagnose First</a>
       </div>
     </div>
   </section>
   
-  <section id="philosophy">
-    <div class="section-header">
-      <h2 class="section-title">Our Philosophy</h2>
-      <p class="section-subtitle">Fidelity means more than showing up — it means showing the work, standing by the outcome, and doing it again with clarity.</p>
-    </div>
-    
-    <p>We don't sell services — we diagnose systems, educate clients, and build solutions that make sense technically and financially. Our job isn't to be the hero of your system. It's to become invisible through competence.</p>
-    
-    <p>There's no upsell pressure here. Just real diagnostics, documented work, and informed decisions — because clarity creates control, and your understanding is part of the repair.</p>
-    
-    <p>Our commitment is to the craft, the client, and the principle that systems tell the truth — we just have to listen well enough to catch it before it breaks.</p>
-    
-    <p>This is how mechanical work should be done. This is Fidelity.</p>
-  </section>
-  
-  <section id="approach">
-    <div class="section-header">
-      <h2 class="section-title">Our Approach</h2>
-      <p class="section-subtitle">Technical excellence delivered with systematic precision and genuine care for your mechanical environment.</p>
-    </div>
-    <p>We are a mechanical service company organized around one premise: that technical work, client understanding, and professional development are not separate functions — they are the integrated disciplines that define exceptional service delivery.</p>
-    <p>Our theoretical framework emphasizes root-cause methodology over surface-level fixes. We educate without condescension and solve problems with systematic precision that honors both technical excellence and human understanding.</p>
-    <p>Every interaction becomes an opportunity to demonstrate mastery through clarity, building long-term relationships based on competence, transparency, and measurable results.</p>
-  </section>
-  
-  <section id="process">
-    <div class="section-header">
-      <h2 class="section-title">How We Work</h2>
-      <p class="section-subtitle">A systematic approach that puts clarity and control in your hands.</p>
-    </div>
-    <div class="process-grid">
-      <div class="process-step">
-        <div class="process-number">1</div>
-        <h3 class="process-title">Assess with Precision</h3>
-        <p class="process-description">We collect comprehensive system data and diagnose root causes. No guesswork, just methodical analysis backed by measurable evidence.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number">2</div>
-        <h3 class="process-title">Educate Clearly</h3>
-        <p class="process-description">You receive real-time understanding and documented recommendations. We explain what we found, why it matters, and what your options are.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number">3</div>
-        <h3 class="process-title">Solve Systemically</h3>
-        <p class="process-description">We implement solutions with care, transparency, and follow-up. Every repair addresses the root cause and includes preventive insights.</p>
-      </div>
-    </div>
-  </section>
-  
-  <section id="services">
-    <div class="section-header">
-      <h2 class="section-title">Services</h2>
-      <p class="section-subtitle">Comprehensive mechanical solutions designed for performance, longevity, and peace of mind.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">🔧</div>
-        <h3 class="service-title">System Installation</h3>
-        <p class="service-description">Complete HVAC installations with integrated monitoring, comprehensive commissioning, and performance validation. We establish mechanical ecosystems designed for optimal efficiency and longevity.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🔍</div>
-        <h3 class="service-title">Diagnostics & Repair</h3>
-        <p class="service-description">Root-cause analysis with comprehensive system evaluation. Every diagnosis includes detailed reporting, prevention education, and optimization recommendations with measurable outcomes.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">⚙️</div>
-        <h3 class="service-title">Preventive Maintenance</h3>
-        <p class="service-description">Proactive maintenance protocols with trend analysis and predictive insights. Scheduled inspections designed to prevent failures and optimize system performance year-round.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📊</div>
-        <h3 class="service-title">System Optimization</h3>
-        <p class="service-description">Performance tuning and efficiency improvements for existing systems. Data-driven optimization that extends equipment life and reduces operational costs.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📡</div>
-        <h3 class="service-title">Monitoring Systems (R&D)</h3>
-        <p class="service-description">Currently developing smart diagnostic tools that help predict maintenance needs before failures occur. Our research focuses on non-invasive system health indicators that protect your investment while respecting your privacy. Coming soon.</p>
-      </div>
-    </div>
-  </section>
-  
-  <section id="case-studies">
-    <div class="section-header">
-      <h2 class="section-title">Field Case Studies</h2>
-      <p class="section-subtitle">Real diagnostics, real decisions, real results. This is how we work.</p>
-    </div>
-    
-    <div class="case-study">
-      <div class="case-header">
-        <h3 class="case-title">🔍 Commercial Facility No-Cooling Diagnostic</h3>
-        <p class="case-meta">July 2025 | 3.5 Ton Split System | Complete System Recovery</p>
+  <!-- Interactive Diagnostic Tool -->
+  <section id="diagnostics" class="diagnostic-section">
+    <div class="diagnostic-container">
+      <div class="diagnostic-header">
+        <h2 class="diagnostic-title">Self-Diagnose Your System</h2>
+        <p>Click symptoms to see probable causes and honest guidance</p>
       </div>
       
-      <div class="case-section">
-        <h4>📍 Initial Situation</h4>
-        <ul>
-          <li>Outdoor unit completely non-operational</li>
-          <li>Indoor temperature at 85°F during peak summer</li>
-          <li>No previous service documentation available</li>
-          <li>Critical cooling needed for facility operations</li>
-        </ul>
-      </div>
-      
-      <div class="case-section">
-        <h4>🔧 Diagnostic Process</h4>
-        <ul>
-          <li>Electrical testing revealed intermittent power delivery</li>
-          <li>Capacitor tested at 35/3 μF (rated 45/5 μF) - clear failure</li>
-          <li>Manual contactor test confirmed relay functionality</li>
-          <li>Breaker showed physical resistance indicating internal failure</li>
-        </ul>
-      </div>
-      
-      <div class="case-section">
-        <h4>📊 System Analysis</h4>
-        <div class="case-data">
-Initial Readings:
-• Subcooling: 13.5°F (Target: 10°F)
-• Superheat: 10.5°F
-• Suction: 163 psi | Head: 387 psi
-• System overcharged by ~1.8 lbs
+      <div class="diagnostic-interface">
+        <div class="system-visual">
+          <div class="hvac-diagram">
+            <div class="unit-outdoor">OUTDOOR<br>UNIT</div>
+            <div class="unit-indoor">INDOOR<br>UNIT</div>
+            <div class="flow-line">
+              <div class="flow-particle"></div>
+              <div class="flow-particle" style="animation-delay: 0.5s"></div>
+              <div class="flow-particle" style="animation-delay: 1s"></div>
+              <div class="flow-particle" style="animation-delay: 1.5s"></div>
+            </div>
+          </div>
         </div>
-        <p>Progressive refrigerant recovery performed in 4-6 oz increments, monitoring system response between adjustments.</p>
-        <div class="case-data">
-Final Readings:
-• Subcooling: 10.2°F ✓
-• Superheat: 11.8°F ✓
-• Suction: 159 psi | Head: 377 psi
-• Supply temp: 53°F | VSAT: 56°F
+        
+        <div class="diagnostic-controls">
+          <div class="control-group">
+            <div class="control-label">Select Your Symptom</div>
+            <button class="symptom-btn">System won't turn on at all</button>
+            <button class="symptom-btn">Cooling but not enough</button>
+            <button class="symptom-btn">Strange noises (clicking, buzzing)</button>
+            <button class="symptom-btn">Higher than normal energy bills</button>
+            <button class="symptom-btn">Ice forming on outdoor unit</button>
+          </div>
+          
+          <div class="control-group">
+            <div class="control-label">Likely Diagnosis</div>
+            <p>Select a symptom to see probable causes, urgency level, and transparent guidance.</p>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+  
+  <!-- Service Approach -->
+  <section id="approach" class="approach-section">
+    <div class="approach-container">
+      <div class="approach-header">
+        <h2 class="approach-title">Our Transparent Approach</h2>
+        <p>Every service call follows these principles</p>
+      </div>
       
-      <div class="case-section">
-        <h4>💡 Technical Insights</h4>
-        <div class="case-insight">
-          "System was cooling under heavy load, but the overcharge was causing inefficiency and potential compressor stress. Incremental recovery allowed precise charge adjustment without overshooting targets. This methodical approach ensures longevity and efficiency."
+      <div class="approach-grid">
+        <div class="approach-card">
+          <div class="approach-icon">📊</div>
+          <h3>Show the Data</h3>
+          <p>We document every reading, show you the numbers, and explain what they mean. No mysterious diagnoses or hidden information.</p>
+        </div>
+        
+        <div class="approach-card">
+          <div class="approach-icon">🎯</div>
+          <h3>Root Cause Focus</h3>
+          <p>We don't just fix symptoms. Every diagnosis traces back to the source, preventing repeat failures and unnecessary costs.</p>
+        </div>
+        
+        <div class="approach-card">
+          <div class="approach-icon">💡</div>
+          <h3>Educate First</h3>
+          <p>Understanding your system is part of the repair. We explain what failed, why it happened, and how to prevent it.</p>
         </div>
       </div>
+    </div>
+  </section>
+  
+  <!-- Education Library -->
+  <section id="learn" class="education-section">
+    <div class="education-container">
+      <div class="education-header">
+        <h2 class="diagnostic-title">Understand Your System</h2>
+        <p>Click any topic to learn more</p>
+      </div>
       
-      <div class="case-section">
-        <h4>✅ Results & Recommendations</h4>
-        <ul>
-          <li>Replaced failed capacitor with American-made Century Supply unit</li>
-          <li>Restored system to manufacturer specifications</li>
-          <li>Identified breaker issue - recommended licensed electrician</li>
-          <li>System operating at peak efficiency with documented baseline</li>
-          <li>Follow-up scheduled to verify charge stability</li>
-        </ul>
+      <div class="knowledge-grid">
+        <div class="knowledge-card" onclick="toggleDetail(this)">
+          <div class="knowledge-icon">🌡️</div>
+          <h3 class="knowledge-title">How Refrigerant Actually Works</h3>
+          <p class="knowledge-description">The pressure-temperature relationship explained in plain English.</p>
+          <div class="knowledge-detail">
+            <div class="detail-content">
+              <p>Refrigerant is the lifeblood of your AC system, but it doesn't get "used up" like gas in your car. Here's what's really happening:</p>
+              
+              <h4>The Basic Cycle:</h4>
+              <ul>
+                <li><strong>Compression:</strong> The compressor squeezes refrigerant gas, making it hot (like a bike pump gets warm)</li>
+                <li><strong>Condensation:</strong> Hot gas flows through outdoor coils, releasing heat and turning to liquid</li>
+                <li><strong>Expansion:</strong> Liquid passes through a valve, pressure drops, temperature plummets</li>
+                <li><strong>Evaporation:</strong> Cold refrigerant absorbs heat from your home, turning back to gas</li>
+              </ul>
+              
+              <h4>Common Misconceptions:</h4>
+              <ul>
+                <li>❌ "Just needs a top-off" - If it's low, you have a leak that needs fixing</li>
+                <li>❌ "Refrigerant goes bad" - It doesn't expire or wear out</li>
+                <li>✅ Proper charge is critical - Too much is as bad as too little</li>
+              </ul>
+              
+              <p><strong>Key Insight:</strong> Refrigerant issues are usually symptoms, not causes. Low refrigerant means a leak. High pressure might mean airflow problems.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="toggleDetail(this)">
+          <div class="knowledge-icon">⚡</div>
+          <h3 class="knowledge-title">Electrical Components Decoded</h3>
+          <p class="knowledge-description">Capacitors, contactors, and breakers - what they do and why they fail.</p>
+          <div class="knowledge-detail">
+            <div class="detail-content">
+              <h4>Capacitor - The Kick Starter</h4>
+              <p>Think of it as a battery that gives motors the extra push to start spinning. Like a running start for your compressor and fan.</p>
+              <ul>
+                <li><strong>Signs of failure:</strong> Humming but not starting, slow fan, system cycling</li>
+                <li><strong>Why they fail:</strong> Heat, age, power surges</li>
+                <li><strong>Cost:</strong> Part $65-150, total repair $150-350</li>
+              </ul>
+              
+              <h4>Contactor - The On/Off Switch</h4>
+              <p>A heavy-duty relay that connects power to your outdoor unit. When your thermostat calls for cooling, this closes the circuit.</p>
+              <ul>
+                <li><strong>Signs of failure:</strong> System won't turn on, chattering sounds, stuck on</li>
+                <li><strong>Why they fail:</strong> Burnt contacts from arcing, mechanical wear</li>
+                <li><strong>Cost:</strong> Part $25-100, total repair $150-300</li>
+              </ul>
+              
+              <h4>Circuit Breaker - The Safety Guard</h4>
+              <p>Protects your system from electrical damage. If it trips repeatedly, something's wrong.</p>
+              <ul>
+                <li><strong>Warning:</strong> Never just keep resetting - find out why it's tripping</li>
+                <li><strong>Common causes:</strong> Short circuit, ground fault, overload</li>
+                <li><strong>Cost:</strong> Breaker $50-150, but the real cost is finding what's causing it</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="toggleDetail(this)">
+          <div class="knowledge-icon">🔊</div>
+          <h3 class="knowledge-title">Diagnose by Sound</h3>
+          <p class="knowledge-description">What different HVAC sounds mean and when to worry.</p>
+          <div class="knowledge-detail">
+            <div class="detail-content">
+              <h4>Normal Sounds:</h4>
+              <ul>
+                <li><strong>Whoosh on startup:</strong> Air beginning to flow</li>
+                <li><strong>Click before running:</strong> Contactor engaging</li>
+                <li><strong>Steady hum:</strong> Compressor and fan motors</li>
+              </ul>
+              
+              <h4>Warning Sounds:</h4>
+              <ul>
+                <li><strong>Clicking repeatedly:</strong> Failing contactor or control board</li>
+                <li><strong>Buzzing/humming without starting:</strong> Bad capacitor</li>
+                <li><strong>Squealing/screeching:</strong> Belt issue or motor bearings</li>
+                <li><strong>Banging/clanking:</strong> Loose part or compressor issue</li>
+                <li><strong>Hissing:</strong> Refrigerant leak (serious)</li>
+                <li><strong>Gurgling:</strong> Low refrigerant or drain issue</li>
+              </ul>
+              
+              <h4>What to Do:</h4>
+              <p>Record the sound on your phone. Note when it happens (startup, running, shutdown). This helps us diagnose faster and more accurately.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="toggleDetail(this)">
+          <div class="knowledge-icon">💰</div>
+          <h3 class="knowledge-title">Repair vs Replace Calculator</h3>
+          <p class="knowledge-description">Data-driven decision making for your system.</p>
+          <div class="knowledge-detail">
+            <div class="detail-content">
+              <h4>The $5,000 Rule:</h4>
+              <p>Multiply the age of your unit by the repair cost. If it exceeds $5,000, consider replacement.</p>
+              <p><em>Example: 10-year-old unit × $600 repair = $6,000 → Consider replacing</em></p>
+              
+              <h4>Other Factors:</h4>
+              <ul>
+                <li><strong>Efficiency:</strong> New units can be 40-50% more efficient</li>
+                <li><strong>Repair frequency:</strong> Multiple repairs per year? Time to replace</li>
+                <li><strong>Refrigerant type:</strong> R-22 systems are expensive to repair</li>
+                <li><strong>Comfort issues:</strong> Can't maintain temperature? System undersized</li>
+              </ul>
+              
+              <h4>Financial Reality:</h4>
+              <ul>
+                <li>New system: $5,000-12,000 depending on size/efficiency</li>
+                <li>Energy savings: $200-600/year with high-efficiency upgrade</li>
+                <li>Warranties: 10 years parts, 1-2 years labor typical</li>
+                <li>Financing: 0% available for qualified buyers</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="toggleDetail(this)">
+          <div class="knowledge-icon">🛠️</div>
+          <h3 class="knowledge-title">Safe DIY vs Call a Pro</h3>
+          <p class="knowledge-description">What you can handle yourself and when you need expertise.</p>
+          <div class="knowledge-detail">
+            <div class="detail-content">
+              <h4>Safe DIY Tasks:</h4>
+              <ul>
+                <li>✅ Change air filters monthly</li>
+                <li>✅ Clean debris around outdoor unit</li>
+                <li>✅ Check and clean condensate drain</li>
+                <li>✅ Replace thermostat batteries</li>
+                <li>✅ Reset breakers (once)</li>
+                <li>✅ Level outdoor unit if settling</li>
+              </ul>
+              
+              <h4>Always Call a Pro:</h4>
+              <ul>
+                <li>❌ Anything involving refrigerant</li>
+                <li>❌ Electrical work beyond breakers</li>
+                <li>❌ Gas furnace repairs</li>
+                <li>❌ Compressor or motor replacement</li>
+                <li>❌ Repeated breaker trips</li>
+                <li>❌ Any repair you're unsure about</li>
+              </ul>
+              
+              <h4>Why It Matters:</h4>
+              <p>HVAC systems involve high voltage, pressurized refrigerant, and in some cases, natural gas. Mistakes can be dangerous and expensive. We're always happy to guide you over the phone for simple issues.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="toggleDetail(this)">
+          <div class="knowledge-icon">📈</div>
+          <h3 class="knowledge-title">Efficiency Optimization</h3>
+          <p class="knowledge-description">Simple ways to reduce costs without sacrificing comfort.</p>
+          <div class="knowledge-detail">
+            <div class="detail-content">
+              <h4>Quick Wins (Free):</h4>
+              <ul>
+                <li>Set thermostat to 78°F in summer (save 6-8% per degree)</li>
+                <li>Use ceiling fans - they make 78°F feel like 74°F</li>
+                <li>Close blinds on sunny windows</li>
+                <li>Don't close vents - it increases pressure and reduces efficiency</li>
+                <li>Change to "Auto" fan instead of "On"</li>
+              </ul>
+              
+              <h4>Small Investments (Under $200):</h4>
+              <ul>
+                <li>Programmable thermostat: Save 10-23% on bills</li>
+                <li>Seal duct leaks: Recover 20-30% of lost cooling</li>
+                <li>Add insulation: Biggest impact for the cost</li>
+                <li>Weather stripping: Stop conditioned air escape</li>
+              </ul>
+              
+              <h4>The 1-Degree Rule:</h4>
+              <p>Each degree of setback saves 6-8% on cooling costs. A programmable thermostat that adjusts while you're away can save $200+ annually.</p>
+              
+              <h4>Maintenance ROI:</h4>
+              <p>Annual tune-ups ($150-200) typically save 15% on energy costs and prevent 75% of no-cool calls. That's $300+ in savings for most homes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer id="contact" class="main-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Our Philosophy</h3>
+        <p>Mechanical work grounded in transparency, education, and genuine care for your comfort and understanding.</p>
+        <p>We believe in showing the work, explaining the why, and empowering you with knowledge.</p>
       </div>
       
-      <div class="case-section">
-        <h4>🎯 Why This Matters</h4>
-        <p>This case demonstrates our commitment to systematic diagnosis over quick fixes. By taking time to properly analyze and adjust the refrigerant charge, we prevented future compressor damage and ensured optimal efficiency. The client received not just a repair, but understanding and documentation for informed decision-making.</p>
+      <div class="footer-section">
+        <h3>About Fidelity</h3>
+        <p>Founded on the principle that HVAC service should be transparent, not mysterious.</p>
+        <p>Every diagnosis documented. Every cost explained. Every interaction educational.</p>
+        <p>This is mechanical fidelity.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Direct Contact</h3>
+        <p><a href="tel:713-201-2842">📱 713-201-2842</a></p>
+        <p><a href="mailto:Martinperez@fidelitymechanicalsolutions.com">✉️ Martinperez@fidelitymechanicalsolutions.com</a></p>
+        <p>Response time: 2 hours or less</p>
+        <p>Service area: Greater Houston</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="#diagnostics">Self-Diagnose Tool</a>
+        <a href="#approach">Our Approach</a>
+        <a href="#learn">Education Library</a>
+        <a href="#home">Request Service</a>
       </div>
     </div>
-  </section>
-  
-  <section id="team">
-    <div class="section-header">
-      <h2 class="section-title">Professional Development</h2>
-      <p class="section-subtitle">Continuous learning and systematic growth are built into every aspect of our service delivery.</p>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Fidelity Mechanical Solutions. Professional excellence through systematic precision and clarity.</p>
     </div>
-    <p>Our technicians function as mechanical educators, not just service providers. Professional development is integrated into our workflow, with each service call serving as both problem resolution and skill refinement opportunity.</p>
-    <p>We emphasize systematic thinking and mentorship-based advancement. Continuous education ensures that every team member brings both technical competency and analytical perspective to your mechanical challenges.</p>
-    <p>This commitment to excellence means you benefit from a team that approaches every project with curiosity, precision, and the kind of systematic thinking that prevents problems before they occur.</p>
-  </section>
-  
-  <section id="contact" class="contact-section">
-    <div class="section-header">
-      <h2 class="section-title">Contact</h2>
-      <p class="section-subtitle">Ready to experience mechanical service delivered with precision and clarity.</p>
-    </div>
-    <div class="contact-info">
-      <div class="contact-item">
-        <h3>Phone & Text</h3>
-        <p><strong><a href="tel:713-201-2842">713-201-2842</a></strong></p>
-        <p>Text preferred for fastest response</p>
-      </div>
-      <div class="contact-item">
-        <h3>Email</h3>
-        <p><strong><a href="mailto:Martinperez@fidelitymechanicalsolutions.com">M. Pérez</a></strong></p>
-        <p>Detailed inquiries welcome</p>
-      </div>
-      <div class="contact-item">
-        <h3>Response Time</h3>
-        <p><strong>2 hours or less</strong></p>
-        <p>During standard operating hours</p>
-      </div>
-    </div>
-  </section>
-  
-  <footer class="footer">
-    <p>&copy; 2025 Fidelity Mechanical Solutions. Professional excellence delivered through systematic precision and uncompromising clarity. Revenue emerges as a natural consequence of competent service delivery, not as its primary objective.</p>
   </footer>
   
+  <!-- Support Widget -->
+  <div class="support-widget">
+    <div class="support-bubble">💬</div>
+  </div>
+  
   <script>
-    // Enhanced navigation with smooth interactions
-    const navbar = document.getElementById('navbar');
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
+    // Interactive diagnostic responses
+    const symptomBtns = document.querySelectorAll('.symptom-btn');
+    const diagnosisArea = document.querySelector('.control-group:last-child p');
     
-    // Mobile menu functionality
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      
-      // Animate hamburger bars
-      const bars = navToggle.querySelectorAll('.bar');
-      bars.forEach((bar, index) => {
-        if (navLinks.classList.contains('active')) {
-          if (index === 0) bar.style.transform = 'rotate(45deg) translate(5px, 5px)';
-          if (index === 1) bar.style.opacity = '0';
-          if (index === 2) bar.style.transform = 'rotate(-45deg) translate(7px, -6px)';
-        } else {
-          bar.style.transform = '';
-          bar.style.opacity = '';
-        }
-      });
-    });
-    
-    // Close mobile menu when clicking links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const bars = navToggle.querySelectorAll('.bar');
-        bars.forEach(bar => {
-          bar.style.transform = '';
-          bar.style.opacity = '';
-        });
-      });
-    });
-    
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+    const diagnoses = {
+      "System won't turn on at all": {
+        causes: "Likely causes: Tripped breaker (DIY fix), failed capacitor ($145-220), or bad contactor ($180-250)",
+        urgency: "Urgency: HIGH - No cooling capability",
+        advice: "Check breaker first. If that's not it, we can diagnose within 2 hours."
+      },
+      "Cooling but not enough": {
+        causes: "Likely causes: Dirty filter (DIY), low refrigerant ($200-600), or failing compressor ($1,200-2,500)",
+        urgency: "Urgency: MEDIUM - System strain increasing costs",
+        advice: "Change filter first. If no improvement, diagnostic needed to prevent damage."
+      },
+      "Strange noises (clicking, buzzing)": {
+        causes: "Likely causes: Loose panel ($0), failing contactor ($180-250), or compressor hard start needed ($300-400)",
+        urgency: "Urgency: LOW-MEDIUM - May indicate impending failure",
+        advice: "Record the sound for faster diagnosis. Often a simple fix if caught early."
+      },
+      "Higher than normal energy bills": {
+        causes: "Likely causes: Dirty coils ($150 cleaning), refrigerant leak ($200-1,200), or aging system (efficiency consultation free)",
+        urgency: "Urgency: LOW - But costing you money daily",
+        advice: "Free efficiency audit can identify issue. Often saves 20-30% on bills."
+      },
+      "Ice forming on outdoor unit": {
+        causes: "Likely causes: Airflow restriction ($0-150), refrigerant issue ($200-600), or failed defrost cycle ($250-400)",
+        urgency: "Urgency: HIGH - Can damage compressor if not addressed",
+        advice: "Turn system off immediately. Ice indicates serious issue needing prompt attention."
       }
+    };
+    
+    symptomBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const symptom = this.textContent;
+        const diagnosis = diagnoses[symptom];
+        
+        symptomBtns.forEach(b => b.style.background = 'var(--pure-white)');
+        this.style.background = 'var(--thermal-blue)';
+        this.style.color = 'white';
+        
+        diagnosisArea.innerHTML = `
+          <strong>Diagnosis:</strong><br>
+          ${diagnosis.causes}<br><br>
+          <strong>${diagnosis.urgency}</strong><br><br>
+          ${diagnosis.advice}
+        `;
+      });
     });
     
-    // Smooth scrolling for anchor links
+    // Toggle knowledge card details
+    function toggleDetail(card) {
+      const detail = card.querySelector('.knowledge-detail');
+      const allCards = document.querySelectorAll('.knowledge-card');
+      const allDetails = document.querySelectorAll('.knowledge-detail');
+      
+      // Close all other cards
+      allCards.forEach(c => {
+        if (c !== card) c.classList.remove('active');
+      });
+      allDetails.forEach(d => {
+        if (d !== detail) d.classList.remove('show');
+      });
+      
+      // Toggle current card
+      card.classList.toggle('active');
+      detail.classList.toggle('show');
+    }
+    
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          const offsetTop = target.offsetTop - 80;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
           });
         }
       });
     });
     
-    // Add loading animation complete class
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
+    // Support widget
+    document.querySelector('.support-bubble').addEventListener('click', function() {
+      window.location.href = 'tel:713-201-2842';
     });
   </script>
 </body>
