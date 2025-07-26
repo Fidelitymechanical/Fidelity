@@ -304,6 +304,21 @@
       margin-bottom: 1rem;
     }
     
+    .diagnostic-note {
+      max-width: 800px;
+      margin: 2rem auto 3rem;
+      padding: 1.5rem;
+      background: rgba(59, 130, 246, 0.05);
+      border-left: 4px solid var(--thermal-blue);
+      border-radius: 4px;
+    }
+    
+    .diagnostic-note p {
+      margin: 0;
+      line-height: 1.6;
+      color: var(--carbon);
+    }
+    
     .diagnostic-interface {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -458,7 +473,7 @@
     
     .approach-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 3rem;
       margin-top: 3rem;
     }
@@ -729,7 +744,7 @@
       
       <h1 class="hero-title">Fidelity Mechanical Solutions</h1>
       <p class="hero-subtitle">More than service — this is how we think, how we move, and how we work in your space with respect and clarity.</p>
-      <p class="hero-tagline">Your HVAC System's Real-Time Truth</p>
+      <p class="hero-tagline">Honest Diagnosis. Real Solutions. Fair Value.</p>
       
       <div class="cta-buttons">
         <a href="#contact" class="cta-primary">Get Free Estimate</a>
@@ -744,6 +759,10 @@
       <div class="diagnostic-header">
         <h2 class="diagnostic-title">Self-Diagnose Your System</h2>
         <p>Click symptoms to see probable causes and honest guidance</p>
+      </div>
+      
+      <div class="diagnostic-note">
+        <p><strong>Real talk about repairs:</strong> Every system is unique. Age, model, accessibility, and what actually failed all affect repair complexity. This tool gives you likely scenarios, but your actual situation needs hands-on diagnosis. We'll always explain what we find and your options before any work begins.</p>
       </div>
       
       <div class="diagnostic-interface">
@@ -772,7 +791,7 @@
           
           <div class="control-group">
             <div class="control-label">Likely Diagnosis</div>
-            <p>Select a symptom to see probable causes, urgency level, and transparent guidance.</p>
+            <p>Select a symptom above to explore possible causes. This educational tool helps you understand what might be happening, but your unique system needs professional diagnosis for accurate assessment and fair pricing.</p>
           </div>
         </div>
       </div>
@@ -783,7 +802,7 @@
   <section id="approach" class="approach-section">
     <div class="approach-container">
       <div class="approach-header">
-        <h2 class="approach-title">Our Transparent Approach</h2>
+        <h2 class="approach-title">Our Service Philosophy</h2>
         <p>Every service call follows these principles</p>
       </div>
       
@@ -803,7 +822,13 @@
         <div class="approach-card">
           <div class="approach-icon">💡</div>
           <h3>Educate First</h3>
-          <p>Understanding your system is part of the repair. We explain what failed, why it happened, and how to prevent it.</p>
+          <p>Understanding your system is part of the repair. We explain what failed, why it happened, and how to prevent it. Knowledge prevents surprises.</p>
+        </div>
+        
+        <div class="approach-card">
+          <div class="approach-icon">🤝</div>
+          <h3>Options, Not Pressure</h3>
+          <p>Every diagnosis comes with options. Repair vs replace, immediate vs planned, premium vs standard. We present the facts, you make the decision that fits your situation.</p>
         </div>
       </div>
     </div>
@@ -814,7 +839,7 @@
     <div class="education-container">
       <div class="education-header">
         <h2 class="diagnostic-title">Understand Your System</h2>
-        <p>Click any topic to learn more</p>
+        <p>Click any topic to learn more. Knowledge helps you make informed decisions.</p>
       </div>
       
       <div class="knowledge-grid">
@@ -841,7 +866,7 @@
                 <li>✅ Proper charge is critical - Too much is as bad as too little</li>
               </ul>
               
-              <p><strong>Key Insight:</strong> Refrigerant issues are usually symptoms, not causes. Low refrigerant means a leak. High pressure might mean airflow problems.</p>
+              <p><strong>Key Insight:</strong> Refrigerant issues are usually symptoms, not causes. Low refrigerant means a leak. High pressure might mean airflow problems. The real diagnosis comes from understanding the whole system.</p>
             </div>
           </div>
         </div>
@@ -856,24 +881,24 @@
               <p>Think of it as a battery that gives motors the extra push to start spinning. Like a running start for your compressor and fan.</p>
               <ul>
                 <li><strong>Signs of failure:</strong> Humming but not starting, slow fan, system cycling</li>
-                <li><strong>Why they fail:</strong> Heat, age, power surges</li>
-                <li><strong>Cost:</strong> Part $65-150, total repair $150-350</li>
+                <li><strong>Why they fail:</strong> Heat, age, power surges (especially in summer)</li>
+                <li><strong>What to know:</strong> Common failure, especially in hot weather. Relatively straightforward repair when caught early</li>
               </ul>
               
               <h4>Contactor - The On/Off Switch</h4>
               <p>A heavy-duty relay that connects power to your outdoor unit. When your thermostat calls for cooling, this closes the circuit.</p>
               <ul>
                 <li><strong>Signs of failure:</strong> System won't turn on, chattering sounds, stuck on</li>
-                <li><strong>Why they fail:</strong> Burnt contacts from arcing, mechanical wear</li>
-                <li><strong>Cost:</strong> Part $25-100, total repair $150-300</li>
+                <li><strong>Why they fail:</strong> Burnt contacts from arcing, mechanical wear over thousands of cycles</li>
+                <li><strong>What to know:</strong> Another wear item that typically fails gradually, giving warning signs</li>
               </ul>
               
               <h4>Circuit Breaker - The Safety Guard</h4>
               <p>Protects your system from electrical damage. If it trips repeatedly, something's wrong.</p>
               <ul>
                 <li><strong>Warning:</strong> Never just keep resetting - find out why it's tripping</li>
-                <li><strong>Common causes:</strong> Short circuit, ground fault, overload</li>
-                <li><strong>Cost:</strong> Breaker $50-150, but the real cost is finding what's causing it</li>
+                <li><strong>Common causes:</strong> Short circuit, ground fault, overload, failing component</li>
+                <li><strong>What to know:</strong> The breaker is doing its job. The real question is what's causing it</li>
               </ul>
             </div>
           </div>
@@ -914,25 +939,27 @@
           <p class="knowledge-description">Data-driven decision making for your system.</p>
           <div class="knowledge-detail">
             <div class="detail-content">
-              <h4>The $5,000 Rule:</h4>
-              <p>Multiply the age of your unit by the repair cost. If it exceeds $5,000, consider replacement.</p>
-              <p><em>Example: 10-year-old unit × $600 repair = $6,000 → Consider replacing</em></p>
+              <h4>Age vs Repair Frequency:</h4>
+              <p>A good rule of thumb: If your system is over 10 years old and you're facing a major repair, it's time to weigh your options carefully.</p>
               
-              <h4>Other Factors:</h4>
+              <h4>Key Decision Factors:</h4>
               <ul>
-                <li><strong>Efficiency:</strong> New units can be 40-50% more efficient</li>
-                <li><strong>Repair frequency:</strong> Multiple repairs per year? Time to replace</li>
-                <li><strong>Refrigerant type:</strong> R-22 systems are expensive to repair</li>
-                <li><strong>Comfort issues:</strong> Can't maintain temperature? System undersized</li>
+                <li><strong>Efficiency gains:</strong> New units can cut energy bills by 30-50%</li>
+                <li><strong>Repair pattern:</strong> Multiple repairs per year signals declining reliability</li>
+                <li><strong>Refrigerant type:</strong> Older R-22 systems are increasingly expensive to maintain</li>
+                <li><strong>Comfort issues:</strong> Can't maintain temperature? System may be failing or undersized</li>
+                <li><strong>Peace of mind:</strong> New systems come with warranties and reliability</li>
               </ul>
               
-              <h4>Financial Reality:</h4>
+              <h4>Questions to Consider:</h4>
               <ul>
-                <li>New system: $5,000-12,000 depending on size/efficiency</li>
-                <li>Energy savings: $200-600/year with high-efficiency upgrade</li>
-                <li>Warranties: 10 years parts, 1-2 years labor typical</li>
-                <li>Financing: 0% available for qualified buyers</li>
+                <li>How many times have you repaired it in the last 2 years?</li>
+                <li>Are your energy bills climbing despite repairs?</li>
+                <li>Is your home comfortable, or are you fighting hot/cold spots?</li>
+                <li>How long do you plan to stay in your home?</li>
               </ul>
+              
+              <p><strong>Bottom line:</strong> We'll help you make a decision based on your specific situation, not a one-size-fits-all formula. Every home and budget is different.</p>
             </div>
           </div>
         </div>
@@ -964,7 +991,7 @@
               </ul>
               
               <h4>Why It Matters:</h4>
-              <p>HVAC systems involve high voltage, pressurized refrigerant, and in some cases, natural gas. Mistakes can be dangerous and expensive. We're always happy to guide you over the phone for simple issues.</p>
+              <p>HVAC systems involve high voltage, pressurized refrigerant, and in some cases, natural gas. Mistakes can be dangerous and expensive. We're always happy to guide you over the phone for simple issues - no charge for friendly advice.</p>
             </div>
           </div>
         </div>
@@ -975,28 +1002,28 @@
           <p class="knowledge-description">Simple ways to reduce costs without sacrificing comfort.</p>
           <div class="knowledge-detail">
             <div class="detail-content">
-              <h4>Quick Wins (Free):</h4>
+              <h4>Quick Wins (No Cost):</h4>
               <ul>
-                <li>Set thermostat to 78°F in summer (save 6-8% per degree)</li>
+                <li>Set thermostat to 78°F in summer (each degree saves significantly)</li>
                 <li>Use ceiling fans - they make 78°F feel like 74°F</li>
-                <li>Close blinds on sunny windows</li>
-                <li>Don't close vents - it increases pressure and reduces efficiency</li>
-                <li>Change to "Auto" fan instead of "On"</li>
+                <li>Close blinds on sunny windows during peak heat</li>
+                <li>Keep all vents open - closed vents increase pressure and reduce efficiency</li>
+                <li>Switch fan setting to "Auto" instead of "On"</li>
               </ul>
               
-              <h4>Small Investments (Under $200):</h4>
+              <h4>Small Improvements (Minimal Investment):</h4>
               <ul>
-                <li>Programmable thermostat: Save 10-23% on bills</li>
-                <li>Seal duct leaks: Recover 20-30% of lost cooling</li>
-                <li>Add insulation: Biggest impact for the cost</li>
-                <li>Weather stripping: Stop conditioned air escape</li>
+                <li>Programmable thermostat: Automates savings while you're away</li>
+                <li>Seal visible duct leaks: Recover lost cooling capacity</li>
+                <li>Add weatherstripping: Stop conditioned air from escaping</li>
+                <li>Change filters regularly: Improves airflow and efficiency</li>
               </ul>
               
-              <h4>The 1-Degree Rule:</h4>
-              <p>Each degree of setback saves 6-8% on cooling costs. A programmable thermostat that adjusts while you're away can save $200+ annually.</p>
+              <h4>The Temperature Truth:</h4>
+              <p>Each degree of cooling costs more than the last. The difference between 72°F and 78°F can be substantial on your monthly bill. Find your comfort/cost balance.</p>
               
-              <h4>Maintenance ROI:</h4>
-              <p>Annual tune-ups ($150-200) typically save 15% on energy costs and prevent 75% of no-cool calls. That's $300+ in savings for most homes.</p>
+              <h4>Maintenance Value:</h4>
+              <p>Regular tune-ups keep your system running efficiently and catch problems early. Like changing oil in your car - small investment, big protection.</p>
             </div>
           </div>
         </div>
@@ -1016,13 +1043,15 @@
       <div class="footer-section">
         <h3>About Fidelity</h3>
         <p>Founded on the principle that HVAC service should be transparent, not mysterious.</p>
-        <p>Every diagnosis documented. Every cost explained. Every interaction educational.</p>
+        <p>Every diagnosis documented. Every option explained. Every interaction educational.</p>
+        <p>Real pricing depends on real diagnosis - we'll always explain before we begin.</p>
         <p>This is mechanical fidelity.</p>
       </div>
       
       <div class="footer-section">
         <h3>Direct Contact</h3>
-        <p><a href="tel:713-201-2842">📱 713-201-2842</a></p>
+        <p><a href="sms:713-201-2842">💬 713-201-2842 (Text preferred)</a></p>
+        <p><a href="tel:713-201-2842">📱 713-201-2842 (Call)</a></p>
         <p><a href="mailto:Martinperez@fidelitymechanicalsolutions.com">✉️ Martinperez@fidelitymechanicalsolutions.com</a></p>
         <p>Response time: 2 hours or less</p>
         <p>Service area: Greater Houston</p>
@@ -1054,29 +1083,29 @@
     
     const diagnoses = {
       "System won't turn on at all": {
-        causes: "Likely causes: Tripped breaker (DIY fix), failed capacitor ($145-220), or bad contactor ($180-250)",
+        causes: "Likely causes: Tripped breaker (simple reset), failed capacitor (common summer failure), or bad contactor (wear item)",
         urgency: "Urgency: HIGH - No cooling capability",
-        advice: "Check breaker first. If that's not it, we can diagnose within 2 hours."
+        advice: "Check your breaker first - that's free and might solve it. If not, this typically requires same-day service. Most causes are routine repairs, but we need eyes on the system to know for sure."
       },
       "Cooling but not enough": {
-        causes: "Likely causes: Dirty filter (DIY), low refrigerant ($200-600), or failing compressor ($1,200-2,500)",
-        urgency: "Urgency: MEDIUM - System strain increasing costs",
-        advice: "Change filter first. If no improvement, diagnostic needed to prevent damage."
+        causes: "Likely causes: Dirty filter (maintenance item), refrigerant issue (requires leak detection), or mechanical wear (age-related)",
+        urgency: "Urgency: MEDIUM - System working harder than it should",
+        advice: "Start with a filter change. If that doesn't help, the fix could range from simple maintenance to component replacement. Early diagnosis prevents bigger problems."
       },
       "Strange noises (clicking, buzzing)": {
-        causes: "Likely causes: Loose panel ($0), failing contactor ($180-250), or compressor hard start needed ($300-400)",
-        urgency: "Urgency: LOW-MEDIUM - May indicate impending failure",
-        advice: "Record the sound for faster diagnosis. Often a simple fix if caught early."
+        causes: "Likely causes: Loose panel (quick adjustment), electrical component wearing out, or motor needing attention",
+        urgency: "Urgency: LOW-MEDIUM - Usually an early warning sign",
+        advice: "Record the sound - it really helps. Strange noises often mean a part is asking for help before it fails completely. Catching it early usually means simpler repairs."
       },
       "Higher than normal energy bills": {
-        causes: "Likely causes: Dirty coils ($150 cleaning), refrigerant leak ($200-1,200), or aging system (efficiency consultation free)",
-        urgency: "Urgency: LOW - But costing you money daily",
-        advice: "Free efficiency audit can identify issue. Often saves 20-30% on bills."
+        causes: "Likely causes: Dirty coils reducing efficiency, system working harder due to wear, or refrigerant performance issues",
+        urgency: "Urgency: LOW - But the waste adds up monthly",
+        advice: "Something's making your system work overtime. Could be maintenance-related or component efficiency. A diagnostic tells us where your money's going."
       },
       "Ice forming on outdoor unit": {
-        causes: "Likely causes: Airflow restriction ($0-150), refrigerant issue ($200-600), or failed defrost cycle ($250-400)",
-        urgency: "Urgency: HIGH - Can damage compressor if not addressed",
-        advice: "Turn system off immediately. Ice indicates serious issue needing prompt attention."
+        causes: "Likely causes: Airflow restriction, refrigerant problems, or control issues",
+        urgency: "Urgency: HIGH - Ice can damage expensive components",
+        advice: "Turn the system off now - running with ice causes damage. This needs prompt attention, but the cause might be simpler than you think. We'll know once we can assess it."
       }
     };
     
@@ -1093,7 +1122,9 @@
           <strong>Diagnosis:</strong><br>
           ${diagnosis.causes}<br><br>
           <strong>${diagnosis.urgency}</strong><br><br>
-          ${diagnosis.advice}
+          <strong>What to do:</strong><br>
+          ${diagnosis.advice}<br><br>
+          <em style="color: var(--data-gray); font-size: 0.875rem;">Remember: Every system is unique. This is educational guidance - actual diagnosis reveals actual solutions.</em>
         `;
       });
     });
@@ -1131,9 +1162,13 @@
       });
     });
     
-    // Support widget
+    // Support widget - updated to show text option
     document.querySelector('.support-bubble').addEventListener('click', function() {
-      window.location.href = 'tel:713-201-2842';
+      if (confirm('Text us for fastest response, or press Cancel to call instead.')) {
+        window.location.href = 'sms:713-201-2842';
+      } else {
+        window.location.href = 'tel:713-201-2842';
+      }
     });
   </script>
 </body>
