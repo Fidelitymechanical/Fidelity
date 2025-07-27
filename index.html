@@ -594,6 +594,142 @@
       border-color: var(--charcoal);
     }
     
+    /* Floating Contact Button - Premium assistance always available */
+    .floating-contact {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+    
+    .contact-tooltip {
+      background: var(--deep-charcoal);
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: var(--text-sm);
+      font-weight: 500;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(10px) scale(0.9);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      box-shadow: var(--shadow-strong);
+      position: relative;
+    }
+    
+    .contact-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -8px;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border: 8px solid transparent;
+      border-left-color: var(--deep-charcoal);
+    }
+    
+    .floating-contact:hover .contact-tooltip {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    
+    .contact-bubble {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-hover) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-strong);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: white;
+    }
+    
+    .contact-bubble::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      border-radius: 50%;
+      opacity: 0;
+      animation: bubble-glow 3s ease-in-out infinite;
+    }
+    
+    @keyframes bubble-glow {
+      0%, 100% { 
+        opacity: 0;
+        transform: rotate(0deg);
+      }
+      50% { 
+        opacity: 1;
+        transform: rotate(180deg);
+      }
+    }
+    
+    .contact-bubble:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+    }
+    
+    .contact-bubble:active {
+      transform: translateY(-1px) scale(1.02);
+    }
+    
+    .contact-icon {
+      font-size: 1.75rem;
+      position: relative;
+      z-index: 1;
+      animation: icon-pulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes icon-pulse {
+      0%, 100% { 
+        transform: scale(1);
+      }
+      50% { 
+        transform: scale(1.1);
+      }
+    }
+    
+    .contact-bubble:hover .contact-icon {
+      animation-play-state: paused;
+      transform: scale(1.15);
+    }
+    
+    /* Floating contact ripple effect */
+    .contact-bubble::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--accent-blue);
+      border-radius: 50%;
+      opacity: 0;
+      animation: ripple 3s ease-out infinite;
+    }
+    
+    @keyframes ripple {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.8);
+        opacity: 0;
+      }
+    }
+    
     /* Content sections - Clear hierarchy and generous spacing */
     section {
       padding: 5rem 2rem;
@@ -1180,6 +1316,27 @@
       margin: 0 auto;
     }
     
+    /* Mobile optimizations for floating contact */
+    @media (max-width: 768px) {
+      .floating-contact {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .contact-bubble {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .contact-icon {
+        font-size: 1.5rem;
+      }
+      
+      .contact-tooltip {
+        display: none; /* Hide tooltip on mobile to prevent overlap */
+      }
+    }
+    
     /* Responsive design - Maintains elegance at all sizes */
     @media (max-width: 768px) {
       .nav-links {
@@ -1581,6 +1738,16 @@ Final Readings:
   <footer class="footer">
     <p>&copy; 2025 Fidelity Mechanical Solutions. Professional excellence delivered through systematic precision and uncompromising clarity. Revenue emerges as a natural consequence of competent service delivery, not as its primary objective.</p>
   </footer>
+  
+  <!-- Floating Contact Button -->
+  <div class="floating-contact">
+    <div class="contact-tooltip">
+      Need immediate assistance? Call or text us
+    </div>
+    <a href="tel:713-201-2842" class="contact-bubble" aria-label="Call Fidelity Mechanical Solutions" title="Call us at 713-201-2842">
+      <div class="contact-icon">💬</div>
+    </a>
+  </div>
   
   <script>
     // Enhanced navigation with smooth interactions
