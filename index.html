@@ -9,7 +9,7 @@
   <!-- Premium typography system -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   
   <!-- Schema.org structured data for SEO -->
   <script type="application/ld+json">
@@ -75,6 +75,11 @@
       --text-3xl: 1.875rem;
       --text-4xl: 2.25rem;
       --text-5xl: 3rem;
+      
+      /* Typography families */
+      --font-mono: 'Space Mono', monospace;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-display: 'Playfair Display', serif;
     }
     
     /* Reset and base styles - ensures consistency across browsers */
@@ -85,7 +90,7 @@
     }
     
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: var(--font-sans);
       background: var(--soft-white);
       color: var(--charcoal);
       line-height: 1.6;
@@ -130,7 +135,7 @@
     }
     
     .logo-text {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-size: 1.5rem;
       font-weight: 600;
       color: var(--deep-charcoal);
@@ -499,7 +504,7 @@
     }
     
     .hero-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 500;
       color: var(--deep-charcoal);
@@ -602,7 +607,7 @@
     }
     
     .section-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-size: var(--text-4xl);
       font-weight: 500;
       color: var(--deep-charcoal);
@@ -702,6 +707,341 @@
     
     .service-description {
       color: var(--text-gray);
+      line-height: 1.6;
+    }
+    
+    /* Diagnostic Section Styles - Premium Integration */
+    .diagnostic-section {
+      background: linear-gradient(135deg, var(--soft-white) 0%, var(--primary-white) 100%);
+      padding: 6rem 2rem;
+      position: relative;
+      border-top: 1px solid var(--medium-gray);
+      border-bottom: 1px solid var(--medium-gray);
+    }
+    
+    .diagnostic-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+      opacity: 0.3;
+    }
+    
+    .diagnostic-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .diagnostic-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .diagnostic-title {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 500;
+      color: var(--deep-charcoal);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .diagnostic-header p {
+      font-size: var(--text-lg);
+      color: var(--text-gray);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    
+    .diagnostic-note {
+      max-width: 900px;
+      margin: 3rem auto 4rem;
+      padding: 2rem;
+      background: rgba(59, 130, 246, 0.03);
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 12px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .diagnostic-note::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+      opacity: 0.3;
+    }
+    
+    .diagnostic-note p {
+      margin: 0;
+      line-height: 1.7;
+      color: var(--charcoal);
+      font-size: var(--text-base);
+    }
+    
+    .diagnostic-note strong {
+      color: var(--deep-charcoal);
+      font-weight: 600;
+    }
+    
+    .diagnostic-interface {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    
+    /* Enhanced System Visual */
+    .system-visual {
+      position: relative;
+      height: 480px;
+      background: linear-gradient(135deg, var(--light-gray) 0%, var(--primary-white) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: var(--shadow-medium);
+      border: 1px solid var(--medium-gray);
+    }
+    
+    .system-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .hvac-diagram {
+      position: relative;
+      width: 360px;
+      height: 360px;
+    }
+    
+    .unit-outdoor, .unit-indoor {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--charcoal) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-align: center;
+      font-weight: 600;
+      box-shadow: var(--shadow-strong);
+      transition: all 0.3s ease;
+      letter-spacing: 0.02em;
+    }
+    
+    .unit-outdoor {
+      top: 15%;
+      left: 8%;
+    }
+    
+    .unit-indoor {
+      bottom: 15%;
+      right: 8%;
+    }
+    
+    .unit-outdoor:hover, .unit-indoor:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .flow-line {
+      position: absolute;
+      width: 3px;
+      height: 140px;
+      background: linear-gradient(45deg, var(--accent-blue), rgba(59, 130, 246, 0.6));
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      border-radius: 2px;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    
+    .flow-particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      animation: flow 2.5s ease-in-out infinite;
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
+    }
+    
+    @keyframes flow {
+      from { 
+        transform: translateY(-10px);
+        opacity: 0;
+        scale: 0.5;
+      }
+      10% { 
+        opacity: 1;
+        scale: 1;
+      }
+      90% { 
+        opacity: 1;
+        scale: 1;
+      }
+      to { 
+        transform: translateY(140px);
+        opacity: 0;
+        scale: 0.5;
+      }
+    }
+    
+    /* Enhanced Diagnostic Controls */
+    .diagnostic-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .control-group {
+      background: var(--primary-white);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow-medium);
+      border: 1px solid var(--medium-gray);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .control-group::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+      opacity: 0.2;
+    }
+    
+    .control-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--text-gray);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .control-label::before {
+      content: '◦';
+      color: var(--accent-blue);
+      font-size: 1.2em;
+    }
+    
+    .symptom-btn {
+      display: block;
+      width: 100%;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 0.75rem;
+      background: var(--soft-white);
+      border: 2px solid var(--medium-gray);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+      color: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .symptom-btn::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent-blue), rgba(59, 130, 246, 0.8));
+      transition: width 0.3s ease;
+      z-index: 0;
+    }
+    
+    .symptom-btn span {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .symptom-btn:last-child {
+      margin-bottom: 0;
+    }
+    
+    .symptom-btn:hover {
+      background: var(--accent-blue);
+      color: white;
+      border-color: var(--accent-blue);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-medium);
+    }
+    
+    .symptom-btn:hover::before {
+      width: 100%;
+    }
+    
+    .symptom-btn.active {
+      background: var(--accent-blue);
+      color: white;
+      border-color: var(--accent-blue);
+      box-shadow: var(--shadow-medium);
+      transform: translateX(2px);
+    }
+    
+    .symptom-btn.active::before {
+      width: 100%;
+    }
+    
+    .diagnosis-result {
+      line-height: 1.8;
+      font-size: var(--text-base);
+    }
+    
+    .diagnosis-result strong {
+      color: var(--deep-charcoal);
+      display: block;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      font-size: var(--text-lg);
+    }
+    
+    .diagnosis-result strong:first-child {
+      margin-top: 0;
+    }
+    
+    .diagnosis-result em {
+      display: block;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--medium-gray);
+      font-style: italic;
+      color: var(--text-gray);
+      font-size: var(--text-sm);
       line-height: 1.6;
     }
     
@@ -892,6 +1232,43 @@
         grid-template-columns: 1fr;
       }
       
+      .diagnostic-section {
+        padding: 4rem 1.5rem;
+      }
+      
+      .diagnostic-interface {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .system-visual {
+        height: 320px;
+      }
+      
+      .hvac-diagram {
+        width: 280px;
+        height: 280px;
+      }
+      
+      .unit-outdoor,
+      .unit-indoor {
+        width: 100px;
+        height: 100px;
+        font-size: 0.65rem;
+      }
+      
+      .flow-line {
+        height: 120px;
+      }
+      
+      .diagnostic-title {
+        font-size: var(--text-3xl);
+      }
+      
+      .control-group {
+        padding: 2rem 1.5rem;
+      }
+      
       .case-study {
         padding: 2rem 1.5rem;
       }
@@ -914,6 +1291,7 @@
         <a href="#philosophy">Philosophy</a>
         <a href="#approach">Our Approach</a>
         <a href="#services">Services</a>
+        <a href="#diagnostics">Diagnostics</a>
         <a href="#process">Process</a>
         <a href="#case-studies">Case Studies</a>
         <a href="#contact">Contact</a>
@@ -957,7 +1335,7 @@
       <p class="hero-tagline">Fidelity is the foundation.</p>
       <div class="cta-container">
         <a href="#contact" class="cta-primary">Get Free Estimate</a>
-        <a href="#services" class="cta-secondary">View Services</a>
+        <a href="#diagnostics" class="cta-secondary">Try Diagnostic Tool</a>
       </div>
     </div>
   </section>
@@ -985,6 +1363,51 @@
     <p>We are a mechanical service company organized around one premise: that technical work, client understanding, and professional development are not separate functions — they are the integrated disciplines that define exceptional service delivery.</p>
     <p>Our theoretical framework emphasizes root-cause methodology over surface-level fixes. We educate without condescension and solve problems with systematic precision that honors both technical excellence and human understanding.</p>
     <p>Every interaction becomes an opportunity to demonstrate mastery through clarity, building long-term relationships based on competence, transparency, and measurable results.</p>
+  </section>
+  
+  <!-- Interactive Diagnostic Tool -->
+  <section id="diagnostics" class="diagnostic-section">
+    <div class="diagnostic-container">
+      <div class="diagnostic-header">
+        <h2 class="diagnostic-title">Self-Diagnose Your System</h2>
+        <p>Experience our diagnostic approach firsthand. Click symptoms to explore probable causes and receive honest guidance about what your system might be telling you.</p>
+      </div>
+      
+      <div class="diagnostic-note">
+        <p><strong>Understanding System Complexity:</strong> Every HVAC system is unique. Age, model, installation quality, maintenance history, and environmental factors all influence how problems manifest and what repairs actually cost. This tool demonstrates our diagnostic thinking, but your specific situation requires hands-on analysis. We'll always explain what we find and your options before any work begins — because informed decisions create better outcomes.</p>
+      </div>
+      
+      <div class="diagnostic-interface">
+        <div class="system-visual">
+          <div class="hvac-diagram">
+            <div class="unit-outdoor">OUTDOOR<br>UNIT</div>
+            <div class="unit-indoor">INDOOR<br>UNIT</div>
+            <div class="flow-line">
+              <div class="flow-particle"></div>
+              <div class="flow-particle" style="animation-delay: 0.6s"></div>
+              <div class="flow-particle" style="animation-delay: 1.2s"></div>
+              <div class="flow-particle" style="animation-delay: 1.8s"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="diagnostic-controls">
+          <div class="control-group">
+            <div class="control-label">Select Your System's Symptom</div>
+            <button class="symptom-btn"><span>System won't turn on at all</span></button>
+            <button class="symptom-btn"><span>Cooling but not enough</span></button>
+            <button class="symptom-btn"><span>Strange noises (clicking, buzzing, grinding)</span></button>
+            <button class="symptom-btn"><span>Higher than normal energy bills</span></button>
+            <button class="symptom-btn"><span>Ice forming on outdoor unit</span></button>
+          </div>
+          
+          <div class="control-group">
+            <div class="control-label">Diagnostic Analysis</div>
+            <p id="diagnosis-display">Select a symptom above to explore possible causes and next steps. This educational tool helps you understand what might be happening with your system, but remember — accurate diagnosis requires professional assessment of your specific equipment and conditions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   
   <section id="process">
@@ -1219,9 +1642,97 @@ Final Readings:
       });
     });
     
+    // Interactive diagnostic responses - Enhanced with better UX
+    const symptomBtns = document.querySelectorAll('.symptom-btn');
+    const diagnosisArea = document.getElementById('diagnosis-display');
+    
+    const diagnoses = {
+      "System won't turn on at all": {
+        causes: "Most common causes: Tripped electrical breaker (simple reset), failed run capacitor (common summer failure), or worn contactor relay (normal wear item).",
+        urgency: "Urgency: HIGH - Complete loss of cooling capability",
+        advice: "Start by checking your electrical panel for tripped breakers — that's free and might solve the problem immediately. If the breaker is fine, this typically requires same-day professional service. Most causes are routine repairs with predictable costs, but we need hands-on diagnosis to give you accurate options and pricing."
+      },
+      "Cooling but not enough": {
+        causes: "Likely causes: Clogged air filter (maintenance item), refrigerant leak or low charge (requires leak detection), or mechanical component efficiency loss (age-related wear).",
+        urgency: "Urgency: MEDIUM - System working harder than designed",
+        advice: "First step: replace your air filter if it's been more than 3 months. If that doesn't restore performance within 24 hours, the solution could range from simple maintenance to component replacement. Early professional diagnosis prevents expensive secondary damage and higher energy costs."
+      },
+      "Strange noises (clicking, buzzing, grinding)": {
+        causes: "Common causes: Loose access panel or component (quick adjustment), electrical relay cycling (normal wear), or motor bearing wear (mechanical aging).",
+        urgency: "Urgency: LOW to MEDIUM - Usually an early warning before complete failure",
+        advice: "Try to record the sound on your phone — it genuinely helps with diagnosis. Strange noises are often your system asking for help before something fails completely. Addressing these early warnings usually means simpler, less expensive repairs compared to waiting for complete failure."
+      },
+      "Higher than normal energy bills": {
+        causes: "Typical causes: Dirty condenser coils reducing heat transfer efficiency, system components working harder due to wear, or refrigerant charge issues affecting performance.",
+        urgency: "Urgency: LOW - But the energy waste compounds monthly",
+        advice: "Something is forcing your system to work overtime to maintain comfort. Could be maintenance-related (like dirty coils) or component efficiency decline. A professional diagnostic assessment shows exactly where your money is going and what improvements will provide measurable savings."
+      },
+      "Ice forming on outdoor unit": {
+        causes: "Primary causes: Restricted airflow (dirty filter or blocked coils), refrigerant system problems, or control system malfunctions affecting defrost cycles.",
+        urgency: "Urgency: HIGH - Ice formation can damage expensive compressor components",
+        advice: "Turn the system off immediately — running with ice buildup causes progressive damage to expensive parts. This needs prompt professional attention, but the root cause might be simpler than you think. We'll identify the specific issue and prevent costly secondary damage."
+      }
+    };
+    
+    symptomBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const symptom = this.querySelector('span').textContent;
+        const diagnosis = diagnoses[symptom];
+        
+        if (!diagnosis) return;
+        
+        // Update button states with smooth transitions
+        symptomBtns.forEach(b => {
+          b.classList.remove('active');
+        });
+        
+        this.classList.add('active');
+        
+        // Update diagnosis display with fade effect
+        diagnosisArea.style.opacity = '0.5';
+        
+        setTimeout(() => {
+          diagnosisArea.innerHTML = `
+            <div class="diagnosis-result">
+              <strong>Probable Causes:</strong>
+              ${diagnosis.causes}
+              
+              <strong>${diagnosis.urgency}</strong>
+              
+              <strong>Recommended Next Steps:</strong>
+              ${diagnosis.advice}
+              
+              <em>Remember: Every system is unique based on age, model, installation, and maintenance history. This educational guidance helps you understand possibilities — accurate diagnosis reveals actual solutions and real costs. We always explain findings and options before any work begins.</em>
+            </div>
+          `;
+          diagnosisArea.style.opacity = '1';
+        }, 150);
+      });
+    });
+    
     // Add loading animation complete class
     window.addEventListener('load', () => {
       document.body.classList.add('loaded');
+    });
+    
+    // Enhanced scroll animations for diagnostic section
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, observerOptions);
+    
+    // Observe diagnostic elements for animations
+    document.querySelectorAll('.diagnostic-section .control-group, .system-visual').forEach(el => {
+      observer.observe(el);
     });
   </script>
 </body>
