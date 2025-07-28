@@ -2067,7 +2067,7 @@
   </div>
   
   <script>
-    // Enhanced navigation with premium interactions
+    // Enhanced navigation with premium interactions - FIXED VERSION
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
@@ -2102,20 +2102,29 @@
       });
     });
     
-    // Premium navbar scroll effect with enhanced transitions
-    let lastScrollY = window.scrollY;
+    // FIXED: Consolidated single scroll handler with proper throttling
+    let isScrolling = false;
     
-    window.addEventListener('scroll', () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+    function handleScroll() {
+      if (!isScrolling) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          // Navbar scroll effect
+          if (currentScrollY > 100) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+          
+          isScrolling = false;
+        });
+        isScrolling = true;
       }
-      
-      lastScrollY = currentScrollY;
-    });
+    }
+    
+    // Single scroll event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     // Enhanced smooth scrolling with easing
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2222,37 +2231,12 @@
       observer.observe(el);
     });
     
+    // REMOVED: Problematic parallax effect that caused scroll jitter
+    // The parallax effect has been completely removed to fix scroll issues
+    
     // Add premium loading state
     window.addEventListener('load', () => {
       document.body.classList.add('loaded');
-      
-      // Add subtle parallax effect to hero elements
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallax = document.querySelector('.hero-section');
-        const speed = scrolled * 0.5;
-        
-        if (parallax) {
-          parallax.style.transform = `translateY(${speed}px)`;
-        }
-      });
-    });
-    
-    // Enhanced performance optimizations
-    let ticking = false;
-    
-    function updateOnScroll() {
-      // Batch DOM updates for better performance
-      requestAnimationFrame(() => {
-        ticking = false;
-      });
-    }
-    
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateOnScroll);
-        ticking = true;
-      }
     });
   </script>
 </body>
