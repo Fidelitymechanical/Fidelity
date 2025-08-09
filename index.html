@@ -3,176 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fidelity Mechanical Solutions | Premium HVAC Services</title>
-  <meta name="description" content="Experience mechanical excellence. Premium HVAC diagnostics and solutions delivered with uncompromising integrity and technical mastery.">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <!-- Premium typography system -->
+  <!-- SEO Meta Tags -->
+  <title>Fidelity Mechanical Solutions | Premium HVAC Services in Houston, TX</title>
+  <meta name="description" content="Experience mechanical excellence with Fidelity Mechanical Solutions. Premium HVAC diagnostics, repairs, and installations in Houston. Call 713-201-2842 for honest, expert service.">
+  <meta name="keywords" content="HVAC repair Houston, AC repair, heating repair, HVAC diagnostics, air conditioning service, mechanical solutions, HVAC installation">
+  <meta name="author" content="Fidelity Mechanical Solutions">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://fidelitymechanicalsolutions.com">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fidelity Mechanical Solutions | Premium HVAC Services">
+  <meta property="og:description" content="Technical excellence delivered with systematic precision. Get honest HVAC diagnostics and repairs in Houston.">
+  <meta property="og:url" content="https://fidelitymechanicalsolutions.com">
+  <meta property="og:site_name" content="Fidelity Mechanical Solutions">
+  <meta property="og:locale" content="en_US">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fidelity Mechanical Solutions">
+  <meta name="twitter:description" content="Premium HVAC services with uncompromising integrity. Call 713-201-2842">
+  
+  <!-- Preconnect for Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   
-  <!-- Schema.org structured data for SEO -->
+  <!-- Optimized Font Loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Enhanced Schema.org Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "HVACBusiness",
     "name": "Fidelity Mechanical Solutions",
-    "description": "Premium HVAC diagnostics and solutions delivered with technical mastery and clarity",
+    "description": "Premium HVAC diagnostics and solutions delivered with technical mastery",
     "url": "https://fidelitymechanicalsolutions.com",
     "telephone": "+1-713-201-2842",
     "email": "Martinperez@fidelitymechanicalsolutions.com",
     "address": {
       "@type": "PostalAddress",
+      "addressLocality": "Houston",
       "addressRegion": "TX",
       "addressCountry": "US"
     },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 29.7604,
+      "longitude": -95.3698
+    },
     "priceRange": "$$",
-    "openingHours": "Mo-Fr 08:00-18:00",
-    "sameAs": [],
-    "serviceArea": {
+    "openingHours": "Mo-Fr 08:00-18:00, Sa 09:00-17:00",
+    "paymentAccepted": ["Cash", "Check", "Credit Card"],
+    "areaServed": {
       "@type": "GeoCircle",
       "geoMidpoint": {
         "@type": "GeoCoordinates",
-        "latitude": 30.1445,
+        "latitude": 29.7604,
         "longitude": -95.3698
       },
       "geoRadius": "50000"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "127"
     }
   }
   </script>
   
   <style>
+    /* Optimized CSS Reset and Variables */
     :root {
-      /* Premium color system - sophisticated and trustworthy */
-      --primary-white: #ffffff;
-      --soft-white: #fdfeff;
-      --light-gray: #f8fafc;
-      --medium-gray: #e1e7ef;
-      --text-gray: #64748b;
-      --dark-gray: #475569;
-      --charcoal: #334155;
-      --deep-charcoal: #1e293b;
-      --midnight: #0f172a;
+      /* Simplified color system */
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
       
-      /* Premium accent system */
-      --primary-blue: #1e40af;
-      --accent-blue: #3b82f6;
-      --bright-blue: #60a5fa;
-      --deep-blue: #1d4ed8;
-      --navy: #1e3a8a;
-      --brand-navy: #002654;
+      /* Optimized gradients */
+      --gradient-primary: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+      --gradient-surface: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
       
-      /* Premium gradients */
-      --gradient-primary: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #1e3a8a 100%);
-      --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
-      --gradient-surface: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-      --gradient-depth: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+      /* Performance-optimized shadows */
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
       
-      /* Enhanced shadow system */
-      --shadow-soft: 0 1px 3px rgba(30, 64, 175, 0.08);
-      --shadow-medium: 0 4px 16px rgba(30, 64, 175, 0.12);
-      --shadow-strong: 0 8px 32px rgba(30, 64, 175, 0.16);
-      --shadow-premium: 0 12px 48px rgba(30, 64, 175, 0.2);
-      --shadow-glow: 0 0 32px rgba(59, 130, 246, 0.25);
-      --shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.15);
-      
-      /* Typography scale */
-      --text-xs: 0.75rem;
-      --text-sm: 0.875rem;
-      --text-base: 1rem;
-      --text-lg: 1.125rem;
-      --text-xl: 1.25rem;
-      --text-2xl: 1.5rem;
-      --text-3xl: 1.875rem;
-      --text-4xl: 2.25rem;
-      --text-5xl: 3rem;
-      --text-6xl: 3.75rem;
-      
-      /* Typography families */
-      --font-mono: 'JetBrains Mono', monospace;
+      /* Typography */
       --font-sans: 'Inter', -apple-system, sans-serif;
       --font-display: 'Playfair Display', serif;
-      
-      /* Premium spacing */
-      --space-xs: 0.25rem;
-      --space-sm: 0.5rem;
-      --space-md: 1rem;
-      --space-lg: 1.5rem;
-      --space-xl: 2rem;
-      --space-2xl: 3rem;
-      --space-3xl: 4rem;
     }
     
-    /* Reset and base styles */
+    /* Base Styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     
-    body {
-      font-family: var(--font-sans);
-      background: var(--soft-white);
-      color: var(--charcoal);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-      overflow-x: hidden;
-    }
-    
     html {
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
     }
     
-    ::selection {
-      background: var(--accent-blue);
-      color: white;
+    body {
+      font-family: var(--font-sans);
+      background: var(--white);
+      color: var(--gray-800);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
     
-    /* Premium scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
+    /* Performance-optimized animations */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
     
-    ::-webkit-scrollbar-track {
-      background: var(--light-gray);
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent-blue);
-      border-radius: 3px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--deep-blue);
-    }
-    
-    /* Enhanced Navigation */
+    /* Navigation */
     .nav-container {
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(30, 64, 175, 0.1);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
     }
     
     .nav-container.scrolled {
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: var(--shadow-medium);
-      border-bottom: 1px solid rgba(30, 64, 175, 0.15);
+      box-shadow: var(--shadow-md);
     }
     
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1400px;
-      padding: var(--space-lg) var(--space-xl);
+      max-width: 1200px;
+      padding: 1rem 2rem;
       margin: 0 auto;
     }
     
@@ -180,532 +162,142 @@
       font-family: var(--font-display);
       font-size: 1.75rem;
       font-weight: 700;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--blue-700);
       text-decoration: none;
       letter-spacing: -0.025em;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    
-    .logo-text::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient-primary);
-      opacity: 0;
-      transform: scaleX(0);
-      transition: all 0.3s ease;
-    }
-    
-    .logo-text:hover::after {
-      opacity: 1;
-      transform: scaleX(1);
     }
     
     .nav-links {
       display: flex;
-      gap: var(--space-2xl);
+      gap: 2rem;
       align-items: center;
     }
     
     .nav-links a {
-      color: var(--text-gray);
+      color: var(--gray-600);
       text-decoration: none;
       font-weight: 500;
-      font-size: var(--text-sm);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
       position: relative;
-      padding: var(--space-sm) 0;
-    }
-    
-    .nav-links a::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: var(--gradient-accent);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateX(-50%);
+      padding: 0.5rem 0;
     }
     
     .nav-links a:hover {
-      color: var(--primary-blue);
-      transform: translateY(-1px);
+      color: var(--blue-700);
     }
     
-    .nav-links a:hover::before {
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue-700);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after {
       width: 100%;
     }
     
-    /* Mobile navigation */
+    /* Mobile Navigation */
     .nav-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
-      padding: var(--space-sm);
-      background: rgba(30, 64, 175, 0.05);
-      border-radius: 8px;
-      transition: all 0.3s ease;
+      padding: 0.5rem;
+      background: transparent;
+      border: none;
+      gap: 4px;
     }
     
-    .nav-toggle:hover {
-      background: rgba(30, 64, 175, 0.1);
-    }
-    
-    .bar {
+    .nav-toggle span {
+      display: block;
       height: 2px;
-      width: 22px;
-      background: var(--primary-blue);
-      margin: 3px 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 24px;
+      background: var(--gray-800);
+      transition: all 0.3s ease;
       border-radius: 1px;
     }
     
-    /* Premium Hero Section */
+    /* Hero Section */
     .hero-section {
       min-height: 100vh;
-      padding: 140px var(--space-xl) 100px;
+      padding: 120px 2rem 80px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       background: var(--gradient-surface);
       position: relative;
-      overflow: hidden;
-    }
-    
-    /* Enhanced geometric accents */
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 15%;
-      right: 8%;
-      width: 300px;
-      height: 300px;
-      background: var(--gradient-depth);
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: float 8s ease-in-out infinite;
-      filter: blur(40px);
-    }
-    
-    .hero-section::after {
-      content: '';
-      position: absolute;
-      bottom: 20%;
-      left: 10%;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: float 6s ease-in-out infinite reverse;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-30px) scale(1.05); }
     }
     
     .hero-content {
-      position: relative;
-      z-index: 10;
       max-width: 900px;
       width: 100%;
-    }
-    
-    /* Premium Shield Logo Design */
-    .hero-logo {
-      margin-bottom: var(--space-3xl);
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    
-    .logo-design {
-      width: 160px;
-      height: 180px;
-      margin: 0 auto;
-      position: relative;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      animation: subtle-float 8s ease-in-out infinite;
-      filter: drop-shadow(var(--shadow-premium));
-    }
-    
-    @keyframes subtle-float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-    }
-    
-    .logo-design:hover {
-      transform: translateY(-6px) scale(1.05);
-      animation-play-state: paused;
-    }
-    
-    /* Enhanced Shield Design */
-    .logo-shield {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    /* Premium shield background with advanced gradients */
-    .shield-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: var(--gradient-primary);
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 70%,
-        85% 85%,
-        50% 100%,
-        15% 85%,
-        0 70%
-      );
-      box-shadow: var(--shadow-premium);
-      animation: shield-pulse 6s ease-in-out infinite;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* Premium gradient overlay */
-    .shield-bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.2) 50%,
-        transparent 70%
-      );
-      animation: shimmer 4s ease-in-out infinite;
-    }
-    
-    @keyframes shimmer {
-      0%, 100% { transform: translateX(-100%) rotate(45deg); }
-      50% { transform: translateX(200%) rotate(45deg); }
-    }
-    
-    @keyframes shield-pulse {
-      0%, 100% { 
-        box-shadow: var(--shadow-premium);
-        transform: scale(1);
-      }
-      50% { 
-        box-shadow: var(--shadow-glow);
-        transform: scale(1.02);
-      }
-    }
-    
-    /* Enhanced border glow */
-    .shield-bg::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      background: var(--gradient-accent);
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 70%,
-        85% 85%,
-        50% 100%,
-        15% 85%,
-        0 70%
-      );
-      opacity: 0;
-      animation: shield-glow 4s ease-in-out infinite;
-      z-index: -1;
-    }
-    
-    @keyframes shield-glow {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 0.6; }
-    }
-    
-    /* Premium thermometer design */
-    .shield-inner {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 24px;
-    }
-    
-    .thermo-circle {
-      width: 100px;
-      height: 100px;
-      border: 3px solid rgba(255, 255, 255, 0.9);
-      border-radius: 50%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    /* Advanced rotating highlight */
-    .thermo-circle::before {
-      content: '';
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      background: conic-gradient(
-        transparent,
-        rgba(96, 165, 250, 0.8),
-        transparent
-      );
-      animation: rotate-highlight 6s linear infinite;
-    }
-    
-    .thermo-circle::after {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        transparent 60%,
-        rgba(255, 255, 255, 0.3) 70%,
-        transparent 80%
-      );
-      animation: pulse-ring 3s ease-in-out infinite;
-    }
-    
-    @keyframes rotate-highlight {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    
-    @keyframes pulse-ring {
-      0%, 100% { transform: scale(1); opacity: 0.3; }
-      50% { transform: scale(1.1); opacity: 0.6; }
-    }
-    
-    /* Enhanced thermometer icon */
-    .thermometer-icon {
-      position: relative;
-      width: 28px;
-      height: 70px;
-      z-index: 2;
-    }
-    
-    .thermo-tube {
-      position: absolute;
-      width: 14px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 7px 7px 12px 12px;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    .thermo-bulb {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 50%;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: 
-        0 0 15px rgba(96, 165, 250, 0.6),
-        inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      animation: bulb-glow 3s ease-in-out infinite;
-    }
-    
-    @keyframes bulb-glow {
-      0%, 100% { 
-        box-shadow: 
-          0 0 15px rgba(96, 165, 250, 0.6),
-          inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      50% { 
-        box-shadow: 
-          0 0 25px rgba(96, 165, 250, 0.9),
-          0 0 35px rgba(30, 64, 175, 0.5),
-          inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-    }
-    
-    /* Premium mercury animation */
-    .mercury {
-      position: absolute;
-      width: 8px;
-      height: 0;
-      background: linear-gradient(to top, 
-        #ef4444 0%, 
-        #f87171 30%, 
-        #60a5fa 70%, 
-        #3b82f6 100%
-      );
-      bottom: 4px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 4px;
-      animation: mercury-rise 4s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards, 
-                 mercury-pulse 5s ease-in-out 5s infinite;
-      box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
-    }
-    
-    @keyframes mercury-rise {
-      from { height: 0; }
-      to { height: 36px; }
-    }
-    
-    @keyframes mercury-pulse {
-      0%, 100% { height: 36px; transform: translateX(-50%) scaleY(1); }
-      50% { height: 42px; transform: translateX(-50%) scaleY(1.05); }
-    }
-    
-    /* Enhanced temperature marks */
-    .temp-marks {
-      position: absolute;
-      right: -24px;
-      top: 8px;
-      height: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    
-    .temp-mark {
-      width: 10px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.9);
-      opacity: 0;
-      animation: mark-fade 0.6s ease-out forwards;
-      border-radius: 1px;
-      box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-    }
-    
-    .temp-mark:nth-child(1) { animation-delay: 1.5s; width: 12px; }
-    .temp-mark:nth-child(2) { animation-delay: 1.7s; }
-    .temp-mark:nth-child(3) { animation-delay: 1.9s; width: 8px; }
-    .temp-mark:nth-child(4) { animation-delay: 2.1s; }
-    .temp-mark:nth-child(5) { animation-delay: 2.3s; width: 12px; }
-    
-    @keyframes mark-fade {
-      to { 
-        opacity: 1;
-        transform: translateX(-2px);
-      }
-    }
-    
-    /* Premium accent particles */
-    .shield-accents {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
       z-index: 1;
     }
     
-    .accent-dot {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background: radial-gradient(circle, rgba(96, 165, 250, 0.9) 0%, rgba(59, 130, 246, 0.6) 100%);
+    /* Simplified Logo */
+    .hero-logo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 3rem;
+      background: var(--gradient-primary);
       border-radius: 50%;
-      opacity: 0;
-      animation: dot-appear 0.8s ease-out forwards;
-      box-shadow: 0 0 8px rgba(96, 165, 250, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: subtle-float 6s ease-in-out infinite;
     }
     
-    .accent-dot:nth-child(1) { 
-      top: 18%; left: 22%; 
-      animation-delay: 2.5s;
-    }
-    .accent-dot:nth-child(2) { 
-      top: 18%; right: 22%; 
-      animation-delay: 2.7s;
-    }
-    .accent-dot:nth-child(3) { 
-      top: 42%; left: 18%; 
-      animation-delay: 2.9s;
-    }
-    .accent-dot:nth-child(4) { 
-      top: 42%; right: 18%; 
-      animation-delay: 3.1s;
-    }
-    .accent-dot:nth-child(5) { 
-      top: 60%; left: 25%; 
-      animation-delay: 3.3s;
-      width: 3px; height: 3px;
-    }
-    .accent-dot:nth-child(6) { 
-      top: 60%; right: 25%; 
-      animation-delay: 3.5s;
-      width: 3px; height: 3px;
+    @keyframes subtle-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
     
-    @keyframes dot-appear {
-      to { 
-        opacity: 1;
-        transform: scale(1.3);
-      }
+    .hero-logo::before {
+      content: '🌡️';
+      font-size: 3rem;
+      filter: brightness(0) invert(1);
     }
     
-    /* Enhanced typography */
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(2.75rem, 6vw, 4.5rem);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
       font-weight: 700;
-      background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--primary-blue) 50%, var(--deep-blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: var(--space-lg);
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
+      color: var(--gray-800);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      animation: fadeInUp 0.8s ease-out;
     }
     
     .hero-subtitle {
-      font-size: var(--text-xl);
-      color: var(--text-gray);
-      line-height: 1.7;
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      margin-bottom: 1rem;
       max-width: 700px;
-      margin: 0 auto var(--space-lg);
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
-      font-weight: 400;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
     }
     
     .hero-tagline {
-      font-size: var(--text-lg);
-      color: var(--primary-blue);
+      font-size: 1.125rem;
+      color: var(--blue-700);
       font-weight: 600;
-      margin-bottom: var(--space-3xl);
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
-      letter-spacing: -0.01em;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
     }
     
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
@@ -713,946 +305,453 @@
       }
     }
     
+    /* Buttons */
     .cta-container {
       display: flex;
-      gap: var(--space-lg);
+      gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.1s forwards;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
     }
     
-    /* Premium Button System */
-    .cta-primary, .cta-secondary {
-      padding: var(--space-lg) var(--space-2xl);
-      border-radius: 12px;
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 8px;
       font-weight: 600;
-      font-size: var(--text-base);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 1rem;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: var(--space-sm);
+      gap: 0.5rem;
       cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
     
-    .cta-primary {
+    .btn-primary {
       background: var(--gradient-primary);
       color: white;
-      border: none;
-      box-shadow: var(--shadow-medium);
+      box-shadow: var(--shadow-md);
     }
     
-    .cta-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.6s ease;
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
     
-    .cta-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-premium);
+    .btn-secondary {
+      background: white;
+      color: var(--blue-700);
+      border-color: var(--blue-700);
     }
     
-    .cta-primary:hover::before {
-      left: 100%;
-    }
-    
-    .cta-secondary {
-      background: rgba(255, 255, 255, 0.9);
-      color: var(--primary-blue);
-      border: 2px solid rgba(30, 64, 175, 0.2);
-      box-shadow: var(--shadow-soft);
-    }
-    
-    .cta-secondary:hover {
-      background: var(--gradient-primary);
+    .btn-secondary:hover {
+      background: var(--blue-700);
       color: white;
-      border-color: transparent;
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-strong);
     }
     
-    /* Enhanced Floating Contact */
-    .floating-contact {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: var(--space-lg);
-    }
-    
-    .contact-tooltip {
-      background: var(--midnight);
-      color: white;
-      padding: var(--space-lg) var(--space-lg);
-      border-radius: 12px;
-      font-size: var(--text-sm);
-      font-weight: 500;
-      white-space: nowrap;
-      opacity: 0;
-      transform: translateX(15px) scale(0.95);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      pointer-events: none;
-      box-shadow: var(--shadow-strong);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      position: relative;
-    }
-    
-    .contact-tooltip::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: -10px;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border: 10px solid transparent;
-      border-left-color: var(--midnight);
-    }
-    
-    .floating-contact:hover .contact-tooltip {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-    }
-    
-    .contact-bubble {
-      width: 80px;
-      height: 80px;
-      background: var(--gradient-primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: var(--shadow-strong);
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      color: white;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .contact-bubble::before {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      background: var(--gradient-accent);
-      border-radius: 50%;
-      opacity: 0;
-      animation: bubble-glow 4s ease-in-out infinite;
-      z-index: -1;
-    }
-    
-    @keyframes bubble-glow {
-      0%, 100% { 
-        opacity: 0;
-        transform: scale(1);
-      }
-      50% { 
-        opacity: 0.8;
-        transform: scale(1.1);
-      }
-    }
-    
-    .contact-bubble:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: var(--shadow-glow);
-    }
-    
-    .contact-bubble:active {
-      transform: translateY(-2px) scale(1.05);
-    }
-    
-    .contact-icon {
-      font-size: 2rem;
-      position: relative;
-      z-index: 1;
-      animation: icon-pulse 5s ease-in-out infinite;
-    }
-    
-    @keyframes icon-pulse {
-      0%, 100% { 
-        transform: scale(1);
-      }
-      50% { 
-        transform: scale(1.15);
-      }
-    }
-    
-    .contact-bubble:hover .contact-icon {
-      animation-play-state: paused;
-      transform: scale(1.2);
-    }
-    
-    /* Premium ripple effect */
-    .contact-bubble::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 2px solid var(--bright-blue);
-      border-radius: 50%;
-      opacity: 0;
-      animation: ripple 4s ease-out infinite;
-    }
-    
-    @keyframes ripple {
-      0% {
-        transform: scale(1);
-        opacity: 0.8;
-      }
-      100% {
-        transform: scale(2.2);
-        opacity: 0;
-      }
-    }
-    
-    /* Enhanced Content Sections */
+    /* Sections */
     section {
-      padding: var(--space-3xl) var(--space-xl);
-      max-width: 1400px;
+      padding: 5rem 2rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
     
     .section-header {
       text-align: center;
-      margin-bottom: var(--space-3xl);
+      margin-bottom: 3rem;
     }
     
     .section-title {
       font-family: var(--font-display);
-      font-size: var(--text-4xl);
-      font-weight: 600;
-      background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--primary-blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: var(--space-lg);
-      letter-spacing: -0.025em;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
     }
     
     .section-subtitle {
-      font-size: var(--text-lg);
-      color: var(--text-gray);
+      font-size: 1.125rem;
+      color: var(--gray-600);
       max-width: 700px;
       margin: 0 auto;
-      line-height: 1.7;
-      font-weight: 400;
     }
     
-    /* Premium Process Section */
-    .process-grid {
+    /* Grid Layouts */
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: var(--space-2xl);
-      margin-top: var(--space-3xl);
+      gap: 2rem;
+      margin-top: 3rem;
     }
     
-    .process-step {
-      text-align: center;
-      padding: var(--space-2xl);
-      background: var(--gradient-surface);
-      border-radius: 20px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
     
-    .process-step::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--gradient-accent);
-      opacity: 0;
-      transition: opacity 0.4s ease;
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
     }
     
-    .process-step:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-strong);
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
     }
     
-    .process-step:hover::before {
-      opacity: 1;
-    }
-    
-    .process-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 70px;
-      height: 70px;
-      background: var(--gradient-primary);
-      color: white;
-      font-size: var(--text-2xl);
-      font-weight: 700;
-      border-radius: 50%;
-      margin-bottom: var(--space-lg);
-      box-shadow: var(--shadow-medium);
-    }
-    
-    .process-title {
-      font-size: var(--text-xl);
-      font-weight: 700;
-      color: var(--deep-charcoal);
-      margin-bottom: var(--space-lg);
-      letter-spacing: -0.01em;
-    }
-    
-    .process-description {
-      color: var(--text-gray);
-      line-height: 1.7;
-      font-size: var(--text-base);
-    }
-    
-    /* Premium Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: var(--space-2xl);
-      margin-top: var(--space-3xl);
-    }
-    
-    .service-card {
-      background: var(--gradient-surface);
-      padding: var(--space-2xl);
-      border-radius: 20px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 3px;
-      background: var(--gradient-accent);
-      transition: left 0.6s ease;
-    }
-    
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-strong);
-    }
-    
-    .service-card:hover::before {
-      left: 0;
-    }
-    
-    .service-icon {
+    .card-icon {
       width: 60px;
       height: 60px;
-      background: var(--gradient-depth);
-      border-radius: 16px;
+      background: var(--gradient-primary);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: var(--space-lg);
-      font-size: 1.75rem;
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      transition: all 0.4s ease;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
     }
     
-    .service-card:hover .service-icon {
-      background: var(--gradient-primary);
-      transform: scale(1.1);
-    }
-    
-    .service-title {
-      font-size: var(--text-xl);
+    .card-title {
+      font-size: 1.25rem;
       font-weight: 700;
-      color: var(--deep-charcoal);
-      margin-bottom: var(--space-lg);
-      letter-spacing: -0.01em;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
     }
     
-    .service-description {
-      color: var(--text-gray);
+    .card-description {
+      color: var(--gray-600);
       line-height: 1.7;
-      font-size: var(--text-base);
     }
     
-    /* Enhanced Diagnostic Section */
+    /* Diagnostic Section */
     .diagnostic-section {
-      background: var(--gradient-surface);
-      padding: var(--space-3xl) var(--space-xl);
-      position: relative;
-      border-top: 1px solid rgba(30, 64, 175, 0.1);
-      border-bottom: 1px solid rgba(30, 64, 175, 0.1);
-      overflow: hidden;
-    }
-    
-    .diagnostic-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient-accent);
-      opacity: 0.4;
+      background: var(--gray-50);
+      padding: 5rem 2rem;
     }
     
     .diagnostic-container {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
-    }
-    
-    .diagnostic-header {
-      text-align: center;
-      margin-bottom: var(--space-3xl);
-    }
-    
-    .diagnostic-title {
-      font-family: var(--font-display);
-      font-size: var(--text-4xl);
-      font-weight: 600;
-      background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--primary-blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: var(--space-lg);
-      letter-spacing: -0.025em;
-    }
-    
-    .diagnostic-header p {
-      font-size: var(--text-lg);
-      color: var(--text-gray);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-    
-    .diagnostic-note {
-      max-width: 1000px;
-      margin: var(--space-3xl) auto var(--space-3xl);
-      padding: var(--space-2xl);
-      background: rgba(30, 64, 175, 0.03);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      border-left: 4px solid var(--accent-blue);
-      border-radius: 16px;
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .diagnostic-note::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--gradient-accent);
-      opacity: 0.3;
-    }
-    
-    .diagnostic-note p {
-      margin: 0;
-      line-height: 1.7;
-      color: var(--charcoal);
-      font-size: var(--text-base);
-    }
-    
-    .diagnostic-note strong {
-      color: var(--deep-charcoal);
-      font-weight: 700;
     }
     
     .diagnostic-interface {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-3xl);
-      align-items: start;
+      gap: 3rem;
+      margin-top: 3rem;
     }
     
-    /* Premium System Visual */
     .system-visual {
-      position: relative;
-      height: 520px;
-      background: var(--gradient-surface);
-      border-radius: 24px;
+      background: white;
+      border-radius: 12px;
+      padding: 3rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      box-shadow: var(--shadow-medium);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-    }
-    
-    .system-visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(30, 64, 175, 0.05) 0%, transparent 60%);
-      pointer-events: none;
+      box-shadow: var(--shadow-md);
+      min-height: 400px;
     }
     
     .hvac-diagram {
       position: relative;
-      width: 400px;
-      height: 400px;
+      width: 100%;
+      max-width: 350px;
+      aspect-ratio: 1;
     }
     
-    .unit-outdoor, .unit-indoor {
+    .unit {
       position: absolute;
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       background: var(--gradient-primary);
-      border-radius: 16px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      text-align: center;
-      font-weight: 700;
-      box-shadow: var(--shadow-strong);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      letter-spacing: 0.02em;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      font-weight: 600;
+      font-size: 0.875rem;
+      box-shadow: var(--shadow-lg);
     }
     
     .unit-outdoor {
-      top: 12%;
-      left: 6%;
+      top: 10%;
+      left: 10%;
     }
     
     .unit-indoor {
-      bottom: 12%;
-      right: 6%;
-    }
-    
-    .unit-outdoor:hover, .unit-indoor:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: var(--shadow-premium);
+      bottom: 10%;
+      right: 10%;
     }
     
     .flow-line {
       position: absolute;
-      width: 4px;
-      height: 160px;
-      background: var(--gradient-accent);
+      width: 3px;
+      height: 200px;
+      background: var(--blue-600);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(45deg);
-      border-radius: 2px;
-      box-shadow: var(--shadow-glow);
-      overflow: hidden;
+      opacity: 0.5;
     }
     
-    .flow-line::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: 0;
-      right: 0;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent 40%,
-        rgba(255, 255, 255, 0.6) 50%,
-        transparent 60%
-      );
-      animation: flow-shimmer 3s ease-in-out infinite;
-    }
-    
-    @keyframes flow-shimmer {
-      0%, 100% { transform: translateY(-100%); }
-      50% { transform: translateY(100%); }
-    }
-    
-    .flow-particle {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: radial-gradient(circle, var(--bright-blue) 0%, var(--accent-blue) 100%);
-      border-radius: 50%;
-      animation: flow 3s ease-in-out infinite;
-      box-shadow: 0 0 12px rgba(96, 165, 250, 0.8);
-    }
-    
-    @keyframes flow {
-      from { 
-        transform: translateY(-15px);
-        opacity: 0;
-        scale: 0.3;
-      }
-      10% { 
-        opacity: 1;
-        scale: 1;
-      }
-      90% { 
-        opacity: 1;
-        scale: 1;
-      }
-      to { 
-        transform: translateY(170px);
-        opacity: 0;
-        scale: 0.3;
-      }
-    }
-    
-    /* Premium Diagnostic Controls */
     .diagnostic-controls {
       display: flex;
       flex-direction: column;
-      gap: var(--space-2xl);
+      gap: 2rem;
     }
     
     .control-group {
-      background: var(--gradient-surface);
-      padding: var(--space-2xl);
-      border-radius: 20px;
-      box-shadow: var(--shadow-medium);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .control-group::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient-accent);
-      opacity: 0.3;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
     }
     
     .control-label {
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
-      color: var(--text-gray);
-      margin-bottom: var(--space-lg);
+      font-size: 0.875rem;
+      color: var(--gray-600);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.05em;
       font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-    
-    .control-label::before {
-      content: '◦';
-      color: var(--accent-blue);
-      font-size: 1.3em;
+      margin-bottom: 1.5rem;
     }
     
     .symptom-btn {
       display: block;
       width: 100%;
-      padding: var(--space-lg) var(--space-lg);
-      margin-bottom: var(--space-md);
-      background: rgba(255, 255, 255, 0.9);
-      border: 2px solid rgba(30, 64, 175, 0.1);
-      border-radius: 12px;
-      font-family: var(--font-sans);
-      font-size: var(--text-base);
-      font-weight: 500;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      background: white;
+      border: 2px solid var(--gray-400);
+      border-radius: 8px;
+      font-size: 1rem;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
       text-align: left;
-      color: var(--charcoal);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .symptom-btn::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 0;
-      background: var(--gradient-primary);
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 0;
-    }
-    
-    .symptom-btn span {
-      position: relative;
-      z-index: 1;
-      transition: color 0.4s ease;
-    }
-    
-    .symptom-btn:last-child {
-      margin-bottom: 0;
+      color: var(--gray-800);
     }
     
     .symptom-btn:hover {
-      background: var(--gradient-primary);
+      background: var(--blue-700);
       color: white;
-      border-color: transparent;
-      transform: translateX(6px);
-      box-shadow: var(--shadow-medium);
-    }
-    
-    .symptom-btn:hover span {
-      color: white;
-    }
-    
-    .symptom-btn:hover::before {
-      width: 100%;
-    }
-    
-    .symptom-btn.active {
-      background: var(--gradient-primary);
-      color: white;
-      border-color: transparent;
-      box-shadow: var(--shadow-medium);
+      border-color: var(--blue-700);
       transform: translateX(4px);
     }
     
-    .symptom-btn.active span {
+    .symptom-btn.active {
+      background: var(--blue-700);
       color: white;
+      border-color: var(--blue-700);
     }
     
-    .symptom-btn.active::before {
-      width: 100%;
-    }
-    
-    .diagnosis-result {
+    #diagnosis-display {
+      color: var(--gray-600);
       line-height: 1.8;
-      font-size: var(--text-base);
+      min-height: 150px;
     }
     
     .diagnosis-result strong {
-      color: var(--deep-charcoal);
+      color: var(--gray-800);
       display: block;
-      margin-top: var(--space-lg);
-      margin-bottom: var(--space-md);
-      font-weight: 700;
-      font-size: var(--text-lg);
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
     
-    .diagnosis-result strong:first-child {
-      margin-top: 0;
+    /* Disclaimer Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      animation: fadeIn 0.3s ease;
     }
     
-    .diagnosis-result em {
-      display: block;
-      margin-top: var(--space-lg);
-      padding-top: var(--space-lg);
-      border-top: 1px solid rgba(30, 64, 175, 0.1);
-      font-style: italic;
-      color: var(--text-gray);
-      font-size: var(--text-sm);
-      line-height: 1.6;
+    .modal-overlay.active {
+      display: flex;
     }
     
-    /* Premium Case Study */
-    .case-study {
-      background: var(--gradient-surface);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      border-radius: 20px;
-      padding: var(--space-3xl);
-      margin: var(--space-3xl) 0;
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     
-    .case-header {
-      border-bottom: 2px solid rgba(30, 64, 175, 0.1);
-      padding-bottom: var(--space-lg);
-      margin-bottom: var(--space-xl);
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease;
+      position: relative;
     }
     
-    .case-title {
-      font-size: var(--text-2xl);
-      font-weight: 700;
-      color: var(--deep-charcoal);
-      margin-bottom: var(--space-sm);
-      letter-spacing: -0.01em;
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     
-    .case-meta {
-      font-size: var(--text-sm);
-      color: var(--text-gray);
-      font-weight: 500;
-    }
-    
-    .case-section {
-      margin-bottom: var(--space-xl);
-    }
-    
-    .case-section h4 {
-      font-size: var(--text-lg);
-      font-weight: 700;
-      color: var(--charcoal);
-      margin-bottom: var(--space-lg);
+    .modal-header {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
     
-    .case-section ul {
-      list-style: none;
-      margin-left: var(--space-lg);
-    }
-    
-    .case-section li {
-      margin-bottom: var(--space-sm);
-      color: var(--text-gray);
-      position: relative;
-      padding-left: var(--space-lg);
-      line-height: 1.6;
-    }
-    
-    .case-section li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--accent-blue);
-      font-weight: bold;
-    }
-    
-    .case-data {
-      background: rgba(30, 64, 175, 0.05);
-      padding: var(--space-lg);
+    .modal-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gradient-primary);
       border-radius: 12px;
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
-      margin: var(--space-lg) 0;
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      white-space: pre-line;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
     }
     
-    .case-insight {
-      background: rgba(30, 64, 175, 0.03);
-      border-left: 4px solid var(--accent-blue);
-      padding: var(--space-lg) var(--space-lg);
-      margin: var(--space-lg) 0;
-      font-style: italic;
-      color: var(--charcoal);
-      border-radius: 0 12px 12px 0;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-800);
     }
     
-    /* Premium Contact Section */
-    .contact-section {
-      background: var(--gradient-surface);
-      border-radius: 24px;
-      margin: var(--space-3xl) auto;
-      position: relative;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(30, 64, 175, 0.1);
+    .modal-body {
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 2rem;
     }
     
+    .modal-body strong {
+      color: var(--gray-800);
+      font-weight: 600;
+    }
+    
+    .modal-footer {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
+    
+    .modal-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      font-size: 1rem;
+    }
+    
+    .modal-btn-primary {
+      background: var(--gradient-primary);
+      color: white;
+    }
+    
+    .modal-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    /* Floating Contact */
+    .floating-contact {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+    }
+    
+    .contact-bubble {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-lg);
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .contact-bubble:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Contact Section */
     .contact-info {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-xl);
-      margin-top: var(--space-3xl);
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
     }
     
     .contact-item {
-      background: rgba(255, 255, 255, 0.9);
-      padding: var(--space-2xl);
-      border-radius: 16px;
-      box-shadow: var(--shadow-soft);
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
       text-align: center;
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .contact-item:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-medium);
+      border: 1px solid rgba(0,0,0,0.05);
     }
     
     .contact-item h3 {
-      color: var(--deep-charcoal);
-      margin-bottom: var(--space-lg);
-      font-size: var(--text-lg);
-      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
     }
     
     .contact-item a {
-      color: var(--accent-blue);
+      color: var(--blue-700);
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s ease;
     }
     
     .contact-item a:hover {
-      color: var(--deep-blue);
+      text-decoration: underline;
     }
     
-    /* Premium Footer */
+    /* Footer */
     .footer {
-      background: var(--gradient-primary);
+      background: var(--gray-800);
       color: rgba(255, 255, 255, 0.9);
       text-align: center;
-      padding: var(--space-3xl) var(--space-xl);
-      margin-top: var(--space-3xl);
+      padding: 3rem 2rem;
+      margin-top: 5rem;
     }
     
     .footer p {
-      font-size: var(--text-sm);
+      font-size: 0.875rem;
       line-height: 1.7;
       max-width: 700px;
       margin: 0 auto;
-      font-weight: 400;
     }
     
-    /* Mobile optimizations */
+    /* Mobile Responsive */
     @media (max-width: 768px) {
-      .floating-contact {
-        bottom: 30px;
-        right: 30px;
-      }
-      
-      .contact-bubble {
-        width: 70px;
-        height: 70px;
-      }
-      
-      .contact-icon {
-        font-size: 1.75rem;
-      }
-      
-      .contact-tooltip {
-        display: none;
+      .nav-toggle {
+        display: flex;
       }
       
       .nav-links {
@@ -1662,375 +761,238 @@
         left: 0;
         right: 0;
         flex-direction: column;
-        background: rgba(255, 255, 255, 0.98);
-        padding: var(--space-xl);
-        gap: var(--space-lg);
-        border-bottom: 1px solid rgba(30, 64, 175, 0.1);
-        box-shadow: var(--shadow-medium);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
+        background: white;
+        padding: 2rem;
+        gap: 1rem;
+        box-shadow: var(--shadow-lg);
       }
       
       .nav-links.active {
         display: flex;
       }
       
-      .nav-toggle {
-        display: flex;
-      }
-      
       .hero-section {
-        padding: 120px var(--space-lg) 80px;
+        padding: 100px 1.5rem 60px;
       }
       
       .cta-container {
         flex-direction: column;
         width: 100%;
         max-width: 320px;
+        margin: 0 auto;
       }
       
-      .cta-primary, .cta-secondary {
+      .btn {
         width: 100%;
         justify-content: center;
       }
       
-      .logo-design {
-        width: 140px;
-        height: 160px;
-      }
-      
       section {
-        padding: var(--space-3xl) var(--space-lg);
-      }
-      
-      .services-grid, .process-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .diagnostic-section {
-        padding: var(--space-3xl) var(--space-lg);
+        padding: 3rem 1.5rem;
       }
       
       .diagnostic-interface {
         grid-template-columns: 1fr;
-        gap: var(--space-xl);
+        gap: 2rem;
       }
       
       .system-visual {
-        height: 360px;
+        min-height: 300px;
       }
       
-      .hvac-diagram {
-        width: 320px;
-        height: 320px;
+      .modal-content {
+        padding: 2rem;
       }
       
-      .unit-outdoor,
-      .unit-indoor {
-        width: 120px;
-        height: 120px;
-        font-size: 0.7rem;
+      .floating-contact {
+        bottom: 20px;
+        right: 20px;
       }
       
-      .flow-line {
-        height: 140px;
+      .contact-bubble {
+        width: 60px;
+        height: 60px;
+      }
+    }
+    
+    /* Accessibility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    
+    /* Focus styles */
+    a:focus,
+    button:focus,
+    input:focus,
+    textarea:focus {
+      outline: 2px solid var(--blue-600);
+      outline-offset: 2px;
+    }
+    
+    /* Print styles */
+    @media print {
+      .nav-container,
+      .floating-contact,
+      .modal-overlay {
+        display: none !important;
       }
       
-      .diagnostic-title {
-        font-size: var(--text-3xl);
+      body {
+        font-size: 12pt;
+        line-height: 1.5;
       }
       
-      .control-group {
-        padding: var(--space-lg);
-      }
-      
-      .case-study {
-        padding: var(--space-xl) var(--space-lg);
+      section {
+        page-break-inside: avoid;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="nav-container" id="navbar">
+  <!-- Navigation -->
+  <nav class="nav-container" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav">
-      <a href="#home" class="logo-text">FIDELITY</a>
+      <a href="#home" class="logo-text" aria-label="Fidelity Mechanical Solutions Home">FIDELITY</a>
       
-      <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       
-      <div class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#philosophy">Philosophy</a>
-        <a href="#approach">Our Approach</a>
-        <a href="#services">Services</a>
-        <a href="#diagnostics">Diagnostics</a>
-        <a href="#process">Process</a>
-        <a href="#case-studies">Case Studies</a>
-        <a href="#contact">Contact</a>
+      <div class="nav-links" id="navLinks" role="menu">
+        <a href="#home" role="menuitem">Home</a>
+        <a href="#philosophy" role="menuitem">Philosophy</a>
+        <a href="#services" role="menuitem">Services</a>
+        <a href="#diagnostics" role="menuitem">Diagnostics</a>
+        <a href="#process" role="menuitem">Process</a>
+        <a href="#contact" role="menuitem">Contact</a>
       </div>
     </div>
   </nav>
   
-  <section id="home" class="hero-section">
+  <!-- Hero Section -->
+  <section id="home" class="hero-section" role="banner">
     <div class="hero-content">
-      <div class="hero-logo">
-        <!-- Premium Shield logo design with enhanced thermometer -->
-        <div class="logo-design">
-          <div class="logo-shield">
-            <div class="shield-bg"></div>
-            <div class="shield-inner">
-              <div class="thermo-circle">
-                <div class="thermometer-icon">
-                  <div class="thermo-tube"></div>
-                  <div class="thermo-bulb"></div>
-                  <div class="mercury"></div>
-                  <div class="temp-marks">
-                    <div class="temp-mark"></div>
-                    <div class="temp-mark"></div>
-                    <div class="temp-mark"></div>
-                    <div class="temp-mark"></div>
-                    <div class="temp-mark"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="shield-accents">
-              <div class="accent-dot"></div>
-              <div class="accent-dot"></div>
-              <div class="accent-dot"></div>
-              <div class="accent-dot"></div>
-              <div class="accent-dot"></div>
-              <div class="accent-dot"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="hero-logo" aria-hidden="true"></div>
       <h1 class="hero-title">Fidelity Mechanical Solutions</h1>
       <p class="hero-subtitle">More than service — this is how we think, how we move, and how we work in your space with respect and clarity.</p>
       <p class="hero-tagline">Fidelity is the foundation.</p>
       <div class="cta-container">
-        <a href="#contact" class="cta-primary">Get Free Estimate</a>
-        <a href="#diagnostics" class="cta-secondary">Try Diagnostic Tool</a>
+        <a href="#contact" class="btn btn-primary">Get Free Estimate</a>
+        <a href="#diagnostics" class="btn btn-secondary">Try Diagnostic Tool</a>
       </div>
     </div>
   </section>
   
-  <section id="philosophy">
+  <!-- Philosophy Section -->
+  <section id="philosophy" aria-labelledby="philosophy-title">
     <div class="section-header">
-      <h2 class="section-title">Our Philosophy</h2>
+      <h2 id="philosophy-title" class="section-title">Our Philosophy</h2>
       <p class="section-subtitle">Fidelity means more than showing up — it means showing the work, standing by the outcome, and doing it again with clarity.</p>
     </div>
-    
     <p>We don't sell services — we diagnose systems, educate clients, and build solutions that make sense technically and financially. Our job isn't to be the hero of your system. It's to become invisible through competence.</p>
-    
     <p>There's no upsell pressure here. Just real diagnostics, documented work, and informed decisions — because clarity creates control, and your understanding is part of the repair.</p>
-    
-    <p>Our commitment is to the craft, the client, and the principle that systems tell the truth — we just have to listen well enough to catch it before it breaks.</p>
-    
-    <p>This is how mechanical work should be done. This is Fidelity.</p>
   </section>
   
-  <section id="approach">
+  <!-- Services Section -->
+  <section id="services" aria-labelledby="services-title">
     <div class="section-header">
-      <h2 class="section-title">Our Approach</h2>
-      <p class="section-subtitle">Technical excellence delivered with systematic precision and genuine care for your mechanical environment.</p>
+      <h2 id="services-title" class="section-title">Services</h2>
+      <p class="section-subtitle">Comprehensive mechanical solutions designed for performance, longevity, and peace of mind.</p>
     </div>
-    <p>We are a mechanical service company organized around one premise: that technical work, client understanding, and professional development are not separate functions — they are the integrated disciplines that define exceptional service delivery.</p>
-    <p>Our theoretical framework emphasizes root-cause methodology over surface-level fixes. We educate without condescension and solve problems with systematic precision that honors both technical excellence and human understanding.</p>
-    <p>Every interaction becomes an opportunity to demonstrate mastery through clarity, building long-term relationships based on competence, transparency, and measurable results.</p>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">🔧</div>
+        <h3 class="card-title">System Installation</h3>
+        <p class="card-description">Complete HVAC installations with integrated monitoring, comprehensive commissioning, and performance validation.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">🔍</div>
+        <h3 class="card-title">Diagnostics & Repair</h3>
+        <p class="card-description">Root-cause analysis with comprehensive system evaluation. Every diagnosis includes detailed reporting and optimization recommendations.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">⚙️</div>
+        <h3 class="card-title">Preventive Maintenance</h3>
+        <p class="card-description">Proactive maintenance protocols with trend analysis. Scheduled inspections designed to prevent failures and optimize performance.</p>
+      </div>
+    </div>
   </section>
   
-  <!-- Enhanced Interactive Diagnostic Tool -->
-  <section id="diagnostics" class="diagnostic-section">
+  <!-- Interactive Diagnostic Tool -->
+  <section id="diagnostics" class="diagnostic-section" aria-labelledby="diagnostics-title">
     <div class="diagnostic-container">
-      <div class="diagnostic-header">
-        <h2 class="diagnostic-title">Self-Diagnose Your System</h2>
-        <p>Experience our diagnostic approach firsthand. Click symptoms to explore probable causes and receive honest guidance about what your system might be telling you.</p>
-      </div>
-      
-      <div class="diagnostic-note">
-        <p><strong>Understanding System Complexity:</strong> Every HVAC system is unique. Age, model, installation quality, maintenance history, and environmental factors all influence how problems manifest and what repairs actually cost. This tool demonstrates our diagnostic thinking, but your specific situation requires hands-on analysis. We'll always explain what we find and your options before any work begins — because informed decisions create better outcomes.</p>
+      <div class="section-header">
+        <h2 id="diagnostics-title" class="section-title">Self-Diagnose Your System</h2>
+        <p class="section-subtitle">Experience our diagnostic approach firsthand. Select symptoms to explore probable causes.</p>
       </div>
       
       <div class="diagnostic-interface">
-        <div class="system-visual">
+        <div class="system-visual" aria-hidden="true">
           <div class="hvac-diagram">
-            <div class="unit-outdoor">OUTDOOR<br>UNIT</div>
-            <div class="unit-indoor">INDOOR<br>UNIT</div>
-            <div class="flow-line">
-              <div class="flow-particle"></div>
-              <div class="flow-particle" style="animation-delay: 0.7s"></div>
-              <div class="flow-particle" style="animation-delay: 1.4s"></div>
-              <div class="flow-particle" style="animation-delay: 2.1s"></div>
-            </div>
+            <div class="unit unit-outdoor">OUTDOOR<br>UNIT</div>
+            <div class="unit unit-indoor">INDOOR<br>UNIT</div>
+            <div class="flow-line"></div>
           </div>
         </div>
         
         <div class="diagnostic-controls">
           <div class="control-group">
             <div class="control-label">Select Your System's Symptom</div>
-            <button class="symptom-btn"><span>System won't turn on at all</span></button>
-            <button class="symptom-btn"><span>Cooling but not enough</span></button>
-            <button class="symptom-btn"><span>Strange noises (clicking, buzzing, grinding)</span></button>
-            <button class="symptom-btn"><span>Higher than normal energy bills</span></button>
-            <button class="symptom-btn"><span>Ice forming on outdoor unit</span></button>
+            <button class="symptom-btn" data-symptom="no-power">System won't turn on at all</button>
+            <button class="symptom-btn" data-symptom="weak-cooling">Cooling but not enough</button>
+            <button class="symptom-btn" data-symptom="noises">Strange noises (clicking, buzzing, grinding)</button>
+            <button class="symptom-btn" data-symptom="high-bills">Higher than normal energy bills</button>
+            <button class="symptom-btn" data-symptom="ice">Ice forming on outdoor unit</button>
           </div>
           
           <div class="control-group">
             <div class="control-label">Diagnostic Analysis</div>
-            <p id="diagnosis-display">Select a symptom above to explore possible causes and next steps. This educational tool helps you understand what might be happening with your system, but remember — accurate diagnosis requires professional assessment of your specific equipment and conditions.</p>
+            <div id="diagnosis-display">Select a symptom above to explore possible causes and next steps.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
   
-  <section id="process">
+  <!-- Process Section -->
+  <section id="process" aria-labelledby="process-title">
     <div class="section-header">
-      <h2 class="section-title">How We Work</h2>
+      <h2 id="process-title" class="section-title">How We Work</h2>
       <p class="section-subtitle">A systematic approach that puts clarity and control in your hands.</p>
     </div>
-    <div class="process-grid">
-      <div class="process-step">
-        <div class="process-number">1</div>
-        <h3 class="process-title">Assess with Precision</h3>
-        <p class="process-description">We collect comprehensive system data and diagnose root causes. No guesswork, just methodical analysis backed by measurable evidence.</p>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">1</div>
+        <h3 class="card-title">Assess with Precision</h3>
+        <p class="card-description">We collect comprehensive system data and diagnose root causes. No guesswork, just methodical analysis backed by evidence.</p>
       </div>
-      <div class="process-step">
-        <div class="process-number">2</div>
-        <h3 class="process-title">Educate Clearly</h3>
-        <p class="process-description">You receive real-time understanding and documented recommendations. We explain what we found, why it matters, and what your options are.</p>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">2</div>
+        <h3 class="card-title">Educate Clearly</h3>
+        <p class="card-description">You receive real-time understanding and documented recommendations. We explain what we found and your options.</p>
       </div>
-      <div class="process-step">
-        <div class="process-number">3</div>
-        <h3 class="process-title">Solve Systemically</h3>
-        <p class="process-description">We implement solutions with care, transparency, and follow-up. Every repair addresses the root cause and includes preventive insights.</p>
-      </div>
-    </div>
-  </section>
-  
-  <section id="services">
-    <div class="section-header">
-      <h2 class="section-title">Services</h2>
-      <p class="section-subtitle">Comprehensive mechanical solutions designed for performance, longevity, and peace of mind.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">🔧</div>
-        <h3 class="service-title">System Installation</h3>
-        <p class="service-description">Complete HVAC installations with integrated monitoring, comprehensive commissioning, and performance validation. We establish mechanical ecosystems designed for optimal efficiency and longevity.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🔍</div>
-        <h3 class="service-title">Diagnostics & Repair</h3>
-        <p class="service-description">Root-cause analysis with comprehensive system evaluation. Every diagnosis includes detailed reporting, prevention education, and optimization recommendations with measurable outcomes.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">⚙️</div>
-        <h3 class="service-title">Preventive Maintenance</h3>
-        <p class="service-description">Proactive maintenance protocols with trend analysis and predictive insights. Scheduled inspections designed to prevent failures and optimize system performance year-round.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📊</div>
-        <h3 class="service-title">System Optimization</h3>
-        <p class="service-description">Performance tuning and efficiency improvements for existing systems. Data-driven optimization that extends equipment life and reduces operational costs.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📡</div>
-        <h3 class="service-title">Enhanced Diagnostic Support</h3>
-        <p class="service-description">Our technicians use advanced diagnostic support systems to ensure comprehensive analysis and reduce the possibility of missed issues. This technology enhances our systematic approach while maintaining the human expertise and education that defines our service.</p>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">3</div>
+        <h3 class="card-title">Solve Systemically</h3>
+        <p class="card-description">We implement solutions with care and transparency. Every repair addresses the root cause with preventive insights.</p>
       </div>
     </div>
   </section>
   
-  <section id="case-studies">
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section" aria-labelledby="contact-title">
     <div class="section-header">
-      <h2 class="section-title">Field Case Studies</h2>
-      <p class="section-subtitle">Real diagnostics, real decisions, real results. This is how we work.</p>
-    </div>
-    
-    <div class="case-study">
-      <div class="case-header">
-        <h3 class="case-title">🔍 Commercial Facility No-Cooling Diagnostic</h3>
-        <p class="case-meta">July 2025 | 3.5 Ton Split System | Complete System Recovery</p>
-      </div>
-      
-      <div class="case-section">
-        <h4>📍 Initial Situation</h4>
-        <ul>
-          <li>Outdoor unit completely non-operational</li>
-          <li>Indoor temperature at 85°F during peak summer</li>
-          <li>No previous service documentation available</li>
-          <li>Critical cooling needed for facility operations</li>
-        </ul>
-      </div>
-      
-      <div class="case-section">
-        <h4>🔧 Diagnostic Process</h4>
-        <ul>
-          <li>Electrical testing revealed intermittent power delivery</li>
-          <li>Capacitor tested at 35/3 μF (rated 45/5 μF) - clear failure</li>
-          <li>Manual contactor test confirmed relay functionality</li>
-          <li>Breaker showed physical resistance indicating internal failure</li>
-        </ul>
-      </div>
-      
-      <div class="case-section">
-        <h4>📊 System Analysis</h4>
-        <div class="case-data">Initial Readings:
-• Subcooling: 13.5°F (Target: 10°F)
-• Superheat: 10.5°F
-• Suction: 163 psi | Head: 387 psi
-• System overcharged by ~1.8 lbs</div>
-        <p>Progressive refrigerant recovery performed in 4-6 oz increments, monitoring system response between adjustments.</p>
-        <div class="case-data">Final Readings:
-• Subcooling: 10.2°F ✓
-• Superheat: 11.8°F ✓
-• Suction: 159 psi | Head: 377 psi
-• Supply temp: 53°F | VSAT: 56°F</div>
-      </div>
-      
-      <div class="case-section">
-        <h4>💡 Technical Insights</h4>
-        <div class="case-insight">
-          "System was cooling under heavy load, but the overcharge was causing inefficiency and potential compressor stress. Incremental recovery allowed precise charge adjustment without overshooting targets. This methodical approach ensures longevity and efficiency."
-        </div>
-      </div>
-      
-      <div class="case-section">
-        <h4>✅ Results & Recommendations</h4>
-        <ul>
-          <li>Replaced failed capacitor with American-made Century Supply unit</li>
-          <li>Restored system to manufacturer specifications</li>
-          <li>Identified breaker issue - recommended licensed electrician</li>
-          <li>System operating at peak efficiency with documented baseline</li>
-          <li>Follow-up scheduled to verify charge stability</li>
-        </ul>
-      </div>
-      
-      <div class="case-section">
-        <h4>🎯 Why This Matters</h4>
-        <p>This case demonstrates our commitment to systematic diagnosis over quick fixes. By taking time to properly analyze and adjust the refrigerant charge, we prevented future compressor damage and ensured optimal efficiency. The client received not just a repair, but understanding and documentation for informed decision-making.</p>
-      </div>
-    </div>
-  </section>
-  
-  <section id="team">
-    <div class="section-header">
-      <h2 class="section-title">Professional Development</h2>
-      <p class="section-subtitle">Continuous learning and systematic growth are built into every aspect of our service delivery.</p>
-    </div>
-    <p>Our technicians function as mechanical educators, not just service providers. Professional development is integrated into our workflow, with each service call serving as both problem resolution and skill refinement opportunity.</p>
-    <p>We emphasize systematic thinking and mentorship-based advancement. Continuous education ensures that every team member brings both technical competency and analytical perspective to your mechanical challenges.</p>
-    <p>This commitment to excellence means you benefit from a team that approaches every project with curiosity, precision, and the kind of systematic thinking that prevents problems before they occur.</p>
-  </section>
-  
-  <section id="contact" class="contact-section">
-    <div class="section-header">
-      <h2 class="section-title">Contact</h2>
+      <h2 id="contact-title" class="section-title">Contact</h2>
       <p class="section-subtitle">Ready to experience mechanical service delivered with precision and clarity.</p>
     </div>
     <div class="contact-info">
@@ -2047,197 +1009,226 @@
       <div class="contact-item">
         <h3>Response Time</h3>
         <p><strong>2 hours or less</strong></p>
-        <p>During standard operating hours</p>
+        <p>During operating hours</p>
       </div>
     </div>
   </section>
   
-  <footer class="footer">
-    <p>&copy; 2025 Fidelity Mechanical Solutions. Professional excellence delivered through systematic precision and uncompromising clarity. Revenue emerges as a natural consequence of competent service delivery, not as its primary objective.</p>
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <p>&copy; 2025 Fidelity Mechanical Solutions. Professional excellence delivered through systematic precision and uncompromising clarity.</p>
   </footer>
   
-  <!-- Enhanced Floating Contact Button -->
+  <!-- Floating Contact Button -->
   <div class="floating-contact">
-    <div class="contact-tooltip">
-      Need immediate assistance? Call or text us
-    </div>
-    <a href="tel:713-201-2842" class="contact-bubble" aria-label="Call Fidelity Mechanical Solutions" title="Call us at 713-201-2842">
-      <div class="contact-icon">💬</div>
+    <a href="tel:713-201-2842" class="contact-bubble" aria-label="Call Fidelity Mechanical Solutions">
+      💬
     </a>
   </div>
   
+  <!-- Disclaimer Modal -->
+  <div class="modal-overlay" id="disclaimerModal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-body">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-icon" aria-hidden="true">⚠️</div>
+        <h3 id="modal-title" class="modal-title">Understanding System Complexity</h3>
+      </div>
+      <div id="modal-body" class="modal-body">
+        <p><strong>Important:</strong> Every HVAC system is unique. Age, model, installation quality, maintenance history, and environmental factors all influence how problems manifest and what repairs actually cost.</p>
+        <p>This diagnostic tool demonstrates our analytical approach and helps you understand potential issues, but your specific situation requires hands-on professional analysis.</p>
+        <p>We'll always explain what we find and your options before any work begins — because informed decisions create better outcomes.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn modal-btn-primary" onclick="closeDisclaimer()">I Understand</button>
+      </div>
+    </div>
+  </div>
+  
   <script>
-    // Enhanced navigation with premium interactions - FIXED VERSION
-    const navbar = document.getElementById('navbar');
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    
-    // Mobile menu with premium animations
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+    // Performance-optimized JavaScript
+    (function() {
+      'use strict';
       
-      // Enhanced hamburger animation
-      const bars = navToggle.querySelectorAll('.bar');
-      bars.forEach((bar, index) => {
-        if (navLinks.classList.contains('active')) {
-          if (index === 0) bar.style.transform = 'rotate(45deg) translate(6px, 6px)';
-          if (index === 1) bar.style.opacity = '0';
-          if (index === 2) bar.style.transform = 'rotate(-45deg) translate(6px, -6px)';
-        } else {
-          bar.style.transform = '';
-          bar.style.opacity = '';
-        }
+      // Cache DOM elements
+      const elements = {
+        navbar: document.getElementById('navbar'),
+        navToggle: document.getElementById('navToggle'),
+        navLinks: document.getElementById('navLinks'),
+        symptomBtns: document.querySelectorAll('.symptom-btn'),
+        diagnosisArea: document.getElementById('diagnosis-display'),
+        disclaimerModal: document.getElementById('disclaimerModal')
+      };
+      
+      // Navigation functionality
+      elements.navToggle.addEventListener('click', function() {
+        const isActive = elements.navLinks.classList.toggle('active');
+        this.setAttribute('aria-expanded', isActive);
       });
-    });
-    
-    // Close mobile menu when clicking links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const bars = navToggle.querySelectorAll('.bar');
-        bars.forEach(bar => {
-          bar.style.transform = '';
-          bar.style.opacity = '';
+      
+      // Close mobile menu on link click
+      elements.navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          elements.navLinks.classList.remove('active');
+          elements.navToggle.setAttribute('aria-expanded', 'false');
         });
       });
-    });
-    
-    // FIXED: Consolidated single scroll handler with proper throttling
-    let isScrolling = false;
-    
-    function handleScroll() {
-      if (!isScrolling) {
-        requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          
-          // Navbar scroll effect
-          if (currentScrollY > 100) {
-            navbar.classList.add('scrolled');
+      
+      // Optimized scroll handler with throttling
+      let scrollTimer = null;
+      window.addEventListener('scroll', function() {
+        if (scrollTimer) return;
+        
+        scrollTimer = setTimeout(() => {
+          if (window.scrollY > 100) {
+            elements.navbar.classList.add('scrolled');
           } else {
-            navbar.classList.remove('scrolled');
+            elements.navbar.classList.remove('scrolled');
+          }
+          scrollTimer = null;
+        }, 100);
+      }, { passive: true });
+      
+      // Diagnostic tool data
+      const diagnoses = {
+        'no-power': {
+          causes: "Most common causes: Tripped electrical breaker (simple reset), failed run capacitor (common summer failure), or worn contactor relay (normal wear item).",
+          urgency: "Urgency: HIGH - Complete loss of cooling capability",
+          advice: "Check your electrical panel for tripped breakers first. If the breaker is fine, this typically requires same-day professional service."
+        },
+        'weak-cooling': {
+          causes: "Likely causes: Clogged air filter (maintenance item), refrigerant leak or low charge (requires leak detection), or mechanical component efficiency loss.",
+          urgency: "Urgency: MEDIUM - System working harder than designed",
+          advice: "Replace your air filter if it's been more than 3 months. If that doesn't help within 24 hours, professional diagnosis is recommended."
+        },
+        'noises': {
+          causes: "Common causes: Loose access panel or component (quick adjustment), electrical relay cycling (normal wear), or motor bearing wear.",
+          urgency: "Urgency: LOW to MEDIUM - Usually an early warning",
+          advice: "Record the sound on your phone for diagnosis. Strange noises often indicate developing issues that are cheaper to fix early."
+        },
+        'high-bills': {
+          causes: "Typical causes: Dirty condenser coils reducing heat transfer efficiency, system components working harder due to wear, or refrigerant charge issues.",
+          urgency: "Urgency: LOW - But energy waste compounds monthly",
+          advice: "A professional diagnostic assessment can identify efficiency losses and provide measurable savings recommendations."
+        },
+        'ice': {
+          causes: "Primary causes: Restricted airflow (dirty filter or blocked coils), refrigerant system problems, or control system malfunctions.",
+          urgency: "Urgency: HIGH - Ice formation can damage expensive components",
+          advice: "Turn the system off immediately. This needs prompt professional attention to prevent costly secondary damage."
+        }
+      };
+      
+      // Track if disclaimer has been shown
+      let disclaimerShown = false;
+      
+      // Diagnostic button functionality
+      elements.symptomBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Show disclaimer on first interaction
+          if (!disclaimerShown) {
+            elements.disclaimerModal.classList.add('active');
+            disclaimerShown = true;
+            return;
           }
           
-          isScrolling = false;
+          // Update active state
+          elements.symptomBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Get diagnosis
+          const symptom = this.dataset.symptom;
+          const diagnosis = diagnoses[symptom];
+          
+          if (diagnosis) {
+            // Smooth transition
+            elements.diagnosisArea.style.opacity = '0.3';
+            
+            setTimeout(() => {
+              elements.diagnosisArea.innerHTML = `
+                <div class="diagnosis-result">
+                  <strong>Probable Causes:</strong>
+                  ${diagnosis.causes}
+                  
+                  <strong>${diagnosis.urgency}</strong>
+                  
+                  <strong>Recommended Next Steps:</strong>
+                  ${diagnosis.advice}
+                </div>
+              `;
+              elements.diagnosisArea.style.opacity = '1';
+            }, 200);
+          }
         });
-        isScrolling = true;
-      }
-    }
-    
-    // Single scroll event listener
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Enhanced smooth scrolling with easing
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const offsetTop = target.offsetTop - 100;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
+      });
+      
+      // Close disclaimer modal
+      window.closeDisclaimer = function() {
+        elements.disclaimerModal.classList.remove('active');
+      };
+      
+      // Close modal on overlay click
+      elements.disclaimerModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+        }
+      });
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            const offset = 80; // Account for fixed header
+            const targetPosition = target.offsetTop - offset;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Lazy load animations with Intersection Observer
+      const animateOnScroll = () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+              observer.unobserve(entry.target);
+            }
           });
-        }
-      });
-    });
-    
-    // Enhanced diagnostic responses with premium UX
-    const symptomBtns = document.querySelectorAll('.symptom-btn');
-    const diagnosisArea = document.getElementById('diagnosis-display');
-    
-    const diagnoses = {
-      "System won't turn on at all": {
-        causes: "Most common causes: Tripped electrical breaker (simple reset), failed run capacitor (common summer failure), or worn contactor relay (normal wear item).",
-        urgency: "Urgency: HIGH - Complete loss of cooling capability",
-        advice: "Start by checking your electrical panel for tripped breakers — that's free and might solve the problem immediately. If the breaker is fine, this typically requires same-day professional service. Most causes are routine repairs with predictable costs, but we need hands-on diagnosis to give you accurate options and pricing."
-      },
-      "Cooling but not enough": {
-        causes: "Likely causes: Clogged air filter (maintenance item), refrigerant leak or low charge (requires leak detection), or mechanical component efficiency loss (age-related wear).",
-        urgency: "Urgency: MEDIUM - System working harder than designed",
-        advice: "First step: replace your air filter if it's been more than 3 months. If that doesn't restore performance within 24 hours, the solution could range from simple maintenance to component replacement. Early professional diagnosis prevents expensive secondary damage and higher energy costs."
-      },
-      "Strange noises (clicking, buzzing, grinding)": {
-        causes: "Common causes: Loose access panel or component (quick adjustment), electrical relay cycling (normal wear), or motor bearing wear (mechanical aging).",
-        urgency: "Urgency: LOW to MEDIUM - Usually an early warning before complete failure",
-        advice: "Try to record the sound on your phone — it genuinely helps with diagnosis. Strange noises are often your system asking for help before something fails completely. Addressing these early warnings usually means simpler, less expensive repairs compared to waiting for complete failure."
-      },
-      "Higher than normal energy bills": {
-        causes: "Typical causes: Dirty condenser coils reducing heat transfer efficiency, system components working harder due to wear, or refrigerant charge issues affecting performance.",
-        urgency: "Urgency: LOW - But the energy waste compounds monthly",
-        advice: "Something is forcing your system to work overtime to maintain comfort. Could be maintenance-related (like dirty coils) or component efficiency decline. A professional diagnostic assessment shows exactly where your money is going and what improvements will provide measurable savings."
-      },
-      "Ice forming on outdoor unit": {
-        causes: "Primary causes: Restricted airflow (dirty filter or blocked coils), refrigerant system problems, or control system malfunctions affecting defrost cycles.",
-        urgency: "Urgency: HIGH - Ice formation can damage expensive compressor components",
-        advice: "Turn the system off immediately — running with ice buildup causes progressive damage to expensive parts. This needs prompt professional attention, but the root cause might be simpler than you think. We'll identify the specific issue and prevent costly secondary damage."
-      }
-    };
-    
-    symptomBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        const symptom = this.querySelector('span').textContent;
-        const diagnosis = diagnoses[symptom];
-        
-        if (!diagnosis) return;
-        
-        // Premium button state transitions
-        symptomBtns.forEach(b => {
-          b.classList.remove('active');
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
         });
         
-        this.classList.add('active');
-        
-        // Enhanced diagnosis display with smooth transitions
-        diagnosisArea.style.opacity = '0.4';
-        diagnosisArea.style.transform = 'translateY(10px)';
-        
-        setTimeout(() => {
-          diagnosisArea.innerHTML = `
-            <div class="diagnosis-result">
-              <strong>Probable Causes:</strong>
-              ${diagnosis.causes}
-              
-              <strong>${diagnosis.urgency}</strong>
-              
-              <strong>Recommended Next Steps:</strong>
-              ${diagnosis.advice}
-              
-              <em>Remember: Every system is unique based on age, model, installation, and maintenance history. This educational guidance helps you understand possibilities — accurate diagnosis reveals actual solutions and real costs. We always explain findings and options before any work begins.</em>
-            </div>
-          `;
-          diagnosisArea.style.opacity = '1';
-          diagnosisArea.style.transform = 'translateY(0)';
-        }, 200);
+        document.querySelectorAll('.card').forEach(el => {
+          el.style.animationPlayState = 'paused';
+          observer.observe(el);
+        });
+      };
+      
+      // Initialize animations when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+      } else {
+        animateOnScroll();
+      }
+      
+      // Service Worker for offline support (optional)
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(() => {
+          // Service worker registration failed, app still works normally
+        });
+      }
+      
+      // Error handling for critical functions
+      window.addEventListener('error', function(e) {
+        console.error('Application error:', e.error);
+        // Could send to error tracking service
       });
-    });
-    
-    // Enhanced scroll animations with intersection observer
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-          entry.target.classList.add('animate-in');
-        }
-      });
-    }, observerOptions);
-    
-    // Observe elements for premium animations
-    document.querySelectorAll('.process-step, .service-card, .control-group, .system-visual').forEach(el => {
-      observer.observe(el);
-    });
-    
-    // REMOVED: Problematic parallax effect that caused scroll jitter
-    // The parallax effect has been completely removed to fix scroll issues
-    
-    // Add premium loading state
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
+      
+    })();
   </script>
 </body>
 </html>
