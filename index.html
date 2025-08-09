@@ -3,377 +3,1044 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Fidelity Mechanical Solutions | Premium HVAC Services</title>
+  <meta name="description" content="Experience mechanical excellence. Premium HVAC diagnostics and solutions delivered with uncompromising integrity and technical mastery.">
   
-  <!-- Preconnect to critical origins -->
+  <!-- Premium typography system -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
-  <!-- SEO Meta Tags -->
-  <title>Houston AC Repair Today | Emergency HVAC Service | Fidelity Mechanical 713-201-2842</title>
-  <meta name="description" content="⚡ Houston AC repair in 2 hours or less. Honest pricing, no upsell pressure. Expert HVAC service for Houston, Katy, Sugar Land. Call 713-201-2842 for same-day service.">
-  <meta name="keywords" content="Houston AC repair, emergency HVAC Houston, air conditioning repair Houston TX, same day AC service, Houston HVAC contractor">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-  <link rel="canonical" href="https://fidelitymechanicalsolutions.com/">
+  <!-- Schema.org structured data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HVACBusiness",
+    "name": "Fidelity Mechanical Solutions",
+    "description": "Premium HVAC diagnostics and solutions delivered with technical mastery and clarity",
+    "url": "https://fidelitymechanicalsolutions.com",
+    "telephone": "+1-713-201-2842",
+    "email": "Martinperez@fidelitymechanicalsolutions.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "TX",
+      "addressCountry": "US"
+    },
+    "priceRange": "$$",
+    "openingHours": "Mo-Fr 08:00-18:00",
+    "sameAs": [],
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 30.1445,
+        "longitude": -95.3698
+      },
+      "geoRadius": "50000"
+    }
+  }
+  </script>
   
-  <!-- Open Graph -->
-  <meta property="og:type" content="business.business">
-  <meta property="og:title" content="Houston AC Repair - Same Day Service | Fidelity Mechanical">
-  <meta property="og:description" content="Houston's most trusted HVAC service. 2-hour emergency response. Call 713-201-2842">
-  <meta property="og:url" content="https://fidelitymechanicalsolutions.com/">
-  <meta property="og:image" content="https://fidelitymechanicalsolutions.com/og-image.jpg">
-  
-  <!-- Critical CSS -->
   <style>
     :root {
-      --primary: #1d4ed8;
-      --primary-dark: #1e40af;
-      --secondary: #16a34a;
-      --danger: #dc2626;
-      --warning: #f59e0b;
-      --gray-50: #f8fafc;
-      --gray-100: #f1f5f9;
-      --gray-200: #e2e8f0;
-      --gray-400: #94a3b8;
-      --gray-600: #475569;
-      --gray-800: #1e293b;
-      --white: #ffffff;
-      --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-      --radius: 8px;
-      --font-sans: system-ui, -apple-system, 'Inter', sans-serif;
+      /* Premium color system - sophisticated and trustworthy */
+      --primary-white: #ffffff;
+      --soft-white: #fdfeff;
+      --light-gray: #f8fafc;
+      --medium-gray: #e1e7ef;
+      --text-gray: #64748b;
+      --dark-gray: #475569;
+      --charcoal: #334155;
+      --deep-charcoal: #1e293b;
+      --midnight: #0f172a;
+      
+      /* Premium accent system */
+      --primary-blue: #1e40af;
+      --accent-blue: #3b82f6;
+      --bright-blue: #60a5fa;
+      --deep-blue: #1d4ed8;
+      --navy: #1e3a8a;
+      --brand-navy: #002654;
+      
+      /* Premium gradients */
+      --gradient-primary: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #1e3a8a 100%);
+      --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+      --gradient-surface: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      --gradient-depth: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+      
+      /* Enhanced shadow system */
+      --shadow-soft: 0 1px 3px rgba(30, 64, 175, 0.08);
+      --shadow-medium: 0 4px 16px rgba(30, 64, 175, 0.12);
+      --shadow-strong: 0 8px 32px rgba(30, 64, 175, 0.16);
+      --shadow-premium: 0 12px 48px rgba(30, 64, 175, 0.2);
+      --shadow-glow: 0 0 32px rgba(59, 130, 246, 0.25);
+      --shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.15);
+      
+      /* Typography scale */
+      --text-xs: 0.75rem;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.25rem;
+      --text-2xl: 1.5rem;
+      --text-3xl: 1.875rem;
+      --text-4xl: 2.25rem;
+      --text-5xl: 3rem;
+      --text-6xl: 3.75rem;
+      
+      /* Typography families */
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-display: 'Playfair Display', serif;
+      
+      /* Premium spacing */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
     }
     
+    /* Reset and base styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-    
     body {
       font-family: var(--font-sans);
+      background: var(--soft-white);
+      color: var(--charcoal);
       line-height: 1.6;
-      color: var(--gray-800);
-      background: var(--white);
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      overflow-x: hidden;
     }
     
-    /* Navigation */
-    .nav-wrapper {
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    ::selection {
+      background: var(--accent-blue);
+      color: white;
+    }
+    
+    /* Premium scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--light-gray);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-blue);
+      border-radius: 3px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--deep-blue);
+    }
+    
+    /* Enhanced Navigation */
+    .nav-container {
       position: fixed;
+      width: 100%;
       top: 0;
-      left: 0;
-      right: 0;
       z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .nav-container.scrolled {
       background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
+      box-shadow: var(--shadow-medium);
+      border-bottom: 1px solid rgba(30, 64, 175, 0.15);
     }
     
-    .nav-wrapper.scrolled {
-      box-shadow: var(--shadow-md);
-      background: rgba(255, 255, 255, 0.98);
-    }
-    
-    nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 1.5rem;
+    .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      max-width: 1400px;
+      padding: var(--space-lg) var(--space-xl);
+      margin: 0 auto;
     }
     
-    .logo {
-      font-size: 1.5rem;
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
       font-weight: 700;
-      color: var(--primary);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       text-decoration: none;
+      letter-spacing: -0.025em;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .logo-text::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transform: scaleX(0);
+      transition: all 0.3s ease;
+    }
+    
+    .logo-text:hover::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    
+    .nav-links {
       display: flex;
+      gap: var(--space-2xl);
       align-items: center;
-      gap: 0.5rem;
-      transition: transform 0.3s ease;
     }
     
-    .logo:hover {
-      transform: scale(1.05);
-    }
-    
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .nav-menu {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      list-style: none;
-    }
-    
-    .nav-link {
-      color: var(--gray-600);
+    .nav-links a {
+      color: var(--text-gray);
       text-decoration: none;
       font-weight: 500;
-      padding: 0.5rem 0;
+      font-size: var(--text-sm);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      transition: color 0.3s ease;
+      padding: var(--space-sm) 0;
     }
     
-    .nav-link:hover {
-      color: var(--primary);
-    }
-    
-    .nav-link::after {
+    .nav-links a::before {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0;
+      left: 50%;
       width: 0;
       height: 2px;
-      background: var(--primary);
-      transition: width 0.3s ease;
+      background: var(--gradient-accent);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
     }
     
-    .nav-link:hover::after {
+    .nav-links a:hover {
+      color: var(--primary-blue);
+      transform: translateY(-1px);
+    }
+    
+    .nav-links a:hover::before {
       width: 100%;
     }
     
-    .nav-cta {
-      background: var(--primary);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius);
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .nav-cta:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .mobile-menu-btn {
+    /* Mobile navigation */
+    .nav-toggle {
       display: none;
       flex-direction: column;
-      gap: 4px;
-      padding: 8px;
-      background: transparent;
-      border: none;
       cursor: pointer;
-      min-width: 44px;
-      min-height: 44px;
-    }
-    
-    .mobile-menu-btn span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--gray-800);
+      padding: var(--space-sm);
+      background: rgba(30, 64, 175, 0.05);
+      border-radius: 8px;
       transition: all 0.3s ease;
     }
     
-    /* Hero Section */
-    .hero {
+    .nav-toggle:hover {
+      background: rgba(30, 64, 175, 0.1);
+    }
+    
+    .bar {
+      height: 2px;
+      width: 22px;
+      background: var(--primary-blue);
+      margin: 3px 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 1px;
+    }
+    
+    /* Premium Hero Section */
+    .hero-section {
       min-height: 100vh;
+      padding: 140px var(--space-xl) 100px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 120px 1.5rem 80px;
-      background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+      text-align: center;
+      background: var(--gradient-surface);
       position: relative;
       overflow: hidden;
     }
     
-    .hero::before {
+    /* Enhanced geometric accents */
+    .hero-section::before {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(29, 78, 216, 0.05) 0%, transparent 70%);
-      animation: rotate 30s linear infinite;
+      top: 15%;
+      right: 8%;
+      width: 300px;
+      height: 300px;
+      background: var(--gradient-depth);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: float 8s ease-in-out infinite;
+      filter: blur(40px);
     }
     
-    @keyframes rotate {
-      to { transform: rotate(360deg); }
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 20%;
+      left: 10%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite reverse;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
     }
     
     .hero-content {
+      position: relative;
+      z-index: 10;
       max-width: 900px;
       width: 100%;
-      text-align: center;
+    }
+    
+    /* Premium Shield Logo Design */
+    .hero-logo {
+      margin-bottom: var(--space-3xl);
+      opacity: 0;
+      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    .logo-design {
+      width: 160px;
+      height: 180px;
+      margin: 0 auto;
       position: relative;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: subtle-float 8s ease-in-out infinite;
+      filter: drop-shadow(var(--shadow-premium));
+    }
+    
+    @keyframes subtle-float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    
+    .logo-design:hover {
+      transform: translateY(-6px) scale(1.05);
+      animation-play-state: paused;
+    }
+    
+    /* Enhanced Shield Design */
+    .logo-shield {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Premium shield background with advanced gradients */
+    .shield-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-primary);
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 70%,
+        85% 85%,
+        50% 100%,
+        15% 85%,
+        0 70%
+      );
+      box-shadow: var(--shadow-premium);
+      animation: shield-pulse 6s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Premium gradient overlay */
+    .shield-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 70%
+      );
+      animation: shimmer 4s ease-in-out infinite;
+    }
+    
+    @keyframes shimmer {
+      0%, 100% { transform: translateX(-100%) rotate(45deg); }
+      50% { transform: translateX(200%) rotate(45deg); }
+    }
+    
+    @keyframes shield-pulse {
+      0%, 100% { 
+        box-shadow: var(--shadow-premium);
+        transform: scale(1);
+      }
+      50% { 
+        box-shadow: var(--shadow-glow);
+        transform: scale(1.02);
+      }
+    }
+    
+    /* Enhanced border glow */
+    .shield-bg::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: var(--gradient-accent);
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 70%,
+        85% 85%,
+        50% 100%,
+        15% 85%,
+        0 70%
+      );
+      opacity: 0;
+      animation: shield-glow 4s ease-in-out infinite;
+      z-index: -1;
+    }
+    
+    @keyframes shield-glow {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 0.6; }
+    }
+    
+    /* Premium thermometer design */
+    .shield-inner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 24px;
+    }
+    
+    .thermo-circle {
+      width: 100px;
+      height: 100px;
+      border: 3px solid rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    /* Advanced rotating highlight */
+    .thermo-circle::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: conic-gradient(
+        transparent,
+        rgba(96, 165, 250, 0.8),
+        transparent
+      );
+      animation: rotate-highlight 6s linear infinite;
+    }
+    
+    .thermo-circle::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        transparent 60%,
+        rgba(255, 255, 255, 0.3) 70%,
+        transparent 80%
+      );
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+    
+    @keyframes rotate-highlight {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes pulse-ring {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.1); opacity: 0.6; }
+    }
+    
+    /* Enhanced thermometer icon */
+    .thermometer-icon {
+      position: relative;
+      width: 28px;
+      height: 70px;
+      z-index: 2;
+    }
+    
+    .thermo-tube {
+      position: absolute;
+      width: 14px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 7px 7px 12px 12px;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .thermo-bulb {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 
+        0 0 15px rgba(96, 165, 250, 0.6),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      animation: bulb-glow 3s ease-in-out infinite;
+    }
+    
+    @keyframes bulb-glow {
+      0%, 100% { 
+        box-shadow: 
+          0 0 15px rgba(96, 165, 250, 0.6),
+          inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      50% { 
+        box-shadow: 
+          0 0 25px rgba(96, 165, 250, 0.9),
+          0 0 35px rgba(30, 64, 175, 0.5),
+          inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+    
+    /* Premium mercury animation */
+    .mercury {
+      position: absolute;
+      width: 8px;
+      height: 0;
+      background: linear-gradient(to top, 
+        #ef4444 0%, 
+        #f87171 30%, 
+        #60a5fa 70%, 
+        #3b82f6 100%
+      );
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 4px;
+      animation: mercury-rise 4s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards, 
+                 mercury-pulse 5s ease-in-out 5s infinite;
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+    }
+    
+    @keyframes mercury-rise {
+      from { height: 0; }
+      to { height: 36px; }
+    }
+    
+    @keyframes mercury-pulse {
+      0%, 100% { height: 36px; transform: translateX(-50%) scaleY(1); }
+      50% { height: 42px; transform: translateX(-50%) scaleY(1.05); }
+    }
+    
+    /* Enhanced temperature marks */
+    .temp-marks {
+      position: absolute;
+      right: -24px;
+      top: 8px;
+      height: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .temp-mark {
+      width: 10px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.9);
+      opacity: 0;
+      animation: mark-fade 0.6s ease-out forwards;
+      border-radius: 1px;
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+    }
+    
+    .temp-mark:nth-child(1) { animation-delay: 1.5s; width: 12px; }
+    .temp-mark:nth-child(2) { animation-delay: 1.7s; }
+    .temp-mark:nth-child(3) { animation-delay: 1.9s; width: 8px; }
+    .temp-mark:nth-child(4) { animation-delay: 2.1s; }
+    .temp-mark:nth-child(5) { animation-delay: 2.3s; width: 12px; }
+    
+    @keyframes mark-fade {
+      to { 
+        opacity: 1;
+        transform: translateX(-2px);
+      }
+    }
+    
+    /* Premium accent particles */
+    .shield-accents {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
       z-index: 1;
     }
     
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--danger);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 100px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
-      animation: pulse 2s ease-in-out infinite;
+    .accent-dot {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.9) 0%, rgba(59, 130, 246, 0.6) 100%);
+      border-radius: 50%;
+      opacity: 0;
+      animation: dot-appear 0.8s ease-out forwards;
+      box-shadow: 0 0 8px rgba(96, 165, 250, 0.6);
     }
     
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    .accent-dot:nth-child(1) { 
+      top: 18%; left: 22%; 
+      animation-delay: 2.5s;
+    }
+    .accent-dot:nth-child(2) { 
+      top: 18%; right: 22%; 
+      animation-delay: 2.7s;
+    }
+    .accent-dot:nth-child(3) { 
+      top: 42%; left: 18%; 
+      animation-delay: 2.9s;
+    }
+    .accent-dot:nth-child(4) { 
+      top: 42%; right: 18%; 
+      animation-delay: 3.1s;
+    }
+    .accent-dot:nth-child(5) { 
+      top: 60%; left: 25%; 
+      animation-delay: 3.3s;
+      width: 3px; height: 3px;
+    }
+    .accent-dot:nth-child(6) { 
+      top: 60%; right: 25%; 
+      animation-delay: 3.5s;
+      width: 3px; height: 3px;
     }
     
-    h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
+    @keyframes dot-appear {
+      to { 
+        opacity: 1;
+        transform: scale(1.3);
+      }
+    }
+    
+    /* Enhanced typography */
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 6vw, 4.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--primary-blue) 50%, var(--deep-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-lg);
+      opacity: 0;
+      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+      letter-spacing: -0.03em;
       line-height: 1.1;
-      margin-bottom: 1.5rem;
-      color: var(--gray-800);
     }
     
     .hero-subtitle {
-      font-size: clamp(1.125rem, 2vw, 1.5rem);
-      color: var(--gray-600);
-      margin-bottom: 2rem;
+      font-size: var(--text-xl);
+      color: var(--text-gray);
+      line-height: 1.7;
       max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto var(--space-lg);
+      opacity: 0;
+      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
+      font-weight: 400;
     }
     
-    .cta-group {
+    .hero-tagline {
+      font-size: var(--text-lg);
+      color: var(--primary-blue);
+      font-weight: 600;
+      margin-bottom: var(--space-3xl);
+      opacity: 0;
+      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
+      letter-spacing: -0.01em;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .cta-container {
       display: flex;
-      gap: 1rem;
+      gap: var(--space-lg);
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.1s forwards;
     }
     
-    .btn {
-      padding: 1rem 2rem;
-      border-radius: var(--radius);
+    /* Premium Button System */
+    .cta-primary, .cta-secondary {
+      padding: var(--space-lg) var(--space-2xl);
+      border-radius: 12px;
       font-weight: 600;
+      font-size: var(--text-base);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      transition: all 0.3s ease;
+      gap: var(--space-sm);
       cursor: pointer;
-      border: 2px solid transparent;
-      font-size: 1rem;
-      min-height: 48px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     
-    .btn-primary {
-      background: var(--primary);
+    .cta-primary {
+      background: var(--gradient-primary);
       color: white;
-      box-shadow: var(--shadow-md);
+      border: none;
+      box-shadow: var(--shadow-medium);
     }
     
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+    .cta-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
     }
     
-    .btn-secondary {
-      background: white;
-      color: var(--primary);
-      border-color: var(--primary);
+    .cta-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-premium);
     }
     
-    .btn-secondary:hover {
-      background: var(--primary);
+    .cta-primary:hover::before {
+      left: 100%;
+    }
+    
+    .cta-secondary {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--primary-blue);
+      border: 2px solid rgba(30, 64, 175, 0.2);
+      box-shadow: var(--shadow-soft);
+    }
+    
+    .cta-secondary:hover {
+      background: var(--gradient-primary);
       color: white;
-      transform: translateY(-2px);
+      border-color: transparent;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-strong);
     }
     
-    .trust-signals {
+    /* Enhanced Floating Contact */
+    .floating-contact {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      z-index: 999;
       display: flex;
-      gap: 2rem;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-lg);
+    }
+    
+    .contact-tooltip {
+      background: var(--midnight);
+      color: white;
+      padding: var(--space-lg) var(--space-lg);
+      border-radius: 12px;
+      font-size: var(--text-sm);
+      font-weight: 500;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(15px) scale(0.95);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      box-shadow: var(--shadow-strong);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: relative;
+    }
+    
+    .contact-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -10px;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-left-color: var(--midnight);
+    }
+    
+    .floating-contact:hover .contact-tooltip {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    
+    .contact-bubble {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      padding-top: 2rem;
-      border-top: 1px solid var(--gray-100);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-strong);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: white;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--gray-600);
-      font-size: 0.875rem;
+    .contact-bubble::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: var(--gradient-accent);
+      border-radius: 50%;
+      opacity: 0;
+      animation: bubble-glow 4s ease-in-out infinite;
+      z-index: -1;
     }
     
-    .trust-icon {
-      color: var(--secondary);
-      font-size: 1.25rem;
+    @keyframes bubble-glow {
+      0%, 100% { 
+        opacity: 0;
+        transform: scale(1);
+      }
+      50% { 
+        opacity: 0.8;
+        transform: scale(1.1);
+      }
     }
     
-    /* Services Section */
-    .section {
-      padding: 5rem 1.5rem;
+    .contact-bubble:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: var(--shadow-glow);
     }
     
-    .container {
-      max-width: 1200px;
+    .contact-bubble:active {
+      transform: translateY(-2px) scale(1.05);
+    }
+    
+    .contact-icon {
+      font-size: 2rem;
+      position: relative;
+      z-index: 1;
+      animation: icon-pulse 5s ease-in-out infinite;
+    }
+    
+    @keyframes icon-pulse {
+      0%, 100% { 
+        transform: scale(1);
+      }
+      50% { 
+        transform: scale(1.15);
+      }
+    }
+    
+    .contact-bubble:hover .contact-icon {
+      animation-play-state: paused;
+      transform: scale(1.2);
+    }
+    
+    /* Premium ripple effect */
+    .contact-bubble::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--bright-blue);
+      border-radius: 50%;
+      opacity: 0;
+      animation: ripple 4s ease-out infinite;
+    }
+    
+    @keyframes ripple {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(2.2);
+        opacity: 0;
+      }
+    }
+    
+    /* Enhanced Content Sections */
+    section {
+      padding: var(--space-3xl) var(--space-xl);
+      max-width: 1400px;
       margin: 0 auto;
     }
     
     .section-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: var(--space-3xl);
     }
     
     .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--gray-800);
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--primary-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.025em;
     }
     
     .section-subtitle {
-      font-size: 1.125rem;
-      color: var(--gray-600);
+      font-size: var(--text-lg);
+      color: var(--text-gray);
       max-width: 700px;
       margin: 0 auto;
+      line-height: 1.7;
+      font-weight: 400;
     }
     
-    .service-grid {
+    /* Premium Process Section */
+    .process-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--space-2xl);
+      margin-top: var(--space-3xl);
+    }
+    
+    .process-step {
+      text-align: center;
+      padding: var(--space-2xl);
+      background: var(--gradient-surface);
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .process-step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-accent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .process-step:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-strong);
+    }
+    
+    .process-step:hover::before {
+      opacity: 1;
+    }
+    
+    .process-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-primary);
+      color: white;
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      border-radius: 50%;
+      margin-bottom: var(--space-lg);
+      box-shadow: var(--shadow-medium);
+    }
+    
+    .process-title {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--deep-charcoal);
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.01em;
+    }
+    
+    .process-description {
+      color: var(--text-gray);
+      line-height: 1.7;
+      font-size: var(--text-base);
+    }
+    
+    /* Premium Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--space-2xl);
+      margin-top: var(--space-3xl);
     }
     
     .service-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--gray-100);
-      transition: all 0.3s ease;
+      background: var(--gradient-surface);
+      padding: var(--space-2xl);
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
     }
@@ -382,1298 +1049,1195 @@
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      transform: scaleY(0);
-      transition: transform 0.3s ease;
+      left: -100%;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient-accent);
+      transition: left 0.6s ease;
     }
     
     .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-strong);
     }
     
     .service-card:hover::before {
-      transform: scaleY(1);
+      left: 0;
     }
     
     .service-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      border-radius: 12px;
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-depth);
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
+      margin-bottom: var(--space-lg);
+      font-size: 1.75rem;
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.4s ease;
+    }
+    
+    .service-card:hover .service-icon {
+      background: var(--gradient-primary);
+      transform: scale(1.1);
     }
     
     .service-title {
-      font-size: 1.25rem;
+      font-size: var(--text-xl);
       font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--gray-800);
+      color: var(--deep-charcoal);
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.01em;
     }
     
     .service-description {
-      color: var(--gray-600);
+      color: var(--text-gray);
       line-height: 1.7;
-      margin-bottom: 1rem;
+      font-size: var(--text-base);
     }
     
-    .service-features {
-      list-style: none;
-    }
-    
-    .service-features li {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 0;
-      color: var(--gray-600);
-      font-size: 0.875rem;
-    }
-    
-    .service-features li::before {
-      content: '✓';
-      color: var(--secondary);
-      font-weight: bold;
-    }
-    
-    /* Diagnostic Tool */
+    /* Enhanced Diagnostic Section */
     .diagnostic-section {
-      background: var(--gray-50);
+      background: var(--gradient-surface);
+      padding: var(--space-3xl) var(--space-xl);
+      position: relative;
+      border-top: 1px solid rgba(30, 64, 175, 0.1);
+      border-bottom: 1px solid rgba(30, 64, 175, 0.1);
+      overflow: hidden;
     }
     
-    .diagnostic-tool {
-      background: white;
-      border-radius: 16px;
-      padding: 3rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
+    .diagnostic-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      opacity: 0.4;
+    }
+    
+    .diagnostic-container {
+      max-width: 1400px;
+      margin: 0 auto;
     }
     
     .diagnostic-header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: var(--space-3xl);
     }
     
     .diagnostic-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--gray-800);
-      margin-bottom: 0.5rem;
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--primary-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.025em;
     }
     
-    .symptom-grid {
+    .diagnostic-header p {
+      font-size: var(--text-lg);
+      color: var(--text-gray);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    
+    .diagnostic-note {
+      max-width: 1000px;
+      margin: var(--space-3xl) auto var(--space-3xl);
+      padding: var(--space-2xl);
+      background: rgba(30, 64, 175, 0.03);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .diagnostic-note::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gradient-accent);
+      opacity: 0.3;
+    }
+    
+    .diagnostic-note p {
+      margin: 0;
+      line-height: 1.7;
+      color: var(--charcoal);
+      font-size: var(--text-base);
+    }
+    
+    .diagnostic-note strong {
+      color: var(--deep-charcoal);
+      font-weight: 700;
+    }
+    
+    .diagnostic-interface {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+    
+    /* Premium System Visual */
+    .system-visual {
+      position: relative;
+      height: 520px;
+      background: var(--gradient-surface);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: var(--shadow-medium);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+    }
+    
+    .system-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(30, 64, 175, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    
+    .hvac-diagram {
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+    
+    .unit-outdoor, .unit-indoor {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: var(--gradient-primary);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-align: center;
+      font-weight: 700;
+      box-shadow: var(--shadow-strong);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.02em;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .unit-outdoor {
+      top: 12%;
+      left: 6%;
+    }
+    
+    .unit-indoor {
+      bottom: 12%;
+      right: 6%;
+    }
+    
+    .unit-outdoor:hover, .unit-indoor:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: var(--shadow-premium);
+    }
+    
+    .flow-line {
+      position: absolute;
+      width: 4px;
+      height: 160px;
+      background: var(--gradient-accent);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      border-radius: 2px;
+      box-shadow: var(--shadow-glow);
+      overflow: hidden;
+    }
+    
+    .flow-line::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 0;
+      right: 0;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.6) 50%,
+        transparent 60%
+      );
+      animation: flow-shimmer 3s ease-in-out infinite;
+    }
+    
+    @keyframes flow-shimmer {
+      0%, 100% { transform: translateY(-100%); }
+      50% { transform: translateY(100%); }
+    }
+    
+    .flow-particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, var(--bright-blue) 0%, var(--accent-blue) 100%);
+      border-radius: 50%;
+      animation: flow 3s ease-in-out infinite;
+      box-shadow: 0 0 12px rgba(96, 165, 250, 0.8);
+    }
+    
+    @keyframes flow {
+      from { 
+        transform: translateY(-15px);
+        opacity: 0;
+        scale: 0.3;
+      }
+      10% { 
+        opacity: 1;
+        scale: 1;
+      }
+      90% { 
+        opacity: 1;
+        scale: 1;
+      }
+      to { 
+        transform: translateY(170px);
+        opacity: 0;
+        scale: 0.3;
+      }
+    }
+    
+    /* Premium Diagnostic Controls */
+    .diagnostic-controls {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xl);
+    }
+    
+    .control-group {
+      background: var(--gradient-surface);
+      padding: var(--space-2xl);
+      border-radius: 20px;
+      box-shadow: var(--shadow-medium);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .control-group::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      opacity: 0.3;
+    }
+    
+    .control-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--text-gray);
+      margin-bottom: var(--space-lg);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    
+    .control-label::before {
+      content: '◦';
+      color: var(--accent-blue);
+      font-size: 1.3em;
     }
     
     .symptom-btn {
-      background: white;
-      border: 2px solid var(--gray-200);
-      padding: 1rem;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 1rem;
+      display: block;
+      width: 100%;
+      padding: var(--space-lg) var(--space-lg);
+      margin-bottom: var(--space-md);
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid rgba(30, 64, 175, 0.1);
+      border-radius: 12px;
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
       font-weight: 500;
-      color: var(--gray-600);
-      min-height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: left;
+      color: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .symptom-btn::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background: var(--gradient-primary);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
+    }
+    
+    .symptom-btn span {
+      position: relative;
+      z-index: 1;
+      transition: color 0.4s ease;
+    }
+    
+    .symptom-btn:last-child {
+      margin-bottom: 0;
     }
     
     .symptom-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      background: var(--gradient-primary);
+      color: white;
+      border-color: transparent;
+      transform: translateX(6px);
+      box-shadow: var(--shadow-medium);
+    }
+    
+    .symptom-btn:hover span {
+      color: white;
+    }
+    
+    .symptom-btn:hover::before {
+      width: 100%;
     }
     
     .symptom-btn.active {
-      background: var(--primary);
+      background: var(--gradient-primary);
       color: white;
-      border-color: var(--primary);
+      border-color: transparent;
+      box-shadow: var(--shadow-medium);
+      transform: translateX(4px);
+    }
+    
+    .symptom-btn.active span {
+      color: white;
+    }
+    
+    .symptom-btn.active::before {
+      width: 100%;
     }
     
     .diagnosis-result {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      border: 1px solid var(--gray-200);
-      min-height: 200px;
-      transition: all 0.3s ease;
-    }
-    
-    .diagnosis-result.active {
-      border-color: var(--primary);
-      box-shadow: var(--shadow-md);
-    }
-    
-    .diagnosis-content {
-      color: var(--gray-600);
       line-height: 1.8;
+      font-size: var(--text-base);
     }
     
-    .diagnosis-content h3 {
-      color: var(--gray-800);
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .diagnosis-content p {
-      margin-bottom: 1rem;
-    }
-    
-    .diagnosis-content strong {
-      color: var(--gray-800);
-      font-weight: 600;
-    }
-    
-    .diagnosis-cta {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--gray-200);
-    }
-    
-    /* Process Timeline */
-    .process-timeline {
-      position: relative;
-      margin-top: 3rem;
-    }
-    
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    
-    .process-step {
-      text-align: center;
-      position: relative;
-    }
-    
-    .step-number {
-      width: 48px;
-      height: 48px;
-      background: white;
-      border: 3px solid var(--primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
+    .diagnosis-result strong {
+      color: var(--deep-charcoal);
+      display: block;
+      margin-top: var(--space-lg);
+      margin-bottom: var(--space-md);
       font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--primary);
+      font-size: var(--text-lg);
     }
     
-    .step-title {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--gray-800);
-      margin-bottom: 0.5rem;
+    .diagnosis-result strong:first-child {
+      margin-top: 0;
     }
     
-    .step-description {
-      color: var(--gray-600);
-      font-size: 0.875rem;
+    .diagnosis-result em {
+      display: block;
+      margin-top: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(30, 64, 175, 0.1);
+      font-style: italic;
+      color: var(--text-gray);
+      font-size: var(--text-sm);
       line-height: 1.6;
     }
     
-    /* Reviews */
-    .reviews-section {
-      background: var(--gray-50);
+    /* Premium Case Study */
+    .case-study {
+      background: var(--gradient-surface);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      border-radius: 20px;
+      padding: var(--space-3xl);
+      margin: var(--space-3xl) 0;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+    .case-header {
+      border-bottom: 2px solid rgba(30, 64, 175, 0.1);
+      padding-bottom: var(--space-lg);
+      margin-bottom: var(--space-xl);
     }
     
-    .review-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--gray-100);
-      position: relative;
-    }
-    
-    .review-rating {
-      display: flex;
-      gap: 0.25rem;
-      margin-bottom: 1rem;
-    }
-    
-    .star {
-      color: #fbbf24;
-      font-size: 1.25rem;
-    }
-    
-    .review-text {
-      color: var(--gray-600);
-      line-height: 1.7;
-      margin-bottom: 1rem;
-      font-style: italic;
-    }
-    
-    .review-author {
-      font-weight: 600;
-      color: var(--gray-800);
-    }
-    
-    .review-date {
-      color: var(--gray-400);
-      font-size: 0.875rem;
-    }
-    
-    /* FAQ */
-    .faq-list {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .faq-item {
-      background: white;
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius);
-      margin-bottom: 1rem;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .faq-item:hover {
-      box-shadow: var(--shadow-md);
-    }
-    
-    .faq-question {
-      padding: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--gray-50);
-      font-weight: 600;
-      color: var(--gray-800);
-      transition: background 0.3s ease;
-    }
-    
-    .faq-question:hover {
-      background: var(--gray-100);
-    }
-    
-    .faq-question::after {
-      content: '+';
-      font-size: 1.5rem;
-      color: var(--primary);
-      transition: transform 0.3s ease;
-    }
-    
-    .faq-item.active .faq-question::after {
-      transform: rotate(45deg);
-    }
-    
-    .faq-answer {
-      padding: 0 1.5rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .faq-item.active .faq-answer {
-      padding: 1.5rem;
-      max-height: 500px;
-    }
-    
-    /* Contact */
-    .contact-section {
-      background: var(--gray-50);
-    }
-    
-    .contact-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    
-    .contact-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--gray-100);
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    
-    .contact-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .contact-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      color: white;
-      font-size: 1.5rem;
-    }
-    
-    .contact-method {
-      font-size: 0.875rem;
-      color: var(--gray-400);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    
-    .contact-value {
-      font-size: 1.25rem;
+    .case-title {
+      font-size: var(--text-2xl);
       font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
+      color: var(--deep-charcoal);
+      margin-bottom: var(--space-sm);
+      letter-spacing: -0.01em;
     }
     
-    .contact-value a {
-      color: inherit;
-      text-decoration: none;
+    .case-meta {
+      font-size: var(--text-sm);
+      color: var(--text-gray);
+      font-weight: 500;
     }
     
-    .contact-value a:hover {
-      text-decoration: underline;
+    .case-section {
+      margin-bottom: var(--space-xl);
     }
     
-    .contact-note {
-      color: var(--gray-600);
-      font-size: 0.875rem;
-    }
-    
-    /* Footer */
-    footer {
-      background: var(--gray-800);
-      color: white;
-      padding: 3rem 1.5rem;
-    }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    
-    .footer-section h3 {
-      font-size: 1.125rem;
-      margin-bottom: 1rem;
-      color: white;
-    }
-    
-    .footer-section p,
-    .footer-section a {
-      color: var(--gray-400);
-      text-decoration: none;
-      line-height: 1.8;
-    }
-    
-    .footer-section a:hover {
-      color: white;
-    }
-    
-    .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      margin-top: 2rem;
-      border-top: 1px solid #334155;
-      color: var(--gray-400);
-      font-size: 0.875rem;
-    }
-    
-    /* Floating CTA */
-    .floating-cta {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 999;
-      display: none;
-    }
-    
-    .floating-cta.visible {
-      display: block;
-      animation: bounceIn 0.5s ease;
-    }
-    
-    @keyframes bounceIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.3);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-    
-    .floating-btn {
-      width: 64px;
-      height: 64px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      border-radius: 50%;
+    .case-section h4 {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: var(--space-lg);
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: white;
-      box-shadow: var(--shadow-lg);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
+      gap: var(--space-sm);
     }
     
-    .floating-btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: var(--shadow-xl);
+    .case-section ul {
+      list-style: none;
+      margin-left: var(--space-lg);
     }
     
-    /* Utility Classes */
-    .text-center {
+    .case-section li {
+      margin-bottom: var(--space-sm);
+      color: var(--text-gray);
+      position: relative;
+      padding-left: var(--space-lg);
+      line-height: 1.6;
+    }
+    
+    .case-section li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+    
+    .case-data {
+      background: rgba(30, 64, 175, 0.05);
+      padding: var(--space-lg);
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      margin: var(--space-lg) 0;
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      white-space: pre-line;
+    }
+    
+    .case-insight {
+      background: rgba(30, 64, 175, 0.03);
+      border-left: 4px solid var(--accent-blue);
+      padding: var(--space-lg) var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-style: italic;
+      color: var(--charcoal);
+      border-radius: 0 12px 12px 0;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    /* Premium Contact Section */
+    .contact-section {
+      background: var(--gradient-surface);
+      border-radius: 24px;
+      margin: var(--space-3xl) auto;
+      position: relative;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+    }
+    
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
+      margin-top: var(--space-3xl);
+    }
+    
+    .contact-item {
+      background: rgba(255, 255, 255, 0.9);
+      padding: var(--space-2xl);
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
       text-align: center;
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     
-    .animate-in {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.6s ease forwards;
+    .contact-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
     }
     
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .contact-item h3 {
+      color: var(--deep-charcoal);
+      margin-bottom: var(--space-lg);
+      font-size: var(--text-lg);
+      font-weight: 700;
     }
     
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
+    .contact-item a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
     
-    /* Mobile Responsive */
+    .contact-item a:hover {
+      color: var(--deep-blue);
+    }
+    
+    /* Premium Footer */
+    .footer {
+      background: var(--gradient-primary);
+      color: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      padding: var(--space-3xl) var(--space-xl);
+      margin-top: var(--space-3xl);
+    }
+    
+    .footer p {
+      font-size: var(--text-sm);
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+    
+    /* Mobile optimizations */
     @media (max-width: 768px) {
-      .mobile-menu-btn {
-        display: flex;
+      .floating-contact {
+        bottom: 30px;
+        right: 30px;
       }
       
-      .nav-menu {
+      .contact-bubble {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .contact-icon {
+        font-size: 1.75rem;
+      }
+      
+      .contact-tooltip {
+        display: none;
+      }
+      
+      .nav-links {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        background: white;
         flex-direction: column;
-        padding: 2rem;
-        box-shadow: var(--shadow-lg);
-        gap: 1rem;
+        background: rgba(255, 255, 255, 0.98);
+        padding: var(--space-xl);
+        gap: var(--space-lg);
+        border-bottom: 1px solid rgba(30, 64, 175, 0.1);
+        box-shadow: var(--shadow-medium);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
       }
       
-      .nav-menu.active {
+      .nav-links.active {
         display: flex;
       }
       
-      .nav-cta {
-        width: 100%;
-        justify-content: center;
+      .nav-toggle {
+        display: flex;
       }
       
-      .hero {
-        padding: 100px 1rem 60px;
+      .hero-section {
+        padding: 120px var(--space-lg) 80px;
       }
       
-      .cta-group {
+      .cta-container {
         flex-direction: column;
+        width: 100%;
         max-width: 320px;
-        margin-left: auto;
-        margin-right: auto;
       }
       
-      .btn {
+      .cta-primary, .cta-secondary {
         width: 100%;
         justify-content: center;
       }
       
-      .trust-signals {
-        gap: 1rem;
+      .logo-design {
+        width: 140px;
+        height: 160px;
       }
       
-      .trust-item {
-        flex: 1 1 100%;
-        justify-content: center;
+      section {
+        padding: var(--space-3xl) var(--space-lg);
       }
       
-      .section {
-        padding: 3rem 1rem;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .symptom-grid {
+      .services-grid, .process-grid {
         grid-template-columns: 1fr;
       }
       
-      .diagnosis-cta {
-        flex-direction: column;
+      .diagnostic-section {
+        padding: var(--space-3xl) var(--space-lg);
       }
       
-      .floating-cta {
-        bottom: 20px;
-        right: 20px;
+      .diagnostic-interface {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
       }
       
-      .floating-btn {
-        width: 56px;
-        height: 56px;
+      .system-visual {
+        height: 360px;
       }
-    }
-    
-    /* Accessibility */
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-    
-    /* Focus styles */
-    button:focus-visible,
-    a:focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-    }
-    
-    /* Print styles */
-    @media print {
-      .nav-wrapper,
-      .floating-cta,
-      .cta-group {
-        display: none !important;
+      
+      .hvac-diagram {
+        width: 320px;
+        height: 320px;
+      }
+      
+      .unit-outdoor,
+      .unit-indoor {
+        width: 120px;
+        height: 120px;
+        font-size: 0.7rem;
+      }
+      
+      .flow-line {
+        height: 140px;
+      }
+      
+      .diagnostic-title {
+        font-size: var(--text-3xl);
+      }
+      
+      .control-group {
+        padding: var(--space-lg);
+      }
+      
+      .case-study {
+        padding: var(--space-xl) var(--space-lg);
       }
     }
   </style>
-  
-  <!-- Optimized Font Loading -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "HVACBusiness",
-        "@id": "https://fidelitymechanicalsolutions.com/#business",
-        "name": "Fidelity Mechanical Solutions",
-        "description": "Emergency AC repair and HVAC services in Houston, TX. Same-day service, honest pricing, no upsell pressure.",
-        "url": "https://fidelitymechanicalsolutions.com/",
-        "telephone": "+17132012842",
-        "email": "Martinperez@fidelitymechanicalsolutions.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Houston",
-          "addressRegion": "TX",
-          "addressCountry": "US",
-          "postalCode": "77001"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 29.7604,
-          "longitude": -95.3698
-        },
-        "areaServed": [
-          {"@type": "City", "name": "Houston"},
-          {"@type": "City", "name": "Katy"},
-          {"@type": "City", "name": "Sugar Land"},
-          {"@type": "City", "name": "The Woodlands"},
-          {"@type": "City", "name": "Cypress"},
-          {"@type": "City", "name": "Spring"},
-          {"@type": "City", "name": "Pearland"}
-        ],
-        "priceRange": "$$",
-        "openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-17:00", "Su 10:00-16:00"],
-        "paymentAccepted": ["Cash", "Check", "Credit Card", "Invoice", "Financing Available"],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "287"
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "How quickly can you respond to AC emergencies in Houston?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We guarantee response times of 2 hours or less during business hours for Houston HVAC emergencies. Same-day service is available for most repairs. Text 713-201-2842 for the fastest response."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you provide free estimates for HVAC repairs?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, we provide free, detailed estimates before any work begins. Our diagnostics clearly explain the issue and your repair options with transparent pricing. No surprises, no pressure."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
 </head>
 <body>
-  <!-- Navigation -->
-  <header class="nav-wrapper" id="navbar">
-    <nav role="navigation" aria-label="Main navigation">
-      <a href="/" class="logo">
-        <span class="logo-icon" aria-hidden="true">⚡</span>
-        <span>FIDELITY</span>
-      </a>
+  <nav class="nav-container" id="navbar">
+    <div class="nav">
+      <a href="#home" class="logo-text">FIDELITY</a>
       
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#services" class="nav-link">Services</a></li>
-        <li><a href="#diagnostic" class="nav-link">Free Diagnostic</a></li>
-        <li><a href="#process" class="nav-link">Our Process</a></li>
-        <li><a href="#reviews" class="nav-link">Reviews</a></li>
-        <li><a href="#faq" class="nav-link">FAQ</a></li>
-        <li><a href="tel:7132012842" class="nav-cta">📞 713-201-2842</a></li>
-      </ul>
-      
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
-  </header>
-  
-  <!-- Hero Section -->
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <div class="hero-badge">
-          🔥 Emergency Service Available Now
-        </div>
-        
-        <h1>Houston AC Broke?<br><span style="color: var(--primary);">Same-Day Service Guaranteed</span></h1>
-        
-        <p class="hero-subtitle">
-          Expert HVAC repair with honest pricing. No upsell games, no surprise fees. Just professional service that respects your time and money.
-        </p>
-        
-        <div class="cta-group">
-          <a href="tel:7132012842" class="btn btn-primary">
-            📞 Call Now: 713-201-2842
-          </a>
-          <a href="#diagnostic" class="btn btn-secondary">
-            🔍 Get Free Diagnostic
-          </a>
-        </div>
-        
-        <div class="trust-signals">
-          <div class="trust-item">
-            <span class="trust-icon">✓</span>
-            <span>287+ Five-Star Reviews</span>
-          </div>
-          <div class="trust-item">
-            <span class="trust-icon">✓</span>
-            <span>Licensed & Insured</span>
-          </div>
-          <div class="trust-item">
-            <span class="trust-icon">✓</span>
-            <span>2-Hour Response</span>
-          </div>
-          <div class="trust-item">
-            <span class="trust-icon">✓</span>
-            <span>No Hidden Fees</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Services Section -->
-    <section id="services" class="section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Houston HVAC Services</h2>
-          <p class="section-subtitle">Complete mechanical solutions for Houston homes and businesses</p>
-        </div>
-        
-        <div class="service-grid">
-          <div class="service-card animate-in delay-1">
-            <div class="service-icon">🔧</div>
-            <h3 class="service-title">Emergency AC Repair</h3>
-            <p class="service-description">2-hour response for Houston AC emergencies. We diagnose and fix the real problem, not just symptoms.</p>
-            <ul class="service-features">
-              <li>Same-day service</li>
-              <li>All makes & models</li>
-              <li>Upfront pricing</li>
-              <li>Warranty on repairs</li>
-            </ul>
-          </div>
-          
-          <div class="service-card animate-in delay-2">
-            <div class="service-icon">❄️</div>
-            <h3 class="service-title">AC Installation</h3>
-            <p class="service-description">Energy-efficient HVAC systems sized perfectly for Houston's climate. Professional installation guaranteed.</p>
-            <ul class="service-features">
-              <li>Load calculations</li>
-              <li>Energy Star certified</li>
-              <li>Financing available</li>
-              <li>10-year warranty</li>
-            </ul>
-          </div>
-          
-          <div class="service-card animate-in delay-3">
-            <div class="service-icon">⚙️</div>
-            <h3 class="service-title">Preventive Maintenance</h3>
-            <p class="service-description">Keep your Houston AC running efficiently. Prevent breakdowns before Houston's brutal summer hits.</p>
-            <ul class="service-features">
-              <li>Bi-annual service</li>
-              <li>Priority scheduling</li>
-              <li>15% repair discount</li>
-              <li>Extended warranty</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Diagnostic Tool Section -->
-    <section id="diagnostic" class="section diagnostic-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Free AC Diagnostic Tool</h2>
-          <p class="section-subtitle">Identify your Houston AC problem before we arrive</p>
-        </div>
-        
-        <div class="diagnostic-tool">
-          <div class="diagnostic-header">
-            <h3 class="diagnostic-title">What's Wrong With Your AC?</h3>
-            <p style="color: var(--gray-600);">Select your symptoms below</p>
-          </div>
-          
-          <div class="symptom-grid">
-            <button class="symptom-btn" data-symptom="no-power">
-              <span>🔌 Won't Turn On</span>
-            </button>
-            <button class="symptom-btn" data-symptom="no-cool">
-              <span>🌡️ Not Cooling</span>
-            </button>
-            <button class="symptom-btn" data-symptom="noise">
-              <span>🔊 Strange Noises</span>
-            </button>
-            <button class="symptom-btn" data-symptom="bills">
-              <span>💰 High Bills</span>
-            </button>
-            <button class="symptom-btn" data-symptom="ice">
-              <span>🧊 Ice Buildup</span>
-            </button>
-            <button class="symptom-btn" data-symptom="smell">
-              <span>👃 Bad Smell</span>
-            </button>
-          </div>
-          
-          <div class="diagnosis-result" id="diagnosisResult">
-            <div class="diagnosis-content" id="diagnosisContent">
-              <p style="color: var(--gray-400); text-align: center;">Select a symptom above to see likely causes and solutions</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Process Section -->
-    <section id="process" class="section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Our Houston AC Repair Process</h2>
-          <p class="section-subtitle">Clear, honest, professional. No games, no surprises.</p>
-        </div>
-        
-        <div class="process-timeline">
-          <div class="process-steps">
-            <div class="process-step animate-in delay-1">
-              <div class="step-number">1</div>
-              <h3 class="step-title">Fast Response</h3>
-              <p class="step-description">Call or text 713-201-2842. We'll be there within 2 hours for emergencies.</p>
-            </div>
-            
-            <div class="process-step animate-in delay-2">
-              <div class="step-number">2</div>
-              <h3 class="step-title">Expert Diagnosis</h3>
-              <p class="step-description">We find the real problem using advanced diagnostics. No guesswork.</p>
-            </div>
-            
-            <div class="process-step animate-in delay-3">
-              <div class="step-number">3</div>
-              <h3 class="step-title">Clear Options</h3>
-              <p class="step-description">Get all repair options with upfront pricing. You decide what's best.</p>
-            </div>
-            
-            <div class="process-step animate-in">
-              <div class="step-number">4</div>
-              <h3 class="step-title">Quality Repair</h3>
-              <p class="step-description">Fix it right the first time. We stand behind our work with warranties.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Reviews Section -->
-    <section id="reviews" class="section reviews-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Houston Homeowners Trust Fidelity</h2>
-          <p class="section-subtitle">Real reviews from real Houston HVAC customers</p>
-        </div>
-        
-        <div class="reviews-grid">
-          <div class="review-card animate-in delay-1">
-            <div class="review-rating">
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-            </div>
-            <p class="review-text">"AC died during the August heat wave. They arrived in 90 minutes, diagnosed a bad capacitor, and had us cooling again same day. Fair price, no upsell attempts."</p>
-            <div class="review-author">Sarah M.</div>
-            <div class="review-date">Houston, TX - 2 weeks ago</div>
-          </div>
-          
-          <div class="review-card animate-in delay-2">
-            <div class="review-rating">
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-            </div>
-            <p class="review-text">"Finally, an honest HVAC company! They showed me exactly what was wrong, gave me options, and didn't pressure me. Saved me $800 vs another quote."</p>
-            <div class="review-author">Michael R.</div>
-            <div class="review-date">Katy, TX - 1 month ago</div>
-          </div>
-          
-          <div class="review-card animate-in delay-3">
-            <div class="review-rating">
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-            </div>
-            <p class="review-text">"Martinéz explained everything clearly. No technical jargon, no scare tactics. Just honest assessment and quality work. Highly recommend for Houston AC repair."</p>
-            <div class="review-author">Jennifer L.</div>
-            <div class="review-date">Sugar Land, TX - 3 weeks ago</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- FAQ Section -->
-    <section id="faq" class="section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Houston HVAC FAQs</h2>
-          <p class="section-subtitle">Common questions about AC repair in Houston</p>
-        </div>
-        
-        <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-question" tabindex="0" role="button">
-              How quickly can you respond to AC emergencies in Houston?
-            </div>
-            <div class="faq-answer">
-              <p>We guarantee response times of 2 hours or less during business hours for Houston HVAC emergencies. Same-day service is available for most repairs. Text 713-201-2842 for the fastest response.</p>
-            </div>
-          </div>
-          
-          <div class="faq-item">
-            <div class="faq-question" tabindex="0" role="button">
-              Do you provide free estimates for HVAC repairs?
-            </div>
-            <div class="faq-answer">
-              <p>Yes, we provide free, detailed estimates before any work begins. Our diagnostics clearly explain the issue and your repair options with transparent pricing. No surprises, no pressure.</p>
-            </div>
-          </div>
-          
-          <div class="faq-item">
-            <div class="faq-question" tabindex="0" role="button">
-              What areas of Houston do you serve?
-            </div>
-            <div class="faq-answer">
-              <p>We serve all of Greater Houston including Katy, Sugar Land, The Woodlands, Cypress, Spring, Pearland, and surrounding areas within a 50-mile radius of downtown Houston.</p>
-            </div>
-          </div>
-          
-          <div class="faq-item">
-            <div class="faq-question" tabindex="0" role="button">
-              Why is my Houston AC running but not cooling?
-            </div>
-            <div class="faq-answer">
-              <p>Common causes include dirty filters, low refrigerant, frozen coils, or thermostat issues. Houston's humidity can make these problems worse. We'll diagnose the exact cause and fix it quickly.</p>
-            </div>
-          </div>
-          
-          <div class="faq-item">
-            <div class="faq-question" tabindex="0" role="button">
-              How often should I service my AC in Houston?
-            </div>
-            <div class="faq-answer">
-              <p>Houston's hot, humid climate means your AC works harder. We recommend service twice yearly - spring and fall. Regular maintenance prevents breakdowns during Houston's brutal summers.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Get Your Houston AC Fixed Today</h2>
-          <p class="section-subtitle">Fast response. Honest service. Real solutions.</p>
-        </div>
-        
-        <div class="contact-options">
-          <div class="contact-card">
-            <div class="contact-icon">📱</div>
-            <div class="contact-method">Call or Text</div>
-            <div class="contact-value"><a href="tel:7132012842">713-201-2842</a></div>
-            <div class="contact-note">Text for fastest response</div>
-          </div>
-          
-          <div class="contact-card">
-            <div class="contact-icon">✉️</div>
-            <div class="contact-method">Email</div>
-            <div class="contact-value"><a href="mailto:Martinperez@fidelitymechanicalsolutions.com">Send Message</a></div>
-            <div class="contact-note">For detailed estimates</div>
-          </div>
-          
-          <div class="contact-card">
-            <div class="contact-icon">⚡</div>
-            <div class="contact-method">Response Time</div>
-            <div class="contact-value">2 Hours</div>
-            <div class="contact-note">Emergency service available</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Fidelity Mechanical Solutions</h3>
-        <p>Houston's trusted HVAC service provider. Honest pricing, expert repairs, no games.</p>
-        <p style="margin-top: 1rem;">
-          <strong style="color: white;">24/7 Emergency:</strong><br>
-          <a href="tel:7132012842" style="color: #60a5fa; font-size: 1.25rem;">713-201-2842</a>
-        </p>
+      <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
       </div>
       
-      <div class="footer-section">
-        <h3>Service Areas</h3>
-        <p>Houston • Katy • Sugar Land<br>
-        The Woodlands • Cypress • Spring<br>
-        Pearland • Missouri City • Pasadena<br>
-        League City • Friendswood • Clear Lake</p>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Our Services</h3>
-        <p><a href="#services">Emergency AC Repair</a><br>
-        <a href="#services">HVAC Installation</a><br>
-        <a href="#services">Preventive Maintenance</a><br>
-        <a href="#diagnostic">Free Diagnostic Tool</a></p>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Company Info</h3>
-        <p>License: TACLA123456<br>
-        Insured & Bonded<br>
-        BBB A+ Rating<br>
-        <a href="mailto:Martinperez@fidelitymechanicalsolutions.com">Email Us</a></p>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#approach">Our Approach</a>
+        <a href="#services">Services</a>
+        <a href="#diagnostics">Diagnostics</a>
+        <a href="#process">Process</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2025 Fidelity Mechanical Solutions | Houston, TX | All Rights Reserved</p>
+  </nav>
+  
+  <section id="home" class="hero-section">
+    <div class="hero-content">
+      <div class="hero-logo">
+        <!-- Premium Shield logo design with enhanced thermometer -->
+        <div class="logo-design">
+          <div class="logo-shield">
+            <div class="shield-bg"></div>
+            <div class="shield-inner">
+              <div class="thermo-circle">
+                <div class="thermometer-icon">
+                  <div class="thermo-tube"></div>
+                  <div class="thermo-bulb"></div>
+                  <div class="mercury"></div>
+                  <div class="temp-marks">
+                    <div class="temp-mark"></div>
+                    <div class="temp-mark"></div>
+                    <div class="temp-mark"></div>
+                    <div class="temp-mark"></div>
+                    <div class="temp-mark"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="shield-accents">
+              <div class="accent-dot"></div>
+              <div class="accent-dot"></div>
+              <div class="accent-dot"></div>
+              <div class="accent-dot"></div>
+              <div class="accent-dot"></div>
+              <div class="accent-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h1 class="hero-title">Fidelity Mechanical Solutions</h1>
+      <p class="hero-subtitle">More than service — this is how we think, how we move, and how we work in your space with respect and clarity.</p>
+      <p class="hero-tagline">Fidelity is the foundation.</p>
+      <div class="cta-container">
+        <a href="#contact" class="cta-primary">Get Free Estimate</a>
+        <a href="#diagnostics" class="cta-secondary">Try Diagnostic Tool</a>
+      </div>
     </div>
+  </section>
+  
+  <section id="philosophy">
+    <div class="section-header">
+      <h2 class="section-title">Our Philosophy</h2>
+      <p class="section-subtitle">Fidelity means more than showing up — it means showing the work, standing by the outcome, and doing it again with clarity.</p>
+    </div>
+    
+    <p>We don't sell services — we diagnose systems, educate clients, and build solutions that make sense technically and financially. Our job isn't to be the hero of your system. It's to become invisible through competence.</p>
+    
+    <p>There's no upsell pressure here. Just real diagnostics, documented work, and informed decisions — because clarity creates control, and your understanding is part of the repair.</p>
+    
+    <p>Our commitment is to the craft, the client, and the principle that systems tell the truth — we just have to listen well enough to catch it before it breaks.</p>
+    
+    <p>This is how mechanical work should be done. This is Fidelity.</p>
+  </section>
+  
+  <section id="approach">
+    <div class="section-header">
+      <h2 class="section-title">Our Approach</h2>
+      <p class="section-subtitle">Technical excellence delivered with systematic precision and genuine care for your mechanical environment.</p>
+    </div>
+    <p>We are a mechanical service company organized around one premise: that technical work, client understanding, and professional development are not separate functions — they are the integrated disciplines that define exceptional service delivery.</p>
+    <p>Our theoretical framework emphasizes root-cause methodology over surface-level fixes. We educate without condescension and solve problems with systematic precision that honors both technical excellence and human understanding.</p>
+    <p>Every interaction becomes an opportunity to demonstrate mastery through clarity, building long-term relationships based on competence, transparency, and measurable results.</p>
+  </section>
+  
+  <!-- Enhanced Interactive Diagnostic Tool -->
+  <section id="diagnostics" class="diagnostic-section">
+    <div class="diagnostic-container">
+      <div class="diagnostic-header">
+        <h2 class="diagnostic-title">Self-Diagnose Your System</h2>
+        <p>Experience our diagnostic approach firsthand. Click symptoms to explore probable causes and receive honest guidance about what your system might be telling you.</p>
+      </div>
+      
+      <div class="diagnostic-note">
+        <p><strong>Understanding System Complexity:</strong> Every HVAC system is unique. Age, model, installation quality, maintenance history, and environmental factors all influence how problems manifest and what repairs actually cost. This tool demonstrates our diagnostic thinking, but your specific situation requires hands-on analysis. We'll always explain what we find and your options before any work begins — because informed decisions create better outcomes.</p>
+      </div>
+      
+      <div class="diagnostic-interface">
+        <div class="system-visual">
+          <div class="hvac-diagram">
+            <div class="unit-outdoor">OUTDOOR<br>UNIT</div>
+            <div class="unit-indoor">INDOOR<br>UNIT</div>
+            <div class="flow-line">
+              <div class="flow-particle"></div>
+              <div class="flow-particle" style="animation-delay: 0.7s"></div>
+              <div class="flow-particle" style="animation-delay: 1.4s"></div>
+              <div class="flow-particle" style="animation-delay: 2.1s"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="diagnostic-controls">
+          <div class="control-group">
+            <div class="control-label">Select Your System's Symptom</div>
+            <button class="symptom-btn"><span>System won't turn on at all</span></button>
+            <button class="symptom-btn"><span>Cooling but not enough</span></button>
+            <button class="symptom-btn"><span>Strange noises (clicking, buzzing, grinding)</span></button>
+            <button class="symptom-btn"><span>Higher than normal energy bills</span></button>
+            <button class="symptom-btn"><span>Ice forming on outdoor unit</span></button>
+          </div>
+          
+          <div class="control-group">
+            <div class="control-label">Diagnostic Analysis</div>
+            <p id="diagnosis-display">Select a symptom above to explore possible causes and next steps. This educational tool helps you understand what might be happening with your system, but remember — accurate diagnosis requires professional assessment of your specific equipment and conditions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="process">
+    <div class="section-header">
+      <h2 class="section-title">How We Work</h2>
+      <p class="section-subtitle">A systematic approach that puts clarity and control in your hands.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-number">1</div>
+        <h3 class="process-title">Assess with Precision</h3>
+        <p class="process-description">We collect comprehensive system data and diagnose root causes. No guesswork, just methodical analysis backed by measurable evidence.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">2</div>
+        <h3 class="process-title">Educate Clearly</h3>
+        <p class="process-description">You receive real-time understanding and documented recommendations. We explain what we found, why it matters, and what your options are.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">3</div>
+        <h3 class="process-title">Solve Systemically</h3>
+        <p class="process-description">We implement solutions with care, transparency, and follow-up. Every repair addresses the root cause and includes preventive insights.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="services">
+    <div class="section-header">
+      <h2 class="section-title">Services</h2>
+      <p class="section-subtitle">Comprehensive mechanical solutions designed for performance, longevity, and peace of mind.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3 class="service-title">System Installation</h3>
+        <p class="service-description">Complete HVAC installations with integrated monitoring, comprehensive commissioning, and performance validation. We establish mechanical ecosystems designed for optimal efficiency and longevity.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <h3 class="service-title">Diagnostics & Repair</h3>
+        <p class="service-description">Root-cause analysis with comprehensive system evaluation. Every diagnosis includes detailed reporting, prevention education, and optimization recommendations with measurable outcomes.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3 class="service-title">Preventive Maintenance</h3>
+        <p class="service-description">Proactive maintenance protocols with trend analysis and predictive insights. Scheduled inspections designed to prevent failures and optimize system performance year-round.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3 class="service-title">System Optimization</h3>
+        <p class="service-description">Performance tuning and efficiency improvements for existing systems. Data-driven optimization that extends equipment life and reduces operational costs.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📡</div>
+        <h3 class="service-title">Enhanced Diagnostic Support</h3>
+        <p class="service-description">Our technicians use advanced diagnostic support systems to ensure comprehensive analysis and reduce the possibility of missed issues. This technology enhances our systematic approach while maintaining the human expertise and education that defines our service.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="case-studies">
+    <div class="section-header">
+      <h2 class="section-title">Field Case Studies</h2>
+      <p class="section-subtitle">Real diagnostics, real decisions, real results. This is how we work.</p>
+    </div>
+    
+    <div class="case-study">
+      <div class="case-header">
+        <h3 class="case-title">🔍 Commercial Facility No-Cooling Diagnostic</h3>
+        <p class="case-meta">July 2025 | 3.5 Ton Split System | Complete System Recovery</p>
+      </div>
+      
+      <div class="case-section">
+        <h4>📍 Initial Situation</h4>
+        <ul>
+          <li>Outdoor unit completely non-operational</li>
+          <li>Indoor temperature at 85°F during peak summer</li>
+          <li>No previous service documentation available</li>
+          <li>Critical cooling needed for facility operations</li>
+        </ul>
+      </div>
+      
+      <div class="case-section">
+        <h4>🔧 Diagnostic Process</h4>
+        <ul>
+          <li>Electrical testing revealed intermittent power delivery</li>
+          <li>Capacitor tested at 35/3 μF (rated 45/5 μF) - clear failure</li>
+          <li>Manual contactor test confirmed relay functionality</li>
+          <li>Breaker showed physical resistance indicating internal failure</li>
+        </ul>
+      </div>
+      
+      <div class="case-section">
+        <h4>📊 System Analysis</h4>
+        <div class="case-data">Initial Readings:
+• Subcooling: 13.5°F (Target: 10°F)
+• Superheat: 10.5°F
+• Suction: 163 psi | Head: 387 psi
+• System overcharged by ~1.8 lbs</div>
+        <p>Progressive refrigerant recovery performed in 4-6 oz increments, monitoring system response between adjustments.</p>
+        <div class="case-data">Final Readings:
+• Subcooling: 10.2°F ✓
+• Superheat: 11.8°F ✓
+• Suction: 159 psi | Head: 377 psi
+• Supply temp: 53°F | VSAT: 56°F</div>
+      </div>
+      
+      <div class="case-section">
+        <h4>💡 Technical Insights</h4>
+        <div class="case-insight">
+          "System was cooling under heavy load, but the overcharge was causing inefficiency and potential compressor stress. Incremental recovery allowed precise charge adjustment without overshooting targets. This methodical approach ensures longevity and efficiency."
+        </div>
+      </div>
+      
+      <div class="case-section">
+        <h4>✅ Results & Recommendations</h4>
+        <ul>
+          <li>Replaced failed capacitor with American-made Century Supply unit</li>
+          <li>Restored system to manufacturer specifications</li>
+          <li>Identified breaker issue - recommended licensed electrician</li>
+          <li>System operating at peak efficiency with documented baseline</li>
+          <li>Follow-up scheduled to verify charge stability</li>
+        </ul>
+      </div>
+      
+      <div class="case-section">
+        <h4>🎯 Why This Matters</h4>
+        <p>This case demonstrates our commitment to systematic diagnosis over quick fixes. By taking time to properly analyze and adjust the refrigerant charge, we prevented future compressor damage and ensured optimal efficiency. The client received not just a repair, but understanding and documentation for informed decision-making.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="team">
+    <div class="section-header">
+      <h2 class="section-title">Professional Development</h2>
+      <p class="section-subtitle">Continuous learning and systematic growth are built into every aspect of our service delivery.</p>
+    </div>
+    <p>Our technicians function as mechanical educators, not just service providers. Professional development is integrated into our workflow, with each service call serving as both problem resolution and skill refinement opportunity.</p>
+    <p>We emphasize systematic thinking and mentorship-based advancement. Continuous education ensures that every team member brings both technical competency and analytical perspective to your mechanical challenges.</p>
+    <p>This commitment to excellence means you benefit from a team that approaches every project with curiosity, precision, and the kind of systematic thinking that prevents problems before they occur.</p>
+  </section>
+  
+  <section id="contact" class="contact-section">
+    <div class="section-header">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">Ready to experience mechanical service delivered with precision and clarity.</p>
+    </div>
+    <div class="contact-info">
+      <div class="contact-item">
+        <h3>Phone & Text</h3>
+        <p><strong><a href="tel:713-201-2842">713-201-2842</a></strong></p>
+        <p>Text preferred for fastest response</p>
+      </div>
+      <div class="contact-item">
+        <h3>Email</h3>
+        <p><strong><a href="mailto:Martinperez@fidelitymechanicalsolutions.com">M. Pérez</a></strong></p>
+        <p>Detailed inquiries welcome</p>
+      </div>
+      <div class="contact-item">
+        <h3>Response Time</h3>
+        <p><strong>2 hours or less</strong></p>
+        <p>During standard operating hours</p>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <p>&copy; 2025 Fidelity Mechanical Solutions. Professional excellence delivered through systematic precision and uncompromising clarity. Revenue emerges as a natural consequence of competent service delivery, not as its primary objective.</p>
   </footer>
   
-  <!-- Floating CTA Button -->
-  <div class="floating-cta" id="floatingCTA">
-    <a href="tel:7132012842" class="floating-btn" aria-label="Call for emergency Houston AC repair">
-      📞
+  <!-- Enhanced Floating Contact Button -->
+  <div class="floating-contact">
+    <div class="contact-tooltip">
+      Need immediate assistance? Call or text us
+    </div>
+    <a href="tel:713-201-2842" class="contact-bubble" aria-label="Call Fidelity Mechanical Solutions" title="Call us at 713-201-2842">
+      <div class="contact-icon">💬</div>
     </a>
   </div>
   
-  <!-- Optimized JavaScript -->
   <script>
-    (function() {
-      'use strict';
+    // Enhanced navigation with premium interactions - FIXED VERSION
+    const navbar = document.getElementById('navbar');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    // Mobile menu with premium animations
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
       
-      // Navigation functionality
-      const navbar = document.getElementById('navbar');
-      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      const navMenu = document.getElementById('navMenu');
-      const floatingCTA = document.getElementById('floatingCTA');
-      
-      // Scroll handler
-      let scrollPos = 0;
-      let ticking = false;
-      
-      function handleScroll() {
-        scrollPos = window.scrollY;
-        
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            // Update navbar
-            if (scrollPos > 100) {
-              navbar.classList.add('scrolled');
-            } else {
-              navbar.classList.remove('scrolled');
-            }
-            
-            // Show floating CTA
-            if (scrollPos > 500) {
-              floatingCTA.classList.add('visible');
-            }
-            
-            ticking = false;
-          });
-          
-          ticking = true;
+      // Enhanced hamburger animation
+      const bars = navToggle.querySelectorAll('.bar');
+      bars.forEach((bar, index) => {
+        if (navLinks.classList.contains('active')) {
+          if (index === 0) bar.style.transform = 'rotate(45deg) translate(6px, 6px)';
+          if (index === 1) bar.style.opacity = '0';
+          if (index === 2) bar.style.transform = 'rotate(-45deg) translate(6px, -6px)';
+        } else {
+          bar.style.transform = '';
+          bar.style.opacity = '';
         }
-      }
-      
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      
-      // Mobile menu toggle
-      if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-          const isOpen = navMenu.classList.toggle('active');
-          mobileMenuBtn.classList.toggle('active');
-          mobileMenuBtn.setAttribute('aria-expanded', isOpen);
-        });
-        
-        // Close menu on link click
-        navMenu.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
-            mobileMenuBtn.setAttribute('aria-expanded', 'false');
-          });
-        });
-      }
-      
-      // Smooth scroll
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          const targetId = this.getAttribute('href');
-          if (targetId === '#') return;
-          
-          const target = document.querySelector(targetId);
-          if (target) {
-            e.preventDefault();
-            const offset = 80;
-            const targetPosition = target.offsetTop - offset;
-            
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
-          }
+      });
+    });
+    
+    // Close mobile menu when clicking links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        const bars = navToggle.querySelectorAll('.bar');
+        bars.forEach(bar => {
+          bar.style.transform = '';
+          bar.style.opacity = '';
         });
       });
-      
-      // Diagnostic Tool
-      const symptomBtns = document.querySelectorAll('.symptom-btn');
-      const diagnosisContent = document.getElementById('diagnosisContent');
-      const diagnosisResult = document.getElementById('diagnosisResult');
-      
-      const diagnoses = {
-        'no-power': {
-          icon: '⚡',
-          title: 'Power/Electrical Issue',
-          causes: 'Likely causes: Tripped breaker, blown fuse, failed capacitor, or thermostat malfunction.',
-          severity: 'URGENT',
-          solution: 'Check your breaker panel first. If breakers are fine, this requires professional diagnosis.',
-          action: 'Call us now for same-day electrical diagnosis and repair.'
-        },
-        'no-cool': {
-          icon: '🌡️',
-          title: 'Cooling System Failure',
-          causes: 'Common issues: Low refrigerant (leak), dirty coils, failed compressor, or blocked airflow.',
-          severity: 'HIGH PRIORITY',
-          solution: 'Change your filter first. If no improvement, professional service needed.',
-          action: 'Schedule service today before the problem escalates.'
-        },
-        'noise': {
-          icon: '🔊',
-          title: 'Mechanical Issue Detected',
-          causes: 'Sounds indicate: Loose parts, failing motor, debris in system, or bearing failure.',
-          severity: 'MODERATE',
-          solution: 'Different sounds mean different problems. Recording the sound helps diagnosis.',
-          action: 'Text us a video of the sound for quick diagnosis.'
-        },
-        'bills': {
-          icon: '💰',
-          title: 'Efficiency Problem',
-          causes: 'Energy waste from: Dirty system, refrigerant leak, poor insulation, or oversized unit.',
-          severity: 'COST ALERT',
-          solution: 'Professional tune-up can reduce bills 20-30%.',
-          action: 'Schedule an efficiency audit to start saving.'
-        },
-        'ice': {
-          icon: '🧊',
-          title: 'System Freeze-Up',
-          causes: 'Ice means: Airflow restriction, low refrigerant, or failed blower motor.',
-          severity: 'SHUT OFF NOW',
-          solution: 'Turn off AC immediately to prevent compressor damage.',
-          action: 'Emergency service needed - call immediately.'
-        },
-        'smell': {
-          icon: '⚠️',
-          title: 'Air Quality Issue',
-          causes: 'Odors from: Mold/mildew (musty), electrical issues (burning), or dead animals (rotten).',
-          severity: 'HEALTH CONCERN',
-          solution: 'Different smells require different solutions. Houston humidity promotes mold growth.',
-          action: 'Schedule inspection to identify and eliminate odor source.'
+    });
+    
+    // FIXED: Consolidated single scroll handler with proper throttling
+    let isScrolling = false;
+    
+    function handleScroll() {
+      if (!isScrolling) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          // Navbar scroll effect
+          if (currentScrollY > 100) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+          
+          isScrolling = false;
+        });
+        isScrolling = true;
+      }
+    }
+    
+    // Single scroll event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Enhanced smooth scrolling with easing
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 100;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
         }
-      };
-      
-      symptomBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          // Remove active state from all buttons
-          symptomBtns.forEach(b => {
-            b.classList.remove('active');
-          });
-          
-          // Add active state to clicked button
-          this.classList.add('active');
-          
-          // Get diagnosis
-          const symptom = this.dataset.symptom;
-          const diagnosis = diagnoses[symptom];
-          
-          if (diagnosis) {
-            // Update diagnosis display
-            diagnosisContent.style.opacity = '0';
-            
-            setTimeout(() => {
-              diagnosisContent.innerHTML = `
-                <h3>${diagnosis.icon} ${diagnosis.title}</h3>
-                <p><strong>Probable Causes:</strong> ${diagnosis.causes}</p>
-                <p><strong>Severity:</strong> <span style="color: var(--danger); font-weight: 600;">${diagnosis.severity}</span></p>
-                <p><strong>What To Do:</strong> ${diagnosis.solution}</p>
-                <p><strong>Next Step:</strong> ${diagnosis.action}</p>
-                <div class="diagnosis-cta">
-                  <a href="tel:7132012842" class="btn btn-primary">📞 Call Now: 713-201-2842</a>
-                  <a href="#contact" class="btn btn-secondary">📧 Get Free Estimate</a>
-                </div>
-              `;
-              diagnosisContent.style.opacity = '1';
-              diagnosisResult.classList.add('active');
-            }, 200);
-          }
-        });
       });
-      
-      // FAQ Accordion
-      const faqItems = document.querySelectorAll('.faq-item');
-      
-      faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
+    });
+    
+    // Enhanced diagnostic responses with premium UX
+    const symptomBtns = document.querySelectorAll('.symptom-btn');
+    const diagnosisArea = document.getElementById('diagnosis-display');
+    
+    const diagnoses = {
+      "System won't turn on at all": {
+        causes: "Most common causes: Tripped electrical breaker (simple reset), failed run capacitor (common summer failure), or worn contactor relay (normal wear item).",
+        urgency: "Urgency: HIGH - Complete loss of cooling capability",
+        advice: "Start by checking your electrical panel for tripped breakers — that's free and might solve the problem immediately. If the breaker is fine, this typically requires same-day professional service. Most causes are routine repairs with predictable costs, but we need hands-on diagnosis to give you accurate options and pricing."
+      },
+      "Cooling but not enough": {
+        causes: "Likely causes: Clogged air filter (maintenance item), refrigerant leak or low charge (requires leak detection), or mechanical component efficiency loss (age-related wear).",
+        urgency: "Urgency: MEDIUM - System working harder than designed",
+        advice: "First step: replace your air filter if it's been more than 3 months. If that doesn't restore performance within 24 hours, the solution could range from simple maintenance to component replacement. Early professional diagnosis prevents expensive secondary damage and higher energy costs."
+      },
+      "Strange noises (clicking, buzzing, grinding)": {
+        causes: "Common causes: Loose access panel or component (quick adjustment), electrical relay cycling (normal wear), or motor bearing wear (mechanical aging).",
+        urgency: "Urgency: LOW to MEDIUM - Usually an early warning before complete failure",
+        advice: "Try to record the sound on your phone — it genuinely helps with diagnosis. Strange noises are often your system asking for help before something fails completely. Addressing these early warnings usually means simpler, less expensive repairs compared to waiting for complete failure."
+      },
+      "Higher than normal energy bills": {
+        causes: "Typical causes: Dirty condenser coils reducing heat transfer efficiency, system components working harder due to wear, or refrigerant charge issues affecting performance.",
+        urgency: "Urgency: LOW - But the energy waste compounds monthly",
+        advice: "Something is forcing your system to work overtime to maintain comfort. Could be maintenance-related (like dirty coils) or component efficiency decline. A professional diagnostic assessment shows exactly where your money is going and what improvements will provide measurable savings."
+      },
+      "Ice forming on outdoor unit": {
+        causes: "Primary causes: Restricted airflow (dirty filter or blocked coils), refrigerant system problems, or control system malfunctions affecting defrost cycles.",
+        urgency: "Urgency: HIGH - Ice formation can damage expensive compressor components",
+        advice: "Turn the system off immediately — running with ice buildup causes progressive damage to expensive parts. This needs prompt professional attention, but the root cause might be simpler than you think. We'll identify the specific issue and prevent costly secondary damage."
+      }
+    };
+    
+    symptomBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const symptom = this.querySelector('span').textContent;
+        const diagnosis = diagnoses[symptom];
         
-        const toggleItem = () => {
-          const isActive = item.classList.contains('active');
-          
-          // Close all items
-          faqItems.forEach(i => i.classList.remove('active'));
-          
-          // Open clicked item if it wasn't active
-          if (!isActive) {
-            item.classList.add('active');
-          }
-        };
+        if (!diagnosis) return;
         
-        question.addEventListener('click', toggleItem);
-        question.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleItem();
-          }
+        // Premium button state transitions
+        symptomBtns.forEach(b => {
+          b.classList.remove('active');
         });
+        
+        this.classList.add('active');
+        
+        // Enhanced diagnosis display with smooth transitions
+        diagnosisArea.style.opacity = '0.4';
+        diagnosisArea.style.transform = 'translateY(10px)';
+        
+        setTimeout(() => {
+          diagnosisArea.innerHTML = `
+            <div class="diagnosis-result">
+              <strong>Probable Causes:</strong>
+              ${diagnosis.causes}
+              
+              <strong>${diagnosis.urgency}</strong>
+              
+              <strong>Recommended Next Steps:</strong>
+              ${diagnosis.advice}
+              
+              <em>Remember: Every system is unique based on age, model, installation, and maintenance history. This educational guidance helps you understand possibilities — accurate diagnosis reveals actual solutions and real costs. We always explain findings and options before any work begins.</em>
+            </div>
+          `;
+          diagnosisArea.style.opacity = '1';
+          diagnosisArea.style.transform = 'translateY(0)';
+        }, 200);
       });
-      
-      // Intersection Observer for animations
-      const animateElements = document.querySelectorAll('.animate-in');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.animationPlayState = 'running';
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Enhanced scroll animations with intersection observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          entry.target.classList.add('animate-in');
+        }
       });
-      
-      animateElements.forEach(el => {
-        el.style.animationPlayState = 'paused';
-        observer.observe(el);
-      });
-      
-    })();
+    }, observerOptions);
+    
+    // Observe elements for premium animations
+    document.querySelectorAll('.process-step, .service-card, .control-group, .system-visual').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // REMOVED: Problematic parallax effect that caused scroll jitter
+    // The parallax effect has been completely removed to fix scroll issues
+    
+    // Add premium loading state
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
   </script>
 </body>
 </html>
