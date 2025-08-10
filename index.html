@@ -3,41 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fidelity Mechanical Solutions | Premium HVAC Services</title>
-  <meta name="description" content="Experience mechanical excellence. Premium HVAC diagnostics and solutions delivered with uncompromising integrity and technical mastery.">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <!-- Premium typography system -->
+  <!-- Preconnect to critical origins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Enhanced SEO Meta Tags -->
+  <title>Houston AC Repair Today | Emergency HVAC Service | Fidelity Mechanical 713-201-2842</title>
+  <meta name="description" content="⚡ Houston AC repair in 2 hours or less. Honest pricing, no upsell pressure. Expert HVAC service for Houston, Katy, Sugar Land. Call 713-201-2842 for same-day service.">
+  <meta name="keywords" content="Houston AC repair, emergency HVAC Houston, air conditioning repair Houston TX, same day AC service, Houston HVAC contractor">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="canonical" href="https://fidelitymechanicalsolutions.com/">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="business.business">
+  <meta property="og:title" content="Houston AC Repair - Same Day Service | Fidelity Mechanical">
+  <meta property="og:description" content="Houston's most trusted HVAC service. 2-hour emergency response. Call 713-201-2842">
+  <meta property="og:url" content="https://fidelitymechanicalsolutions.com/">
+  <meta property="og:image" content="https://fidelitymechanicalsolutions.com/og-image.jpg">
+  
+  <!-- Premium typography system -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
-  <!-- Schema.org structured data for SEO -->
+  <!-- Enhanced Schema.org structured data for SEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "HVACBusiness",
-    "name": "Fidelity Mechanical Solutions",
-    "description": "Premium HVAC diagnostics and solutions delivered with technical mastery and clarity",
-    "url": "https://fidelitymechanicalsolutions.com",
-    "telephone": "+1-713-201-2842",
-    "email": "Martinperez@fidelitymechanicalsolutions.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "TX",
-      "addressCountry": "US"
-    },
-    "priceRange": "$$",
-    "openingHours": "Mo-Fr 08:00-18:00",
-    "sameAs": [],
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": 30.1445,
-        "longitude": -95.3698
+    "@graph": [
+      {
+        "@type": "HVACBusiness",
+        "@id": "https://fidelitymechanicalsolutions.com/#business",
+        "name": "Fidelity Mechanical Solutions",
+        "description": "Emergency AC repair and HVAC services in Houston, TX. Same-day service, honest pricing, no upsell pressure.",
+        "url": "https://fidelitymechanicalsolutions.com/",
+        "telephone": "+17132012842",
+        "email": "Martinperez@fidelitymechanicalsolutions.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Houston",
+          "addressRegion": "TX",
+          "addressCountry": "US",
+          "postalCode": "77001"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 29.7604,
+          "longitude": -95.3698
+        },
+        "areaServed": [
+          {"@type": "City", "name": "Houston"},
+          {"@type": "City", "name": "Katy"},
+          {"@type": "City", "name": "Sugar Land"},
+          {"@type": "City", "name": "The Woodlands"},
+          {"@type": "City", "name": "Cypress"},
+          {"@type": "City", "name": "Spring"},
+          {"@type": "City", "name": "Pearland"}
+        ],
+        "priceRange": "$$",
+        "openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-17:00", "Su 10:00-16:00"],
+        "paymentAccepted": ["Cash", "Check", "Credit Card", "Invoice", "Financing Available"]
       },
-      "geoRadius": "50000"
-    }
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How quickly can you respond to AC emergencies in Houston?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We guarantee response times of 2 hours or less during business hours for Houston HVAC emergencies. Same-day service is available for most repairs. Text 713-201-2842 for the fastest response."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you provide free estimates for HVAC repairs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we provide free, detailed estimates before any work begins. Our diagnostics clearly explain the issue and your repair options with transparent pricing. No surprises, no pressure."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
   
@@ -61,6 +109,9 @@
       --deep-blue: #1d4ed8;
       --navy: #1e3a8a;
       --brand-navy: #002654;
+      --danger: #dc2626;
+      --secondary: #16a34a;
+      --warning: #f59e0b;
       
       /* Premium gradients */
       --gradient-primary: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #1e3a8a 100%);
@@ -101,6 +152,8 @@
       --space-xl: 2rem;
       --space-2xl: 3rem;
       --space-3xl: 4rem;
+      
+      --radius: 8px;
     }
     
     /* Reset and base styles */
@@ -245,6 +298,25 @@
       width: 100%;
     }
     
+    .nav-cta {
+      background: var(--primary-blue);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .nav-cta:hover {
+      background: var(--deep-blue);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+    
     /* Mobile navigation */
     .nav-toggle {
       display: none;
@@ -320,6 +392,26 @@
       z-index: 10;
       max-width: 900px;
       width: 100%;
+    }
+    
+    /* Emergency Badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--danger);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
     
     /* Premium Shield Logo Design */
@@ -720,6 +812,7 @@
       flex-wrap: wrap;
       opacity: 0;
       animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.1s forwards;
+      margin-bottom: 2rem;
     }
     
     /* Premium Button System */
@@ -782,16 +875,48 @@
       box-shadow: var(--shadow-strong);
     }
     
+    /* Trust Signals */
+    .trust-signals {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(30, 64, 175, 0.1);
+      opacity: 0;
+      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.3s forwards;
+    }
+    
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-gray);
+      font-size: 0.875rem;
+    }
+    
+    .trust-icon {
+      color: var(--secondary);
+      font-size: 1.25rem;
+    }
+    
     /* Enhanced Floating Contact */
     .floating-contact {
       position: fixed;
       bottom: 40px;
       right: 40px;
       z-index: 999;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: var(--space-lg);
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .floating-contact.visible {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .contact-tooltip {
@@ -809,19 +934,21 @@
       box-shadow: var(--shadow-strong);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      position: relative;
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      margin-bottom: 15px;
     }
     
     .contact-tooltip::after {
       content: '';
       position: absolute;
-      top: 50%;
-      right: -10px;
-      transform: translateY(-50%);
+      top: 100%;
+      right: 20px;
       width: 0;
       height: 0;
-      border: 10px solid transparent;
-      border-left-color: var(--midnight);
+      border: 8px solid transparent;
+      border-top-color: var(--midnight);
     }
     
     .floating-contact:hover .contact-tooltip {
@@ -1187,293 +1314,163 @@
       font-weight: 700;
     }
     
-    .diagnostic-interface {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-3xl);
-      align-items: start;
-    }
-    
-    /* Premium System Visual */
-    .system-visual {
-      position: relative;
-      height: 520px;
-      background: var(--gradient-surface);
-      border-radius: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      box-shadow: var(--shadow-medium);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-    }
-    
-    .system-visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(30, 64, 175, 0.05) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    
-    .hvac-diagram {
-      position: relative;
-      width: 400px;
-      height: 400px;
-    }
-    
-    .unit-outdoor, .unit-indoor {
-      position: absolute;
-      width: 140px;
-      height: 140px;
-      background: var(--gradient-primary);
+    .diagnostic-tool {
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      text-align: center;
-      font-weight: 700;
-      box-shadow: var(--shadow-strong);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      letter-spacing: 0.02em;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .unit-outdoor {
-      top: 12%;
-      left: 6%;
-    }
-    
-    .unit-indoor {
-      bottom: 12%;
-      right: 6%;
-    }
-    
-    .unit-outdoor:hover, .unit-indoor:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: var(--shadow-premium);
-    }
-    
-    .flow-line {
-      position: absolute;
-      width: 4px;
-      height: 160px;
-      background: var(--gradient-accent);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      border-radius: 2px;
-      box-shadow: var(--shadow-glow);
-      overflow: hidden;
-    }
-    
-    .flow-line::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: 0;
-      right: 0;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent 40%,
-        rgba(255, 255, 255, 0.6) 50%,
-        transparent 60%
-      );
-      animation: flow-shimmer 3s ease-in-out infinite;
-    }
-    
-    @keyframes flow-shimmer {
-      0%, 100% { transform: translateY(-100%); }
-      50% { transform: translateY(100%); }
-    }
-    
-    .flow-particle {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: radial-gradient(circle, var(--bright-blue) 0%, var(--accent-blue) 100%);
-      border-radius: 50%;
-      animation: flow 3s ease-in-out infinite;
-      box-shadow: 0 0 12px rgba(96, 165, 250, 0.8);
-    }
-    
-    @keyframes flow {
-      from { 
-        transform: translateY(-15px);
-        opacity: 0;
-        scale: 0.3;
-      }
-      10% { 
-        opacity: 1;
-        scale: 1;
-      }
-      90% { 
-        opacity: 1;
-        scale: 1;
-      }
-      to { 
-        transform: translateY(170px);
-        opacity: 0;
-        scale: 0.3;
-      }
-    }
-    
-    /* Premium Diagnostic Controls */
-    .diagnostic-controls {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-2xl);
-    }
-    
-    .control-group {
-      background: var(--gradient-surface);
-      padding: var(--space-2xl);
-      border-radius: 20px;
+      padding: var(--space-3xl);
       box-shadow: var(--shadow-medium);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 64, 175, 0.2);
+      margin-top: var(--space-3xl);
     }
     
-    .control-group::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient-accent);
-      opacity: 0.3;
-    }
-    
-    .control-label {
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
-      color: var(--text-gray);
-      margin-bottom: var(--space-lg);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-    
-    .control-label::before {
-      content: '◦';
-      color: var(--accent-blue);
-      font-size: 1.3em;
+    .symptom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
     
     .symptom-btn {
-      display: block;
-      width: 100%;
-      padding: var(--space-lg) var(--space-lg);
-      margin-bottom: var(--space-md);
-      background: rgba(255, 255, 255, 0.9);
-      border: 2px solid rgba(30, 64, 175, 0.1);
-      border-radius: 12px;
-      font-family: var(--font-sans);
-      font-size: var(--text-base);
-      font-weight: 500;
+      background: white;
+      border: 2px solid rgba(30, 64, 175, 0.2);
+      padding: 1rem;
+      border-radius: var(--radius);
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      text-align: left;
-      color: var(--charcoal);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .symptom-btn::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 0;
-      background: var(--gradient-primary);
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 0;
-    }
-    
-    .symptom-btn span {
-      position: relative;
-      z-index: 1;
-      transition: color 0.4s ease;
-    }
-    
-    .symptom-btn:last-child {
-      margin-bottom: 0;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-gray);
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
     
     .symptom-btn:hover {
-      background: var(--gradient-primary);
-      color: white;
-      border-color: transparent;
-      transform: translateX(6px);
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+      transform: translateY(-2px);
       box-shadow: var(--shadow-medium);
-    }
-    
-    .symptom-btn:hover span {
-      color: white;
-    }
-    
-    .symptom-btn:hover::before {
-      width: 100%;
     }
     
     .symptom-btn.active {
-      background: var(--gradient-primary);
+      background: var(--primary-blue);
       color: white;
-      border-color: transparent;
-      box-shadow: var(--shadow-medium);
-      transform: translateX(4px);
-    }
-    
-    .symptom-btn.active span {
-      color: white;
-    }
-    
-    .symptom-btn.active::before {
-      width: 100%;
+      border-color: var(--primary-blue);
     }
     
     .diagnosis-result {
-      line-height: 1.8;
-      font-size: var(--text-base);
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(30, 64, 175, 0.2);
+      min-height: 200px;
+      transition: all 0.3s ease;
     }
     
-    .diagnosis-result strong {
-      color: var(--deep-charcoal);
-      display: block;
-      margin-top: var(--space-lg);
-      margin-bottom: var(--space-md);
-      font-weight: 700;
-      font-size: var(--text-lg);
+    .diagnosis-result.active {
+      border-color: var(--primary-blue);
+      box-shadow: var(--shadow-medium);
     }
     
-    .diagnosis-result strong:first-child {
-      margin-top: 0;
-    }
-    
-    .diagnosis-result em {
-      display: block;
-      margin-top: var(--space-lg);
-      padding-top: var(--space-lg);
-      border-top: 1px solid rgba(30, 64, 175, 0.1);
-      font-style: italic;
+    .diagnosis-content {
       color: var(--text-gray);
-      font-size: var(--text-sm);
-      line-height: 1.6;
+      line-height: 1.8;
+    }
+    
+    .diagnosis-content h3 {
+      color: var(--charcoal);
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .diagnosis-content p {
+      margin-bottom: 1rem;
+    }
+    
+    .diagnosis-content strong {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+    
+    .diagnosis-cta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(30, 64, 175, 0.1);
+    }
+    
+    /* FAQ Section */
+    .faq-section {
+      background: var(--gradient-surface);
+      border-radius: 24px;
+      margin: var(--space-3xl) auto;
+      position: relative;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+    }
+    
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      background: white;
+      border: 1px solid rgba(30, 64, 175, 0.2);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      box-shadow: var(--shadow-medium);
+    }
+    
+    .faq-question {
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--light-gray);
+      font-weight: 600;
+      color: var(--charcoal);
+      transition: background 0.3s ease;
+    }
+    
+    .faq-question:hover {
+      background: rgba(30, 64, 175, 0.1);
+    }
+    
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: var(--primary-blue);
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item.active .faq-answer {
+      padding: 1.5rem;
+      max-height: 500px;
     }
     
     /* Premium Case Study */
@@ -1711,42 +1708,69 @@
         padding: var(--space-3xl) var(--space-lg);
       }
       
-      .diagnostic-interface {
+      .diagnostic-tool {
+        padding: var(--space-xl) var(--space-lg);
+      }
+      
+      .symptom-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-xl);
       }
       
-      .system-visual {
-        height: 360px;
-      }
-      
-      .hvac-diagram {
-        width: 320px;
-        height: 320px;
-      }
-      
-      .unit-outdoor,
-      .unit-indoor {
-        width: 120px;
-        height: 120px;
-        font-size: 0.7rem;
-      }
-      
-      .flow-line {
-        height: 140px;
+      .diagnosis-cta {
+        flex-direction: column;
       }
       
       .diagnostic-title {
         font-size: var(--text-3xl);
       }
       
-      .control-group {
-        padding: var(--space-lg);
-      }
-      
       .case-study {
         padding: var(--space-xl) var(--space-lg);
       }
+      
+      .trust-signals {
+        gap: 1rem;
+      }
+      
+      .trust-item {
+        flex: 1 1 100%;
+        justify-content: center;
+      }
+    }
+    
+    /* Utility Classes */
+    .text-center {
+      text-align: center;
+    }
+    
+    .animate-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    
+    /* Accessibility */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    
+    /* Focus styles */
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--primary-blue);
+      outline-offset: 2px;
     }
   </style>
 </head>
@@ -1764,18 +1788,22 @@
       <div class="nav-links" id="navLinks">
         <a href="#home">Home</a>
         <a href="#philosophy">Philosophy</a>
-        <a href="#approach">Our Approach</a>
         <a href="#services">Services</a>
-        <a href="#diagnostics">Diagnostics</a>
+        <a href="#diagnostics">Diagnostic Tool</a>
         <a href="#process">Process</a>
-        <a href="#case-studies">Case Studies</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
+        <a href="tel:7132012842" class="nav-cta">📞 713-201-2842</a>
       </div>
     </div>
   </nav>
   
   <section id="home" class="hero-section">
     <div class="hero-content">
+      <div class="hero-badge">
+        🔥 Emergency Service Available Now
+      </div>
+      
       <div class="hero-logo">
         <!-- Premium Shield logo design with enhanced thermometer -->
         <div class="logo-design">
@@ -1808,12 +1836,39 @@
           </div>
         </div>
       </div>
-      <h1 class="hero-title">Fidelity Mechanical Solutions</h1>
-      <p class="hero-subtitle">More than service — this is how we think, how we move, and how we work in your space with respect and clarity.</p>
+      
+      <h1 class="hero-title">Houston AC Broke?<br><span style="color: var(--primary-blue);">Same-Day Service Guaranteed</span></h1>
+      
+      <p class="hero-subtitle">Expert HVAC repair with honest pricing. No upsell games, no surprise fees. Just professional service that respects your time and money.</p>
+      
       <p class="hero-tagline">Fidelity is the foundation.</p>
+      
       <div class="cta-container">
-        <a href="#contact" class="cta-primary">Get Free Estimate</a>
-        <a href="#diagnostics" class="cta-secondary">Try Diagnostic Tool</a>
+        <a href="tel:7132012842" class="cta-primary">
+          📞 Call Now: 713-201-2842
+        </a>
+        <a href="#diagnostics" class="cta-secondary">
+          🔍 Get Free Diagnostic
+        </a>
+      </div>
+      
+      <div class="trust-signals">
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span>Licensed & Insured</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span>2-Hour Response</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span>No Hidden Fees</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span>Honest Diagnostics</span>
+        </div>
       </div>
     </div>
   </section>
@@ -1833,21 +1888,11 @@
     <p>This is how mechanical work should be done. This is Fidelity.</p>
   </section>
   
-  <section id="approach">
-    <div class="section-header">
-      <h2 class="section-title">Our Approach</h2>
-      <p class="section-subtitle">Technical excellence delivered with systematic precision and genuine care for your mechanical environment.</p>
-    </div>
-    <p>We are a mechanical service company organized around one premise: that technical work, client understanding, and professional development are not separate functions — they are the integrated disciplines that define exceptional service delivery.</p>
-    <p>Our theoretical framework emphasizes root-cause methodology over surface-level fixes. We educate without condescension and solve problems with systematic precision that honors both technical excellence and human understanding.</p>
-    <p>Every interaction becomes an opportunity to demonstrate mastery through clarity, building long-term relationships based on competence, transparency, and measurable results.</p>
-  </section>
-  
   <!-- Enhanced Interactive Diagnostic Tool -->
   <section id="diagnostics" class="diagnostic-section">
     <div class="diagnostic-container">
       <div class="diagnostic-header">
-        <h2 class="diagnostic-title">Self-Diagnose Your System</h2>
+        <h2 class="diagnostic-title">Free AC Diagnostic Tool</h2>
         <p>Experience our diagnostic approach firsthand. Click symptoms to explore probable causes and receive honest guidance about what your system might be telling you.</p>
       </div>
       
@@ -1855,93 +1900,96 @@
         <p><strong>Understanding System Complexity:</strong> Every HVAC system is unique. Age, model, installation quality, maintenance history, and environmental factors all influence how problems manifest and what repairs actually cost. This tool demonstrates our diagnostic thinking, but your specific situation requires hands-on analysis. We'll always explain what we find and your options before any work begins — because informed decisions create better outcomes.</p>
       </div>
       
-      <div class="diagnostic-interface">
-        <div class="system-visual">
-          <div class="hvac-diagram">
-            <div class="unit-outdoor">OUTDOOR<br>UNIT</div>
-            <div class="unit-indoor">INDOOR<br>UNIT</div>
-            <div class="flow-line">
-              <div class="flow-particle"></div>
-              <div class="flow-particle" style="animation-delay: 0.7s"></div>
-              <div class="flow-particle" style="animation-delay: 1.4s"></div>
-              <div class="flow-particle" style="animation-delay: 2.1s"></div>
-            </div>
-          </div>
+      <div class="diagnostic-tool">
+        <div class="diagnostic-header">
+          <h3 style="font-size: 1.75rem; margin-bottom: 0.5rem;">What's Wrong With Your AC?</h3>
+          <p style="color: var(--text-gray);">Select your symptoms below</p>
         </div>
         
-        <div class="diagnostic-controls">
-          <div class="control-group">
-            <div class="control-label">Select Your System's Symptom</div>
-            <button class="symptom-btn"><span>System won't turn on at all</span></button>
-            <button class="symptom-btn"><span>Cooling but not enough</span></button>
-            <button class="symptom-btn"><span>Strange noises (clicking, buzzing, grinding)</span></button>
-            <button class="symptom-btn"><span>Higher than normal energy bills</span></button>
-            <button class="symptom-btn"><span>Ice forming on outdoor unit</span></button>
-          </div>
-          
-          <div class="control-group">
-            <div class="control-label">Diagnostic Analysis</div>
-            <p id="diagnosis-display">Select a symptom above to explore possible causes and next steps. This educational tool helps you understand what might be happening with your system, but remember — accurate diagnosis requires professional assessment of your specific equipment and conditions.</p>
+        <div class="symptom-grid">
+          <button class="symptom-btn" data-symptom="no-power">
+            <span>🔌 Won't Turn On</span>
+          </button>
+          <button class="symptom-btn" data-symptom="no-cool">
+            <span>🌡️ Not Cooling</span>
+          </button>
+          <button class="symptom-btn" data-symptom="noise">
+            <span>🔊 Strange Noises</span>
+          </button>
+          <button class="symptom-btn" data-symptom="bills">
+            <span>💰 High Bills</span>
+          </button>
+          <button class="symptom-btn" data-symptom="ice">
+            <span>🧊 Ice Buildup</span>
+          </button>
+          <button class="symptom-btn" data-symptom="smell">
+            <span>👃 Bad Smell</span>
+          </button>
+        </div>
+        
+        <div class="diagnosis-result" id="diagnosisResult">
+          <div class="diagnosis-content" id="diagnosisContent">
+            <p style="color: var(--text-gray); text-align: center;">Select a symptom above to see likely causes and solutions</p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  
-  <section id="process">
-    <div class="section-header">
-      <h2 class="section-title">How We Work</h2>
-      <p class="section-subtitle">A systematic approach that puts clarity and control in your hands.</p>
-    </div>
-    <div class="process-grid">
-      <div class="process-step">
-        <div class="process-number">1</div>
-        <h3 class="process-title">Assess with Precision</h3>
-        <p class="process-description">We collect comprehensive system data and diagnose root causes. No guesswork, just methodical analysis backed by measurable evidence.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number">2</div>
-        <h3 class="process-title">Educate Clearly</h3>
-        <p class="process-description">You receive real-time understanding and documented recommendations. We explain what we found, why it matters, and what your options are.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number">3</div>
-        <h3 class="process-title">Solve Systemically</h3>
-        <p class="process-description">We implement solutions with care, transparency, and follow-up. Every repair addresses the root cause and includes preventive insights.</p>
       </div>
     </div>
   </section>
   
   <section id="services">
     <div class="section-header">
-      <h2 class="section-title">Services</h2>
-      <p class="section-subtitle">Comprehensive mechanical solutions designed for performance, longevity, and peace of mind.</p>
+      <h2 class="section-title">Houston HVAC Services</h2>
+      <p class="section-subtitle">Complete mechanical solutions for Houston homes and businesses</p>
     </div>
     <div class="services-grid">
-      <div class="service-card">
+      <div class="service-card animate-in delay-1">
         <div class="service-icon">🔧</div>
-        <h3 class="service-title">System Installation</h3>
-        <p class="service-description">Complete HVAC installations with integrated monitoring, comprehensive commissioning, and performance validation. We establish mechanical ecosystems designed for optimal efficiency and longevity.</p>
+        <h3 class="service-title">Emergency AC Repair</h3>
+        <p class="service-description">2-hour response for Houston AC emergencies. We diagnose and fix the real problem, not just symptoms.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔍</div>
-        <h3 class="service-title">Diagnostics & Repair</h3>
-        <p class="service-description">Root-cause analysis with comprehensive system evaluation. Every diagnosis includes detailed reporting, prevention education, and optimization recommendations with measurable outcomes.</p>
+      <div class="service-card animate-in delay-2">
+        <div class="service-icon">❄️</div>
+        <h3 class="service-title">AC Installation</h3>
+        <p class="service-description">Energy-efficient HVAC systems sized perfectly for Houston's climate. Professional installation guaranteed.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card animate-in delay-3">
         <div class="service-icon">⚙️</div>
         <h3 class="service-title">Preventive Maintenance</h3>
-        <p class="service-description">Proactive maintenance protocols with trend analysis and predictive insights. Scheduled inspections designed to prevent failures and optimize system performance year-round.</p>
+        <p class="service-description">Keep your Houston AC running efficiently. Prevent breakdowns before Houston's brutal summer hits.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card animate-in">
         <div class="service-icon">📊</div>
         <h3 class="service-title">System Optimization</h3>
         <p class="service-description">Performance tuning and efficiency improvements for existing systems. Data-driven optimization that extends equipment life and reduces operational costs.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">📡</div>
-        <h3 class="service-title">Enhanced Diagnostic Support</h3>
-        <p class="service-description">Our technicians use advanced diagnostic support systems to ensure comprehensive analysis and reduce the possibility of missed issues. This technology enhances our systematic approach while maintaining the human expertise and education that defines our service.</p>
+    </div>
+  </section>
+  
+  <section id="process">
+    <div class="section-header">
+      <h2 class="section-title">Our Houston AC Repair Process</h2>
+      <p class="section-subtitle">Clear, honest, professional. No games, no surprises.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step animate-in delay-1">
+        <div class="process-number">1</div>
+        <h3 class="process-title">Fast Response</h3>
+        <p class="process-description">Call or text 713-201-2842. We'll be there within 2 hours for emergencies.</p>
+      </div>
+      <div class="process-step animate-in delay-2">
+        <div class="process-number">2</div>
+        <h3 class="process-title">Expert Diagnosis</h3>
+        <p class="process-description">We find the real problem using advanced diagnostics. No guesswork.</p>
+      </div>
+      <div class="process-step animate-in delay-3">
+        <div class="process-number">3</div>
+        <h3 class="process-title">Clear Options</h3>
+        <p class="process-description">Get all repair options with upfront pricing. You decide what's best.</p>
+      </div>
+      <div class="process-step animate-in">
+        <div class="process-number">4</div>
+        <h3 class="process-title">Quality Repair</h3>
+        <p class="process-description">Fix it right the first time. We stand behind our work with warranties.</p>
       </div>
     </div>
   </section>
@@ -2018,20 +2066,65 @@
     </div>
   </section>
   
-  <section id="team">
+  <!-- FAQ Section -->
+  <section id="faq" class="faq-section">
     <div class="section-header">
-      <h2 class="section-title">Professional Development</h2>
-      <p class="section-subtitle">Continuous learning and systematic growth are built into every aspect of our service delivery.</p>
+      <h2 class="section-title">Houston HVAC FAQs</h2>
+      <p class="section-subtitle">Common questions about AC repair in Houston</p>
     </div>
-    <p>Our technicians function as mechanical educators, not just service providers. Professional development is integrated into our workflow, with each service call serving as both problem resolution and skill refinement opportunity.</p>
-    <p>We emphasize systematic thinking and mentorship-based advancement. Continuous education ensures that every team member brings both technical competency and analytical perspective to your mechanical challenges.</p>
-    <p>This commitment to excellence means you benefit from a team that approaches every project with curiosity, precision, and the kind of systematic thinking that prevents problems before they occur.</p>
+    
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0" role="button">
+          How quickly can you respond to AC emergencies in Houston?
+        </div>
+        <div class="faq-answer">
+          <p>We guarantee response times of 2 hours or less during business hours for Houston HVAC emergencies. Same-day service is available for most repairs. Text 713-201-2842 for the fastest response.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0" role="button">
+          Do you provide free estimates for HVAC repairs?
+        </div>
+        <div class="faq-answer">
+          <p>Yes, we provide free, detailed estimates before any work begins. Our diagnostics clearly explain the issue and your repair options with transparent pricing. No surprises, no pressure.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0" role="button">
+          What areas of Houston do you serve?
+        </div>
+        <div class="faq-answer">
+          <p>We serve all of Greater Houston including Katy, Sugar Land, The Woodlands, Cypress, Spring, Pearland, and surrounding areas within a 50-mile radius of downtown Houston.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0" role="button">
+          Why is my Houston AC running but not cooling?
+        </div>
+        <div class="faq-answer">
+          <p>Common causes include dirty filters, low refrigerant, frozen coils, or thermostat issues. Houston's humidity can make these problems worse. We'll diagnose the exact cause and fix it quickly.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0" role="button">
+          How often should I service my AC in Houston?
+        </div>
+        <div class="faq-answer">
+          <p>Houston's hot, humid climate means your AC works harder. We recommend service twice yearly - spring and fall. Regular maintenance prevents breakdowns during Houston's brutal summers.</p>
+        </div>
+      </div>
+    </div>
   </section>
   
   <section id="contact" class="contact-section">
     <div class="section-header">
-      <h2 class="section-title">Contact</h2>
-      <p class="section-subtitle">Ready to experience mechanical service delivered with precision and clarity.</p>
+      <h2 class="section-title">Get Your Houston AC Fixed Today</h2>
+      <p class="section-subtitle">Fast response. Honest service. Real solutions.</p>
     </div>
     <div class="contact-info">
       <div class="contact-item">
@@ -2057,20 +2150,21 @@
   </footer>
   
   <!-- Enhanced Floating Contact Button -->
-  <div class="floating-contact">
+  <div class="floating-contact" id="floatingCTA">
     <div class="contact-tooltip">
       Need immediate assistance? Call or text us
     </div>
-    <a href="tel:713-201-2842" class="contact-bubble" aria-label="Call Fidelity Mechanical Solutions" title="Call us at 713-201-2842">
-      <div class="contact-icon">💬</div>
+    <a href="tel:7132012842" class="contact-bubble" aria-label="Call Fidelity Mechanical Solutions" title="Call us at 713-201-2842">
+      <div class="contact-icon">📞</div>
     </a>
   </div>
   
   <script>
-    // Enhanced navigation with premium interactions - FIXED VERSION
+    // Enhanced navigation with premium interactions
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
+    const floatingCTA = document.getElementById('floatingCTA');
     
     // Mobile menu with premium animations
     navToggle.addEventListener('click', () => {
@@ -2102,7 +2196,7 @@
       });
     });
     
-    // FIXED: Consolidated single scroll handler with proper throttling
+    // Scroll handler with throttling
     let isScrolling = false;
     
     function handleScroll() {
@@ -2115,6 +2209,11 @@
             navbar.classList.add('scrolled');
           } else {
             navbar.classList.remove('scrolled');
+          }
+          
+          // Show floating CTA
+          if (currentScrollY > 500) {
+            floatingCTA.classList.add('visible');
           }
           
           isScrolling = false;
@@ -2141,98 +2240,145 @@
       });
     });
     
-    // Enhanced diagnostic responses with premium UX
+    // Enhanced diagnostic responses
     const symptomBtns = document.querySelectorAll('.symptom-btn');
-    const diagnosisArea = document.getElementById('diagnosis-display');
+    const diagnosisContent = document.getElementById('diagnosisContent');
+    const diagnosisResult = document.getElementById('diagnosisResult');
     
     const diagnoses = {
-      "System won't turn on at all": {
-        causes: "Most common causes: Tripped electrical breaker (simple reset), failed run capacitor (common summer failure), or worn contactor relay (normal wear item).",
-        urgency: "Urgency: HIGH - Complete loss of cooling capability",
-        advice: "Start by checking your electrical panel for tripped breakers — that's free and might solve the problem immediately. If the breaker is fine, this typically requires same-day professional service. Most causes are routine repairs with predictable costs, but we need hands-on diagnosis to give you accurate options and pricing."
+      'no-power': {
+        icon: '⚡',
+        title: 'Power/Electrical Issue',
+        causes: 'Likely causes: Tripped breaker, blown fuse, failed capacitor, or thermostat malfunction.',
+        severity: 'URGENT',
+        solution: 'Check your breaker panel first. If breakers are fine, this requires professional diagnosis.',
+        action: 'Call us now for same-day electrical diagnosis and repair.'
       },
-      "Cooling but not enough": {
-        causes: "Likely causes: Clogged air filter (maintenance item), refrigerant leak or low charge (requires leak detection), or mechanical component efficiency loss (age-related wear).",
-        urgency: "Urgency: MEDIUM - System working harder than designed",
-        advice: "First step: replace your air filter if it's been more than 3 months. If that doesn't restore performance within 24 hours, the solution could range from simple maintenance to component replacement. Early professional diagnosis prevents expensive secondary damage and higher energy costs."
+      'no-cool': {
+        icon: '🌡️',
+        title: 'Cooling System Failure',
+        causes: 'Common issues: Low refrigerant (leak), dirty coils, failed compressor, or blocked airflow.',
+        severity: 'HIGH PRIORITY',
+        solution: 'Change your filter first. If no improvement, professional service needed.',
+        action: 'Schedule service today before the problem escalates.'
       },
-      "Strange noises (clicking, buzzing, grinding)": {
-        causes: "Common causes: Loose access panel or component (quick adjustment), electrical relay cycling (normal wear), or motor bearing wear (mechanical aging).",
-        urgency: "Urgency: LOW to MEDIUM - Usually an early warning before complete failure",
-        advice: "Try to record the sound on your phone — it genuinely helps with diagnosis. Strange noises are often your system asking for help before something fails completely. Addressing these early warnings usually means simpler, less expensive repairs compared to waiting for complete failure."
+      'noise': {
+        icon: '🔊',
+        title: 'Mechanical Issue Detected',
+        causes: 'Sounds indicate: Loose parts, failing motor, debris in system, or bearing failure.',
+        severity: 'MODERATE',
+        solution: 'Different sounds mean different problems. Recording the sound helps diagnosis.',
+        action: 'Text us a video of the sound for quick diagnosis.'
       },
-      "Higher than normal energy bills": {
-        causes: "Typical causes: Dirty condenser coils reducing heat transfer efficiency, system components working harder due to wear, or refrigerant charge issues affecting performance.",
-        urgency: "Urgency: LOW - But the energy waste compounds monthly",
-        advice: "Something is forcing your system to work overtime to maintain comfort. Could be maintenance-related (like dirty coils) or component efficiency decline. A professional diagnostic assessment shows exactly where your money is going and what improvements will provide measurable savings."
+      'bills': {
+        icon: '💰',
+        title: 'Efficiency Problem',
+        causes: 'Energy waste from: Dirty system, refrigerant leak, poor insulation, or oversized unit.',
+        severity: 'COST ALERT',
+        solution: 'Professional tune-up can reduce bills 20-30%.',
+        action: 'Schedule an efficiency audit to start saving.'
       },
-      "Ice forming on outdoor unit": {
-        causes: "Primary causes: Restricted airflow (dirty filter or blocked coils), refrigerant system problems, or control system malfunctions affecting defrost cycles.",
-        urgency: "Urgency: HIGH - Ice formation can damage expensive compressor components",
-        advice: "Turn the system off immediately — running with ice buildup causes progressive damage to expensive parts. This needs prompt professional attention, but the root cause might be simpler than you think. We'll identify the specific issue and prevent costly secondary damage."
+      'ice': {
+        icon: '🧊',
+        title: 'System Freeze-Up',
+        causes: 'Ice means: Airflow restriction, low refrigerant, or failed blower motor.',
+        severity: 'SHUT OFF NOW',
+        solution: 'Turn off AC immediately to prevent compressor damage.',
+        action: 'Emergency service needed - call immediately.'
+      },
+      'smell': {
+        icon: '⚠️',
+        title: 'Air Quality Issue',
+        causes: 'Odors from: Mold/mildew (musty), electrical issues (burning), or dead animals (rotten).',
+        severity: 'HEALTH CONCERN',
+        solution: 'Different smells require different solutions. Houston humidity promotes mold growth.',
+        action: 'Schedule inspection to identify and eliminate odor source.'
       }
     };
     
     symptomBtns.forEach(btn => {
       btn.addEventListener('click', function() {
-        const symptom = this.querySelector('span').textContent;
-        const diagnosis = diagnoses[symptom];
-        
-        if (!diagnosis) return;
-        
-        // Premium button state transitions
+        // Remove active state from all buttons
         symptomBtns.forEach(b => {
           b.classList.remove('active');
         });
         
+        // Add active state to clicked button
         this.classList.add('active');
         
-        // Enhanced diagnosis display with smooth transitions
-        diagnosisArea.style.opacity = '0.4';
-        diagnosisArea.style.transform = 'translateY(10px)';
+        // Get diagnosis
+        const symptom = this.dataset.symptom;
+        const diagnosis = diagnoses[symptom];
         
-        setTimeout(() => {
-          diagnosisArea.innerHTML = `
-            <div class="diagnosis-result">
-              <strong>Probable Causes:</strong>
-              ${diagnosis.causes}
-              
-              <strong>${diagnosis.urgency}</strong>
-              
-              <strong>Recommended Next Steps:</strong>
-              ${diagnosis.advice}
-              
-              <em>Remember: Every system is unique based on age, model, installation, and maintenance history. This educational guidance helps you understand possibilities — accurate diagnosis reveals actual solutions and real costs. We always explain findings and options before any work begins.</em>
-            </div>
-          `;
-          diagnosisArea.style.opacity = '1';
-          diagnosisArea.style.transform = 'translateY(0)';
-        }, 200);
+        if (diagnosis) {
+          // Update diagnosis display
+          diagnosisContent.style.opacity = '0';
+          
+          setTimeout(() => {
+            diagnosisContent.innerHTML = `
+              <h3>${diagnosis.icon} ${diagnosis.title}</h3>
+              <p><strong>Probable Causes:</strong> ${diagnosis.causes}</p>
+              <p><strong>Severity:</strong> <span style="color: var(--danger); font-weight: 600;">${diagnosis.severity}</span></p>
+              <p><strong>What To Do:</strong> ${diagnosis.solution}</p>
+              <p><strong>Next Step:</strong> ${diagnosis.action}</p>
+              <div class="diagnosis-cta">
+                <a href="tel:7132012842" class="cta-primary">📞 Call Now: 713-201-2842</a>
+                <a href="#contact" class="cta-secondary">📧 Get Free Estimate</a>
+              </div>
+            `;
+            diagnosisContent.style.opacity = '1';
+            diagnosisResult.classList.add('active');
+          }, 200);
+        }
       });
     });
     
-    // Enhanced scroll animations with intersection observer
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      const toggleItem = () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all items
+        faqItems.forEach(i => i.classList.remove('active'));
+        
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      };
+      
+      question.addEventListener('click', toggleItem);
+      question.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleItem();
+        }
+      });
+    });
+    
+    // Intersection Observer for animations
+    const animateElements = document.querySelectorAll('.animate-in');
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.style.animationPlayState = 'running';
-          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
         }
       });
-    }, observerOptions);
-    
-    // Observe elements for premium animations
-    document.querySelectorAll('.process-step, .service-card, .control-group, .system-visual').forEach(el => {
-      observer.observe(el);
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
     });
     
-    // REMOVED: Problematic parallax effect that caused scroll jitter
-    // The parallax effect has been completely removed to fix scroll issues
+    animateElements.forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
     
     // Add premium loading state
     window.addEventListener('load', () => {
