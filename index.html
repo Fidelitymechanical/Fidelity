@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -47,6 +47,60 @@
             font-size: 13px;
             font-weight: 400;
         }
+
+        .system-tabs {
+            background: #34495e;
+            padding: 10px 20px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            align-items: center;
+        }
+
+        .system-tab {
+            padding: 10px 20px;
+            background: #546e7a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .system-tab.active {
+            background: #3498db;
+        }
+
+        .system-tab:hover {
+            background: #607d8b;
+        }
+
+        .add-system-btn {
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .add-system-btn:hover {
+            background: #229954;
+        }
+
+        .system-content {
+            display: none;
+        }
+
+        .system-content.active {
+            display: block;
+        }
         
         .form-content {
             padding: 30px 20px 120px 20px;
@@ -66,9 +120,16 @@
             font-size: 18px;
             font-weight: 600;
             color: #2c3e50;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             padding-bottom: 10px;
             border-bottom: 2px solid #3498db;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-style: italic;
         }
         
         .subsection-title {
@@ -88,6 +149,14 @@
             color: #444;
             margin-bottom: 6px;
             font-size: 14px;
+        }
+
+        .label-help {
+            font-weight: 400;
+            color: #7f8c8d;
+            font-size: 12px;
+            display: block;
+            margin-top: 2px;
         }
         
         input[type="text"],
@@ -211,6 +280,37 @@
         .btn-secondary:active {
             transform: scale(0.98);
         }
+
+        .value-statement {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        .value-statement strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .value-statement p {
+            margin: 0;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .measurement-reference {
+            background: #fff9e6;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #856404;
+            margin-top: 5px;
+            border: 1px solid #ffeeba;
+        }
         
         @media (max-width: 600px) {
             .grid-2, .grid-3 {
@@ -224,11 +324,10 @@
             .action-buttons {
                 flex-direction: column;
             }
-        }
-        
-        .required {
-            color: #e74c3c;
-            margin-left: 2px;
+
+            .system-tabs {
+                padding: 10px 15px;
+            }
         }
     </style>
 </head>
@@ -236,55 +335,67 @@
     <div class="container">
         <div class="header">
             <h1>Field Buddy Data Capture</h1>
-            <p>HVAC Service Call Documentation System</p>
+            <p>Professional HVAC Service Documentation & Client Education System</p>
+        </div>
+
+        <div class="system-tabs" id="systemTabs">
+            <button class="system-tab active" onclick="switchSystem(0)">System 1</button>
+            <button class="add-system-btn" onclick="addSystem()">+ Add System</button>
         </div>
         
         <div class="form-content">
             <form id="fieldBuddyForm">
                 
+                <div class="system-content active" data-system="0">
+                
                 <!-- Job Context -->
                 <div class="section">
                     <h2 class="section-title">Job Context</h2>
+                    <p class="section-subtitle">This information establishes the service call parameters and environmental conditions</p>
                     
                     <div class="grid-2">
                         <div class="form-group">
-                            <label>Date <span class="required">*</span></label>
-                            <input type="date" name="date" required>
+                            <label>Date</label>
+                            <input type="date" name="date_0">
                         </div>
                         <div class="form-group">
-                            <label>Time Arrived <span class="required">*</span></label>
-                            <input type="time" name="timeArrived" required>
+                            <label>Time Arrived</label>
+                            <input type="time" name="timeArrived_0">
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Technician Name <span class="required">*</span></label>
-                        <input type="text" name="techName" required>
+                        <label>Technician Name</label>
+                        <input type="text" name="techName_0">
                     </div>
                     
                     <div class="form-group">
-                        <label>Customer Name <span class="required">*</span></label>
-                        <input type="text" name="customerName" required>
+                        <label>Customer Name</label>
+                        <input type="text" name="customerName_0">
                     </div>
                     
                     <div class="form-group">
-                        <label>Address <span class="required">*</span></label>
-                        <input type="text" name="address" required>
+                        <label>Address</label>
+                        <input type="text" name="address_0">
                     </div>
                     
                     <div class="form-group">
                         <label>Account Number</label>
-                        <input type="text" name="accountNumber">
+                        <input type="text" name="accountNumber_0">
                     </div>
                     
                     <div class="grid-2">
                         <div class="form-group">
-                            <label>Ambient Temperature (°F)</label>
-                            <input type="number" name="ambientTemp" step="0.1">
+                            <label>Ambient Temperature (°F)
+                                <span class="label-help">Outdoor temperature affects system performance expectations</span>
+                            </label>
+                            <input type="number" name="ambientTemp_0" step="0.1">
                         </div>
                         <div class="form-group">
-                            <label>Ambient Humidity (%)</label>
-                            <input type="number" name="ambientRH" step="1">
+                            <label>Ambient Humidity (%)
+                                <span class="label-help">Humidity impacts cooling capacity and comfort</span>
+                            </label>
+                            <input type="number" name="ambientRH_0" step="1">
                         </div>
                     </div>
                     
@@ -292,24 +403,24 @@
                         <label>Call Type</label>
                         <div class="checkbox-group">
                             <div class="checkbox-item">
-                                <input type="checkbox" id="callNoCool" name="callType" value="No Cool">
-                                <label for="callNoCool">No Cool</label>
+                                <input type="checkbox" id="callNoCool_0" name="callType_0" value="No Cool">
+                                <label for="callNoCool_0">No Cool</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="callNoHeat" name="callType" value="No Heat">
-                                <label for="callNoHeat">No Heat</label>
+                                <input type="checkbox" id="callNoHeat_0" name="callType_0" value="No Heat">
+                                <label for="callNoHeat_0">No Heat</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="callMaint" name="callType" value="Maintenance">
-                                <label for="callMaint">Maintenance</label>
+                                <input type="checkbox" id="callMaint_0" name="callType_0" value="Maintenance">
+                                <label for="callMaint_0">Maintenance</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="callSecond" name="callType" value="Second Opinion">
-                                <label for="callSecond">Second Opinion</label>
+                                <input type="checkbox" id="callSecond_0" name="callType_0" value="Second Opinion">
+                                <label for="callSecond_0">Second Opinion</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="callOther" name="callType" value="Other">
-                                <label for="callOther">Other</label>
+                                <input type="checkbox" id="callOther_0" name="callType_0" value="Other">
+                                <label for="callOther_0">Other</label>
                             </div>
                         </div>
                     </div>
@@ -318,33 +429,41 @@
                 <!-- Equipment Identification -->
                 <div class="section">
                     <h2 class="section-title">Equipment Identification</h2>
+                    <p class="section-subtitle">Accurate equipment data enables warranty verification, parts ordering, and performance baseline establishment</p>
+                    
+                    <div class="value-statement">
+                        <strong>Why This Matters:</strong>
+                        <p>Equipment model and serial numbers unlock manufacturer specifications, warranty status, and expected performance standards. Age helps assess whether issues are normal wear or premature failure.</p>
+                    </div>
                     
                     <h3 class="subsection-title">Indoor Unit</h3>
                     
                     <div class="form-group">
                         <label>Manufacturer</label>
-                        <input type="text" name="indoorMfg">
+                        <input type="text" name="indoorMfg_0" placeholder="e.g., Carrier, Trane, Lennox">
                     </div>
                     
                     <div class="grid-2">
                         <div class="form-group">
                             <label>Model Number</label>
-                            <input type="text" name="indoorModel">
+                            <input type="text" name="indoorModel_0">
                         </div>
                         <div class="form-group">
                             <label>Serial Number</label>
-                            <input type="text" name="indoorSerial">
+                            <input type="text" name="indoorSerial_0">
                         </div>
                     </div>
                     
                     <div class="grid-2">
                         <div class="form-group">
-                            <label>Tonnage</label>
-                            <input type="number" name="tonnage" step="0.5" placeholder="e.g., 3.0">
+                            <label>Tonnage
+                                <span class="label-help">Cooling capacity - must match home load</span>
+                            </label>
+                            <input type="number" name="tonnage_0" step="0.5" placeholder="e.g., 3.0">
                         </div>
                         <div class="form-group">
                             <label>Filter Size</label>
-                            <input type="text" name="filterSize" placeholder="e.g., 16x25x1">
+                            <input type="text" name="filterSize_0" placeholder="e.g., 16x25x1">
                         </div>
                     </div>
                     
@@ -352,27 +471,29 @@
                     
                     <div class="form-group">
                         <label>Manufacturer</label>
-                        <input type="text" name="outdoorMfg">
+                        <input type="text" name="outdoorMfg_0">
                     </div>
                     
                     <div class="grid-2">
                         <div class="form-group">
                             <label>Model Number</label>
-                            <input type="text" name="outdoorModel">
+                            <input type="text" name="outdoorModel_0">
                         </div>
                         <div class="form-group">
                             <label>Serial Number</label>
-                            <input type="text" name="outdoorSerial">
+                            <input type="text" name="outdoorSerial_0">
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Refrigerant Type</label>
-                        <select name="refrigerantType">
+                        <label>Refrigerant Type
+                            <span class="label-help">Determines diagnostic targets and regulatory compliance</span>
+                        </label>
+                        <select name="refrigerantType_0">
                             <option value="">Select...</option>
-                            <option value="R-22">R-22</option>
-                            <option value="R-410A">R-410A</option>
-                            <option value="R-32">R-32</option>
+                            <option value="R-22">R-22 (being phased out)</option>
+                            <option value="R-410A">R-410A (current standard)</option>
+                            <option value="R-32">R-32 (newer systems)</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
@@ -381,31 +502,47 @@
                 <!-- System Performance Data -->
                 <div class="section">
                     <h2 class="section-title">System Performance Data</h2>
+                    <p class="section-subtitle">Objective measurements reveal system health and pinpoint performance issues</p>
+                    
+                    <div class="value-statement">
+                        <strong>Why We Measure:</strong>
+                        <p>These numbers tell the true story of your system's health. Just like blood pressure and temperature tell a doctor about your body, these readings show us exactly how your HVAC system is performing.</p>
+                    </div>
                     
                     <h3 class="subsection-title">Airflow & Static Pressure</h3>
                     
                     <div class="grid-3">
                         <div class="form-group">
-                            <label>Return Static (in. w.c.)</label>
-                            <input type="number" name="returnStatic" step="0.01" placeholder="e.g., 0.15">
+                            <label>Return Static (in. w.c.)
+                                <span class="label-help">Resistance pulling air in</span>
+                            </label>
+                            <input type="number" name="returnStatic_0" step="0.01" placeholder="e.g., 0.15">
                         </div>
                         <div class="form-group">
-                            <label>Supply Static (in. w.c.)</label>
-                            <input type="number" name="supplyStatic" step="0.01" placeholder="e.g., 0.25">
+                            <label>Supply Static (in. w.c.)
+                                <span class="label-help">Resistance pushing air out</span>
+                            </label>
+                            <input type="number" name="supplyStatic_0" step="0.01" placeholder="e.g., 0.25">
                         </div>
                         <div class="form-group">
-                            <label>Total Static (in. w.c.)</label>
-                            <input type="number" name="totalStatic" step="0.01" placeholder="e.g., 0.40">
+                            <label>Total Static (in. w.c.)
+                                <span class="label-help">Total system resistance</span>
+                            </label>
+                            <input type="number" name="totalStatic_0" step="0.01" placeholder="e.g., 0.40">
                         </div>
+                    </div>
+                    
+                    <div class="measurement-reference">
+                        <strong>Normal Range:</strong> 0.3 - 0.5 in. w.c. for residential systems | High readings = restricted airflow (dirty filter, blocked ducts, undersized ductwork)
                     </div>
                     
                     <div class="form-group">
                         <label>Filter Condition</label>
-                        <select name="filterCondition">
+                        <select name="filterCondition_0">
                             <option value="">Select...</option>
                             <option value="Clean">Clean</option>
-                            <option value="Dirty">Dirty</option>
-                            <option value="Overdue">Overdue</option>
+                            <option value="Dirty">Dirty (visible dust buildup)</option>
+                            <option value="Overdue">Overdue (heavily loaded, restricting airflow)</option>
                             <option value="Missing">Missing</option>
                         </select>
                     </div>
@@ -413,57 +550,76 @@
                     <div class="grid-2">
                         <div class="form-group">
                             <label>Blower Amps (Actual)</label>
-                            <input type="number" name="blowerAmps" step="0.1" placeholder="e.g., 5.2">
+                            <input type="number" name="blowerAmps_0" step="0.1" placeholder="e.g., 5.2">
                         </div>
                         <div class="form-group">
-                            <label>Blower Amps (Rated)</label>
-                            <input type="number" name="blowerAmpsRated" step="0.1" placeholder="e.g., 5.5">
+                            <label>Blower Amps (Rated)
+                                <span class="label-help">From equipment nameplate</span>
+                            </label>
+                            <input type="number" name="blowerAmpsRated_0" step="0.1" placeholder="e.g., 5.5">
                         </div>
                     </div>
 
                     <h3 class="subsection-title">Refrigerant Circuit</h3>
                     
+                    <div class="value-statement">
+                        <strong>Understanding Refrigerant:</strong>
+                        <p>Refrigerant is the "blood" of your AC system. These pressures and temperatures show whether the system has the right amount and whether it's flowing properly through the coils.</p>
+                    </div>
+                    
                     <div class="grid-2">
                         <div class="form-group">
-                            <label>Suction Pressure (psig)</label>
-                            <input type="number" name="suctionPressure" step="0.1" placeholder="e.g., 110.0">
+                            <label>Suction Pressure (psig)
+                                <span class="label-help">Low side - shows evaporation</span>
+                            </label>
+                            <input type="number" name="suctionPressure_0" step="0.1" placeholder="e.g., 110.0">
                         </div>
                         <div class="form-group">
-                            <label>Head Pressure (psig)</label>
-                            <input type="number" name="headPressure" step="0.1" placeholder="e.g., 270.0">
+                            <label>Head Pressure (psig)
+                                <span class="label-help">High side - shows condensing</span>
+                            </label>
+                            <input type="number" name="headPressure_0" step="0.1" placeholder="e.g., 270.0">
                         </div>
                     </div>
                     
                     <div class="grid-2">
                         <div class="form-group">
                             <label>Suction Line Temp (°F)</label>
-                            <input type="number" name="suctionTemp" step="0.1" placeholder="e.g., 56.0">
+                            <input type="number" name="suctionTemp_0" step="0.1" placeholder="e.g., 56.0">
                         </div>
                         <div class="form-group">
                             <label>Liquid Line Temp (°F)</label>
-                            <input type="number" name="liquidTemp" step="0.1" placeholder="e.g., 95.0">
+                            <input type="number" name="liquidTemp_0" step="0.1" placeholder="e.g., 95.0">
                         </div>
                     </div>
                     
                     <div class="grid-2">
                         <div class="form-group">
-                            <label>Superheat (°F)</label>
-                            <input type="number" name="superheat" step="0.1" placeholder="e.g., 16.0">
+                            <label>Superheat (°F)
+                                <span class="label-help">How much vapor heating occurs</span>
+                            </label>
+                            <input type="number" name="superheat_0" step="0.1" placeholder="e.g., 16.0">
+                            <div class="measurement-reference">Target: 8-12°F (TXV) or 10-20°F (fixed orifice)</div>
                         </div>
                         <div class="form-group">
-                            <label>Subcool (°F)</label>
-                            <input type="number" name="subcool" step="0.1" placeholder="e.g., 3.0">
+                            <label>Subcool (°F)
+                                <span class="label-help">How much liquid cooling occurs</span>
+                            </label>
+                            <input type="number" name="subcool_0" step="0.1" placeholder="e.g., 8.0">
+                            <div class="measurement-reference">Target: 8-12°F for most systems</div>
                         </div>
                     </div>
                     
                     <div class="grid-2">
                         <div class="form-group">
                             <label>Compressor Amps (Actual)</label>
-                            <input type="number" name="compAmps" step="0.1" placeholder="e.g., 7.0">
+                            <input type="number" name="compAmps_0" step="0.1" placeholder="e.g., 7.0">
                         </div>
                         <div class="form-group">
-                            <label>Compressor Amps (Rated)</label>
-                            <input type="number" name="compAmpsRated" step="0.1" placeholder="e.g., 7.2">
+                            <label>Compressor Amps (Rated)
+                                <span class="label-help">From equipment nameplate</span>
+                            </label>
+                            <input type="number" name="compAmpsRated_0" step="0.1" placeholder="e.g., 7.2">
                         </div>
                     </div>
 
@@ -471,218 +627,246 @@
                     
                     <div class="grid-3">
                         <div class="form-group">
-                            <label>Return Air (°F)</label>
-                            <input type="number" name="returnTemp" step="0.1" placeholder="e.g., 75.0">
+                            <label>Return Air (°F)
+                                <span class="label-help">Air entering system</span>
+                            </label>
+                            <input type="number" name="returnTemp_0" step="0.1" placeholder="e.g., 75.0">
                         </div>
                         <div class="form-group">
-                            <label>Supply Air (°F)</label>
-                            <input type="number" name="supplyTemp" step="0.1" placeholder="e.g., 58.0">
+                            <label>Supply Air (°F)
+                                <span class="label-help">Air leaving system</span>
+                            </label>
+                            <input type="number" name="supplyTemp_0" step="0.1" placeholder="e.g., 57.0">
                         </div>
                         <div class="form-group">
-                            <label>Temp Split (°F)</label>
-                            <input type="number" name="tempSplit" step="0.1" placeholder="Auto-calculated">
+                            <label>Temp Split (°F)
+                                <span class="label-help">Auto-calculated</span>
+                            </label>
+                            <input type="number" name="tempSplit_0" step="0.1" placeholder="Auto-calculated" readonly>
                         </div>
+                    </div>
+                    
+                    <div class="measurement-reference">
+                        <strong>Normal Cooling Split:</strong> 16-22°F | Below 16°F = airflow or coil issue | Above 22°F = possible overcharge or reduced load
                     </div>
                 </div>
 
                 <!-- Visual Inspection -->
                 <div class="section">
                     <h2 class="section-title">Visual Inspection Findings</h2>
+                    <p class="section-subtitle">Physical inspection reveals issues that measurements alone cannot detect</p>
                     
                     <h3 class="subsection-title">Evaporator Coil</h3>
                     
+                    <div class="value-statement">
+                        <strong>Why Coil Condition Matters:</strong>
+                        <p>The evaporator coil is where cooling happens. Contamination reduces efficiency by 30-40% and spreads through your home's air. Think of it like trying to breathe through a dirty mask.</p>
+                    </div>
+                    
                     <div class="form-group">
                         <label>Condition</label>
-                        <select name="coilCondition">
+                        <select name="coilCondition_0">
                             <option value="">Select...</option>
-                            <option value="Clean">Clean</option>
-                            <option value="Dusty">Dusty</option>
-                            <option value="Microbial Growth">Microbial Growth</option>
-                            <option value="Corrosion">Corrosion</option>
-                            <option value="Damaged">Damaged</option>
+                            <option value="Clean">Clean - optimal performance</option>
+                            <option value="Dusty">Dusty - minor efficiency loss</option>
+                            <option value="Microbial Growth">Microbial Growth - IAQ concern, efficiency loss</option>
+                            <option value="Corrosion">Corrosion - potential leak risk</option>
+                            <option value="Damaged">Damaged - immediate attention needed</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label>Severity (1-10, if issue present)</label>
-                        <input type="number" name="coilSeverity" min="1" max="10">
+                        <input type="number" name="coilSeverity_0" min="1" max="10">
                     </div>
                     
                     <div class="form-group">
                         <label>Notes</label>
-                        <textarea name="coilNotes" placeholder="Describe specific observations..."></textarea>
+                        <textarea name="coilNotes_0" placeholder="Describe location and extent of contamination, visible damage, or concerns..."></textarea>
                     </div>
 
                     <h3 class="subsection-title">Blower Assembly</h3>
                     
                     <div class="form-group">
                         <label>Condition</label>
-                        <select name="blowerCondition">
+                        <select name="blowerCondition_0">
                             <option value="">Select...</option>
                             <option value="Clean">Clean</option>
-                            <option value="Light Dust">Light Dust</option>
-                            <option value="Heavy Buildup">Heavy Buildup</option>
-                            <option value="Contaminated">Contaminated</option>
+                            <option value="Light Dust">Light Dust - routine maintenance needed</option>
+                            <option value="Heavy Buildup">Heavy Buildup - affecting airflow</option>
+                            <option value="Contaminated">Contaminated - biological growth present</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label>Notes</label>
-                        <textarea name="blowerNotes" placeholder="Describe specific observations..."></textarea>
+                        <textarea name="blowerNotes_0" placeholder="Describe wheel condition, motor operation, bearing noise..."></textarea>
                     </div>
 
                     <h3 class="subsection-title">Condensate System</h3>
                     
+                    <div class="value-statement">
+                        <strong>Condensate Management:</strong>
+                        <p>Your AC removes moisture from the air - this must drain properly. Clogs cause water damage, mold growth, and system shutdowns.</p>
+                    </div>
+                    
                     <div class="form-group">
                         <label>Drain Pan Condition</label>
-                        <select name="condensateCondition">
+                        <select name="condensateCondition_0">
                             <option value="">Select...</option>
-                            <option value="Clean/Dry">Clean/Dry</option>
-                            <option value="Debris Present">Debris Present</option>
-                            <option value="Standing Water">Standing Water</option>
-                            <option value="Rust/Corrosion">Rust/Corrosion</option>
+                            <option value="Clean/Dry">Clean/Dry - functioning properly</option>
+                            <option value="Debris Present">Debris Present - cleaning recommended</option>
+                            <option value="Standing Water">Standing Water - drain issue, urgent</option>
+                            <option value="Rust/Corrosion">Rust/Corrosion - replacement may be needed</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label>Drain Line Status</label>
-                        <select name="drainStatus">
+                        <select name="drainStatus_0">
                             <option value="">Select...</option>
-                            <option value="Clear">Clear</option>
-                            <option value="Slow Flow">Slow Flow</option>
-                            <option value="Blocked">Blocked</option>
+                            <option value="Clear">Clear - flows freely</option>
+                            <option value="Slow Flow">Slow Flow - partial restriction</option>
+                            <option value="Blocked">Blocked - requires clearing</option>
                         </select>
                     </div>
 
                     <h3 class="subsection-title">Ductwork & Plenum</h3>
                     
+                    <div class="value-statement">
+                        <strong>Hidden Energy Thief:</strong>
+                        <p>Duct leaks waste 20-40% of cooled air into attics and crawl spaces. You're paying to cool spaces you don't use. Sealing ducts pays for itself in 2-3 years.</p>
+                    </div>
+                    
                     <div class="form-group">
                         <label>Sealing Condition</label>
-                        <select name="ductSealing">
+                        <select name="ductSealing_0">
                             <option value="">Select...</option>
-                            <option value="Well Sealed">Well Sealed</option>
-                            <option value="Minor Leaks">Minor Leaks</option>
-                            <option value="Major Leaks">Major Leaks</option>
+                            <option value="Well Sealed">Well Sealed - no leaks detected</option>
+                            <option value="Minor Leaks">Minor Leaks - 5-15% efficiency loss</option>
+                            <option value="Major Leaks">Major Leaks - 20-40% efficiency loss</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label>Leak Locations (if applicable)</label>
-                        <input type="text" name="leakLocations" placeholder="Describe where leaks are located...">
+                        <input type="text" name="leakLocations_0" placeholder="e.g., plenum connections, boot collars, trunk seams">
                     </div>
                     
                     <div class="form-group">
                         <label>Additional Visual Observations</label>
-                        <textarea name="visualNotes" placeholder="Any other notable findings from visual inspection..."></textarea>
+                        <textarea name="visualNotes_0" placeholder="Document insulation condition, flex duct damage, access issues, or other concerns..."></textarea>
                     </div>
                 </div>
 
                 <!-- Safety & Compliance -->
                 <div class="section">
                     <h2 class="section-title">Safety & Compliance</h2>
+                    <p class="section-subtitle">Protecting your family is our first priority</p>
                     
                     <div class="form-group">
                         <label>Safety Items Present</label>
                         <div class="checkbox-group">
                             <div class="checkbox-item">
-                                <input type="checkbox" id="safetyCD" name="safety" value="CO Detector Present">
-                                <label for="safetyCD">CO Detector</label>
+                                <input type="checkbox" id="safetyCD_0" name="safety_0" value="CO Detector Present">
+                                <label for="safetyCD_0">CO Detector</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="safetySmoke" name="safety" value="Smoke Detector Present">
-                                <label for="safetySmoke">Smoke Detector</label>
+                                <input type="checkbox" id="safetySmoke_0" name="safety_0" value="Smoke Detector Present">
+                                <label for="safetySmoke_0">Smoke Detector</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="safetyClear" name="safety" value="Proper Clearances">
-                                <label for="safetyClear">Proper Clearances</label>
+                                <input type="checkbox" id="safetyClear_0" name="safety_0" value="Proper Clearances">
+                                <label for="safetyClear_0">Proper Clearances</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="safetyShutoff" name="safety" value="Emergency Shutoff Accessible">
-                                <label for="safetyShutoff">Shutoff Accessible</label>
+                                <input type="checkbox" id="safetyShutoff_0" name="safety_0" value="Emergency Shutoff Accessible">
+                                <label for="safetyShutoff_0">Shutoff Accessible</label>
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label>Safety Notes / Concerns</label>
-                        <textarea name="safetyNotes" placeholder="Document any safety issues or concerns..."></textarea>
+                        <textarea name="safetyNotes_0" placeholder="Document any safety issues, code violations, or recommendations..."></textarea>
                     </div>
                 </div>
 
                 <!-- Diagnostic Assessment -->
                 <div class="section">
                     <h2 class="section-title">Diagnostic Assessment</h2>
+                    <p class="section-subtitle">Translating symptoms into root cause understanding</p>
                     
                     <div class="form-group">
-                        <label>Primary Complaint (Customer's Words) <span class="required">*</span></label>
-                        <textarea name="primaryComplaint" required placeholder="What did the customer tell you about the problem?"></textarea>
+                        <label>Primary Complaint (Customer's Words)</label>
+                        <textarea name="primaryComplaint_0" placeholder="What did the customer tell you about the problem? Use their exact words when possible."></textarea>
                     </div>
                     
                     <div class="form-group">
                         <label>Observable Symptoms</label>
                         <div class="checkbox-group">
                             <div class="checkbox-item">
-                                <input type="checkbox" id="symptomCool" name="symptoms" value="Insufficient cooling/heating">
-                                <label for="symptomCool">Insufficient cooling/heating</label>
+                                <input type="checkbox" id="symptomCool_0" name="symptoms_0" value="Insufficient cooling/heating">
+                                <label for="symptomCool_0">Insufficient cooling/heating</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="symptomNoAir" name="symptoms" value="No airflow">
-                                <label for="symptomNoAir">No airflow</label>
+                                <input type="checkbox" id="symptomNoAir_0" name="symptoms_0" value="No airflow">
+                                <label for="symptomNoAir_0">No airflow</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="symptomWeak" name="symptoms" value="Weak airflow">
-                                <label for="symptomWeak">Weak airflow</label>
+                                <input type="checkbox" id="symptomWeak_0" name="symptoms_0" value="Weak airflow">
+                                <label for="symptomWeak_0">Weak airflow</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="symptomNoise" name="symptoms" value="Strange noises">
-                                <label for="symptomNoise">Strange noises</label>
+                                <input type="checkbox" id="symptomNoise_0" name="symptoms_0" value="Strange noises">
+                                <label for="symptomNoise_0">Strange noises</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="symptomOdor" name="symptoms" value="Odors">
-                                <label for="symptomOdor">Odors</label>
+                                <input type="checkbox" id="symptomOdor_0" name="symptoms_0" value="Odors">
+                                <label for="symptomOdor_0">Odors</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="symptomIce" name="symptoms" value="Ice formation">
-                                <label for="symptomIce">Ice formation</label>
+                                <input type="checkbox" id="symptomIce_0" name="symptoms_0" value="Ice formation">
+                                <label for="symptomIce_0">Ice formation</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="symptomLeak" name="symptoms" value="Water leaks">
-                                <label for="symptomLeak">Water leaks</label>
+                                <input type="checkbox" id="symptomLeak_0" name="symptoms_0" value="Water leaks">
+                                <label for="symptomLeak_0">Water leaks</label>
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Root Cause Analysis (Your Assessment) <span class="required">*</span></label>
-                        <textarea name="rootCause" required placeholder="What is causing the problem? Be specific."></textarea>
+                        <label>Root Cause Analysis (Your Assessment)</label>
+                        <textarea name="rootCause_0" placeholder="What is causing the problem? Connect symptoms to measurements and observations. Be specific about the chain of cause and effect."></textarea>
                     </div>
                     
                     <div class="form-group">
                         <label>Contributing Factors</label>
                         <div class="checkbox-group">
                             <div class="checkbox-item">
-                                <input type="checkbox" id="factorAirflow" name="factors" value="Restricted airflow">
-                                <label for="factorAirflow">Restricted airflow</label>
+                                <input type="checkbox" id="factorAirflow_0" name="factors_0" value="Restricted airflow">
+                                <label for="factorAirflow_0">Restricted airflow</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="factorRefrig" name="factors" value="Refrigerant issue">
-                                <label for="factorRefrig">Refrigerant issue</label>
+                                <input type="checkbox" id="factorRefrig_0" name="factors_0" value="Refrigerant issue">
+                                <label for="factorRefrig_0">Refrigerant issue</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="factorElec" name="factors" value="Electrical problem">
-                                <label for="factorElec">Electrical problem</label>
+                                <input type="checkbox" id="factorElec_0" name="factors_0" value="Electrical problem">
+                                <label for="factorElec_0">Electrical problem</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="factorMech" name="factors" value="Mechanical failure">
-                                <label for="factorMech">Mechanical failure</label>
+                                <input type="checkbox" id="factorMech_0" name="factors_0" value="Mechanical failure">
+                                <label for="factorMech_0">Mechanical failure</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="factorInstall" name="factors" value="Installation deficiency">
-                                <label for="factorInstall">Installation deficiency</label>
+                                <input type="checkbox" id="factorInstall_0" name="factors_0" value="Installation deficiency">
+                                <label for="factorInstall_0">Installation deficiency</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="factorMaint" name="factors" value="Maintenance neglect">
-                                <label for="factorMaint">Maintenance neglect</label>
+                                <input type="checkbox" id="factorMaint_0" name="factors_0" value="Maintenance neglect">
+                                <label for="factorMaint_0">Maintenance neglect</label>
                             </div>
                         </div>
                     </div>
@@ -691,105 +875,135 @@
                 <!-- System Scoring -->
                 <div class="section">
                     <h2 class="section-title">System Scoring</h2>
-                    <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Rate each category from 1 (critical failure) to 10 (excellent condition)</p>
+                    <p class="section-subtitle">Objective health assessment provides baseline and tracks improvement over time</p>
+                    
+                    <div class="value-statement">
+                        <strong>Understanding Your System Score:</strong>
+                        <p>These scores give you a clear picture of your system's health. Like a report card, they show where your system excels and where it needs attention. We'll track these over time to show the value of maintenance and improvements.</p>
+                    </div>
                     
                     <div class="grid-2">
                         <div class="form-group">
-                            <label>Safety <span class="required">*</span></label>
-                            <input type="number" name="scoreSafety" min="1" max="10" required placeholder="1-10">
+                            <label>Safety (1-10)
+                                <span class="label-help">10=All safety devices present and functional | 1=Immediate hazard</span>
+                            </label>
+                            <input type="number" name="scoreSafety_0" min="1" max="10" placeholder="1-10">
                         </div>
                         <div class="form-group">
-                            <label>Mechanical Performance <span class="required">*</span></label>
-                            <input type="number" name="scoreMechanical" min="1" max="10" required placeholder="1-10">
+                            <label>Mechanical Performance (1-10)
+                                <span class="label-help">10=Like new | 1=Critical failure</span>
+                            </label>
+                            <input type="number" name="scoreMechanical_0" min="1" max="10" placeholder="1-10">
                         </div>
                         <div class="form-group">
-                            <label>Indoor Air Quality <span class="required">*</span></label>
-                            <input type="number" name="scoreIAQ" min="1" max="10" required placeholder="1-10">
+                            <label>Indoor Air Quality (1-10)
+                                <span class="label-help">10=Clean, filtered air | 1=Contamination hazard</span>
+                            </label>
+                            <input type="number" name="scoreIAQ_0" min="1" max="10" placeholder="1-10">
                         </div>
                         <div class="form-group">
-                            <label>Energy Efficiency <span class="required">*</span></label>
-                            <input type="number" name="scoreEfficiency" min="1" max="10" required placeholder="1-10">
+                            <label>Energy Efficiency (1-10)
+                                <span class="label-help">10=Operating at peak | 1=Severe waste</span>
+                            </label>
+                            <input type="number" name="scoreEfficiency_0" min="1" max="10" placeholder="1-10">
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Overall System Health <span class="required">*</span></label>
-                        <input type="number" name="scoreOverall" min="1" max="10" required placeholder="1-10">
+                        <label>Overall System Health (1-10)
+                            <span class="label-help">10=Excellent | 7-9=Good | 4-6=Fair | 1-3=Poor</span>
+                        </label>
+                        <input type="number" name="scoreOverall_0" min="1" max="10" placeholder="1-10">
                     </div>
                 </div>
 
                 <!-- Recommendations -->
                 <div class="section">
                     <h2 class="section-title">Recommendations</h2>
+                    <p class="section-subtitle">Prioritized solutions with clear reasoning and value</p>
                     
                     <h3 class="subsection-title">Immediate / Critical</h3>
+                    <div class="value-statement">
+                        <strong>Priority Level: Urgent</strong>
+                        <p>These items pose safety risks, imminent system failure, or active damage. Addressing these protects your family, your home, and prevents catastrophic failure.</p>
+                    </div>
                     <div class="form-group">
                         <label>Safety risks or imminent system failure items</label>
-                        <textarea name="recommendImmediate" placeholder="List critical items that need immediate attention..."></textarea>
+                        <textarea name="recommendImmediate_0" placeholder="List critical items with specific reasons for urgency (e.g., 'Drain pan overflowing - active water damage risk to ceiling')"></textarea>
                     </div>
 
                     <h3 class="subsection-title">Corrective (Performance Restoration)</h3>
+                    <div class="value-statement">
+                        <strong>Priority Level: Needed</strong>
+                        <p>These repairs restore your system to proper function, improving comfort, efficiency, and longevity. Cost of delay: higher bills, reduced comfort, accelerated wear.</p>
+                    </div>
                     <div class="form-group">
                         <label>Items needed to restore proper function</label>
-                        <textarea name="recommendCorrective" placeholder="List repairs needed to restore system performance..."></textarea>
+                        <textarea name="recommendCorrective_0" placeholder="List repairs with expected impact (e.g., 'Seal ductwork leaks - recover 25% of cooling capacity, reduce monthly bills by $40-60')"></textarea>
                     </div>
 
                     <h3 class="subsection-title">Preventive / Enhancement</h3>
+                    <div class="value-statement">
+                        <strong>Priority Level: Beneficial</strong>
+                        <p>These upgrades prevent future problems and enhance performance. They're investments that pay dividends through longer equipment life, better air quality, and lower operating costs.</p>
+                    </div>
                     <div class="form-group">
                         <label>Long-term protection and upgrade opportunities</label>
-                        <textarea name="recommendPreventive" placeholder="List preventive measures and optional upgrades..."></textarea>
+                        <textarea name="recommendPreventive_0" placeholder="List preventive measures with ROI (e.g., 'UV air purification - prevents microbial regrowth, improves IAQ, protects $6K coil investment')"></textarea>
                     </div>
                 </div>
 
                 <!-- Customer Interaction -->
                 <div class="section">
                     <h2 class="section-title">Customer Interaction</h2>
+                    <p class="section-subtitle">Documentation of education, options presented, and customer decisions</p>
                     
                     <div class="form-group">
                         <label>Options Presented & Discussed</label>
-                        <textarea name="optionsPresented" placeholder="What options did you present to the customer?"></textarea>
+                        <textarea name="optionsPresented_0" placeholder="What options did you present? What education did you provide about each option?"></textarea>
                     </div>
                     
                     <div class="form-group">
                         <label>Customer Decision</label>
-                        <select name="customerDecision">
+                        <select name="customerDecision_0">
                             <option value="">Select...</option>
-                            <option value="Approved All">Approved All</option>
-                            <option value="Approved Partial">Approved Partial</option>
-                            <option value="Declined">Declined</option>
+                            <option value="Approved All">Approved All Recommendations</option>
+                            <option value="Approved Partial">Approved Partial (specify in notes)</option>
+                            <option value="Declined">Declined - wants to monitor</option>
                             <option value="Wants to Think">Wants to Think About It</option>
-                            <option value="Requested Quote">Requested Quote</option>
+                            <option value="Requested Quote">Requested Formal Quote</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label>Customer Questions / Concerns</label>
-                        <textarea name="customerConcerns" placeholder="Document any questions or concerns the customer raised..."></textarea>
+                        <textarea name="customerConcerns_0" placeholder="Document questions asked, concerns raised, objections, budget constraints, or decision factors..."></textarea>
                     </div>
                 </div>
 
                 <!-- Work Performed -->
                 <div class="section">
                     <h2 class="section-title">Work Performed Today</h2>
+                    <p class="section-subtitle">Documentation of completed services</p>
                     
                     <div class="form-group">
                         <label>Work Completed</label>
-                        <textarea name="workPerformed" placeholder="List all work completed during this visit..."></textarea>
+                        <textarea name="workPerformed_0" placeholder="List all diagnostic steps, repairs completed, adjustments made, or services rendered..."></textarea>
                     </div>
                     
                     <div class="form-group">
                         <label>Parts Used</label>
-                        <input type="text" name="partsUsed" placeholder="List parts used with quantities...">
+                        <input type="text" name="partsUsed_0" placeholder="List parts with quantities (e.g., '1x 16x25x1 MERV 8 filter, 1x 40/5 dual capacitor')">
                     </div>
                     
                     <div class="grid-2">
                         <div class="form-group">
                             <label>Time on Site (hours)</label>
-                            <input type="number" name="hoursOnSite" step="0.25" placeholder="e.g., 2">
+                            <input type="number" name="hoursOnSite_0" step="0.25" placeholder="e.g., 2">
                         </div>
                         <div class="form-group">
                             <label>Time on Site (minutes)</label>
-                            <input type="number" name="minutesOnSite" step="5" placeholder="e.g., 30">
+                            <input type="number" name="minutesOnSite_0" step="5" placeholder="e.g., 30">
                         </div>
                     </div>
                 </div>
@@ -797,12 +1011,15 @@
                 <!-- Additional Notes -->
                 <div class="section">
                     <h2 class="section-title">Additional Notes</h2>
+                    <p class="section-subtitle">Capture any additional context, observations, or follow-up items</p>
                     
                     <div class="form-group">
                         <label>General Observations & Follow-up Items</label>
-                        <textarea name="additionalNotes" placeholder="Any additional observations, follow-up items, or important details..."></textarea>
+                        <textarea name="additionalNotes_0" placeholder="Unusual findings, homeowner preferences, access challenges, future recommendations, or scheduling considerations..."></textarea>
                     </div>
                 </div>
+
+                </div> <!-- End System 0 -->
             </form>
         </div>
 
@@ -814,11 +1031,13 @@
 
     <script>
         let formData = {};
+        let systemCount = 1;
+        let currentSystem = 0;
 
         document.addEventListener('DOMContentLoaded', function() {
             const today = new Date();
-            const dateInput = document.querySelector('input[name="date"]');
-            const timeInput = document.querySelector('input[name="timeArrived"]');
+            const dateInput = document.querySelector('input[name="date_0"]');
+            const timeInput = document.querySelector('input[name="timeArrived_0"]');
             
             if (dateInput && !dateInput.value) {
                 dateInput.value = today.toISOString().split('T')[0];
@@ -831,13 +1050,75 @@
             }
 
             loadProgress();
-            setupAutoCalculations();
+            setupAutoCalculations(0);
         });
 
-        function setupAutoCalculations() {
-            const returnTemp = document.querySelector('input[name="returnTemp"]');
-            const supplyTemp = document.querySelector('input[name="supplyTemp"]');
-            const tempSplit = document.querySelector('input[name="tempSplit"]');
+        function switchSystem(index) {
+            document.querySelectorAll('.system-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.system-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-system="${index}"]`).classList.add('active');
+            document.querySelectorAll('.system-tab')[index].classList.add('active');
+            currentSystem = index;
+            
+            setupAutoCalculations(index);
+        }
+
+        function addSystem() {
+            const systemIndex = systemCount;
+            
+            // Add tab
+            const tabContainer = document.getElementById('systemTabs');
+            const newTab = document.createElement('button');
+            newTab.className = 'system-tab';
+            newTab.textContent = `System ${systemCount + 1}`;
+            newTab.onclick = () => switchSystem(systemIndex);
+            tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
+            
+            // Clone system content
+            const originalContent = document.querySelector('[data-system="0"]');
+            const newContent = originalContent.cloneNode(true);
+            newContent.setAttribute('data-system', systemIndex);
+            newContent.classList.remove('active');
+            
+            // Update all name attributes and IDs
+            newContent.querySelectorAll('[name]').forEach(input => {
+                const oldName = input.getAttribute('name');
+                const newName = oldName.replace(/_\d+$/, `_${systemIndex}`);
+                input.setAttribute('name', newName);
+                input.value = '';
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    input.checked = false;
+                }
+            });
+            
+            newContent.querySelectorAll('[id]').forEach(element => {
+                const oldId = element.getAttribute('id');
+                const newId = oldId.replace(/_\d+$/, `_${systemIndex}`);
+                element.setAttribute('id', newId);
+            });
+            
+            newContent.querySelectorAll('[for]').forEach(label => {
+                const oldFor = label.getAttribute('for');
+                const newFor = oldFor.replace(/_\d+$/, `_${systemIndex}`);
+                label.setAttribute('for', newFor);
+            });
+            
+            // Add to form
+            document.querySelector('.form-content form').appendChild(newContent);
+            
+            systemCount++;
+            switchSystem(systemIndex);
+        }
+
+        function setupAutoCalculations(systemIndex) {
+            const returnTemp = document.querySelector(`input[name="returnTemp_${systemIndex}"]`);
+            const supplyTemp = document.querySelector(`input[name="supplyTemp_${systemIndex}"]`);
+            const tempSplit = document.querySelector(`input[name="tempSplit_${systemIndex}"]`);
 
             function calcSplit() {
                 if (returnTemp.value && supplyTemp.value) {
@@ -847,6 +1128,8 @@
             }
 
             if (returnTemp && supplyTemp && tempSplit) {
+                returnTemp.removeEventListener('input', calcSplit);
+                supplyTemp.removeEventListener('input', calcSplit);
                 returnTemp.addEventListener('input', calcSplit);
                 supplyTemp.addEventListener('input', calcSplit);
             }
@@ -899,199 +1182,157 @@
 
         function generateReport() {
             const form = document.getElementById('fieldBuddyForm');
-            
-            if (!form.checkValidity()) {
-                alert('Please fill in all required fields before completing the call.');
-                form.reportValidity();
-                return;
-            }
-
             const data = new FormData(form);
-            let report = "FIELD BUDDY DATA CAPTURE REPORT\n";
+            
+            let report = "FIELD BUDDY PROFESSIONAL SERVICE DOCUMENTATION\n";
+            report += "=".repeat(70) + "\n";
+            report += "Multi-Function Report: Technical Data Log | Client Presentation | Educational Resource\n";
             report += "=".repeat(70) + "\n\n";
+            
+            // Get customer name from first system for filename
+            const customerName = data.get('customerName_0') || 'Customer';
+            const reportDate = data.get('date_0') || new Date().toISOString().split('T')[0];
+            
+            // Determine number of systems
+            let systems = [];
+            for (let i = 0; i < systemCount; i++) {
+                if (document.querySelector(`[data-system="${i}"]`)) {
+                    systems.push(i);
+                }
+            }
+            
+            // Generate report for each system
+            systems.forEach((sysIndex, arrayIndex) => {
+                if (arrayIndex > 0) {
+                    report += "\n\n" + "=".repeat(70) + "\n";
+                    report += `SYSTEM ${arrayIndex + 1}\n`;
+                    report += "=".repeat(70) + "\n\n";
+                }
+                
+                report += generateSystemReport(data, sysIndex);
+            });
+            
+            report += "\n\n" + "=".repeat(70) + "\n";
+            report += "END OF COMPREHENSIVE SERVICE REPORT\n";
+            report += "Ready for Field Buddy LLM Processing\n";
+            report += "=".repeat(70) + "\n";
+
+            downloadReport(report, customerName, reportDate);
+        }
+
+        function generateSystemReport(data, sysIndex) {
+            let report = "";
             
             report += "JOB CONTEXT\n";
             report += "-".repeat(70) + "\n";
-            report += `Date: ${data.get('date')}\n`;
-            report += `Time Arrived: ${data.get('timeArrived')}\n`;
-            report += `Technician: ${data.get('techName')}\n`;
-            report += `Customer: ${data.get('customerName')}\n`;
-            report += `Address: ${data.get('address')}\n`;
-            if (data.get('accountNumber')) report += `Account Number: ${data.get('accountNumber')}\n`;
-            report += `Ambient Conditions: ${data.get('ambientTemp') || 'N/A'}°F, ${data.get('ambientRH') || 'N/A'}% RH\n`;
+            report += `Date: ${data.get(`date_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `Time Arrived: ${data.get(`timeArrived_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `Technician: ${data.get(`techName_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `Customer: ${data.get(`customerName_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `Address: ${data.get(`address_${sysIndex}`) || 'Not recorded'}\n`;
+            if (data.get(`accountNumber_${sysIndex}`)) report += `Account Number: ${data.get(`accountNumber_${sysIndex}`)}\n`;
+            report += `Ambient Conditions: ${data.get(`ambientTemp_${sysIndex}`) || 'N/A'}°F, ${data.get(`ambientRH_${sysIndex}`) || 'N/A'}% RH\n`;
             
-            const callTypes = data.getAll('callType');
+            const callTypes = data.getAll(`callType_${sysIndex}`);
             report += `Call Type: ${callTypes.join(', ') || 'Not specified'}\n\n`;
 
             report += "EQUIPMENT IDENTIFICATION\n";
             report += "-".repeat(70) + "\n";
             report += "Indoor Unit:\n";
-            report += `  Manufacturer: ${data.get('indoorMfg') || 'Not recorded'}\n`;
-            report += `  Model: ${data.get('indoorModel') || 'Not recorded'}\n`;
-            report += `  Serial: ${data.get('indoorSerial') || 'Not recorded'}\n`;
-            report += `  Tonnage: ${data.get('tonnage') || 'Not recorded'} tons\n`;
-            report += `  Filter Size: ${data.get('filterSize') || 'Not recorded'}\n`;
-            report += "\nOutdoor Unit:\n";
-            report += `  Manufacturer: ${data.get('outdoorMfg') || 'Not recorded'}\n`;
-            report += `  Model: ${data.get('outdoorModel') || 'Not recorded'}\n`;
-            report += `  Serial: ${data.get('outdoorSerial') || 'Not recorded'}\n`;
-            report += `  Refrigerant Type: ${data.get('refrigerantType') || 'Not recorded'}\n\n`;
+            report += `  Manufacturer: ${data.get(`indoorMfg_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `  Model: ${data.get(`indoorModel_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `  Serial: ${data.get(`indoorSerial_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `  Tonnage: ${data.get(`tonnage_${sysIndex}`) || 'Not recorded'} tons\n`;
+            report += `  Filter Size: ${data.get(`filterSize_${sysIndex}`) || 'Not recorded'}\n`;
+            report += "\nOutdoor Unit:\n`;
+            report += `  Manufacturer: ${data.get(`outdoorMfg_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `  Model: ${data.get(`outdoorModel_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `  Serial: ${data.get(`outdoorSerial_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `  Refrigerant Type: ${data.get(`refrigerantType_${sysIndex}`) || 'Not recorded'}\n\n`;
 
             report += "SYSTEM PERFORMANCE DATA\n";
             report += "-".repeat(70) + "\n";
             report += "Airflow & Static Pressure:\n";
-            report += `  Return Static: ${data.get('returnStatic') || 'N/A'} in. w.c.\n`;
-            report += `  Supply Static: ${data.get('supplyStatic') || 'N/A'} in. w.c.\n`;
-            report += `  Total Static: ${data.get('totalStatic') || 'N/A'} in. w.c.\n`;
-            report += `  Filter Condition: ${data.get('filterCondition') || 'Not recorded'}\n`;
-            report += `  Blower Amps: ${data.get('blowerAmps') || 'N/A'} A (Rated: ${data.get('blowerAmpsRated') || 'N/A'} A)\n`;
+            report += `  Return Static: ${data.get(`returnStatic_${sysIndex}`) || 'N/A'} in. w.c.\n`;
+            report += `  Supply Static: ${data.get(`supplyStatic_${sysIndex}`) || 'N/A'} in. w.c.\n`;
+            report += `  Total Static: ${data.get(`totalStatic_${sysIndex}`) || 'N/A'} in. w.c.\n`;
+            report += `  Filter Condition: ${data.get(`filterCondition_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `  Blower Amps: ${data.get(`blowerAmps_${sysIndex}`) || 'N/A'} A (Rated: ${data.get(`blowerAmpsRated_${sysIndex}`) || 'N/A'} A)\n`;
             
             report += "\nRefrigerant Circuit:\n";
-            report += `  Suction Pressure: ${data.get('suctionPressure') || 'N/A'} psig\n`;
-            report += `  Head Pressure: ${data.get('headPressure') || 'N/A'} psig\n`;
-            report += `  Suction Line Temp: ${data.get('suctionTemp') || 'N/A'}°F\n`;
-            report += `  Liquid Line Temp: ${data.get('liquidTemp') || 'N/A'}°F\n`;
-            report += `  Superheat: ${data.get('superheat') || 'N/A'}°F\n`;
-            report += `  Subcool: ${data.get('subcool') || 'N/A'}°F\n`;
-            report += `  Compressor Amps: ${data.get('compAmps') || 'N/A'} A (Rated: ${data.get('compAmpsRated') || 'N/A'} A)\n`;
+            report += `  Suction Pressure: ${data.get(`suctionPressure_${sysIndex}`) || 'N/A'} psig\n`;
+            report += `  Head Pressure: ${data.get(`headPressure_${sysIndex}`) || 'N/A'} psig\n`;
+            report += `  Suction Line Temp: ${data.get(`suctionTemp_${sysIndex}`) || 'N/A'}°F\n`;
+            report += `  Liquid Line Temp: ${data.get(`liquidTemp_${sysIndex}`) || 'N/A'}°F\n`;
+            report += `  Superheat: ${data.get(`superheat_${sysIndex}`) || 'N/A'}°F\n`;
+            report += `  Subcool: ${data.get(`subcool_${sysIndex}`) || 'N/A'}°F\n`;
+            report += `  Compressor Amps: ${data.get(`compAmps_${sysIndex}`) || 'N/A'} A (Rated: ${data.get(`compAmpsRated_${sysIndex}`) || 'N/A'} A)\n`;
             
             report += "\nTemperature Performance:\n";
-            report += `  Return Air: ${data.get('returnTemp') || 'N/A'}°F\n`;
-            report += `  Supply Air: ${data.get('supplyTemp') || 'N/A'}°F\n`;
-            report += `  Temperature Split: ${data.get('tempSplit') || 'N/A'}°F\n\n`;
+            report += `  Return Air: ${data.get(`returnTemp_${sysIndex}`) || 'N/A'}°F\n`;
+            report += `  Supply Air: ${data.get(`supplyTemp_${sysIndex}`) || 'N/A'}°F\n`;
+            report += `  Temperature Split: ${data.get(`tempSplit_${sysIndex}`) || 'N/A'}°F\n\n`;
 
             report += "VISUAL INSPECTION FINDINGS\n";
             report += "-".repeat(70) + "\n";
             report += "Evaporator Coil:\n";
-            report += `  Condition: ${data.get('coilCondition') || 'Not recorded'}\n`;
-            if (data.get('coilSeverity')) report += `  Severity: ${data.get('coilSeverity')}/10\n`;
-            if (data.get('coilNotes')) report += `  Notes: ${data.get('coilNotes')}\n`;
+            report += `  Condition: ${data.get(`coilCondition_${sysIndex}`) || 'Not recorded'}\n`;
+            if (data.get(`coilSeverity_${sysIndex}`)) report += `  Severity: ${data.get(`coilSeverity_${sysIndex}`)}/10\n`;
+            if (data.get(`coilNotes_${sysIndex}`)) report += `  Notes: ${data.get(`coilNotes_${sysIndex}`)}\n`;
             
             report += `\nBlower Assembly:\n`;
-            report += `  Condition: ${data.get('blowerCondition') || 'Not recorded'}\n`;
-            if (data.get('blowerNotes')) report += `  Notes: ${data.get('blowerNotes')}\n`;
+            report += `  Condition: ${data.get(`blowerCondition_${sysIndex}`) || 'Not recorded'}\n`;
+            if (data.get(`blowerNotes_${sysIndex}`)) report += `  Notes: ${data.get(`blowerNotes_${sysIndex}`)}\n`;
             
             report += `\nCondensate System:\n`;
-            report += `  Pan Condition: ${data.get('condensateCondition') || 'Not recorded'}\n`;
-            report += `  Drain Line: ${data.get('drainStatus') || 'Not recorded'}\n`;
+            report += `  Pan Condition: ${data.get(`condensateCondition_${sysIndex}`) || 'Not recorded'}\n`;
+            report += `  Drain Line: ${data.get(`drainStatus_${sysIndex}`) || 'Not recorded'}\n`;
             
             report += `\nDuctwork & Plenum:\n`;
-            report += `  Sealing: ${data.get('ductSealing') || 'Not recorded'}\n`;
-            if (data.get('leakLocations')) report += `  Leak Locations: ${data.get('leakLocations')}\n`;
+            report += `  Sealing: ${data.get(`ductSealing_${sysIndex}`) || 'Not recorded'}\n`;
+            if (data.get(`leakLocations_${sysIndex}`)) report += `  Leak Locations: ${data.get(`leakLocations_${sysIndex}`)}\n`;
             
-            if (data.get('visualNotes')) {
-                report += `\nAdditional Visual Observations:\n${data.get('visualNotes')}\n`;
+            if (data.get(`visualNotes_${sysIndex}`)) {
+                report += `\nAdditional Visual Observations:\n${data.get(`visualNotes_${sysIndex}`)}\n`;
             }
             report += "\n";
 
             report += "SAFETY & COMPLIANCE\n";
             report += "-".repeat(70) + "\n";
-            const safetyItems = data.getAll('safety');
+            const safetyItems = data.getAll(`safety_${sysIndex}`);
             if (safetyItems.length > 0) {
                 report += "Safety Items Present:\n";
                 safetyItems.forEach(item => report += `  - ${item}\n`);
             } else {
                 report += "No safety items documented\n";
             }
-            if (data.get('safetyNotes')) {
-                report += `Notes: ${data.get('safetyNotes')}\n`;
+            if (data.get(`safetyNotes_${sysIndex}`)) {
+                report += `Notes: ${data.get(`safetyNotes_${sysIndex}`)}\n`;
             }
             report += "\n";
 
             report += "DIAGNOSTIC ASSESSMENT\n";
             report += "-".repeat(70) + "\n";
-            report += `Primary Complaint (Customer's Words):\n${data.get('primaryComplaint')}\n\n`;
+            if (data.get(`primaryComplaint_${sysIndex}`)) {
+                report += `Primary Complaint (Customer's Words):\n${data.get(`primaryComplaint_${sysIndex}`)}\n\n`;
+            }
             
-            const symptoms = data.getAll('symptoms');
+            const symptoms = data.getAll(`symptoms_${sysIndex}`);
             if (symptoms.length > 0) {
                 report += "Observable Symptoms:\n";
                 symptoms.forEach(s => report += `  - ${s}\n`);
                 report += "\n";
             }
             
-            report += `Root Cause Analysis:\n${data.get('rootCause')}\n\n`;
+            if (data.get(`rootCause_${sysIndex}`)) {
+                report += `Root Cause Analysis:\n${data.get(`rootCause_${sysIndex}`)}\n\n`;
+            }
             
-            const factors = data.getAll('factors');
+            const factors = data.getAll(`factors_${sysIndex}`);
             if (factors.length > 0) {
                 report += "Contributing Factors:\n";
                 factors.forEach(f => report += `  - ${f}\n`);
                 report += "\n";
             }
 
-            report += "SYSTEM SCORING (1-10 scale)\n";
-            report += "-".repeat(70) + "\n";
-            report += `Safety: ${data.get('scoreSafety')}/10\n`;
-            report += `Mechanical Performance: ${data.get('scoreMechanical')}/10\n`;
-            report += `Indoor Air Quality: ${data.get('scoreIAQ')}/10\n`;
-            report += `Energy Efficiency: ${data.get('scoreEfficiency')}/10\n`;
-            report += `Overall System Health: ${data.get('scoreOverall')}/10\n\n`;
-
-            report += "RECOMMENDATIONS\n";
-            report += "-".repeat(70) + "\n";
-            if (data.get('recommendImmediate')) {
-                report += "IMMEDIATE / CRITICAL:\n";
-                report += data.get('recommendImmediate') + "\n\n";
-            }
-            if (data.get('recommendCorrective')) {
-                report += "CORRECTIVE (Performance Restoration):\n";
-                report += data.get('recommendCorrective') + "\n\n";
-            }
-            if (data.get('recommendPreventive')) {
-                report += "PREVENTIVE / ENHANCEMENT:\n";
-                report += data.get('recommendPreventive') + "\n\n";
-            }
-
-            report += "CUSTOMER INTERACTION\n";
-            report += "-".repeat(70) + "\n";
-            if (data.get('optionsPresented')) {
-                report += `Options Presented:\n${data.get('optionsPresented')}\n\n`;
-            }
-            report += `Customer Decision: ${data.get('customerDecision') || 'Not recorded'}\n`;
-            if (data.get('customerConcerns')) {
-                report += `Customer Questions/Concerns:\n${data.get('customerConcerns')}\n`;
-            }
-            report += "\n";
-
-            report += "WORK PERFORMED TODAY\n";
-            report += "-".repeat(70) + "\n";
-            if (data.get('workPerformed')) {
-                report += data.get('workPerformed') + "\n\n";
-            }
-            if (data.get('partsUsed')) {
-                report += `Parts Used: ${data.get('partsUsed')}\n`;
-            }
-            const hours = data.get('hoursOnSite') || '0';
-            const minutes = data.get('minutesOnSite') || '0';
-            report += `Time on Site: ${hours} hours ${minutes} minutes\n\n`;
-
-            if (data.get('additionalNotes')) {
-                report += "ADDITIONAL NOTES\n";
-                report += "-".repeat(70) + "\n";
-                report += data.get('additionalNotes') + "\n\n";
-            }
-
-            report += "=".repeat(70) + "\n";
-            report += "END OF REPORT - Ready for LLM Processing\n";
-            report += "=".repeat(70) + "\n";
-
-            downloadReport(report, data.get('customerName'), data.get('date'));
-        }
-
-        function downloadReport(content, customerName, date) {
-            const sanitizedName = customerName.replace(/[^a-z0-9]/gi, '_');
-            const filename = `FieldBuddy_${sanitizedName}_${date}.txt`;
-            const blob = new Blob([content], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            alert(`Report generated successfully!\n\nFile: ${filename}\n\nYou can now submit this file to the Field Buddy LLM for final processing.`);
-        }
-    </script>
-</body>
-</html>
+            report += "SYSTEM SCORING (1
