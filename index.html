@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1335,4 +1335,82 @@
                 report += "\n";
             }
 
-            report += "SYSTEM SCORING (1
+            report += "SYSTEM SCORING (1-10 scale)\n";
+            report += "-".repeat(70) + "\n";
+            if (data.get(`scoreSafety_${sysIndex}`)) report += `Safety: ${data.get(`scoreSafety_${sysIndex}`)}/10\n`;
+            if (data.get(`scoreMechanical_${sysIndex}`)) report += `Mechanical Performance: ${data.get(`scoreMechanical_${sysIndex}`)}/10\n`;
+            if (data.get(`scoreIAQ_${sysIndex}`)) report += `Indoor Air Quality: ${data.get(`scoreIAQ_${sysIndex}`)}/10\n`;
+            if (data.get(`scoreEfficiency_${sysIndex}`)) report += `Energy Efficiency: ${data.get(`scoreEfficiency_${sysIndex}`)}/10\n`;
+            if (data.get(`scoreOverall_${sysIndex}`)) report += `Overall System Health: ${data.get(`scoreOverall_${sysIndex}`)}/10\n`;
+            report += "\n";
+
+            report += "RECOMMENDATIONS\n";
+            report += "-".repeat(70) + "\n";
+            if (data.get(`recommendImmediate_${sysIndex}`)) {
+                report += "IMMEDIATE / CRITICAL:\n";
+                report += data.get(`recommendImmediate_${sysIndex}`) + "\n\n";
+            }
+            if (data.get(`recommendCorrective_${sysIndex}`)) {
+                report += "CORRECTIVE (Performance Restoration):\n";
+                report += data.get(`recommendCorrective_${sysIndex}`) + "\n\n";
+            }
+            if (data.get(`recommendPreventive_${sysIndex}`)) {
+                report += "PREVENTIVE / ENHANCEMENT:\n";
+                report += data.get(`recommendPreventive_${sysIndex}`) + "\n\n";
+            }
+
+            report += "CUSTOMER INTERACTION\n";
+            report += "-".repeat(70) + "\n";
+            if (data.get(`optionsPresented_${sysIndex}`)) {
+                report += `Options Presented:\n${data.get(`optionsPresented_${sysIndex}`)}\n\n`;
+            }
+            if (data.get(`customerDecision_${sysIndex}`)) {
+                report += `Customer Decision: ${data.get(`customerDecision_${sysIndex}`)}\n`;
+            }
+            if (data.get(`customerConcerns_${sysIndex}`)) {
+                report += `Customer Questions/Concerns:\n${data.get(`customerConcerns_${sysIndex}`)}\n`;
+            }
+            report += "\n";
+
+            report += "WORK PERFORMED TODAY\n";
+            report += "-".repeat(70) + "\n";
+            if (data.get(`workPerformed_${sysIndex}`)) {
+                report += data.get(`workPerformed_${sysIndex}`) + "\n\n";
+            }
+            if (data.get(`partsUsed_${sysIndex}`)) {
+                report += `Parts Used: ${data.get(`partsUsed_${sysIndex}`)}\n`;
+            }
+            const hours = data.get(`hoursOnSite_${sysIndex}`) || '0';
+            const minutes = data.get(`minutesOnSite_${sysIndex}`) || '0';
+            if (hours !== '0' || minutes !== '0') {
+                report += `Time on Site: ${hours} hours ${minutes} minutes\n`;
+            }
+            report += "\n";
+
+            if (data.get(`additionalNotes_${sysIndex}`)) {
+                report += "ADDITIONAL NOTES\n";
+                report += "-".repeat(70) + "\n";
+                report += data.get(`additionalNotes_${sysIndex}`) + "\n\n";
+            }
+
+            return report;
+        }
+
+        function downloadReport(content, customerName, date) {
+            const sanitizedName = customerName.replace(/[^a-z0-9]/gi, '_');
+            const filename = `FieldBuddy_${sanitizedName}_${date}.txt`;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert(`Report generated successfully!\n\nFile: ${filename}\n\nThis report is designed for:\n• Technical documentation & back-office processing\n• Client presentation (readable standalone)\n• Educational resource for customer understanding\n• LLM processing for enhanced output\n\nYou can now submit this file to the Field Buddy LLM for final professional summary generation.`);
+        }
+    </script>
+</body>
+</html>
