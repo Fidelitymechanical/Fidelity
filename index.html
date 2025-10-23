@@ -1,2389 +1,1097 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <!-- Preconnect to critical origins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
-  <!-- Enhanced SEO Meta Tags -->
-  <title>Houston AC Repair Today | Emergency HVAC Service | Fidelity Mechanical 281-939-5906</title>
-  <meta name="description" content="⚡ Houston AC repair in 2 hours or less. Honest pricing, no upsell pressure. Expert HVAC service for Houston, Katy, Sugar Land. Call 281-939-5906 for same-day service.">
-  <meta name="keywords" content="Houston AC repair, emergency HVAC Houston, air conditioning repair Houston TX, same day AC service, Houston HVAC contractor">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-  <link rel="canonical" href="https://fidelitymechanicalsolutions.com/">
-  
-  <!-- Open Graph -->
-  <meta property="og:type" content="business.business">
-  <meta property="og:title" content="Houston AC Repair - Same Day Service | Fidelity Mechanical">
-  <meta property="og:description" content="Houston's most trusted HVAC service. 2-hour emergency response. Call 281-939-5906">
-  <meta property="og:url" content="https://fidelitymechanicalsolutions.com/">
-  <meta property="og:image" content="https://fidelitymechanicalsolutions.com/og-image.jpg">
-  
-  <!-- Premium typography system -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Enhanced Schema.org structured data for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "HVACBusiness",
-        "@id": "https://fidelitymechanicalsolutions.com/#business",
-        "name": "Fidelity Mechanical Solutions",
-        "description": "Emergency AC repair and HVAC services in Houston, TX. Same-day service, honest pricing, no upsell pressure.",
-        "url": "https://fidelitymechanicalsolutions.com/",
-        "telephone": "+12819395906",
-        "email": "Martinperez@fidelitymechanicalsolutions.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Houston",
-          "addressRegion": "TX",
-          "addressCountry": "US",
-          "postalCode": "77001"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 29.7604,
-          "longitude": -95.3698
-        },
-        "areaServed": [
-          {"@type": "City", "name": "Houston"},
-          {"@type": "City", "name": "Katy"},
-          {"@type": "City", "name": "Sugar Land"},
-          {"@type": "City", "name": "The Woodlands"},
-          {"@type": "City", "name": "Cypress"},
-          {"@type": "City", "name": "Spring"},
-          {"@type": "City", "name": "Pearland"}
-        ],
-        "priceRange": "$$",
-        "openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-17:00", "Su 10:00-16:00"],
-        "paymentAccepted": ["Cash", "Check", "Credit Card", "Invoice", "Financing Available"]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "How quickly can you respond to AC emergencies in Houston?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We guarantee response times of 2 hours or less during business hours for Houston HVAC emergencies. Same-day service is available for most repairs. Text 281-939-5906 for the fastest response."
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Buddy - Data Capture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        
+        .form-content {
+            padding: 30px 20px 120px 20px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .subsection-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #555;
+            margin: 25px 0 15px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+        }
+        
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+            color: #555;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .action-buttons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px 20px;
+            border-top: 2px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        
+        button {
+            flex: 1;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+        
+        .btn-secondary:active {
+            transform: scale(0.98);
+        }
+        
+        @media (max-width: 600px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
             }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you provide free estimates for HVAC repairs?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, we provide free, detailed estimates before any work begins. Our diagnostics clearly explain the issue and your repair options with transparent pricing. No surprises, no pressure."
+            
+            .form-content {
+                padding: 20px 15px 120px 15px;
             }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
-  
-  <style>
-    :root {
-      /* Premium color system - sophisticated and trustworthy */
-      --primary-white: #ffffff;
-      --soft-white: #fdfeff;
-      --light-gray: #f8fafc;
-      --medium-gray: #e1e7ef;
-      --text-gray: #64748b;
-      --dark-gray: #475569;
-      --charcoal: #334155;
-      --deep-charcoal: #1e293b;
-      --midnight: #0f172a;
-      
-      /* Premium accent system */
-      --primary-blue: #1e40af;
-      --accent-blue: #3b82f6;
-      --bright-blue: #60a5fa;
-      --deep-blue: #1d4ed8;
-      --navy: #1e3a8a;
-      --brand-navy: #002654;
-      --danger: #dc2626;
-      --secondary: #16a34a;
-      --warning: #f59e0b;
-      
-      /* Premium gradients */
-      --gradient-primary: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #1e3a8a 100%);
-      --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
-      --gradient-surface: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-      --gradient-depth: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
-      
-      /* Enhanced shadow system */
-      --shadow-soft: 0 1px 3px rgba(30, 64, 175, 0.08);
-      --shadow-medium: 0 4px 16px rgba(30, 64, 175, 0.12);
-      --shadow-strong: 0 8px 32px rgba(30, 64, 175, 0.16);
-      --shadow-premium: 0 12px 48px rgba(30, 64, 175, 0.2);
-      --shadow-glow: 0 0 32px rgba(59, 130, 246, 0.25);
-      --shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.15);
-      
-      /* Typography scale */
-      --text-xs: 0.75rem;
-      --text-sm: 0.875rem;
-      --text-base: 1rem;
-      --text-lg: 1.125rem;
-      --text-xl: 1.25rem;
-      --text-2xl: 1.5rem;
-      --text-3xl: 1.875rem;
-      --text-4xl: 2.25rem;
-      --text-5xl: 3rem;
-      --text-6xl: 3.75rem;
-      
-      /* Typography families */
-      --font-mono: 'JetBrains Mono', monospace;
-      --font-sans: 'Inter', -apple-system, sans-serif;
-      --font-display: 'Playfair Display', serif;
-      
-      /* Premium spacing */
-      --space-xs: 0.25rem;
-      --space-sm: 0.5rem;
-      --space-md: 1rem;
-      --space-lg: 1.5rem;
-      --space-xl: 2rem;
-      --space-2xl: 3rem;
-      --space-3xl: 4rem;
-      
-      --radius: 8px;
-    }
-    
-    /* Reset and base styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: var(--font-sans);
-      background: var(--soft-white);
-      color: var(--charcoal);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-      overflow-x: hidden;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    ::selection {
-      background: var(--accent-blue);
-      color: white;
-    }
-    
-    /* Premium scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: var(--light-gray);
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent-blue);
-      border-radius: 3px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--deep-blue);
-    }
-    
-    /* Enhanced Navigation */
-    .nav-container {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(30, 64, 175, 0.1);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .nav-container.scrolled {
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: var(--shadow-medium);
-      border-bottom: 1px solid rgba(30, 64, 175, 0.15);
-    }
-    
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1400px;
-      padding: var(--space-lg) var(--space-xl);
-      margin: 0 auto;
-    }
-    
-    .logo-text {
-      font-family: var(--font-display);
-      font-size: 1.75rem;
-      font-weight: 700;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-      letter-spacing: -0.025em;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    
-    .logo-text::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient-primary);
-      opacity: 0;
-      transform: scaleX(0);
-      transition: all 0.3s ease;
-    }
-    
-    .logo-text:hover::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: var(--space-2xl);
-      align-items: center;
-    }
-    
-    .nav-links a {
-      color: var(--text-gray);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: var(--text-sm);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      padding: var(--space-sm) 0;
-    }
-    
-    .nav-links a::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: var(--gradient-accent);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateX(-50%);
-    }
-    
-    .nav-links a:hover {
-      color: var(--primary-blue);
-      transform: translateY(-1px);
-    }
-    
-    .nav-links a:hover::before {
-      width: 100%;
-    }
-    
-    .nav-cta {
-      background: var(--primary-blue);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius);
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .nav-cta:hover {
-      background: var(--deep-blue);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-medium);
-    }
-    
-    /* Mobile navigation */
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: var(--space-sm);
-      background: rgba(30, 64, 175, 0.05);
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-toggle:hover {
-      background: rgba(30, 64, 175, 0.1);
-    }
-    
-    .bar {
-      height: 2px;
-      width: 22px;
-      background: var(--primary-blue);
-      margin: 3px 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 1px;
-    }
-    
-    /* Premium Hero Section */
-    .hero-section {
-      min-height: 100vh;
-      padding: 140px var(--space-xl) 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: var(--gradient-surface);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* Enhanced geometric accents */
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 15%;
-      right: 8%;
-      width: 300px;
-      height: 300px;
-      background: var(--gradient-depth);
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: float 8s ease-in-out infinite;
-      filter: blur(40px);
-    }
-    
-    .hero-section::after {
-      content: '';
-      position: absolute;
-      bottom: 20%;
-      left: 10%;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: float 6s ease-in-out infinite reverse;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-30px) scale(1.05); }
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      max-width: 900px;
-      width: 100%;
-    }
-    
-    /* Emergency Badge */
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--danger);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 100px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    
-    /* Premium Shield Logo Design */
-    .hero-logo {
-      margin-bottom: var(--space-3xl);
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    
-    .logo-design {
-      width: 160px;
-      height: 180px;
-      margin: 0 auto;
-      position: relative;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      animation: subtle-float 8s ease-in-out infinite;
-      filter: drop-shadow(var(--shadow-premium));
-    }
-    
-    @keyframes subtle-float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-    }
-    
-    .logo-design:hover {
-      transform: translateY(-6px) scale(1.05);
-      animation-play-state: paused;
-    }
-    
-    /* Enhanced Shield Design */
-    .logo-shield {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    /* Premium shield background with advanced gradients */
-    .shield-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: var(--gradient-primary);
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 70%,
-        85% 85%,
-        50% 100%,
-        15% 85%,
-        0 70%
-      );
-      box-shadow: var(--shadow-premium);
-      animation: shield-pulse 6s ease-in-out infinite;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* Premium gradient overlay */
-    .shield-bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.2) 50%,
-        transparent 70%
-      );
-      animation: shimmer 4s ease-in-out infinite;
-    }
-    
-    @keyframes shimmer {
-      0%, 100% { transform: translateX(-100%) rotate(45deg); }
-      50% { transform: translateX(200%) rotate(45deg); }
-    }
-    
-    @keyframes shield-pulse {
-      0%, 100% { 
-        box-shadow: var(--shadow-premium);
-        transform: scale(1);
-      }
-      50% { 
-        box-shadow: var(--shadow-glow);
-        transform: scale(1.02);
-      }
-    }
-    
-    /* Enhanced border glow */
-    .shield-bg::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      background: var(--gradient-accent);
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 70%,
-        85% 85%,
-        50% 100%,
-        15% 85%,
-        0 70%
-      );
-      opacity: 0;
-      animation: shield-glow 4s ease-in-out infinite;
-      z-index: -1;
-    }
-    
-    @keyframes shield-glow {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 0.6; }
-    }
-    
-    /* Premium thermometer design */
-    .shield-inner {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 24px;
-    }
-    
-    .thermo-circle {
-      width: 100px;
-      height: 100px;
-      border: 3px solid rgba(255, 255, 255, 0.9);
-      border-radius: 50%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    /* Advanced rotating highlight */
-    .thermo-circle::before {
-      content: '';
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      background: conic-gradient(
-        transparent,
-        rgba(96, 165, 250, 0.8),
-        transparent
-      );
-      animation: rotate-highlight 6s linear infinite;
-    }
-    
-    .thermo-circle::after {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        transparent 60%,
-        rgba(255, 255, 255, 0.3) 70%,
-        transparent 80%
-      );
-      animation: pulse-ring 3s ease-in-out infinite;
-    }
-    
-    @keyframes rotate-highlight {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    
-    @keyframes pulse-ring {
-      0%, 100% { transform: scale(1); opacity: 0.3; }
-      50% { transform: scale(1.1); opacity: 0.6; }
-    }
-    
-    /* Enhanced thermometer icon */
-    .thermometer-icon {
-      position: relative;
-      width: 28px;
-      height: 70px;
-      z-index: 2;
-    }
-    
-    .thermo-tube {
-      position: absolute;
-      width: 14px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 7px 7px 12px 12px;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    .thermo-bulb {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 50%;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: 
-        0 0 15px rgba(96, 165, 250, 0.6),
-        inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      animation: bulb-glow 3s ease-in-out infinite;
-    }
-    
-    @keyframes bulb-glow {
-      0%, 100% { 
-        box-shadow: 
-          0 0 15px rgba(96, 165, 250, 0.6),
-          inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      50% { 
-        box-shadow: 
-          0 0 25px rgba(96, 165, 250, 0.9),
-          0 0 35px rgba(30, 64, 175, 0.5),
-          inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-    }
-    
-    /* Premium mercury animation */
-    .mercury {
-      position: absolute;
-      width: 8px;
-      height: 0;
-      background: linear-gradient(to top, 
-        #ef4444 0%, 
-        #f87171 30%, 
-        #60a5fa 70%, 
-        #3b82f6 100%
-      );
-      bottom: 4px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 4px;
-      animation: mercury-rise 4s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards, 
-                 mercury-pulse 5s ease-in-out 5s infinite;
-      box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
-    }
-    
-    @keyframes mercury-rise {
-      from { height: 0; }
-      to { height: 36px; }
-    }
-    
-    @keyframes mercury-pulse {
-      0%, 100% { height: 36px; transform: translateX(-50%) scaleY(1); }
-      50% { height: 42px; transform: translateX(-50%) scaleY(1.05); }
-    }
-    
-    /* Enhanced temperature marks */
-    .temp-marks {
-      position: absolute;
-      right: -24px;
-      top: 8px;
-      height: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    
-    .temp-mark {
-      width: 10px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.9);
-      opacity: 0;
-      animation: mark-fade 0.6s ease-out forwards;
-      border-radius: 1px;
-      box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-    }
-    
-    .temp-mark:nth-child(1) { animation-delay: 1.5s; width: 12px; }
-    .temp-mark:nth-child(2) { animation-delay: 1.7s; }
-    .temp-mark:nth-child(3) { animation-delay: 1.9s; width: 8px; }
-    .temp-mark:nth-child(4) { animation-delay: 2.1s; }
-    .temp-mark:nth-child(5) { animation-delay: 2.3s; width: 12px; }
-    
-    @keyframes mark-fade {
-      to { 
-        opacity: 1;
-        transform: translateX(-2px);
-      }
-    }
-    
-    /* Premium accent particles */
-    .shield-accents {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-    
-    .accent-dot {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background: radial-gradient(circle, rgba(96, 165, 250, 0.9) 0%, rgba(59, 130, 246, 0.6) 100%);
-      border-radius: 50%;
-      opacity: 0;
-      animation: dot-appear 0.8s ease-out forwards;
-      box-shadow: 0 0 8px rgba(96, 165, 250, 0.6);
-    }
-    
-    .accent-dot:nth-child(1) { 
-      top: 18%; left: 22%; 
-      animation-delay: 2.5s;
-    }
-    .accent-dot:nth-child(2) { 
-      top: 18%; right: 22%; 
-      animation-delay: 2.7s;
-    }
-    .accent-dot:nth-child(3) { 
-      top: 42%; left: 18%; 
-      animation-delay: 2.9s;
-    }
-    .accent-dot:nth-child(4) { 
-      top: 42%; right: 18%; 
-      animation-delay: 3.1s;
-    }
-    .accent-dot:nth-child(5) { 
-      top: 60%; left: 25%; 
-      animation-delay: 3.3s;
-      width: 3px; height: 3px;
-    }
-    .accent-dot:nth-child(6) { 
-      top: 60%; right: 25%; 
-      animation-delay: 3.5s;
-      width: 3px; height: 3px;
-    }
-    
-    @keyframes dot-appear {
-      to { 
-        opacity: 1;
-        transform: scale(1.3);
-      }
-    }
-    
-    /* Enhanced typography */
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.75rem, 6vw, 4.5rem);
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--primary-blue) 50%, var(--deep-blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: var(--space-lg);
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-    }
-    
-    .hero-subtitle {
-      font-size: var(--text-xl);
-      color: var(--text-gray);
-      line-height: 1.7;
-      max-width: 700px;
-      margin: 0 auto var(--space-lg);
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
-      font-weight: 400;
-    }
-    
-    .hero-tagline {
-      font-size: var(--text-lg);
-      color: var(--primary-blue);
-      font-weight: 600;
-      margin-bottom: var(--space-3xl);
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
-      letter-spacing: -0.01em;
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .cta-container {
-      display: flex;
-      gap: var(--space-lg);
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.1s forwards;
-      margin-bottom: 2rem;
-    }
-    
-    /* Premium Button System */
-    .cta-primary, .cta-secondary {
-      padding: var(--space-lg) var(--space-2xl);
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: var(--text-base);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .cta-primary {
-      background: var(--gradient-primary);
-      color: white;
-      border: none;
-      box-shadow: var(--shadow-medium);
-    }
-    
-    .cta-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.6s ease;
-    }
-    
-    .cta-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-premium);
-    }
-    
-    .cta-primary:hover::before {
-      left: 100%;
-    }
-    
-    .cta-secondary {
-      background: rgba(255, 255, 255, 0.9);
-      color: var(--primary-blue);
-      border: 2px solid rgba(30, 64, 175, 0.2);
-      box-shadow: var(--shadow-soft);
-    }
-    
-    .cta-secondary:hover {
-      background: var(--gradient-primary);
-      color: white;
-      border-color: transparent;
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-strong);
-    }
-    
-    /* Trust Signals */
-    .trust-signals {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(30, 64, 175, 0.1);
-      opacity: 0;
-      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.3s forwards;
-    }
-    
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-gray);
-      font-size: 0.875rem;
-    }
-    
-    .trust-icon {
-      color: var(--secondary);
-      font-size: 1.25rem;
-    }
-    
-    /* Enhanced Floating Contact */
-    .floating-contact {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      z-index: 999;
-      display: none;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .floating-contact.visible {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .contact-tooltip {
-      background: var(--midnight);
-      color: white;
-      padding: var(--space-lg) var(--space-lg);
-      border-radius: 12px;
-      font-size: var(--text-sm);
-      font-weight: 500;
-      white-space: nowrap;
-      opacity: 0;
-      transform: translateX(15px) scale(0.95);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      pointer-events: none;
-      box-shadow: var(--shadow-strong);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      position: absolute;
-      bottom: 100%;
-      right: 0;
-      margin-bottom: 15px;
-    }
-    
-    .contact-tooltip::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      right: 20px;
-      width: 0;
-      height: 0;
-      border: 8px solid transparent;
-      border-top-color: var(--midnight);
-    }
-    
-    .floating-contact:hover .contact-tooltip {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-    }
-    
-    .contact-bubble {
-      width: 80px;
-      height: 80px;
-      background: var(--gradient-primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: var(--shadow-strong);
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      color: white;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .contact-bubble::before {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      background: var(--gradient-accent);
-      border-radius: 50%;
-      opacity: 0;
-      animation: bubble-glow 4s ease-in-out infinite;
-      z-index: -1;
-    }
-    
-    @keyframes bubble-glow {
-      0%, 100% { 
-        opacity: 0;
-        transform: scale(1);
-      }
-      50% { 
-        opacity: 0.8;
-        transform: scale(1.1);
-      }
-    }
-    
-    .contact-bubble:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: var(--shadow-glow);
-    }
-    
-    .contact-bubble:active {
-      transform: translateY(-2px) scale(1.05);
-    }
-    
-    .contact-icon {
-      font-size: 2rem;
-      position: relative;
-      z-index: 1;
-      animation: icon-pulse 5s ease-in-out infinite;
-    }
-    
-    @keyframes icon-pulse {
-      0%, 100% { 
-        transform: scale(1);
-      }
-      50% { 
-        transform: scale(1.15);
-      }
-    }
-    
-    .contact-bubble:hover .contact-icon {
-      animation-play-state: paused;
-      transform: scale(1.2);
-    }
-    
-    /* Premium ripple effect */
-    .contact-bubble::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 2px solid var(--bright-blue);
-      border-radius: 50%;
-      opacity: 0;
-      animation: ripple 4s ease-out infinite;
-    }
-    
-    @keyframes ripple {
-      0% {
-        transform: scale(1);
-        opacity: 0.8;
-      }
-      100% {
-        transform: scale(2.2);
-        opacity: 0;
-      }
-    }
-    
-    /* Enhanced Content Sections */
-    section {
-      padding: var(--space-3xl) var(--space-xl);
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: var(--space-3xl);
-    }
-    
-    .section-title {
-      font-family: var(--font-display);
-      font-size: var(--text-4xl);
-      font-weight: 600;
-      background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--primary-blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: var(--space-lg);
-      letter-spacing: -0.025em;
-    }
-    
-    .section-subtitle {
-      font-size: var(--text-lg);
-      color: var(--text-gray);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.7;
-      font-weight: 400;
-    }
-    
-    /* Premium Process Section */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: var(--space-2xl);
-      margin-top: var(--space-3xl);
-    }
-    
-    .process-step {
-      text-align: center;
-      padding: var(--space-2xl);
-      background: var(--gradient-surface);
-      border-radius: 20px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .process-step::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--gradient-accent);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    
-    .process-step:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-strong);
-    }
-    
-    .process-step:hover::before {
-      opacity: 1;
-    }
-    
-    .process-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 70px;
-      height: 70px;
-      background: var(--gradient-primary);
-      color: white;
-      font-size: var(--text-2xl);
-      font-weight: 700;
-      border-radius: 50%;
-      margin-bottom: var(--space-lg);
-      box-shadow: var(--shadow-medium);
-    }
-    
-    .process-title {
-      font-size: var(--text-xl);
-      font-weight: 700;
-      color: var(--deep-charcoal);
-      margin-bottom: var(--space-lg);
-      letter-spacing: -0.01em;
-    }
-    
-    .process-description {
-      color: var(--text-gray);
-      line-height: 1.7;
-      font-size: var(--text-base);
-    }
-    
-    /* Premium Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: var(--space-2xl);
-      margin-top: var(--space-3xl);
-    }
-    
-    .service-card {
-      background: var(--gradient-surface);
-      padding: var(--space-2xl);
-      border-radius: 20px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 3px;
-      background: var(--gradient-accent);
-      transition: left 0.6s ease;
-    }
-    
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-strong);
-    }
-    
-    .service-card:hover::before {
-      left: 0;
-    }
-    
-    .service-icon {
-      width: 60px;
-      height: 60px;
-      background: var(--gradient-depth);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-lg);
-      font-size: 1.75rem;
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      transition: all 0.4s ease;
-    }
-    
-    .service-card:hover .service-icon {
-      background: var(--gradient-primary);
-      transform: scale(1.1);
-    }
-    
-    .service-title {
-      font-size: var(--text-xl);
-      font-weight: 700;
-      color: var(--deep-charcoal);
-      margin-bottom: var(--space-lg);
-      letter-spacing: -0.01em;
-    }
-    
-    .service-description {
-      color: var(--text-gray);
-      line-height: 1.7;
-      font-size: var(--text-base);
-    }
-    
-    /* Enhanced Diagnostic Section */
-    .diagnostic-section {
-      background: var(--gradient-surface);
-      padding: var(--space-3xl) var(--space-xl);
-      position: relative;
-      border-top: 1px solid rgba(30, 64, 175, 0.1);
-      border-bottom: 1px solid rgba(30, 64, 175, 0.1);
-      overflow: hidden;
-    }
-    
-    .diagnostic-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient-accent);
-      opacity: 0.4;
-    }
-    
-    .diagnostic-container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    
-    .diagnostic-header {
-      text-align: center;
-      margin-bottom: var(--space-3xl);
-    }
-    
-    .diagnostic-title {
-      font-family: var(--font-display);
-      font-size: var(--text-4xl);
-      font-weight: 600;
-      background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--primary-blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: var(--space-lg);
-      letter-spacing: -0.025em;
-    }
-    
-    .diagnostic-header p {
-      font-size: var(--text-lg);
-      color: var(--text-gray);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-    
-    .diagnostic-note {
-      max-width: 1000px;
-      margin: var(--space-3xl) auto var(--space-3xl);
-      padding: var(--space-2xl);
-      background: rgba(30, 64, 175, 0.03);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      border-left: 4px solid var(--accent-blue);
-      border-radius: 16px;
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .diagnostic-note::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--gradient-accent);
-      opacity: 0.3;
-    }
-    
-    .diagnostic-note p {
-      margin: 0;
-      line-height: 1.7;
-      color: var(--charcoal);
-      font-size: var(--text-base);
-    }
-    
-    .diagnostic-note strong {
-      color: var(--deep-charcoal);
-      font-weight: 700;
-    }
-    
-    .diagnostic-tool {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 16px;
-      padding: var(--space-3xl);
-      box-shadow: var(--shadow-medium);
-      border: 1px solid rgba(30, 64, 175, 0.2);
-      margin-top: var(--space-3xl);
-    }
-    
-    .symptom-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    .symptom-btn {
-      background: white;
-      border: 2px solid rgba(30, 64, 175, 0.2);
-      padding: 1rem;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text-gray);
-      min-height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-    
-    .symptom-btn:hover {
-      border-color: var(--primary-blue);
-      color: var(--primary-blue);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-medium);
-    }
-    
-    .symptom-btn.active {
-      background: var(--primary-blue);
-      color: white;
-      border-color: var(--primary-blue);
-    }
-    
-    .diagnosis-result {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      border: 1px solid rgba(30, 64, 175, 0.2);
-      min-height: 200px;
-      transition: all 0.3s ease;
-    }
-    
-    .diagnosis-result.active {
-      border-color: var(--primary-blue);
-      box-shadow: var(--shadow-medium);
-    }
-    
-    .diagnosis-content {
-      color: var(--text-gray);
-      line-height: 1.8;
-    }
-    
-    .diagnosis-content h3 {
-      color: var(--charcoal);
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .diagnosis-content p {
-      margin-bottom: 1rem;
-    }
-    
-    .diagnosis-content strong {
-      color: var(--charcoal);
-      font-weight: 600;
-    }
-    
-    .diagnosis-cta {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(30, 64, 175, 0.1);
-    }
-    
-    /* FAQ Section */
-    .faq-section {
-      background: var(--gradient-surface);
-      border-radius: 24px;
-      margin: var(--space-3xl) auto;
-      position: relative;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-    }
-    
-    .faq-list {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .faq-item {
-      background: white;
-      border: 1px solid rgba(30, 64, 175, 0.2);
-      border-radius: var(--radius);
-      margin-bottom: 1rem;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .faq-item:hover {
-      box-shadow: var(--shadow-medium);
-    }
-    
-    .faq-question {
-      padding: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--light-gray);
-      font-weight: 600;
-      color: var(--charcoal);
-      transition: background 0.3s ease;
-    }
-    
-    .faq-question:hover {
-      background: rgba(30, 64, 175, 0.1);
-    }
-    
-    .faq-question::after {
-      content: '+';
-      font-size: 1.5rem;
-      color: var(--primary-blue);
-      transition: transform 0.3s ease;
-    }
-    
-    .faq-item.active .faq-question::after {
-      transform: rotate(45deg);
-    }
-    
-    .faq-answer {
-      padding: 0 1.5rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .faq-item.active .faq-answer {
-      padding: 1.5rem;
-      max-height: 500px;
-    }
-    
-    /* Premium Case Study */
-    .case-study {
-      background: var(--gradient-surface);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      border-radius: 20px;
-      padding: var(--space-3xl);
-      margin: var(--space-3xl) 0;
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .case-header {
-      border-bottom: 2px solid rgba(30, 64, 175, 0.1);
-      padding-bottom: var(--space-lg);
-      margin-bottom: var(--space-xl);
-    }
-    
-    .case-title {
-      font-size: var(--text-2xl);
-      font-weight: 700;
-      color: var(--deep-charcoal);
-      margin-bottom: var(--space-sm);
-      letter-spacing: -0.01em;
-    }
-    
-    .case-meta {
-      font-size: var(--text-sm);
-      color: var(--text-gray);
-      font-weight: 500;
-    }
-    
-    .case-section {
-      margin-bottom: var(--space-xl);
-    }
-    
-    .case-section h4 {
-      font-size: var(--text-lg);
-      font-weight: 700;
-      color: var(--charcoal);
-      margin-bottom: var(--space-lg);
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-    
-    .case-section ul {
-      list-style: none;
-      margin-left: var(--space-lg);
-    }
-    
-    .case-section li {
-      margin-bottom: var(--space-sm);
-      color: var(--text-gray);
-      position: relative;
-      padding-left: var(--space-lg);
-      line-height: 1.6;
-    }
-    
-    .case-section li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--accent-blue);
-      font-weight: bold;
-    }
-    
-    .case-data {
-      background: rgba(30, 64, 175, 0.05);
-      padding: var(--space-lg);
-      border-radius: 12px;
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
-      margin: var(--space-lg) 0;
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      white-space: pre-line;
-    }
-    
-    .case-insight {
-      background: rgba(30, 64, 175, 0.03);
-      border-left: 4px solid var(--accent-blue);
-      padding: var(--space-lg) var(--space-lg);
-      margin: var(--space-lg) 0;
-      font-style: italic;
-      color: var(--charcoal);
-      border-radius: 0 12px 12px 0;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    /* Premium Contact Section */
-    .contact-section {
-      background: var(--gradient-surface);
-      border-radius: 24px;
-      margin: var(--space-3xl) auto;
-      position: relative;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(30, 64, 175, 0.1);
-    }
-    
-    .contact-info {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-xl);
-      margin-top: var(--space-3xl);
-    }
-    
-    .contact-item {
-      background: rgba(255, 255, 255, 0.9);
-      padding: var(--space-2xl);
-      border-radius: 16px;
-      box-shadow: var(--shadow-soft);
-      text-align: center;
-      border: 1px solid rgba(30, 64, 175, 0.1);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .contact-item:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-medium);
-    }
-    
-    .contact-item h3 {
-      color: var(--deep-charcoal);
-      margin-bottom: var(--space-lg);
-      font-size: var(--text-lg);
-      font-weight: 700;
-    }
-    
-    .contact-item a {
-      color: var(--accent-blue);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-    
-    .contact-item a:hover {
-      color: var(--deep-blue);
-    }
-    
-    /* Premium Footer */
-    .footer {
-      background: var(--gradient-primary);
-      color: rgba(255, 255, 255, 0.9);
-      text-align: center;
-      padding: var(--space-3xl) var(--space-xl);
-      margin-top: var(--space-3xl);
-    }
-    
-    .footer p {
-      font-size: var(--text-sm);
-      line-height: 1.7;
-      max-width: 700px;
-      margin: 0 auto;
-      font-weight: 400;
-    }
-    
-    /* Mobile optimizations */
-    @media (max-width: 768px) {
-      .floating-contact {
-        bottom: 30px;
-        right: 30px;
-      }
-      
-      .contact-bubble {
-        width: 70px;
-        height: 70px;
-      }
-      
-      .contact-icon {
-        font-size: 1.75rem;
-      }
-      
-      .contact-tooltip {
-        display: none;
-      }
-      
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        background: rgba(255, 255, 255, 0.98);
-        padding: var(--space-xl);
-        gap: var(--space-lg);
-        border-bottom: 1px solid rgba(30, 64, 175, 0.1);
-        box-shadow: var(--shadow-medium);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-      }
-      
-      .nav-links.active {
-        display: flex;
-      }
-      
-      .nav-toggle {
-        display: flex;
-      }
-      
-      .hero-section {
-        padding: 120px var(--space-lg) 80px;
-      }
-      
-      .cta-container {
-        flex-direction: column;
-        width: 100%;
-        max-width: 320px;
-      }
-      
-      .cta-primary, .cta-secondary {
-        width: 100%;
-        justify-content: center;
-      }
-      
-      .logo-design {
-        width: 140px;
-        height: 160px;
-      }
-      
-      section {
-        padding: var(--space-3xl) var(--space-lg);
-      }
-      
-      .services-grid, .process-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .diagnostic-section {
-        padding: var(--space-3xl) var(--space-lg);
-      }
-      
-      .diagnostic-tool {
-        padding: var(--space-xl) var(--space-lg);
-      }
-      
-      .symptom-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .diagnosis-cta {
-        flex-direction: column;
-      }
-      
-      .diagnostic-title {
-        font-size: var(--text-3xl);
-      }
-      
-      .case-study {
-        padding: var(--space-xl) var(--space-lg);
-      }
-      
-      .trust-signals {
-        gap: 1rem;
-      }
-      
-      .trust-item {
-        flex: 1 1 100%;
-        justify-content: center;
-      }
-    }
-    
-    /* Utility Classes */
-    .text-center {
-      text-align: center;
-    }
-    
-    .animate-in {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.6s ease forwards;
-    }
-    
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-    
-    /* Accessibility */
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-    
-    /* Focus styles */
-    button:focus-visible,
-    a:focus-visible {
-      outline: 2px solid var(--primary-blue);
-      outline-offset: 2px;
-    }
-  </style>
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+        
+        .required {
+            color: #e74c3c;
+            margin-left: 2px;
+        }
+    </style>
 </head>
 <body>
-  <nav class="nav-container" id="navbar">
-    <div class="nav">
-      <a href="#home" class="logo-text">FIDELITY</a>
-      
-      <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-      
-      <div class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#philosophy">Philosophy</a>
-        <a href="#services">Services</a>
-        <a href="#diagnostics">Diagnostic Tool</a>
-        <a href="#process">Process</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-        <a href="tel:2819395906" class="nav-cta">📞 281-939-5906</a>
-      </div>
-    </div>
-  </nav>
-  
-  <section id="home" class="hero-section">
-    <div class="hero-content">
-      <div class="hero-badge">
-        🔥 Emergency Service Available Now
-      </div>
-      
-      <div class="hero-logo">
-        <!-- Premium Shield logo design with enhanced thermometer -->
-        <div class="logo-design">
-          <div class="logo-shield">
-            <div class="shield-bg"></div>
-            <div class="shield-inner">
-              <div class="thermo-circle">
-                <div class="thermometer-icon">
-                  <div class="thermo-tube"></div>
-                  <div class="thermo-bulb"></div>
-                  <div class="mercury"></div>
-                  <div class="temp-marks">
-                    <div class="temp-mark"></div>
-                    <div class="temp-mark"></div>
-                    <div class="temp-mark"></div>
-                    <div class="temp-mark"></div>
-                    <div class="temp-mark"></div>
-                  </div>
+    <div class="container">
+        <div class="header">
+            <h1>Field Buddy Data Capture</h1>
+            <p>HVAC Service Call Documentation System</p>
+        </div>
+        
+        <div class="form-content">
+            <form id="fieldBuddyForm">
+                
+                <!-- Job Context -->
+                <div class="section">
+                    <h2 class="section-title">Job Context</h2>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Date <span class="required">*</span></label>
+                            <input type="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Time Arrived <span class="required">*</span></label>
+                            <input type="time" name="timeArrived" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Technician Name <span class="required">*</span></label>
+                        <input type="text" name="techName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Customer Name <span class="required">*</span></label>
+                        <input type="text" name="customerName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Address <span class="required">*</span></label>
+                        <input type="text" name="address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Account Number</label>
+                        <input type="text" name="accountNumber">
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Ambient Temperature (°F)</label>
+                            <input type="number" name="ambientTemp" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label>Ambient Humidity (%)</label>
+                            <input type="number" name="ambientRH" step="1">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Call Type</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="callNoCool" name="callType" value="No Cool">
+                                <label for="callNoCool">No Cool</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="callNoHeat" name="callType" value="No Heat">
+                                <label for="callNoHeat">No Heat</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="callMaint" name="callType" value="Maintenance">
+                                <label for="callMaint">Maintenance</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="callSecond" name="callType" value="Second Opinion">
+                                <label for="callSecond">Second Opinion</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="callOther" name="callType" value="Other">
+                                <label for="callOther">Other</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="shield-accents">
-              <div class="accent-dot"></div>
-              <div class="accent-dot"></div>
-              <div class="accent-dot"></div>
-              <div class="accent-dot"></div>
-              <div class="accent-dot"></div>
-              <div class="accent-dot"></div>
-            </div>
-          </div>
+
+                <!-- Equipment Identification -->
+                <div class="section">
+                    <h2 class="section-title">Equipment Identification</h2>
+                    
+                    <h3 class="subsection-title">Indoor Unit</h3>
+                    
+                    <div class="form-group">
+                        <label>Manufacturer</label>
+                        <input type="text" name="indoorMfg">
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Model Number</label>
+                            <input type="text" name="indoorModel">
+                        </div>
+                        <div class="form-group">
+                            <label>Serial Number</label>
+                            <input type="text" name="indoorSerial">
+                        </div>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Tonnage</label>
+                            <input type="number" name="tonnage" step="0.5" placeholder="e.g., 3.0">
+                        </div>
+                        <div class="form-group">
+                            <label>Filter Size</label>
+                            <input type="text" name="filterSize" placeholder="e.g., 16x25x1">
+                        </div>
+                    </div>
+                    
+                    <h3 class="subsection-title">Outdoor Unit</h3>
+                    
+                    <div class="form-group">
+                        <label>Manufacturer</label>
+                        <input type="text" name="outdoorMfg">
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Model Number</label>
+                            <input type="text" name="outdoorModel">
+                        </div>
+                        <div class="form-group">
+                            <label>Serial Number</label>
+                            <input type="text" name="outdoorSerial">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Refrigerant Type</label>
+                        <select name="refrigerantType">
+                            <option value="">Select...</option>
+                            <option value="R-22">R-22</option>
+                            <option value="R-410A">R-410A</option>
+                            <option value="R-32">R-32</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- System Performance Data -->
+                <div class="section">
+                    <h2 class="section-title">System Performance Data</h2>
+                    
+                    <h3 class="subsection-title">Airflow & Static Pressure</h3>
+                    
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label>Return Static (in. w.c.)</label>
+                            <input type="number" name="returnStatic" step="0.01" placeholder="e.g., 0.15">
+                        </div>
+                        <div class="form-group">
+                            <label>Supply Static (in. w.c.)</label>
+                            <input type="number" name="supplyStatic" step="0.01" placeholder="e.g., 0.25">
+                        </div>
+                        <div class="form-group">
+                            <label>Total Static (in. w.c.)</label>
+                            <input type="number" name="totalStatic" step="0.01" placeholder="e.g., 0.40">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Filter Condition</label>
+                        <select name="filterCondition">
+                            <option value="">Select...</option>
+                            <option value="Clean">Clean</option>
+                            <option value="Dirty">Dirty</option>
+                            <option value="Overdue">Overdue</option>
+                            <option value="Missing">Missing</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Blower Amps (Actual)</label>
+                            <input type="number" name="blowerAmps" step="0.1" placeholder="e.g., 5.2">
+                        </div>
+                        <div class="form-group">
+                            <label>Blower Amps (Rated)</label>
+                            <input type="number" name="blowerAmpsRated" step="0.1" placeholder="e.g., 5.5">
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Refrigerant Circuit</h3>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Suction Pressure (psig)</label>
+                            <input type="number" name="suctionPressure" step="0.1" placeholder="e.g., 110.0">
+                        </div>
+                        <div class="form-group">
+                            <label>Head Pressure (psig)</label>
+                            <input type="number" name="headPressure" step="0.1" placeholder="e.g., 270.0">
+                        </div>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Suction Line Temp (°F)</label>
+                            <input type="number" name="suctionTemp" step="0.1" placeholder="e.g., 56.0">
+                        </div>
+                        <div class="form-group">
+                            <label>Liquid Line Temp (°F)</label>
+                            <input type="number" name="liquidTemp" step="0.1" placeholder="e.g., 95.0">
+                        </div>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Superheat (°F)</label>
+                            <input type="number" name="superheat" step="0.1" placeholder="e.g., 16.0">
+                        </div>
+                        <div class="form-group">
+                            <label>Subcool (°F)</label>
+                            <input type="number" name="subcool" step="0.1" placeholder="e.g., 3.0">
+                        </div>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Compressor Amps (Actual)</label>
+                            <input type="number" name="compAmps" step="0.1" placeholder="e.g., 7.0">
+                        </div>
+                        <div class="form-group">
+                            <label>Compressor Amps (Rated)</label>
+                            <input type="number" name="compAmpsRated" step="0.1" placeholder="e.g., 7.2">
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Temperature Performance</h3>
+                    
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label>Return Air (°F)</label>
+                            <input type="number" name="returnTemp" step="0.1" placeholder="e.g., 75.0">
+                        </div>
+                        <div class="form-group">
+                            <label>Supply Air (°F)</label>
+                            <input type="number" name="supplyTemp" step="0.1" placeholder="e.g., 58.0">
+                        </div>
+                        <div class="form-group">
+                            <label>Temp Split (°F)</label>
+                            <input type="number" name="tempSplit" step="0.1" placeholder="Auto-calculated">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Inspection -->
+                <div class="section">
+                    <h2 class="section-title">Visual Inspection Findings</h2>
+                    
+                    <h3 class="subsection-title">Evaporator Coil</h3>
+                    
+                    <div class="form-group">
+                        <label>Condition</label>
+                        <select name="coilCondition">
+                            <option value="">Select...</option>
+                            <option value="Clean">Clean</option>
+                            <option value="Dusty">Dusty</option>
+                            <option value="Microbial Growth">Microbial Growth</option>
+                            <option value="Corrosion">Corrosion</option>
+                            <option value="Damaged">Damaged</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Severity (1-10, if issue present)</label>
+                        <input type="number" name="coilSeverity" min="1" max="10">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea name="coilNotes" placeholder="Describe specific observations..."></textarea>
+                    </div>
+
+                    <h3 class="subsection-title">Blower Assembly</h3>
+                    
+                    <div class="form-group">
+                        <label>Condition</label>
+                        <select name="blowerCondition">
+                            <option value="">Select...</option>
+                            <option value="Clean">Clean</option>
+                            <option value="Light Dust">Light Dust</option>
+                            <option value="Heavy Buildup">Heavy Buildup</option>
+                            <option value="Contaminated">Contaminated</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea name="blowerNotes" placeholder="Describe specific observations..."></textarea>
+                    </div>
+
+                    <h3 class="subsection-title">Condensate System</h3>
+                    
+                    <div class="form-group">
+                        <label>Drain Pan Condition</label>
+                        <select name="condensateCondition">
+                            <option value="">Select...</option>
+                            <option value="Clean/Dry">Clean/Dry</option>
+                            <option value="Debris Present">Debris Present</option>
+                            <option value="Standing Water">Standing Water</option>
+                            <option value="Rust/Corrosion">Rust/Corrosion</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Drain Line Status</label>
+                        <select name="drainStatus">
+                            <option value="">Select...</option>
+                            <option value="Clear">Clear</option>
+                            <option value="Slow Flow">Slow Flow</option>
+                            <option value="Blocked">Blocked</option>
+                        </select>
+                    </div>
+
+                    <h3 class="subsection-title">Ductwork & Plenum</h3>
+                    
+                    <div class="form-group">
+                        <label>Sealing Condition</label>
+                        <select name="ductSealing">
+                            <option value="">Select...</option>
+                            <option value="Well Sealed">Well Sealed</option>
+                            <option value="Minor Leaks">Minor Leaks</option>
+                            <option value="Major Leaks">Major Leaks</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Leak Locations (if applicable)</label>
+                        <input type="text" name="leakLocations" placeholder="Describe where leaks are located...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Additional Visual Observations</label>
+                        <textarea name="visualNotes" placeholder="Any other notable findings from visual inspection..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Safety & Compliance -->
+                <div class="section">
+                    <h2 class="section-title">Safety & Compliance</h2>
+                    
+                    <div class="form-group">
+                        <label>Safety Items Present</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="safetyCD" name="safety" value="CO Detector Present">
+                                <label for="safetyCD">CO Detector</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="safetySmoke" name="safety" value="Smoke Detector Present">
+                                <label for="safetySmoke">Smoke Detector</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="safetyClear" name="safety" value="Proper Clearances">
+                                <label for="safetyClear">Proper Clearances</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="safetyShutoff" name="safety" value="Emergency Shutoff Accessible">
+                                <label for="safetyShutoff">Shutoff Accessible</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Safety Notes / Concerns</label>
+                        <textarea name="safetyNotes" placeholder="Document any safety issues or concerns..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Diagnostic Assessment -->
+                <div class="section">
+                    <h2 class="section-title">Diagnostic Assessment</h2>
+                    
+                    <div class="form-group">
+                        <label>Primary Complaint (Customer's Words) <span class="required">*</span></label>
+                        <textarea name="primaryComplaint" required placeholder="What did the customer tell you about the problem?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Observable Symptoms</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="symptomCool" name="symptoms" value="Insufficient cooling/heating">
+                                <label for="symptomCool">Insufficient cooling/heating</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="symptomNoAir" name="symptoms" value="No airflow">
+                                <label for="symptomNoAir">No airflow</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="symptomWeak" name="symptoms" value="Weak airflow">
+                                <label for="symptomWeak">Weak airflow</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="symptomNoise" name="symptoms" value="Strange noises">
+                                <label for="symptomNoise">Strange noises</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="symptomOdor" name="symptoms" value="Odors">
+                                <label for="symptomOdor">Odors</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="symptomIce" name="symptoms" value="Ice formation">
+                                <label for="symptomIce">Ice formation</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="symptomLeak" name="symptoms" value="Water leaks">
+                                <label for="symptomLeak">Water leaks</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Root Cause Analysis (Your Assessment) <span class="required">*</span></label>
+                        <textarea name="rootCause" required placeholder="What is causing the problem? Be specific."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Contributing Factors</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="factorAirflow" name="factors" value="Restricted airflow">
+                                <label for="factorAirflow">Restricted airflow</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="factorRefrig" name="factors" value="Refrigerant issue">
+                                <label for="factorRefrig">Refrigerant issue</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="factorElec" name="factors" value="Electrical problem">
+                                <label for="factorElec">Electrical problem</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="factorMech" name="factors" value="Mechanical failure">
+                                <label for="factorMech">Mechanical failure</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="factorInstall" name="factors" value="Installation deficiency">
+                                <label for="factorInstall">Installation deficiency</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="factorMaint" name="factors" value="Maintenance neglect">
+                                <label for="factorMaint">Maintenance neglect</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Scoring -->
+                <div class="section">
+                    <h2 class="section-title">System Scoring</h2>
+                    <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Rate each category from 1 (critical failure) to 10 (excellent condition)</p>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Safety <span class="required">*</span></label>
+                            <input type="number" name="scoreSafety" min="1" max="10" required placeholder="1-10">
+                        </div>
+                        <div class="form-group">
+                            <label>Mechanical Performance <span class="required">*</span></label>
+                            <input type="number" name="scoreMechanical" min="1" max="10" required placeholder="1-10">
+                        </div>
+                        <div class="form-group">
+                            <label>Indoor Air Quality <span class="required">*</span></label>
+                            <input type="number" name="scoreIAQ" min="1" max="10" required placeholder="1-10">
+                        </div>
+                        <div class="form-group">
+                            <label>Energy Efficiency <span class="required">*</span></label>
+                            <input type="number" name="scoreEfficiency" min="1" max="10" required placeholder="1-10">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Overall System Health <span class="required">*</span></label>
+                        <input type="number" name="scoreOverall" min="1" max="10" required placeholder="1-10">
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="section">
+                    <h2 class="section-title">Recommendations</h2>
+                    
+                    <h3 class="subsection-title">Immediate / Critical</h3>
+                    <div class="form-group">
+                        <label>Safety risks or imminent system failure items</label>
+                        <textarea name="recommendImmediate" placeholder="List critical items that need immediate attention..."></textarea>
+                    </div>
+
+                    <h3 class="subsection-title">Corrective (Performance Restoration)</h3>
+                    <div class="form-group">
+                        <label>Items needed to restore proper function</label>
+                        <textarea name="recommendCorrective" placeholder="List repairs needed to restore system performance..."></textarea>
+                    </div>
+
+                    <h3 class="subsection-title">Preventive / Enhancement</h3>
+                    <div class="form-group">
+                        <label>Long-term protection and upgrade opportunities</label>
+                        <textarea name="recommendPreventive" placeholder="List preventive measures and optional upgrades..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Customer Interaction -->
+                <div class="section">
+                    <h2 class="section-title">Customer Interaction</h2>
+                    
+                    <div class="form-group">
+                        <label>Options Presented & Discussed</label>
+                        <textarea name="optionsPresented" placeholder="What options did you present to the customer?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Customer Decision</label>
+                        <select name="customerDecision">
+                            <option value="">Select...</option>
+                            <option value="Approved All">Approved All</option>
+                            <option value="Approved Partial">Approved Partial</option>
+                            <option value="Declined">Declined</option>
+                            <option value="Wants to Think">Wants to Think About It</option>
+                            <option value="Requested Quote">Requested Quote</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Customer Questions / Concerns</label>
+                        <textarea name="customerConcerns" placeholder="Document any questions or concerns the customer raised..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Work Performed -->
+                <div class="section">
+                    <h2 class="section-title">Work Performed Today</h2>
+                    
+                    <div class="form-group">
+                        <label>Work Completed</label>
+                        <textarea name="workPerformed" placeholder="List all work completed during this visit..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Parts Used</label>
+                        <input type="text" name="partsUsed" placeholder="List parts used with quantities...">
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Time on Site (hours)</label>
+                            <input type="number" name="hoursOnSite" step="0.25" placeholder="e.g., 2">
+                        </div>
+                        <div class="form-group">
+                            <label>Time on Site (minutes)</label>
+                            <input type="number" name="minutesOnSite" step="5" placeholder="e.g., 30">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Notes -->
+                <div class="section">
+                    <h2 class="section-title">Additional Notes</h2>
+                    
+                    <div class="form-group">
+                        <label>General Observations & Follow-up Items</label>
+                        <textarea name="additionalNotes" placeholder="Any additional observations, follow-up items, or important details..."></textarea>
+                    </div>
+                </div>
+            </form>
         </div>
-      </div>
-      
-      <h1 class="hero-title">Houston AC Broke?<br><span style="color: var(--primary-blue);">Same-Day Service Guaranteed</span></h1>
-      
-      <p class="hero-subtitle">Expert HVAC repair with honest pricing. No upsell games, no surprise fees. Just professional service that respects your time and money.</p>
-      
-      <p class="hero-tagline">Fidelity is the foundation.</p>
-      
-      <div class="cta-container">
-        <a href="tel:2819395906" class="cta-primary">
-          📞 Call Now: 281-939-5906
-        </a>
-        <a href="#diagnostics" class="cta-secondary">
-          🔍 Get Free Diagnostic
-        </a>
-      </div>
-      
-      <div class="trust-signals">
-        <div class="trust-item">
-          <span class="trust-icon">✓</span>
-          <span>Licensed & Insured</span>
+
+        <div class="action-buttons">
+            <button type="button" class="btn-secondary" onclick="saveProgress()">Save Progress</button>
+            <button type="button" class="btn-primary" onclick="generateReport()">Complete Call & Export</button>
         </div>
-        <div class="trust-item">
-          <span class="trust-icon">✓</span>
-          <span>2-Hour Response</span>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">✓</span>
-          <span>No Hidden Fees</span>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">✓</span>
-          <span>Honest Diagnostics</span>
-        </div>
-      </div>
     </div>
-  </section>
-  
-  <section id="philosophy">
-    <div class="section-header">
-      <h2 class="section-title">Our Philosophy</h2>
-      <p class="section-subtitle">Fidelity means more than showing up — it means showing the work, standing by the outcome, and doing it again with clarity.</p>
-    </div>
-    
-    <p>We don't sell services — we diagnose systems, educate clients, and build solutions that make sense technically and financially. Our job isn't to be the hero of your system. It's to become invisible through competence.</p>
-    
-    <p>There's no upsell pressure here. Just real diagnostics, documented work, and informed decisions — because clarity creates control, and your understanding is part of the repair.</p>
-    
-    <p>Our commitment is to the craft, the client, and the principle that systems tell the truth — we just have to listen well enough to catch it before it breaks.</p>
-    
-    <p>This is how mechanical work should be done. This is Fidelity.</p>
-  </section>
-  
-  <!-- Enhanced Interactive Diagnostic Tool -->
-  <section id="diagnostics" class="diagnostic-section">
-    <div class="diagnostic-container">
-      <div class="diagnostic-header">
-        <h2 class="diagnostic-title">Free AC Diagnostic Tool</h2>
-        <p>Experience our diagnostic approach firsthand. Click symptoms to explore probable causes and receive honest guidance about what your system might be telling you.</p>
-      </div>
-      
-      <div class="diagnostic-note">
-        <p><strong>Understanding System Complexity:</strong> Every HVAC system is unique. Age, model, installation quality, maintenance history, and environmental factors all influence how problems manifest and what repairs actually cost. This tool demonstrates our diagnostic thinking, but your specific situation requires hands-on analysis. We'll always explain what we find and your options before any work begins — because informed decisions create better outcomes.</p>
-      </div>
-      
-      <div class="diagnostic-tool">
-        <div class="diagnostic-header">
-          <h3 style="font-size: 1.75rem; margin-bottom: 0.5rem;">What's Wrong With Your AC?</h3>
-          <p style="color: var(--text-gray);">Select your symptoms below</p>
-        </div>
-        
-        <div class="symptom-grid">
-          <button class="symptom-btn" data-symptom="no-power">
-            <span>🔌 Won't Turn On</span>
-          </button>
-          <button class="symptom-btn" data-symptom="no-cool">
-            <span>🌡️ Not Cooling</span>
-          </button>
-          <button class="symptom-btn" data-symptom="noise">
-            <span>🔊 Strange Noises</span>
-          </button>
-          <button class="symptom-btn" data-symptom="bills">
-            <span>💰 High Bills</span>
-          </button>
-          <button class="symptom-btn" data-symptom="ice">
-            <span>🧊 Ice Buildup</span>
-          </button>
-          <button class="symptom-btn" data-symptom="smell">
-            <span>👃 Bad Smell</span>
-          </button>
-        </div>
-        
-        <div class="diagnosis-result" id="diagnosisResult">
-          <div class="diagnosis-content" id="diagnosisContent">
-            <p style="color: var(--text-gray); text-align: center;">Select a symptom above to see likely causes and solutions</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section id="services">
-    <div class="section-header">
-      <h2 class="section-title">Houston HVAC Services</h2>
-      <p class="section-subtitle">Complete mechanical solutions for Houston homes and businesses</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card animate-in delay-1">
-        <div class="service-icon">🔧</div>
-        <h3 class="service-title">Emergency AC Repair</h3>
-        <p class="service-description">2-hour response for Houston AC emergencies. We diagnose and fix the real problem, not just symptoms.</p>
-      </div>
-      <div class="service-card animate-in delay-2">
-        <div class="service-icon">❄️</div>
-        <h3 class="service-title">AC Installation</h3>
-        <p class="service-description">Energy-efficient HVAC systems sized perfectly for Houston's climate. Professional installation guaranteed.</p>
-      </div>
-      <div class="service-card animate-in delay-3">
-        <div class="service-icon">⚙️</div>
-        <h3 class="service-title">Preventive Maintenance</h3>
-        <p class="service-description">Keep your Houston AC running efficiently. Prevent breakdowns before Houston's brutal summer hits.</p>
-      </div>
-      <div class="service-card animate-in">
-        <div class="service-icon">📊</div>
-        <h3 class="service-title">System Optimization</h3>
-        <p class="service-description">Performance tuning and efficiency improvements for existing systems. Data-driven optimization that extends equipment life and reduces operational costs.</p>
-      </div>
-    </div>
-  </section>
-  
-  <section id="process">
-    <div class="section-header">
-      <h2 class="section-title">Our Houston AC Repair Process</h2>
-      <p class="section-subtitle">Clear, honest, professional. No games, no surprises.</p>
-    </div>
-    <div class="process-grid">
-      <div class="process-step animate-in delay-1">
-        <div class="process-number">1</div>
-        <h3 class="process-title">Fast Response</h3>
-        <p class="process-description">Call or text 281-939-5906. We'll be there within 2 hours for emergencies.</p>
-      </div>
-      <div class="process-step animate-in delay-2">
-        <div class="process-number">2</div>
-        <h3 class="process-title">Expert Diagnosis</h3>
-        <p class="process-description">We find the real problem using advanced diagnostics. No guesswork.</p>
-      </div>
-      <div class="process-step animate-in delay-3">
-        <div class="process-number">3</div>
-        <h3 class="process-title">Clear Options</h3>
-        <p class="process-description">Get all repair options with upfront pricing. You decide what's best.</p>
-      </div>
-      <div class="process-step animate-in">
-        <div class="process-number">4</div>
-        <h3 class="process-title">Quality Repair</h3>
-        <p class="process-description">Fix it right the first time. We stand behind our work with warranties.</p>
-      </div>
-    </div>
-  </section>
-  
-  <section id="case-studies">
-    <div class="section-header">
-      <h2 class="section-title">Field Case Studies</h2>
-      <p class="section-subtitle">Real diagnostics, real decisions, real results. This is how we work.</p>
-    </div>
-    
-    <div class="case-study">
-      <div class="case-header">
-        <h3 class="case-title">🔍 Commercial Facility No-Cooling Diagnostic</h3>
-        <p class="case-meta">July 2025 | 3.5 Ton Split System | Complete System Recovery</p>
-      </div>
-      
-      <div class="case-section">
-        <h4>📍 Initial Situation</h4>
-        <ul>
-          <li>Outdoor unit completely non-operational</li>
-          <li>Indoor temperature at 85°F during peak summer</li>
-          <li>No previous service documentation available</li>
-          <li>Critical cooling needed for facility operations</li>
-        </ul>
-      </div>
-      
-      <div class="case-section">
-        <h4>🔧 Diagnostic Process</h4>
-        <ul>
-          <li>Electrical testing revealed intermittent power delivery</li>
-          <li>Capacitor tested at 35/3 μF (rated 45/5 μF) - clear failure</li>
-          <li>Manual contactor test confirmed relay functionality</li>
-          <li>Breaker showed physical resistance indicating internal failure</li>
-        </ul>
-      </div>
-      
-      <div class="case-section">
-        <h4>📊 System Analysis</h4>
-        <div class="case-data">Initial Readings:
-• Subcooling: 13.5°F (Target: 10°F)
-• Superheat: 10.5°F
-• Suction: 163 psi | Head: 387 psi
-• System overcharged by ~1.8 lbs</div>
-        <p>Progressive refrigerant recovery performed in 4-6 oz increments, monitoring system response between adjustments.</p>
-        <div class="case-data">Final Readings:
-• Subcooling: 10.2°F ✓
-• Superheat: 11.8°F ✓
-• Suction: 159 psi | Head: 377 psi
-• Supply temp: 53°F | VSAT: 56°F</div>
-      </div>
-      
-      <div class="case-section">
-        <h4>💡 Technical Insights</h4>
-        <div class="case-insight">
-          "System was cooling under heavy load, but the overcharge was causing inefficiency and potential compressor stress. Incremental recovery allowed precise charge adjustment without overshooting targets. This methodical approach ensures longevity and efficiency."
-        </div>
-      </div>
-      
-      <div class="case-section">
-        <h4>✅ Results & Recommendations</h4>
-        <ul>
-          <li>Replaced failed capacitor with American-made Century Supply unit</li>
-          <li>Restored system to manufacturer specifications</li>
-          <li>Identified breaker issue - recommended licensed electrician</li>
-          <li>System operating at peak efficiency with documented baseline</li>
-          <li>Follow-up scheduled to verify charge stability</li>
-        </ul>
-      </div>
-      
-      <div class="case-section">
-        <h4>🎯 Why This Matters</h4>
-        <p>This case demonstrates our commitment to systematic diagnosis over quick fixes. By taking time to properly analyze and adjust the refrigerant charge, we prevented future compressor damage and ensured optimal efficiency. The client received not just a repair, but understanding and documentation for informed decision-making.</p>
-      </div>
-    </div>
-  </section>
-  
-  <!-- FAQ Section -->
-  <section id="faq" class="faq-section">
-    <div class="section-header">
-      <h2 class="section-title">Houston HVAC FAQs</h2>
-      <p class="section-subtitle">Common questions about AC repair in Houston</p>
-    </div>
-    
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" tabindex="0" role="button">
-          How quickly can you respond to AC emergencies in Houston?
-        </div>
-        <div class="faq-answer">
-          <p>We guarantee response times of 2 hours or less during business hours for Houston HVAC emergencies. Same-day service is available for most repairs. Text 281-939-5906 for the fastest response.</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" tabindex="0" role="button">
-          Do you provide free estimates for HVAC repairs?
-        </div>
-        <div class="faq-answer">
-          <p>Yes, we provide free, detailed estimates before any work begins. Our diagnostics clearly explain the issue and your repair options with transparent pricing. No surprises, no pressure.</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" tabindex="0" role="button">
-          What areas of Houston do you serve?
-        </div>
-        <div class="faq-answer">
-          <p>We serve all of Greater Houston including Katy, Sugar Land, The Woodlands, Cypress, Spring, Pearland, and surrounding areas within a 50-mile radius of downtown Houston.</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" tabindex="0" role="button">
-          Why is my Houston AC running but not cooling?
-        </div>
-        <div class="faq-answer">
-          <p>Common causes include dirty filters, low refrigerant, frozen coils, or thermostat issues. Houston's humidity can make these problems worse. We'll diagnose the exact cause and fix it quickly.</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" tabindex="0" role="button">
-          How often should I service my AC in Houston?
-        </div>
-        <div class="faq-answer">
-          <p>Houston's hot, humid climate means your AC works harder. We recommend service twice yearly - spring and fall. Regular maintenance prevents breakdowns during Houston's brutal summers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section id="contact" class="contact-section">
-    <div class="section-header">
-      <h2 class="section-title">Get Your Houston AC Fixed Today</h2>
-      <p class="section-subtitle">Fast response. Honest service. Real solutions.</p>
-    </div>
-    <div class="contact-info">
-      <div class="contact-item">
-        <h3>Phone & Text</h3>
-        <p><strong><a href="tel:2819395906">281-939-5906</a></strong></p>
-        <p>Text preferred for fastest response</p>
-      </div>
-      <div class="contact-item">
-        <h3>Email</h3>
-        <p><strong><a href="mailto:Martinperez@fidelitymechanicalsolutions.com">M. Pérez</a></strong></p>
-        <p>Detailed inquiries welcome</p>
-      </div>
-      <div class="contact-item">
-        <h3>Response Time</h3>
-        <p><strong>2 hours or less</strong></p>
-        <p>During standard operating hours</p>
-      </div>
-    </div>
-  </section>
-  
-  <footer class="footer">
-    <p>&copy; 2025 Fidelity Mechanical Solutions. Professional excellence delivered through systematic precision and uncompromising clarity. Revenue emerges as a natural consequence of competent service delivery, not as its primary objective.</p>
-  </footer>
-  
-  <!-- Enhanced Floating Contact Button -->
-  <div class="floating-contact" id="floatingCTA">
-    <div class="contact-tooltip">
-      Need immediate assistance? Call or text us
-    </div>
-    <a href="tel:2819395906" class="contact-bubble" aria-label="Call Fidelity Mechanical Solutions" title="Call us at 281-939-5906">
-      <div class="contact-icon">📞</div>
-    </a>
-  </div>
-  
-  <script>
-    // Enhanced navigation with premium interactions
-    const navbar = document.getElementById('navbar');
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    const floatingCTA = document.getElementById('floatingCTA');
-    
-    // Mobile menu with premium animations
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      
-      // Enhanced hamburger animation
-      const bars = navToggle.querySelectorAll('.bar');
-      bars.forEach((bar, index) => {
-        if (navLinks.classList.contains('active')) {
-          if (index === 0) bar.style.transform = 'rotate(45deg) translate(6px, 6px)';
-          if (index === 1) bar.style.opacity = '0';
-          if (index === 2) bar.style.transform = 'rotate(-45deg) translate(6px, -6px)';
-        } else {
-          bar.style.transform = '';
-          bar.style.opacity = '';
-        }
-      });
-    });
-    
-    // Close mobile menu when clicking links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const bars = navToggle.querySelectorAll('.bar');
-        bars.forEach(bar => {
-          bar.style.transform = '';
-          bar.style.opacity = '';
+
+    <script>
+        let formData = {};
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const dateInput = document.querySelector('input[name="date"]');
+            const timeInput = document.querySelector('input[name="timeArrived"]');
+            
+            if (dateInput && !dateInput.value) {
+                dateInput.value = today.toISOString().split('T')[0];
+            }
+            
+            if (timeInput && !timeInput.value) {
+                const hours = String(today.getHours()).padStart(2, '0');
+                const minutes = String(today.getMinutes()).padStart(2, '0');
+                timeInput.value = `${hours}:${minutes}`;
+            }
+
+            loadProgress();
+            setupAutoCalculations();
         });
-      });
-    });
-    
-    // Scroll handler with throttling
-    let isScrolling = false;
-    
-    function handleScroll() {
-      if (!isScrolling) {
-        requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          
-          // Navbar scroll effect
-          if (currentScrollY > 100) {
-            navbar.classList.add('scrolled');
-          } else {
-            navbar.classList.remove('scrolled');
-          }
-          
-          // Show floating CTA
-          if (currentScrollY > 500) {
-            floatingCTA.classList.add('visible');
-          }
-          
-          isScrolling = false;
-        });
-        isScrolling = true;
-      }
-    }
-    
-    // Single scroll event listener
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Enhanced smooth scrolling with easing
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const offsetTop = target.offsetTop - 100;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
+
+        function setupAutoCalculations() {
+            const returnTemp = document.querySelector('input[name="returnTemp"]');
+            const supplyTemp = document.querySelector('input[name="supplyTemp"]');
+            const tempSplit = document.querySelector('input[name="tempSplit"]');
+
+            function calcSplit() {
+                if (returnTemp.value && supplyTemp.value) {
+                    const split = Math.abs(parseFloat(returnTemp.value) - parseFloat(supplyTemp.value));
+                    tempSplit.value = split.toFixed(1);
+                }
+            }
+
+            if (returnTemp && supplyTemp && tempSplit) {
+                returnTemp.addEventListener('input', calcSplit);
+                supplyTemp.addEventListener('input', calcSplit);
+            }
         }
-      });
-    });
-    
-    // Enhanced diagnostic responses
-    const symptomBtns = document.querySelectorAll('.symptom-btn');
-    const diagnosisContent = document.getElementById('diagnosisContent');
-    const diagnosisResult = document.getElementById('diagnosisResult');
-    
-    const diagnoses = {
-      'no-power': {
-        icon: '⚡',
-        title: 'Power/Electrical Issue',
-        causes: 'Likely causes: Tripped breaker, blown fuse, failed capacitor, or thermostat malfunction.',
-        severity: 'URGENT',
-        solution: 'Check your breaker panel first. If breakers are fine, this requires professional diagnosis.',
-        action: 'Call us now for same-day electrical diagnosis and repair.'
-      },
-      'no-cool': {
-        icon: '🌡️',
-        title: 'Cooling System Failure',
-        causes: 'Common issues: Low refrigerant (leak), dirty coils, failed compressor, or blocked airflow.',
-        severity: 'HIGH PRIORITY',
-        solution: 'Change your filter first. If no improvement, professional service needed.',
-        action: 'Schedule service today before the problem escalates.'
-      },
-      'noise': {
-        icon: '🔊',
-        title: 'Mechanical Issue Detected',
-        causes: 'Sounds indicate: Loose parts, failing motor, debris in system, or bearing failure.',
-        severity: 'MODERATE',
-        solution: 'Different sounds mean different problems. Recording the sound helps diagnosis.',
-        action: 'Text us a video of the sound for quick diagnosis.'
-      },
-      'bills': {
-        icon: '💰',
-        title: 'Efficiency Problem',
-        causes: 'Energy waste from: Dirty system, refrigerant leak, poor insulation, or oversized unit.',
-        severity: 'COST ALERT',
-        solution: 'Professional tune-up can reduce bills 20-30%.',
-        action: 'Schedule an efficiency audit to start saving.'
-      },
-      'ice': {
-        icon: '🧊',
-        title: 'System Freeze-Up',
-        causes: 'Ice means: Airflow restriction, low refrigerant, or failed blower motor.',
-        severity: 'SHUT OFF NOW',
-        solution: 'Turn off AC immediately to prevent compressor damage.',
-        action: 'Emergency service needed - call immediately.'
-      },
-      'smell': {
-        icon: '⚠️',
-        title: 'Air Quality Issue',
-        causes: 'Odors from: Mold/mildew (musty), electrical issues (burning), or dead animals (rotten).',
-        severity: 'HEALTH CONCERN',
-        solution: 'Different smells require different solutions. Houston humidity promotes mold growth.',
-        action: 'Schedule inspection to identify and eliminate odor source.'
-      }
-    };
-    
-    symptomBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        // Remove active state from all buttons
-        symptomBtns.forEach(b => {
-          b.classList.remove('active');
-        });
-        
-        // Add active state to clicked button
-        this.classList.add('active');
-        
-        // Get diagnosis
-        const symptom = this.dataset.symptom;
-        const diagnosis = diagnoses[symptom];
-        
-        if (diagnosis) {
-          // Update diagnosis display
-          diagnosisContent.style.opacity = '0';
-          
-          setTimeout(() => {
-            diagnosisContent.innerHTML = `
-              <h3>${diagnosis.icon} ${diagnosis.title}</h3>
-              <p><strong>Probable Causes:</strong> ${diagnosis.causes}</p>
-              <p><strong>Severity:</strong> <span style="color: var(--danger); font-weight: 600;">${diagnosis.severity}</span></p>
-              <p><strong>What To Do:</strong> ${diagnosis.solution}</p>
-              <p><strong>Next Step:</strong> ${diagnosis.action}</p>
-              <div class="diagnosis-cta">
-                <a href="tel:2819395906" class="cta-primary">📞 Call Now: 281-939-5906</a>
-                <a href="#contact" class="cta-secondary">📧 Get Free Estimate</a>
-              </div>
-            `;
-            diagnosisContent.style.opacity = '1';
-            diagnosisResult.classList.add('active');
-          }, 200);
+
+        function saveProgress() {
+            const form = document.getElementById('fieldBuddyForm');
+            const data = new FormData(form);
+            
+            formData = {};
+            for (let [key, value] of data.entries()) {
+                if (formData[key]) {
+                    if (Array.isArray(formData[key])) {
+                        formData[key].push(value);
+                    } else {
+                        formData[key] = [formData[key], value];
+                    }
+                } else {
+                    formData[key] = value;
+                }
+            }
+
+            alert('Progress saved! Data will persist during this session.');
         }
-      });
-    });
-    
-    // FAQ Accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      
-      const toggleItem = () => {
-        const isActive = item.classList.contains('active');
-        
-        // Close all items
-        faqItems.forEach(i => i.classList.remove('active'));
-        
-        // Open clicked item if it wasn't active
-        if (!isActive) {
-          item.classList.add('active');
+
+        function loadProgress() {
+            if (Object.keys(formData).length > 0) {
+                const form = document.getElementById('fieldBuddyForm');
+                Object.keys(formData).forEach(key => {
+                    const input = form.querySelector(`[name="${key}"]`);
+                    if (input) {
+                        if (input.type === 'checkbox') {
+                            if (Array.isArray(formData[key])) {
+                                const checkboxes = form.querySelectorAll(`[name="${key}"]`);
+                                checkboxes.forEach(cb => {
+                                    if (formData[key].includes(cb.value)) {
+                                        cb.checked = true;
+                                    }
+                                });
+                            } else {
+                                input.checked = formData[key] === input.value;
+                            }
+                        } else {
+                            input.value = formData[key];
+                        }
+                    }
+                });
+            }
         }
-      };
-      
-      question.addEventListener('click', toggleItem);
-      question.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleItem();
+
+        function generateReport() {
+            const form = document.getElementById('fieldBuddyForm');
+            
+            if (!form.checkValidity()) {
+                alert('Please fill in all required fields before completing the call.');
+                form.reportValidity();
+                return;
+            }
+
+            const data = new FormData(form);
+            let report = "FIELD BUDDY DATA CAPTURE REPORT\n";
+            report += "=".repeat(70) + "\n\n";
+            
+            report += "JOB CONTEXT\n";
+            report += "-".repeat(70) + "\n";
+            report += `Date: ${data.get('date')}\n`;
+            report += `Time Arrived: ${data.get('timeArrived')}\n`;
+            report += `Technician: ${data.get('techName')}\n`;
+            report += `Customer: ${data.get('customerName')}\n`;
+            report += `Address: ${data.get('address')}\n`;
+            if (data.get('accountNumber')) report += `Account Number: ${data.get('accountNumber')}\n`;
+            report += `Ambient Conditions: ${data.get('ambientTemp') || 'N/A'}°F, ${data.get('ambientRH') || 'N/A'}% RH\n`;
+            
+            const callTypes = data.getAll('callType');
+            report += `Call Type: ${callTypes.join(', ') || 'Not specified'}\n\n`;
+
+            report += "EQUIPMENT IDENTIFICATION\n";
+            report += "-".repeat(70) + "\n";
+            report += "Indoor Unit:\n";
+            report += `  Manufacturer: ${data.get('indoorMfg') || 'Not recorded'}\n`;
+            report += `  Model: ${data.get('indoorModel') || 'Not recorded'}\n`;
+            report += `  Serial: ${data.get('indoorSerial') || 'Not recorded'}\n`;
+            report += `  Tonnage: ${data.get('tonnage') || 'Not recorded'} tons\n`;
+            report += `  Filter Size: ${data.get('filterSize') || 'Not recorded'}\n`;
+            report += "\nOutdoor Unit:\n";
+            report += `  Manufacturer: ${data.get('outdoorMfg') || 'Not recorded'}\n`;
+            report += `  Model: ${data.get('outdoorModel') || 'Not recorded'}\n`;
+            report += `  Serial: ${data.get('outdoorSerial') || 'Not recorded'}\n`;
+            report += `  Refrigerant Type: ${data.get('refrigerantType') || 'Not recorded'}\n\n`;
+
+            report += "SYSTEM PERFORMANCE DATA\n";
+            report += "-".repeat(70) + "\n";
+            report += "Airflow & Static Pressure:\n";
+            report += `  Return Static: ${data.get('returnStatic') || 'N/A'} in. w.c.\n`;
+            report += `  Supply Static: ${data.get('supplyStatic') || 'N/A'} in. w.c.\n`;
+            report += `  Total Static: ${data.get('totalStatic') || 'N/A'} in. w.c.\n`;
+            report += `  Filter Condition: ${data.get('filterCondition') || 'Not recorded'}\n`;
+            report += `  Blower Amps: ${data.get('blowerAmps') || 'N/A'} A (Rated: ${data.get('blowerAmpsRated') || 'N/A'} A)\n`;
+            
+            report += "\nRefrigerant Circuit:\n";
+            report += `  Suction Pressure: ${data.get('suctionPressure') || 'N/A'} psig\n`;
+            report += `  Head Pressure: ${data.get('headPressure') || 'N/A'} psig\n`;
+            report += `  Suction Line Temp: ${data.get('suctionTemp') || 'N/A'}°F\n`;
+            report += `  Liquid Line Temp: ${data.get('liquidTemp') || 'N/A'}°F\n`;
+            report += `  Superheat: ${data.get('superheat') || 'N/A'}°F\n`;
+            report += `  Subcool: ${data.get('subcool') || 'N/A'}°F\n`;
+            report += `  Compressor Amps: ${data.get('compAmps') || 'N/A'} A (Rated: ${data.get('compAmpsRated') || 'N/A'} A)\n`;
+            
+            report += "\nTemperature Performance:\n";
+            report += `  Return Air: ${data.get('returnTemp') || 'N/A'}°F\n`;
+            report += `  Supply Air: ${data.get('supplyTemp') || 'N/A'}°F\n`;
+            report += `  Temperature Split: ${data.get('tempSplit') || 'N/A'}°F\n\n`;
+
+            report += "VISUAL INSPECTION FINDINGS\n";
+            report += "-".repeat(70) + "\n";
+            report += "Evaporator Coil:\n";
+            report += `  Condition: ${data.get('coilCondition') || 'Not recorded'}\n`;
+            if (data.get('coilSeverity')) report += `  Severity: ${data.get('coilSeverity')}/10\n`;
+            if (data.get('coilNotes')) report += `  Notes: ${data.get('coilNotes')}\n`;
+            
+            report += `\nBlower Assembly:\n`;
+            report += `  Condition: ${data.get('blowerCondition') || 'Not recorded'}\n`;
+            if (data.get('blowerNotes')) report += `  Notes: ${data.get('blowerNotes')}\n`;
+            
+            report += `\nCondensate System:\n`;
+            report += `  Pan Condition: ${data.get('condensateCondition') || 'Not recorded'}\n`;
+            report += `  Drain Line: ${data.get('drainStatus') || 'Not recorded'}\n`;
+            
+            report += `\nDuctwork & Plenum:\n`;
+            report += `  Sealing: ${data.get('ductSealing') || 'Not recorded'}\n`;
+            if (data.get('leakLocations')) report += `  Leak Locations: ${data.get('leakLocations')}\n`;
+            
+            if (data.get('visualNotes')) {
+                report += `\nAdditional Visual Observations:\n${data.get('visualNotes')}\n`;
+            }
+            report += "\n";
+
+            report += "SAFETY & COMPLIANCE\n";
+            report += "-".repeat(70) + "\n";
+            const safetyItems = data.getAll('safety');
+            if (safetyItems.length > 0) {
+                report += "Safety Items Present:\n";
+                safetyItems.forEach(item => report += `  - ${item}\n`);
+            } else {
+                report += "No safety items documented\n";
+            }
+            if (data.get('safetyNotes')) {
+                report += `Notes: ${data.get('safetyNotes')}\n`;
+            }
+            report += "\n";
+
+            report += "DIAGNOSTIC ASSESSMENT\n";
+            report += "-".repeat(70) + "\n";
+            report += `Primary Complaint (Customer's Words):\n${data.get('primaryComplaint')}\n\n`;
+            
+            const symptoms = data.getAll('symptoms');
+            if (symptoms.length > 0) {
+                report += "Observable Symptoms:\n";
+                symptoms.forEach(s => report += `  - ${s}\n`);
+                report += "\n";
+            }
+            
+            report += `Root Cause Analysis:\n${data.get('rootCause')}\n\n`;
+            
+            const factors = data.getAll('factors');
+            if (factors.length > 0) {
+                report += "Contributing Factors:\n";
+                factors.forEach(f => report += `  - ${f}\n`);
+                report += "\n";
+            }
+
+            report += "SYSTEM SCORING (1-10 scale)\n";
+            report += "-".repeat(70) + "\n";
+            report += `Safety: ${data.get('scoreSafety')}/10\n`;
+            report += `Mechanical Performance: ${data.get('scoreMechanical')}/10\n`;
+            report += `Indoor Air Quality: ${data.get('scoreIAQ')}/10\n`;
+            report += `Energy Efficiency: ${data.get('scoreEfficiency')}/10\n`;
+            report += `Overall System Health: ${data.get('scoreOverall')}/10\n\n`;
+
+            report += "RECOMMENDATIONS\n";
+            report += "-".repeat(70) + "\n";
+            if (data.get('recommendImmediate')) {
+                report += "IMMEDIATE / CRITICAL:\n";
+                report += data.get('recommendImmediate') + "\n\n";
+            }
+            if (data.get('recommendCorrective')) {
+                report += "CORRECTIVE (Performance Restoration):\n";
+                report += data.get('recommendCorrective') + "\n\n";
+            }
+            if (data.get('recommendPreventive')) {
+                report += "PREVENTIVE / ENHANCEMENT:\n";
+                report += data.get('recommendPreventive') + "\n\n";
+            }
+
+            report += "CUSTOMER INTERACTION\n";
+            report += "-".repeat(70) + "\n";
+            if (data.get('optionsPresented')) {
+                report += `Options Presented:\n${data.get('optionsPresented')}\n\n`;
+            }
+            report += `Customer Decision: ${data.get('customerDecision') || 'Not recorded'}\n`;
+            if (data.get('customerConcerns')) {
+                report += `Customer Questions/Concerns:\n${data.get('customerConcerns')}\n`;
+            }
+            report += "\n";
+
+            report += "WORK PERFORMED TODAY\n";
+            report += "-".repeat(70) + "\n";
+            if (data.get('workPerformed')) {
+                report += data.get('workPerformed') + "\n\n";
+            }
+            if (data.get('partsUsed')) {
+                report += `Parts Used: ${data.get('partsUsed')}\n`;
+            }
+            const hours = data.get('hoursOnSite') || '0';
+            const minutes = data.get('minutesOnSite') || '0';
+            report += `Time on Site: ${hours} hours ${minutes} minutes\n\n`;
+
+            if (data.get('additionalNotes')) {
+                report += "ADDITIONAL NOTES\n";
+                report += "-".repeat(70) + "\n";
+                report += data.get('additionalNotes') + "\n\n";
+            }
+
+            report += "=".repeat(70) + "\n";
+            report += "END OF REPORT - Ready for LLM Processing\n";
+            report += "=".repeat(70) + "\n";
+
+            downloadReport(report, data.get('customerName'), data.get('date'));
         }
-      });
-    });
-    
-    // Intersection Observer for animations
-    const animateElements = document.querySelectorAll('.animate-in');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-          observer.unobserve(entry.target);
+
+        function downloadReport(content, customerName, date) {
+            const sanitizedName = customerName.replace(/[^a-z0-9]/gi, '_');
+            const filename = `FieldBuddy_${sanitizedName}_${date}.txt`;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert(`Report generated successfully!\n\nFile: ${filename}\n\nYou can now submit this file to the Field Buddy LLM for final processing.`);
         }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
-    
-    animateElements.forEach(el => {
-      el.style.animationPlayState = 'paused';
-      observer.observe(el);
-    });
-    
-    // Add premium loading state
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
-  </script>
+    </script>
 </body>
 </html>
