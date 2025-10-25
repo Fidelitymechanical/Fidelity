@@ -1326,13 +1326,6 @@
     }
 
     /* ========================================
-       DARK MODE SUPPORT (Optional)
-       ======================================== */
-    @media (prefers-color-scheme: dark) {
-      /* Can be implemented in Phase 2 */
-    }
-
-    /* ========================================
        ACCESSIBILITY
        ======================================== */
     .sr-only {
@@ -1539,627 +1532,599 @@
 
   <!-- System Template -->
   <template id="systemTemplate">
-    <!-- System template content will be in Part 2 for better organization -->
-  </template>
-
-  <!-- JavaScript will be split across Parts 2, 3, and 4 -->
-  <script>
-    // Part 1 provides HTML and CSS foundation
-    // JavaScript implementation continues in Parts 2, 3, and 4
-    console.log('%c📦 Field Buddy Pro v2.0 - Part 1 Loaded', 'color:#2563eb; font-size:14px; font-weight:bold');
-    console.log('%c✓ HTML Structure & Styles Ready', 'color:#16a34a; font-size:12px');
-    console.log('%c→ Load Parts 2, 3, and 4 to complete application', 'color:#d97706; font-size:12px');
-  </script>
-</body>
-</html>// ============================================================================
-// FIELD BUDDY PRO v2.0 - PART 2: SYSTEM TEMPLATE & CORE JAVASCRIPT
-// ============================================================================
-// This file contains:
-// - System Template (HTML)
-// - Utilities & Constants
-// - Equipment Database
-// - Refrigerant Calculations
-// - State Management
-// - Storage & Persistence
-// - Voice Recognition
-// - Photo Management
-// ============================================================================
-
-// ========================================
-// SYSTEM TEMPLATE (Insert into <template id="systemTemplate">)
-// ========================================
-const SYSTEM_TEMPLATE_HTML = `
-<section class="card" data-system>
-  <div class="section-title">
-    <div style="display:flex; align-items:center; gap:8px">
-      <span>🏗️ System <span data-sysname>#</span></span>
-      <span class="completion-badge" style="display:none" data-completion>
-        ✓ <span data-percent>0</span>% Complete
-      </span>
-    </div>
-    <div class="btn-group">
-      <button class="btn gray small btnToggle" title="Expand/collapse all sections">
-        <span class="toggle-icon">▼</span> Toggle
-      </button>
-      <button class="btn warn small btnRemove" title="Remove this system">
-        ✕ Remove
-      </button>
-    </div>
-  </div>
-
-  <!-- Progress Bar -->
-  <div class="progress-bar">
-    <div class="progress-fill" data-progress style="width:0"></div>
-  </div>
-
-  <!-- Mode Toggle -->
-  <div class="mode-toggle">
-    <button class="mode-btn active" data-mode="cooling">
-      ❄️ Cooling Mode
-    </button>
-    <button class="mode-btn" data-mode="heating">
-      🔥 Heating Mode
-    </button>
-  </div>
-
-  <!-- Identity & Equipment Info -->
-  <details open>
-    <summary>🏷️ System Identity</summary>
-    <div class="grid-3">
-      <div class="input-group voice-input-wrapper">
-        <label>Area Served</label>
-        <input type="text" data-field="meta.zone" placeholder="e.g., Upstairs" list="zone-suggestions">
-        <button class="voice-btn" data-voice-for="meta.zone" title="Voice input">🎤</button>
-        <div class="field-hint">📍 Location or zone name</div>
-        <datalist id="zone-suggestions">
-          <option value="Upstairs">
-          <option value="Downstairs">
-          <option value="Main Floor">
-          <option value="Basement">
-          <option value="Master Bedroom">
-          <option value="Living Area">
-        </datalist>
+    <section class="card" data-system>
+      <div class="section-title">
+        <div style="display:flex; align-items:center; gap:8px">
+          <span>🏗️ System <span data-sysname>#</span></span>
+          <span class="completion-badge" style="display:none" data-completion>
+            ✓ <span data-percent>0</span>% Complete
+          </span>
+        </div>
+        <div class="btn-group">
+          <button class="btn gray small btnToggle" title="Expand/collapse all sections">
+            <span class="toggle-icon">▼</span> Toggle
+          </button>
+          <button class="btn warn small btnRemove" title="Remove this system">
+            ✕ Remove
+          </button>
+        </div>
       </div>
 
-      <div class="input-group voice-input-wrapper">
-        <label>
-          Brand / Model
-          <span class="help-icon" title="Type model number for auto-lookup">?</span>
-        </label>
-        <input type="text" data-field="meta.brandModel" placeholder="e.g., Carrier 24ACC3" class="equipment-lookup-trigger">
-        <button class="voice-btn" data-voice-for="meta.brandModel" title="Voice input">🎤</button>
-        <button class="btn small secondary" style="margin-top:8px" data-btn-lookup>
-          🔍 Lookup Specs
+      <!-- Progress Bar -->
+      <div class="progress-bar">
+        <div class="progress-fill" data-progress style="width:0"></div>
+      </div>
+
+      <!-- Mode Toggle -->
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="cooling">
+          ❄️ Cooling Mode
+        </button>
+        <button class="mode-btn" data-mode="heating">
+          🔥 Heating Mode
         </button>
       </div>
 
-      <div class="input-group">
-        <label>System Type</label>
-        <select data-field="meta.systemType">
-          <option value="">Select type...</option>
-          <option value="split">Split System (AC + Furnace)</option>
-          <option value="heatpump">Heat Pump</option>
-          <option value="package">Package Unit</option>
-          <option value="minisplit">Mini-Split / Ductless</option>
-          <option value="furnace">Furnace Only</option>
-          <option value="boiler">Boiler</option>
-          <option value="geothermal">Geothermal Heat Pump</option>
-        </select>
-      </div>
-    </div>
+      <!-- Identity & Equipment Info -->
+      <details open>
+        <summary>🏷️ System Identity</summary>
+        <div class="grid-3">
+          <div class="input-group voice-input-wrapper">
+            <label>Area Served</label>
+            <input type="text" data-field="meta.zone" placeholder="e.g., Upstairs" list="zone-suggestions">
+            <button class="voice-btn" data-voice-for="meta.zone" title="Voice input">🎤</button>
+            <div class="field-hint">📍 Location or zone name</div>
+            <datalist id="zone-suggestions">
+              <option value="Upstairs">
+              <option value="Downstairs">
+              <option value="Main Floor">
+              <option value="Basement">
+              <option value="Master Bedroom">
+              <option value="Living Area">
+            </datalist>
+          </div>
 
-    <div class="grid-4" style="margin-top:12px">
-      <div class="input-group voice-input-wrapper">
-        <label>Indoor Unit Model/Serial</label>
-        <input type="text" data-field="meta.indoorMS" placeholder="Model / Serial">
-        <button class="voice-btn" data-voice-for="meta.indoorMS" title="Voice input">🎤</button>
-      </div>
+          <div class="input-group voice-input-wrapper">
+            <label>
+              Brand / Model
+              <span class="help-icon" title="Type model number for auto-lookup">?</span>
+            </label>
+            <input type="text" data-field="meta.brandModel" placeholder="e.g., Carrier 24ACC3" class="equipment-lookup-trigger">
+            <button class="voice-btn" data-voice-for="meta.brandModel" title="Voice input">🎤</button>
+            <button class="btn small secondary" style="margin-top:8px" data-btn-lookup>
+              🔍 Lookup Specs
+            </button>
+          </div>
 
-      <div class="input-group voice-input-wrapper">
-        <label>Outdoor Unit Model/Serial</label>
-        <input type="text" data-field="meta.outdoorMS" placeholder="Model / Serial">
-        <button class="voice-btn" data-voice-for="meta.outdoorMS" title="Voice input">🎤</button>
-      </div>
+          <div class="input-group">
+            <label>System Type</label>
+            <select data-field="meta.systemType">
+              <option value="">Select type...</option>
+              <option value="split">Split System (AC + Furnace)</option>
+              <option value="heatpump">Heat Pump</option>
+              <option value="package">Package Unit</option>
+              <option value="minisplit">Mini-Split / Ductless</option>
+              <option value="furnace">Furnace Only</option>
+              <option value="boiler">Boiler</option>
+              <option value="geothermal">Geothermal Heat Pump</option>
+            </select>
+          </div>
+        </div>
 
-      <div>
-        <label>Manufacture Date</label>
-        <input type="date" data-field="meta.mfgDate" class="calc-age">
-      </div>
+        <div class="grid-4" style="margin-top:12px">
+          <div class="input-group voice-input-wrapper">
+            <label>Indoor Unit Model/Serial</label>
+            <input type="text" data-field="meta.indoorMS" placeholder="Model / Serial">
+            <button class="voice-btn" data-voice-for="meta.indoorMS" title="Voice input">🎤</button>
+          </div>
 
-      <div>
-        <label>Equipment Age (years)</label>
-        <input type="number" inputmode="decimal" step="0.1" data-field="meta.age" readonly>
-        <div class="field-hint">⏱️ Auto-calculated</div>
-      </div>
-    </div>
+          <div class="input-group voice-input-wrapper">
+            <label>Outdoor Unit Model/Serial</label>
+            <input type="text" data-field="meta.outdoorMS" placeholder="Model / Serial">
+            <button class="voice-btn" data-voice-for="meta.outdoorMS" title="Voice input">🎤</button>
+          </div>
 
-    <div class="grid-3 cooling-only" style="margin-top:12px">
-      <div>
-        <label>Refrigerant Type</label>
-        <select data-field="meta.refrigerant" class="calc-targets">
-          <option value="">Select refrigerant...</option>
-          <option value="R-410A">R-410A (Puron)</option>
-          <option value="R-22">R-22 (Freon)</option>
-          <option value="R-32">R-32</option>
-          <option value="R-454B">R-454B (XL41)</option>
-        </select>
-      </div>
+          <div>
+            <label>Manufacture Date</label>
+            <input type="date" data-field="meta.mfgDate" class="calc-age">
+          </div>
 
-      <div>
-        <label>Rated Tonnage</label>
-        <input type="number" inputmode="decimal" step="0.5" data-field="meta.tonnage" placeholder="e.g., 3.0">
-        <div class="field-hint">❄️ System capacity</div>
-      </div>
+          <div>
+            <label>Equipment Age (years)</label>
+            <input type="number" inputmode="decimal" step="0.1" data-field="meta.age" readonly>
+            <div class="field-hint">⏱️ Auto-calculated</div>
+          </div>
+        </div>
 
-      <div>
-        <label>SEER Rating</label>
-        <input type="number" inputmode="decimal" step="0.5" data-field="meta.seer" placeholder="e.g., 14">
-        <div class="field-hint">⚡ Energy efficiency</div>
-      </div>
-    </div>
+        <div class="grid-3 cooling-only" style="margin-top:12px">
+          <div>
+            <label>Refrigerant Type</label>
+            <select data-field="meta.refrigerant" class="calc-targets">
+              <option value="">Select refrigerant...</option>
+              <option value="R-410A">R-410A (Puron)</option>
+              <option value="R-22">R-22 (Freon)</option>
+              <option value="R-32">R-32</option>
+              <option value="R-454B">R-454B (XL41)</option>
+            </select>
+          </div>
 
-    <!-- Equipment Lookup Display -->
-    <div class="equipment-lookup" style="display:none" data-equipment-display>
-      <div class="equipment-lookup-title">📋 Equipment Specifications Found</div>
-      <div class="equipment-specs" data-equipment-specs></div>
-    </div>
-  </details>
+          <div>
+            <label>Rated Tonnage</label>
+            <input type="number" inputmode="decimal" step="0.5" data-field="meta.tonnage" placeholder="e.g., 3.0">
+            <div class="field-hint">❄️ System capacity</div>
+          </div>
 
-  <!-- Photos Section -->
-  <details open>
-    <summary>📸 Photos (<span class="photo-count">0</span>)</summary>
-    <div class="photo-section">
-      <input type="file" accept="image/*" capture="environment" multiple class="photo-input">
-      <button class="btn secondary small btn-add-photo" style="margin-top:8px">
-        📷 Take/Upload Photos
-      </button>
-      <div class="photo-grid" style="margin-top:12px"></div>
-    </div>
-  </details>
+          <div>
+            <label>SEER Rating</label>
+            <input type="number" inputmode="decimal" step="0.5" data-field="meta.seer" placeholder="e.g., 14">
+            <div class="field-hint">⚡ Energy efficiency</div>
+          </div>
+        </div>
 
-  <!-- Quick Notes & Flags -->
-  <details open>
-    <summary>💬 Quick Notes & Flags</summary>
-    <div class="btn-group" style="margin-top:8px">
-      <button class="btn small secondary btn-quick-note">💬 Add Note</button>
-      <button class="btn small warn btn-flag-issue">🚩 Flag Critical Issue</button>
-    </div>
-    <div class="quick-notes"></div>
-  </details>
+        <!-- Equipment Lookup Display -->
+        <div class="equipment-lookup" style="display:none" data-equipment-display>
+          <div class="equipment-lookup-title">📋 Equipment Specifications Found</div>
+          <div class="equipment-specs" data-equipment-specs></div>
+        </div>
+      </details>
 
-  <!-- Safety Section -->
-  <details open>
-    <summary>🛡️ Safety Inspection</summary>
-    <div>
-      <label class="chip">
-        <input type="checkbox" data-field="safety.coDetector">
-        <span>CO detector present</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="safety.floatPrimary">
-        <span>Float switch (primary drain)</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="safety.floatPan">
-        <span>Float switch (drain pan)</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="safety.clearances">
-        <span>Clearances OK</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="safety.disconnect">
-        <span>Outdoor disconnect OK</span>
-      </label>
+      <!-- Photos Section -->
+      <details open>
+        <summary>📸 Photos (<span class="photo-count">0</span>)</summary>
+        <div class="photo-section">
+          <input type="file" accept="image/*" capture="environment" multiple class="photo-input">
+          <button class="btn secondary small btn-add-photo" style="margin-top:8px">
+            📷 Take/Upload Photos
+          </button>
+          <div class="photo-grid" style="margin-top:12px"></div>
+        </div>
+      </details>
 
-      <div class="heating-only">
-        <label class="chip">
-          <input type="checkbox" data-field="safety.rollout">
-          <span>Rollout switch tested</span>
-        </label>
-        <label class="chip">
-          <input type="checkbox" data-field="safety.pressure">
-          <span>Pressure switch tested</span>
-        </label>
-        <label class="chip">
-          <input type="checkbox" data-field="safety.highlimit">
-          <span>High-limit switch tested</span>
-        </label>
-        <label class="chip">
-          <input type="checkbox" data-field="safety.flame">
-          <span>Flame sensor OK</span>
-        </label>
-        <label class="chip">
-          <input type="checkbox" data-field="safety.ignition">
-          <span>Ignition operation verified</span>
-        </label>
-        <label class="chip">
-          <input type="checkbox" data-field="safety.gasleaks">
-          <span>No gas leaks detected</span>
-        </label>
-        <label class="chip">
-          <input type="checkbox" data-field="safety.venting">
-          <span>Venting/flue intact</span>
-        </label>
-      </div>
+      <!-- Quick Notes & Flags -->
+      <details open>
+        <summary>💬 Quick Notes & Flags</summary>
+        <div class="btn-group" style="margin-top:8px">
+          <button class="btn small secondary btn-quick-note">💬 Add Note</button>
+          <button class="btn small warn btn-flag-issue">🚩 Flag Critical Issue</button>
+        </div>
+        <div class="quick-notes"></div>
+      </details>
 
-      <label class="chip">
-        <input type="checkbox" data-field="safety.electrical">
-        <span>Electrical connections tight & grounded</span>
-      </label>
-    </div>
-
-    <div class="input-group voice-input-wrapper" style="margin-top:12px">
-      <label>Safety Notes & Observations</label>
-      <textarea data-field="safety.notes" placeholder="Safety findings, venting condition, gas line inspection, electrical observations..."></textarea>
-      <button class="voice-btn" data-voice-for="safety.notes" style="top:40px" title="Voice input">🎤</button>
-    </div>
-
-    <div class="sop-status">
-      <span class="muted" style="margin-right:8px">Overall Safety Status:</span>
-      <span class="status-tag pass" data-sop="safety" data-value="pass">✓ Pass</span>
-      <span class="status-tag fail" data-sop="safety" data-value="fail">✗ Fail</span>
-      <span class="status-tag attention" data-sop="safety" data-value="attention">⚠️ Needs Attention</span>
-    </div>
-  </details>
-
-  <!-- Mechanical Section -->
-  <details open>
-    <summary>⚙️ Mechanical Performance</summary>
-
-    <!-- Air Temperatures & Filter -->
-    <div class="grid-4">
-      <div>
-        <label>
-          Return Air Temperature (F)
-          <span class="help-icon" title="Temperature of air entering system from house">?</span>
-        </label>
-        <input type="number" inputmode="decimal" step="0.1" data-field="mech.returnF" 
-               placeholder="e.g., 75.0" class="calc-delta calc-targets" data-validate="temp">
-        <div class="field-hint">🎯 Normal: 68-78°F</div>
-      </div>
-
-      <div>
-        <label>
-          Supply Air Temperature (F)
-          <span class="help-icon" title="Temperature of air leaving system to house">?</span>
-        </label>
-        <input type="number" inputmode="decimal" step="0.1" data-field="mech.supplyF" 
-               placeholder="e.g., 55.0" class="calc-delta" data-validate="temp">
-        <div class="field-hint cooling-only">🎯 Target: 55-60°F</div>
-        <div class="field-hint heating-only">🎯 Target: 110-140°F</div>
-      </div>
-
-      <div class="cooling-only">
-        <label>Temperature Split (auto)</label>
-        <input type="text" data-field="mech.deltaT" disabled>
-        <div class="field-hint">🎯 Target: 16-22°F</div>
-      </div>
-
-      <div class="heating-only">
-        <label>Temperature Rise (auto)</label>
-        <input type="text" data-field="mech.tempRise" disabled>
-        <div class="field-hint">🎯 Target: 30-80°F</div>
-      </div>
-
-      <div class="input-group">
-        <label>Filter Condition</label>
-        <select data-field="mech.filter">
-          <option value="">Select...</option>
-          <option value="Clean">Clean - No action needed</option>
-          <option value="Dirty">Dirty - Replace soon</option>
-          <option value="Overdue">Overdue - Replace now</option>
-          <option value="Replaced">Replaced today</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Static Pressure -->
-    <div class="grid-4" style="margin-top:12px">
-      <div>
-        <label>
-          Return Static Pressure (in w.c.)
-          <span class="help-icon" title="Negative pressure on return side">?</span>
-        </label>
-        <input type="number" inputmode="decimal" step="0.01" data-field="mech.returnStatic" 
-               placeholder="e.g., -0.15" class="calc-static" data-validate="static">
-        <div class="field-hint">🎯 Typical: -0.10 to -0.25</div>
-      </div>
-
-      <div>
-        <label>
-          Supply Static Pressure (in w.c.)
-          <span class="help-icon" title="Positive pressure on supply side">?</span>
-        </label>
-        <input type="number" inputmode="decimal" step="0.01" data-field="mech.supplyStatic" 
-               placeholder="e.g., 0.30" class="calc-static" data-validate="static">
-        <div class="field-hint">🎯 Typical: 0.20 to 0.40</div>
-      </div>
-
-      <div>
-        <label>Total Static Pressure (auto)</label>
-        <input type="text" data-field="mech.totalStatic" disabled>
-        <div class="field-hint">🎯 Maximum: 0.50 in w.c.</div>
-      </div>
-
-      <div class="input-group voice-input-wrapper">
-        <label>Airflow Notes</label>
-        <input type="text" data-field="mech.airflowNotes" placeholder="Balance, restrictions, etc.">
-        <button class="voice-btn" data-voice-for="mech.airflowNotes" title="Voice input">🎤</button>
-      </div>
-    </div>
-
-    <!-- Cooling Mode: Refrigerant Pressures -->
-    <div class="cooling-only">
-      <div class="target-indicator" data-target-pressure style="display:none"></div>
-      <div class="grid-4" style="margin-top:12px">
+      <!-- Safety Section -->
+      <details open>
+        <summary>🛡️ Safety Inspection</summary>
         <div>
-          <label>
-            Suction Pressure (psig)
-            <span class="help-icon" title="Low-side pressure at compressor">?</span>
+          <label class="chip">
+            <input type="checkbox" data-field="safety.coDetector">
+            <span>CO detector present</span>
           </label>
-          <input type="number" inputmode="decimal" step="0.1" data-field="mech.suction" 
-                 placeholder="e.g., 118" class="calc-targets" data-validate="pressure-suction">
-          <div class="field-hint">📊 Based on refrigerant & return temp</div>
-        </div>
-
-        <div>
-          <label>
-            Head Pressure (psig)
-            <span class="help-icon" title="High-side pressure at compressor">?</span>
+          <label class="chip">
+            <input type="checkbox" data-field="safety.floatPrimary">
+            <span>Float switch (primary drain)</span>
           </label>
-          <input type="number" inputmode="decimal" step="0.1" data-field="mech.head" 
-                 placeholder="e.g., 250" data-validate="pressure-head">
-          <div class="field-hint">🎯 Typical: 200-300 psig</div>
-        </div>
-
-        <div>
-          <label>
-            Superheat (F)
-            <span class="help-icon" title="Temperature rise above saturation">?</span>
+          <label class="chip">
+            <input type="checkbox" data-field="safety.floatPan">
+            <span>Float switch (drain pan)</span>
           </label>
-          <input type="number" inputmode="decimal" step="0.1" data-field="mech.sh" 
-                 placeholder="e.g., 10" data-validate="superheat">
-          <div class="field-hint">🎯 TXV: 8-12°F | Fixed: 10-20°F</div>
-        </div>
-
-        <div>
-          <label>
-            Subcool (F)
-            <span class="help-icon" title="Temperature drop below saturation">?</span>
+          <label class="chip">
+            <input type="checkbox" data-field="safety.clearances">
+            <span>Clearances OK</span>
           </label>
-          <input type="number" inputmode="decimal" step="0.1" data-field="mech.sc" 
-                 placeholder="e.g., 10" data-validate="subcool">
-          <div class="field-hint">🎯 Target: 8-15°F</div>
-        </div>
-      </div>
-    </div>
+          <label class="chip">
+            <input type="checkbox" data-field="safety.disconnect">
+            <span>Outdoor disconnect OK</span>
+          </label>
 
-    <!-- Heating Mode: Furnace Readings -->
-    <div class="heating-only">
-      <div class="grid-4" style="margin-top:12px">
-        <div class="input-group voice-input-wrapper">
-          <label>Inducer Motor Amps</label>
-          <input type="text" data-field="mech.inducerAmps" placeholder="actual/rated e.g., 2.5/2.0" data-validate="amps">
-          <button class="voice-btn" data-voice-for="mech.inducerAmps" title="Voice input">🎤</button>
-          <div class="field-hint">Format: actual/rated</div>
+          <div class="heating-only">
+            <label class="chip">
+              <input type="checkbox" data-field="safety.rollout">
+              <span>Rollout switch tested</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" data-field="safety.pressure">
+              <span>Pressure switch tested</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" data-field="safety.highlimit">
+              <span>High-limit switch tested</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" data-field="safety.flame">
+              <span>Flame sensor OK</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" data-field="safety.ignition">
+              <span>Ignition operation verified</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" data-field="safety.gasleaks">
+              <span>No gas leaks detected</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" data-field="safety.venting">
+              <span>Venting/flue intact</span>
+            </label>
+          </div>
+
+          <label class="chip">
+            <input type="checkbox" data-field="safety.electrical">
+            <span>Electrical connections tight & grounded</span>
+          </label>
         </div>
 
+        <div class="input-group voice-input-wrapper" style="margin-top:12px">
+          <label>Safety Notes & Observations</label>
+          <textarea data-field="safety.notes" placeholder="Safety findings, venting condition, gas line inspection, electrical observations..."></textarea>
+          <button class="voice-btn" data-voice-for="safety.notes" style="top:40px" title="Voice input">🎤</button>
+        </div>
+
+        <div class="sop-status">
+          <span class="muted" style="margin-right:8px">Overall Safety Status:</span>
+          <span class="status-tag pass" data-sop="safety" data-value="pass">✓ Pass</span>
+          <span class="status-tag fail" data-sop="safety" data-value="fail">✗ Fail</span>
+          <span class="status-tag attention" data-sop="safety" data-value="attention">⚠️ Needs Attention</span>
+        </div>
+      </details>
+
+      <!-- Mechanical Section -->
+      <details open>
+        <summary>⚙️ Mechanical Performance</summary>
+
+        <!-- Air Temperatures & Filter -->
+        <div class="grid-4">
+          <div>
+            <label>
+              Return Air Temperature (F)
+              <span class="help-icon" title="Temperature of air entering system from house">?</span>
+            </label>
+            <input type="number" inputmode="decimal" step="0.1" data-field="mech.returnF" 
+                   placeholder="e.g., 75.0" class="calc-delta calc-targets" data-validate="temp">
+            <div class="field-hint">🎯 Normal: 68-78°F</div>
+          </div>
+
+          <div>
+            <label>
+              Supply Air Temperature (F)
+              <span class="help-icon" title="Temperature of air leaving system to house">?</span>
+            </label>
+            <input type="number" inputmode="decimal" step="0.1" data-field="mech.supplyF" 
+                   placeholder="e.g., 55.0" class="calc-delta" data-validate="temp">
+            <div class="field-hint cooling-only">🎯 Target: 55-60°F</div>
+            <div class="field-hint heating-only">🎯 Target: 110-140°F</div>
+          </div>
+
+          <div class="cooling-only">
+            <label>Temperature Split (auto)</label>
+            <input type="text" data-field="mech.deltaT" disabled>
+            <div class="field-hint">🎯 Target: 16-22°F</div>
+          </div>
+
+          <div class="heating-only">
+            <label>Temperature Rise (auto)</label>
+            <input type="text" data-field="mech.tempRise" disabled>
+            <div class="field-hint">🎯 Target: 30-80°F</div>
+          </div>
+
+          <div class="input-group">
+            <label>Filter Condition</label>
+            <select data-field="mech.filter">
+              <option value="">Select...</option>
+              <option value="Clean">Clean - No action needed</option>
+              <option value="Dirty">Dirty - Replace soon</option>
+              <option value="Overdue">Overdue - Replace now</option>
+              <option value="Replaced">Replaced today</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Static Pressure -->
+        <div class="grid-4" style="margin-top:12px">
+          <div>
+            <label>
+              Return Static Pressure (in w.c.)
+              <span class="help-icon" title="Negative pressure on return side">?</span>
+            </label>
+            <input type="number" inputmode="decimal" step="0.01" data-field="mech.returnStatic" 
+                   placeholder="e.g., -0.15" class="calc-static" data-validate="static">
+            <div class="field-hint">🎯 Typical: -0.10 to -0.25</div>
+          </div>
+
+          <div>
+            <label>
+              Supply Static Pressure (in w.c.)
+              <span class="help-icon" title="Positive pressure on supply side">?</span>
+            </label>
+            <input type="number" inputmode="decimal" step="0.01" data-field="mech.supplyStatic" 
+                   placeholder="e.g., 0.30" class="calc-static" data-validate="static">
+            <div class="field-hint">🎯 Typical: 0.20 to 0.40</div>
+          </div>
+
+          <div>
+            <label>Total Static Pressure (auto)</label>
+            <input type="text" data-field="mech.totalStatic" disabled>
+            <div class="field-hint">🎯 Maximum: 0.50 in w.c.</div>
+          </div>
+
+          <div class="input-group voice-input-wrapper">
+            <label>Airflow Notes</label>
+            <input type="text" data-field="mech.airflowNotes" placeholder="Balance, restrictions, etc.">
+            <button class="voice-btn" data-voice-for="mech.airflowNotes" title="Voice input">🎤</button>
+          </div>
+        </div>
+
+        <!-- Cooling Mode: Refrigerant Pressures -->
+        <div class="cooling-only">
+          <div class="target-indicator" data-target-pressure style="display:none"></div>
+          <div class="grid-4" style="margin-top:12px">
+            <div>
+              <label>
+                Suction Pressure (psig)
+                <span class="help-icon" title="Low-side pressure at compressor">?</span>
+              </label>
+              <input type="number" inputmode="decimal" step="0.1" data-field="mech.suction" 
+                     placeholder="e.g., 118" class="calc-targets" data-validate="pressure-suction">
+              <div class="field-hint">📊 Based on refrigerant & return temp</div>
+            </div>
+
+            <div>
+              <label>
+                Head Pressure (psig)
+                <span class="help-icon" title="High-side pressure at compressor">?</span>
+              </label>
+              <input type="number" inputmode="decimal" step="0.1" data-field="mech.head" 
+                     placeholder="e.g., 250" data-validate="pressure-head">
+              <div class="field-hint">🎯 Typical: 200-300 psig</div>
+            </div>
+
+            <div>
+              <label>
+                Superheat (F)
+                <span class="help-icon" title="Temperature rise above saturation">?</span>
+              </label>
+              <input type="number" inputmode="decimal" step="0.1" data-field="mech.sh" 
+                     placeholder="e.g., 10" data-validate="superheat">
+              <div class="field-hint">🎯 TXV: 8-12°F | Fixed: 10-20°F</div>
+            </div>
+
+            <div>
+              <label>
+                Subcool (F)
+                <span class="help-icon" title="Temperature drop below saturation">?</span>
+              </label>
+              <input type="number" inputmode="decimal" step="0.1" data-field="mech.sc" 
+                     placeholder="e.g., 10" data-validate="subcool">
+              <div class="field-hint">🎯 Target: 8-15°F</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Heating Mode: Furnace Readings -->
+        <div class="heating-only">
+          <div class="grid-4" style="margin-top:12px">
+            <div class="input-group voice-input-wrapper">
+              <label>Inducer Motor Amps</label>
+              <input type="text" data-field="mech.inducerAmps" placeholder="actual/rated e.g., 2.5/2.0" data-validate="amps">
+              <button class="voice-btn" data-voice-for="mech.inducerAmps" title="Voice input">🎤</button>
+              <div class="field-hint">Format: actual/rated</div>
+            </div>
+
+            <div>
+              <label>Gas Input (BTU/hr)</label>
+              <input type="number" inputmode="decimal" data-field="mech.gasInput" placeholder="e.g., 80000">
+              <div class="field-hint">🔥 Heating capacity</div>
+            </div>
+
+            <div>
+              <label>Manifold Pressure (in w.c.)</label>
+              <input type="number" inputmode="decimal" step="0.1" data-field="mech.manifoldPressure" 
+                     placeholder="e.g., 3.5" data-validate="manifold">
+              <div class="field-hint">🎯 Typical: 3.2-3.7</div>
+            </div>
+
+            <div></div>
+          </div>
+        </div>
+
+        <!-- Electrical Readings -->
+        <div class="grid-4" style="margin-top:12px">
+          <div class="input-group voice-input-wrapper">
+            <label>Blower Motor Amps</label>
+            <input type="text" data-field="mech.blowerAmps" placeholder="actual/rated e.g., 5.8/5.0" data-validate="amps">
+            <button class="voice-btn" data-voice-for="mech.blowerAmps" title="Voice input">🎤</button>
+            <div class="field-hint">Format: actual/rated</div>
+          </div>
+
+          <div class="input-group voice-input-wrapper cooling-only">
+            <label>Compressor Amps</label>
+            <input type="text" data-field="mech.compAmps" placeholder="actual/rated e.g., 15.0/14.0" data-validate="amps">
+            <button class="voice-btn" data-voice-for="mech.compAmps" title="Voice input">🎤</button>
+            <div class="field-hint">Format: actual/rated</div>
+          </div>
+
+          <div class="input-group voice-input-wrapper">
+            <label>Voltage L1-L2</label>
+            <input type="text" data-field="mech.voltageL1L2" placeholder="e.g., 240" data-validate="voltage">
+            <button class="voice-btn" data-voice-for="mech.voltageL1L2" title="Voice input">🎤</button>
+            <div class="field-hint">🎯 Typical: 220-250V</div>
+          </div>
+
+          <div class="input-group voice-input-wrapper">
+            <label>Capacitor µF</label>
+            <input type="text" data-field="mech.capacitor" placeholder="actual/rated e.g., 42/45" data-validate="capacitor">
+            <button class="voice-btn" data-voice-for="mech.capacitor" title="Voice input">🎤</button>
+            <div class="field-hint">Format: actual/rated</div>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-top:12px">
+          <div class="input-group voice-input-wrapper">
+            <label>Voltage L1-N</label>
+            <input type="text" data-field="mech.voltageL1N" placeholder="e.g., 120" data-validate="voltage">
+            <button class="voice-btn" data-voice-for="mech.voltageL1N" title="Voice input">🎤</button>
+            <div class="field-hint">🎯 Typical: 110-125V</div>
+          </div>
+
+          <div class="input-group voice-input-wrapper">
+            <label>Voltage L2-N</label>
+            <input type="text" data-field="mech.voltageL2N" placeholder="e.g., 120" data-validate="voltage">
+            <button class="voice-btn" data-voice-for="mech.voltageL2N" title="Voice input">🎤</button>
+            <div class="field-hint">🎯 Typical: 110-125V</div>
+          </div>
+
+          <div class="input-group">
+            <label>Coil Condition</label>
+            <select data-field="mech.coilCondition">
+              <option value="">Select...</option>
+              <option value="Clean">Clean</option>
+              <option value="Lightly soiled">Lightly soiled</option>
+              <option value="Restricted">Restricted - needs cleaning</option>
+              <option value="Corroded">Corroded</option>
+              <option value="Leaking">Leaking - replacement needed</option>
+            </select>
+          </div>
+
+          <div class="input-group voice-input-wrapper">
+            <label>Electrical Notes</label>
+            <input type="text" data-field="mech.electrical" placeholder="Capacitor, contactor, wiring...">
+            <button class="voice-btn" data-voice-for="mech.electrical" title="Voice input">🎤</button>
+          </div>
+        </div>
+
+        <div class="input-group voice-input-wrapper" style="margin-top:12px">
+          <label>Mechanical Notes & Observations</label>
+          <textarea data-field="mech.notes" placeholder="Noise, vibration, startup characteristics, overall condition..."></textarea>
+          <button class="voice-btn" data-voice-for="mech.notes" style="top:40px" title="Voice input">🎤</button>
+        </div>
+
+        <div class="sop-status">
+          <span class="muted" style="margin-right:8px">Mechanical Status:</span>
+          <span class="status-tag sound" data-sop="mechanical" data-value="sound">✓ Sound</span>
+          <span class="status-tag stable" data-sop="mechanical" data-value="stable">⚠️ Stable</span>
+          <span class="status-tag service" data-sop="mechanical" data-value="service">✗ Needs Service</span>
+        </div>
+      </details>
+
+      <!-- Health/IAQ Section -->
+      <details open>
+        <summary>🌬️ Indoor Air Quality & Health</summary>
         <div>
-          <label>Gas Input (BTU/hr)</label>
-          <input type="number" inputmode="decimal" data-field="mech.gasInput" placeholder="e.g., 80000">
-          <div class="field-hint">🔥 Heating capacity</div>
+          <label class="chip">
+            <input type="checkbox" data-field="health.microbialLight">
+            <span>Microbial growth (light)</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" data-field="health.microbialHeavy">
+            <span>Microbial growth (heavy)</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" data-field="health.ductLeaks">
+            <span>Duct/plenum leaks detected</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" data-field="health.filterOverdue">
+            <span>Filter overdue for replacement</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" data-field="health.drainIssues">
+            <span>Drain algae / slow flow</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" data-field="health.plenumsClean">
+            <span>Supply/return plenums clean</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" data-field="health.insulationIntact">
+            <span>Insulation intact</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" data-field="health.oxidationPresent">
+            <span>Oxidation/rust present</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" data-field="health.waterDamage">
+            <span>Water damage visible</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" data-field="health.uvPresent">
+            <span>UV system present</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" data-field="health.uvOperational">
+            <span>UV system operational</span>
+          </label>
         </div>
 
-        <div>
-          <label>Manifold Pressure (in w.c.)</label>
-          <input type="number" inputmode="decimal" step="0.1" data-field="mech.manifoldPressure" 
-                 placeholder="e.g., 3.5" data-validate="manifold">
-          <div class="field-hint">🎯 Typical: 3.2-3.7</div>
+        <div class="grid-2" style="margin-top:12px">
+          <div class="input-group">
+            <label>Filtration Upgrades</label>
+            <select data-field="health.filtrationUpgrades">
+              <option value="">None present</option>
+              <option value="Media">Media filter (MERV 11-13)</option>
+              <option value="Electronic">Electronic air cleaner</option>
+              <option value="HEPA">HEPA filter (MERV 17+)</option>
+              <option value="UV">UV light system</option>
+              <option value="Bipolar">Bipolar ionization</option>
+              <option value="Multiple">Multiple systems</option>
+            </select>
+          </div>
+
+          <div class="input-group voice-input-wrapper">
+            <label>Odor Findings</label>
+            <input type="text" data-field="health.odorFindings" placeholder="Musty, chemical, burning, etc.">
+            <button class="voice-btn" data-voice-for="health.odorFindings" title="Voice input">🎤</button>
+          </div>
         </div>
 
-        <div></div>
+        <div class="input-group voice-input-wrapper" style="margin-top:12px">
+          <label>Health & IAQ Notes</label>
+          <textarea data-field="health.notes" placeholder="Odors, contamination, plenum condition, insulation integrity, moisture issues..."></textarea>
+          <button class="voice-btn" data-voice-for="health.notes" style="top:40px" title="Voice input">🎤</button>
+        </div>
+
+        <div class="sop-status">
+          <span class="muted" style="margin-right:8px">Health Status:</span>
+          <span class="status-tag clean" data-sop="health" data-value="clean">✓ Clean</span>
+          <span class="status-tag contaminated" data-sop="health" data-value="contaminated">⚠️ Contaminated</span>
+          <span class="status-tag remediation" data-sop="health" data-value="remediation">✗ Needs Remediation</span>
+        </div>
+      </details>
+
+      <!-- System Scores -->
+      <div class="score-box" style="margin-top:16px">
+        <div class="grid-4">
+          <div>
+            <span class="muted">Safety</span>
+            <div class="score" data-score="safety">–</div>
+          </div>
+          <div>
+            <span class="muted">Mechanical</span>
+            <div class="score" data-score="mechanical">–</div>
+          </div>
+          <div>
+            <span class="muted">Health</span>
+            <div class="score" data-score="health">–</div>
+          </div>
+          <div>
+            <span class="muted">Overall Score</span>
+            <div class="score" data-score="overall">–</div>
+            <div class="notice">Confidence: <span data-score="confidence">–</span>%</div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+  </template>
 
-    <!-- Electrical Readings -->
-    <div class="grid-4" style="margin-top:12px">
-      <div class="input-group voice-input-wrapper">
-        <label>Blower Motor Amps</label>
-        <input type="text" data-field="mech.blowerAmps" placeholder="actual/rated e.g., 5.8/5.0" data-validate="amps">
-        <button class="voice-btn" data-voice-for="mech.blowerAmps" title="Voice input">🎤</button>
-        <div class="field-hint">Format: actual/rated</div>
-      </div>
+  <script>
+(function() {
+'use strict';
 
-      <div class="input-group voice-input-wrapper cooling-only">
-        <label>Compressor Amps</label>
-        <input type="text" data-field="mech.compAmps" placeholder="actual/rated e.g., 15.0/14.0" data-validate="amps">
-        <button class="voice-btn" data-voice-for="mech.compAmps" title="Voice input">🎤</button>
-        <div class="field-hint">Format: actual/rated</div>
-      </div>
-
-      <div class="input-group voice-input-wrapper">
-        <label>Voltage L1-L2</label>
-        <input type="text" data-field="mech.voltageL1L2" placeholder="e.g., 240" data-validate="voltage">
-        <button class="voice-btn" data-voice-for="mech.voltageL1L2" title="Voice input">🎤</button>
-        <div class="field-hint">🎯 Typical: 220-250V</div>
-      </div>
-
-      <div class="input-group voice-input-wrapper">
-        <label>Capacitor µF</label>
-        <input type="text" data-field="mech.capacitor" placeholder="actual/rated e.g., 42/45" data-validate="capacitor">
-        <button class="voice-btn" data-voice-for="mech.capacitor" title="Voice input">🎤</button>
-        <div class="field-hint">Format: actual/rated</div>
-      </div>
-    </div>
-
-    <div class="grid-4" style="margin-top:12px">
-      <div class="input-group voice-input-wrapper">
-        <label>Voltage L1-N</label>
-        <input type="text" data-field="mech.voltageL1N" placeholder="e.g., 120" data-validate="voltage">
-        <button class="voice-btn" data-voice-for="mech.voltageL1N" title="Voice input">🎤</button>
-        <div class="field-hint">🎯 Typical: 110-125V</div>
-      </div>
-
-      <div class="input-group voice-input-wrapper">
-        <label>Voltage L2-N</label>
-        <input type="text" data-field="mech.voltageL2N" placeholder="e.g., 120" data-validate="voltage">
-        <button class="voice-btn" data-voice-for="mech.voltageL2N" title="Voice input">🎤</button>
-        <div class="field-hint">🎯 Typical: 110-125V</div>
-      </div>
-
-      <div class="input-group">
-        <label>Coil Condition</label>
-        <select data-field="mech.coilCondition">
-          <option value="">Select...</option>
-          <option value="Clean">Clean</option>
-          <option value="Lightly soiled">Lightly soiled</option>
-          <option value="Restricted">Restricted - needs cleaning</option>
-          <option value="Corroded">Corroded</option>
-          <option value="Leaking">Leaking - replacement needed</option>
-        </select>
-      </div>
-
-      <div class="input-group voice-input-wrapper">
-        <label>Electrical Notes</label>
-        <input type="text" data-field="mech.electrical" placeholder="Capacitor, contactor, wiring...">
-        <button class="voice-btn" data-voice-for="mech.electrical" title="Voice input">🎤</button>
-      </div>
-    </div>
-
-    <div class="input-group voice-input-wrapper" style="margin-top:12px">
-      <label>Mechanical Notes & Observations</label>
-      <textarea data-field="mech.notes" placeholder="Noise, vibration, startup characteristics, overall condition..."></textarea>
-      <button class="voice-btn" data-voice-for="mech.notes" style="top:40px" title="Voice input">🎤</button>
-    </div>
-
-    <div class="sop-status">
-      <span class="muted" style="margin-right:8px">Mechanical Status:</span>
-      <span class="status-tag sound" data-sop="mechanical" data-value="sound">✓ Sound</span>
-      <span class="status-tag stable" data-sop="mechanical" data-value="stable">⚠️ Stable</span>
-      <span class="status-tag service" data-sop="mechanical" data-value="service">✗ Needs Service</span>
-    </div>
-  </details>
-
-  <!-- Health/IAQ Section -->
-  <details open>
-    <summary>🌬️ Indoor Air Quality & Health</summary>
-    <div>
-      <label class="chip">
-        <input type="checkbox" data-field="health.microbialLight">
-        <span>Microbial growth (light)</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="health.microbialHeavy">
-        <span>Microbial growth (heavy)</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="health.ductLeaks">
-        <span>Duct/plenum leaks detected</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="health.filterOverdue">
-        <span>Filter overdue for replacement</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="health.drainIssues">
-        <span>Drain algae / slow flow</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="health.plenumsClean">
-        <span>Supply/return plenums clean</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="health.insulationIntact">
-        <span>Insulation intact</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="health.oxidationPresent">
-        <span>Oxidation/rust present</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="health.waterDamage">
-        <span>Water damage visible</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="health.uvPresent">
-        <span>UV system present</span>
-      </label>
-      <label class="chip">
-        <input type="checkbox" data-field="health.uvOperational">
-        <span>UV system operational</span>
-      </label>
-    </div>
-
-    <div class="grid-2" style="margin-top:12px">
-      <div class="input-group">
-        <label>Filtration Upgrades</label>
-        <select data-field="health.filtrationUpgrades">
-          <option value="">None present</option>
-          <option value="Media">Media filter (MERV 11-13)</option>
-          <option value="Electronic">Electronic air cleaner</option>
-          <option value="HEPA">HEPA filter (MERV 17+)</option>
-          <option value="UV">UV light system</option>
-          <option value="Bipolar">Bipolar ionization</option>
-          <option value="Multiple">Multiple systems</option>
-        </select>
-      </div>
-
-      <div class="input-group voice-input-wrapper">
-        <label>Odor Findings</label>
-        <input type="text" data-field="health.odorFindings" placeholder="Musty, chemical, burning, etc.">
-        <button class="voice-btn" data-voice-for="health.odorFindings" title="Voice input">🎤</button>
-      </div>
-    </div>
-
-    <div class="input-group voice-input-wrapper" style="margin-top:12px">
-      <label>Health & IAQ Notes</label>
-      <textarea data-field="health.notes" placeholder="Odors, contamination, plenum condition, insulation integrity, moisture issues..."></textarea>
-      <button class="voice-btn" data-voice-for="health.notes" style="top:40px" title="Voice input">🎤</button>
-    </div>
-
-    <div class="sop-status">
-      <span class="muted" style="margin-right:8px">Health Status:</span>
-      <span class="status-tag clean" data-sop="health" data-value="clean">✓ Clean</span>
-      <span class="status-tag contaminated" data-sop="health" data-value="contaminated">⚠️ Contaminated</span>
-      <span class="status-tag remediation" data-sop="health" data-value="remediation">✗ Needs Remediation</span>
-    </div>
-  </details>
-
-  <!-- System Scores -->
-  <div class="score-box" style="margin-top:16px">
-    <div class="grid-4">
-      <div>
-        <span class="muted">Safety</span>
-        <div class="score" data-score="safety">–</div>
-      </div>
-      <div>
-        <span class="muted">Mechanical</span>
-        <div class="score" data-score="mechanical">–</div>
-      </div>
-      <div>
-        <span class="muted">Health</span>
-        <div class="score" data-score="health">–</div>
-      </div>
-      <div>
-        <span class="muted">Overall Score</span>
-        <div class="score" data-score="overall">–</div>
-        <div class="notice">Confidence: <span data-score="confidence">–</span>%</div>
-      </div>
-    </div>
-  </div>
-</section>
-`;
-
-// ========================================
+// ============================================================================
 // UTILITIES & CONSTANTS
-// ========================================
+// ============================================================================
 
-// DOM Helpers
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-// Math Helpers
 const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
 const toNum = v => {
   const n = parseFloat(String(v).replace(/,/g, ''));
@@ -2167,7 +2132,6 @@ const toNum = v => {
 };
 const isTrue = v => v === true || v === 'on' || v === 1 || v === '1';
 
-// String Helpers
 const sanitize = str => String(str || '').replace(/[<>]/g, '').trim();
 const escapeHtml = str => String(str).replace(/[&<>"']/g, m => ({
   '&': '&amp;',
@@ -2177,7 +2141,6 @@ const escapeHtml = str => String(str).replace(/[&<>"']/g, m => ({
   "'": '&#39;'
 }[m]));
 
-// Date Helpers
 const formatDate = (date) => {
   const d = new Date(date);
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
@@ -2188,9 +2151,9 @@ const formatTime = (date) => {
   return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 };
 
-// ========================================
+// ============================================================================
 // REFRIGERANT PT CHARTS
-// ========================================
+// ============================================================================
 
 const PT_CHARTS = {
   'R-410A': {
@@ -2211,41 +2174,32 @@ const PT_CHARTS = {
   }
 };
 
-/**
- * Calculate target pressure for refrigerant at given temperature
- * Uses linear interpolation between known points
- */
 function calcTargetPressure(refrigerant, returnTemp) {
   const chart = PT_CHARTS[refrigerant];
   if (!chart) return null;
 
   const temps = Object.keys(chart).map(Number).sort((a, b) => a - b);
 
-  // Exact match
   if (chart[returnTemp]) return chart[returnTemp];
 
-  // Find bounding temperatures
   let lower = null, upper = null;
   for (let t of temps) {
     if (t <= returnTemp) lower = t;
     if (t >= returnTemp && !upper) upper = t;
   }
 
-  // Out of range
   if (!lower) return chart[upper];
   if (!upper) return chart[lower];
 
-  // Linear interpolation
   const ratio = (returnTemp - lower) / (upper - lower);
   return Math.round(chart[lower] + (chart[upper] - chart[lower]) * ratio);
 }
 
-// ========================================
+// ============================================================================
 // EQUIPMENT DATABASE
-// ========================================
+// ============================================================================
 
 const EQUIPMENT_DATABASE = {
-  // Carrier
   'Carrier 24ACC3': {
     brand: 'Carrier',
     model: '24ACC3',
@@ -2273,8 +2227,6 @@ const EQUIPMENT_DATABASE = {
     compAmps: 14.5,
     type: 'split'
   },
-
-  // Trane
   'Trane XR14': {
     brand: 'Trane',
     model: 'XR14',
@@ -2293,8 +2245,6 @@ const EQUIPMENT_DATABASE = {
     compAmps: 13.5,
     type: 'split'
   },
-
-  // Lennox
   'Lennox ML14': {
     brand: 'Lennox',
     model: 'ML14',
@@ -2304,8 +2254,6 @@ const EQUIPMENT_DATABASE = {
     compAmps: 12.5,
     type: 'split'
   },
-
-  // Rheem/Ruud
   'Rheem RA14': {
     brand: 'Rheem',
     model: 'RA14',
@@ -2315,8 +2263,6 @@ const EQUIPMENT_DATABASE = {
     compAmps: 14.8,
     type: 'split'
   },
-
-  // Goodman
   'Goodman GSX14': {
     brand: 'Goodman',
     model: 'GSX14',
@@ -2326,8 +2272,6 @@ const EQUIPMENT_DATABASE = {
     compAmps: 15.2,
     type: 'split'
   },
-
-  // York
   'York YCD': {
     brand: 'York',
     model: 'YCD',
@@ -2337,8 +2281,6 @@ const EQUIPMENT_DATABASE = {
     compAmps: 14.3,
     type: 'split'
   },
-
-  // American Standard
   'American Standard 4A6H4': {
     brand: 'American Standard',
     model: '4A6H4',
@@ -2350,30 +2292,23 @@ const EQUIPMENT_DATABASE = {
   }
 };
 
-/**
- * Lookup equipment specs from database
- * Supports partial model matching
- */
 function lookupEquipment(modelStr) {
   if (!modelStr) return null;
 
   const search = modelStr.toLowerCase().trim();
 
-  // Try exact match first
   for (let [key, specs] of Object.entries(EQUIPMENT_DATABASE)) {
     if (key.toLowerCase() === search) {
       return specs;
     }
   }
 
-  // Try partial match
   for (let [key, specs] of Object.entries(EQUIPMENT_DATABASE)) {
     if (key.toLowerCase().includes(search) || search.includes(specs.model.toLowerCase())) {
       return specs;
     }
   }
 
-  // Try brand + model parts
   const parts = search.split(/\s+/);
   if (parts.length >= 2) {
     for (let [key, specs] of Object.entries(EQUIPMENT_DATABASE)) {
@@ -2387,9 +2322,9 @@ function lookupEquipment(modelStr) {
   return null;
 }
 
-// ========================================
+// ============================================================================
 // STATE MANAGEMENT
-// ========================================
+// ============================================================================
 
 let sysCount = 0;
 let dirty = false;
@@ -2401,26 +2336,19 @@ const AppState = {
   notes: new Map(),
   equipmentSpecs: new Map(),
   
-  // Smart defaults that are remembered
   defaults: {
-    lastTech: localStorage.getItem('lastTech') || '',
-    commonZones: JSON.parse(localStorage.getItem('commonZones') || '[]'),
-    commonModels: JSON.parse(localStorage.getItem('commonModels') || '[]')
+    lastTech: typeof localStorage !== 'undefined' ? (localStorage.getItem('lastTech') || '') : '',
+    commonZones: typeof localStorage !== 'undefined' ? JSON.parse(localStorage.getItem('commonZones') || '[]') : [],
+    commonModels: typeof localStorage !== 'undefined' ? JSON.parse(localStorage.getItem('commonModels') || '[]') : []
   }
 };
 
-/**
- * Mark data as dirty (needs save)
- */
 function markDirty() {
   dirty = true;
 }
 
-/**
- * Update smart defaults
- */
 function updateDefaults(type, value) {
-  if (!value) return;
+  if (!value || typeof localStorage === 'undefined') return;
 
   switch (type) {
     case 'tech':
@@ -2446,18 +2374,16 @@ function updateDefaults(type, value) {
   }
 }
 
-// ========================================
+// ============================================================================
 // STORAGE & PERSISTENCE
-// ========================================
+// ============================================================================
 
 const STORAGE_KEY = 'fieldbuddy_draft_v2';
 const STORAGE_VERSION = '2.0';
 
 const Storage = {
-  /**
-   * Save draft to sessionStorage
-   */
   save(data) {
+    if (typeof sessionStorage === 'undefined') return false;
     try {
       const payload = {
         version: STORAGE_VERSION,
@@ -2472,17 +2398,14 @@ const Storage = {
     }
   },
 
-  /**
-   * Load draft from sessionStorage
-   */
   load() {
+    if (typeof sessionStorage === 'undefined') return null;
     try {
       const raw = sessionStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
 
       const payload = JSON.parse(raw);
       
-      // Version check
       if (payload.version !== STORAGE_VERSION) {
         console.warn('Storage version mismatch, clearing old data');
         this.clear();
@@ -2496,10 +2419,8 @@ const Storage = {
     }
   },
 
-  /**
-   * Clear all stored data
-   */
   clear() {
+    if (typeof sessionStorage === 'undefined') return false;
     try {
       sessionStorage.removeItem(STORAGE_KEY);
       return true;
@@ -2509,23 +2430,24 @@ const Storage = {
     }
   },
 
-  /**
-   * Get storage size in KB
-   */
   getSize() {
+    if (typeof sessionStorage === 'undefined') return 0;
     try {
       const raw = sessionStorage.getItem(STORAGE_KEY);
       if (!raw) return 0;
-      return (raw.length * 2) / 1024; // UTF-16 = 2 bytes per char
+      return (raw.length * 2) / 1024;
     } catch (e) {
       return 0;
     }
   }
 };
+function gatherDraft() {
+  const draft = {
+    header: {
+      customer: $('#customerName')?.value || '',
+      date: $('#inspectionDate')?.value || '',
+      tech
 
-/**
- * Gather current draft data
- */
 function gatherDraft() {
   const draft = {
     header: {
@@ -2554,9 +2476,6 @@ function gatherDraft() {
   return draft;
 }
 
-/**
- * Save draft with debouncing
- */
 function saveDraft(showNotification = false) {
   if (!dirty) return;
 
@@ -2578,9 +2497,6 @@ function saveDraft(showNotification = false) {
   }
 }
 
-/**
- * Debounced auto-save
- */
 function debouncedSave() {
   clearTimeout(saveTimeout);
   saveTimeout = setTimeout(() => {
@@ -2590,16 +2506,13 @@ function debouncedSave() {
   }, 2000);
 }
 
-// ========================================
+// ============================================================================
 // VOICE RECOGNITION
-// ========================================
+// ============================================================================
 
 let recognition = null;
 let currentVoiceTarget = null;
 
-/**
- * Initialize Web Speech API
- */
 function initVoiceRecognition() {
   if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
     console.warn('Speech recognition not supported');
@@ -2653,9 +2566,6 @@ function initVoiceRecognition() {
   };
 }
 
-/**
- * Start voice recognition for a field
- */
 function startVoiceInput(btn) {
   if (!recognition) {
     showToast('Voice input not supported on this device', 'error');
@@ -2689,13 +2599,10 @@ function startVoiceInput(btn) {
   }
 }
 
-// ========================================
+// ============================================================================
 // PHOTO MANAGEMENT
-// ========================================
+// ============================================================================
 
-/**
- * Handle photo upload from file input
- */
 async function handlePhotoUpload(card, files) {
   if (!files || files.length === 0) return;
 
@@ -2741,9 +2648,6 @@ async function handlePhotoUpload(card, files) {
   }
 }
 
-/**
- * Compress image using canvas
- */
 function compressImage(file, maxWidth, quality) {
   return new Promise((resolve, reject) => {
     if (!file.type.startsWith('image/')) {
@@ -2761,7 +2665,6 @@ function compressImage(file, maxWidth, quality) {
         let w = img.width;
         let h = img.height;
 
-        // Resize if needed
         if (w > maxWidth) {
           h = (h * maxWidth) / w;
           w = maxWidth;
@@ -2773,7 +2676,6 @@ function compressImage(file, maxWidth, quality) {
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, w, h);
 
-        // Convert to JPEG
         canvas.toBlob(
           (blob) => {
             const reader2 = new FileReader();
@@ -2795,9 +2697,6 @@ function compressImage(file, maxWidth, quality) {
   });
 }
 
-/**
- * Render photos in grid
- */
 function renderPhotos(card) {
   const sysId = card.dataset.systemId;
   const photos = AppState.photos.get(sysId) || [];
@@ -2825,10 +2724,8 @@ function renderPhotos(card) {
     item.appendChild(img);
     item.appendChild(deleteBtn);
 
-    // Click image to view full size
     img.addEventListener('click', () => showPhotoModal(photo));
 
-    // Delete photo
     deleteBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       if (confirm('Delete this photo?')) {
@@ -2839,7 +2736,6 @@ function renderPhotos(card) {
     grid.appendChild(item);
   });
 
-  // Add upload button
   const addBtn = document.createElement('div');
   addBtn.className = 'photo-add';
   addBtn.textContent = '+';
@@ -2848,9 +2744,6 @@ function renderPhotos(card) {
   grid.appendChild(addBtn);
 }
 
-/**
- * Delete photo
- */
 function deletePhoto(card, photoId) {
   const sysId = card.dataset.systemId;
   const photos = AppState.photos.get(sysId).filter(p => p.id !== photoId);
@@ -2860,9 +2753,6 @@ function deletePhoto(card, photoId) {
   showToast('Photo deleted', 'success');
 }
 
-/**
- * Show photo in modal
- */
 function showPhotoModal(photo) {
   const modal = $('#photoModal');
   const img = $('#photoModalImg');
@@ -2873,91 +2763,26 @@ function showPhotoModal(photo) {
   modal.style.display = 'flex';
 }
 
-// Export for use in other parts
-window.FieldBuddyCore = {
-  SYSTEM_TEMPLATE_HTML,
-  PT_CHARTS,
-  EQUIPMENT_DATABASE,
-  AppState,
-  Storage,
-  // Utilities
-  $, $$, clamp, toNum, isTrue, sanitize, escapeHtml,
-  formatDate, formatTime,
-  // Functions
-  calcTargetPressure,
-  lookupEquipment,
-  markDirty,
-  updateDefaults,
-  gatherDraft,
-  saveDraft,
-  debouncedSave,
-  initVoiceRecognition,
-  startVoiceInput,
-  handlePhotoUpload,
-  compressImage,
-  renderPhotos,
-  deletePhoto,
-  showPhotoModal
-};
-
-console.log('%c📦 Field Buddy Pro v2.0 - Part 2 Loaded', 'color:#2563eb; font-size:14px; font-weight:bold');
-console.log('%c✓ System Template & Core JavaScript Ready', 'color:#16a34a; font-size:12px');// ============================================================================
-// FIELD BUDDY PRO v2.0 - PART 3: UI & INTERACTIONS
 // ============================================================================
-// This file contains:
-// - System Management (Add/Remove/Toggle)
-// - Field Calculations (Delta T, Static Pressure, Age)
-// - Field Validation
-// - Progress Tracking
-// - Quick Notes Management
-// - Equipment Lookup UI
-// - Target Pressure Display
-// - Toast Notifications
-// - Modal Management
-// - Event Wiring
-// ============================================================================
-
-// Import from Part 2
-const {
-  $, $$, clamp, toNum, isTrue, sanitize, escapeHtml,
-  formatDate, formatTime,
-  AppState, markDirty, updateDefaults, debouncedSave,
-  calcTargetPressure, lookupEquipment,
-  startVoiceInput, handlePhotoUpload, renderPhotos,
-  SYSTEM_TEMPLATE_HTML
-} = window.FieldBuddyCore;
-
-// ========================================
 // SYSTEM MANAGEMENT
-// ========================================
+// ============================================================================
 
-/**
- * Add a new system card
- */
 function addSystem() {
-  // Insert template into DOM first
-  const templateEl = $('#systemTemplate');
-  if (!templateEl.innerHTML.trim()) {
-    templateEl.innerHTML = SYSTEM_TEMPLATE_HTML;
-  }
-
-  const tpl = templateEl.content.cloneNode(true);
-  AppState.sysCount = (AppState.sysCount || 0) + 1;
+  const tpl = $('#systemTemplate').content.cloneNode(true);
+  sysCount++;
   const sysId = `sys_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
-  tpl.querySelector('[data-sysname]').textContent = `#${AppState.sysCount}`;
+  tpl.querySelector('[data-sysname]').textContent = `#${sysCount}`;
   const section = tpl.querySelector('[data-system]');
   section.classList.add('mode-cooling');
   section.dataset.systemId = sysId;
   section.dataset.mode = 'cooling';
 
-  // Initialize state
   AppState.systems.set(sysId, {});
   AppState.photos.set(sysId, []);
   AppState.notes.set(sysId, []);
   AppState.equipmentSpecs.set(sysId, null);
 
-  // Wire Remove button
   tpl.querySelector('.btnRemove').addEventListener('click', () => {
     if (confirm('Remove this system? This will delete all data, photos, and notes for this system.')) {
       AppState.systems.delete(sysId);
@@ -2970,7 +2795,6 @@ function addSystem() {
     }
   });
 
-  // Wire Toggle button
   tpl.querySelector('.btnToggle').addEventListener('click', () => {
     const details = $$('details', section);
     const anyOpen = details.some(d => d.open);
@@ -2979,7 +2803,6 @@ function addSystem() {
     if (icon) icon.textContent = anyOpen ? '▶' : '▼';
   });
 
-  // Wire Mode toggle
   const modeBtns = $$('.mode-btn', tpl);
   modeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2996,26 +2819,22 @@ function addSystem() {
     });
   });
 
-  // Wire Photo handling
   const photoInput = $('.photo-input', tpl);
   const btnAddPhoto = $('.btn-add-photo', tpl);
   btnAddPhoto.addEventListener('click', () => photoInput.click());
   photoInput.addEventListener('change', (e) => {
     handlePhotoUpload(section, e.target.files);
-    e.target.value = ''; // Reset input
+    e.target.value = '';
   });
 
-  // Wire Quick notes
   $('.btn-quick-note', tpl).addEventListener('click', () => addQuickNote(section, false));
   $('.btn-flag-issue', tpl).addEventListener('click', () => addQuickNote(section, true));
 
-  // Wire Equipment lookup
   const btnLookup = $('[data-btn-lookup]', tpl);
   if (btnLookup) {
     btnLookup.addEventListener('click', () => performEquipmentLookup(section));
   }
 
-  // Wire SOP status tags
   $$('.status-tag', tpl).forEach(tag => {
     tag.addEventListener('click', () => {
       const sop = tag.getAttribute('data-sop');
@@ -3030,7 +2849,6 @@ function addSystem() {
     });
   });
 
-  // Wire calculation triggers
   $$('.calc-delta', tpl).forEach(el => {
     el.addEventListener('input', () => updateCalculations(section));
     el.addEventListener('change', () => updateCalculations(section));
@@ -3047,13 +2865,11 @@ function addSystem() {
     el.addEventListener('change', () => updateTargetPressure(section));
   });
 
-  // Wire validation
   $$('[data-validate]', tpl).forEach(el => {
     el.addEventListener('input', () => validateField(el));
     el.addEventListener('blur', () => validateField(el));
   });
 
-  // Wire all inputs for progress tracking
   $$('[data-field]', tpl).forEach(el => {
     el.addEventListener('input', () => {
       updateProgress(section);
@@ -3065,41 +2881,29 @@ function addSystem() {
     });
   });
 
-  // Smart defaults for common fields
-  const zoneInput = $('[data-field="meta.zone"]', tpl);
-  if (zoneInput && AppState.defaults.commonZones.length > 0) {
-    zoneInput.placeholder = `e.g., ${AppState.defaults.commonZones[0]}`;
-  }
-
-  // Append to DOM
   $('#systems').appendChild(tpl);
   
-  // Initialize renders
   updateProgress(section);
   renderPhotos(section);
+  renderNotes(section);
   
   markDirty();
   showToast('New system added', 'success');
 
-  // Scroll to new system
   setTimeout(() => {
     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 100);
 }
 
-// ========================================
+// ============================================================================
 // FIELD CALCULATIONS
-// ========================================
+// ============================================================================
 
-/**
- * Update temperature delta/rise and static pressure
- */
 function updateCalculations(card) {
   const returnF = toNum($('[data-field="mech.returnF"]', card)?.value);
   const supplyF = toNum($('[data-field="mech.supplyF"]', card)?.value);
   const mode = card.dataset.mode || 'cooling';
 
-  // Temperature delta/rise
   if (returnF !== null && supplyF !== null) {
     if (mode === 'cooling') {
       const deltaOut = $('[data-field="mech.deltaT"]', card);
@@ -3108,7 +2912,6 @@ function updateCalculations(card) {
         deltaOut.value = delta;
         card.dataset.deltaT = delta;
 
-        // Validation
         deltaOut.classList.remove('input-success', 'input-warning', 'input-error');
         const val = parseFloat(delta);
         if (val >= 16 && val <= 22) {
@@ -3126,7 +2929,6 @@ function updateCalculations(card) {
         riseOut.value = rise;
         card.dataset.tempRise = rise;
 
-        // Validation
         riseOut.classList.remove('input-success', 'input-warning', 'input-error');
         const val = parseFloat(rise);
         if (val >= 30 && val <= 80) {
@@ -3140,7 +2942,6 @@ function updateCalculations(card) {
     }
   }
 
-  // Static pressure
   const returnStatic = toNum($('[data-field="mech.returnStatic"]', card)?.value);
   const supplyStatic = toNum($('[data-field="mech.supplyStatic"]', card)?.value);
   
@@ -3151,7 +2952,6 @@ function updateCalculations(card) {
       totalOut.value = total;
       card.dataset.totalStatic = total;
 
-      // Validation
       totalOut.classList.remove('input-success', 'input-warning', 'input-error');
       const val = parseFloat(total);
       if (val <= 0.50) {
@@ -3165,9 +2965,6 @@ function updateCalculations(card) {
   }
 }
 
-/**
- * Calculate equipment age from manufacture date
- */
 function updateAge(card) {
   const mfgDate = $('[data-field="meta.mfgDate"]', card)?.value;
   const ageField = $('[data-field="meta.age"]', card);
@@ -3182,9 +2979,6 @@ function updateAge(card) {
   markDirty();
 }
 
-/**
- * Update target pressure display
- */
 function updateTargetPressure(card) {
   const indicator = $('[data-target-pressure]', card);
   if (!indicator) return;
@@ -3227,9 +3021,9 @@ function updateTargetPressure(card) {
   }
 }
 
-// ========================================
+// ============================================================================
 // FIELD VALIDATION
-// ========================================
+// ============================================================================
 
 const VALIDATION_RULES = {
   'temp': { min: 30, max: 150, warnMin: 40, warnMax: 95 },
@@ -3243,9 +3037,6 @@ const VALIDATION_RULES = {
   'manifold': { min: 0, max: 10, warnMin: 3.0, warnMax: 4.0 }
 };
 
-/**
- * Validate field input
- */
 function validateField(input) {
   const type = input.getAttribute('data-validate');
   const value = input.value.trim();
@@ -3254,7 +3045,6 @@ function validateField(input) {
 
   if (!value) return;
 
-  // Numeric validations
   if (VALIDATION_RULES[type]) {
     const val = toNum(value);
     if (val === null) {
@@ -3274,7 +3064,6 @@ function validateField(input) {
     return;
   }
 
-  // Ratio validations (actual/rated)
   if (type === 'amps' || type === 'capacitor') {
     if (!value.includes('/')) {
       input.classList.add('input-warning');
@@ -3301,7 +3090,6 @@ function validateField(input) {
     return;
   }
 
-  // Voltage validation
   if (type === 'voltage') {
     const val = toNum(value);
     if (val === null) {
@@ -3309,16 +3097,13 @@ function validateField(input) {
       return;
     }
 
-    // 240V line
     if (val >= 200) {
       if (val < 210 || val > 250) {
         input.classList.add('input-warning');
       } else {
         input.classList.add('input-success');
       }
-    }
-    // 120V line
-    else {
+    } else {
       if (val < 105 || val > 130) {
         input.classList.add('input-warning');
       } else {
@@ -3328,13 +3113,10 @@ function validateField(input) {
   }
 }
 
-// ========================================
+// ============================================================================
 // PROGRESS TRACKING
-// ========================================
+// ============================================================================
 
-/**
- * Update progress bar and completion badge
- */
 function updateProgress(card) {
   const allFields = $$('[data-field]', card);
   const totalFields = allFields.length;
@@ -3350,7 +3132,6 @@ function updateProgress(card) {
 
   const pct = Math.round((filledFields / totalFields) * 100);
 
-  // Update progress bar
   const progressFill = $('[data-progress]', card);
   if (progressFill) {
     progressFill.style.width = `${pct}%`;
@@ -3361,7 +3142,6 @@ function updateProgress(card) {
     }
   }
 
-  // Update completion badge
   const badge = $('[data-completion]', card);
   const percentEl = $('[data-percent]', card);
   
@@ -3377,13 +3157,10 @@ function updateProgress(card) {
   return pct;
 }
 
-// ========================================
+// ============================================================================
 // QUICK NOTES
-// ========================================
+// ============================================================================
 
-/**
- * Add quick note or flag
- */
 function addQuickNote(card, isFlag) {
   const promptText = isFlag 
     ? '🚩 Describe the critical issue:' 
@@ -3410,9 +3187,6 @@ function addQuickNote(card, isFlag) {
   showToast(isFlag ? 'Critical issue flagged' : 'Note added', isFlag ? 'warning' : 'success');
 }
 
-/**
- * Render notes in UI
- */
 function renderNotes(card) {
   const sysId = card.dataset.systemId;
   const notes = AppState.notes.get(sysId) || [];
@@ -3456,13 +3230,10 @@ function renderNotes(card) {
   });
 }
 
-// ========================================
+// ============================================================================
 // EQUIPMENT LOOKUP
-// ========================================
+// ============================================================================
 
-/**
- * Perform equipment lookup and display results
- */
 function performEquipmentLookup(card) {
   const modelInput = $('[data-field="meta.brandModel"]', card);
   if (!modelInput) return;
@@ -3481,22 +3252,15 @@ function performEquipmentLookup(card) {
     return;
   }
 
-  // Store specs
   const sysId = card.dataset.systemId;
   AppState.equipmentSpecs.set(sysId, specs);
 
-  // Display specs
   displayEquipmentSpecs(card, specs);
-  
-  // Auto-apply specs
   applyEquipmentSpecs(card, specs);
   
   showToast('Equipment specifications found and applied', 'success');
 }
 
-/**
- * Display equipment specs in card
- */
 function displayEquipmentSpecs(card, specs) {
   const display = $('[data-equipment-display]', card);
   const specsContainer = $('[data-equipment-specs]', card);
@@ -3533,35 +3297,27 @@ function displayEquipmentSpecs(card, specs) {
   display.style.display = 'block';
 }
 
-/**
- * Apply equipment specs to fields
- */
 function applyEquipmentSpecs(card, specs) {
-  // Apply refrigerant
   const refrigSelect = $('[data-field="meta.refrigerant"]', card);
   if (refrigSelect && specs.refrigerant) {
     refrigSelect.value = specs.refrigerant;
   }
 
-  // Apply tonnage
   const tonnageInput = $('[data-field="meta.tonnage"]', card);
   if (tonnageInput && specs.tonnage) {
     tonnageInput.value = specs.tonnage;
   }
 
-  // Apply SEER
   const seerInput = $('[data-field="meta.seer"]', card);
   if (seerInput && specs.seer) {
     seerInput.value = specs.seer;
   }
 
-  // Apply system type
   const typeSelect = $('[data-field="meta.systemType"]', card);
   if (typeSelect && specs.type) {
     typeSelect.value = specs.type;
   }
 
-  // Set placeholder for compressor amps
   const compAmpsInput = $('[data-field="mech.compAmps"]', card);
   if (compAmpsInput && specs.compAmps) {
     compAmpsInput.placeholder = `Rated: ${specs.compAmps}A`;
@@ -3571,13 +3327,10 @@ function applyEquipmentSpecs(card, specs) {
   updateTargetPressure(card);
 }
 
-// ========================================
+// ============================================================================
 // TOAST NOTIFICATIONS
-// ========================================
+// ============================================================================
 
-/**
- * Show toast notification
- */
 function showToast(message, type = 'info') {
   const container = $('#toastContainer');
   if (!container) return;
@@ -3599,25 +3352,20 @@ function showToast(message, type = 'info') {
 
   container.appendChild(toast);
 
-  // Trigger animation
   requestAnimationFrame(() => {
     toast.classList.add('show');
   });
 
-  // Auto-remove
   setTimeout(() => {
     toast.classList.remove('show');
     setTimeout(() => toast.remove(), 300);
   }, 3000);
 }
 
-// ========================================
+// ============================================================================
 // MODAL MANAGEMENT
-// ========================================
+// ============================================================================
 
-/**
- * Show/hide modals
- */
 function showModal(modalId) {
   const modal = $(`#${modalId}`);
   if (modal) {
@@ -3634,13 +3382,10 @@ function hideModal(modalId) {
   }
 }
 
-// ========================================
+// ============================================================================
 // COLLECT CARD DATA
-// ========================================
+// ============================================================================
 
-/**
- * Collect all data from a system card
- */
 function collectCardData(card) {
   const data = {};
 
@@ -3653,12 +3398,10 @@ function collectCardData(card) {
     }
   });
 
-  // Add calculated values
   data['mech.deltaT'] = card.dataset.deltaT || '';
   data['mech.tempRise'] = card.dataset.tempRise || '';
   data['mech.totalStatic'] = card.dataset.totalStatic || '';
 
-  // Add metadata
   data.mode = card.dataset.mode || 'cooling';
   data.sopSafety = card.dataset.sopSafety || '';
   data.sopMechanical = card.dataset.sopMechanical || '';
@@ -3667,205 +3410,9 @@ function collectCardData(card) {
   return data;
 }
 
-// ========================================
-// GLOBAL EVENT WIRING
-// ========================================
-
-/**
- * Wire all global events
- */
-function wireGlobalEvents() {
-  // Header buttons
-  $('#btnAddSystem')?.addEventListener('click', addSystem);
-  $('#btnExpandAll')?.addEventListener('click', () => {
-    $$('[data-system] details').forEach(d => d.open = true);
-  });
-  $('#btnCollapseAll')?.addEventListener('click', () => {
-    $$('[data-system] details').forEach(d => d.open = false);
-  });
-
-  $('#btnToday')?.addEventListener('click', () => {
-    $('#inspectionDate').valueAsDate = new Date();
-    markDirty();
-  });
-
-  $('#btnClear')?.addEventListener('click', () => {
-    if (confirm('⚠️ Clear all data and start fresh?\n\nThis will delete all systems, photos, and notes. This cannot be undone.')) {
-      window.FieldBuddyCore.Storage.clear();
-      location.reload();
-    }
-  });
-
-  // Help modal
-  $('#btnHelp')?.addEventListener('click', () => showModal('helpModal'));
-  $('#btnCloseHelp')?.addEventListener('click', () => hideModal('helpModal'));
-  $('#helpModal')?.addEventListener('click', (e) => {
-    if (e.target.id === 'helpModal') hideModal('helpModal');
-  });
-
-  // Photo modal
-  $('#btnClosePhoto')?.addEventListener('click', () => hideModal('photoModal'));
-  $('#photoModal')?.addEventListener('click', (e) => {
-    if (e.target.id === 'photoModal') hideModal('photoModal');
-  });
-
-  // Voice buttons (event delegation)
-  document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('voice-btn')) {
-      startVoiceInput(e.target);
-    }
-  });
-
-  // Job header inputs with smart defaults
-  $('#technicianName')?.addEventListener('change', (e) => {
-    updateDefaults('tech', e.target.value);
-  });
-
-  // Job header validation
-  $('#ambientF')?.addEventListener('input', (e) => validateField(e.target));
-  $('#ambientRH')?.addEventListener('input', (e) => validateField(e.target));
-
-  // Auto-save on any input
-  $('#app')?.addEventListener('input', () => {
-    markDirty();
-    debouncedSave();
-  });
-
-  $('#app')?.addEventListener('change', () => {
-    markDirty();
-    debouncedSave();
-  });
-
-  // Keyboard shortcuts
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey || e.metaKey) {
-      switch (e.key.toLowerCase()) {
-        case 's':
-          e.preventDefault();
-          window.FieldBuddyCore.saveDraft(true);
-          break;
-        case 'n':
-          e.preventDefault();
-          addSystem();
-          break;
-        case 'g':
-          e.preventDefault();
-          if (window.FieldBuddyReports) {
-            window.FieldBuddyReports.buildReports();
-          }
-          break;
-        case 'p':
-          e.preventDefault();
-          if (window.FieldBuddyReports) {
-            window.FieldBuddyReports.exportPDF();
-          }
-          break;
-      }
-    }
-  });
-
-  // Prevent accidental navigation
-  window.addEventListener('beforeunload', (e) => {
-    if (AppState.dirty || window.FieldBuddyCore.Storage.getSize() > 10) {
-      e.preventDefault();
-      e.returnValue = '';
-    }
-  });
-
-  // ESC key to close modals
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      $$('.modal').forEach(modal => {
-        if (modal.style.display === 'flex') {
-          modal.style.display = 'none';
-          document.body.style.overflow = '';
-        }
-      });
-    }
-  });
-}
-
-// ========================================
-// INITIALIZATION
-// ========================================
-
-/**
- * Initialize the application
- */
-function initializeApp() {
-  // Set today's date
-  const dateInput = $('#inspectionDate');
-  if (dateInput) {
-    dateInput.valueAsDate = new Date();
-  }
-
-  // Load saved tech name
-  const techInput = $('#technicianName');
-  if (techInput && AppState.defaults.lastTech) {
-    techInput.value = AppState.defaults.lastTech;
-  }
-
-  // Initialize voice recognition
-  window.FieldBuddyCore.initVoiceRecognition();
-
-  // Wire all events
-  wireGlobalEvents();
-
-  // Add first system
-  addSystem();
-
-  // Show welcome toast
-  showToast('Field Buddy Pro loaded successfully', 'success');
-
-  console.log('%c📦 Field Buddy Pro v2.0 - Part 3 Loaded', 'color:#2563eb; font-size:14px; font-weight:bold');
-  console.log('%c✓ UI & Interactions Ready', 'color:#16a34a; font-size:12px');
-}
-
-// Export for use in other parts
-window.FieldBuddyUI = {
-  addSystem,
-  updateCalculations,
-  updateAge,
-  updateTargetPressure,
-  validateField,
-  updateProgress,
-  addQuickNote,
-  renderNotes,
-  performEquipmentLookup,
-  displayEquipmentSpecs,
-  applyEquipmentSpecs,
-  showToast,
-  showModal,
-  hideModal,
-  collectCardData,
-  wireGlobalEvents,
-  initializeApp
-};
-
-// Auto-initialize if DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeApp);
-} else {
-  initializeApp();
-}// ============================================================================
-// FIELD BUDDY PRO v2.0 - PART 4: SCORING & EXPORTS (FINAL)
 // ============================================================================
-// This file contains:
-// - Scoring Engine & Rules
-// - Recommendation Generator
-// - Report Synthesis
-// - Export Functions (PDF, HTML, JSON)
-// - Clipboard Operations
-// - Final Integration
+// SCORING ENGINE
 // ============================================================================
-
-// Import from previous parts
-const { $, $$, clamp, toNum, isTrue, sanitize, escapeHtml } = window.FieldBuddyCore;
-const { collectCardData, showToast } = window.FieldBuddyUI;
-
-// ========================================
-// SCORING RULES ENGINE
-// ========================================
 
 const SCORING_RULES = {
   safety: [
@@ -3884,8 +3431,8 @@ const SCORING_RULES = {
   ],
 
   mechanical: [
-    { when: c => c.mode === 'cooling' && numLT(c['mech.deltaT'], 16), delta: -1, reason: 'Low temperature split (<16°F) - possible airflow restriction' },
-    { when: c => c.mode === 'cooling' && numGT(c['mech.deltaT'], 22), delta: -1, reason: 'High temperature split (>22°F) - possible low charge' },
+    { when: c => numLT(c['mech.deltaT'], 16), delta: -1, reason: 'Low temperature split (<16°F) - possible airflow restriction' },
+    { when: c => numGT(c['mech.deltaT'], 22), delta: -1, reason: 'High temperature split (>22°F) - possible low charge' },
     { when: c => c.mode === 'heating' && numLT(c['mech.tempRise'], 30), delta: -1, reason: 'Low temperature rise (<30°F)' },
     { when: c => c.mode === 'heating' && numGT(c['mech.tempRise'], 80), delta: -1, reason: 'High temperature rise (>80°F) - possible airflow restriction' },
     { when: c => numGT(c['mech.totalStatic'], 0.50), delta: -2, reason: 'High total static pressure (>0.50 in w.c.) - ductwork issues' },
@@ -3916,7 +3463,6 @@ const SCORING_RULES = {
   ]
 };
 
-// Helper functions for scoring rules
 const numLT = (v, t) => { const n = toNum(v); return n !== null && n < t; };
 const numGT = (v, t) => { const n = toNum(v); return n !== null && n > t; };
 const txtFind = (s, re) => { if (!s) return false; return new RegExp(re, 'i').test(s); };
@@ -3924,12 +3470,9 @@ const relAmpHigh = (s) => {
   if (!s) return false;
   const parts = s.split('/').map(x => parseFloat(x));
   if (parts.length < 2 || isNaN(parts[0]) || isNaN(parts[1])) return false;
-  return (parts[0] - parts[1]) / parts[1] > 0.15; // >15% over rated
+  return (parts[0] - parts[1]) / parts[1] > 0.15;
 };
 
-/**
- * Write score to UI element
- */
 function writeScore(card, key, val) {
   const el = $(`[data-score="${key}"]`, card);
   if (!el) return;
@@ -3942,9 +3485,6 @@ function writeScore(card, key, val) {
   else el.classList.add('bad');
 }
 
-/**
- * Score a system card
- */
 function scoreCard(card) {
   const data = collectCardData(card);
   const scores = {
@@ -3954,7 +3494,6 @@ function scoreCard(card) {
     reasons: { safety: [], mechanical: [], health: [] }
   };
 
-  // Apply safety rules
   for (const rule of SCORING_RULES.safety) {
     if (rule.when(data)) {
       scores.safety += rule.delta;
@@ -3962,7 +3501,6 @@ function scoreCard(card) {
     }
   }
 
-  // Apply mechanical rules
   for (const rule of SCORING_RULES.mechanical) {
     if (rule.when(data)) {
       scores.mechanical += rule.delta;
@@ -3970,7 +3508,6 @@ function scoreCard(card) {
     }
   }
 
-  // Apply health rules
   for (const rule of SCORING_RULES.health) {
     if (rule.when(data)) {
       scores.health += rule.delta;
@@ -3978,12 +3515,10 @@ function scoreCard(card) {
     }
   }
 
-  // Clamp scores
   scores.safety = clamp(scores.safety, 1, 10);
   scores.mechanical = clamp(scores.mechanical, 1, 10);
   scores.health = clamp(scores.health, 1, 10);
 
-  // Calculate confidence based on key fields completion
   const requiredFields = [
     'mech.returnF', 'mech.supplyF',
     'mech.returnStatic', 'mech.supplyStatic',
@@ -4001,26 +3536,21 @@ function scoreCard(card) {
   scores.confidence = Math.round((completed / requiredFields.length) * 100);
   scores.overall = Math.round((scores.safety + scores.mechanical + scores.health) / 3);
 
-  // Update UI
   writeScore(card, 'safety', scores.safety);
   writeScore(card, 'mechanical', scores.mechanical);
   writeScore(card, 'health', scores.health);
   $('[data-score="overall"]', card).textContent = scores.overall;
   $('[data-score="confidence"]', card).textContent = scores.confidence;
 
-  // Store reasons for report generation
   card.dataset.scoreReasons = JSON.stringify(scores.reasons);
 
   return scores;
 }
 
-// ========================================
+// ============================================================================
 // RECOMMENDATION ENGINE
-// ========================================
+// ============================================================================
 
-/**
- * Generate recommendations based on scores
- */
 function generateRecommendations(systemData) {
   const { data, scores } = systemData;
   const recs = {
@@ -4029,7 +3559,6 @@ function generateRecommendations(systemData) {
     preventive: []
   };
 
-  // Safety recommendations
   if (scores.safety <= 7) {
     if (!isTrue(data['safety.floatPrimary']) || !isTrue(data['safety.floatPan'])) {
       recs.immediate.push('Install primary and drain pan float switches for overflow protection');
@@ -4048,7 +3577,6 @@ function generateRecommendations(systemData) {
     }
   }
 
-  // Mechanical recommendations
   if (scores.mechanical <= 7) {
     const totalStatic = toNum(data['mech.totalStatic']);
     if (totalStatic !== null && totalStatic > 0.50) {
@@ -4102,7 +3630,6 @@ function generateRecommendations(systemData) {
     }
   }
 
-  // Health recommendations
   if (scores.health <= 8) {
     if (isTrue(data['health.microbialHeavy'])) {
       recs.immediate.push('Heavy microbial contamination requires professional remediation and component replacement');
@@ -4138,13 +3665,10 @@ function generateRecommendations(systemData) {
   return recs;
 }
 
-// ========================================
+// ============================================================================
 // REPORT SYNTHESIS
-// ========================================
+// ============================================================================
 
-/**
- * Build comprehensive reports
- */
 function buildReports() {
   const systems = [];
 
@@ -4154,9 +3678,9 @@ function buildReports() {
     const reasons = JSON.parse(card.dataset.scoreReasons || '{"safety":[],"mechanical":[],"health":[]}');
 
     const sysId = card.dataset.systemId;
-    const photos = window.FieldBuddyCore.AppState.photos.get(sysId) || [];
-    const notes = window.FieldBuddyCore.AppState.notes.get(sysId) || [];
-    const equipmentSpecs = window.FieldBuddyCore.AppState.equipmentSpecs.get(sysId);
+    const photos = AppState.photos.get(sysId) || [];
+    const notes = AppState.notes.get(sysId) || [];
+    const equipmentSpecs = AppState.equipmentSpecs.get(sysId);
 
     const meta = {
       zone: data['meta.zone'] || 'Zone',
@@ -4205,13 +3729,9 @@ function buildReports() {
   showToast('Reports generated successfully', 'success');
 }
 
-/**
- * Synthesize customer and office reports
- */
 function synthesizeReports(ctx) {
   const lines = [];
 
-  // Customer Report Header
   lines.push('═══════════════════════════════════════════════════════════');
   lines.push('         HVAC SYSTEM INSPECTION SUMMARY');
   lines.push('═══════════════════════════════════════════════════════════');
@@ -4306,7 +3826,7 @@ function synthesizeReports(ctx) {
 
   const customerText = lines.join('\n');
 
-  // Office Technical Report
+  // Technical Report
   const techLines = [];
   techLines.push('═══════════════════════════════════════════════════════════');
   techLines.push('     BACK OFFICE TECHNICAL SUMMARY');
@@ -4324,7 +3844,6 @@ function synthesizeReports(ctx) {
     techLines.push(`SYSTEM ${idx + 1}: ${sys.meta.zone} (${sys.meta.brandModel}) [${sys.meta.mode.toUpperCase()}]`);
     techLines.push('═══════════════════════════════════════════════════════════');
 
-    // Equipment Identity
     techLines.push(`Identity: Type=${sys.meta.systemType || '–'}  Refrig=${sys.meta.refrigerant || '–'}  Age=${sys.meta.age || '–'}yrs`);
     techLines.push(`          Indoor: ${sys.data['meta.indoorMS'] || '–'}`);
     techLines.push(`          Outdoor: ${sys.data['meta.outdoorMS'] || '–'}`);
@@ -4332,17 +3851,14 @@ function synthesizeReports(ctx) {
       techLines.push(`          Capacity: ${sys.meta.tonnage || '–'} tons  SEER: ${sys.meta.seer || '–'}`);
     }
 
-    // Air Measurements
     if (sys.meta.mode === 'cooling') {
       techLines.push(`Air:     Return=${sys.data['mech.returnF'] || '–'}°F  Supply=${sys.data['mech.supplyF'] || '–'}°F  Split=${sys.meta.deltaT || '–'}°F`);
     } else {
       techLines.push(`Air:     Return=${sys.data['mech.returnF'] || '–'}°F  Supply=${sys.data['mech.supplyF'] || '–'}°F  Rise=${sys.meta.tempRise || '–'}°F`);
     }
 
-    // Static Pressure
     techLines.push(`Static:  Return=${sys.data['mech.returnStatic'] || '–'}  Supply=${sys.data['mech.supplyStatic'] || '–'}  Total=${sys.meta.totalStatic || '–'} in w.c.`);
 
-    // Refrigerant (Cooling) or Gas (Heating)
     if (sys.meta.mode === 'cooling') {
       techLines.push(`Refrig:  Suction=${sys.data['mech.suction'] || '–'} psig  Head=${sys.data['mech.head'] || '–'} psig`);
       techLines.push(`         SH=${sys.data['mech.sh'] || '–'}°F  SC=${sys.data['mech.sc'] || '–'}°F`);
@@ -4350,7 +3866,6 @@ function synthesizeReports(ctx) {
       techLines.push(`Heating: Gas Input=${sys.data['mech.gasInput'] || '–'} BTU/hr  Manifold=${sys.data['mech.manifoldPressure'] || '–'} in w.c.`);
     }
 
-    // Electrical
     techLines.push(`Amps:    Blower=${sys.data['mech.blowerAmps'] || '–'}`);
     if (sys.meta.mode === 'cooling') {
       techLines.push(`         Compressor=${sys.data['mech.compAmps'] || '–'}`);
@@ -4362,7 +3877,6 @@ function synthesizeReports(ctx) {
     techLines.push(`Capacitor: ${sys.data['mech.capacitor'] || '–'} µF`);
     techLines.push(`Coil: ${sys.data['mech.coilCondition'] || '–'}  Filter: ${sys.data['mech.filter'] || '–'}`);
 
-    // Safety Checks
     if (sys.meta.mode === 'heating') {
       const checks = [];
       if (isTrue(sys.data['safety.rollout'])) checks.push('Rollout✓');
@@ -4377,13 +3891,11 @@ function synthesizeReports(ctx) {
       }
     }
 
-    // Notes
     if (sys.data['safety.notes']) techLines.push(`Safety Notes: ${sys.data['safety.notes']}`);
     if (sys.data['mech.notes']) techLines.push(`Mechanical Notes: ${sys.data['mech.notes']}`);
     if (sys.data['mech.airflowNotes']) techLines.push(`Airflow: ${sys.data['mech.airflowNotes']}`);
     if (sys.data['mech.electrical']) techLines.push(`Electrical: ${sys.data['mech.electrical']}`);
 
-    // Health/IAQ
     if (sys.data['health.filtrationUpgrades']) {
       techLines.push(`Filtration: ${sys.data['health.filtrationUpgrades']}`);
     }
@@ -4393,7 +3905,6 @@ function synthesizeReports(ctx) {
     if (sys.data['health.odorFindings']) techLines.push(`Odors: ${sys.data['health.odorFindings']}`);
     if (sys.data['health.notes']) techLines.push(`Health Notes: ${sys.data['health.notes']}`);
 
-    // Photos & Notes
     if (sys.photoCount > 0) techLines.push(`Photos: ${sys.photoCount} inspection photos attached`);
     if (sys.notes.length > 0) {
       techLines.push('Quick Notes:');
@@ -4403,14 +3914,12 @@ function synthesizeReports(ctx) {
       });
     }
 
-    // Scores & Reasons
     techLines.push(`Scores: Safety=${sys.scores.safety}/10  Mechanical=${sys.scores.mechanical}/10  Health=${sys.scores.health}/10  Overall=${sys.scores.overall}/10  Confidence=${sys.scores.confidence}%`);
 
     if (sys.data.sopSafety || sys.data.sopMechanical || sys.data.sopHealth) {
       techLines.push(`SOP Status: Safety=${sys.data.sopSafety || 'N/A'}  Mechanical=${sys.data.sopMechanical || 'N/A'}  Health=${sys.data.sopHealth || 'N/A'}`);
     }
 
-    // Score Drivers
     if (sys.reasons.safety.length || sys.reasons.mechanical.length || sys.reasons.health.length) {
       techLines.push('Score Drivers:');
       if (sys.reasons.safety.length) techLines.push(`  Safety: ${sys.reasons.safety.join('; ')}`);
@@ -4418,7 +3927,6 @@ function synthesizeReports(ctx) {
       if (sys.reasons.health.length) techLines.push(`  Health: ${sys.reasons.health.join('; ')}`);
     }
 
-    // Recommendations
     techLines.push('Tiered Recommendations:');
     techLines.push(`  IMMEDIATE: ${sys.recs.immediate.join('; ') || 'None'}`);
     techLines.push(`  CORRECTIVE: ${sys.recs.corrective.join('; ') || 'None'}`);
@@ -4444,13 +3952,10 @@ function getScoreEmoji(score) {
   return '🔴 Poor';
 }
 
-// ========================================
+// ============================================================================
 // EXPORT FUNCTIONS
-// ========================================
+// ============================================================================
 
-/**
- * Export to PDF
- */
 function exportPDF() {
   showToast('Generating PDF...', 'info');
   buildReports();
@@ -4458,7 +3963,6 @@ function exportPDF() {
   setTimeout(() => {
     const el = document.body.cloneNode(true);
 
-    // Hide UI elements
     el.querySelectorAll('.toolbar, .sticky-actions, .voice-btn, #toastContainer, .modal, .photo-delete, .note-delete, .btn, .mode-toggle').forEach(b => {
       if (b) b.style.display = 'none';
     });
@@ -4479,9 +3983,6 @@ function exportPDF() {
   }, 500);
 }
 
-/**
- * Export to HTML
- */
 function exportHTML() {
   buildReports();
 
@@ -4523,9 +4024,6 @@ function exportHTML() {
   showToast('HTML exported successfully', 'success');
 }
 
-/**
- * Export to JSON
- */
 function exportJSON() {
   buildReports();
 
@@ -4549,9 +4047,9 @@ function exportJSON() {
     payload.systems.push({
       data,
       scores,
-      photos: window.FieldBuddyCore.AppState.photos.get(sysId) || [],
-      notes: window.FieldBuddyCore.AppState.notes.get(sysId) || [],
-      equipmentSpecs: window.FieldBuddyCore.AppState.equipmentSpecs.get(sysId) || null
+      photos: AppState.photos.get(sysId) || [],
+      notes: AppState.notes.get(sysId) || [],
+      equipmentSpecs: AppState.equipmentSpecs.get(sysId) || null
     });
   });
 
@@ -4566,23 +4064,112 @@ function exportJSON() {
   showToast('JSON exported successfully', 'success');
 }
 
-/**
- * Copy to clipboard
- */
 function copyToClipboard(text, label) {
   navigator.clipboard.writeText(text)
     .then(() => showToast(`${label} copied to clipboard`, 'success'))
     .catch(() => showToast('Copy failed - please select and copy manually', 'error'));
 }
 
-// ========================================
-// FINAL INTEGRATION
-// ========================================
+// ============================================================================
+// GLOBAL EVENT WIRING
+// ============================================================================
 
-/**
- * Wire report generation buttons
- */
-function wireReportButtons() {
+function wireGlobalEvents() {
+  $('#btnAddSystem')?.addEventListener('click', addSystem);
+  $('#btnExpandAll')?.addEventListener('click', () => {
+    $$('[data-system] details').forEach(d => d.open = true);
+  });
+  $('#btnCollapseAll')?.addEventListener('click', () => {
+    $$('[data-system] details').forEach(d => d.open = false);
+  });
+
+  $('#btnToday')?.addEventListener('click', () => {
+    $('#inspectionDate').valueAsDate = new Date();
+    markDirty();
+  });
+
+  $('#btnClear')?.addEventListener('click', () => {
+    if (confirm('⚠️ Clear all data and start fresh?\n\nThis will delete all systems, photos, and notes. This cannot be undone.')) {
+      Storage.clear();
+      location.reload();
+    }
+  });
+
+  $('#btnHelp')?.addEventListener('click', () => showModal('helpModal'));
+  $('#btnCloseHelp')?.addEventListener('click', () => hideModal('helpModal'));
+  $('#helpModal')?.addEventListener('click', (e) => {
+    if (e.target.id === 'helpModal') hideModal('helpModal');
+  });
+
+  $('#btnClosePhoto')?.addEventListener('click', () => hideModal('photoModal'));
+  $('#photoModal')?.addEventListener('click', (e) => {
+    if (e.target.id === 'photoModal') hideModal('photoModal');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('voice-btn')) {
+      startVoiceInput(e.target);
+    }
+  });
+
+  $('#technicianName')?.addEventListener('change', (e) => {
+    updateDefaults('tech', e.target.value);
+  });
+
+  $('#ambientF')?.addEventListener('input', (e) => validateField(e.target));
+  $('#ambientRH')?.addEventListener('input', (e) => validateField(e.target));
+
+  $('#app')?.addEventListener('input', () => {
+    markDirty();
+    debouncedSave();
+  });
+
+  $('#app')?.addEventListener('change', () => {
+    markDirty();
+    debouncedSave();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey) {
+      switch (e.key.toLowerCase()) {
+        case 's':
+          e.preventDefault();
+          saveDraft(true);
+          break;
+        case 'n':
+          e.preventDefault();
+          addSystem();
+          break;
+        case 'g':
+          e.preventDefault();
+          buildReports();
+          break;
+        case 'p':
+          e.preventDefault();
+          exportPDF();
+          break;
+      }
+    }
+  });
+
+  window.addEventListener('beforeunload', (e) => {
+    if (dirty || Storage.getSize() > 10) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      $$('.modal').forEach(modal => {
+        if (modal.style.display === 'flex') {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  });
+
   $('#btnGenerate')?.addEventListener('click', buildReports);
   $('#btnPDF2')?.addEventListener('click', exportPDF);
   $('#btnHTML2')?.addEventListener('click', exportHTML);
@@ -4595,26 +4182,35 @@ function wireReportButtons() {
   });
 }
 
-// Auto-wire on load
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', wireReportButtons);
-} else {
-  wireReportButtons();
+// ============================================================================
+// INITIALIZATION
+// ============================================================================
+
+function initializeApp() {
+  const dateInput = $('#inspectionDate');
+  if (dateInput) {
+    dateInput.valueAsDate = new Date();
+  }
+
+  const techInput = $('#technicianName');
+  if (techInput && AppState.defaults.lastTech) {
+    techInput.value = AppState.defaults.lastTech;
+  }
+
+  initVoiceRecognition();
+  wireGlobalEvents();
+  addSystem();
+
+  showToast('Field Buddy Pro loaded successfully', 'success');
+
+  console.log('%c🎉 Field Buddy Pro v2.0 - COMPLETE', 'color:#16a34a; font-size:16px; font-weight:bold');
+  console.log('%c✓ All systems ready!', 'color:#2563eb; font-size:12px');
 }
 
-// Export for global access
-window.FieldBuddyReports = {
-  scoreCard,
-  generateRecommendations,
-  buildReports,
-  synthesizeReports,
-  exportPDF,
-  exportHTML,
-  exportJSON,
-  copyToClipboard
-};
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+  initializeApp();
+}
 
-console.log('%c📦 Field Buddy Pro v2.0 - Part 4 Loaded', 'color:#2563eb; font-size:14px; font-weight:bold');
-console.log('%c✓ Scoring & Exports Complete', 'color:#16a34a; font-size:12px');
-console.log('%c🎉 PHASE 1 COMPLETE - All Systems Ready!', 'color:#d97706; font-size:14px; font-weight:bold');
-console.log('%cTotal Lines: ~3,200 | Status: Production Ready', 'color:#6b7280; font-size:11px');
+})();
