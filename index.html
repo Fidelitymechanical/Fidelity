@@ -1,3 +1,6 @@
+You're absolutely right - I stripped out the real-time validation feedback that makes this tool actually useful! Let me restore those critical features while keeping the clean design.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -251,6 +254,21 @@
       outline: none;
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    input.error, select.error, textarea.error {
+      border-color: var(--error);
+      background: #fef2f2;
+    }
+    
+    input.success, select.success, textarea.success {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+    
+    input.warning, select.warning {
+      border-color: var(--warning);
+      background: #fffbeb;
     }
     
     input[readonly] {
@@ -807,7 +825,7 @@
 
         <div class="form-group">
           <label class="required">Disconnect Status</label>
-          <select id="disconnect-status" required>
+          <select id="disconnect-status" required onchange="validatePowerStep()">
             <option value="">Check disconnect...</option>
             <option value="present">Present and Functional</option>
             <option value="missing">Missing or Non-functional</option>
@@ -818,12 +836,12 @@
         <div class="grid">
           <div class="form-group">
             <label class="required">Line Voltage (L1-L2)</label>
-            <input type="number" id="voltage-line" placeholder="208-240" step="0.1" required>
+            <input type="number" id="voltage-line" placeholder="208-240" step="0.1" required oninput="validatePowerStep()">
             <div class="input-hint">Typical: 208-240V</div>
           </div>
           <div class="form-group">
             <label>Control Voltage (24V)</label>
-            <input type="number" id="voltage-control" placeholder="18-30" step="0.1">
+            <input type="number" id="voltage-control" placeholder="18-30" step="0.1" oninput="validatePowerStep()">
             <div class="input-hint">Typical: 22-26V</div>
           </div>
         </div>
@@ -831,11 +849,11 @@
         <div class="grid">
           <div class="form-group">
             <label>Voltage L1-N</label>
-            <input type="number" id="voltage-l1n" step="0.1">
+            <input type="number" id="voltage-l1n" step="0.1" oninput="validatePowerStep()">
           </div>
           <div class="form-group">
             <label>Voltage L2-N</label>
-            <input type="number" id="voltage-l2n" step="0.1">
+            <input type="number" id="voltage-l2n" step="0.1" oninput="validatePowerStep()">
           </div>
         </div>
 
@@ -864,7 +882,7 @@
 
         <div class="form-group">
           <label class="required">Filter Condition</label>
-          <select id="filter-condition" required>
+          <select id="filter-condition" required onchange="validateAirflowStep()">
             <option value="">Inspect filter...</option>
             <option value="clean">Clean - Good Airflow</option>
             <option value="lightly-soiled">Lightly Soiled - Acceptable</option>
@@ -877,12 +895,12 @@
         <div class="grid">
           <div class="form-group">
             <label>Return Static Pressure</label>
-            <input type="number" id="return-static" placeholder="-0.10" step="0.01">
+            <input type="number" id="return-static" placeholder="-0.10" step="0.01" oninput="validateAirflowStep()">
             <div class="input-hint">Typically negative (-0.1 to -0.3)</div>
           </div>
           <div class="form-group">
             <label>Supply Static Pressure</label>
-            <input type="number" id="supply-static" placeholder="0.30" step="0.01">
+            <input type="number" id="supply-static" placeholder="0.30" step="0.01" oninput="validateAirflowStep()">
             <div class="input-hint">Typically positive (0.2 to 0.5)</div>
           </div>
         </div>
@@ -895,7 +913,7 @@
 
         <div class="form-group">
           <label class="required">Blower Status</label>
-          <select id="blower-operation" required>
+          <select id="blower-operation" required onchange="validateAirflowStep()">
             <option value="">Check blower...</option>
             <option value="normal">Normal Operation</option>
             <option value="reduced">Reduced Airflow</option>
@@ -930,28 +948,28 @@
         <div class="grid">
           <div class="form-group">
             <label>Blower Motor Amps</label>
-            <input type="text" id="blower-amps" placeholder="Format: 8.2/10.0 (actual/rated)">
+            <input type="text" id="blower-amps" placeholder="Format: 8.2/10.0 (actual/rated)" oninput="validateElectricalStep()">
           </div>
           <div class="form-group cooling-only">
             <label>Compressor Amps</label>
-            <input type="text" id="comp-amps" placeholder="Format: 18.5/21.0">
+            <input type="text" id="comp-amps" placeholder="Format: 18.5/21.0" oninput="validateElectricalStep()">
           </div>
           <div class="form-group heating-only">
             <label>Inducer Motor Amps</label>
-            <input type="number" id="inducer-amps" step="0.1">
+            <input type="number" id="inducer-amps" step="0.1" oninput="validateElectricalStep()">
           </div>
         </div>
 
         <div class="cooling-only">
           <div class="form-group">
             <label>Condenser Fan Motor Amps</label>
-            <input type="number" id="cond-fan-amps" step="0.1">
+            <input type="number" id="cond-fan-amps" step="0.1" oninput="validateElectricalStep()">
           </div>
         </div>
 
         <div class="form-group">
           <label class="required">Run Capacitor Reading</label>
-          <input type="text" id="capacitor-reading" placeholder="Format: 45/50 µF (measured/rated)" required>
+          <input type="text" id="capacitor-reading" placeholder="Format: 45/50 µF (measured/rated)" required oninput="validateElectricalStep()">
         </div>
 
         <div class="form-group cooling-only">
@@ -961,7 +979,7 @@
 
         <div class="form-group cooling-only">
           <label class="required">Contactor Condition</label>
-          <select id="contactor-condition" required>
+          <select id="contactor-condition" required onchange="validateElectricalStep()">
             <option value="">Inspect contactor...</option>
             <option value="good">Good - Minimal Wear</option>
             <option value="fair">Fair - Moderate Pitting</option>
@@ -998,22 +1016,22 @@
           <div class="grid">
             <div class="form-group">
               <label class="required">Suction Pressure (psig)</label>
-              <input type="number" id="suction-pressure" step="0.1" required>
+              <input type="number" id="suction-pressure" step="0.1" required oninput="validateRefrigerantStep()">
             </div>
             <div class="form-group">
               <label class="required">Liquid Pressure (psig)</label>
-              <input type="number" id="liquid-pressure" step="0.1" required>
+              <input type="number" id="liquid-pressure" step="0.1" required oninput="validateRefrigerantStep()">
             </div>
           </div>
 
           <div class="grid">
             <div class="form-group">
               <label class="required">Suction Line Temp (°F)</label>
-              <input type="number" id="suction-temp" step="0.1" required>
+              <input type="number" id="suction-temp" step="0.1" required oninput="validateRefrigerantStep()">
             </div>
             <div class="form-group">
               <label class="required">Liquid Line Temp (°F)</label>
-              <input type="number" id="liquid-temp" step="0.1" required>
+              <input type="number" id="liquid-temp" step="0.1" required oninput="validateRefrigerantStep()">
             </div>
           </div>
 
@@ -1061,17 +1079,17 @@
           <div class="grid">
             <div class="form-group">
               <label>Gas Input (BTU/hr)</label>
-              <input type="number" id="gas-input">
+              <input type="number" id="gas-input" oninput="validateRefrigerantStep()">
             </div>
             <div class="form-group">
               <label>Manifold Pressure (in w.c.)</label>
-              <input type="number" id="manifold-pressure" step="0.1">
+              <input type="number" id="manifold-pressure" step="0.1" oninput="validateRefrigerantStep()">
             </div>
           </div>
 
           <div class="form-group">
             <label>Heat Exchanger Condition</label>
-            <select id="heat-exchanger">
+            <select id="heat-exchanger" onchange="validateRefrigerantStep()">
               <option value="">Inspect heat exchanger...</option>
               <option value="clean">Clean - No Restrictions</option>
               <option value="light-buildup">Light Buildup</option>
@@ -1112,7 +1130,7 @@
 
         <div class="form-group">
           <label class="required">Thermostat Communication</label>
-          <select id="thermostat-comm" required>
+          <select id="thermostat-comm" required onchange="validateControlsStep()">
             <option value="">Test thermostat...</option>
             <option value="normal">Normal - Responds to Calls</option>
             <option value="intermittent">Intermittent Response</option>
@@ -1124,11 +1142,11 @@
         <div class="grid">
           <div class="form-group">
             <label class="required">Return Air Temp (°F)</label>
-            <input type="number" id="return-air-temp" step="0.1" required>
+            <input type="number" id="return-air-temp" step="0.1" required oninput="validateControlsStep()">
           </div>
           <div class="form-group">
             <label class="required">Supply Air Temp (°F)</label>
-            <input type="number" id="supply-air-temp" step="0.1" required>
+            <input type="number" id="supply-air-temp" step="0.1" required oninput="validateControlsStep()">
           </div>
         </div>
 
@@ -1144,34 +1162,34 @@
           <label>Safety Controls</label>
           <div class="checkbox-group cooling-only">
             <label class="checkbox-label">
-              <input type="checkbox" id="high-pressure">
+              <input type="checkbox" id="high-pressure" onchange="validateControlsStep()">
               <span>High Pressure OK</span>
             </label>
             <label class="checkbox-label">
-              <input type="checkbox" id="low-pressure">
+              <input type="checkbox" id="low-pressure" onchange="validateControlsStep()">
               <span>Low Pressure OK</span>
             </label>
             <label class="checkbox-label">
-              <input type="checkbox" id="float-switch">
+              <input type="checkbox" id="float-switch" onchange="validateControlsStep()">
               <span>Float Switch OK</span>
             </label>
           </div>
 
           <div class="checkbox-group heating-only">
             <label class="checkbox-label">
-              <input type="checkbox" id="flame-sensor-ok">
+              <input type="checkbox" id="flame-sensor-ok" onchange="validateControlsStep()">
               <span>Flame Sensor OK</span>
             </label>
             <label class="checkbox-label">
-              <input type="checkbox" id="limit-switch">
+              <input type="checkbox" id="limit-switch" onchange="validateControlsStep()">
               <span>Limit Switch OK</span>
             </label>
             <label class="checkbox-label">
-              <input type="checkbox" id="pressure-switch">
+              <input type="checkbox" id="pressure-switch" onchange="validateControlsStep()">
               <span>Pressure Switch OK</span>
             </label>
             <label class="checkbox-label">
-              <input type="checkbox" id="rollout-switch">
+              <input type="checkbox" id="rollout-switch" onchange="validateControlsStep()">
               <span>Rollout Switch OK</span>
             </label>
           </div>
@@ -1213,7 +1231,7 @@
 
         <div class="form-group">
           <label class="required">Evaporator Coil Condition</label>
-          <select id="evap-coil-condition" required>
+          <select id="evap-coil-condition" required onchange="validateEnvironmentStep()">
             <option value="">Inspect evaporator coil...</option>
             <option value="clean">Clean - No Obstructions</option>
             <option value="dusty">Dusty - Light Cleaning Needed</option>
@@ -1225,7 +1243,7 @@
 
         <div class="form-group cooling-only">
           <label class="required">Condenser Coil Condition</label>
-          <select id="cond-coil-condition" required>
+          <select id="cond-coil-condition" required onchange="validateEnvironmentStep()">
             <option value="">Inspect condenser coil...</option>
             <option value="clean">Clean - Good Heat Transfer</option>
             <option value="dusty">Dusty - Light Cleaning Needed</option>
@@ -1237,7 +1255,7 @@
 
         <div class="form-group">
           <label class="required">Drainage System</label>
-          <select id="drainage-condition" required>
+          <select id="drainage-condition" required onchange="validateEnvironmentStep()">
             <option value="">Check drainage...</option>
             <option value="clear">Clear - Draining Properly</option>
             <option value="slow">Slow Drainage</option>
@@ -1422,6 +1440,9 @@
         updateProgress();
       }
       
+      // Revalidate refrigerant step for new mode
+      validateRefrigerantStep();
+      
       saveState();
     }
 
@@ -1453,26 +1474,70 @@
     function validatePowerStep() {
       const disconnect = $('disconnect-status').value;
       const lineVoltage = num($('voltage-line').value);
+      const controlVoltage = num($('voltage-control').value);
+      const l1n = num($('voltage-l1n').value);
+      const l2n = num($('voltage-l2n').value);
       const validation = $('power-validation');
       let isValid = false;
       let messages = [];
 
+      // Disconnect validation
       if (disconnect === 'bypassed') {
-        messages.push('<div class="status-message error"><span>⚠️</span><span>SAFETY ISSUE: Bypassed disconnect must be corrected before proceeding</span></div>');
+        messages.push('<div class="status-message error"><span>⚠️</span><span><strong>SAFETY ISSUE:</strong> Bypassed disconnect must be corrected before proceeding</span></div>');
+        $('disconnect-status').className = 'error';
       } else if (disconnect === 'missing') {
         messages.push('<div class="status-message error"><span>⚠️</span><span>Missing disconnect - code violation, must be installed</span></div>');
+        $('disconnect-status').className = 'error';
       } else if (disconnect === 'present') {
         messages.push('<div class="status-message success"><span>✓</span><span>Disconnect verified</span></div>');
+        $('disconnect-status').className = 'success';
       }
 
+      // Line voltage validation
       if (lineVoltage) {
         if (lineVoltage < 200) {
-          messages.push('<div class="status-message error"><span>⚠️</span><span>Low voltage detected - check supply</span></div>');
+          messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Low voltage:</strong> ' + lineVoltage + 'V - Check supply, possible utility issue</span></div>');
+          $('voltage-line').className = 'error';
         } else if (lineVoltage > 250) {
-          messages.push('<div class="status-message error"><span>⚠️</span><span>High voltage detected - check supply</span></div>');
-        } else {
-          messages.push('<div class="status-message success"><span>✓</span><span>Line voltage within acceptable range</span></div>');
+          messages.push('<div class="status-message error"><span>⚠️</span><span><strong>High voltage:</strong> ' + lineVoltage + 'V - Check supply, possible overvoltage</span></div>');
+          $('voltage-line').className = 'error';
+        } else if (lineVoltage < 208) {
+          messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Low-normal voltage:</strong> ' + lineVoltage + 'V - Acceptable but monitor performance</span></div>');
+          $('voltage-line').className = 'warning';
           isValid = disconnect === 'present';
+        } else {
+          messages.push('<div class="status-message success"><span>✓</span><span><strong>Line voltage good:</strong> ' + lineVoltage + 'V</span></div>');
+          $('voltage-line').className = 'success';
+          isValid = disconnect === 'present';
+        }
+      }
+
+      // Control voltage validation
+      if (controlVoltage) {
+        if (controlVoltage < 18) {
+          messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Control voltage low:</strong> ' + controlVoltage + 'V - Check transformer</span></div>');
+          $('voltage-control').className = 'error';
+        } else if (controlVoltage > 30) {
+          messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Control voltage high:</strong> ' + controlVoltage + 'V - Check transformer</span></div>');
+          $('voltage-control').className = 'error';
+        } else if (controlVoltage < 22 || controlVoltage > 28) {
+          messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Control voltage marginal:</strong> ' + controlVoltage + 'V</span></div>');
+          $('voltage-control').className = 'warning';
+        } else {
+          messages.push('<div class="status-message success"><span>✓</span><span><strong>Control voltage good:</strong> ' + controlVoltage + 'V</span></div>');
+          $('voltage-control').className = 'success';
+        }
+      }
+
+      // L1-N and L2-N balance check
+      if (l1n && l2n) {
+        const imbalance = Math.abs(l1n - l2n);
+        if (imbalance > 10) {
+          messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Voltage imbalance:</strong> ' + imbalance.toFixed(1) + 'V difference - Check service</span></div>');
+        } else if (imbalance > 5) {
+          messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Slight voltage imbalance:</strong> ' + imbalance.toFixed(1) + 'V difference</span></div>');
+        } else {
+          messages.push('<div class="status-message success"><span>✓</span><span><strong>Voltage balanced:</strong> L1-N: ' + l1n + 'V, L2-N: ' + l2n + 'V</span></div>');
         }
       }
 
@@ -1495,25 +1560,49 @@
         $('total-static').value = tesp.toFixed(2) + ' in w.c.';
         
         if (tesp <= 0.50) {
-          messages.push('<div class="status-message success"><span>✓</span><span>Total static pressure acceptable</span></div>');
-        } else if (tesp <= 0.80) {
-          messages.push('<div class="status-message warning"><span>⚠️</span><span>Elevated static pressure - monitor ductwork</span></div>');
+          messages.push('<div class="status-message success"><span>✓</span><span><strong>TESP excellent:</strong> ' + tesp.toFixed(2) + ' in w.c. - Good airflow</span></div>');
+          $('total-static').className = 'success';
+        } else if (tesp <= 0.70) {
+          messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>TESP elevated:</strong> ' + tesp.toFixed(2) + ' in w.c. - Monitor ductwork</span></div>');
+          $('total-static').className = 'warning';
+        } else if (tesp <= 0.90) {
+          messages.push('<div class="status-message error"><span>⚠️</span><span><strong>TESP high:</strong> ' + tesp.toFixed(2) + ' in w.c. - Significant restriction</span></div>');
+          $('total-static').className = 'error';
         } else {
-          messages.push('<div class="status-message error"><span>⚠️</span><span>Excessive static pressure - duct issues likely</span></div>');
+          messages.push('<div class="status-message error"><span>⚠️</span><span><strong>TESP excessive:</strong> ' + tesp.toFixed(2) + ' in w.c. - Major duct issues</span></div>');
+          $('total-static').className = 'error';
         }
       }
 
+      // Filter validation
       if (filter === 'severely-blocked' || filter === 'dirty') {
-        messages.push('<div class="status-message error"><span>⚠️</span><span>Filter restriction affecting airflow - replace before proceeding</span></div>');
-      } else if (filter === 'clean' || filter === 'lightly-soiled') {
-        messages.push('<div class="status-message success"><span>✓</span><span>Filter condition acceptable</span></div>');
+        messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Filter restricted:</strong> Replace before proceeding with diagnostic</span></div>');
+        $('filter-condition').className = 'error';
+      } else if (filter === 'lightly-soiled') {
+        messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Filter lightly soiled:</strong> Acceptable for now, recommend replacement</span></div>');
+        $('filter-condition').className = 'warning';
+      } else if (filter === 'clean') {
+        messages.push('<div class="status-message success"><span>✓</span><span>Filter clean - good airflow</span></div>');
+        $('filter-condition').className = 'success';
+      } else if (filter === 'missing') {
+        messages.push('<div class="status-message error"><span>⚠️</span><span><strong>No filter:</strong> Install filter immediately</span></div>');
+        $('filter-condition').className = 'error';
       }
 
+      // Blower validation
       if (blower === 'normal') {
         messages.push('<div class="status-message success"><span>✓</span><span>Blower operation normal</span></div>');
+        $('blower-operation').className = 'success';
         isValid = (filter === 'clean' || filter === 'lightly-soiled');
       } else if (blower === 'inoperative') {
-        messages.push('<div class="status-message error"><span>⚠️</span><span>Blower inoperative - major issue, address before continuing</span></div>');
+        messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Blower inoperative:</strong> Address before continuing diagnostic</span></div>');
+        $('blower-operation').className = 'error';
+      } else if (blower === 'reduced') {
+        messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Reduced airflow:</strong> Check blower, motor, or restrictions</span></div>');
+        $('blower-operation').className = 'error';
+      } else if (blower === 'noisy') {
+        messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Noisy operation:</strong> Check bearings and wheel balance</span></div>');
+        $('blower-operation').className = 'warning';
       }
 
       validation.innerHTML = messages.join('');
@@ -1523,19 +1612,94 @@
     function validateElectricalStep() {
       const capacitor = $('capacitor-reading').value;
       const contactor = $('contactor-condition').value;
+      const blowerAmps = $('blower-amps').value;
+      const compAmps = $('comp-amps').value;
       const validation = $('electrical-validation');
       let isValid = false;
       let messages = [];
 
+      // Capacitor validation
       if (capacitor) {
-        messages.push('<div class="status-message success"><span>✓</span><span>Capacitor reading documented</span></div>');
+        const match = capacitor.match(/(\d+\.?\d*)\s*\/\s*(\d+\.?\d*)/);
+        if (match) {
+          const measured = parseFloat(match[1]);
+          const rated = parseFloat(match[2]);
+          const deviation = ((measured - rated) / rated) * 100;
+          
+          if (Math.abs(deviation) <= 6) {
+            messages.push('<div class="status-message success"><span>✓</span><span><strong>Capacitor good:</strong> ' + measured + 'µF / ' + rated + 'µF rated (' + deviation.toFixed(1) + '% deviation)</span></div>');
+            $('capacitor-reading').className = 'success';
+          } else if (Math.abs(deviation) <= 10) {
+            messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Capacitor marginal:</strong> ' + measured + 'µF / ' + rated + 'µF rated (' + deviation.toFixed(1) + '% deviation) - Monitor</span></div>');
+            $('capacitor-reading').className = 'warning';
+          } else {
+            messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Capacitor failing:</strong> ' + measured + 'µF / ' + rated + 'µF rated (' + deviation.toFixed(1) + '% deviation) - Replace</span></div>');
+            $('capacitor-reading').className = 'error';
+          }
+        } else {
+          messages.push('<div class="status-message success"><span>✓</span><span>Capacitor reading documented</span></div>');
+          $('capacitor-reading').className = 'success';
+        }
       }
 
+      // Amp draw analysis
+      if (blowerAmps) {
+        const match = blowerAmps.match(/(\d+\.?\d*)\s*\/\s*(\d+\.?\d*)/);
+        if (match) {
+          const actual = parseFloat(match[1]);
+          const rated = parseFloat(match[2]);
+          const percent = (actual / rated) * 100;
+          
+          if (percent > 110) {
+            messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Blower overcurrent:</strong> ' + actual + 'A / ' + rated + 'A rated (' + percent.toFixed(0) + '%) - Check for restriction</span></div>');
+            $('blower-amps').className = 'error';
+          } else if (percent > 100) {
+            messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Blower high amps:</strong> ' + actual + 'A / ' + rated + 'A rated (' + percent.toFixed(0) + '%)</span></div>');
+            $('blower-amps').className = 'warning';
+          } else if (percent < 70) {
+            messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Blower low amps:</strong> ' + actual + 'A / ' + rated + 'A rated (' + percent.toFixed(0) + '%) - Check airflow</span></div>');
+            $('blower-amps').className = 'warning';
+          } else {
+            messages.push('<div class="status-message success"><span>✓</span><span><strong>Blower amps normal:</strong> ' + actual + 'A / ' + rated + 'A rated (' + percent.toFixed(0) + '%)</span></div>');
+            $('blower-amps').className = 'success';
+          }
+        }
+      }
+
+      if (compAmps && currentMode === 'cooling') {
+        const match = compAmps.match(/(\d+\.?\d*)\s*\/\s*(\d+\.?\d*)/);
+        if (match) {
+          const actual = parseFloat(match[1]);
+          const rated = parseFloat(match[2]);
+          const percent = (actual / rated) * 100;
+          
+          if (percent > 115) {
+            messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Compressor overcurrent:</strong> ' + actual + 'A / ' + rated + 'A rated (' + percent.toFixed(0) + '%) - Overcharge or restriction</span></div>');
+            $('comp-amps').className = 'error';
+          } else if (percent > 105) {
+            messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Compressor high amps:</strong> ' + actual + 'A / ' + rated + 'A rated (' + percent.toFixed(0) + '%)</span></div>');
+            $('comp-amps').className = 'warning';
+          } else if (percent < 70) {
+            messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Compressor low amps:</strong> ' + actual + 'A / ' + rated + 'A rated (' + percent.toFixed(0) + '%) - Undercharge or low load</span></div>');
+            $('comp-amps').className = 'warning';
+          } else {
+            messages.push('<div class="status-message success"><span>✓</span><span><strong>Compressor amps normal:</strong> ' + actual + 'A / ' + rated + 'A rated (' + percent.toFixed(0) + '%)</span></div>');
+            $('comp-amps').className = 'success';
+          }
+        }
+      }
+
+      // Contactor validation (cooling only)
       if (currentMode === 'cooling') {
         if (contactor === 'failed' || contactor === 'poor') {
-          messages.push('<div class="status-message error"><span>⚠️</span><span>Contactor requires immediate replacement</span></div>');
-        } else if (contactor === 'good' || contactor === 'fair') {
+          messages.push('<div class="status-message error"><span>⚠️</span><span><strong>Contactor replacement required:</strong> Safety and reliability concern</span></div>');
+          $('contactor-condition').className = 'error';
+        } else if (contactor === 'fair') {
+          messages.push('<div class="status-message warning"><span>⚠️</span><span><strong>Contactor wear detected:</strong> Plan replacement soon</span></div>');
+          $('contactor-condition').className = 'warning';
+        } else if (contactor === 'good') {
           messages.push('<div class="status-message success"><span>✓</span><span>Contactor condition acceptable</span></div>');
+          $('contactor-condition').className = 'success';
           isValid = !!capacitor;
         }
       } else {
@@ -1589,27 +1753,45 @@
 
     function updateSuperheatStatus(superheat) {
       const statusDiv = $('superheat-status');
+      const calcField = $('superheat-calc');
+      
       if (superheat < 5) {
-        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span>Low superheat - possible overcharge or TXV issue</span></div>';
+        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span><strong>Low superheat (' + superheat.toFixed(1) + '°F):</strong> Possible overcharge or TXV flooding</span></div>';
+        calcField.className = 'error';
       } else if (superheat > 25) {
-        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span>High superheat - possible undercharge or restriction</span></div>';
+        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span><strong>High superheat (' + superheat.toFixed(1) + '°F):</strong> Possible undercharge or restriction</span></div>';
+        calcField.className = 'error';
       } else if (superheat >= 8 && superheat <= 18) {
-        statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span>Superheat in target range</span></div>';
+        statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span><strong>Superheat optimal (' + superheat.toFixed(1) + '°F):</strong> Target range 8-18°F</span></div>';
+        calcField.className = 'success';
+      } else if (superheat >= 5 && superheat <= 22) {
+        statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span><strong>Superheat marginal (' + superheat.toFixed(1) + '°F):</strong> Monitor conditions</span></div>';
+        calcField.className = 'warning';
       } else {
-        statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span>Superheat marginal - monitor conditions</span></div>';
+        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span><strong>Superheat critical (' + superheat.toFixed(1) + '°F):</strong> Immediate attention required</span></div>';
+        calcField.className = 'error';
       }
     }
 
     function updateSubcoolStatus(subcool) {
       const statusDiv = $('subcool-status');
+      const calcField = $('subcool-calc');
+      
       if (subcool < 5) {
-        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span>Low subcool - possible undercharge</span></div>';
+        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span><strong>Low subcool (' + subcool.toFixed(1) + '°F):</strong> Possible undercharge</span></div>';
+        calcField.className = 'error';
       } else if (subcool > 20) {
-        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span>High subcool - possible overcharge or restriction</span></div>';
+        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span><strong>High subcool (' + subcool.toFixed(1) + '°F):</strong> Possible overcharge or restriction</span></div>';
+        calcField.className = 'error';
       } else if (subcool >= 8 && subcool <= 15) {
-        statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span>Subcool in target range</span></div>';
+        statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span><strong>Subcool optimal (' + subcool.toFixed(1) + '°F):</strong> Target range 8-15°F</span></div>';
+        calcField.className = 'success';
+      } else if (subcool >= 5 && subcool <= 18) {
+        statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span><strong>Subcool marginal (' + subcool.toFixed(1) + '°F):</strong> Verify charge method</span></div>';
+        calcField.className = 'warning';
       } else {
-        statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span>Subcool marginal - verify charge</span></div>';
+        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span><strong>Subcool critical (' + subcool.toFixed(1) + '°F):</strong> Immediate attention required</span></div>';
+        calcField.className = 'error';
       }
     }
 
@@ -1626,19 +1808,35 @@
         $('delta-t-calc').value = delta.toFixed(1) + '°F';
 
         const statusDiv = $('delta-t-status');
+        const calcField = $('delta-t-calc');
+        
         if (currentMode === 'cooling') {
           if (delta >= 16 && delta <= 22) {
-            statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span>Delta T optimal for cooling</span></div>';
-          } else if (delta < 14 || delta > 24) {
-            statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span>Delta T out of range - airflow or charge issue</span></div>';
+            statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span><strong>Delta T optimal (' + delta.toFixed(1) + '°F):</strong> Cooling performance excellent</span></div>';
+            calcField.className = 'success';
+          } else if (delta < 14) {
+            statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span><strong>Delta T low (' + delta.toFixed(1) + '°F):</strong> Possible overcharge, dirty coil, or excess airflow</span></div>';
+            calcField.className = 'error';
+          } else if (delta > 24) {
+            statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span><strong>Delta T high (' + delta.toFixed(1) + '°F):</strong> Possible undercharge or restricted airflow</span></div>';
+            calcField.className = 'error';
           } else {
-            statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span>Delta T marginal</span></div>';
+            statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span><strong>Delta T marginal (' + delta.toFixed(1) + '°F):</strong> Target range 16-22°F</span></div>';
+            calcField.className = 'warning';
           }
         } else {
           if (delta >= 40 && delta <= 70) {
-            statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span>Delta T optimal for heating</span></div>';
+            statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span><strong>Delta T optimal (' + delta.toFixed(1) + '°F):</strong> Heating performance good</span></div>';
+            calcField.className = 'success';
+          } else if (delta < 35) {
+            statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span><strong>Delta T low (' + delta.toFixed(1) + '°F):</strong> Check heat exchanger and gas input</span></div>';
+            calcField.className = 'error';
+          } else if (delta > 80) {
+            statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span><strong>Delta T high (' + delta.toFixed(1) + '°F):</strong> Possible low airflow</span></div>';
+            calcField.className = 'error';
           } else {
-            statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span>Delta T outside typical range</span></div>';
+            statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span><strong>Delta T marginal (' + delta.toFixed(1) + '°F):</strong> Monitor performance</span></div>';
+            calcField.className = 'warning';
           }
         }
       }
@@ -1919,11 +2117,7 @@
             ` : ''}
             <div class="report-row">
               <span class="report-label">Indoor Unit:</span>
-              <span class="report-value">${report.equipment.indoor.brand} ${report.equipment.indoor.model}</span>
-            </div>
-            <div class="report-row">
-              <span class="report-label">Indoor S/N:</span>
-              <span class="report-value">${report.equipment.indoor.serial}</span>
+              <span class="report-val<span class="report-value">${report.equipment.indoor.serial}</span>
             </div>
             <div class="report-row">
               <span class="report-label">Outdoor Unit:</span>
@@ -2278,7 +2472,10 @@ Technician Signature: _______________________  Date: __________
               $(`${step}-status`).className = 'card-status complete';
               $(`${step}-card`).classList.add('collapsed');
             }
-          });// Restore photos
+          });
+        }
+        
+        // Restore photos
         if (state.photos) {
           photos = state.photos;
           updatePhotoPreview();
@@ -2312,76 +2509,6 @@ Technician Signature: _______________________  Date: __________
       }
     }
 
-    // ==================== EVENT LISTENERS ====================
-    // Power step
-    $('disconnect-status').addEventListener('change', validatePowerStep);
-    $('voltage-line').addEventListener('input', validatePowerStep);
-    $('voltage-control').addEventListener('input', validatePowerStep);
-
-    // Airflow step
-    $('filter-condition').addEventListener('change', validateAirflowStep);
-    $('blower-operation').addEventListener('change', validateAirflowStep);
-    $('return-static').addEventListener('input', validateAirflowStep);
-    $('supply-static').addEventListener('input', validateAirflowStep);
-
-    // Electrical step
-    $('capacitor-reading').addEventListener('input', validateElectricalStep);
-    $('contactor-condition').addEventListener('change', validateElectricalStep);
-
-    // Refrigerant step
-    $('suction-pressure').addEventListener('input', validateRefrigerantStep);
-    $('liquid-pressure').addEventListener('input', validateRefrigerantStep);
-    $('suction-temp').addEventListener('input', validateRefrigerantStep);
-    $('liquid-temp').addEventListener('input', validateRefrigerantStep);
-    $('gas-input').addEventListener('input', validateRefrigerantStep);
-    $('manifold-pressure').addEventListener('input', validateRefrigerantStep);
-    $('heat-exchanger').addEventListener('change', validateRefrigerantStep);
-
-    // Controls step
-    $('thermostat-comm').addEventListener('change', validateControlsStep);
-    $('return-air-temp').addEventListener('input', validateControlsStep);
-    $('supply-air-temp').addEventListener('input', validateControlsStep);
-
-    // Environment step
-    $('evap-coil-condition').addEventListener('change', validateEnvironmentStep);
-    $('drainage-condition').addEventListener('change', validateEnvironmentStep);
-    if ($('cond-coil-condition')) {
-      $('cond-coil-condition').addEventListener('change', validateEnvironmentStep);
-    }
-
-    // Findings
-    $('diagnosis').addEventListener('input', updateProgress);
-    $('repairs').addEventListener('input', updateProgress);
-
-    // Auto-save on any input change
-    document.addEventListener('input', () => {
-      saveState();
-    });
-
-    document.addEventListener('change', () => {
-      saveState();
-    });
-
-    // Card header click to toggle collapse/expand
-    document.querySelectorAll('.card-header').forEach(header => {
-      header.style.cursor = 'pointer';
-      header.addEventListener('click', (e) => {
-        // Don't toggle if clicking on status badge
-        if (e.target.classList.contains('card-status')) return;
-        
-        const card = header.closest('.card');
-        if (card.id === 'job-card' || card.id === 'equipment-card' || 
-            card.id === 'findings-card' || card.id === 'photos-card') {
-          card.classList.toggle('collapsed');
-        }
-      });
-    });
-
-    // Prevent form submission
-    document.addEventListener('submit', (e) => {
-      e.preventDefault();
-    });
-
     // ==================== INITIALIZATION ====================
     window.addEventListener('load', () => {
       // Load saved state
@@ -2411,6 +2538,19 @@ Technician Signature: _______________________  Date: __________
       }
     });
 
+    // Card header click to toggle collapse/expand
+    document.addEventListener('click', (e) => {
+      const header = e.target.closest('.card-header');
+      if (header && !e.target.classList.contains('card-status')) {
+        const card = header.closest('.card');
+        if (card && (card.id === 'job-card' || card.id === 'equipment-card' || 
+            card.id === 'findings-card' || card.id === 'photos-card' ||
+            stepCompleted[card.id.replace('-card', '')])) {
+          card.classList.toggle('collapsed');
+        }
+      }
+    });
+
     // Add keyboard shortcuts
     document.addEventListener('keydown', (e) => {
       // Ctrl/Cmd + S to save/generate report
@@ -2427,6 +2567,10 @@ Technician Signature: _______________________  Date: __________
         showPhotoModal();
       }
     });
+
+    // Auto-save on input changes
+    document.addEventListener('input', saveState);
+    document.addEventListener('change', saveState);
 
     // Expose functions for debugging
     window.hvacDebug = {
