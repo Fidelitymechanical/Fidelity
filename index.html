@@ -1,139 +1,1029 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0f172a" />
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <title>Field Buddy Pro – Full PWA</title>
+  <meta charset="utf-8" />
+  <title>Field Buddy Pro v2.0 — Professional HVAC Inspection & Reporting</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="Professional HVAC field inspection tool with photo capture, refrigerant calculations, equipment database, and intelligent diagnostics">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+          integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <style>
-    body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f8fafc; margin: 0; padding: 1rem; color: #0f172a; }
-    header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #0f172a; color: #fff; border-radius: .5rem; }
-    main { margin-top: 1rem; }
-    h1 { font-size: 1.5rem; margin: 0; }
-    .btn { padding: 0.5rem 1rem; border: none; border-radius: .25rem; cursor: pointer; }
-    .btn.primary { background: #2563eb; color: #fff; }
-    .btn.outline { border: 1px solid #2563eb; background: none; color: #2563eb; }
-    .card { background: #fff; border-radius: .5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 1rem; margin-bottom: 1rem; }
-    label { display: block; margin-top: 0.5rem; }
-    input, textarea, select { width: 100%; padding: 0.5rem; margin-top: 0.25rem; border: 1px solid #cbd5e1; border-radius: .25rem; }
-    .grid { display: grid; gap: 1rem; }
-    .grid.two { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-    #saveIndicator { display: none; background: #fde68a; color: #92400e; padding: .5rem; border-radius: .25rem; margin: 1rem 0; text-align: center; }
-    #saveIndicator.show { display: block; }
+    :root {
+      --bg: #f6f7fb;
+      --card: #fff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #334155;
+      --good: #16a34a;
+      --good-bg: #f0fdf4;
+      --warn: #d97706;
+      --warn-bg: #fffbeb;
+      --bad: #dc2626;
+      --bad-bg: #fef2f2;
+      --info: #0ea5e9;
+      --info-bg: #eff6ff;
+      --shadow-sm: 0 2px 8px rgba(17,24,39,.05);
+      --shadow-md: 0 4px 16px rgba(17,24,39,.1);
+      --shadow-lg: 0 8px 24px rgba(17,24,39,.15);
+      --transition-base: 200ms ease;
+      --radius-md: 8px;
+      --radius-lg: 10px;
+      --radius-xl: 12px;
+      --radius-full: 9999px;
+      --space-sm: 8px;
+      --space-md: 12px;
+      --space-lg: 16px;
+      --space-xl: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+
+    body {
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: var(--space-md);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+      box-shadow: var(--shadow-lg);
+    }
+
+    header h1 {
+      margin: 0 0 var(--space-sm);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    header .sub {
+      font-size: 12px;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    header .version {
+      background: rgba(255,255,255,0.15);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      border: 0;
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all var(--transition-base);
+      box-shadow: var(--shadow-sm);
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn.secondary {
+      background: var(--secondary);
+    }
+
+    .btn.outline {
+      background: transparent;
+      color: #e5e7eb;
+      border: 1px solid #475569;
+      box-shadow: none;
+    }
+
+    .btn.warn {
+      background: var(--warn);
+    }
+
+    .btn.good {
+      background: var(--good);
+    }
+
+    .btn.small {
+      padding: 10px 14px;
+      font-size: 13px;
+      min-height: 40px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: var(--space-md);
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    label {
+      font-size: 14px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      background: #fff;
+      transition: all var(--transition-base);
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .input-success {
+      border-color: var(--good) !important;
+      background: var(--good-bg) !important;
+    }
+
+    .input-warning {
+      border-color: var(--warn) !important;
+      background: var(--warn-bg) !important;
+    }
+
+    .input-error {
+      border-color: var(--bad) !important;
+      background: var(--bad-bg) !important;
+    }
+
+    .field-hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    details {
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+
+    details[open] {
+      border-style: solid;
+      background: #f8fafc;
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 6px 0;
+      list-style: none;
+      user-select: none;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      white-space: pre-wrap;
+      font-size: 13px;
+      line-height: 1.7;
+      font-family: monospace;
+      overflow-x: auto;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: 0;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    #toastContainer {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .toast {
+      background: #fff;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateX(100px);
+      transition: all 300ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .toast.success {
+      background: var(--good);
+      color: #fff;
+      border-color: var(--good);
+    }
+
+    .toast.error {
+      background: var(--bad);
+      color: #fff;
+      border-color: var(--bad);
+    }
+
+    .toast.info {
+      background: var(--info);
+      color: #fff;
+      border-color: var(--info);
+    }
+
+    @media print {
+      .toolbar, .btn, .modal, #toastContainer {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Field Buddy Pro</h1>
-    <button id="btnInstall" class="btn outline" style="display:none">⬇️ Install App</button>
-  </header>  <div id="saveIndicator"></div>  <main>
-    <section class="card">
-      <h2>Site & Job Info</h2>
-      <div class="grid two">
-        <label>Customer <input id="customerName" /></label>
-        <label>Date <input type="date" id="inspectionDate" /></label>
-        <label>Address <input id="address" /></label>
-        <label>Ambient Temp (°F) <input id="ambientF" type="number" /></label>
-        <label>Relative Humidity (%) <input id="ambientRH" type="number" /></label>
+  <div class="wrap" id="app">
+    <header>
+      <h1>Field Buddy Pro — HVAC Inspection & Reporting</h1>
+      <div class="sub">
+        <span>Professional mobile inspection platform</span>
+        <span class="version">v2.0</span>
       </div>
-    </section><section class="card">
-  <h2>System Data</h2>
-  <div class="grid two">
-    <label>Suction Pressure (psig) <input id="suctionPSI" type="number" /></label>
-    <label>Head Pressure (psig) <input id="headPSI" type="number" /></label>
-    <label>Superheat (°F) <input id="superheat" type="number" /></label>
-    <label>Subcooling (°F) <input id="subcool" type="number" /></label>
-    <label>Capacitor Rating (µF) <input id="capRating" type="number" /></label>
-    <label>Capacitor Reading (µF) <input id="capReading" type="number" /></label>
+      <div class="toolbar">
+        <button class="btn" id="btnAddSystem">➕ Add System</button>
+        <button class="btn good" id="btnGenerate">📊 Generate Report</button>
+        <button class="btn outline small" id="btnHelp">❓ Help</button>
+        <button class="btn warn small" id="btnClear">🗑️ Clear All</button>
+      </div>
+    </header>
+
+    <section class="card" id="jobHeader">
+      <div class="section-title">
+        <div>📋 Job Information</div>
+      </div>
+      <div class="grid-3">
+        <div>
+          <label>Customer Name</label>
+          <input type="text" id="customerName" placeholder="Full name">
+        </div>
+        <div>
+          <label>Inspection Date</label>
+          <input type="date" id="inspectionDate">
+        </div>
+        <div>
+          <label>Technician</label>
+          <input type="text" id="technicianName" placeholder="Your name">
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <label>Address</label>
+          <input type="text" id="address" placeholder="Street, City, State">
+        </div>
+        <div>
+          <label>Ambient Temperature (°F)</label>
+          <input type="number" step="0.1" id="ambientF" placeholder="e.g., 75.0">
+        </div>
+      </div>
+    </section>
+
+    <div id="systems"></div>
+
+    <section class="card" id="reportsCard" style="display:none;">
+      <div class="section-title">
+        <div>📊 Inspection Report</div>
+      </div>
+      <div style="margin-bottom:16px">
+        <button class="btn good small" id="btnCopyReport">📋 Copy Report</button>
+        <button class="btn good small" id="btnExportPDF">📄 Export PDF</button>
+      </div>
+      <div class="summary-box" id="reportSummary"></div>
+    </section>
   </div>
-  <label>Additional Notes <textarea id="notes"></textarea></label>
-</section>
 
-<section class="card">
-  <h2>Summary & Recommendation</h2>
-  <textarea id="summary" rows="5" placeholder="Summarize diagnosis, findings, and recommended repair here..."></textarea>
-</section>
+  <div id="toastContainer"></div>
 
-<section>
-  <button id="saveBtn" class="btn primary">💾 Save Locally</button>
-  <button id="exportBtn" class="btn outline">⬇️ Export JSON</button>
-</section>
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">⌨️ Help & Shortcuts</div>
+        <button class="modal-close" id="btnCloseHelp">×</button>
+      </div>
+      <div>
+        <h4>Features</h4>
+        <ul>
+          <li>📋 Multiple system inspection</li>
+          <li>🎯 Smart calculations (ΔT, static pressure)</li>
+          <li>✓ Field validation with visual indicators</li>
+          <li>📊 Automated scoring & recommendations</li>
+          <li>💾 Auto-save to browser storage</li>
+        </ul>
+        <h4>Keyboard Shortcuts</h4>
+        <ul>
+          <li><kbd>Ctrl+S</kbd> — Save draft</li>
+          <li><kbd>Ctrl+N</kbd> — Add system</li>
+          <li><kbd>Ctrl+G</kbd> — Generate report</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  </main>  <script>
-    // ---- PWA Install ----
-    let deferredPrompt = null;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      document.getElementById('btnInstall').style.display = 'inline-block';
-    });
-    document.getElementById('btnInstall').addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      await deferredPrompt.prompt();
-      deferredPrompt = null;
-      document.getElementById('btnInstall').style.display = 'none';
-    });
+  <template id="systemTemplate">
+    <section class="card" data-system>
+      <div class="section-title">
+        <div>🏗️ System <span data-sysname>#</span></div>
+        <button class="btn warn small btnRemove">✕ Remove</button>
+      </div>
 
-    // ---- Service Worker ----
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', async () => {
+      <details open>
+        <summary>🏷️ System Identity</summary>
+        <div class="grid-3">
+          <div>
+            <label>Area/Zone</label>
+            <input type="text" data-field="meta.zone" placeholder="e.g., Upstairs">
+          </div>
+          <div>
+            <label>Brand / Model</label>
+            <input type="text" data-field="meta.brandModel" placeholder="e.g., Carrier 24ACC3">
+          </div>
+          <div>
+            <label>System Type</label>
+            <select data-field="meta.systemType">
+              <option value="">Select...</option>
+              <option value="split">Split System</option>
+              <option value="heatpump">Heat Pump</option>
+              <option value="package">Package Unit</option>
+            </select>
+          </div>
+        </div>
+      </details>
+
+      <details open>
+        <summary>⚙️ Performance Measurements</summary>
+        <div class="grid-3">
+          <div>
+            <label>Return Air Temp (°F)</label>
+            <input type="number" step="0.1" data-field="mech.returnF" placeholder="75.0" class="calc-delta" data-validate="temp">
+            <div class="field-hint">Normal: 68-78°F</div>
+          </div>
+          <div>
+            <label>Supply Air Temp (°F)</label>
+            <input type="number" step="0.1" data-field="mech.supplyF" placeholder="55.0" class="calc-delta" data-validate="temp">
+            <div class="field-hint">Target: 55-60°F</div>
+          </div>
+          <div>
+            <label>Temperature Split (auto)</label>
+            <input type="text" data-field="mech.deltaT" readonly>
+            <div class="field-hint">Target: 16-22°F</div>
+          </div>
+        </div>
+        <div class="grid-3" style="margin-top:12px">
+          <div>
+            <label>Return Static (in w.c.)</label>
+            <input type="number" step="0.01" data-field="mech.returnStatic" placeholder="-0.15" class="calc-static" data-validate="static">
+          </div>
+          <div>
+            <label>Supply Static (in w.c.)</label>
+            <input type="number" step="0.01" data-field="mech.supplyStatic" placeholder="0.30" class="calc-static" data-validate="static">
+          </div>
+          <div>
+            <label>Total Static (auto)</label>
+            <input type="text" data-field="mech.totalStatic" readonly>
+            <div class="field-hint">Max: 0.50</div>
+          </div>
+        </div>
+      </details>
+
+      <details>
+        <summary>💬 Notes</summary>
+        <div>
+          <label>Observations</label>
+          <textarea data-field="notes" placeholder="Enter inspection notes..."></textarea>
+        </div>
+      </details>
+
+      <div style="margin-top:16px; padding:12px; background:#f8fafc; border-radius:8px">
+        <div class="grid-3">
+          <div><span style="color:var(--muted)">Safety Score</span><div style="font-size:24px; font-weight:800; color:var(--good)" data-score="safety">–</div></div>
+          <div><span style="color:var(--muted)">Mechanical Score</span><div style="font-size:24px; font-weight:800; color:var(--good)" data-score="mechanical">–</div></div>
+          <div><span style="color:var(--muted)">Overall Score</span><div style="font-size:24px; font-weight:800; color:var(--good)" data-score="overall">–</div></div>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <script>
+    // ============================================================================
+    // FIELD BUDDY PRO v2.0 - COMPLETE APPLICATION
+    // ============================================================================
+
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+    const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+    const toNum = v => {
+      const n = parseFloat(String(v).replace(/,/g, ''));
+      return isNaN(n) ? null : n;
+    };
+    const sanitize = str => String(str || '').replace(/[<>]/g, '').trim();
+    const escapeHtml = str => String(str).replace(/[&<>"']/g, m => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[m]));
+
+    let sysCount = 0;
+    let dirty = false;
+    const AppState = {
+      systems: new Map(),
+      defaults: {
+        lastTech: sessionStorage.getItem('lastTech') || ''
+      }
+    };
+
+    const STORAGE_KEY = 'fieldbuddy_draft';
+
+    const Storage = {
+      save(data) {
         try {
-          const reg = await navigator.serviceWorker.register('/service-worker.js');
-          reg.addEventListener('updatefound', () => {
-            const sw = reg.installing;
-            if (!sw) return;
-            sw.addEventListener('statechange', () => {
-              if (sw.state === 'installed' && navigator.serviceWorker.controller) {
-                const ind = document.getElementById('saveIndicator');
-                ind.textContent = '⬆️ Update ready — tap to refresh';
-                ind.classList.add('show');
-                ind.onclick = () => location.reload();
+          sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          return true;
+        } catch (e) {
+          console.error('Storage save failed:', e);
+          return false;
+        }
+      },
+      load() {
+        try {
+          const raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) {
+          return null;
+        }
+      },
+      clear() {
+        sessionStorage.removeItem(STORAGE_KEY);
+      }
+    };
+
+    function showToast(message, type = 'info') {
+      const container = $('#toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      const icons = { success: '✓', error: '✗', info: 'ℹ' };
+      toast.innerHTML = `<span>${icons[type] || icons.info}</span><span>${escapeHtml(message)}</span>`;
+      container.appendChild(toast);
+      requestAnimationFrame(() => toast.classList.add('show'));
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    function validateField(input) {
+      const type = input.getAttribute('data-validate');
+      const value = input.value.trim();
+      input.classList.remove('input-error', 'input-warning', 'input-success');
+      if (!value) return;
+
+      const val = toNum(value);
+      if (val === null) {
+        input.classList.add('input-error');
+        return;
+      }
+
+      if (type === 'temp') {
+        if (val < 30 || val > 150) input.classList.add('input-error');
+        else if (val < 40 || val > 95) input.classList.add('input-warning');
+        else input.classList.add('input-success');
+      } else if (type === 'static') {
+        if (val < -2.0 || val > 2.0) input.classList.add('input-error');
+        else if (val < -0.6 || val > 0.6) input.classList.add('input-warning');
+        else input.classList.add('input-success');
+      }
+    }
+
+    function updateCalculations(card) {
+      const returnF = toNum($('[data-field="mech.returnF"]', card)?.value);
+      const supplyF = toNum($('[data-field="mech.supplyF"]', card)?.value);
+      
+      if (returnF !== null && supplyF !== null) {
+        const deltaOut = $('[data-field="mech.deltaT"]', card);
+        if (deltaOut) {
+          const delta = (returnF - supplyF).toFixed(1);
+          deltaOut.value = delta;
+          deltaOut.classList.remove('input-success', 'input-warning', 'input-error');
+          const val = parseFloat(delta);
+          if (val >= 16 && val <= 22) deltaOut.classList.add('input-success');
+          else if (val >= 14 && val <= 24) deltaOut.classList.add('input-warning');
+          else deltaOut.classList.add('input-error');
+        }
+      }
+
+      const returnStatic = toNum($('[data-field="mech.returnStatic"]', card)?.value);
+      const supplyStatic = toNum($('[data-field="mech.supplyStatic"]', card)?.value);
+      
+      if (returnStatic !== null && supplyStatic !== null) {
+        const totalOut = $('[data-field="mech.totalStatic"]', card);
+        if (totalOut) {
+          const total = (Math.abs(returnStatic) + Math.abs(supplyStatic)).toFixed(2);
+          totalOut.value = total;
+          totalOut.classList.remove('input-success', 'input-warning', 'input-error');
+          const val = parseFloat(total);
+          if (val <= 0.50) totalOut.classList.add('input-success');
+          else if (val <= 0.60) totalOut.classList.add('input-warning');
+          else totalOut.classList.add('input-error');
+        }
+      }
+    }
+
+    function collectCardData(card) {
+      const data = {};
+      $$('[data-field]', card).forEach(el => {
+        const key = el.getAttribute('data-field');
+        data[key] = el.type === 'checkbox' ? el.checked : el.value;
+      });
+      data['mech.deltaT'] = $('[data-field="mech.deltaT"]', card)?.value || '';
+      data['mech.totalStatic'] = $('[data-field="mech.totalStatic"]', card)?.value || '';
+      return data;
+    }
+
+    function scoreCard(card) {
+      const data = collectCardData(card);
+      let safety = 10, mechanical = 10, overall = 10;
+
+      // Simple scoring logic
+      const deltaT = toNum(data['mech.deltaT']);
+      if (deltaT !== null && (deltaT < 14 || deltaT > 24)) mechanical -= 2;
+
+      const totalStatic = toNum(data['mech.totalStatic']);
+      if (totalStatic !== null && totalStatic > 0.50) mechanical -= 2;
+
+      overall = Math.round((safety + mechanical) / 2);
+
+      $('[data-score="safety"]', card).textContent = safety;
+      $('[data-score="mechanical"]', card).textContent = mechanical;
+      $('[data-score="overall"]', card).textContent = overall;
+
+      return { safety, mechanical, overall, data };
+    }
+
+    function addSystem() {
+      const tpl = $('#systemTemplate').content.cloneNode(true);
+      sysCount++;
+      const sysId = `sys_${Date.now()}`;
+      
+      tpl.querySelector('[data-sysname]').textContent = `#${sysCount}`;
+      const section = tpl.querySelector('[data-system]');
+      section.dataset.systemId = sysId;
+      
+      AppState.systems.set(sysId, {});
+
+      tpl.querySelector('.btnRemove').addEventListener('click', () => {
+        if (confirm('Remove this system?')) {
+          AppState.systems.delete(sysId);
+          section.remove();
+          showToast('System removed', 'success');
+        }
+      });
+
+      $$('.calc-delta', tpl).forEach(el => {
+        el.addEventListener('input', () => updateCalculations(section));
+      });
+
+      $$('.calc-static', tpl).forEach(el => {
+        el.addEventListener('input', () => updateCalculations(section));
+      });
+
+      $$('[data-validate]', tpl).forEach(el => {
+        el.addEventListener('input', () => validateField(el));
+      });
+
+      $$('[data-field]', tpl).forEach(el => {
+        el.addEventListener('input', () => dirty = true);
+      });
+
+      $('#systems').appendChild(tpl);
+      showToast('System added', 'success');
+      setTimeout(() => section.scrollIntoView({ behavior: 'smooth' }), 100);
+    }
+
+    function buildReport() {
+      const systems = [];
+      $$('[data-system]').forEach(card => {
+        const scores = scoreCard(card);
+        systems.push(scores);
+      });
+
+      const lines = [];
+      lines.push('═══════════════════════════════════════════════');
+      lines.push('     HVAC INSPECTION REPORT');
+      lines.push('═══════════════════════════════════════════════');
+      lines.push('');
+      lines.push(`Customer: ${$('#customerName')?.value || 'N/A'}`);
+      lines.push(`Date: ${$('#inspectionDate')?.value || 'N/A'}`);
+      lines.push(`Technician: ${$('#technicianName')?.value || 'N/A'}`);
+      if ($('#address')?.value) lines.push(`Address: ${$('#address').value}`);
+      if ($('#ambientF')?.value) lines.push(`Ambient Temp: ${$('#ambientF').value}°F`);
+      lines.push('');
+
+      systems.forEach((sys, idx) => {
+        lines.push('───────────────────────────────────────────────');
+        lines.push(`SYSTEM ${idx + 1}: ${sys.data['meta.zone'] || 'System'}`);
+        lines.push('───────────────────────────────────────────────');
+        if (sys.data['meta.brandModel']) lines.push(`Model: ${sys.data['meta.brandModel']}`);
+        if (sys.data['meta.systemType']) lines.push(`Type: ${sys.data['meta.systemType']}`);
+        lines.push('');
+        lines.push('PERFORMANCE:');
+        if (sys.data['mech.returnF']) lines.push(`  Return Air: ${sys.data['mech.returnF']}°F`);
+        if (sys.data['mech.supplyF']) lines.push(`  Supply Air: ${sys.data['mech.supplyF']}°F`);
+        if (sys.data['mech.deltaT']) lines.push(`  Temperature Split: ${sys.data['mech.deltaT']}°F (Target: 16-22°F)`);
+        if (sys.data['mech.totalStatic']) lines.push(`  Total Static: ${sys.data['mech.totalStatic']} in w.c. (Max: 0.50)`);
+        lines.push('');
+        lines.push('SCORES:');
+        lines.push(`  Safety: ${sys.safety}/10`);
+        lines.push(`  Mechanical: ${sys.mechanical}/10`);
+        lines.push(`  Overall: ${sys.overall}/10`);
+        if (sys.data.notes) {
+          lines.push('');
+          linesjavascript
+          lines.push('NOTES:');
+          lines.push(`  ${sys.data.notes}`);
+        }
+        lines.push('');
+      });
+
+      lines.push('═══════════════════════════════════════════════');
+      lines.push('           END OF REPORT');
+      lines.push('═══════════════════════════════════════════════');
+
+      const reportText = lines.join('\n');
+      $('#reportSummary').textContent = reportText;
+      $('#reportsCard').style.display = 'block';
+      
+      setTimeout(() => {
+        $('#reportsCard').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      
+      showToast('Report generated', 'success');
+      return reportText;
+    }
+
+    function exportPDF() {
+      showToast('Generating PDF...', 'info');
+      buildReport();
+      
+      setTimeout(() => {
+        const el = document.body.cloneNode(true);
+        el.querySelectorAll('.toolbar, .btn, .modal, #toastContainer').forEach(b => {
+          if (b) b.style.display = 'none';
+        });
+
+        const filename = `HVAC_Report_${$('#customerName').value || 'Report'}_${$('#inspectionDate').value || new Date().toISOString().slice(0, 10)}.pdf`;
+        
+        const opt = {
+          margin: 0.5,
+          filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(el).save()
+          .then(() => showToast('PDF exported', 'success'))
+          .catch(() => showToast('PDF export failed', 'error'));
+      }, 500);
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text)
+        .then(() => showToast('Report copied to clipboard', 'success'))
+        .catch(() => showToast('Copy failed', 'error'));
+    }
+
+    function saveDraft() {
+      if (!dirty) return;
+      
+      const draft = {
+        header: {
+          customer: $('#customerName')?.value || '',
+          date: $('#inspectionDate')?.value || '',
+          tech: $('#technicianName')?.value || '',
+          address: $('#address')?.value || '',
+          ambientF: $('#ambientF')?.value || ''
+        },
+        systems: []
+      };
+
+      $$('[data-system]').forEach(card => {
+        const sysId = card.dataset.systemId;
+        draft.systems.push({
+          id: sysId,
+          data: collectCardData(card)
+        });
+      });
+
+      if (Storage.save(draft)) {
+        dirty = false;
+        showToast('Draft saved', 'success');
+      }
+    }
+
+    function loadDraft() {
+      const draft = Storage.load();
+      if (!draft) return;
+
+      if (draft.header) {
+        if (draft.header.customer) $('#customerName').value = draft.header.customer;
+        if (draft.header.date) $('#inspectionDate').value = draft.header.date;
+        if (draft.header.tech) $('#technicianName').value = draft.header.tech;
+        if (draft.header.address) $('#address').value = draft.header.address;
+        if (draft.header.ambientF) $('#ambientF').value = draft.header.ambientF;
+      }
+
+      if (draft.systems && draft.systems.length > 0) {
+        draft.systems.forEach(sys => {
+          addSystem();
+          const card = $$('[data-system]').pop();
+          if (card && sys.data) {
+            Object.keys(sys.data).forEach(key => {
+              const field = $(`[data-field="${key}"]`, card);
+              if (field) {
+                if (field.type === 'checkbox') {
+                  field.checked = sys.data[key];
+                } else {
+                  field.value = sys.data[key];
+                }
               }
             });
-          });
-        } catch (err) { console.warn('SW error', err); }
+            updateCalculations(card);
+          }
+        });
+        showToast('Draft loaded', 'info');
+      }
+    }
+
+    function wireEvents() {
+      $('#btnAddSystem')?.addEventListener('click', addSystem);
+      
+      $('#btnGenerate')?.addEventListener('click', () => {
+        buildReport();
+      });
+
+      $('#btnCopyReport')?.addEventListener('click', () => {
+        const text = $('#reportSummary').textContent;
+        copyToClipboard(text);
+      });
+
+      $('#btnExportPDF')?.addEventListener('click', exportPDF);
+
+      $('#btnHelp')?.addEventListener('click', () => {
+        $('#helpModal').classList.add('show');
+      });
+
+      $('#btnCloseHelp')?.addEventListener('click', () => {
+        $('#helpModal').classList.remove('show');
+      });
+
+      $('#helpModal')?.addEventListener('click', (e) => {
+        if (e.target.id === 'helpModal') {
+          $('#helpModal').classList.remove('show');
+        }
+      });
+
+      $('#btnClear')?.addEventListener('click', () => {
+        if (confirm('Clear all data? This cannot be undone.')) {
+          Storage.clear();
+          location.reload();
+        }
+      });
+
+      $('#technicianName')?.addEventListener('change', (e) => {
+        sessionStorage.setItem('lastTech', e.target.value);
+      });
+
+      $('#app')?.addEventListener('input', () => {
+        dirty = true;
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.metaKey) {
+          switch (e.key.toLowerCase()) {
+            case 's':
+              e.preventDefault();
+              saveDraft();
+              break;
+            case 'n':
+              e.preventDefault();
+              addSystem();
+              break;
+            case 'g':
+              e.preventDefault();
+              buildReport();
+              break;
+          }
+        }
+      });
+
+      // Auto-save every 30 seconds
+      setInterval(() => {
+        if (dirty) saveDraft();
+      }, 30000);
+
+      // Save before leaving
+      window.addEventListener('beforeunload', (e) => {
+        if (dirty) {
+          saveDraft();
+          e.preventDefault();
+          e.returnValue = '';
+        }
       });
     }
 
-    // ---- Draft Save to LocalStorage ----
-    const STORAGE_KEY = 'fieldbuddy_full_draft';
-    const inputs = document.querySelectorAll('input, textarea');
-    function saveDraft() {
-      const data = {};
-      inputs.forEach(i => data[i.id] = i.value);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      const ind = document.getElementById('saveIndicator');
-      ind.textContent = '💾 Draft saved';
-      ind.classList.add('show');
-      setTimeout(()=>ind.classList.remove('show'), 2000);
+    function init() {
+      const dateInput = $('#inspectionDate');
+      if (dateInput) {
+        dateInput.valueAsDate = new Date();
+      }
+
+      const techInput = $('#technicianName');
+      const savedTech = sessionStorage.getItem('lastTech');
+      if (techInput && savedTech) {
+        techInput.value = savedTech;
+      }
+
+      wireEvents();
+      
+      // Load any saved draft
+      loadDraft();
+      
+      // If no systems, add one
+      if ($$('[data-system]').length === 0) {
+        addSystem();
+      }
+
+      showToast('Field Buddy Pro ready', 'success');
+      console.log('✅ Field Buddy Pro v2.0 initialized');
     }
 
-    document.getElementById('saveBtn').addEventListener('click', saveDraft);
-
-    // Auto-save on input
-    inputs.forEach(i => i.addEventListener('input', saveDraft));
-
-    // Restore draft
-    const draft = localStorage.getItem(STORAGE_KEY);
-    if (draft) {
-      const data = JSON.parse(draft);
-      Object.keys(data).forEach(k => {
-        const el = document.getElementById(k);
-        if (el) el.value = data[k];
-      });
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
     }
-
-    // Export JSON
-    document.getElementById('exportBtn').addEventListener('click', () => {
-      const data = {};
-      inputs.forEach(i => data[i.id] = i.value);
-      const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'FieldBuddyReport.json';
-      a.click();
-    });
-  </script></body>
+  </script>
+</body>
 </html>
