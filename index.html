@@ -3,1095 +3,884 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Field Buddy - Data Capture</title>
+    <title>HVAC Technician Inspection Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #f5f5f5;
-            padding: 0;
-            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
         }
-        
+
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             background: white;
-            min-height: 100vh;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
         }
-        
+
         .header {
-            background: #2c3e50;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
-            padding: 20px;
+            padding: 30px;
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        
+
         .header h1 {
-            font-size: 24px;
-            margin-bottom: 4px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
-        
+
         .header p {
+            font-size: 14px;
             opacity: 0.9;
-            font-size: 13px;
-            font-weight: 400;
         }
-        
+
         .form-content {
-            padding: 30px 20px 120px 20px;
+            padding: 30px;
         }
-        
+
         .section {
             margin-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
             padding-bottom: 30px;
-            border-bottom: 1px solid #e0e0e0;
         }
-        
-        .section:last-child {
+
+        .section:last-of-type {
             border-bottom: none;
         }
-        
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #3498db;
-        }
-        
-        .subsection-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: #555;
-            margin: 25px 0 15px 0;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            font-weight: 500;
-            color: #444;
-            margin-bottom: 6px;
-            font-size: 14px;
-        }
-        
-        input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        input[type="time"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            font-family: inherit;
-        }
-        
-        input:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-        }
-        
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 8px;
-        }
-        
-        .checkbox-item {
+
+        .section-header {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 12px;
-            background: #f8f9fa;
-            border-radius: 4px;
-            border: 1px solid #e0e0e0;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            color: white;
         }
-        
-        .checkbox-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
         }
-        
-        .checkbox-item label {
-            margin: 0;
-            cursor: pointer;
-            font-weight: normal;
-            color: #555;
+
+        .section-instruction {
+            font-size: 13px;
+            color: white;
+            opacity: 0.95;
+            margin-top: 8px;
+            font-style: italic;
         }
-        
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+
+        .field-group {
+            margin-bottom: 20px;
         }
-        
-        .grid-3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
-        }
-        
-        .action-buttons {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 15px 20px;
-            border-top: 2px solid #e0e0e0;
+
+        .field-label {
             display: flex;
-            gap: 10px;
-            max-width: 900px;
-            margin: 0 auto;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-        }
-        
-        button {
-            flex: 1;
-            padding: 14px;
-            font-size: 15px;
+            align-items: center;
+            justify-content: space-between;
             font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .mic-button {
+            background: #667eea;
+            color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
             cursor: pointer;
-            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 16px;
         }
-        
+
+        .mic-button:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        .mic-button.listening {
+            background: #e74c3c;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        textarea, input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        textarea:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        input[type="text"], input[type="date"] {
+            min-height: auto;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
         .btn-primary {
-            background: #3498db;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
         }
-        
+
         .btn-primary:hover {
-            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
-        
-        .btn-primary:active {
-            transform: scale(0.98);
-        }
-        
+
         .btn-secondary {
-            background: #95a5a6;
+            background: #2c3e50;
             color: white;
         }
-        
+
         .btn-secondary:hover {
-            background: #7f8c8d;
+            background: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3);
         }
-        
-        .btn-secondary:active {
-            transform: scale(0.98);
+
+        .btn-success {
+            background: #27ae60;
+            color: white;
         }
-        
-        @media (max-width: 600px) {
-            .grid-2, .grid-3 {
-                grid-template-columns: 1fr;
+
+        .btn-success:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
+        }
+
+        .summary-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .summary-title {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .summary-item {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .summary-item strong {
+            color: #667eea;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .status-pass {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-attention {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2c3e50;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
             }
-            
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .speech-status {
+            font-size: 12px;
+            color: #e74c3c;
+            margin-top: 4px;
+            font-style: italic;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
             .form-content {
-                padding: 20px 15px 120px 15px;
+                padding: 20px;
             }
-            
-            .action-buttons {
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .button-group {
                 flex-direction: column;
             }
+
+            .btn {
+                min-width: 100%;
+            }
         }
-        
-        .required {
-            color: #e74c3c;
-            margin-left: 2px;
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .mic-button, .button-group {
+                display: none;
+            }
+        }
+
+        #summarySection {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Field Buddy Data Capture</h1>
-            <p>HVAC Service Call Documentation System</p>
-        </div>
-        
-        <div class="form-content">
-            <form id="fieldBuddyForm">
-                
-                <!-- Job Context -->
-                <div class="section">
-                    <h2 class="section-title">Job Context</h2>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Date <span class="required">*</span></label>
-                            <input type="date" name="date" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Time Arrived <span class="required">*</span></label>
-                            <input type="time" name="timeArrived" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Technician Name <span class="required">*</span></label>
-                        <input type="text" name="techName" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Customer Name <span class="required">*</span></label>
-                        <input type="text" name="customerName" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Address <span class="required">*</span></label>
-                        <input type="text" name="address" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Account Number</label>
-                        <input type="text" name="accountNumber">
-                    </div>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Ambient Temperature (°F)</label>
-                            <input type="number" name="ambientTemp" step="0.1">
-                        </div>
-                        <div class="form-group">
-                            <label>Ambient Humidity (%)</label>
-                            <input type="number" name="ambientRH" step="1">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Call Type</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="callNoCool" name="callType" value="No Cool">
-                                <label for="callNoCool">No Cool</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="callNoHeat" name="callType" value="No Heat">
-                                <label for="callNoHeat">No Heat</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="callMaint" name="callType" value="Maintenance">
-                                <label for="callMaint">Maintenance</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="callSecond" name="callType" value="Second Opinion">
-                                <label for="callSecond">Second Opinion</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="callOther" name="callType" value="Other">
-                                <label for="callOther">Other</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Equipment Identification -->
-                <div class="section">
-                    <h2 class="section-title">Equipment Identification</h2>
-                    
-                    <h3 class="subsection-title">Indoor Unit</h3>
-                    
-                    <div class="form-group">
-                        <label>Manufacturer</label>
-                        <input type="text" name="indoorMfg">
-                    </div>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Model Number</label>
-                            <input type="text" name="indoorModel">
-                        </div>
-                        <div class="form-group">
-                            <label>Serial Number</label>
-                            <input type="text" name="indoorSerial">
-                        </div>
-                    </div>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Tonnage</label>
-                            <input type="number" name="tonnage" step="0.5" placeholder="e.g., 3.0">
-                        </div>
-                        <div class="form-group">
-                            <label>Filter Size</label>
-                            <input type="text" name="filterSize" placeholder="e.g., 16x25x1">
-                        </div>
-                    </div>
-                    
-                    <h3 class="subsection-title">Outdoor Unit</h3>
-                    
-                    <div class="form-group">
-                        <label>Manufacturer</label>
-                        <input type="text" name="outdoorMfg">
-                    </div>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Model Number</label>
-                            <input type="text" name="outdoorModel">
-                        </div>
-                        <div class="form-group">
-                            <label>Serial Number</label>
-                            <input type="text" name="outdoorSerial">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Refrigerant Type</label>
-                        <select name="refrigerantType">
-                            <option value="">Select...</option>
-                            <option value="R-22">R-22</option>
-                            <option value="R-410A">R-410A</option>
-                            <option value="R-32">R-32</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- System Performance Data -->
-                <div class="section">
-                    <h2 class="section-title">System Performance Data</h2>
-                    
-                    <h3 class="subsection-title">Airflow & Static Pressure</h3>
-                    
-                    <div class="grid-3">
-                        <div class="form-group">
-                            <label>Return Static (in. w.c.)</label>
-                            <input type="number" name="returnStatic" step="0.01" placeholder="e.g., 0.15">
-                        </div>
-                        <div class="form-group">
-                            <label>Supply Static (in. w.c.)</label>
-                            <input type="number" name="supplyStatic" step="0.01" placeholder="e.g., 0.25">
-                        </div>
-                        <div class="form-group">
-                            <label>Total Static (in. w.c.)</label>
-                            <input type="number" name="totalStatic" step="0.01" placeholder="e.g., 0.40">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Filter Condition</label>
-                        <select name="filterCondition">
-                            <option value="">Select...</option>
-                            <option value="Clean">Clean</option>
-                            <option value="Dirty">Dirty</option>
-                            <option value="Overdue">Overdue</option>
-                            <option value="Missing">Missing</option>
-                        </select>
-                    </div>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Blower Amps (Actual)</label>
-                            <input type="number" name="blowerAmps" step="0.1" placeholder="e.g., 5.2">
-                        </div>
-                        <div class="form-group">
-                            <label>Blower Amps (Rated)</label>
-                            <input type="number" name="blowerAmpsRated" step="0.1" placeholder="e.g., 5.5">
-                        </div>
-                    </div>
-
-                    <h3 class="subsection-title">Refrigerant Circuit</h3>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Suction Pressure (psig)</label>
-                            <input type="number" name="suctionPressure" step="0.1" placeholder="e.g., 110.0">
-                        </div>
-                        <div class="form-group">
-                            <label>Head Pressure (psig)</label>
-                            <input type="number" name="headPressure" step="0.1" placeholder="e.g., 270.0">
-                        </div>
-                    </div>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Suction Line Temp (°F)</label>
-                            <input type="number" name="suctionTemp" step="0.1" placeholder="e.g., 56.0">
-                        </div>
-                        <div class="form-group">
-                            <label>Liquid Line Temp (°F)</label>
-                            <input type="number" name="liquidTemp" step="0.1" placeholder="e.g., 95.0">
-                        </div>
-                    </div>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Superheat (°F)</label>
-                            <input type="number" name="superheat" step="0.1" placeholder="e.g., 16.0">
-                        </div>
-                        <div class="form-group">
-                            <label>Subcool (°F)</label>
-                            <input type="number" name="subcool" step="0.1" placeholder="e.g., 3.0">
-                        </div>
-                    </div>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Compressor Amps (Actual)</label>
-                            <input type="number" name="compAmps" step="0.1" placeholder="e.g., 7.0">
-                        </div>
-                        <div class="form-group">
-                            <label>Compressor Amps (Rated)</label>
-                            <input type="number" name="compAmpsRated" step="0.1" placeholder="e.g., 7.2">
-                        </div>
-                    </div>
-
-                    <h3 class="subsection-title">Temperature Performance</h3>
-                    
-                    <div class="grid-3">
-                        <div class="form-group">
-                            <label>Return Air (°F)</label>
-                            <input type="number" name="returnTemp" step="0.1" placeholder="e.g., 75.0">
-                        </div>
-                        <div class="form-group">
-                            <label>Supply Air (°F)</label>
-                            <input type="number" name="supplyTemp" step="0.1" placeholder="e.g., 58.0">
-                        </div>
-                        <div class="form-group">
-                            <label>Temp Split (°F)</label>
-                            <input type="number" name="tempSplit" step="0.1" placeholder="Auto-calculated">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Visual Inspection -->
-                <div class="section">
-                    <h2 class="section-title">Visual Inspection Findings</h2>
-                    
-                    <h3 class="subsection-title">Evaporator Coil</h3>
-                    
-                    <div class="form-group">
-                        <label>Condition</label>
-                        <select name="coilCondition">
-                            <option value="">Select...</option>
-                            <option value="Clean">Clean</option>
-                            <option value="Dusty">Dusty</option>
-                            <option value="Microbial Growth">Microbial Growth</option>
-                            <option value="Corrosion">Corrosion</option>
-                            <option value="Damaged">Damaged</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Severity (1-10, if issue present)</label>
-                        <input type="number" name="coilSeverity" min="1" max="10">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Notes</label>
-                        <textarea name="coilNotes" placeholder="Describe specific observations..."></textarea>
-                    </div>
-
-                    <h3 class="subsection-title">Blower Assembly</h3>
-                    
-                    <div class="form-group">
-                        <label>Condition</label>
-                        <select name="blowerCondition">
-                            <option value="">Select...</option>
-                            <option value="Clean">Clean</option>
-                            <option value="Light Dust">Light Dust</option>
-                            <option value="Heavy Buildup">Heavy Buildup</option>
-                            <option value="Contaminated">Contaminated</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Notes</label>
-                        <textarea name="blowerNotes" placeholder="Describe specific observations..."></textarea>
-                    </div>
-
-                    <h3 class="subsection-title">Condensate System</h3>
-                    
-                    <div class="form-group">
-                        <label>Drain Pan Condition</label>
-                        <select name="condensateCondition">
-                            <option value="">Select...</option>
-                            <option value="Clean/Dry">Clean/Dry</option>
-                            <option value="Debris Present">Debris Present</option>
-                            <option value="Standing Water">Standing Water</option>
-                            <option value="Rust/Corrosion">Rust/Corrosion</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Drain Line Status</label>
-                        <select name="drainStatus">
-                            <option value="">Select...</option>
-                            <option value="Clear">Clear</option>
-                            <option value="Slow Flow">Slow Flow</option>
-                            <option value="Blocked">Blocked</option>
-                        </select>
-                    </div>
-
-                    <h3 class="subsection-title">Ductwork & Plenum</h3>
-                    
-                    <div class="form-group">
-                        <label>Sealing Condition</label>
-                        <select name="ductSealing">
-                            <option value="">Select...</option>
-                            <option value="Well Sealed">Well Sealed</option>
-                            <option value="Minor Leaks">Minor Leaks</option>
-                            <option value="Major Leaks">Major Leaks</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Leak Locations (if applicable)</label>
-                        <input type="text" name="leakLocations" placeholder="Describe where leaks are located...">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Additional Visual Observations</label>
-                        <textarea name="visualNotes" placeholder="Any other notable findings from visual inspection..."></textarea>
-                    </div>
-                </div>
-
-                <!-- Safety & Compliance -->
-                <div class="section">
-                    <h2 class="section-title">Safety & Compliance</h2>
-                    
-                    <div class="form-group">
-                        <label>Safety Items Present</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="safetyCD" name="safety" value="CO Detector Present">
-                                <label for="safetyCD">CO Detector</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="safetySmoke" name="safety" value="Smoke Detector Present">
-                                <label for="safetySmoke">Smoke Detector</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="safetyClear" name="safety" value="Proper Clearances">
-                                <label for="safetyClear">Proper Clearances</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="safetyShutoff" name="safety" value="Emergency Shutoff Accessible">
-                                <label for="safetyShutoff">Shutoff Accessible</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Safety Notes / Concerns</label>
-                        <textarea name="safetyNotes" placeholder="Document any safety issues or concerns..."></textarea>
-                    </div>
-                </div>
-
-                <!-- Diagnostic Assessment -->
-                <div class="section">
-                    <h2 class="section-title">Diagnostic Assessment</h2>
-                    
-                    <div class="form-group">
-                        <label>Primary Complaint (Customer's Words) <span class="required">*</span></label>
-                        <textarea name="primaryComplaint" required placeholder="What did the customer tell you about the problem?"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Observable Symptoms</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="symptomCool" name="symptoms" value="Insufficient cooling/heating">
-                                <label for="symptomCool">Insufficient cooling/heating</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="symptomNoAir" name="symptoms" value="No airflow">
-                                <label for="symptomNoAir">No airflow</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="symptomWeak" name="symptoms" value="Weak airflow">
-                                <label for="symptomWeak">Weak airflow</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="symptomNoise" name="symptoms" value="Strange noises">
-                                <label for="symptomNoise">Strange noises</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="symptomOdor" name="symptoms" value="Odors">
-                                <label for="symptomOdor">Odors</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="symptomIce" name="symptoms" value="Ice formation">
-                                <label for="symptomIce">Ice formation</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="symptomLeak" name="symptoms" value="Water leaks">
-                                <label for="symptomLeak">Water leaks</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Root Cause Analysis (Your Assessment) <span class="required">*</span></label>
-                        <textarea name="rootCause" required placeholder="What is causing the problem? Be specific."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Contributing Factors</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="factorAirflow" name="factors" value="Restricted airflow">
-                                <label for="factorAirflow">Restricted airflow</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="factorRefrig" name="factors" value="Refrigerant issue">
-                                <label for="factorRefrig">Refrigerant issue</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="factorElec" name="factors" value="Electrical problem">
-                                <label for="factorElec">Electrical problem</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="factorMech" name="factors" value="Mechanical failure">
-                                <label for="factorMech">Mechanical failure</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="factorInstall" name="factors" value="Installation deficiency">
-                                <label for="factorInstall">Installation deficiency</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="factorMaint" name="factors" value="Maintenance neglect">
-                                <label for="factorMaint">Maintenance neglect</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- System Scoring -->
-                <div class="section">
-                    <h2 class="section-title">System Scoring</h2>
-                    <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Rate each category from 1 (critical failure) to 10 (excellent condition)</p>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Safety <span class="required">*</span></label>
-                            <input type="number" name="scoreSafety" min="1" max="10" required placeholder="1-10">
-                        </div>
-                        <div class="form-group">
-                            <label>Mechanical Performance <span class="required">*</span></label>
-                            <input type="number" name="scoreMechanical" min="1" max="10" required placeholder="1-10">
-                        </div>
-                        <div class="form-group">
-                            <label>Indoor Air Quality <span class="required">*</span></label>
-                            <input type="number" name="scoreIAQ" min="1" max="10" required placeholder="1-10">
-                        </div>
-                        <div class="form-group">
-                            <label>Energy Efficiency <span class="required">*</span></label>
-                            <input type="number" name="scoreEfficiency" min="1" max="10" required placeholder="1-10">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Overall System Health <span class="required">*</span></label>
-                        <input type="number" name="scoreOverall" min="1" max="10" required placeholder="1-10">
-                    </div>
-                </div>
-
-                <!-- Recommendations -->
-                <div class="section">
-                    <h2 class="section-title">Recommendations</h2>
-                    
-                    <h3 class="subsection-title">Immediate / Critical</h3>
-                    <div class="form-group">
-                        <label>Safety risks or imminent system failure items</label>
-                        <textarea name="recommendImmediate" placeholder="List critical items that need immediate attention..."></textarea>
-                    </div>
-
-                    <h3 class="subsection-title">Corrective (Performance Restoration)</h3>
-                    <div class="form-group">
-                        <label>Items needed to restore proper function</label>
-                        <textarea name="recommendCorrective" placeholder="List repairs needed to restore system performance..."></textarea>
-                    </div>
-
-                    <h3 class="subsection-title">Preventive / Enhancement</h3>
-                    <div class="form-group">
-                        <label>Long-term protection and upgrade opportunities</label>
-                        <textarea name="recommendPreventive" placeholder="List preventive measures and optional upgrades..."></textarea>
-                    </div>
-                </div>
-
-                <!-- Customer Interaction -->
-                <div class="section">
-                    <h2 class="section-title">Customer Interaction</h2>
-                    
-                    <div class="form-group">
-                        <label>Options Presented & Discussed</label>
-                        <textarea name="optionsPresented" placeholder="What options did you present to the customer?"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Customer Decision</label>
-                        <select name="customerDecision">
-                            <option value="">Select...</option>
-                            <option value="Approved All">Approved All</option>
-                            <option value="Approved Partial">Approved Partial</option>
-                            <option value="Declined">Declined</option>
-                            <option value="Wants to Think">Wants to Think About It</option>
-                            <option value="Requested Quote">Requested Quote</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Customer Questions / Concerns</label>
-                        <textarea name="customerConcerns" placeholder="Document any questions or concerns the customer raised..."></textarea>
-                    </div>
-                </div>
-
-                <!-- Work Performed -->
-                <div class="section">
-                    <h2 class="section-title">Work Performed Today</h2>
-                    
-                    <div class="form-group">
-                        <label>Work Completed</label>
-                        <textarea name="workPerformed" placeholder="List all work completed during this visit..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Parts Used</label>
-                        <input type="text" name="partsUsed" placeholder="List parts used with quantities...">
-                    </div>
-                    
-                    <div class="grid-2">
-                        <div class="form-group">
-                            <label>Time on Site (hours)</label>
-                            <input type="number" name="hoursOnSite" step="0.25" placeholder="e.g., 2">
-                        </div>
-                        <div class="form-group">
-                            <label>Time on Site (minutes)</label>
-                            <input type="number" name="minutesOnSite" step="5" placeholder="e.g., 30">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Additional Notes -->
-                <div class="section">
-                    <h2 class="section-title">Additional Notes</h2>
-                    
-                    <div class="form-group">
-                        <label>General Observations & Follow-up Items</label>
-                        <textarea name="additionalNotes" placeholder="Any additional observations, follow-up items, or important details..."></textarea>
-                    </div>
-                </div>
-            </form>
+            <h1>🔧 HVAC Inspection Form</h1>
+            <p>Speech-to-Text Enabled | Mobile Optimized</p>
         </div>
 
-        <div class="action-buttons">
-            <button type="button" class="btn-secondary" onclick="saveProgress()">Save Progress</button>
-            <button type="button" class="btn-primary" onclick="generateReport()">Complete Call & Export</button>
+        <div class="form-content" id="inspectionForm">
+            <!-- SECTION 1: SAFETY -->
+            <div class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">🛡️ Section 1: Safety</div>
+                        <div class="section-instruction">Speak your findings for each item. Tap the microphone icon to begin.</div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        System Type and Brand
+                        <button class="mic-button" onclick="startSpeech('systemType')" title="Click to speak">🎤</button>
+                    </label>
+                    <input type="text" id="systemType" placeholder="e.g., Carrier 58MVC">
+                    <div class="speech-status" id="systemType-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Furnace Serial Number and Manufacture Year
+                        <button class="mic-button" onclick="startSpeech('serialNumber')" title="Click to speak">🎤</button>
+                    </label>
+                    <input type="text" id="serialNumber" placeholder="Serial number and year">
+                    <div class="speech-status" id="serialNumber-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Status of Safety Switches and Controls
+                        <button class="mic-button" onclick="startSpeech('safetySwitches')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="safetySwitches" placeholder="Describe rollout, pressure, high-limit switches, flame sensor..."></textarea>
+                    <div class="speech-status" id="safetySwitches-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Condition of Gas Connections and Combustion
+                        <button class="mic-button" onclick="startSpeech('gasConnections')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="gasConnections" placeholder="Gas leaks, combustion issues, flame appearance..."></textarea>
+                    <div class="speech-status" id="gasConnections-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Condition of Venting/Flue
+                        <button class="mic-button" onclick="startSpeech('venting')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="venting" placeholder="Corrosion, cracks, blockage, proper draft..."></textarea>
+                    <div class="speech-status" id="venting-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Electrical Inspection Notes
+                        <button class="mic-button" onclick="startSpeech('electrical')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="electrical" placeholder="Connections tight, grounded, wire condition..."></textarea>
+                    <div class="speech-status" id="electrical-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Float Switch Presence and Functionality
+                        <button class="mic-button" onclick="startSpeech('floatSwitch')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="floatSwitch" placeholder="Present, functional, tested, condition..."></textarea>
+                    <div class="speech-status" id="floatSwitch-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Safety Summary
+                        <button class="mic-button" onclick="startSpeech('safetySummary')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="safetySummary" placeholder="Overall safety assessment: pass, fail, or needs attention"></textarea>
+                    <div class="speech-status" id="safetySummary-status">Listening...</div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: MECHANICAL -->
+            <div class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">⚙️ Section 2: Mechanical</div>
+                        <div class="section-instruction">Assess equipment function, performance balance, and reliability.</div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Blower Motor Amperage and Condition
+                        <button class="mic-button" onclick="startSpeech('blowerMotor')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="blowerMotor" placeholder="Amperage reading, noise, vibration, overall condition..."></textarea>
+                    <div class="speech-status" id="blowerMotor-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Inducer Motor Amperage and Condition
+                        <button class="mic-button" onclick="startSpeech('inducerMotor')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="inducerMotor" placeholder="Amperage, operational status, unusual sounds..."></textarea>
+                    <div class="speech-status" id="inducerMotor-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Temperature Rise or Cooling Split
+                        <button class="mic-button" onclick="startSpeech('tempRise')" title="Click to speak">🎤</button>
+                    </label>
+                    <input type="text" id="tempRise" placeholder="e.g., 45°F rise or 18°F split">
+                    <div class="speech-status" id="tempRise-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Refrigerant Type and Pressures
+                        <button class="mic-button" onclick="startSpeech('refrigerant')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="refrigerant" placeholder="Type (R-410A, R-22...), suction PSI, liquid PSI..."></textarea>
+                    <div class="speech-status" id="refrigerant-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Superheat and Subcool Readings
+                        <button class="mic-button" onclick="startSpeech('superheat')" title="Click to speak">🎤</button>
+                    </label>
+                    <input type="text" id="superheat" placeholder="e.g., SH: 10°F, SC: 8°F">
+                    <div class="speech-status" id="superheat-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Compressor and Fan Motor Condition
+                        <button class="mic-button" onclick="startSpeech('compressor')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="compressor" placeholder="Amperage, sound, vibration, hard start kit present..."></textarea>
+                    <div class="speech-status" id="compressor-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Coil Condition and Age
+                        <button class="mic-button" onclick="startSpeech('coilCondition')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="coilCondition" placeholder="Clean, corroded, leaking, restricted, approximate age..."></textarea>
+                    <div class="speech-status" id="coilCondition-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Airflow and Duct Condition
+                        <button class="mic-button" onclick="startSpeech('airflow')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="airflow" placeholder="Proper airflow, duct leaks, static pressure, register balance..."></textarea>
+                    <div class="speech-status" id="airflow-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Filter Condition
+                        <button class="mic-button" onclick="startSpeech('filterCondition')" title="Click to speak">🎤</button>
+                    </label>
+                    <input type="text" id="filterCondition" placeholder="Clean, dirty, size, type...">
+                    <div class="speech-status" id="filterCondition-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Electrical Readings (Voltage, Amps, Capacitor)
+                        <button class="mic-button" onclick="startSpeech('electricalReadings')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="electricalReadings" placeholder="Voltage at unit, amp draw, capacitor µF ratings..."></textarea>
+                    <div class="speech-status" id="electricalReadings-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Mechanical Summary
+                        <button class="mic-button" onclick="startSpeech('mechanicalSummary')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="mechanicalSummary" placeholder="Overall mechanical assessment: sound, stable, or needs service"></textarea>
+                    <div class="speech-status" id="mechanicalSummary-status">Listening...</div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: HEALTH -->
+            <div class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">🌿 Section 3: Health</div>
+                        <div class="section-instruction">Evaluate air quality, contamination risk, and environmental impact.</div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Interior of Plenum and Duct Cleanliness
+                        <button class="mic-button" onclick="startSpeech('plenumCleanliness')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="plenumCleanliness" placeholder="Buildup, dust, debris, insulation condition..."></textarea>
+                    <div class="speech-status" id="plenumCleanliness-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Visible Microbial Growth or Contamination
+                        <button class="mic-button" onclick="startSpeech('microbialGrowth')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="microbialGrowth" placeholder="Mold, mildew, biological contamination observed..."></textarea>
+                    <div class="speech-status" id="microbialGrowth-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Filter or Air Purification System Present
+                        <button class="mic-button" onclick="startSpeech('purificationSystem')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="purificationSystem" placeholder="Media filter, electronic filter, UV, ionizer, etc."></textarea>
+                    <div class="speech-status" id="purificationSystem-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Drain Cleanliness and Function
+                        <button class="mic-button" onclick="startSpeech('drainClean')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="drainClean" placeholder="Condensate flow, blockage, algae, slime buildup..."></textarea>
+                    <div class="speech-status" id="drainClean-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Oxidation or Rust Noted
+                        <button class="mic-button" onclick="startSpeech('oxidation')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="oxidation" placeholder="Rust, corrosion, water damage locations..."></textarea>
+                    <div class="speech-status" id="oxidation-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Odors or Air Quality Concerns
+                        <button class="mic-button" onclick="startSpeech('odors')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="odors" placeholder="Musty, chemical, biological odors, air quality issues..."></textarea>
+                    <div class="speech-status" id="odors-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Health Summary
+                        <button class="mic-button" onclick="startSpeech('healthSummary')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="healthSummary" placeholder="Overall health assessment: clean, contaminated, or needs remediation"></textarea>
+                    <div class="speech-status" id="healthSummary-status">Listening...</div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: FINAL SUMMARY -->
+            <div class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">📋 Section 4: Final Summary</div>
+                        <div class="section-instruction">Complete inspection details and technician information.</div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">
+                        Technician Notes (Open-Ended)
+                        <button class="mic-button" onclick="startSpeech('techNotes')" title="Click to speak">🎤</button>
+                    </label>
+                    <textarea id="techNotes" placeholder="Additional observations, recommendations, concerns..." style="min-height: 100px;"></textarea>
+                    <div class="speech-status" id="techNotes-status">Listening...</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">Customer Name</label>
+                    <input type="text" id="customerName" placeholder="Customer full name">
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">Inspection Date</label>
+                    <input type="date" id="inspectionDate">
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">Technician Name</label>
+                    <input type="text" id="technicianName" placeholder="Your name">
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="generateSummary()">📊 Generate Summary</button>
+                    <button class="btn btn-secondary" onclick="exportPDF()">📄 Export as PDF</button>
+                    <button class="btn btn-success" onclick="downloadHTML()">💾 Download HTML</button>
+                </div>
+            </div>
+
+            <!-- SUMMARY DISPLAY -->
+            <div id="summarySection" class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">📊 Inspection Summary</div>
+                    </div>
+                </div>
+                <div id="summaryContent" class="summary-box"></div>
+            </div>
         </div>
     </div>
 
+    <div id="toast" class="toast"></div>
+
     <script>
-        let formData = {};
+        // Set today's date as default
+        document.getElementById('inspectionDate').valueAsDate = new Date();
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date();
-            const dateInput = document.querySelector('input[name="date"]');
-            const timeInput = document.querySelector('input[name="timeArrived"]');
-            
-            if (dateInput && !dateInput.value) {
-                dateInput.value = today.toISOString().split('T')[0];
-            }
-            
-            if (timeInput && !timeInput.value) {
-                const hours = String(today.getHours()).padStart(2, '0');
-                const minutes = String(today.getMinutes()).padStart(2, '0');
-                timeInput.value = `${hours}:${minutes}`;
-            }
+        // Speech Recognition Setup
+        let recognition;
+        let currentField = null;
 
-            loadProgress();
-            setupAutoCalculations();
-        });
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
 
-        function setupAutoCalculations() {
-            const returnTemp = document.querySelector('input[name="returnTemp"]');
-            const supplyTemp = document.querySelector('input[name="supplyTemp"]');
-            const tempSplit = document.querySelector('input[name="tempSplit"]');
-
-            function calcSplit() {
-                if (returnTemp.value && supplyTemp.value) {
-                    const split = Math.abs(parseFloat(returnTemp.value) - parseFloat(supplyTemp.value));
-                    tempSplit.value = split.toFixed(1);
-                }
-            }
-
-            if (returnTemp && supplyTemp && tempSplit) {
-                returnTemp.addEventListener('input', calcSplit);
-                supplyTemp.addEventListener('input', calcSplit);
-            }
-        }
-
-        function saveProgress() {
-            const form = document.getElementById('fieldBuddyForm');
-            const data = new FormData(form);
-            
-            formData = {};
-            for (let [key, value] of data.entries()) {
-                if (formData[key]) {
-                    if (Array.isArray(formData[key])) {
-                        formData[key].push(value);
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                const field = document.getElementById(currentField);
+                if (field) {
+                    if (field.tagName === 'TEXTAREA') {
+                        field.value += (field.value ? ' ' : '') + transcript;
                     } else {
-                        formData[key] = [formData[key], value];
+                        field.value = transcript;
                     }
-                } else {
-                    formData[key] = value;
+                    showToast('Speech captured successfully');
                 }
-            }
+                stopListening();
+            };
 
-            alert('Progress saved! Data will persist during this session.');
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+                showToast('Speech recognition error: ' + event.error);
+                stopListening();
+            };
+
+            recognition.onend = function() {
+                stopListening();
+            };
         }
 
-        function loadProgress() {
-            if (Object.keys(formData).length > 0) {
-                const form = document.getElementById('fieldBuddyForm');
-                Object.keys(formData).forEach(key => {
-                    const input = form.querySelector(`[name="${key}"]`);
-                    if (input) {
-                        if (input.type === 'checkbox') {
-                            if (Array.isArray(formData[key])) {
-                                const checkboxes = form.querySelectorAll(`[name="${key}"]`);
-                                checkboxes.forEach(cb => {
-                                    if (formData[key].includes(cb.value)) {
-                                        cb.checked = true;
-                                    }
-                                });
-                            } else {
-                                input.checked = formData[key] === input.value;
-                            }
-                        } else {
-                            input.value = formData[key];
-                        }
-                    }
-                });
-            }
-        }
-
-        function generateReport() {
-            const form = document.getElementById('fieldBuddyForm');
-            
-            if (!form.checkValidity()) {
-                alert('Please fill in all required fields before completing the call.');
-                form.reportValidity();
+        function startSpeech(fieldId) {
+            if (!recognition) {
+                showToast('Speech recognition not supported in this browser');
                 return;
             }
 
-            const data = new FormData(form);
-            let report = "FIELD BUDDY DATA CAPTURE REPORT\n";
-            report += "=".repeat(70) + "\n\n";
-            
-            report += "JOB CONTEXT\n";
-            report += "-".repeat(70) + "\n";
-            report += `Date: ${data.get('date')}\n`;
-            report += `Time Arrived: ${data.get('timeArrived')}\n`;
-            report += `Technician: ${data.get('techName')}\n`;
-            report += `Customer: ${data.get('customerName')}\n`;
-            report += `Address: ${data.get('address')}\n`;
-            if (data.get('accountNumber')) report += `Account Number: ${data.get('accountNumber')}\n`;
-            report += `Ambient Conditions: ${data.get('ambientTemp') || 'N/A'}°F, ${data.get('ambientRH') || 'N/A'}% RH\n`;
-            
-            const callTypes = data.getAll('callType');
-            report += `Call Type: ${callTypes.join(', ') || 'Not specified'}\n\n`;
+            currentField = fieldId;
+            const button = event.target.closest('.mic-button');
+            const status = document.getElementById(fieldId + '-status');
 
-            report += "EQUIPMENT IDENTIFICATION\n";
-            report += "-".repeat(70) + "\n";
-            report += "Indoor Unit:\n";
-            report += `  Manufacturer: ${data.get('indoorMfg') || 'Not recorded'}\n`;
-            report += `  Model: ${data.get('indoorModel') || 'Not recorded'}\n`;
-            report += `  Serial: ${data.get('indoorSerial') || 'Not recorded'}\n`;
-            report += `  Tonnage: ${data.get('tonnage') || 'Not recorded'} tons\n`;
-            report += `  Filter Size: ${data.get('filterSize') || 'Not recorded'}\n`;
-            report += "\nOutdoor Unit:\n";
-            report += `  Manufacturer: ${data.get('outdoorMfg') || 'Not recorded'}\n`;
-            report += `  Model: ${data.get('outdoorModel') || 'Not recorded'}\n`;
-            report += `  Serial: ${data.get('outdoorSerial') || 'Not recorded'}\n`;
-            report += `  Refrigerant Type: ${data.get('refrigerantType') || 'Not recorded'}\n\n`;
+            // Stop any ongoing recognition
+            try {
+                recognition.stop();
+            } catch (e) {}
 
-            report += "SYSTEM PERFORMANCE DATA\n";
-            report += "-".repeat(70) + "\n";
-            report += "Airflow & Static Pressure:\n";
-            report += `  Return Static: ${data.get('returnStatic') || 'N/A'} in. w.c.\n`;
-            report += `  Supply Static: ${data.get('supplyStatic') || 'N/A'} in. w.c.\n`;
-            report += `  Total Static: ${data.get('totalStatic') || 'N/A'} in. w.c.\n`;
-            report += `  Filter Condition: ${data.get('filterCondition') || 'Not recorded'}\n`;
-            report += `  Blower Amps: ${data.get('blowerAmps') || 'N/A'} A (Rated: ${data.get('blowerAmpsRated') || 'N/A'} A)\n`;
-            
-            report += "\nRefrigerant Circuit:\n";
-            report += `  Suction Pressure: ${data.get('suctionPressure') || 'N/A'} psig\n`;
-            report += `  Head Pressure: ${data.get('headPressure') || 'N/A'} psig\n`;
-            report += `  Suction Line Temp: ${data.get('suctionTemp') || 'N/A'}°F\n`;
-            report += `  Liquid Line Temp: ${data.get('liquidTemp') || 'N/A'}°F\n`;
-            report += `  Superheat: ${data.get('superheat') || 'N/A'}°F\n`;
-            report += `  Subcool: ${data.get('subcool') || 'N/A'}°F\n`;
-            report += `  Compressor Amps: ${data.get('compAmps') || 'N/A'} A (Rated: ${data.get('compAmpsRated') || 'N/A'} A)\n`;
-            
-            report += "\nTemperature Performance:\n";
-            report += `  Return Air: ${data.get('returnTemp') || 'N/A'}°F\n`;
-            report += `  Supply Air: ${data.get('supplyTemp') || 'N/A'}°F\n`;
-            report += `  Temperature Split: ${data.get('tempSplit') || 'N/A'}°F\n\n`;
-
-            report += "VISUAL INSPECTION FINDINGS\n";
-            report += "-".repeat(70) + "\n";
-            report += "Evaporator Coil:\n";
-            report += `  Condition: ${data.get('coilCondition') || 'Not recorded'}\n`;
-            if (data.get('coilSeverity')) report += `  Severity: ${data.get('coilSeverity')}/10\n`;
-            if (data.get('coilNotes')) report += `  Notes: ${data.get('coilNotes')}\n`;
-            
-            report += `\nBlower Assembly:\n`;
-            report += `  Condition: ${data.get('blowerCondition') || 'Not recorded'}\n`;
-            if (data.get('blowerNotes')) report += `  Notes: ${data.get('blowerNotes')}\n`;
-            
-            report += `\nCondensate System:\n`;
-            report += `  Pan Condition: ${data.get('condensateCondition') || 'Not recorded'}\n`;
-            report += `  Drain Line: ${data.get('drainStatus') || 'Not recorded'}\n`;
-            
-            report += `\nDuctwork & Plenum:\n`;
-            report += `  Sealing: ${data.get('ductSealing') || 'Not recorded'}\n`;
-            if (data.get('leakLocations')) report += `  Leak Locations: ${data.get('leakLocations')}\n`;
-            
-            if (data.get('visualNotes')) {
-                report += `\nAdditional Visual Observations:\n${data.get('visualNotes')}\n`;
-            }
-            report += "\n";
-
-            report += "SAFETY & COMPLIANCE\n";
-            report += "-".repeat(70) + "\n";
-            const safetyItems = data.getAll('safety');
-            if (safetyItems.length > 0) {
-                report += "Safety Items Present:\n";
-                safetyItems.forEach(item => report += `  - ${item}\n`);
-            } else {
-                report += "No safety items documented\n";
-            }
-            if (data.get('safetyNotes')) {
-                report += `Notes: ${data.get('safetyNotes')}\n`;
-            }
-            report += "\n";
-
-            report += "DIAGNOSTIC ASSESSMENT\n";
-            report += "-".repeat(70) + "\n";
-            report += `Primary Complaint (Customer's Words):\n${data.get('primaryComplaint')}\n\n`;
-            
-            const symptoms = data.getAll('symptoms');
-            if (symptoms.length > 0) {
-                report += "Observable Symptoms:\n";
-                symptoms.forEach(s => report += `  - ${s}\n`);
-                report += "\n";
-            }
-            
-            report += `Root Cause Analysis:\n${data.get('rootCause')}\n\n`;
-            
-            const factors = data.getAll('factors');
-            if (factors.length > 0) {
-                report += "Contributing Factors:\n";
-                factors.forEach(f => report += `  - ${f}\n`);
-                report += "\n";
-            }
-
-            report += "SYSTEM SCORING (1-10 scale)\n";
-            report += "-".repeat(70) + "\n";
-            report += `Safety: ${data.get('scoreSafety')}/10\n`;
-            report += `Mechanical Performance: ${data.get('scoreMechanical')}/10\n`;
-            report += `Indoor Air Quality: ${data.get('scoreIAQ')}/10\n`;
-            report += `Energy Efficiency: ${data.get('scoreEfficiency')}/10\n`;
-            report += `Overall System Health: ${data.get('scoreOverall')}/10\n\n`;
-
-            report += "RECOMMENDATIONS\n";
-            report += "-".repeat(70) + "\n";
-            if (data.get('recommendImmediate')) {
-                report += "IMMEDIATE / CRITICAL:\n";
-                report += data.get('recommendImmediate') + "\n\n";
-            }
-            if (data.get('recommendCorrective')) {
-                report += "CORRECTIVE (Performance Restoration):\n";
-                report += data.get('recommendCorrective') + "\n\n";
-            }
-            if (data.get('recommendPreventive')) {
-                report += "PREVENTIVE / ENHANCEMENT:\n";
-                report += data.get('recommendPreventive') + "\n\n";
-            }
-
-            report += "CUSTOMER INTERACTION\n";
-            report += "-".repeat(70) + "\n";
-            if (data.get('optionsPresented')) {
-                report += `Options Presented:\n${data.get('optionsPresented')}\n\n`;
-            }
-            report += `Customer Decision: ${data.get('customerDecision') || 'Not recorded'}\n`;
-            if (data.get('customerConcerns')) {
-                report += `Customer Questions/Concerns:\n${data.get('customerConcerns')}\n`;
-            }
-            report += "\n";
-
-            report += "WORK PERFORMED TODAY\n";
-            report += "-".repeat(70) + "\n";
-            if (data.get('workPerformed')) {
-                report += data.get('workPerformed') + "\n\n";
-            }
-            if (data.get('partsUsed')) {
-                report += `Parts Used: ${data.get('partsUsed')}\n`;
-            }
-            const hours = data.get('hoursOnSite') || '0';
-            const minutes = data.get('minutesOnSite') || '0';
-            report += `Time on Site: ${hours} hours ${minutes} minutes\n\n`;
-
-            if (data.get('additionalNotes')) {
-                report += "ADDITIONAL NOTES\n";
-                report += "-".repeat(70) + "\n";
-                report += data.get('additionalNotes') + "\n\n";
-            }
-
-            report += "=".repeat(70) + "\n";
-            report += "END OF REPORT - Ready for LLM Processing\n";
-            report += "=".repeat(70) + "\n";
-
-            downloadReport(report, data.get('customerName'), data.get('date'));
+            // Start new recognition
+            setTimeout(() => {
+                button.classList.add('listening');
+                if (status) {
+                    status.style.display = 'block';
+                }
+                recognition.start();
+            }, 100);
         }
 
-        function downloadReport(content, customerName, date) {
-            const sanitizedName = customerName.replace(/[^a-z0-9]/gi, '_');
-            const filename = `FieldBuddy_${sanitizedName}_${date}.txt`;
-            const blob = new Blob([content], { type: 'text/plain' });
+        function stopListening() {
+            const buttons = document.querySelectorAll('.mic-button');
+            buttons.forEach(btn => btn.classList.remove('listening'));
+            
+            const statuses = document.querySelectorAll('.speech-status');
+            statuses.forEach(status => status.style.display = 'none');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        function generateSummary() {
+            const summary = {
+                safety: document.getElementById('safetySummary').value || 'Not provided',
+                mechanical: document.getElementById('mechanicalSummary').value || 'Not provided',
+                health: document.getElementById('healthSummary').value || 'Not provided',
+                techNotes: document.getElementById('techNotes').value || 'None',
+                customer: document.getElementById('customerName').value || 'Not provided',
+                date: document.getElementById('inspectionDate').value || 'Not provided',
+                technician: document.getElementById('technicianName').value || 'Not provided'
+            };
+
+            const summaryHTML = `
+                <div class="summary-title">Inspection Overview</div>
+                <div class="summary-item">
+                    <strong>Customer:</strong> ${summary.customer}
+                </div>
+                <div class="summary-item">
+                    <strong>Date:</strong> ${summary.date}
+                </div>
+                <div class="summary-item">
+                    <strong>Technician:</strong> ${summary.technician}
+                </div>
+                <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+                <div class="summary-item">
+                    <strong>Safety Status:</strong> ${summary.safety}
+                </div>
+                <div class="summary-item">
+                    <strong>Mechanical Status:</strong> ${summary.mechanical}
+                </div>
+                <div class="summary-item">
+                    <strong>Health Status:</strong> ${summary.health}
+                </div>
+                <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+                <div class="summary-item">
+                    <strong>Additional Notes:</strong><br>${summary.techNotes}
+                </div>
+            `;
+
+            document.getElementById('summaryContent').innerHTML = summaryHTML;
+            document.getElementById('summarySection').style.display = 'block';
+            
+            // Scroll to summary
+            document.getElementById('summarySection').scrollIntoView({ behavior: 'smooth' });
+            showToast('Summary generated successfully');
+        }
+
+        function exportPDF() {
+            // Hide buttons for PDF
+            const buttons = document.querySelectorAll('.mic-button, .button-group');
+            buttons.forEach(btn => btn.style.display = 'none');
+
+            const element = document.getElementById('inspectionForm');
+            const opt = {
+                margin: 0.5,
+                filename: `HVAC-Inspection-${document.getElementById('customerName').value || 'Report'}-${new Date().toISOString().split('T')[0]}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Show buttons again
+                buttons.forEach(btn => btn.style.display = '');
+                showToast('PDF exported successfully');
+            });
+        }
+
+        function downloadHTML() {
+            const element = document.getElementById('inspectionForm').cloneNode(true);
+            
+            // Remove mic buttons from clone
+            const micButtons = element.querySelectorAll('.mic-button');
+            micButtons.forEach(btn => btn.remove());
+            
+            // Remove button group from clone
+            const buttonGroups = element.querySelectorAll('.button-group');
+            buttonGroups.forEach(group => group.remove());
+
+            const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVAC Inspection Report - ${document.getElementById('customerName').value || 'Customer'}</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header { background: #2c3e50; color: white; padding: 20px; text-align: center; margin-bottom: 30px; }
+        .section { margin-bottom: 30px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+        .section-header { background: #667eea; color: white; padding: 15px; margin-bottom: 15px; }
+        .field-group { margin-bottom: 15px; }
+        .field-label { font-weight: bold; margin-bottom: 5px; }
+        textarea, input { width: 100%; padding: 8px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>HVAC Inspection Report</h1>
+        <p>Customer: ${document.getElementById('customerName').value || 'N/A'} | Date: ${document.getElementById('inspectionDate').value || 'N/A'}</p>
+        <p>Technician: ${document.getElementById('technicianName').value || 'N/A'}</p>
+    </div>
+    ${element.innerHTML}
+</body>
+</html>
+            `;
+
+            const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = filename;
+            a.download = `HVAC-Inspection-${document.getElementById('customerName').value || 'Report'}-${new Date().toISOString().split('T')[0]}.html`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-            
-            alert(`Report generated successfully!\n\nFile: ${filename}\n\nYou can now submit this file to the Field Buddy LLM for final processing.`);
+            showToast('HTML file downloaded successfully');
         }
+
+        // Auto-save to localStorage every 30 seconds
+        setInterval(() => {
+            const formData = {};
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                if (input.id) {
+                    formData[input.id] = input.value;
+                }
+            });
+            localStorage.setItem('hvacInspectionDraft', JSON.stringify(formData));
+        }, 30000);
+
+        // Load saved data on page load
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('hvacInspectionDraft');
+            if (saved) {
+                const formData = JSON.parse(saved);
+                Object.keys(formData).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        element.value = formData[key];
+                    }
+                });
+                showToast('Draft loaded from previous session');
+            }
+        });
     </script>
 </body>
 </html>
