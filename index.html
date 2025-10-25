@@ -3,297 +3,395 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <title>FieldBuddy Advanced™ - Fidelity Diagnostic Engine</title>
+  <title>HVAC Pro Diagnostic</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     :root {
-      --fidelity-blue: #1e3a8a;
-      --fidelity-light: #3b82f6;
-      --success-green: #059669;
-      --warning-amber: #d97706;
-      --error-red: #dc2626;
-      --neutral-gray: #6b7280;
-      --bg-light: #f8fafc;
-      --card-white: #ffffff;
-      --text-dark: #1f2937;
-      --border-light: #e5e7eb;
+      --primary: #0f172a;
+      --primary-light: #1e293b;
+      --accent: #3b82f6;
+      --accent-dark: #2563eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --neutral: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-lg: 0 4px 16px rgba(0,0,0,0.12);
     }
     
     body { 
       font: 16px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-      background: var(--bg-light);
-      color: var(--text-dark);
-      padding: 8px;
+      background: var(--bg);
+      color: var(--text);
+      padding: 0;
+      margin: 0;
+      line-height: 1.6;
       padding-bottom: 100px;
-      line-height: 1.5;
     }
     
-    /* Header with FMS branding */
+    /* Header */
     .header {
-      background: linear-gradient(135deg, var(--fidelity-blue), var(--fidelity-light));
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
       color: white;
-      padding: 16px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      text-align: center;
-      position: relative;
+      padding: 24px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-lg);
     }
     
-    .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-    .header .tagline { font-size: 13px; opacity: 0.9; }
-    .header .mode-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(255,255,255,0.2);
-      padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 11px;
-      font-weight: 600;
-    }
-    
-    /* Diagnostic progress indicator */
-    .progress-bar {
-      background: var(--card-white);
-      padding: 12px 16px;
-      border-radius: 8px;
-      margin-bottom: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    
-    .progress-steps {
+    .header-content {
+      max-width: 800px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+    }
+    
+    .header h1 { 
+      font-size: 22px; 
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
+    .mode-selector {
+      display: flex;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      padding: 4px;
+      border-radius: 8px;
+    }
+    
+    .mode-btn {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .mode-btn.active {
+      background: white;
+      color: var(--primary);
+    }
+    
+    /* Progress */
+    .progress {
+      background: var(--card);
+      padding: 20px;
+      margin: 20px 20px 0;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .progress-steps {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
     }
     
     .step {
-      flex: 1;
       text-align: center;
-      padding: 8px 4px;
-      border-radius: 6px;
+      padding: 10px 4px;
+      border-radius: 8px;
       font-size: 11px;
       font-weight: 600;
-      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: var(--border);
+      color: var(--text-muted);
+      transition: all 0.3s;
     }
     
-    .step.active { background: var(--fidelity-light); color: white; }
-    .step.complete { background: var(--success-green); color: white; }
-    .step.pending { background: var(--border-light); color: var(--neutral-gray); }
-    .step.warning { background: var(--warning-amber); color: white; }
+    .step.active { 
+      background: var(--accent); 
+      color: white;
+      transform: scale(1.05);
+    }
     
-    .progress-line {
-      height: 3px;
-      background: var(--border-light);
+    .step.complete { 
+      background: var(--success); 
+      color: white; 
+    }
+    
+    .progress-bar {
+      height: 4px;
+      background: var(--border);
       border-radius: 2px;
-      position: relative;
       overflow: hidden;
     }
     
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--success-green), var(--fidelity-light));
+      background: linear-gradient(90deg, var(--success), var(--accent));
       border-radius: 2px;
-      transition: width 0.3s ease;
+      transition: width 0.4s ease;
       width: 0%;
     }
     
-    /* Enhanced input styling */
-    input, select, textarea, button {
-      font-size: 16px;
-      padding: 14px;
-      border: 2px solid var(--border-light);
-      border-radius: 8px;
-      width: 100%;
-      margin: 6px 0;
-      font-family: inherit;
-      transition: all 0.2s ease;
+    .progress-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 12px;
+      text-align: center;
     }
     
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--fidelity-light);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-    }
-    
-    button {
-      background: var(--fidelity-blue);
-      color: white;
-      font-weight: 600;
-      border: none;
-      min-height: 48px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    
-    button:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-    button.secondary { background: var(--neutral-gray); }
-    button.danger { background: var(--error-red); }
-    button.success { background: var(--success-green); }
-    button.warning { background: var(--warning-amber); }
-    
-    /* Enhanced card system */
-    .card {
-      background: var(--card-white);
-      border-radius: 12px;
+    /* Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
       padding: 20px;
-      margin: 16px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      border: 1px solid var(--border-light);
-      position: relative;
     }
     
-    .card.locked {
-      opacity: 0.6;
-      pointer-events: none;
+    /* Cards */
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
     }
     
-    .card.locked::before {
-      content: "🔒 Complete previous steps";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0,0,0,0.8);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      z-index: 10;
+    .card.collapsed .card-body {
+      display: none;
+    }
+    
+    .card.collapsed {
+      padding: 16px 24px;
     }
     
     .card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--border);
+    }
+    
+    .card.collapsed .card-header {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    
+    .card-title {
       font-size: 18px;
       font-weight: 700;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid var(--border-light);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .card-title .emoji {
+      font-size: 20px;
     }
     
     .card-status {
       font-size: 12px;
-      padding: 4px 8px;
+      padding: 4px 10px;
       border-radius: 12px;
       font-weight: 600;
-    }
-    
-    .card-status.complete { background: #dcfce7; color: #166534; }
-    .card-status.warning { background: #fef3c7; color: #92400e; }
-    .card-status.error { background: #fecaca; color: #991b1b; }
-    
-    /* Grid layouts */
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-    
-    /* Status indicators with enhanced styling */
-    .status {
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      margin: 12px 0;
       display: flex;
       align-items: center;
-      gap: 8px;
-      border-left: 4px solid;
+      gap: 4px;
     }
     
-    .status.good { 
-      background: #f0fdf4; color: #166534; border-left-color: #22c55e;
-    }
-    .status.warn { 
-      background: #fffbeb; color: #92400e; border-left-color: #f59e0b;
-    }
-    .status.bad { 
-      background: #fef2f2; color: #991b1b; border-left-color: #ef4444;
-    }
-    .status.info { 
-      background: #eff6ff; color: #1e40af; border-left-color: #3b82f6;
+    .card-status.ready { background: #dbeafe; color: #1e40af; }
+    .card-status.complete { background: #d1fae5; color: #065f46; }
+    .card-status.active { background: #fef3c7; color: #92400e; }
+    
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 20px;
     }
     
-    /* AI Coach integration */
-    .ai-coach {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      padding: 16px;
-      border-radius: 12px;
-      margin: 16px 0;
-      position: relative;
-    }
-    
-    .ai-coach-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    label {
+      display: block;
+      font-size: 13px;
       font-weight: 600;
+      color: var(--text);
       margin-bottom: 8px;
     }
     
-    .ai-coach-content {
-      font-size: 14px;
-      line-height: 1.5;
+    label.required::after {
+      content: " *";
+      color: var(--error);
     }
     
-    .ai-actions {
+    input, select, textarea {
+      font-size: 16px;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      width: 100%;
+      font-family: inherit;
+      transition: all 0.2s;
+      background: white;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    input[readonly] {
+      background: var(--bg);
+      color: var(--text-muted);
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    
+    .input-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    
+    /* Grid Layouts */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+    }
+    
+    /* Buttons */
+    button {
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      min-height: 48px;
+    }
+    
+    button.primary {
+      background: var(--accent);
+      color: white;
+    }
+    
+    button.primary:hover:not(:disabled) {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+    
+    button.secondary {
+      background: var(--neutral);
+      color: white;
+    }
+    
+    button.secondary:hover:not(:disabled) {
+      background: var(--primary-light);
+    }
+    
+    button.success {
+      background: var(--success);
+      color: white;
+    }
+    
+    button.success:hover:not(:disabled) {
+      background: #059669;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    button.full-width {
+      width: 100%;
+      margin-top: 8px;
+    }
+    
+    /* Status Messages */
+    .status-message {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      margin: 16px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border-left: 4px solid;
+    }
+    
+    .status-message.info { 
+      background: #eff6ff; 
+      border-left-color: #3b82f6;
+      color: #1e40af;
+    }
+    
+    .status-message.success { 
+      background: #f0fdf4; 
+      border-left-color: #10b981;
+      color: #065f46;
+    }
+    
+    .status-message.warning { 
+      background: #fffbeb; 
+      border-left-color: #f59e0b;
+      color: #92400e;
+    }
+    
+    .status-message.error { 
+      background: #fef2f2; 
+      border-left-color: #ef4444;
+      color: #991b1b;
+    }
+    
+    /* Photo System */
+    .photo-toolbar {
       display: flex;
       gap: 8px;
-      margin-top: 12px;
+      margin-bottom: 16px;
     }
     
-    .ai-actions button {
-      background: rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.3);
-      color: white;
-      font-size: 12px;
-      padding: 6px 12px;
+    .photo-toolbar button {
+      flex: 1;
+      font-size: 13px;
+      padding: 10px;
       min-height: auto;
     }
     
-    /* Voice interface enhancement */
-    .voice-wrapper {
-      position: relative;
-    }
-    
-    .voice-btn {
-      position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 36px;
-      height: 36px;
-      padding: 0;
-      background: var(--fidelity-light);
-      border-radius: 50%;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: auto;
-      z-index: 5;
-    }
-    
-    .voice-btn.listening { 
-      background: var(--error-red);
-      animation: pulse 1s infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: translateY(-50%) scale(1); }
-      50% { transform: translateY(-50%) scale(1.1); }
-    }
-    
-    /* Enhanced photo system */
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 8px;
-      margin: 12px 0;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
     }
     
     .photo-item {
@@ -301,7 +399,13 @@
       border-radius: 8px;
       overflow: hidden;
       aspect-ratio: 1;
-      background: var(--border-light);
+      background: var(--border);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    
+    .photo-item:hover {
+      transform: scale(1.05);
     }
     
     .photo-item img {
@@ -322,876 +426,1137 @@
       font-weight: 600;
     }
     
-    /* Sticky action bar enhancement */
-    .actions {
+    .photo-delete {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(239, 68, 68, 0.9);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 0;
+      min-height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .photo-item:hover .photo-delete {
+      opacity: 1;
+    }
+    
+    /* Floating Camera Button */
+    .camera-fab {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+      z-index: 90;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      min-height: auto;
+    }
+    
+    .camera-fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    }
+    
+    /* Photo Modal */
+    .photo-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 200;
+      padding: 20px;
+    }
+    
+    .photo-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      color: var(--text);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 24px;
+      cursor: pointer;
+      min-height: auto;
+    }
+    
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    
+    .modal-buttons button {
+      min-width: 120px;
+    }
+    
+    /* Action Bar */
+    .action-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       background: white;
-      padding: 16px;
+      padding: 16px 20px;
       box-shadow: 0 -4px 16px rgba(0,0,0,0.1);
-      border-top: 1px solid var(--border-light);
+      border-top: 1px solid var(--border);
+      z-index: 80;
+    }
+    
+    .action-bar-content {
+      max-width: 800px;
+      margin: 0 auto;
       display: flex;
       gap: 12px;
     }
     
-    .actions button {
+    .action-bar button {
       flex: 1;
     }
     
-    /* Field validation styling */
-    input.error, select.error, textarea.error {
-      border-color: var(--error-red);
-      background-color: #fef2f2;
+    /* Checkbox Groups */
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
     }
     
-    input.success, select.success, textarea.success {
-      border-color: var(--success-green);
-      background-color: #f0fdf4;
-    }
-    
-    .field-feedback {
-      font-size: 12px;
-      margin-top: 4px;
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
       font-weight: 500;
+      font-size: 14px;
     }
     
-    .field-feedback.error { color: var(--error-red); }
-    .field-feedback.success { color: var(--success-green); }
-    .field-feedback.warning { color: var(--warning-amber); }
-    
-    /* Label enhancements */
-    label {
-      display: block;
-      font-size: 13px;
-      color: var(--neutral-gray);
-      margin-bottom: 6px;
-      font-weight: 600;
+    .checkbox-label:hover {
+      border-color: var(--accent);
     }
     
-    label.required::after {
-      content: " *";
-      color: var(--error-red);
+    .checkbox-label input {
+      width: auto;
+      cursor: pointer;
     }
     
-    /* Responsive adjustments */
-    @media (max-width: 480px) {
-      .grid { grid-template-columns: 1fr; }
-      .progress-steps { flex-wrap: wrap; }
-      .step { margin-bottom: 4px; }
+    .checkbox-label input:checked + span {
+      color: var(--accent);
     }
     
-    /* Hide mode-specific sections */
+    /* Mode-specific visibility */
     .cooling-only, .heating-only { display: none; }
     body.mode-cooling .cooling-only { display: block; }
     body.mode-heating .heating-only { display: block; }
+    .grid .cooling-only, .grid .heating-only { display: none; }
+    body.mode-cooling .grid .cooling-only { display: block; }
+    body.mode-heating .grid .heating-only { display: block; }
     
-    /* Loading states */
-    .loading {
-      position: relative;
-      pointer-events: none;
+    /* Responsive */
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+      .progress-steps { 
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+      .step { font-size: 10px; padding: 8px 2px; }
+      .header-content { flex-direction: column; gap: 12px; }
+      .action-bar-content { flex-direction: column; }
     }
     
-    .loading::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 20px;
-      height: 20px;
-      margin: -10px 0 0 -10px;
-      border: 2px solid var(--border-light);
-      border-radius: 50%;
-      border-top-color: var(--fidelity-light);
-      animation: spin 1s ease-in-out infinite;
+    /* Report Styling */
+    .report-section {
+      margin: 24px 0;
     }
     
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .report-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    
+    .report-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .report-label {
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    
+    .report-value {
+      color: var(--text);
+      font-weight: 500;
+      text-align: right;
     }
   </style>
 </head>
 <body class="mode-cooling">
 
-  <!-- Enhanced Header -->
+  <!-- Header -->
   <div class="header">
-    <div class="mode-badge" id="mode-indicator">COOLING MODE</div>
-    <h1>FieldBuddy Advanced™</h1>
-    <div class="tagline">Fidelity Mechanical Solutions • Diagnostic Engine</div>
+    <div class="header-content">
+      <h1>HVAC Pro Diagnostic</h1>
+      <div class="mode-selector">
+        <button class="mode-btn active" onclick="setMode('cooling')" id="btn-cooling">
+          ❄️ Cooling
+        </button>
+        <button class="mode-btn" onclick="setMode('heating')" id="btn-heating">
+          🔥 Heating
+        </button>
+      </div>
+    </div>
   </div>
 
-  <!-- FMS D.O.O. Progress Tracking -->
-  <div class="progress-bar">
+  <!-- Progress Tracker -->
+  <div class="progress">
     <div class="progress-steps">
-      <div class="step pending" data-step="power">POWER</div>
-      <div class="step pending" data-step="airflow">AIRFLOW</div>
-      <div class="step pending" data-step="electrical">ELECTRICAL</div>
-      <div class="step pending" data-step="refrigerant">REFRIGERANT</div>
-      <div class="step pending" data-step="controls">CONTROLS</div>
-      <div class="step pending" data-step="environment">ENVIRONMENT</div>
+      <div class="step" data-step="power">Power</div>
+      <div class="step" data-step="airflow">Airflow</div>
+      <div class="step" data-step="electrical">Electrical</div>
+      <div class="step" data-step="refrigerant">Refrigerant</div>
+      <div class="step" data-step="controls">Controls</div>
+      <div class="step" data-step="environment">Environment</div>
     </div>
-    <div class="progress-line">
+    <div class="progress-bar">
       <div class="progress-fill" id="progress-fill"></div>
     </div>
-    <div style="font-size: 12px; color: var(--neutral-gray); margin-top: 8px; text-align: center;">
-      FMS Diagnostic Method Progress: <span id="progress-text">0/6 Complete</span>
-    </div>
+    <div class="progress-text" id="progress-text">0 of 6 Steps Complete</div>
   </div>
 
-  <!-- AI Coach Integration -->
-  <div class="ai-coach" id="ai-coach" style="display: none;">
-    <div class="ai-coach-header">
-      <span>🤖</span>
-      <span>FieldBuddy AI Coach</span>
-    </div>
-    <div class="ai-coach-content" id="ai-message">
-      Welcome to your diagnostic session. Remember: Power before panic. Let's start with power verification.
-    </div>
-    <div class="ai-actions">
-      <button onclick="dismissCoach()">Got it</button>
-      <button onclick="askCoach()">Ask Question</button>
-    </div>
-  </div>
-
-  <!-- Job Context -->
-  <div class="card" data-step="setup">
-    <div class="card-header">
-      Job Setup
-      <div class="card-status complete" id="setup-status">Ready</div>
-    </div>
-    <label class="required">Customer Name</label>
-    <input type="text" id="customer" placeholder="Customer name" required oninput="validateField(this)">
-    <div class="field-feedback" id="customer-feedback"></div>
+  <div class="container">
     
-    <label class="required">Service Address</label>
-    <input type="text" id="address" placeholder="Service address" required oninput="validateField(this)">
-    <div class="field-feedback" id="address-feedback"></div>
-    
-    <label>Customer Complaint</label>
-    <div class="voice-wrapper">
-      <textarea id="complaint" placeholder="Customer complaint (in their words)" rows="2" oninput="validateField(this)"></textarea>
-      <button class="voice-btn" data-voice="complaint">🎤</button>
-    </div>
-    <div class="field-feedback" id="complaint-feedback"></div>
-  </div>
-
-  <!-- Equipment Identity -->
-  <div class="card" data-step="equipment">
-    <div class="card-header">
-      Equipment Identity
-      <div class="card-status" id="equipment-status">Pending</div>
-    </div>
-    
-    <label>Equipment Location</label>
-    <input type="text" id="location" placeholder="e.g., Attic above master bedroom" oninput="validateField(this)">
-    
-    <label class="required">Indoor Unit Data</label>
-    <div class="voice-wrapper">
-      <input type="text" id="indoor-data" placeholder="Brand/Model/Serial - speak or scan nameplate" required oninput="validateField(this)">
-      <button class="voice-btn" data-voice="indoor-data">🎤</button>
-    </div>
-    <div class="field-feedback" id="indoor-data-feedback"></div>
-    
-    <label class="required">Outdoor Unit Data</label>
-    <div class="voice-wrapper">
-      <input type="text" id="outdoor-data" placeholder="Brand/Model/Serial - speak or scan nameplate" required oninput="validateField(this)">
-      <button class="voice-btn" data-voice="outdoor-data">🎤</button>
-    </div>
-    <div class="field-feedback" id="outdoor-data-feedback"></div>
-    
-    <label>Manufacture Date</label>
-    <input type="date" id="mfg-date" oninput="validateField(this)">
-    
-    <label class="required">Refrigerant Type</label>
-    <select id="refrigerant" required onchange="validateField(this)">
-      <option value="">Select refrigerant type...</option>
-      <option value="R-410A">R-410A</option>
-      <option value="R-22">R-22 (Legacy)</option>
-      <option value="R-32">R-32</option>
-      <option value="R-134A">R-134A</option>
-    </select>
-    <div class="field-feedback" id="refrigerant-feedback"></div>
-    
-    <!-- Mode Selection -->
-    <div style="margin-top: 16px;">
-      <label>Operating Mode</label>
-      <div class="grid">
-        <button onclick="setMode('cooling')" id="btn-cooling">❄️ Cooling Mode</button>
-        <button onclick="setMode('heating')" id="btn-heating" class="secondary">🔥 Heating Mode</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- STEP 1: POWER -->
-  <div class="card locked" data-step="power" id="power-card">
-    <div class="card-header">
-      Step 1: Power Verification
-      <div class="card-status" id="power-status">Locked</div>
-    </div>
-    
-    <div class="status info">
-      <span>⚡</span>
-      FMS Method: Always verify power before proceeding. No testing on unpowered systems.
-    </div>
-    
-    <label>Disconnect Present & Functional</label>
-    <select id="disconnect-status" onchange="validatePowerStep()">
-      <option value="">Check disconnect...</option>
-      <option value="present">Present and functional</option>
-      <option value="missing">Missing or non-functional</option>
-      <option value="bypassed">Bypassed - SAFETY CONCERN</option>
-    </select>
-    
-    <div class="grid">
-      <div>
-        <label class="required">Line Voltage (L1-L2)</label>
-        <input type="number" id="voltage-line" placeholder="208-240V typical" step="0.1" required onchange="validatePowerStep()">
-      </div>
-      <div>
-        <label>Control Voltage (24V)</label>
-        <input type="number" id="voltage-control" placeholder="18-30V range" step="0.1" onchange="validatePowerStep()">
-      </div>
-    </div>
-    
-    <div class="grid">
-      <div>
-        <label>Voltage L1-N</label>
-        <input type="number" id="voltage-l1n" step="0.1" onchange="validatePowerStep()">
-      </div>
-      <div>
-        <label>Voltage L2-N</label>
-        <input type="number" id="voltage-l2n" step="0.1" onchange="validatePowerStep()">
-      </div>
-    </div>
-    
-    <div id="power-validation"></div>
-    
-    <button onclick="completePowerStep()" id="power-complete-btn" class="success" disabled>
-      ✓ Power Verified - Proceed to Airflow
-    </button>
-  </div>
-
-  <!-- STEP 2: AIRFLOW -->
-  <div class="card locked" data-step="airflow" id="airflow-card">
-    <div class="card-header">
-      Step 2: Airflow Verification
-      <div class="card-status" id="airflow-status">Locked</div>
-    </div>
-    
-    <div class="status info">
-      <span>💨</span>
-      FMS Method: Never skip airflow verification. No refrigerant testing until airflow is confirmed.
-    </div>
-    
-    <label class="required">Filter Condition</label>
-    <select id="filter-condition" onchange="validateAirflowStep()" required>
-      <option value="">Assess filter...</option>
-      <option value="clean">Clean - good airflow</option>
-      <option value="light-dust">Light dust - acceptable</option>
-      <option value="dirty">Dirty - restricting airflow</option>
-      <option value="blocked">Severely blocked - major restriction</option>
-      <option value="missing">Missing filter</option>
-    </select>
-    
-    <div class="grid">
-      <div>
-        <label>Return Static Pressure</label>
-        <input type="number" id="return-static" placeholder="-0.1 to -0.3 typical" step="0.01" onchange="validateAirflowStep()">
-      </div>
-      <div>
-        <label>Supply Static Pressure</label>
-        <input type="number" id="supply-static" placeholder="0.2 to 0.5 typical" step="0.01" onchange="validateAirflowStep()">
-      </div>
-    </div>
-    
-    <label>Total External Static Pressure</label>
-    <input type="text" id="total-static" readonly>
-    
-    <label>Blower Operation</label>
-    <select id="blower-operation" onchange="validateAirflowStep()">
-      <option value="">Check blower...</option>
-      <option value="normal">Normal operation - good airflow</option>
-      <option value="reduced">Reduced airflow - possible restriction</option>
-      <option value="noisy">Noisy operation</option>
-      <option value="failed">Not operating</option>
-    </select>
-    
-    <div id="airflow-validation"></div>
-    
-    <button onclick="completeAirflowStep()" id="airflow-complete-btn" class="success" disabled>
-      ✓ Airflow Verified - Proceed to Electrical
-    </button>
-  </div>
-
-  <!-- STEP 3: ELECTRICAL -->
-  <div class="card locked" data-step="electrical" id="electrical-card">
-    <div class="card-header">
-      Step 3: Electrical Components
-      <div class="card-status" id="electrical-status">Locked</div>
-    </div>
-    
-    <div class="status info">
-      <span>⚡</span>
-      FMS Method: Verify electrical components under load when possible.
-    </div>
-    
-    <div class="grid">
-      <div>
-        <label>Blower Motor Amps</label>
-        <input type="text" id="blower-amps" placeholder="Actual/Rated (e.g., 8.2/10.0)" onchange="validateElectricalStep()">
-      </div>
-      <div class="cooling-only">
-        <label>Compressor Amps</label>
-        <input type="text" id="comp-amps" placeholder="Actual/Rated" onchange="validateElectricalStep()">
-      </div>
-      <div class="heating-only">
-        <label>Inducer Motor Amps</label>
-        <input type="number" id="inducer-amps" step="0.1" onchange="validateElectricalStep()">
-      </div>
-    </div>
-    
-    <div class="cooling-only">
-      <label>Condenser Fan Motor Amps</label>
-      <input type="number" id="cond-fan-amps" step="0.1" onchange="validateElectricalStep()">
-    </div>
-    
-    <label class="required">Capacitor Condition</label>
-    <div class="voice-wrapper">
-      <input type="text" id="capacitor-reading" placeholder="Measured µF vs rated µF" required onchange="validateElectricalStep()">
-      <button class="voice-btn" data-voice="capacitor-reading">🎤</button>
-    </div>
-    
-    <label>Contactor Condition</label>
-    <select id="contactor-condition" onchange="validateElectricalStep()">
-      <option value="">Inspect contactor...</option>
-      <option value="excellent">Excellent - clean contacts</option>
-      <option value="good">Good - light wear</option>
-      <option value="fair">Fair - moderate pitting</option>
-      <option value="poor">Poor - heavy pitting, recommend replacement</option>
-      <option value="failed">Failed - burned/welded contacts</option>
-    </select>
-    
-    <div id="electrical-validation"></div>
-    
-    <button onclick="completeElectricalStep()" id="electrical-complete-btn" class="success" disabled>
-      ✓ Electrical Verified - Proceed to Refrigerant
-    </button>
-  </div>
-
-  <!-- STEP 4: REFRIGERANT -->
-  <div class="card locked" data-step="refrigerant" id="refrigerant-card">
-    <div class="card-header">
-      Step 4: Refrigerant Circuit
-      <div class="card-status" id="refrigerant-status">Locked</div>
-    </div>
-    
-    <div class="status info">
-      <span>❄️</span>
-      FMS Method: Only after airflow is confirmed. Always measure superheat AND subcool.
-    </div>
-    
-    <div class="cooling-only">
-      <div class="grid">
-        <div>
-          <label class="required">Suction Pressure (psig)</label>
-          <input type="number" id="suction-pressure" step="0.1" required onchange="validateRefrigerantStep()">
+    <!-- Job Information -->
+    <div class="card" id="job-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="emoji">📋</span>
+          Job Information
         </div>
-        <div>
-          <label class="required">Liquid Pressure (psig)</label>
-          <input type="number" id="liquid-pressure" step="0.1" required onchange="validateRefrigerantStep()">
+        <div class="card-status ready">Required</div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="required">Customer Name</label>
+          <input type="text" id="customer" placeholder="Enter customer name" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="required">Service Address</label>
+          <input type="text" id="address" placeholder="Enter service address" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Customer Complaint</label>
+          <textarea id="complaint" placeholder="Describe the customer's complaint in their own words"></textarea>
         </div>
       </div>
-      
-      <div class="grid">
-        <div>
-          <label class="required">Suction Line Temperature</label>
-          <input type="number" id="suction-temp" step="0.1" required onchange="validateRefrigerantStep()">
-        </div>
-        <div>
-          <label class="required">Liquid Line Temperature</label>
-          <input type="number" id="liquid-temp" step="0.1" required onchange="validateRefrigerantStep()">
-        </div>
-      </div>
-      
-      <div class="grid">
-        <div>
-          <label>Superheat (calculated)</label>
-          <input type="text" id="superheat-calc" readonly>
-        </div>
-        <div>
-          <label>Subcool (calculated)</label>
-          <input type="text" id="subcool-calc" readonly>
-        </div>
-      </div>
-      
-      <div id="superheat-status"></div>
-      <div id="subcool-status"></div>
     </div>
-    
-    <div class="heating-only">
-      <div class="grid">
-        <div>
-          <label>Gas Input (BTU/hr)</label>
-          <input type="number" id="gas-input" onchange="validateRefrigerantStep()">
+
+    <!-- Equipment Information -->
+    <div class="card" id="equipment-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="emoji">🔧</span>
+          Equipment Information
         </div>
-        <div>
-          <label>Manifold Pressure (in w.c.)</label>
-          <input type="number" id="manifold-pressure" step="0.1" onchange="validateRefrigerantStep()">
+        <div class="card-status ready">Required</div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label>Unit Location</label>
+          <input type="text" id="location" placeholder="Attic, Garage, Basement, Closet, etc.">
+        </div>
+
+        <div class="grid">
+          <div class="form-group">
+            <label class="required">Indoor Unit Brand</label>
+            <input type="text" id="indoor-brand" placeholder="e.g., Carrier" required>
+          </div>
+          <div class="form-group">
+            <label class="required">Indoor Model #</label>
+            <input type="text" id="indoor-model" placeholder="e.g., 58MVC" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Indoor Serial #</label>
+          <input type="text" id="indoor-serial" placeholder="e.g., 1234567890" required>
+        </div>
+
+        <div class="grid">
+          <div class="form-group">
+            <label class="required">Outdoor Unit Brand</label>
+            <input type="text" id="outdoor-brand" placeholder="e.g., Carrier" required>
+          </div>
+          <div class="form-group">
+            <label class="required">Outdoor Model #</label>
+            <input type="text" id="outdoor-model" placeholder="e.g., 24ABC6" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Outdoor Serial #</label>
+          <input type="text" id="outdoor-serial" placeholder="e.g., 0987654321" required>
+        </div>
+
+        <div class="grid">
+          <div class="form-group">
+            <label class="required">System Tonnage</label>
+            <select id="tonnage" required>
+              <option value="">Select tonnage...</option>
+              <option value="1.5">1.5 Ton</option>
+              <option value="2">2 Ton</option>
+              <option value="2.5">2.5 Ton</option>
+              <option value="3">3 Ton</option>
+              <option value="3.5">3.5 Ton</option>
+              <option value="4">4 Ton</option>
+              <option value="5">5 Ton</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="required">Refrigerant Type</label>
+            <select id="refrigerant" required>
+              <option value="">Select refrigerant...</option>
+              <option value="R-410A">R-410A</option>
+              <option value="R-22">R-22 (Legacy)</option>
+              <option value="R-32">R-32</option>
+              <option value="R-454B">R-454B</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid cooling-only">
+          <div class="form-group">
+            <label>Metering Device Type</label>
+            <select id="metering-device">
+              <option value="">Select type...</option>
+              <option value="TXV">TXV (Thermostatic Expansion Valve)</option>
+              <option value="Piston">Fixed Orifice / Piston</option>
+              <option value="EEV">EEV (Electronic Expansion Valve)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Manufacture Date</label>
+            <input type="date" id="mfg-date">
+          </div>
         </div>
       </div>
-      
-      <label>Heat Exchanger Condition</label>
-      <select id="heat-exchanger" onchange="validateRefrigerantStep()">
-        <option value="">Inspect heat exchanger...</option>
-        <option value="clean">Clean - no restrictions</option>
-        <option value="light-buildup">Light buildup</option>
-        <option value="restricted">Restricted - needs cleaning</option>
-        <option value="cracked">Cracked - safety concern</option>
-      </select>
     </div>
-    
-    <div id="refrigerant-validation"></div>
-    
-    <button onclick="completeRefrigerantStep()" id="refrigerant-complete-btn" class="success" disabled>
-      ✓ Refrigerant Verified - Proceed to Controls
-    </button>
+
+    <!-- STEP 1: POWER -->
+    <div class="card" id="power-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="emoji">⚡</span>
+          Step 1: Power Verification
+        </div>
+        <div class="card-status ready" id="power-status">Start</div>
+      </div>
+      <div class="card-body">
+        <div class="status-message info">
+          <span>💡</span>
+          <span>Always verify power before proceeding. Never test unpowered systems.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Disconnect Status</label>
+          <select id="disconnect-status" required>
+            <option value="">Check disconnect...</option>
+            <option value="present">Present and Functional</option>
+            <option value="missing">Missing or Non-functional</option>
+            <option value="bypassed">Bypassed - SAFETY ISSUE</option>
+          </select>
+        </div>
+
+        <div class="grid">
+          <div class="form-group">
+            <label class="required">Line Voltage (L1-L2)</label>
+            <input type="number" id="voltage-line" placeholder="208-240" step="0.1" required>
+            <div class="input-hint">Typical: 208-240V</div>
+          </div>
+          <div class="form-group">
+            <label>Control Voltage (24V)</label>
+            <input type="number" id="voltage-control" placeholder="18-30" step="0.1">
+            <div class="input-hint">Typical: 22-26V</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="form-group">
+            <label>Voltage L1-N</label>
+            <input type="number" id="voltage-l1n" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>Voltage L2-N</label>
+            <input type="number" id="voltage-l2n" step="0.1">
+          </div>
+        </div>
+
+        <div id="power-validation"></div>
+
+        <button class="success full-width" onclick="completeStep('power')" id="power-btn" disabled>
+          ✓ Complete Power Verification
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: AIRFLOW -->
+    <div class="card" id="airflow-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="emoji">💨</span>
+          Step 2: Airflow Assessment
+        </div>
+        <div class="card-status ready" id="airflow-status">Start</div>
+      </div>
+      <div class="card-body">
+        <div class="status-message info">
+          <span>💡</span>
+          <span>Verify adequate airflow before refrigerant testing. No gauges without airflow confirmation.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Filter Condition</label>
+          <select id="filter-condition" required>
+            <option value="">Inspect filter...</option>
+            <option value="clean">Clean - Good Airflow</option>
+            <option value="lightly-soiled">Lightly Soiled - Acceptable</option>
+            <option value="dirty">Dirty - Restricting Airflow</option>
+            <option value="severely-blocked">Severely Blocked</option>
+            <option value="missing">Missing Filter</option>
+          </select>
+        </div>
+
+        <div class="grid">
+          <div class="form-group">
+            <label>Return Static Pressure</label>
+            <input type="number" id="return-static" placeholder="-0.10" step="0.01">
+            <div class="input-hint">Typically negative (-0.1 to -0.3)</div>
+          </div>
+          <div class="form-group">
+            <label>Supply Static Pressure</label>
+            <input type="number" id="supply-static" placeholder="0.30" step="0.01">
+            <div class="input-hint">Typically positive (0.2 to 0.5)</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Total Static Pressure (TESP)</label>
+          <input type="text" id="total-static" readonly>
+          <div class="input-hint">Auto-calculated when both values entered</div>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Blower Status</label>
+          <select id="blower-operation" required>
+            <option value="">Check blower...</option>
+            <option value="normal">Normal Operation</option>
+            <option value="reduced">Reduced Airflow</option>
+            <option value="noisy">Noisy Operation</option>
+            <option value="inoperative">Inoperative</option>
+          </select>
+        </div>
+
+        <div id="airflow-validation"></div>
+
+        <button class="success full-width" onclick="completeStep('airflow')" id="airflow-btn" disabled>
+          ✓ Complete Airflow Assessment
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 3: ELECTRICAL -->
+    <div class="card" id="electrical-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="emoji">🔌</span>
+          Step 3: Electrical Components
+        </div>
+        <div class="card-status ready" id="electrical-status">Start</div>
+      </div>
+      <div class="card-body">
+        <div class="status-message info">
+          <span>💡</span>
+          <span>Test components under load when possible. Check amperage against nameplate ratings.</span>
+        </div>
+
+        <div class="grid">
+          <div class="form-group">
+            <label>Blower Motor Amps</label>
+            <input type="text" id="blower-amps" placeholder="Format: 8.2/10.0 (actual/rated)">
+          </div>
+          <div class="form-group cooling-only">
+            <label>Compressor Amps</label>
+            <input type="text" id="comp-amps" placeholder="Format: 18.5/21.0">
+          </div>
+          <div class="form-group heating-only">
+            <label>Inducer Motor Amps</label>
+            <input type="number" id="inducer-amps" step="0.1">
+          </div>
+        </div>
+
+        <div class="cooling-only">
+          <div class="form-group">
+            <label>Condenser Fan Motor Amps</label>
+            <input type="number" id="cond-fan-amps" step="0.1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Run Capacitor Reading</label>
+          <input type="text" id="capacitor-reading" placeholder="Format: 45/50 µF (measured/rated)" required>
+        </div>
+
+        <div class="form-group cooling-only">
+          <label>Start Capacitor (if equipped)</label>
+          <input type="text" id="start-capacitor" placeholder="Format: 88/100 µF">
+        </div>
+
+        <div class="form-group cooling-only">
+          <label class="required">Contactor Condition</label>
+          <select id="contactor-condition" required>
+            <option value="">Inspect contactor...</option>
+            <option value="good">Good - Minimal Wear</option>
+            <option value="fair">Fair - Moderate Pitting</option>
+            <option value="poor">Poor - Heavy Pitting, Recommend Replacement</option>
+            <option value="failed">Failed - Burned or Welded Contacts</option>
+          </select>
+        </div>
+
+        <div id="electrical-validation"></div>
+
+        <button class="success full-width" onclick="completeStep('electrical')" id="electrical-btn" disabled>
+          ✓ Complete Electrical Testing
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 4: REFRIGERANT -->
+    <div class="card" id="refrigerant-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="emoji">❄️</span>
+          Step 4: Refrigerant Circuit
+        </div>
+        <div class="card-status ready" id="refrigerant-status">Start</div>
+      </div>
+      <div class="card-body">
+        <div class="status-message info">
+          <span>💡</span>
+          <span>Only test after airflow confirmation. Always measure both superheat AND subcool.</span>
+        </div>
+
+        <!-- Cooling Mode -->
+        <div class="cooling-only">
+          <div class="grid">
+            <div class="form-group">
+              <label class="required">Suction Pressure (psig)</label>
+              <input type="number" id="suction-pressure" step="0.1" required>
+            </div>
+            <div class="form-group">
+              <label class="required">Liquid Pressure (psig)</label>
+              <input type="number" id="liquid-pressure" step="0.1" required>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="form-group">
+              <label class="required">Suction Line Temp (°F)</label>
+              <input type="number" id="suction-temp" step="0.1" required>
+            </div>
+            <div class="form-group">
+              <label class="required">Liquid Line Temp (°F)</label>
+              <input type="number" id="liquid-temp" step="0.1" required>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="form-group">
+              <label>Outdoor Dry Bulb (°F)</label>
+              <input type="number" id="outdoor-dry-bulb" step="0.1">
+            </div>
+            <div class="form-group">
+              <label>Outdoor Wet Bulb (°F)</label>
+              <input type="number" id="outdoor-wet-bulb" step="0.1">
+              <div class="input-hint">Required for accurate charge verification</div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="form-group">
+              <label>Indoor Dry Bulb (°F)</label>
+              <input type="number" id="indoor-dry-bulb" step="0.1">
+            </div>
+            <div class="form-group">
+              <label>Indoor Wet Bulb (°F)</label>
+              <input type="number" id="indoor-wet-bulb" step="0.1">
+              <div class="input-hint">For CFM calculations</div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="form-group">
+              <label>Superheat (calculated)</label>
+              <input type="text" id="superheat-calc" readonly>
+            </div>
+            <div class="form-group">
+              <label>Subcool (calculated)</label>
+              <input type="text" id="subcool-calc" readonly>
+            </div>
+          </div>
+
+          <div id="superheat-status"></div>
+          <div id="subcool-status"></div>
+        </div>
+
+        <!-- Heating Mode -->
+        <div class="heating-only">
+          <div class="grid">
+            <div class="form-group">
+              <label>Gas Input (BTU/hr)</label>
+              <input type="number" id="gas-input">
+            </div>
+            <div class="form-group">
+              <label>Manifold Pressure (in w.c.)</label>
+              <input type="number" id="manifold-pressure" step="0.1">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Heat Exchanger Condition</label>
+            <select id="heat-exchanger">
+              <option value="">Inspect heat exchanger...</option>
+              <option value="clean">Clean - No Restrictions</option>
+              <option value="light-buildup">Light Buildup</option>
+              <option value="restricted">Restricted - Needs Cleaning</option>
+              <option value="cracked">Cracked - SAFETY ISSUE</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Flame Sensor Reading (µA)</label>
+            <input type="number" id="flame-sensor" step="0.1">
+            <div class="input-hint">Minimum 0.5 µA, typical 2-8 µA</div>
+          </div>
+        </div>
+
+        <div id="refrigerant-validation"></div>
+
+        <button class="success full-width" onclick="completeStep('refrigerant')" id="refrigerant-btn" disabled>
+          ✓ Complete Refrigerant Testing
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 5: CONTROLS -->
+    <div class="card" id="controls-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="emoji">🎛️</span>
+          Step 5: Controls & System Response
+        </div>
+        <div class="card-status ready" id="controls-status">Start</div>
+      </div>
+      <div class="card-body">
+        <div class="status-message info">
+          <span>💡</span>
+          <span>Verify actual system response matches expected behavior.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Thermostat Communication</label>
+          <select id="thermostat-comm" required>
+            <option value="">Test thermostat...</option>
+            <option value="normal">Normal - Responds to Calls</option>
+            <option value="intermittent">Intermittent Response</option>
+            <option value="no-comm">No Communication</option>
+            <option value="wiring-issue">Wiring Issue Detected</option>
+          </select>
+        </div>
+
+        <div class="grid">
+          <div class="form-group">
+            <label class="required">Return Air Temp (°F)</label>
+            <input type="number" id="return-air-temp" step="0.1" required>
+          </div>
+          <div class="form-group">
+            <label class="required">Supply Air Temp (°F)</label>
+            <input type="number" id="supply-air-temp" step="0.1" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Delta T (calculated)</label>
+          <input type="text" id="delta-t-calc" readonly>
+          <div class="input-hint">Cooling: 16-22°F ideal | Heating: 40-70°F ideal</div>
+        </div>
+
+        <div id="delta-t-status"></div>
+
+        <div class="form-group">
+          <label>Safety Controls</label>
+          <div class="checkbox-group cooling-only">
+            <label class="checkbox-label">
+              <input type="checkbox" id="high-pressure">
+              <span>High Pressure OK</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="low-pressure">
+              <span>Low Pressure OK</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="float-switch">
+              <span>Float Switch OK</span>
+            </label>
+          </div>
+
+          <div class="checkbox-group heating-only">
+            <label class="checkbox-label">
+              <input type="checkbox" id="flame-sensor-ok">
+              <span>Flame Sensor OK</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="limit-switch">
+              <span>Limit Switch OK</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="pressure-switch">
+              <span>Pressure Switch OK</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="rollout-switch">
+              <span>Rollout Switch OK</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="controls-validation"></div>
+
+        <button class="success full-width" onclick="completeStep('controls')" id="controls-btn" disabled>
+          ✓ Complete Controls Testing
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 6: ENVIRONMENT -->
+    <div class="card" id="environment-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="emoji">🌡️</span>
+          Step 6: Environmental Assessment
+        </div>
+        <div class="card-status ready" id="environment-status">Start</div>
+      </div>
+      <div class="card-body">
+        <div class="status-message info">
+          <span>💡</span>
+          <span>Site conditions often reveal the root cause. Document everything.</span>
+        </div>
+
+        <div class="grid">
+          <div class="form-group">
+            <label>Outdoor Temperature (°F)</label>
+            <input type="number" id="outdoor-temp" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>Outdoor Humidity (%)</label>
+            <input type="number" id="outdoor-humidity" min="0" max="100">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Evaporator Coil Condition</label>
+          <select id="evap-coil-condition" required>
+            <option value="">Inspect evaporator coil...</option>
+            <option value="clean">Clean - No Obstructions</option>
+            <option value="dusty">Dusty - Light Cleaning Needed</option>
+            <option value="dirty">Dirty - Significant Restriction</option>
+            <option value="frozen">Frozen - Airflow/Charge Issue</option>
+            <option value="corroded">Corroded - Replacement Needed</option>
+          </select>
+        </div>
+
+        <div class="form-group cooling-only">
+          <label class="required">Condenser Coil Condition</label>
+          <select id="cond-coil-condition" required>
+            <option value="">Inspect condenser coil...</option>
+            <option value="clean">Clean - Good Heat Transfer</option>
+            <option value="dusty">Dusty - Light Cleaning Needed</option>
+            <option value="dirty">Dirty - Reduced Efficiency</option>
+            <option value="severely-blocked">Severely Blocked</option>
+            <option value="damaged-fins">Damaged Fins</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Drainage System</label>
+          <select id="drainage-condition" required>
+            <option value="">Check drainage...</option>
+            <option value="clear">Clear - Draining Properly</option>
+            <option value="slow">Slow Drainage</option>
+            <option value="blocked">Blocked - Standing Water</option>
+            <option value="backup">Backup - Overflow Risk</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Condensate Trap Condition</label>
+          <select id="trap-condition">
+            <option value="">Inspect trap...</option>
+            <option value="good">Good - Proper Seal</option>
+            <option value="dry">Dry - Needs Priming</option>
+            <option value="clogged">Clogged</option>
+            <option value="missing">Missing or Damaged</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Ductwork Assessment</label>
+          <select id="ductwork">
+            <option value="">Assess ductwork...</option>
+            <option value="good">Good - No Issues</option>
+            <option value="minor-leaks">Minor Leaks Detected</option>
+            <option value="major-leaks">Major Leaks - Significant Loss</option>
+            <option value="disconnected">Disconnected Sections</option>
+            <option value="undersized">Undersized for System</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Environmental Factors / Site Observations</label>
+          <textarea id="site-issues" placeholder="Document any environmental factors affecting performance"></textarea>
+        </div>
+
+        <div id="environment-validation"></div>
+
+        <button class="success full-width" onclick="completeStep('environment')" id="environment-btn" disabled>
+          ✓ Complete Environmental Assessment
+        </button>
+      </div>
+    </div>
+
+    <!-- Diagnosis & Recommendations -->
+    <div class="card" id="findings-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="emoji">📝</span>
+          Diagnosis & Recommendations
+        </div>
+        <div class="card-status ready" id="findings-status">Final Step</div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="required">Diagnosis</label>
+          <textarea id="diagnosis" placeholder="What's wrong and why - be specific with technical details" rows="4" required></textarea>
+          <div class="input-hint">Clearly state the problem and the evidence supporting your diagnosis</div>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Recommended Repairs</label>
+          <textarea id="repairs" placeholder="Specific repair steps, parts needed, and estimated time" rows="4" required></textarea>
+          <div class="input-hint">Include part numbers and specifications when applicable</div>
+        </div>
+
+        <div class="form-group">
+          <label>Preventive Measures</label>
+          <textarea id="preventive" placeholder="How to prevent this issue in the future" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Additional Notes</label>
+          <textarea id="additional-notes" placeholder="Any other relevant information" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo Documentation -->
+    <div class="card" id="photos-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="emoji">📸</span>
+          Photo Documentation
+        </div>
+        <div class="card-status ready">Optional</div>
+      </div>
+      <div class="card-body">
+        <div class="photo-toolbar">
+          <button class="secondary" onclick="takePhoto('nameplate')">📷 Nameplate</button>
+          <button class="secondary" onclick="takePhoto('problem')">📷 Problem Area</button>
+          <button class="secondary" onclick="takePhoto('before')">📷 Before</button>
+          <button class="secondary" onclick="takePhoto('after')">📷 After</button>
+        </div>
+        <div class="photo-grid" id="photo-preview"></div>
+      </div>
+    </div>
+
+    <!-- Generated Report will appear here -->
+    <div id="report-container"></div>
+
   </div>
 
-  <!-- STEP 5: CONTROLS -->
-  <div class="card locked" data-step="controls" id="controls-card">
-    <div class="card-header">
-      Step 5: Controls & Sensors
-      <div class="card-status" id="controls-status">Locked</div>
-    </div>
-    
-    <div class="status info">
-      <span>🎛️</span>
-      FMS Method: Verify system response matches expected behavior.
-    </div>
-    
-    <label>Thermostat Communication</label>
-    <select id="thermostat-comm" onchange="validateControlsStep()">
-      <option value="">Test thermostat...</option>
-      <option value="normal">Normal - responds to calls</option>
-      <option value="intermittent">Intermittent response</option>
-      <option value="no-comm">No communication</option>
-      <option value="wiring-issue">Wiring issue detected</option>
-    </select>
-    
-    <div class="grid">
-      <div>
-        <label>Return Air Temperature</label>
-        <input type="number" id="return-air-temp" step="0.1" onchange="validateControlsStep()">
-      </div>
-      <div>
-        <label>Supply Air Temperature</label>
-        <input type="number" id="supply-air-temp" step="0.1" onchange="validateControlsStep()">
-      </div>
-    </div>
-    
-    <label>Delta T (calculated)</label>
-    <input type="text" id="delta-t-calc" readonly>
-    <div id="delta-t-status"></div>
-    
-    <label>Safety Controls</label>
-    <div class="grid-3">
-      <label><input type="checkbox" id="high-pressure" onchange="validateControlsStep()"> High Pressure OK</label>
-      <label><input type="checkbox" id="low-pressure" onchange="validateControlsStep()"> Low Pressure OK</label>
-      <label><input type="checkbox" id="float-switch" onchange="validateControlsStep()"> Float Switch OK</label>
-    </div>
-    
-    <div class="heating-only">
-      <div class="grid-3">
-        <label><input type="checkbox" id="flame-sensor" onchange="validateControlsStep()"> Flame Sensor OK</label>
-        <label><input type="checkbox" id="limit-switch" onchange="validateControlsStep()"> Limit Switch OK</label>
-        <label><input type="checkbox" id="pressure-switch" onchange="validateControlsStep()"> Pressure Switch OK</label>
-      </div>
-    </div>
-    
-    <div id="controls-validation"></div>
-    
-    <button onclick="completeControlsStep()" id="controls-complete-btn" class="success" disabled>
-      ✓ Controls Verified - Proceed to Environment
-    </button>
-  </div>
+  <!-- Floating Camera Button -->
+  <button class="camera-fab" onclick="showPhotoModal()" title="Take Photo">
+    📷
+  </button>
 
-  <!-- STEP 6: ENVIRONMENT -->
-  <div class="card locked" data-step="environment" id="environment-card">
-    <div class="card-header">
-      Step 6: Environmental Factors
-      <div class="card-status" id="environment-status">Locked</div>
-    </div>
-    
-    <div class="status info">
-      <span>🌡️</span>
-      FMS Method: Site conditions often reveal the true problem.
-    </div>
-    
-    <div class="grid">
-      <div>
-        <label>Outdoor Temperature</label>
-        <input type="number" id="outdoor-temp" step="0.1" onchange="validateEnvironmentStep()">
-      </div>
-      <div>
-        <label>Outdoor Humidity (%)</label>
-        <input type="number" id="outdoor-humidity" onchange="validateEnvironmentStep()">
-      </div>
-    </div>
-    
-    <label>Coil Conditions</label>
-    <select id="evap-coil-condition" onchange="validateEnvironmentStep()">
-      <option value="">Inspect evaporator coil...</option>
-      <option value="clean">Clean - no obstructions</option>
-      <option value="dusty">Dusty - light cleaning needed</option>
-      <option value="dirty">Dirty - significant restriction</option>
-      <option value="frozen">Frozen - airflow/charge issue</option>
-      <option value="corroded">Corroded - replacement needed</option>
-    </select>
-    
-    <select id="cond-coil-condition" onchange="validateEnvironmentStep()">
-      <option value="">Inspect condenser coil...</option>
-      <option value="clean">Clean - good heat transfer</option>
-      <option value="dusty">Dusty - light cleaning needed</option>
-      <option value="dirty">Dirty - reduced efficiency</option>
-      <option value="blocked">Severely blocked</option>
-      <option value="damaged">Damaged fins</option>
-    </select>
-    
-    <label>Drainage</label>
-    <select id="drainage-condition" onchange="validateEnvironmentStep()">
-      <option value="">Check drainage...</option>
-      <option value="clear">Clear - draining properly</option>
-      <option value="slow">Slow drainage</option>
-      <option value="blocked">Blocked - standing water</option>
-      <option value="backup">Backup - overflow risk</option>
-    </select>
-    
-    <label>Site-Specific Issues</label>
-    <div class="voice-wrapper">
-      <textarea id="site-issues" placeholder="Note any environmental factors affecting performance" rows="2" onchange="validateEnvironmentStep()"></textarea>
-      <button class="voice-btn" data-voice="site-issues">🎤</button>
-    </div>
-    
-    <div id="environment-validation"></div>
-    
-    <button onclick="completeEnvironmentStep()" id="environment-complete-btn" class="success" disabled>
-      ✓ Environment Assessed - Complete Diagnostic
-    </button>
-  </div>
-
-  <!-- Findings and Recommendations -->
-  <div class="card locked" id="findings-card">
-    <div class="card-header">
-      Diagnostic Summary
-      <div class="card-status" id="findings-status">Locked</div>
-    </div>
-    
-    <label class="required">Primary Findings</label>
-    <div class="voice-wrapper">
-      <textarea id="primary-findings" placeholder="What's wrong and why - be specific" rows="3" required></textarea>
-      <button class="voice-btn" data-voice="primary-findings">🎤</button>
-    </div>
-    
-    <label>Root Cause Analysis</label>
-    <div class="voice-wrapper">
-      <textarea id="root-cause" placeholder="Why this failure occurred" rows="2"></textarea>
-      <button class="voice-btn" data-voice="root-cause">🎤</button>
-    </div>
-    
-    <label class="required">Repair Recommendations</label>
-    <div class="voice-wrapper">
-      <textarea id="repair-recommendations" placeholder="Specific repair steps and options" rows="3" required></textarea>
-      <button class="voice-btn" data-voice="repair-recommendations">🎤</button>
-    </div>
-    
-    <label>Preventive Measures</label>
-    <div class="voice-wrapper">
-      <textarea id="preventive-measures" placeholder="How to prevent future issues" rows="2"></textarea>
-      <button class="voice-btn" data-voice="preventive-measures">🎤</button>
+  <!-- Photo Modal -->
+  <div class="photo-modal" id="photo-modal">
+    <button class="modal-close" onclick="hidePhotoModal()">×</button>
+    <h2 style="color: white; margin-bottom: 20px;">Select Photo Purpose</h2>
+    <div class="modal-buttons">
+      <button class="primary" onclick="takePhotoAndClose('nameplate')">Nameplate</button>
+      <button class="primary" onclick="takePhotoAndClose('problem')">Problem Area</button>
+      <button class="primary" onclick="takePhotoAndClose('before')">Before Repair</button>
+      <button class="primary" onclick="takePhotoAndClose('after')">After Repair</button>
     </div>
   </div>
 
-  <!-- Photo Documentation -->
-  <div class="card" id="photos-card">
-    <div class="card-header">
-      Photo Documentation
-      <div class="card-status">Optional</div>
+  <!-- Action Bar -->
+  <div class="action-bar">
+    <div class="action-bar-content">
+      <button class="success" onclick="generateReport()" id="generate-report-btn" disabled>
+        Generate Report
+      </button>
+      <button class="secondary" onclick="exportReport()" id="export-btn" disabled>
+        📄 Export
+      </button>
     </div>
-    
-    <div class="grid">
-      <button onclick="takePhoto('nameplate')" class="secondary">📷 Nameplate</button>
-      <button onclick="takePhoto('problem')" class="secondary">📷 Problem Area</button>
-      <button onclick="takePhoto('before')" class="secondary">📷 Before Repair</button>
-      <button onclick="takePhoto('after')" class="secondary">📷 After Repair</button>
-    </div>
-    
-    <div class="photo-grid" id="photo-preview"></div>
-  </div>
-
-  <!-- Sticky Actions -->
-  <div class="actions">
-    <button onclick="generateFMSReport()" class="success" id="generate-report-btn" disabled>Generate FMS Report</button>
-    <button onclick="exportPDF()" class="secondary" disabled>📄 Export PDF</button>
-    <button onclick="shareReport()" class="secondary" disabled>📤 Share</button>
   </div>
 
   <script>
-    // ==================== GLOBAL STATE ====================
-    let currentStep = 0;
-    const steps = ['power', 'airflow', 'electrical', 'refrigerant', 'controls', 'environment'];
-    let stepCompleted = [false, false, false, false, false, false];
-    let photos = [];
-    let aiCoachVisible = false;
-    
-    // Enhanced R-410A PT chart for accurate calculations
-    const R410A_PT = {
-      90: 44.7, 95: 47.1, 100: 49.6, 105: 52.2, 110: 54.9, 115: 57.7,
-      120: 60.6, 125: 63.6, 130: 66.7, 135: 69.9, 140: 73.2, 145: 76.6,
-      150: 80.1, 155: 83.7, 160: 87.4, 165: 91.3, 170: 95.2, 175: 99.3,
-      180: 103.5, 185: 107.8, 190: 112.2, 195: 116.7, 200: 121.4
+    // ==================== STATE MANAGEMENT ====================
+    let currentMode = 'cooling';
+    let stepCompleted = {
+      power: false,
+      airflow: false,
+      electrical: false,
+      refrigerant: false,
+      controls: false,
+      environment: false
     };
-    
+    let photos = [];
+
+    // R-410A Pressure-Temperature Chart (expanded)
+    const R410A_PT = {
+      85: 41.4, 90: 44.7, 95: 47.1, 100: 49.6, 105: 52.2, 110: 54.9, 
+      115: 57.7, 120: 60.6, 125: 63.6, 130: 66.7, 135: 69.9, 140: 73.2,
+      145: 76.6, 150: 80.1, 155: 83.7, 160: 87.4, 165: 91.3, 170: 95.2,
+      175: 99.3, 180: 103.5, 185: 107.8, 190: 112.2, 195: 116.7, 200: 121.4
+    };
+
     // ==================== UTILITY FUNCTIONS ====================
     const $ = id => document.getElementById(id);
     const num = val => { const n = parseFloat(val); return isNaN(n) ? null : n; };
-    
-    function showAICoach(message) {
-      $('ai-message').textContent = message;
-      $('ai-coach').style.display = 'block';
-      aiCoachVisible = true;
-    }
-    
-    function dismissCoach() {
-      $('ai-coach').style.display = 'none';
-      aiCoachVisible = false;
-    }
-    
-    function askCoach() {
-      const question = prompt("What would you like help with?");
-      if (question) {
-        // Simulate AI response based on current step
-        const responses = {
-          power: "Remember: Power before panic. Check disconnects, verify voltage at source and load. Don't test unpowered systems.",
-          airflow: "Airflow first, refrigerant second. Check filters, static pressure, and blower operation before touching gauges.",
-          electrical: "Test under load when possible. Check amp draw against nameplate ratings. Look for signs of wear.",
-          refrigerant: "Only after airflow is confirmed. Measure both superheat AND subcool - don't just look at pressure.",
-          controls: "Verify actual system response matches expected behavior. Test safety controls under normal operation.",
-          environment: "Site conditions often reveal the true problem. Check coil conditions, drainage, and ambient factors."
-        };
-        showAICoach(responses[steps[currentStep]] || "Stay focused on the FMS Method. Each step builds on the last.");
+
+    function lookupSatTemp(pressure) {
+      let closest = null;
+      let minDiff = Infinity;
+      for (let temp in R410A_PT) {
+        const p = R410A_PT[temp];
+        const diff = Math.abs(p - pressure);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closest = parseFloat(temp);
+        }
       }
+      return closest;
     }
-    
-    // ==================== MODE SWITCHING ====================
+
+    // ==================== MODE MANAGEMENT ====================
     function setMode(mode) {
+      currentMode = mode;
       document.body.className = `mode-${mode}`;
-      $('btn-cooling').className = mode === 'cooling' ? '' : 'secondary';
-      $('btn-heating').className = mode === 'heating' ? '' : 'secondary';
-      $('mode-indicator').textContent = mode.toUpperCase() + ' MODE';
+      $('btn-cooling').classList.toggle('active', mode === 'cooling');
+      $('btn-heating').classList.toggle('active', mode === 'heating');
       
-      // Reset refrigerant step validation when mode changes
-      if (stepCompleted[3]) {
-        stepCompleted[3] = false;
+      // Reset refrigerant step when mode changes
+      if (stepCompleted.refrigerant) {
+        stepCompleted.refrigerant = false;
         updateProgress();
-        updateStepAccess();
       }
+      
+      saveState();
     }
-    
+
     // ==================== PROGRESS MANAGEMENT ====================
     function updateProgress() {
-      const completed = stepCompleted.filter(Boolean).length;
+      const completed = Object.values(stepCompleted).filter(Boolean).length;
       const percentage = (completed / 6) * 100;
       
       $('progress-fill').style.width = percentage + '%';
-      $('progress-text').textContent = `${completed}/6 Complete`;
+      $('progress-text').textContent = `${completed} of 6 Steps Complete`;
       
       // Update step indicators
-      steps.forEach((step, index) => {
+      Object.keys(stepCompleted).forEach(step => {
         const stepEl = document.querySelector(`[data-step="${step}"]`);
-        if (stepCompleted[index]) {
+        if (stepCompleted[step]) {
           stepEl.className = 'step complete';
-        } else if (index === currentStep) {
-          stepEl.className = 'step active';
         } else {
-          stepEl.className = 'step pending';
+          stepEl.className = 'step';
         }
       });
       
-      // Enable report generation when all steps complete
-      const allComplete = stepCompleted.every(Boolean);
-      $('generate-report-btn').disabled = !allComplete;
-      
-      if (allComplete) {
-        unlockCard('findings-card');
-        showAICoach("Excellent work! All diagnostic steps completed using the FMS Method. Ready to generate your report.");
-      }
+      // Enable report when all steps complete
+      const allComplete = Object.values(stepCompleted).every(Boolean);
+      const diagnosisComplete = $('diagnosis').value.trim() && $('repairs').value.trim();
+      $('generate-report-btn').disabled = !(allComplete && diagnosisComplete);
     }
-    
-    function updateStepAccess() {
-      // Unlock equipment card after basic setup
-      const setupValid = $('customer').value && $('address').value;
-      if (setupValid) {
-        unlockCard('equipment-card');
-        $('equipment-status').textContent = 'Ready';
-        $('equipment-status').className = 'card-status';
-      }
-      
-      // Unlock power card after equipment data
-      const equipmentValid = $('indoor-data').value && $('outdoor-data').value && $('refrigerant').value;
-      if (equipmentValid) {
-        unlockCard('power-card');
-        $('power-status').textContent = 'Ready';
-        $('power-status').className = 'card-status';
-        currentStep = 0;
-        updateProgress();
-      }
-      
-      // Unlock subsequent steps based on completion
-      steps.forEach((step, index) => {
-        if (index > 0 && stepCompleted[index - 1]) {
-          unlockCard(`${step}-card`);
-          $(`${step}-status`).textContent = 'Ready';
-          $(`${step}-status`).className = 'card-status';
-        }
-      });
-    }
-    
-    function unlockCard(cardId) {
-      $(cardId).classList.remove('locked');
-    }
-    
-    // ==================== FIELD VALIDATION ====================
-    function validateField(field) {
-      const value = field.value.trim();
-      const feedbackId = field.id + '-feedback';
-      const feedback = $(feedbackId);
-      
-      if (!feedback) return;
-      
-      // Clear previous styling
-      field.classList.remove('error', 'success');
-      
-      if (field.hasAttribute('required') && !value) {
-        field.classList.add('error');
-        feedback.textContent = 'This field is required';
-        feedback.className = 'field-feedback error';
-      } else if (value) {
-        field.classList.add('success');
-        feedback.textContent = '';
-        feedback.className = 'field-feedback';
-      }
-      
-      updateStepAccess();
-    }
-    
-    // ==================== STEP VALIDATION FUNCTIONS ====================
+
+    // ==================== STEP VALIDATION ====================
     function validatePowerStep() {
       const disconnect = $('disconnect-status').value;
       const lineVoltage = num($('voltage-line').value);
       const validation = $('power-validation');
-      
       let isValid = false;
       let messages = [];
-      
+
       if (disconnect === 'bypassed') {
-        messages.push('<div class="status bad">⚠️ SAFETY CONCERN: Bypassed disconnect must be corrected</div>');
+        messages.push('<div class="status-message error"><span>⚠️</span><span>SAFETY ISSUE: Bypassed disconnect must be corrected before proceeding</span></div>');
       } else if (disconnect === 'missing') {
-        messages.push('<div class="status bad">⚠️ Missing disconnect - code violation</div>');
+        messages.push('<div class="status-message error"><span>⚠️</span><span>Missing disconnect - code violation, must be installed</span></div>');
       } else if (disconnect === 'present') {
-        messages.push('<div class="status good">✓ Disconnect verified</div>');
+        messages.push('<div class="status-message success"><span>✓</span><span>Disconnect verified</span></div>');
       }
-      
+
       if (lineVoltage) {
         if (lineVoltage < 200) {
-          messages.push('<div class="status bad">⚠️ Low voltage - potential supply issue</div>');
+          messages.push('<div class="status-message error"><span>⚠️</span><span>Low voltage detected - check supply</span></div>');
         } else if (lineVoltage > 250) {
-          messages.push('<div class="status bad">⚠️ High voltage - potential supply issue</div>');
+          messages.push('<div class="status-message error"><span>⚠️</span><span>High voltage detected - check supply</span></div>');
         } else {
-          messages.push('<div class="status good">✓ Line voltage within acceptable range</div>');
+          messages.push('<div class="status-message success"><span>✓</span><span>Line voltage within acceptable range</span></div>');
           isValid = disconnect === 'present';
         }
       }
-      
+
       validation.innerHTML = messages.join('');
-      $('power-complete-btn').disabled = !isValid;
+      $('power-btn').disabled = !isValid;
     }
-    
+
     function validateAirflowStep() {
       const filter = $('filter-condition').value;
       const blower = $('blower-operation').value;
       const returnStatic = num($('return-static').value);
       const supplyStatic = num($('supply-static').value);
       const validation = $('airflow-validation');
-      
       let isValid = false;
       let messages = [];
-      
-      // Calculate total static if both values present
+
+      // Calculate TESP
       if (returnStatic !== null && supplyStatic !== null) {
-        const total = Math.abs(returnStatic) + Math.abs(supplyStatic);
-        $('total-static').value = total.toFixed(2) + ' in w.c.';
+        const tesp = Math.abs(returnStatic) + Math.abs(supplyStatic);
+        $('total-static').value = tesp.toFixed(2) + ' in w.c.';
         
-        if (total <= 0.50) {
-          messages.push('<div class="status good">✓ Static pressure acceptable</div>');
-        } else if (total <= 0.80) {
-          messages.push('<div class="status warn">⚠️ Elevated static - monitor ductwork</div>');
+        if (tesp <= 0.50) {
+          messages.push('<div class="status-message success"><span>✓</span><span>Total static pressure acceptable</span></div>');
+        } else if (tesp <= 0.80) {
+          messages.push('<div class="status-message warning"><span>⚠️</span><span>Elevated static pressure - monitor ductwork</span></div>');
         } else {
-          messages.push('<div class="status bad">⚠️ Excessive static - duct issues likely</div>');
+          messages.push('<div class="status-message error"><span>⚠️</span><span>Excessive static pressure - duct issues likely</span></div>');
         }
       }
-      
-      if (filter === 'blocked' || filter === 'dirty') {
-        messages.push('<div class="status bad">⚠️ Filter restriction affecting airflow</div>');
-      } else if (filter === 'clean' || filter === 'light-dust') {
-        messages.push('<div class="status good">✓ Filter condition acceptable</div>');
+
+      if (filter === 'severely-blocked' || filter === 'dirty') {
+        messages.push('<div class="status-message error"><span>⚠️</span><span>Filter restriction affecting airflow - replace before proceeding</span></div>');
+      } else if (filter === 'clean' || filter === 'lightly-soiled') {
+        messages.push('<div class="status-message success"><span>✓</span><span>Filter condition acceptable</span></div>');
       }
-      
+
       if (blower === 'normal') {
-        messages.push('<div class="status good">✓ Blower operation normal</div>');
-        isValid = (filter === 'clean' || filter === 'light-dust');
-      } else if (blower === 'failed') {
-        messages.push('<div class="status bad">⚠️ Blower not operating - major issue</div>');
+        messages.push('<div class="status-message success"><span>✓</span><span>Blower operation normal</span></div>');
+        isValid = (filter === 'clean' || filter === 'lightly-soiled');
+      } else if (blower === 'inoperative') {
+        messages.push('<div class="status-message error"><span>⚠️</span><span>Blower inoperative - major issue, address before continuing</span></div>');
       }
-      
+
       validation.innerHTML = messages.join('');
-      $('airflow-complete-btn').disabled = !isValid;
+      $('airflow-btn').disabled = !isValid;
     }
-    
+
     function validateElectricalStep() {
       const capacitor = $('capacitor-reading').value;
       const contactor = $('contactor-condition').value;
       const validation = $('electrical-validation');
-      
       let isValid = false;
       let messages = [];
-      
+
       if (capacitor) {
-        messages.push('<div class="status good">✓ Capacitor reading documented</div>');
+        messages.push('<div class="status-message success"><span>✓</span><span>Capacitor reading documented</span></div>');
       }
-      
-      if (contactor === 'failed' || contactor === 'poor') {
-        messages.push('<div class="status bad">⚠️ Contactor requires immediate replacement</div>');
-      } else if (contactor === 'excellent' || contactor === 'good') {
-        messages.push('<div class="status good">✓ Contactor condition acceptable</div>');
+
+      if (currentMode === 'cooling') {
+        if (contactor === 'failed' || contactor === 'poor') {
+          messages.push('<div class="status-message error"><span>⚠️</span><span>Contactor requires immediate replacement</span></div>');
+        } else if (contactor === 'good' || contactor === 'fair') {
+          messages.push('<div class="status-message success"><span>✓</span><span>Contactor condition acceptable</span></div>');
+          isValid = !!capacitor;
+        }
+      } else {
         isValid = !!capacitor;
       }
-      
+
       validation.innerHTML = messages.join('');
-      $('electrical-complete-btn').disabled = !isValid;
+      $('electrical-btn').disabled = !isValid;
     }
-    
+
     function validateRefrigerantStep() {
-      const mode = document.body.classList.contains('mode-cooling') ? 'cooling' : 'heating';
       let isValid = false;
       
-      if (mode === 'cooling') {
+      if (currentMode === 'cooling') {
         const suctionP = num($('suction-pressure').value);
         const liquidP = num($('liquid-pressure').value);
         const suctionT = num($('suction-temp').value);
         const liquidT = num($('liquid-temp').value);
         const refrigerant = $('refrigerant').value;
-        
+
+        // Calculate superheat
         if (suctionP && suctionT && refrigerant === 'R-410A') {
           const satTemp = lookupSatTemp(suctionP);
           if (satTemp) {
@@ -1200,7 +1565,8 @@
             updateSuperheatStatus(superheat);
           }
         }
-        
+
+        // Calculate subcool
         if (liquidP && liquidT && refrigerant === 'R-410A') {
           const satTemp = lookupSatTemp(liquidP);
           if (satTemp) {
@@ -1209,187 +1575,127 @@
             updateSubcoolStatus(subcool);
           }
         }
-        
+
         isValid = suctionP && liquidP && suctionT && liquidT;
       } else {
         const gasInput = $('gas-input').value;
         const manifold = $('manifold-pressure').value;
         const heatExchanger = $('heat-exchanger').value;
-        
         isValid = gasInput && manifold && heatExchanger;
       }
-      
-      $('refrigerant-complete-btn').disabled = !isValid;
+
+      $('refrigerant-btn').disabled = !isValid;
     }
-    
-    function lookupSatTemp(pressure) {
-      let closest = null;
-      let minDiff = Infinity;
-      
-      for (let p in R410A_PT) {
-        const diff = Math.abs(p - pressure);
-        if (diff < minDiff) {
-          minDiff = diff;
-          closest = R410A_PT[p];
-        }
-      }
-      return closest;
-    }
-    
+
     function updateSuperheatStatus(superheat) {
       const statusDiv = $('superheat-status');
       if (superheat < 5) {
-        statusDiv.innerHTML = '<div class="status bad">⚠️ Low superheat - possible overcharge</div>';
+        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span>Low superheat - possible overcharge or TXV issue</span></div>';
       } else if (superheat > 25) {
-        statusDiv.innerHTML = '<div class="status bad">⚠️ High superheat - possible undercharge</div>';
+        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span>High superheat - possible undercharge or restriction</span></div>';
       } else if (superheat >= 8 && superheat <= 18) {
-        statusDiv.innerHTML = '<div class="status good">✓ Superheat in target range</div>';
+        statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span>Superheat in target range</span></div>';
       } else {
-        statusDiv.innerHTML = '<div class="status warn">⚠️ Superheat marginal</div>';
+        statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span>Superheat marginal - monitor conditions</span></div>';
       }
     }
-    
+
     function updateSubcoolStatus(subcool) {
       const statusDiv = $('subcool-status');
       if (subcool < 5) {
-        statusDiv.innerHTML = '<div class="status bad">⚠️ Low subcool - possible undercharge</div>';
+        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span>Low subcool - possible undercharge</span></div>';
       } else if (subcool > 20) {
-        statusDiv.innerHTML = '<div class="status bad">⚠️ High subcool - possible overcharge</div>';
+        statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span>High subcool - possible overcharge or restriction</span></div>';
       } else if (subcool >= 8 && subcool <= 15) {
-        statusDiv.innerHTML = '<div class="status good">✓ Subcool in target range</div>';
+        statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span>Subcool in target range</span></div>';
       } else {
-        statusDiv.innerHTML = '<div class="status warn">⚠️ Subcool marginal</div>';
+        statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span>Subcool marginal - verify charge</span></div>';
       }
     }
-    
+
     function validateControlsStep() {
       const thermostat = $('thermostat-comm').value;
       const returnTemp = num($('return-air-temp').value);
       const supplyTemp = num($('supply-air-temp').value);
-      const mode = document.body.classList.contains('mode-cooling') ? 'cooling' : 'heating';
-      
+
       // Calculate Delta T
       if (returnTemp && supplyTemp) {
-        const delta = mode === 'cooling' ? returnTemp - supplyTemp : supplyTemp - returnTemp;
+        const delta = currentMode === 'cooling' 
+          ? returnTemp - supplyTemp 
+          : supplyTemp - returnTemp;
         $('delta-t-calc').value = delta.toFixed(1) + '°F';
-        
+
         const statusDiv = $('delta-t-status');
-        if (mode === 'cooling') {
+        if (currentMode === 'cooling') {
           if (delta >= 16 && delta <= 22) {
-            statusDiv.innerHTML = '<div class="status good">✓ Delta T optimal</div>';
+            statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span>Delta T optimal for cooling</span></div>';
           } else if (delta < 14 || delta > 24) {
-            statusDiv.innerHTML = '<div class="status bad">⚠️ Delta T out of range</div>';
+            statusDiv.innerHTML = '<div class="status-message error"><span>⚠️</span><span>Delta T out of range - airflow or charge issue</span></div>';
           } else {
-            statusDiv.innerHTML = '<div class="status warn">⚠️ Delta T marginal</div>';
+            statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span>Delta T marginal</span></div>';
+          }
+        } else {
+          if (delta >= 40 && delta <= 70) {
+            statusDiv.innerHTML = '<div class="status-message success"><span>✓</span><span>Delta T optimal for heating</span></div>';
+          } else {
+            statusDiv.innerHTML = '<div class="status-message warning"><span>⚠️</span><span>Delta T outside typical range</span></div>';
           }
         }
       }
-      
-      const safetyChecks = ['high-pressure', 'low-pressure', 'float-switch'];
-      const allSafetyOK = safetyChecks.every(id => $(id).checked);
-      const isValid = thermostat && returnTemp && supplyTemp && allSafetyOK;
-      
-      $('controls-complete-btn').disabled = !isValid;
+
+      const isValid = thermostat && returnTemp && supplyTemp;
+      $('controls-btn').disabled = !isValid;
     }
-    
+
     function validateEnvironmentStep() {
       const evapCoil = $('evap-coil-condition').value;
-      const condCoil = $('cond-coil-condition').value;
+      const condCoil = currentMode === 'cooling' ? $('cond-coil-condition').value : true;
       const drainage = $('drainage-condition').value;
-      
+
       const isValid = evapCoil && condCoil && drainage;
-      $('environment-complete-btn').disabled = !isValid;
+      $('environment-btn').disabled = !isValid;
     }
-    
-    // ==================== STEP COMPLETION FUNCTIONS ====================
-    function completePowerStep() {
-      stepCompleted[0] = true;
-      currentStep = 1;
-      updateProgress();
-      updateStepAccess();
-      showAICoach("Power verified! Now let's check airflow. Remember: never skip to refrigerant without confirming airflow first.");
-    }
-    
-    function completeAirflowStep() {
-      stepCompleted[1] = true;
-      currentStep = 2;
-      updateProgress();
-      updateStepAccess();
-      showAICoach("Airflow confirmed! Moving to electrical components. Test under load when possible.");
-    }
-    
-    function completeElectricalStep() {
-      stepCompleted[2] = true;
-      currentStep = 3;
-      updateProgress();
-      updateStepAccess();
-      showAICoach("Electrical verified! Now we can safely check the refrigerant circuit. Measure both superheat AND subcool.");
-    }
-    
-    function completeRefrigerantStep() {
-      stepCompleted[3] = true;
-      currentStep = 4;
-      updateProgress();
-      updateStepAccess();
-      showAICoach("Refrigerant circuit analyzed! Let's verify controls and system response.");
-    }
-    
-    function completeControlsStep() {
-      stepCompleted[4] = true;
-      currentStep = 5;
-      updateProgress();
-      updateStepAccess();
-      showAICoach("Controls verified! Final step: environmental factors often reveal the true problem.");
-    }
-    
-    function completeEnvironmentStep() {
-      stepCompleted[5] = true;
-      updateProgress();
-      updateStepAccess();
-      showAICoach("Outstanding! You've completed the full FMS Diagnostic Method. Ready to document your findings.");
-    }
-    
-    // ==================== VOICE INPUT ====================
-    let recognition = null;
-    let currentTarget = null;
-    
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognition = new SpeechRecognition();
-      recognition.continuous = false;
-      recognition.interimResults = false;
+
+    // ==================== STEP COMPLETION ====================
+    function completeStep(step) {
+      stepCompleted[step] = true;
+      $(`${step}-status`).textContent = 'Complete';
+      $(`${step}-status`).className = 'card-status complete';
       
-      recognition.onresult = (e) => {
-        if (currentTarget && e.results[0]) {
-          const transcript = e.results[0][0].transcript;
-          currentTarget.value = transcript;
-          currentTarget.dispatchEvent(new Event('input'));
-          currentTarget.dispatchEvent(new Event('change'));
-        }
-      };
+      // Collapse the completed card
+      $(`${step}-card`).classList.add('collapsed');
       
-      recognition.onend = () => {
-        document.querySelectorAll('.voice-btn.listening').forEach(btn => {
-          btn.classList.remove('listening');
-        });
-      };
-    }
-    
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('voice-btn')) {
-        const targetId = e.target.dataset.voice;
-        currentTarget = $(targetId);
-        
-        if (recognition) {
-          e.target.classList.add('listening');
-          recognition.start();
-        } else {
-          alert('Voice input not supported on this device');
-        }
+      updateProgress();
+      saveState();
+
+      // Scroll to next incomplete step
+      const nextStep = Object.keys(stepCompleted).find(s => !stepCompleted[s]);
+      if (nextStep) {
+        setTimeout(() => {
+          $(`${nextStep}-card`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      } else {
+        // All steps complete, scroll to findings
+        setTimeout(() => {
+          $('findings-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
       }
-    });
-    
-    // ==================== PHOTO SYSTEM ====================
+    }
+
+    // ==================== PHOTO MANAGEMENT ====================
+    function showPhotoModal() {
+      $('photo-modal').classList.add('active');
+    }
+
+    function hidePhotoModal() {
+      $('photo-modal').classList.remove('active');
+    }
+
+    function takePhotoAndClose(purpose) {
+      hidePhotoModal();
+      takePhoto(purpose);
+    }
+
     function takePhoto(purpose) {
       const input = document.createElement('input');
       input.type = 'file';
@@ -1409,53 +1715,96 @@
             filename: file.name
           });
           updatePhotoPreview();
+          saveState();
         };
         reader.readAsDataURL(file);
       };
       
       input.click();
     }
-    
+
+    function deletePhoto(index) {
+      if (confirm('Delete this photo?')) {
+        photos.splice(index, 1);
+        updatePhotoPreview();
+        saveState();
+      }
+    }
+
     function updatePhotoPreview() {
       const preview = $('photo-preview');
+      if (photos.length === 0) {
+        preview.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 20px;">No photos yet</p>';
+        return;
+      }
+      
       preview.innerHTML = photos.map((photo, index) => `
-        <div class="photo-item">
+        <div class="photo-item" onclick="viewPhoto(${index})">
           <img src="${photo.data}" alt="${photo.purpose}">
           <div class="photo-label">${photo.purpose}</div>
+          <button class="photo-delete" onclick="event.stopPropagation(); deletePhoto(${index})">×</button>
         </div>
       `).join('');
     }
-    
+
+    function viewPhoto(index) {
+      const photo = photos[index];
+      const win = window.open('', '_blank');
+      win.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>${photo.purpose}</title>
+          <style>
+            body { margin: 0; display: flex; align-items: center; justify-content: center; background: #000; }
+            img { max-width: 100%; max-height: 100vh; }
+          </style>
+        </head>
+        <body>
+          <img src="${photo.data}" alt="${photo.purpose}">
+        </body>
+        </html>
+      `);
+    }
+
     // ==================== REPORT GENERATION ====================
-    function generateFMSReport() {
-      const mode = document.body.classList.contains('mode-cooling') ? 'Cooling' : 'Heating';
-      const timestamp = new Date();
+    function generateReport() {
+      const report = gatherReportData();
+      displayReport(report);
+      $('export-btn').disabled = false;
       
-      const report = {
-        // Header Information
-        header: {
-          title: "FIDELITY MECHANICAL SOLUTIONS™",
-          subtitle: "Technical Service Report",
-          generated: timestamp.toLocaleString(),
-          technician: "[Technician Signature Required]",
-          mode: mode
-        },
-        
-        // Job Information
+      // Scroll to report
+      setTimeout(() => {
+        $('report-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+
+    function gatherReportData() {
+      return {
+        timestamp: new Date().toLocaleString(),
+        mode: currentMode,
         job: {
           customer: $('customer').value,
           address: $('address').value,
-          complaint: $('complaint').value,
-          equipment: {
-            location: $('location').value,
-            indoor: $('indoor-data').value,
-            outdoor: $('outdoor-data').value,
-            mfgDate: $('mfg-date').value,
-            refrigerant: $('refrigerant').value
-          }
+          complaint: $('complaint').value
         },
-        
-        // FMS Diagnostic Results
+        equipment: {
+          location: $('location').value,
+          indoor: {
+            brand: $('indoor-brand').value,
+            model: $('indoor-model').value,
+            serial: $('indoor-serial').value
+          },
+          outdoor: {
+            brand: $('outdoor-brand').value,
+            model: $('outdoor-model').value,
+            serial: $('outdoor-serial').value
+          },
+          tonnage: $('tonnage').value,
+          refrigerant: $('refrigerant').value,
+          mfgDate: $('mfg-date').value,
+          meteringDevice: $('metering-device').value
+        },
         diagnostic: {
           power: {
             disconnect: $('disconnect-status').value,
@@ -1465,11 +1814,11 @@
             l2n: $('voltage-l2n').value
           },
           airflow: {
-            filterCondition: $('filter-condition').value,
+            filter: $('filter-condition').value,
             returnStatic: $('return-static').value,
             supplyStatic: $('supply-static').value,
-            totalStatic: $('total-static').value,
-            blowerOperation: $('blower-operation').value
+            tesp: $('total-static').value,
+            blower: $('blower-operation').value
           },
           electrical: {
             blowerAmps: $('blower-amps').value,
@@ -1477,30 +1826,31 @@
             condFanAmps: $('cond-fan-amps').value,
             inducerAmps: $('inducer-amps').value,
             capacitor: $('capacitor-reading').value,
+            startCapacitor: $('start-capacitor').value,
             contactor: $('contactor-condition').value
           },
-          refrigerant: mode === 'Cooling' ? {
+          refrigerant: currentMode === 'cooling' ? {
             suctionPressure: $('suction-pressure').value,
             liquidPressure: $('liquid-pressure').value,
             suctionTemp: $('suction-temp').value,
             liquidTemp: $('liquid-temp').value,
             superheat: $('superheat-calc').value,
-            subcool: $('subcool-calc').value
+            subcool: $('subcool-calc').value,
+            outdoorDB: $('outdoor-dry-bulb').value,
+            outdoorWB: $('outdoor-wet-bulb').value,
+            indoorDB: $('indoor-dry-bulb').value,
+            indoorWB: $('indoor-wet-bulb').value
           } : {
             gasInput: $('gas-input').value,
             manifoldPressure: $('manifold-pressure').value,
-            heatExchanger: $('heat-exchanger').value
+            heatExchanger: $('heat-exchanger').value,
+            flameSensor: $('flame-sensor').value
           },
           controls: {
-            thermostatComm: $('thermostat-comm').value,
+            thermostat: $('thermostat-comm').value,
             returnAirTemp: $('return-air-temp').value,
             supplyAirTemp: $('supply-air-temp').value,
-            deltaT: $('delta-t-calc').value,
-            safetyControls: {
-              highPressure: $('high-pressure').checked,
-              lowPressure: $('low-pressure').checked,
-              floatSwitch: $('float-switch').checked
-            }
+            deltaT: $('delta-t-calc').value
           },
           environment: {
             outdoorTemp: $('outdoor-temp').value,
@@ -1508,290 +1858,584 @@
             evapCoil: $('evap-coil-condition').value,
             condCoil: $('cond-coil-condition').value,
             drainage: $('drainage-condition').value,
+            trap: $('trap-condition').value,
+            ductwork: $('ductwork').value,
             siteIssues: $('site-issues').value
           }
         },
-        
-        // Findings and Recommendations
         findings: {
-          primary: $('primary-findings').value,
-          rootCause: $('root-cause').value,
-          repairs: $('repair-recommendations').value,
-          preventive: $('preventive-measures').value
+          diagnosis: $('diagnosis').value,
+          repairs: $('repairs').value,
+          preventive: $('preventive').value,
+          notes: $('additional-notes').value
         },
-        
-        // Documentation
         photos: photos,
-        completedSteps: stepCompleted.filter(Boolean).length,
-        fmsMethodFollowed: stepCompleted.every(Boolean)
+        completedSteps: Object.values(stepCompleted).filter(Boolean).length
       };
-      
-      // Store report data
-      sessionStorage.setItem('fmsReport', JSON.stringify(report));
-      
-      // Generate formatted report display
-      displayFMSReport(report);
-      
-      // Enable export buttons
-      document.querySelectorAll('.actions button').forEach(btn => btn.disabled = false);
     }
-    
-    function displayFMSReport(report) {
+
+    function displayReport(report) {
       const reportHTML = `
-        <div class="card" style="background: linear-gradient(135deg, var(--fidelity-blue), var(--fidelity-light)); color: white;">
+        <div class="card" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white;">
           <div style="text-align: center;">
-            <h2 style="margin-bottom: 8px;">${report.header.title}</h2>
-            <div style="font-size: 16px; opacity: 0.9;">${report.header.subtitle}</div>
-            <div style="font-size: 12px; opacity: 0.8; margin-top: 8px;">Generated: ${report.header.generated}</div>
+            <h2 style="margin-bottom: 8px; font-size: 24px;">HVAC Diagnostic Report</h2>
+            <div style="font-size: 14px; opacity: 0.9;">Professional Service Documentation</div>
+            <div style="font-size: 13px; opacity: 0.8; margin-top: 12px;">Generated: ${report.timestamp}</div>
           </div>
         </div>
-        
+
         <div class="card">
-          <div class="card-header">Service Summary</div>
-          <div class="grid">
-            <div><strong>Customer:</strong> ${report.job.customer}</div>
-            <div><strong>Mode:</strong> ${report.header.mode}</div>
+          <div class="report-section">
+            <h3>Service Information</h3>
+            <div class="report-row">
+              <span class="report-label">Customer:</span>
+              <span class="report-value">${report.job.customer}</span>
+            </div>
+            <div class="report-row">
+              <span class="report-label">Address:</span>
+              <span class="report-value">${report.job.address}</span>
+            </div>
+            <div class="report-row">
+              <span class="report-label">Mode:</span>
+              <span class="report-value">${report.mode.charAt(0).toUpperCase() + report.mode.slice(1)}</span>
+            </div>
+            ${report.job.complaint ? `
+            <div class="report-row">
+              <span class="report-label">Complaint:</span>
+              <span class="report-value">${report.job.complaint}</span>
+            </div>
+            ` : ''}
           </div>
-          <div><strong>Address:</strong> ${report.job.address}</div>
-          <div><strong>Complaint:</strong> ${report.job.complaint}</div>
-          <div><strong>Equipment Location:</strong> ${report.job.equipment.location}</div>
         </div>
-        
+
         <div class="card">
-          <div class="card-header">Equipment Identity</div>
-          <div><strong>Indoor Unit:</strong> ${report.job.equipment.indoor}</div>
-          <div><strong>Outdoor Unit:</strong> ${report.job.equipment.outdoor}</div>
-          <div><strong>Refrigerant:</strong> ${report.job.equipment.refrigerant}</div>
-          ${report.job.equipment.mfgDate ? `<div><strong>Manufacture Date:</strong> ${report.job.equipment.mfgDate}</div>` : ''}
-        </div>
-        
-        <div class="card">
-          <div class="card-header">FMS Diagnostic Method Results</div>
-          <div class="status ${report.fmsMethodFollowed ? 'good' : 'warn'}">
-            ${report.fmsMethodFollowed ? '✓' : '⚠️'} 
-            FMS Method Compliance: ${report.completedSteps}/6 steps completed
+          <div class="report-section">
+            <h3>Equipment Information</h3>
+            ${report.equipment.location ? `
+            <div class="report-row">
+              <span class="report-label">Location:</span>
+              <span class="report-value">${report.equipment.location}</span>
+            </div>
+            ` : ''}
+            <div class="report-row">
+              <span class="report-label">Indoor Unit:</span>
+              <span class="report-value">${report.equipment.indoor.brand} ${report.equipment.indoor.model}</span>
+            </div>
+            <div class="report-row">
+              <span class="report-label">Indoor S/N:</span>
+              <span class="report-value">${report.equipment.indoor.serial}</span>
+            </div>
+            <div class="report-row">
+              <span class="report-label">Outdoor Unit:</span>
+              <span class="report-value">${report.equipment.outdoor.brand} ${report.equipment.outdoor.model}</span>
+            </div>
+            <div class="report-row">
+              <span class="report-label">Outdoor S/N:</span>
+              <span class="report-value">${report.equipment.outdoor.serial}</span>
+            </div>
+            <div class="report-row">
+              <span class="report-label">Tonnage:</span>
+              <span class="report-value">${report.equipment.tonnage} Ton</span>
+            </div>
+            <div class="report-row">
+              <span class="report-label">Refrigerant:</span>
+              <span class="report-value">${report.equipment.refrigerant}</span>
+            </div>
           </div>
-          
-          <h4 style="margin: 16px 0 8px 0;">Power Verification</h4>
-          <div>Disconnect: ${report.diagnostic.power.disconnect}</div>
-          <div>Line Voltage: ${report.diagnostic.power.lineVoltage}V</div>
-          ${report.diagnostic.power.controlVoltage ? `<div>Control Voltage: ${report.diagnostic.power.controlVoltage}V</div>` : ''}
-          
-          <h4 style="margin: 16px 0 8px 0;">Airflow Assessment</h4>
-          <div>Filter Condition: ${report.diagnostic.airflow.filterCondition}</div>
-          <div>Total Static Pressure: ${report.diagnostic.airflow.totalStatic}</div>
-          <div>Blower Operation: ${report.diagnostic.airflow.blowerOperation}</div>
-          
-          <h4 style="margin: 16px 0 8px 0;">Electrical Components</h4>
-          <div>Capacitor Reading: ${report.diagnostic.electrical.capacitor}</div>
-          <div>Contactor Condition: ${report.diagnostic.electrical.contactor}</div>
-          ${report.diagnostic.electrical.blowerAmps ? `<div>Blower Amps: ${report.diagnostic.electrical.blowerAmps}</div>` : ''}
-          
-          <h4 style="margin: 16px 0 8px 0;">${report.header.mode} Circuit</h4>
-          ${report.header.mode === 'Cooling' ? `
-            <div>Suction Pressure: ${report.diagnostic.refrigerant.suctionPressure} psig</div>
-            <div>Liquid Pressure: ${report.diagnostic.refrigerant.liquidPressure} psig</div>
-            <div>Superheat: ${report.diagnostic.refrigerant.superheat}</div>
-            <div>Subcool: ${report.diagnostic.refrigerant.subcool}</div>
-          ` : `
-            <div>Gas Input: ${report.diagnostic.refrigerant.gasInput} BTU/hr</div>
-            <div>Manifold Pressure: ${report.diagnostic.refrigerant.manifoldPressure} in w.c.</div>
-            <div>Heat Exchanger: ${report.diagnostic.refrigerant.heatExchanger}</div>
-          `}
-          
-          <h4 style="margin: 16px 0 8px 0;">Controls & Environment</h4>
-          <div>Thermostat Communication: ${report.diagnostic.controls.thermostatComm}</div>
-          <div>Delta T: ${report.diagnostic.controls.deltaT}</div>
-          <div>Evaporator Coil: ${report.diagnostic.environment.evapCoil}</div>
-          <div>Condenser Coil: ${report.diagnostic.environment.condCoil}</div>
-          <div>Drainage: ${report.diagnostic.environment.drainage}</div>
         </div>
-        
+
         <div class="card">
-          <div class="card-header">Findings & Recommendations</div>
-          <h4>Primary Findings:</h4>
-          <p style="margin-bottom: 12px;">${report.findings.primary}</p>
-          
-          ${report.findings.rootCause ? `
-            <h4>Root Cause Analysis:</h4>
-            <p style="margin-bottom: 12px;">${report.findings.rootCause}</p>
-          ` : ''}
-          
-          <h4>Repair Recommendations:</h4>
-          <p style="margin-bottom: 12px;">${report.findings.repairs}</p>
-          
-          ${report.findings.preventive ? `
-            <h4>Preventive Measures:</h4>
-            <p style="margin-bottom: 12px;">${report.findings.preventive}</p>
-          ` : ''}
+          <div class="report-section">
+            <h3>Diagnostic Results</h3>
+            <div class="status-message ${report.completedSteps === 6 ? 'success' : 'warning'}">
+              <span>${report.completedSteps === 6 ? '✓' : '⚠️'}</span>
+              <span>Diagnostic Completion: ${report.completedSteps}/6 steps</span>
+            </div>
+
+            <h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--text);">Power Verification</h4>
+            <div class="report-row">
+              <span class="report-label">Disconnect Status:</span>
+              <span class="report-value">${report.diagnostic.power.disconnect || 'N/A'}</span>
+            </div>
+            <div class="report-row">
+              <span class="report-label">Line Voltage:</span>
+              <span class="report-value">${report.diagnostic.power.lineVoltage ? report.diagnostic.power.lineVoltage + 'V' : 'N/A'}</span>
+            </div>
+            ${report.diagnostic.power.controlVoltage ? `
+            <div class="report-row">
+              <span class="report-label">Control Voltage:</span>
+              <span class="report-value">${report.diagnostic.power.controlVoltage}V</span>
+            </div>
+            ` : ''}
+
+            <h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--text);">Airflow Assessment</h4>
+            <div class="report-row">
+              <span class="report-label">Filter Condition:</span>
+              <span class="report-value">${report.diagnostic.airflow.filter || 'N/A'}</span>
+            </div>
+            ${report.diagnostic.airflow.tesp ? `
+            <div class="report-row">
+              <span class="report-label">Total Static Pressure:</span>
+              <span class="report-value">${report.diagnostic.airflow.tesp}</span>
+            </div>
+            ` : ''}
+            <div class="report-row">
+              <span class="report-label">Blower Status:</span>
+              <span class="report-value">${report.diagnostic.airflow.blower || 'N/A'}</span>
+            </div>
+
+            <h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--text);">Electrical Components</h4>
+            ${report.diagnostic.electrical.capacitor ? `
+            <div class="report-row">
+              <span class="report-label">Run Capacitor:</span>
+              <span class="report-value">${report.diagnostic.electrical.capacitor}</span>
+            </div>
+            ` : ''}
+            ${report.diagnostic.electrical.contactor ? `
+            <div class="report-row">
+              <span class="report-label">Contactor:</span>
+              <span class="report-value">${report.diagnostic.electrical.contactor}</span>
+            </div>
+            ` : ''}
+            ${report.diagnostic.electrical.blowerAmps ? `
+            <div class="report-row">
+              <span class="report-label">Blower Amps:</span>
+              <span class="report-value">${report.diagnostic.electrical.blowerAmps}</span>
+            </div>
+            ` : ''}
+            ${report.diagnostic.electrical.compAmps ? `
+            <div class="report-row">
+              <span class="report-label">Compressor Amps:</span>
+              <span class="report-value">${report.diagnostic.electrical.compAmps}</span>
+            </div>
+            ` : ''}
+
+            <h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--text);">${report.mode === 'cooling' ? 'Refrigerant Circuit' : 'Heating System'}</h4>
+            ${report.mode === 'cooling' ? `
+              ${report.diagnostic.refrigerant.suctionPressure ? `
+              <div class="report-row">
+                <span class="report-label">Suction Pressure:</span>
+                <span class="report-value">${report.diagnostic.refrigerant.suctionPressure} psig</span>
+              </div>
+              ` : ''}
+              ${report.diagnostic.refrigerant.liquidPressure ? `
+              <div class="report-row">
+                <span class="report-label">Liquid Pressure:</span>
+                <span class="report-value">${report.diagnostic.refrigerant.liquidPressure} psig</span>
+              </div>
+              ` : ''}
+              ${report.diagnostic.refrigerant.superheat ? `
+              <div class="report-row">
+                <span class="report-label">Superheat:</span>
+                <span class="report-value">${report.diagnostic.refrigerant.superheat}</span>
+              </div>
+              ` : ''}
+              ${report.diagnostic.refrigerant.subcool ? `
+              <div class="report-row">
+                <span class="report-label">Subcool:</span>
+                <span class="report-value">${report.diagnostic.refrigerant.subcool}</span>
+              </div>
+              ` : ''}
+            ` : `
+              ${report.diagnostic.refrigerant.gasInput ? `
+              <div class="report-row">
+                <span class="report-label">Gas Input:</span>
+                <span class="report-value">${report.diagnostic.refrigerant.gasInput} BTU/hr</span>
+              </div>
+              ` : ''}
+              ${report.diagnostic.refrigerant.manifoldPressure ? `
+              <div class="report-row">
+                <span class="report-label">Manifold Pressure:</span>
+                <span class="report-value">${report.diagnostic.refrigerant.manifoldPressure} in w.c.</span>
+              </div>
+              ` : ''}
+              ${report.diagnostic.refrigerant.heatExchanger ? `
+              <div class="report-row">
+                <span class="report-label">Heat Exchanger:</span>
+                <span class="report-value">${report.diagnostic.refrigerant.heatExchanger}</span>
+              </div>
+              ` : ''}
+            `}
+
+            <h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--text);">Controls & System Response</h4>
+            ${report.diagnostic.controls.thermostat ? `
+            <div class="report-row">
+              <span class="report-label">Thermostat:</span>
+              <span class="report-value">${report.diagnostic.controls.thermostat}</span>
+            </div>
+            ` : ''}
+            ${report.diagnostic.controls.deltaT ? `
+            <div class="report-row">
+              <span class="report-label">Delta T:</span>
+              <span class="report-value">${report.diagnostic.controls.deltaT}</span>
+            </div>
+            ` : ''}
+
+            <h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--text);">Environmental Conditions</h4>
+            ${report.diagnostic.environment.evapCoil ? `
+            <div class="report-row">
+              <span class="report-label">Evaporator Coil:</span>
+              <span class="report-value">${report.diagnostic.environment.evapCoil}</span>
+            </div>
+            ` : ''}
+            ${report.diagnostic.environment.condCoil ? `
+            <div class="report-row">
+              <span class="report-label">Condenser Coil:</span>
+              <span class="report-value">${report.diagnostic.environment.condCoil}</span>
+            </div>
+            ` : ''}
+            ${report.diagnostic.environment.drainage ? `
+            <div class="report-row">
+              <span class="report-label">Drainage System:</span>
+              <span class="report-value">${report.diagnostic.environment.drainage}</span>
+            </div>
+            ` : ''}
+          </div>
         </div>
-        
+
+        <div class="card">
+          <div class="report-section">
+            <h3>Diagnosis & Recommendations</h3>
+            <h4 style="margin-bottom: 10px; color: var(--text);">Diagnosis:</h4>
+            <p style="margin-bottom: 20px; line-height: 1.6;">${report.findings.diagnosis}</p>
+            
+            <h4 style="margin-bottom: 10px; color: var(--text);">Recommended Repairs:</h4>
+            <p style="margin-bottom: 20px; line-height: 1.6;">${report.findings.repairs}</p>
+            
+            ${report.findings.preventive ? `
+            <h4 style="margin-bottom: 10px; color: var(--text);">Preventive Measures:</h4>
+            <p style="margin-bottom: 20px; line-height: 1.6;">${report.findings.preventive}</p>
+            ` : ''}
+            
+            ${report.findings.notes ? `
+            <h4 style="margin-bottom: 10px; color: var(--text);">Additional Notes:</h4>
+            <p style="line-height: 1.6;">${report.findings.notes}</p>
+            ` : ''}
+          </div>
+        </div>
+
         ${report.photos.length > 0 ? `
-          <div class="card">
-            <div class="card-header">Photo Documentation (${report.photos.length})</div>
+        <div class="card">
+          <div class="report-section">
+            <h3>Photo Documentation (${report.photos.length})</h3>
             <div class="photo-grid">
-              ${report.photos.map(photo => `
-                <div class="photo-item">
+              ${report.photos.map((photo, i) => `
+                <div class="photo-item" onclick="viewPhoto(${i})">
                   <img src="${photo.data}" alt="${photo.purpose}">
                   <div class="photo-label">${photo.purpose}</div>
                 </div>
               `).join('')}
             </div>
           </div>
+        </div>
         ` : ''}
-        
-        <div class="card" style="text-align: center; border: 2px solid var(--fidelity-blue);">
-          <div style="color: var(--fidelity-blue); font-weight: 700; margin-bottom: 16px;">
-            TECHNICIAN CERTIFICATION
-          </div>
-          <div style="margin-bottom: 16px;">
-            I certify that this diagnostic was performed using the Fidelity Mechanical Solutions method,
-            following the complete Power → Airflow → Electrical → Refrigerant → Controls → Environment sequence.
-          </div>
-          <div style="border-top: 2px solid var(--neutral-gray); margin: 24px auto; width: 200px;"></div>
-          <div style="font-size: 12px; color: var(--neutral-gray);">Technician Signature & Date</div>
+
+        <div class="card" style="text-align: center; border: 2px solid var(--primary);">
+          <h3 style="color: var(--primary); margin-bottom: 16px;">Technician Certification</h3>
+          <p style="margin-bottom: 24px; color: var(--text-muted);">
+            I certify that this diagnostic was performed following industry best practices
+            and all findings are accurate to the best of my knowledge.
+          </p>
+          <div style="border-top: 2px solid var(--border); margin: 32px auto 12px; width: 250px;"></div>
+          <div style="font-size: 13px; color: var(--text-muted);">Technician Signature & Date</div>
         </div>
       `;
-      
-      // Insert report before actions
-      const reportDiv = document.createElement('div');
-      reportDiv.innerHTML = reportHTML;
-      reportDiv.id = 'generated-report';
-      
-      // Remove any existing report
-      const existingReport = $('generated-report');
-      if (existingReport) existingReport.remove();
-      
-      document.querySelector('.actions').before(reportDiv);
-      reportDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      $('report-container').innerHTML = reportHTML;
+      sessionStorage.setItem('hvacReport', JSON.stringify(report));
     }
-    
-    function exportPDF() {
-      // For production, integrate with jsPDF or similar
-      const report = sessionStorage.getItem('fmsReport');
+
+    function exportReport() {
+      const report = JSON.parse(sessionStorage.getItem('hvacReport'));
       if (!report) return;
-      
-      const data = JSON.parse(report);
-      const textReport = generateTextReport(data);
-      
-      const blob = new Blob([textReport], { type: 'text/plain' });
+
+      const text = generateTextReport(report);
+      const blob = new Blob([text], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `FMS_Report_${data.job.customer.replace(/\s/g, '_')}_${new Date().toISOString().slice(0,10)}.txt`;
+      a.download = `HVAC_Report_${report.job.customer.replace(/\s/g, '_')}_${new Date().toISOString().slice(0,10)}.txt`;
       a.click();
       URL.revokeObjectURL(url);
     }
-    
-    function shareReport() {
-      const report = sessionStorage.getItem('fmsReport');
-      if (!report) return;
-      
-      const data = JSON.parse(report);
-      const shareText = `FMS Diagnostic Report - ${data.job.customer}\nCompleted: ${data.header.generated}\nMethod Compliance: ${data.completedSteps}/6 steps`;
-      
-      if (navigator.share) {
-        navigator.share({
-          title: 'FMS Diagnostic Report',
-          text: shareText,
-          url: window.location.href
-        });
-      } else {
-        navigator.clipboard.writeText(shareText).then(() => {
-          alert('Report summary copied to clipboard');
-        });
-      }
-    }
-    
-    function generateTextReport(data) {
+
+    function generateTextReport(report) {
       return `
-FIDELITY MECHANICAL SOLUTIONS™
-TECHNICAL SERVICE REPORT
-${data.header.generated}
+HVAC DIAGNOSTIC REPORT
+=====================
+Generated: ${report.timestamp}
+Mode: ${report.mode.toUpperCase()}
 
-CUSTOMER: ${data.job.customer}
-ADDRESS: ${data.job.address}
-COMPLAINT: ${data.job.complaint}
-MODE: ${data.header.mode}
-
-EQUIPMENT IDENTITY
+SERVICE INFORMATION
 ------------------
-Location: ${data.job.equipment.location}
-Indoor Unit: ${data.job.equipment.indoor}
-Outdoor Unit: ${data.job.equipment.outdoor}
-Refrigerant: ${data.job.equipment.refrigerant}
+Customer: ${report.job.customer}
+Address: ${report.job.address}
+${report.job.complaint ? `Complaint: ${report.job.complaint}` : ''}
 
-FMS DIAGNOSTIC METHOD RESULTS
------------------------------
-Method Compliance: ${data.completedSteps}/6 steps completed
+EQUIPMENT INFORMATION
+--------------------
+${report.equipment.location ? `Location: ${report.equipment.location}` : ''}
+Indoor Unit: ${report.equipment.indoor.brand} ${report.equipment.indoor.model}
+Indoor S/N: ${report.equipment.indoor.serial}
+Outdoor Unit: ${report.equipment.outdoor.brand} ${report.equipment.outdoor.model}
+Outdoor S/N: ${report.equipment.outdoor.serial}
+Tonnage: ${report.equipment.tonnage} Ton
+Refrigerant: ${report.equipment.refrigerant}
 
-POWER VERIFICATION
-- Disconnect: ${data.diagnostic.power.disconnect}
-- Line Voltage: ${data.diagnostic.power.lineVoltage}V
+DIAGNOSTIC RESULTS
+-----------------
+Completion: ${report.completedSteps}/6 steps
 
-AIRFLOW ASSESSMENT  
-- Filter: ${data.diagnostic.airflow.filterCondition}
-- Total Static: ${data.diagnostic.airflow.totalStatic}
-- Blower: ${data.diagnostic.airflow.blowerOperation}
+Power Verification:
+- Disconnect: ${report.diagnostic.power.disconnect || 'N/A'}
+- Line Voltage: ${report.diagnostic.power.lineVoltage ? report.diagnostic.power.lineVoltage + 'V' : 'N/A'}
 
-ELECTRICAL COMPONENTS
-- Capacitor: ${data.diagnostic.electrical.capacitor}
-- Contactor: ${data.diagnostic.electrical.contactor}
+Airflow Assessment:
+- Filter: ${report.diagnostic.airflow.filter || 'N/A'}
+- TESP: ${report.diagnostic.airflow.tesp || 'N/A'}
+- Blower: ${report.diagnostic.airflow.blower || 'N/A'}
 
-${data.header.mode.toUpperCase()} CIRCUIT
-${data.header.mode === 'Cooling' ? `
-- Suction Pressure: ${data.diagnostic.refrigerant.suctionPressure} psig
-- Liquid Pressure: ${data.diagnostic.refrigerant.liquidPressure} psig  
-- Superheat: ${data.diagnostic.refrigerant.superheat}
-- Subcool: ${data.diagnostic.refrigerant.subcool}` : `
-- Gas Input: ${data.diagnostic.refrigerant.gasInput} BTU/hr
-- Manifold Pressure: ${data.diagnostic.refrigerant.manifoldPressure} in w.c.`}
+Electrical Components:
+- Capacitor: ${report.diagnostic.electrical.capacitor || 'N/A'}
+- Contactor: ${report.diagnostic.electrical.contactor || 'N/A'}
 
-CONTROLS & ENVIRONMENT
-- Thermostat: ${data.diagnostic.controls.thermostatComm}
-- Delta T: ${data.diagnostic.controls.deltaT}
-- Evap Coil: ${data.diagnostic.environment.evapCoil}
-- Cond Coil: ${data.diagnostic.environment.condCoil}
-- Drainage: ${data.diagnostic.environment.drainage}
+${report.mode === 'cooling' ? `Refrigerant Circuit:
+- Suction Pressure: ${report.diagnostic.refrigerant.suctionPressure || 'N/A'} psig
+- Liquid Pressure: ${report.diagnostic.refrigerant.liquidPressure || 'N/A'} psig
+- Superheat: ${report.diagnostic.refrigerant.superheat || 'N/A'}
+- Subcool: ${report.diagnostic.refrigerant.subcool || 'N/A'}` : `Heating System:
+- Gas Input: ${report.diagnostic.refrigerant.gasInput || 'N/A'} BTU/hr
+- Manifold Pressure: ${report.diagnostic.refrigerant.manifoldPressure || 'N/A'} in w.c.
+- Heat Exchanger: ${report.diagnostic.refrigerant.heatExchanger || 'N/A'}`}
 
-FINDINGS & RECOMMENDATIONS
+Controls:
+- Thermostat: ${report.diagnostic.controls.thermostat || 'N/A'}
+- Delta T: ${report.diagnostic.controls.deltaT || 'N/A'}
+
+Environment:
+- Evaporator Coil: ${report.diagnostic.environment.evapCoil || 'N/A'}
+- Condenser Coil: ${report.diagnostic.environment.condCoil || 'N/A'}
+- Drainage: ${report.diagnostic.environment.drainage || 'N/A'}
+
+DIAGNOSIS & RECOMMENDATIONS
 --------------------------
-${data.findings.primary}
+Diagnosis:
+${report.findings.diagnosis}
 
-${data.findings.repairs}
+Recommended Repairs:
+${report.findings.repairs}
+
+${report.findings.preventive ? `Preventive Measures:
+${report.findings.preventive}` : ''}
+
+${report.findings.notes ? `Additional Notes:
+${report.findings.notes}` : ''}
+
+Photos: ${report.photos.length} attached
 
 ---
-Technician: ${data.header.technician}
-Report generated by FieldBuddy Advanced™
+Technician Signature: _______________________  Date: __________
       `.trim();
     }
-    
+
+    // ==================== STATE PERSISTENCE ====================
+    function saveState() {
+      const state = {
+        mode: currentMode,
+        stepCompleted: stepCompleted,
+        photos: photos,
+        formData: {}
+      };
+
+      // Save all form values
+      document.querySelectorAll('input, select, textarea').forEach(el => {
+        if (el.id && el.type !== 'file' && el.type !== 'checkbox') {
+          state.formData[el.id] = el.value;
+        } else if (el.id && el.type === 'checkbox') {
+          state.formData[el.id] = el.checked;
+        }
+      });
+
+      localStorage.setItem('hvacDiagnosticState', JSON.stringify(state));
+    }
+
+    function loadState() {
+      const saved = localStorage.getItem('hvacDiagnosticState');
+      if (!saved) return;
+
+      try {
+        const state = JSON.parse(saved);
+        
+        // Restore mode
+        if (state.mode) setMode(state.mode);
+        
+        // Restore step completion
+        if (state.stepCompleted) {
+          stepCompleted = state.stepCompleted;
+          Object.keys(stepCompleted).forEach(step => {
+            if (stepCompleted[step]) {
+              $(`${step}-status`).textContent = 'Complete';
+              $(`${step}-status`).className = 'card-status complete';
+              $(`${step}-card`).classList.add('collapsed');
+            }
+          });// Restore photos
+        if (state.photos) {
+          photos = state.photos;
+          updatePhotoPreview();
+        }
+        
+        // Restore form data
+        if (state.formData) {
+          Object.keys(state.formData).forEach(id => {
+            const el = $(id);
+            if (el) {
+              if (el.type === 'checkbox') {
+                el.checked = state.formData[id];
+              } else {
+                el.value = state.formData[id];
+              }
+            }
+          });
+        }
+        
+        updateProgress();
+      } catch (e) {
+        console.error('Error loading state:', e);
+      }
+    }
+
+    function clearState() {
+      if (confirm('Clear all diagnostic data and start fresh?')) {
+        localStorage.removeItem('hvacDiagnosticState');
+        sessionStorage.removeItem('hvacReport');
+        location.reload();
+      }
+    }
+
+    // ==================== EVENT LISTENERS ====================
+    // Power step
+    $('disconnect-status').addEventListener('change', validatePowerStep);
+    $('voltage-line').addEventListener('input', validatePowerStep);
+    $('voltage-control').addEventListener('input', validatePowerStep);
+
+    // Airflow step
+    $('filter-condition').addEventListener('change', validateAirflowStep);
+    $('blower-operation').addEventListener('change', validateAirflowStep);
+    $('return-static').addEventListener('input', validateAirflowStep);
+    $('supply-static').addEventListener('input', validateAirflowStep);
+
+    // Electrical step
+    $('capacitor-reading').addEventListener('input', validateElectricalStep);
+    $('contactor-condition').addEventListener('change', validateElectricalStep);
+
+    // Refrigerant step
+    $('suction-pressure').addEventListener('input', validateRefrigerantStep);
+    $('liquid-pressure').addEventListener('input', validateRefrigerantStep);
+    $('suction-temp').addEventListener('input', validateRefrigerantStep);
+    $('liquid-temp').addEventListener('input', validateRefrigerantStep);
+    $('gas-input').addEventListener('input', validateRefrigerantStep);
+    $('manifold-pressure').addEventListener('input', validateRefrigerantStep);
+    $('heat-exchanger').addEventListener('change', validateRefrigerantStep);
+
+    // Controls step
+    $('thermostat-comm').addEventListener('change', validateControlsStep);
+    $('return-air-temp').addEventListener('input', validateControlsStep);
+    $('supply-air-temp').addEventListener('input', validateControlsStep);
+
+    // Environment step
+    $('evap-coil-condition').addEventListener('change', validateEnvironmentStep);
+    $('drainage-condition').addEventListener('change', validateEnvironmentStep);
+    if ($('cond-coil-condition')) {
+      $('cond-coil-condition').addEventListener('change', validateEnvironmentStep);
+    }
+
+    // Findings
+    $('diagnosis').addEventListener('input', updateProgress);
+    $('repairs').addEventListener('input', updateProgress);
+
+    // Auto-save on any input change
+    document.addEventListener('input', () => {
+      saveState();
+    });
+
+    document.addEventListener('change', () => {
+      saveState();
+    });
+
+    // Card header click to toggle collapse/expand
+    document.querySelectorAll('.card-header').forEach(header => {
+      header.style.cursor = 'pointer';
+      header.addEventListener('click', (e) => {
+        // Don't toggle if clicking on status badge
+        if (e.target.classList.contains('card-status')) return;
+        
+        const card = header.closest('.card');
+        if (card.id === 'job-card' || card.id === 'equipment-card' || 
+            card.id === 'findings-card' || card.id === 'photos-card') {
+          card.classList.toggle('collapsed');
+        }
+      });
+    });
+
+    // Prevent form submission
+    document.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+
     // ==================== INITIALIZATION ====================
     window.addEventListener('load', () => {
-      // Show initial AI coach message
-      setTimeout(() => {
-        showAICoach("Welcome to FieldBuddy Advanced! Let's start with job setup, then follow the complete FMS Diagnostic Method. Remember: Power → Airflow → Electrical → Refrigerant → Controls → Environment.");
-      }, 1000);
+      // Load saved state
+      loadState();
       
-      // Load any draft data
-      const draft = sessionStorage.getItem('fmsDraft');
-      if (draft && confirm('Resume previous diagnostic session?')) {
-        // Load draft implementation would go here
+      // Initialize photo preview
+      updatePhotoPreview();
+      
+      // Run initial validations
+      validatePowerStep();
+      validateAirflowStep();
+      validateElectricalStep();
+      validateRefrigerantStep();
+      validateControlsStep();
+      validateEnvironmentStep();
+      
+      console.log('HVAC Pro Diagnostic loaded successfully');
+    });
+
+    // Warn before leaving if there's unsaved work
+    window.addEventListener('beforeunload', (e) => {
+      const hasData = $('customer').value || $('address').value || photos.length > 0;
+      if (hasData && !sessionStorage.getItem('hvacReport')) {
+        e.preventDefault();
+        e.returnValue = 'You have unsaved diagnostic data. Are you sure you want to leave?';
+        return e.returnValue;
+      }
+    });
+
+    // Add keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      // Ctrl/Cmd + S to save/generate report
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        if (!$('generate-report-btn').disabled) {
+          generateReport();
+        }
       }
       
-      updateStepAccess();
+      // Ctrl/Cmd + P to take photo
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        showPhotoModal();
+      }
     });
-    
-    // Auto-save functionality
-    setInterval(() => {
-      const draft = {
-        customer: $('customer').value,
-        address: $('address').value,
-        complaint: $('complaint').value,
-        timestamp: Date.now()
-      };
-      sessionStorage.setItem('fmsDraft', JSON.stringify(draft));
-    }, 30000);
+
+    // Expose functions for debugging
+    window.hvacDebug = {
+      clearState,
+      saveState,
+      loadState,
+      getState: () => stepCompleted,
+      getPhotos: () => photos
+    };
   </script>
 </body>
 </html>
