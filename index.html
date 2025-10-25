@@ -56,17 +56,24 @@
     .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
     .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
     label{font-size:14px;color:var(--muted);display:block;margin-bottom:6px;font-weight:500}
-    input[type="text"],input[type="number"],input[type="date"],textarea{
+    input[type="text"],input[type="number"],input[type="date"],textarea,select{
       width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:16px;background:#fff;touch-action:manipulation;-webkit-appearance:none
     }
     input[type="number"]{font-size:17px}
+    select{font-size:16px}
     textarea{min-height:100px;resize:vertical;line-height:1.5}
     .section-title{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:10px;font-weight:700;font-size:16px}
     details{border:1px dashed var(--border);border-radius:8px;padding:10px 12px;margin:10px 0}
     details[open]{border-style:solid}
     details summary{cursor:pointer;font-weight:700;margin:6px 0;font-size:15px;padding:6px 0;touch-action:manipulation}
+    .voice-hint{font-size:11px;color:#9ca3af;font-style:italic;margin-bottom:8px;padding:4px 8px;background:#f9fafb;border-radius:4px}
     .chip{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--border);background:#fff;padding:10px 14px;border-radius:999px;font-size:14px;margin:4px 6px 4px 0;touch-action:manipulation;min-height:44px}
     .chip input[type="checkbox"]{width:20px;height:20px;margin:0}
+    .status-tags{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+    .status-tag{padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;border:2px solid transparent;background:#f3f4f6;color:#6b7280}
+    .status-tag.active.pass{background:var(--good);color:#fff;border-color:var(--good)}
+    .status-tag.active.fail{background:var(--bad);color:#fff;border-color:var(--bad)}
+    .status-tag.active.attention{background:var(--warn);color:#fff;border-color:var(--warn)}
     .score-box{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:12px}
     .score{font-weight:800;font-size:20px}
     .score.good{color:var(--good)} .score.warn{color:var(--warn)} .score.bad{color:var(--bad)}
@@ -74,7 +81,6 @@
     .summary-box{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:14px;white-space:pre-wrap;font-size:14px;line-height:1.6}
     .divider{height:1px;background:var(--border);margin:12px 0}
     .sticky-actions{position:sticky;bottom:10px;z-index:4;display:flex;gap:8px;justify-content:flex-end;margin-top:10px;flex-wrap:wrap}
-    .toggle{display:inline-flex;align-items:center;gap:8px;color:#cbd5e1;font-size:13px}
     .voice-input-wrapper{position:relative}
     .voice-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:var(--primary);color:#fff;border:0;border-radius:6px;padding:8px 12px;font-size:20px;cursor:pointer;z-index:2;min-height:36px;display:flex;align-items:center;justify-content:center}
     .voice-btn.listening{background:var(--bad);animation:pulse 1s infinite}
@@ -82,14 +88,17 @@
     .save-indicator{position:fixed;bottom:20px;right:20px;background:var(--good);color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;z-index:999;box-shadow:0 4px 12px rgba(0,0,0,.2);opacity:0;transition:opacity .3s}
     .save-indicator.show{opacity:1}
     .input-group{position:relative}
-    .input-group input[type="text"]{padding-right:50px}
+    .input-group input[type="text"],.input-group textarea{padding-right:50px}
+    .mode-selector{display:flex;gap:8px;margin-bottom:12px}
+    .mode-btn{flex:1;padding:12px;border:2px solid var(--border);border-radius:8px;background:#fff;font-weight:600;cursor:pointer;text-align:center}
+    .mode-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
   </style>
 </head>
 <body>
   <div class="wrap" id="app">
     <header>
       <h1>Field Buddy Pro — HVAC Inspection & Reporting</h1>
-      <div class="sub">Mobile-optimized field inspection with voice input</div>
+      <div class="sub">Mobile-optimized field inspection with voice input & SOP compliance</div>
       <div class="toolbar">
         <button class="btn" id="btnAddSystem">➕ Add System</button>
         <button class="btn secondary" id="btnExpandAll">Expand All</button>
@@ -158,11 +167,17 @@
         </div>
       </div>
 
+      <!-- Mode Selector -->
+      <div class="mode-selector">
+        <button class="mode-btn" data-mode="cooling">❄️ Cooling</button>
+        <button class="mode-btn" data-mode="heating">🔥 Heating</button>
+      </div>
+
       <!-- Identity -->
       <div class="grid-3">
         <div class="input-group voice-input-wrapper">
-          <label>Area Served (e.g., Upstairs)</label>
-          <input type="text" data-field="meta.zone" placeholder="Zone / Floor">
+          <label>Area Served</label>
+          <input type="text" data-field="meta.zone" placeholder="Upstairs, Main floor">
           <button class="voice-btn" data-voice-for="meta.zone">🎤</button>
         </div>
         <div class="input-group voice-input-wrapper">
@@ -171,8 +186,15 @@
           <button class="voice-btn" data-voice-for="meta.brandModel">🎤</button>
         </div>
         <div>
-          <label>Refrigerant Type</label>
-          <input type="text" list="refrig-list" data-field="meta.refrigerant" placeholder="R-410A / R-22 / R-32">
+          <label>System Type</label>
+          <select data-field="meta.systemType">
+            <option value="">Select type</option>
+            <option value="Split System">Split System</option>
+            <option value="Heat Pump">Heat Pump</option>
+            <option value="Package Unit">Package Unit</option>
+            <option value="Mini-Split">Mini-Split</option>
+            <option value="Furnace Only">Furnace Only</option>
+          </select>
         </div>
       </div>
       <div class="grid-3" style="margin-top:8px">
@@ -186,12 +208,22 @@
           <input type="text" data-field="meta.outdoorMS" placeholder="Model / Serial">
           <button class="voice-btn" data-voice-for="meta.outdoorMS">🎤</button>
         </div>
-        <div><label>Equipment Age (yrs)</label><input type="number" inputmode="decimal" step="0.1" data-field="meta.age" placeholder="e.g., 6.0"></div>
+        <div>
+          <label>Refrigerant Type</label>
+          <input type="text" list="refrig-list" data-field="meta.refrigerant" placeholder="R-410A / R-22 / R-32">
+        </div>
+      </div>
+      <div class="grid-3" style="margin-top:8px">
+        <div><label>Manufacture Date</label><input type="date" data-field="meta.mfgDate" class="calc-age"></div>
+        <div><label>Equipment Age (auto)</label><input type="text" data-field="meta.age" placeholder="Calculated" disabled></div>
+        <div></div>
       </div>
 
       <!-- Safety -->
       <details open>
         <summary>Safety</summary>
+        <div class="voice-hint">🎤 Say: "Safety section" or "Safety check complete"</div>
+        
         <div>
           <label class="chip"><input type="checkbox" data-field="safety.coDetector"> CO detector present</label>
           <label class="chip"><input type="checkbox" data-field="safety.floatPrimary"> Float switch (primary)</label>
@@ -199,26 +231,87 @@
           <label class="chip"><input type="checkbox" data-field="safety.clearances"> Clearances OK</label>
           <label class="chip"><input type="checkbox" data-field="safety.disconnect"> Outdoor disconnect OK</label>
         </div>
-        <div class="input-group voice-input-wrapper" style="margin-top:8px">
-          <label>Notes</label>
-          <textarea data-field="safety.notes" placeholder="Safety observations, venting, gas line, electrical, etc."></textarea>
+        
+        <div class="divider"></div>
+        <div style="margin-top:8px">
+          <label class="chip"><input type="checkbox" data-field="safety.rollout"> Rollout switch tested</label>
+          <label class="chip"><input type="checkbox" data-field="safety.pressure"> Pressure switch tested</label>
+          <label class="chip"><input type="checkbox" data-field="safety.highLimit"> High-limit switch tested</label>
+          <label class="chip"><input type="checkbox" data-field="safety.flameSensor"> Flame sensor OK</label>
+          <label class="chip"><input type="checkbox" data-field="safety.ignition"> Ignition operation verified</label>
+        </div>
+        
+        <div class="divider"></div>
+        <div style="margin-top:8px">
+          <label class="chip"><input type="checkbox" data-field="safety.noGasLeaks"> No gas leaks detected</label>
+          <label class="chip"><input type="checkbox" data-field="safety.ventingOK"> Venting/flue intact (no corrosion/cracks)</label>
+          <label class="chip"><input type="checkbox" data-field="safety.electricalTight"> Electrical connections tight & grounded</label>
+        </div>
+
+        <div class="input-group voice-input-wrapper" style="margin-top:12px">
+          <label>Safety Notes</label>
+          <textarea data-field="safety.notes" placeholder="Gas leaks, combustion issues, venting concerns, missing protections"></textarea>
           <button class="voice-btn" data-voice-for="safety.notes" style="top:40px">🎤</button>
+        </div>
+
+        <div class="status-tags">
+          <div class="status-tag" data-status="safety" data-value="pass">✓ Pass</div>
+          <div class="status-tag" data-status="safety" data-value="fail">✗ Fail</div>
+          <div class="status-tag" data-status="safety" data-value="attention">⚠ Needs Attention</div>
         </div>
       </details>
 
       <!-- Mechanical -->
       <details open>
         <summary>Mechanical</summary>
-        <div class="grid-4">
-          <div><label>Return Air (F)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.returnF" class="calc-delta"></div>
-          <div><label>Supply Air (F)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.supplyF" class="calc-delta"></div>
-          <div><label>Temp Split (auto)</label><input type="text" data-field="mech.deltaT" disabled></div>
-          <div>
-            <label>Filter Condition</label>
-            <input type="text" list="filter-list" data-field="mech.filter" placeholder="Clean / Dirty">
+        <div class="voice-hint">🎤 Say: "Mechanical section" or "Mechanical performance"</div>
+
+        <!-- Cooling Mode Fields -->
+        <div class="cooling-fields">
+          <div class="grid-4">
+            <div><label>Return Air (F)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.returnF" class="calc-delta"></div>
+            <div><label>Supply Air (F)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.supplyF" class="calc-delta"></div>
+            <div><label>Temp Split (auto)</label><input type="text" data-field="mech.deltaT" disabled></div>
+            <div>
+              <label>Filter Condition</label>
+              <input type="text" list="filter-list" data-field="mech.filter" placeholder="Clean / Dirty">
+            </div>
+          </div>
+
+          <div class="grid-4" style="margin-top:8px">
+            <div><label>Suction Pressure (psig)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.suction"></div>
+            <div><label>Head Pressure (psig)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.head"></div>
+            <div><label>Superheat (F)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.sh"></div>
+            <div><label>Subcool (F)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.sc"></div>
           </div>
         </div>
 
+        <!-- Heating Mode Fields -->
+        <div class="heating-fields" style="display:none">
+          <div class="grid-4">
+            <div><label>Return Air (F)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.returnF" class="calc-rise"></div>
+            <div><label>Supply Air (F)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.supplyF" class="calc-rise"></div>
+            <div><label>Temp Rise (auto)</label><input type="text" data-field="mech.tempRise" disabled></div>
+            <div>
+              <label>Filter Condition</label>
+              <input type="text" list="filter-list" data-field="mech.filter" placeholder="Clean / Dirty">
+            </div>
+          </div>
+          
+          <div class="grid-4" style="margin-top:8px">
+            <div class="input-group voice-input-wrapper">
+              <label>Inducer Motor Amps</label>
+              <input type="text" data-field="mech.inducerAmps" placeholder="actual/rated">
+              <button class="voice-btn" data-voice-for="mech.inducerAmps">🎤</button>
+            </div>
+            <div><label>Gas Input (BTU/hr)</label><input type="number" inputmode="decimal" data-field="mech.gasInput"></div>
+            <div><label>Manifold Pressure (in w.c.)</label><input type="number" inputmode="decimal" step="0.01" data-field="mech.manifoldPressure"></div>
+            <div></div>
+          </div>
+        </div>
+
+        <!-- Common Mechanical Fields -->
+        <div class="divider"></div>
         <div class="grid-4" style="margin-top:8px">
           <div><label>Return Static (in w.c.)</label><input type="number" inputmode="decimal" step="0.01" data-field="mech.returnStatic" class="calc-static"></div>
           <div><label>Supply Static (in w.c.)</label><input type="number" inputmode="decimal" step="0.01" data-field="mech.supplyStatic" class="calc-static"></div>
@@ -231,22 +324,39 @@
         </div>
 
         <div class="grid-4" style="margin-top:8px">
-          <div><label>Suction Pressure (psig)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.suction"></div>
-          <div><label>Head Pressure (psig)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.head"></div>
-          <div><label>Superheat (F)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.sh"></div>
-          <div><label>Subcool (F)</label><input type="number" inputmode="decimal" step="0.1" data-field="mech.sc"></div>
-        </div>
-
-        <div class="grid-4" style="margin-top:8px">
           <div class="input-group voice-input-wrapper">
-            <label>Blower Amps (actual/rated)</label>
-            <input type="text" data-field="mech.blowerAmps" placeholder="e.g., 5.8/5.0">
+            <label>Blower Amps</label>
+            <input type="text" data-field="mech.blowerAmps" placeholder="actual/rated">
             <button class="voice-btn" data-voice-for="mech.blowerAmps">🎤</button>
           </div>
           <div class="input-group voice-input-wrapper">
-            <label>Compressor Amps (actual/rated)</label>
-            <input type="text" data-field="mech.compAmps" placeholder="e.g., 15.0/14.0">
+            <label>Compressor Amps</label>
+            <input type="text" data-field="mech.compAmps" placeholder="actual/rated">
             <button class="voice-btn" data-voice-for="mech.compAmps">🎤</button>
+          </div>
+          <div class="input-group voice-input-wrapper">
+            <label>Voltage (V)</label>
+            <input type="text" data-field="mech.voltage" placeholder="L1-L2, L1-N, L2-N">
+            <button class="voice-btn" data-voice-for="mech.voltage">🎤</button>
+          </div>
+          <div class="input-group voice-input-wrapper">
+            <label>Capacitor (µF)</label>
+            <input type="text" data-field="mech.capacitor" placeholder="actual/rated">
+            <button class="voice-btn" data-voice-for="mech.capacitor">🎤</button>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-top:8px">
+          <div>
+            <label>Coil Condition</label>
+            <select data-field="mech.coilCondition">
+              <option value="">Select</option>
+              <option value="Clean">Clean</option>
+              <option value="Lightly soiled">Lightly soiled</option>
+              <option value="Restricted">Restricted</option>
+              <option value="Corroded">Corroded</option>
+              <option value="Leaking">Leaking</option>
+            </select>
           </div>
           <div class="input-group voice-input-wrapper">
             <label>Electrical Notes</label>
@@ -255,15 +365,23 @@
           </div>
           <div class="input-group voice-input-wrapper">
             <label>Mechanical Notes</label>
-            <input type="text" data-field="mech.notes" placeholder="Noise, vibration">
+            <input type="text" data-field="mech.notes" placeholder="Noise, vibration, cycling">
             <button class="voice-btn" data-voice-for="mech.notes">🎤</button>
           </div>
+        </div>
+
+        <div class="status-tags">
+          <div class="status-tag" data-status="mechanical" data-value="sound">✓ Sound</div>
+          <div class="status-tag" data-status="mechanical" data-value="stable">~ Stable</div>
+          <div class="status-tag" data-status="mechanical" data-value="service">⚠ Needs Service</div>
         </div>
       </details>
 
       <!-- Health -->
       <details open>
-        <summary>Health</summary>
+        <summary>Health (IAQ & Contamination)</summary>
+        <div class="voice-hint">🎤 Say: "Health section" or "Air quality findings"</div>
+        
         <div>
           <label class="chip"><input type="checkbox" data-field="health.microbialLight"> Microbial (light)</label>
           <label class="chip"><input type="checkbox" data-field="health.microbialHeavy"> Microbial (heavy)</label>
@@ -271,10 +389,50 @@
           <label class="chip"><input type="checkbox" data-field="health.filterOverdue"> Filter overdue</label>
           <label class="chip"><input type="checkbox" data-field="health.drainIssues"> Drain algae / slow flow</label>
         </div>
-        <div class="input-group voice-input-wrapper" style="margin-top:8px">
-          <label>Notes</label>
-          <textarea data-field="health.notes" placeholder="Odors, contamination, plenum condition, insulation"></textarea>
+
+        <div class="divider"></div>
+        <div style="margin-top:8px">
+          <label class="chip"><input type="checkbox" data-field="health.plenumClean"> Supply/return plenums clean</label>
+          <label class="chip"><input type="checkbox" data-field="health.insulationGood"> Insulation intact</label>
+          <label class="chip"><input type="checkbox" data-field="health.oxidation"> Oxidation/rust present</label>
+          <label class="chip"><input type="checkbox" data-field="health.waterDamage"> Water damage visible</label>
+        </div>
+
+        <div class="divider"></div>
+        <div style="margin-top:8px">
+          <label>Filtration Upgrades</label>
+          <select data-field="health.filtration">
+            <option value="">None / Standard</option>
+            <option value="Media Filter">Media Filter</option>
+            <option value="Electronic Filter">Electronic Filter</option>
+            <option value="HEPA">HEPA</option>
+            <option value="UV Light">UV Light</option>
+            <option value="Bipolar Ionization">Bipolar Ionization</option>
+          </select>
+        </div>
+
+        <div class="grid-2" style="margin-top:8px">
+          <div>
+            <label class="chip"><input type="checkbox" data-field="health.uvPresent"> UV system present</label>
+            <label class="chip"><input type="checkbox" data-field="health.uvOperational"> UV operational</label>
+          </div>
+          <div class="input-group voice-input-wrapper">
+            <label>Odor Findings</label>
+            <input type="text" data-field="health.odor" placeholder="Musty, chemical, none">
+            <button class="voice-btn" data-voice-for="health.odor">🎤</button>
+          </div>
+        </div>
+
+        <div class="input-group voice-input-wrapper" style="margin-top:12px">
+          <label>Health Notes</label>
+          <textarea data-field="health.notes" placeholder="Plenum condition, contamination risk, IAQ concerns, remediation needs"></textarea>
           <button class="voice-btn" data-voice-for="health.notes" style="top:40px">🎤</button>
+        </div>
+
+        <div class="status-tags">
+          <div class="status-tag" data-status="health" data-value="clean">✓ Clean</div>
+          <div class="status-tag" data-status="health" data-value="contaminated">✗ Contaminated</div>
+          <div class="status-tag" data-status="health" data-value="remediation">⚠ Needs Remediation</div>
         </div>
       </details>
 
@@ -406,6 +564,10 @@
       tpl.querySelector('[data-sysname]').textContent = '#' + sysCount;
       const section = tpl.querySelector('[data-system]');
       
+      // Set default mode to cooling
+      section.dataset.mode = 'cooling';
+      tpl.querySelector('[data-mode="cooling"]').classList.add('active');
+      
       tpl.querySelector('.btnRemove').addEventListener('click', () => section.remove());
       tpl.querySelector('.btnToggle').addEventListener('click', () => {
         const details = $$('details', section);
@@ -413,17 +575,72 @@
         details.forEach(d => d.open = !anyOpen);
       });
       
+      // Mode switching
+      $$('.mode-btn', tpl).forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mode = btn.getAttribute('data-mode');
+          const card = btn.closest('[data-system]');
+          card.dataset.mode = mode;
+          $$('.mode-btn', card).forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          if(mode === 'cooling'){
+            $('.cooling-fields', card).style.display = 'block';
+            $('.heating-fields', card).style.display = 'none';
+          } else {
+            $('.cooling-fields', card).style.display = 'none';
+            $('.heating-fields', card).style.display = 'block';
+          }
+        });
+      });
+      
       $$('.calc-delta', tpl).forEach(el => el.addEventListener('input', onDeltaInput));
+      $$('.calc-rise', tpl).forEach(el => el.addEventListener('input', onRiseInput));
       $$('.calc-static', tpl).forEach(el => el.addEventListener('input', onStaticInput));
+      $$('.calc-age', tpl).forEach(el => el.addEventListener('input', onAgeInput));
+      
+      // Status tag handling
+      $$('.status-tag', tpl).forEach(tag => {
+        tag.addEventListener('click', () => {
+          const card = tag.closest('[data-system]');
+          const status = tag.getAttribute('data-status');
+          const value = tag.getAttribute('data-value');
+          
+          $$(`[data-status="${status}"]`, card).forEach(t => t.classList.remove('active', 'pass', 'fail', 'attention', 'sound', 'stable', 'service', 'clean', 'contaminated', 'remediation'));
+          tag.classList.add('active', value);
+          card.dataset[`status_${status}`] = value;
+          markDirty();
+        });
+      });
+      
       $('#systems').appendChild(tpl);
     }
 
     function onDeltaInput(e){
       const card = e.target.closest('[data-system]');
-      const r = toNum($('[data-field="mech.returnF"]', card)?.value);
-      const s = toNum($('[data-field="mech.supplyF"]', card)?.value);
-      const out = $('[data-field="mech.deltaT"]', card);
-      if(r!=null && s!=null){ const v = (r - s).toFixed(1); out.value = v; card.dataset.deltaT = v; }
+      const mode = card.dataset.mode || 'cooling';
+      const container = mode === 'cooling' ? $('.cooling-fields', card) : $('.heating-fields', card);
+      const r = toNum($('[data-field="mech.returnF"]', container)?.value);
+      const s = toNum($('[data-field="mech.supplyF"]', container)?.value);
+      const out = $('[data-field="mech.deltaT"]', container);
+      if(r!=null && s!=null){ 
+        const v = (r - s).toFixed(1); 
+        out.value = v; 
+        card.dataset.deltaT = v; 
+      }
+    }
+
+    function onRiseInput(e){
+      const card = e.target.closest('[data-system]');
+      const container = $('.heating-fields', card);
+      const r = toNum($('[data-field="mech.returnF"]', container)?.value);
+      const s = toNum($('[data-field="mech.supplyF"]', container)?.value);
+      const out = $('[data-field="mech.tempRise"]', container);
+      if(r!=null && s!=null){ 
+        const v = (s - r).toFixed(1); 
+        out.value = v; 
+        card.dataset.tempRise = v; 
+      }
     }
 
     function onStaticInput(e){
@@ -431,7 +648,24 @@
       const rs = toNum($('[data-field="mech.returnStatic"]', card)?.value);
       const ss = toNum($('[data-field="mech.supplyStatic"]', card)?.value);
       const out = $('[data-field="mech.totalStatic"]', card);
-      if(rs!=null && ss!=null){ const v = (Math.abs(rs)+Math.abs(ss)).toFixed(2); out.value = v; card.dataset.totalStatic = v; }
+      if(rs!=null && ss!=null){ 
+        const v = (Math.abs(rs)+Math.abs(ss)).toFixed(2); 
+        out.value = v; 
+        card.dataset.totalStatic = v; 
+      }
+    }
+
+    function onAgeInput(e){
+      const card = e.target.closest('[data-system]');
+      const mfgDate = $('[data-field="meta.mfgDate"]', card)?.value;
+      const out = $('[data-field="meta.age"]', card);
+      if(mfgDate){
+        const mfg = new Date(mfgDate);
+        const now = new Date();
+        const years = ((now - mfg) / (365.25 * 24 * 60 * 60 * 1000)).toFixed(1);
+        out.value = years + ' years';
+        card.dataset.age = years;
+      }
     }
 
     // ---------- Scoring ----------
@@ -441,6 +675,12 @@
         { when:c=>!isTrue(c['safety.floatPrimary'])||!isTrue(c['safety.floatPan']), delta:-1, reason:'Missing float switch' },
         { when:c=>!isTrue(c['safety.clearances']), delta:-1, reason:'Clearances not verified' },
         { when:c=>!isTrue(c['safety.disconnect']), delta:-1, reason:'Outdoor disconnect not verified' },
+        { when:c=>!isTrue(c['safety.rollout']), delta:-1, reason:'Rollout switch not tested' },
+        { when:c=>!isTrue(c['safety.pressure']), delta:-1, reason:'Pressure switch not tested' },
+        { when:c=>!isTrue(c['safety.highLimit']), delta:-1, reason:'High-limit switch not tested' },
+        { when:c=>!isTrue(c['safety.noGasLeaks']), delta:-2, reason:'Gas leak concerns' },
+        { when:c=>!isTrue(c['safety.ventingOK']), delta:-2, reason:'Venting/flue issues' },
+        { when:c=>!isTrue(c['safety.electricalTight']), delta:-1, reason:'Electrical connections not verified' },
       ],
       mechanical: [
         { when:c=>numLT(c.deltaT,16), delta:-1, reason:'Low temperature split (<16 F)' },
@@ -448,6 +688,9 @@
         { when:c=>numGT(c.totalStatic,0.50), delta:-2, reason:'High total static (>0.50 in w.c.)' },
         { when:c=>relAmpHigh(c['mech.blowerAmps']), delta:-1, reason:'Blower amps elevated' },
         { when:c=>relAmpHigh(c['mech.compAmps']), delta:-1, reason:'Compressor amps elevated' },
+        { when:c=>relAmpHigh(c['mech.inducerAmps']), delta:-1, reason:'Inducer amps elevated' },
+        { when:c=>c['mech.coilCondition']==='Corroded'||c['mech.coilCondition']==='Leaking', delta:-2, reason:'Coil compromised' },
+        { when:c=>c['mech.coilCondition']==='Restricted', delta:-1, reason:'Coil restricted' },
         { when:c=>txtFind(c['mech.notes'],'vibration|grind|hard start|overheat'), delta:-1, reason:'Mechanical noise/start stress' }
       ],
       health: [
@@ -456,6 +699,10 @@
         { when:c=>isTrue(c['health.ductLeaks']), delta:-2, reason:'Duct/plenum leaks' },
         { when:c=>isTrue(c['health.filterOverdue']), delta:-1, reason:'Filter overdue' },
         { when:c=>isTrue(c['health.drainIssues']), delta:-1, reason:'Drain cleanliness issues' },
+        { when:c=>!isTrue(c['health.plenumClean']), delta:-2, reason:'Plenum contamination' },
+        { when:c=>!isTrue(c['health.insulationGood']), delta:-1, reason:'Insulation compromised' },
+        { when:c=>isTrue(c['health.oxidation']), delta:-1, reason:'Oxidation/rust present' },
+        { when:c=>isTrue(c['health.waterDamage']), delta:-2, reason:'Water damage detected' },
       ]
     };
     const numLT=(v,t)=>{const n=toNum(v);return n!=null&&n<t;}
@@ -470,7 +717,12 @@
         data[key] = (el.type === 'checkbox') ? el.checked : el.value;
       });
       data.deltaT = card.dataset.deltaT || data['mech.deltaT'];
+      data.tempRise = card.dataset.tempRise || data['mech.tempRise'];
       data.totalStatic = card.dataset.totalStatic || data['mech.totalStatic'];
+      data.mode = card.dataset.mode || 'cooling';
+      data.status_safety = card.dataset.status_safety || '';
+      data.status_mechanical = card.dataset.status_mechanical || '';
+      data.status_health = card.dataset.status_health || '';
       return data;
     }
 
@@ -513,11 +765,15 @@
       if(s.scores.safety<=7){
         if(!isTrue(s.data['safety.floatPrimary'])||!isTrue(s.data['safety.floatPan'])) rec.immediate.push('Install primary and pan float switches');
         if(!isTrue(s.data['safety.coDetector'])) rec.immediate.push('Add CO detector near combustion appliance');
+        if(!isTrue(s.data['safety.noGasLeaks'])) rec.immediate.push('Address gas leak concerns immediately');
+        if(!isTrue(s.data['safety.ventingOK'])) rec.immediate.push('Repair venting/flue system');
       }
       if(s.scores.mechanical<=7){
         if(numGT(s.meta.totalStatic,0.50)) rec.corrective.push('Seal/adjust ductwork and plenum to reduce total static pressure');
         if(relAmpHigh(s.data['mech.compAmps'])) rec.preventive.push('Add soft start to reduce compressor inrush stress');
         if(relAmpHigh(s.data['mech.blowerAmps'])) rec.corrective.push('Investigate airflow restriction or blower condition');
+        if(s.data['mech.coilCondition']==='Leaking') rec.immediate.push('Replace leaking coil');
+        if(s.data['mech.coilCondition']==='Corroded'||s.data['mech.coilCondition']==='Restricted') rec.corrective.push('Clean or replace coil');
       }
       if(s.scores.health<=8){
         if(isTrue(s.data['health.microbialHeavy'])) rec.corrective.push('Replace contaminated plenum/components and apply remediation');
@@ -525,6 +781,8 @@
         if(isTrue(s.data['health.ductLeaks'])) rec.corrective.push('Seal plenum/collar leaks with mastic and fasteners');
         if(isTrue(s.data['health.filterOverdue'])) rec.preventive.push('Install media filter cabinet and set filter schedule');
         if(isTrue(s.data['health.drainIssues'])) rec.corrective.push('Clean and re-trap condensate line; verify slope');
+        if(isTrue(s.data['health.waterDamage'])) rec.corrective.push('Address water intrusion source and repair damage');
+        if(!s.data['health.filtration'] || s.data['health.filtration']==='') rec.preventive.push('Consider upgraded filtration for improved IAQ');
       }
       return rec;
     }
@@ -536,8 +794,16 @@
         const data=collectCardData(card);
         const scores=scoreCard(card);
         const reasons=JSON.parse(card.dataset.scoreReasons||'{"safety":[],"mechanical":[],"health":[]}');
-        const meta={ zone:data['meta.zone']||'Zone', brandModel:data['meta.brandModel']||'Brand/Model', refrigerant:data['meta.refrigerant']||'',
-                     deltaT:data.deltaT||data['mech.deltaT']||'', totalStatic:data.totalStatic||data['mech.totalStatic']||'' };
+        const meta={ 
+          zone:data['meta.zone']||'Zone', 
+          brandModel:data['meta.brandModel']||'Brand/Model', 
+          systemType:data['meta.systemType']||'',
+          refrigerant:data['meta.refrigerant']||'',
+          mode:data.mode||'cooling',
+          deltaT:data.deltaT||data['mech.deltaT']||'', 
+          tempRise:data.tempRise||data['mech.tempRise']||'',
+          totalStatic:data.totalStatic||data['mech.totalStatic']||'' 
+        };
         const recs=recommendFromScores({data,scores,reasons,meta});
         systems.push({data,scores,reasons,meta,recs});
       });
@@ -569,14 +835,27 @@
       c.push('');
       ctx.systems.forEach((s,i)=>{
         c.push(`System ${i+1} — ${s.meta.zone} (${s.meta.brandModel})`);
+        if(s.meta.systemType) c.push(`Type: ${s.meta.systemType}`);
         if(s.meta.refrigerant) c.push(`Refrigerant: ${s.meta.refrigerant}`);
-        c.push(`Performance: Temperature split ${s.meta.deltaT||'-'} F, Total static ${s.meta.totalStatic||'-'} in w.c.`);
+        
+        const perfMetric = s.meta.mode === 'heating' ? 
+          `Temperature rise ${s.meta.tempRise||'-'} F` : 
+          `Temperature split ${s.meta.deltaT||'-'} F`;
+        c.push(`Performance: ${perfMetric}, Total static ${s.meta.totalStatic||'-'} in w.c.`);
+        
         c.push(`Scores: Safety ${s.scores.safety}/10, Mechanical ${s.scores.mechanical}/10, Health ${s.scores.health}/10, Overall ${s.scores.overall}/10, Confidence ${s.scores.confidence}%`);
+        
+        // Status summary
+        const statusSummary = [];
+        if(s.data.status_safety) statusSummary.push(`Safety: ${s.data.status_safety}`);
+        if(s.data.status_mechanical) statusSummary.push(`Mechanical: ${s.data.status_mechanical}`);
+        if(s.data.status_health) statusSummary.push(`Health: ${s.data.status_health}`);
+        if(statusSummary.length) c.push(`Status: ${statusSummary.join(', ')}`);
+        
         if(s.recs.immediate.length||s.recs.corrective.length||s.recs.preventive.length){
           c.push(`Recommendations:`);
           if(s.recs.immediate.length)  c.push(`  Immediate: ${s.recs.immediate.join('; ')}`);
-          if(s.recs.corrective.length) c.push(`  Corrective: ${s.recs.corrective.join('; ')}`);
-          if(s.recs.preventive.length) c.push(`  Preventive: ${s.recs.preventive.join('; ')}`);
+          if(s.recs.corrective.length) c.push(`  Corrective: ${s.recs.corrective.length) c.push(`  Preventive: ${s.recs.preventive.join('; ')}`);
         }
         c.push('');
       });
@@ -588,19 +867,49 @@
       if(ctx.ambientF||ctx.ambientRH) o.push(`Ambient: ${ctx.ambientF||'-'} F, ${ctx.ambientRH||'-'} % RH`);
       o.push('');
       ctx.systems.forEach((s,i)=>{
-        o.push(`System ${i+1}: ${s.meta.zone} (${s.meta.brandModel})`);
-        o.push(`  Identity: Refrig ${s.meta.refrigerant||'-'}   Age ${s.data['meta.age']||'-'} yrs   Indoor ${s.data['meta.indoorMS']||'-'}   Outdoor ${s.data['meta.outdoorMS']||'-'}`);
-        o.push(`  Air Temps: Return ${s.data['mech.returnF']||'-'} F   Supply ${s.data['mech.supplyF']||'-'} F   Split ${s.meta.deltaT||'-'} F`);
+        o.push(`System ${i+1}: ${s.meta.zone} (${s.meta.brandModel}) - ${s.meta.mode.toUpperCase()} MODE`);
+        o.push(`  Type: ${s.meta.systemType||'-'}   Refrig: ${s.meta.refrigerant||'-'}   Age: ${s.data['meta.age']||'-'}`);
+        o.push(`  Indoor: ${s.data['meta.indoorMS']||'-'}   Outdoor: ${s.data['meta.outdoorMS']||'-'}`);
+        
+        if(s.meta.mode === 'cooling'){
+          o.push(`  Air Temps: Return ${s.data['mech.returnF']||'-'} F   Supply ${s.data['mech.supplyF']||'-'} F   Split ${s.meta.deltaT||'-'} F`);
+          o.push(`  Refrig: Suction ${s.data['mech.suction']||'-'} psig   Head ${s.data['mech.head']||'-'} psig   SH ${s.data['mech.sh']||'-'} F   SC ${s.data['mech.sc']||'-'} F`);
+        } else {
+          o.push(`  Air Temps: Return ${s.data['mech.returnF']||'-'} F   Supply ${s.data['mech.supplyF']||'-'} F   Rise ${s.meta.tempRise||'-'} F`);
+          if(s.data['mech.inducerAmps']) o.push(`  Inducer: ${s.data['mech.inducerAmps']}`);
+          if(s.data['mech.gasInput']) o.push(`  Gas Input: ${s.data['mech.gasInput']} BTU/hr`);
+          if(s.data['mech.manifoldPressure']) o.push(`  Manifold Pressure: ${s.data['mech.manifoldPressure']} in w.c.`);
+        }
+        
         o.push(`  Static: Return ${s.data['mech.returnStatic']||'-'}   Supply ${s.data['mech.supplyStatic']||'-'}   Total ${s.meta.totalStatic||'-'} in w.c.`);
-        o.push(`  Refrig: Suction ${s.data['mech.suction']||'-'} psig   Head ${s.data['mech.head']||'-'} psig   SH ${s.data['mech.sh']||'-'} F   SC ${s.data['mech.sc']||'-'} F`);
-        o.push(`  Amps:   Blower ${s.data['mech.blowerAmps']||'-'}   Compressor ${s.data['mech.compAmps']||'-'}`);
+        o.push(`  Amps: Blower ${s.data['mech.blowerAmps']||'-'}   Compressor ${s.data['mech.compAmps']||'-'}`);
+        if(s.data['mech.voltage']) o.push(`  Voltage: ${s.data['mech.voltage']}`);
+        if(s.data['mech.capacitor']) o.push(`  Capacitor: ${s.data['mech.capacitor']} µF`);
         if(s.data['mech.filter']) o.push(`  Filter: ${s.data['mech.filter']}`);
+        if(s.data['mech.coilCondition']) o.push(`  Coil: ${s.data['mech.coilCondition']}`);
         if(s.data['mech.electrical']) o.push(`  Electrical: ${s.data['mech.electrical']}`);
         if(s.data['mech.airflowNotes']) o.push(`  Airflow: ${s.data['mech.airflowNotes']}`);
+        
+        // Safety details
+        const safetyItems = [];
+        if(isTrue(s.data['safety.rollout'])) safetyItems.push('Rollout✓');
+        if(isTrue(s.data['safety.pressure'])) safetyItems.push('Pressure✓');
+        if(isTrue(s.data['safety.highLimit'])) safetyItems.push('High-limit✓');
+        if(isTrue(s.data['safety.flameSensor'])) safetyItems.push('Flame sensor✓');
+        if(isTrue(s.data['safety.ignition'])) safetyItems.push('Ignition✓');
+        if(isTrue(s.data['safety.noGasLeaks'])) safetyItems.push('No gas leaks✓');
+        if(safetyItems.length) o.push(`  Safety Checks: ${safetyItems.join(', ')}`);
         if(s.data['safety.notes']) o.push(`  Safety Notes: ${s.data['safety.notes']}`);
+        
+        // Health details
+        if(s.data['health.filtration']) o.push(`  Filtration: ${s.data['health.filtration']}`);
+        if(isTrue(s.data['health.uvPresent'])) o.push(`  UV System: ${isTrue(s.data['health.uvOperational']) ? 'Operational' : 'Not operational'}`);
+        if(s.data['health.odor']) o.push(`  Odor: ${s.data['health.odor']}`);
         if(s.data['mech.notes']) o.push(`  Mechanical Notes: ${s.data['mech.notes']}`);
         if(s.data['health.notes']) o.push(`  Health Notes: ${s.data['health.notes']}`);
+        
         o.push(`  Scores: Safety ${s.scores.safety}/10   Mechanical ${s.scores.mechanical}/10   Health ${s.scores.health}/10   Overall ${s.scores.overall}/10   Confidence ${s.scores.confidence}%`);
+        
         const reasons = s.reasons;
         if(Object.values(reasons).some(a=>a.length)){
           o.push(`  Score drivers:`);
@@ -608,6 +917,14 @@
           if(reasons.mechanical.length) o.push(`    Mechanical: ${reasons.mechanical.join('; ')}`);
           if(reasons.health.length) o.push(`    Health: ${reasons.health.join('; ')}`);
         }
+        
+        // SOP Status Summary
+        const statusLine = [];
+        if(s.data.status_safety) statusLine.push(`Safety: ${s.data.status_safety}`);
+        if(s.data.status_mechanical) statusLine.push(`Mechanical: ${s.data.status_mechanical}`);
+        if(s.data.status_health) statusLine.push(`Health: ${s.data.status_health}`);
+        if(statusLine.length) o.push(`  SOP Status: ${statusLine.join(' | ')}`);
+        
         o.push(`  Tiered Recommendations:`);
         o.push(`    Immediate: ${s.recs.immediate.join('; ') || 'None'}`);
         o.push(`    Corrective: ${s.recs.corrective.join('; ') || 'None'}`);
@@ -622,7 +939,7 @@
     function exportPDF(){
       buildReports(); // Auto-generate before export
       const el = document.body.cloneNode(true);
-      el.querySelectorAll('.toolbar, .sticky-actions, .voice-btn, #saveIndicator').forEach(b => b && (b.style.display='none'));
+      el.querySelectorAll('.toolbar, .sticky-actions, .voice-btn, #saveIndicator, .voice-hint, .mode-selector, .status-tags').forEach(b => b && (b.style.display='none'));
       const opt = {
         margin: 0.5,
         filename: `FieldBuddy_${($('#customerName').value || 'Report')}_${($('#inspectionDate').value || new Date().toISOString().slice(0,10))}.pdf`,
@@ -632,6 +949,7 @@
       };
       html2pdf().set(opt).from(el).save();
     }
+    
     function exportHTML(){
       buildReports(); // Auto-generate before export
       const doc = `<!doctype html><html><head><meta charset="utf-8"><title>Field Buddy Report</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:Arial,Helvetica,sans-serif;max-width:900px;margin:0 auto;padding:16px;white-space:pre-wrap}h2{border-bottom:1px solid #ddd;padding-bottom:6px}</style></head><body><h2>Customer Summary</h2>${escapeHtml($('#customerSummary').textContent)}<h2>Back Office Summary</h2>${escapeHtml($('#officeSummary').textContent)}</body></html>`;
@@ -641,6 +959,7 @@
       a.download = `FieldBuddy_${($('#customerName').value || 'Report')}_${($('#inspectionDate').value || new Date().toISOString().slice(0,10))}.html`;
       a.click(); URL.revokeObjectURL(a.href);
     }
+    
     function exportJSON(){
       buildReports(); // Auto-generate before export
       const payload = {
@@ -663,6 +982,7 @@
       a.download = `FieldBuddy_${($('#customerName').value || 'Report')}_${($('#inspectionDate').value || new Date().toISOString().slice(0,10))}.json`;
       a.click(); URL.revokeObjectURL(a.href);
     }
+    
     const escapeHtml = (str) => String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
     // ---------- Copy to clipboard ----------
@@ -684,7 +1004,10 @@
         },
         systems: []
       };
-      $$('[data-system]').forEach(card=> draft.systems.push(collectCardData(card)));
+      $$('[data-system]').forEach(card=> {
+        const systemData = collectCardData(card);
+        draft.systems.push(systemData);
+      });
       return draft;
     }
 
@@ -725,6 +1048,7 @@
 
     // Mark dirty on any input
     $('#app').addEventListener('input', markDirty);
+    $('#app').addEventListener('change', markDirty);
 
     // Auto-save every 5 seconds after changes
     setInterval(()=> {
