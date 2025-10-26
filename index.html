@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
   <meta name="description" content="Professional HVAC field documentation and materials system">
-  <title>Field Buddy Pro v1.5 - Intelligent Validation</title>
+  <title>Field Buddy Pro - Service & Materials</title>
   <style>
-    /* ==================== BASE STYLES (v1.0) ==================== */
+    /* ==================== BASE STYLES ==================== */
     * { 
       box-sizing: border-box; 
       margin: 0; 
@@ -25,7 +25,7 @@
       color: #1a1a1a;
     }
     
-    /* ==================== INPUTS (v1.0) ==================== */
+    /* ==================== INPUTS ==================== */
     input, select, textarea, button {
       font-size: 16px;
       padding: 14px;
@@ -101,7 +101,7 @@
       border-color: #34C759;
     }
     
-    /* ==================== BUTTONS (v1.0) ==================== */
+    /* ==================== BUTTONS ==================== */
     button {
       background: #007AFF;
       color: white;
@@ -131,7 +131,7 @@
       min-height: 40px;
     }
     
-    /* ==================== CARDS (v1.0) ==================== */
+    /* ==================== CARDS ==================== */
     .card {
       background: white;
       border-radius: 12px;
@@ -160,7 +160,7 @@
       border-top: 1px solid #e0e0e0;
     }
     
-    /* ==================== GRID LAYOUTS (v1.0) ==================== */
+    /* ==================== GRID LAYOUTS ==================== */
     .grid-2 { 
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -185,7 +185,7 @@
       }
     }
     
-    /* ==================== MODE TOGGLE (v1.0) ==================== */
+    /* ==================== MODE TOGGLE ==================== */
     .mode-toggle {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -208,7 +208,7 @@
       border-color: #007AFF;
     }
     
-    /* ==================== STATUS INDICATORS (v1.0) ==================== */
+    /* ==================== STATUS INDICATORS ==================== */
     .status {
       padding: 10px 14px;
       border-radius: 8px;
@@ -245,7 +245,7 @@
       border-left: 4px solid #007AFF;
     }
     
-    /* ==================== VOICE INPUT (v1.0) ==================== */
+    /* ==================== VOICE INPUT ==================== */
     .voice-wrapper {
       position: relative;
     }
@@ -285,7 +285,7 @@
       padding-right: 50px;
     }
 
-    /* ==================== DYNAMIC FIELDS (v1.0) ==================== */
+    /* ==================== DYNAMIC FIELDS ==================== */
     .dynamic-item {
       background: #f8f9fa;
       padding: 12px;
@@ -320,7 +320,7 @@
       margin-top: 8px;
     }
     
-    /* ==================== COLLAPSIBLE SECTIONS (v1.0) ==================== */
+    /* ==================== COLLAPSIBLE SECTIONS ==================== */
     .section {
       margin: 16px 0;
     }
@@ -372,7 +372,7 @@
       display: block;
     }
     
-    /* ==================== MODE-SPECIFIC VISIBILITY (v1.0) ==================== */
+    /* ==================== MODE-SPECIFIC VISIBILITY ==================== */
     .service-only,
     .materials-only,
     .cooling-only,
@@ -386,6 +386,7 @@
     body.mode-service.mode-cooling .cooling-only { display: block; }
     body.mode-service.mode-heating .heating-only { display: block; }
 
+    /* Grid override for mode-specific items */
     .grid-2 .cooling-only,
     .grid-2 .heating-only,
     .grid-3 .cooling-only,
@@ -403,7 +404,7 @@
       display: block;
     }
     
-    /* ==================== PHOTOS (v1.0) ==================== */
+    /* ==================== PHOTOS ==================== */
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -464,7 +465,7 @@
       margin: 0;
     }
     
-    /* ==================== MATERIALS LIST SPECIFIC (v1.0) ==================== */
+    /* ==================== MATERIALS LIST SPECIFIC ==================== */
     .material-catalog {
       max-height: 400px;
       overflow-y: auto;
@@ -580,7 +581,7 @@
       margin-top: 2px;
     }
     
-    /* ==================== REPORT PREVIEW (v1.0) ==================== */
+    /* ==================== REPORT PREVIEW ==================== */
     .report-preview {
       background: #f8f8f8;
       padding: 16px;
@@ -594,7 +595,7 @@
       border: 1px solid #ddd;
     }
     
-    /* ==================== STICKY ACTION BAR (v1.0) ==================== */
+    /* ==================== STICKY ACTION BAR ==================== */
     .actions {
       position: fixed;
       bottom: 0;
@@ -614,7 +615,7 @@
       padding: 12px 8px;
     }
     
-    /* ==================== MODAL & TOAST (v1.0) ==================== */
+    /* ==================== MODAL & TOAST ==================== */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -640,8 +641,6 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       transform: scale(0.95);
       transition: transform 0.2s;
-      max-height: 80vh; /* Added for long modals */
-      overflow-y: auto; /* Added for long modals */
     }
     
     .modal-overlay.visible {
@@ -701,73 +700,12 @@
     .toast-notification.success { background: #34C759; }
     .toast-notification.danger { background: #FF3B30; }
     
-    /* ==================== HIDDEN / UTILITY (v1.0) ==================== */
+    /* ==================== HIDDEN / UTILITY ==================== */
     .hidden { display: none !important; }
     .mt-8 { margin-top: 8px; }
     .mt-16 { margin-top: 16px; }
     .mb-8 { margin-bottom: 8px; }
     .text-muted { color: #666; font-size: 13px; }
-
-    /* ==================== NEW v1.5 DIAGNOSTIC REVIEW ==================== */
-    .review-item {
-      background: #f8f9fa;
-      border-left: 4px solid #FF3B30; /* v1.0 danger color */
-      padding: 16px;
-      margin: 12px 0;
-      border-radius: 8px;
-    }
-    
-    .review-item.warning {
-      border-left-color: #FF9500; /* v1.0 warning color */
-    }
-    
-    .review-item.info {
-      border-left-color: #007AFF; /* v1.0 info color */
-    }
-    
-    .review-item-header {
-      font-weight: 700;
-      font-size: 15px;
-      margin-bottom: 8px;
-      color: #1a1a1a;
-    }
-    
-    .review-item-measurements {
-      background: white;
-      padding: 10px;
-      border-radius: 6px;
-      margin: 8px 0;
-      font-family: 'Courier New', monospace;
-      font-size: 13px;
-      line-height: 1.5;
-      border: 1px solid #ddd;
-    }
-    
-    .review-item-checks {
-      margin-top: 12px;
-    }
-    
-    .review-item-checks label {
-      /* This inherits from label.check, but we reset it */
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 0;
-      font-size: 14px;
-      color: #1a1a1a;
-      margin: 0;
-      border: none;
-      background: none;
-      font-weight: 500; /* Reset from bold */
-    }
-    
-    .review-item-checks input[type="checkbox"] {
-      width: 20px;
-      height: 20px;
-      margin: 0;
-      margin-right: 10px; /* Re-add margin */
-      flex-shrink: 0;
-    }
   </style>
 </head>
 <body class="mode-service mode-cooling">
@@ -787,7 +725,7 @@
     </div>
   </div>
 
-  <!-- ==================== SERVICE MODE (v1.0) ==================== -->
+  <!-- ==================== SERVICE MODE ==================== -->
   <div class="service-only">
     
     <!-- Job Info -->
@@ -1152,7 +1090,7 @@
           <div>
             <label>Capacitor (µF)</label>
             <div class="voice-wrapper">
-              <input type="text" id="capacitor-reading" placeholder="Actual/Rated µF (e.g. 32/35)">
+              <input type="text" id="capacitor-reading" placeholder="Actual/Rated µF">
               <button class="voice-btn" data-voice="capacitor-reading">🎤</button>
             </div>
           </div>
@@ -1207,7 +1145,7 @@
     
   </div>
 
-  <!-- ==================== MATERIALS MODE (v1.0) ==================== -->
+  <!-- ==================== MATERIALS MODE ==================== -->
   <div class="materials-only">
     
     <!-- Materials Job Info -->
@@ -1237,7 +1175,7 @@
       <textarea id="mat-notes" rows="2" placeholder="Special requirements, access notes, etc."></textarea>
     </div>
     
-    <!-- Smart Suggestions (v1.0, to be populated by v1.5 logic) -->
+    <!-- Smart Suggestions -->
     <div id="suggestions-container" class="hidden">
       <div class="card">
         <div class="card-header">
@@ -1245,7 +1183,7 @@
         </div>
         <div class="status info">
           <span>ℹ️</span>
-          <span>Based on your service diagnostics, you may need these:</span>
+          <span>Based on your selections, you may need these items</span>
         </div>
         <div id="suggestions-list"></div>
       </div>
@@ -1289,7 +1227,7 @@
     
   </div>
 
-  <!-- ==================== GLOBAL: Photo Documentation (v1.0) ==================== -->
+  <!-- GLOBAL: Photo Documentation -->
   <div class="card">
     <div class="card-header">
       <span>📸 Photo Documentation</span>
@@ -1313,7 +1251,7 @@
     <div class="photo-grid" id="photo-preview"></div>
   </div>
 
-  <!-- ==================== GLOBAL: Signature (v1.0) ==================== -->
+  <!-- GLOBAL: Signature -->
   <div class="card">
     <div class="card-header">
       <span>✍️ Signature</span>
@@ -1331,7 +1269,7 @@
     </div>
   </div>
 
-  <!-- ==================== GLOBAL: Sticky Action Bar (v1.0) ==================== -->
+  <!-- GLOBAL: Sticky Action Bar -->
   <div class="actions">
     <button class="success" onclick="generate()" id="generate-btn">
       <span>✓</span> Generate
@@ -1344,7 +1282,7 @@
     </button>
   </div>
   
-  <!-- ==================== GLOBAL: Confirmation Modal (v1.0) ==================== -->
+  <!-- GLOBAL: Modal & Toast -->
   <div class="modal-overlay" id="modal-container">
     <div class="modal-content">
       <div class="modal-title" id="modal-title">Confirmation</div>
@@ -1356,756 +1294,12 @@
     </div>
   </div>
   
-  <!-- ==================== NEW v1.5: Diagnostic Review Modal ==================== -->
-  <div class="modal-overlay" id="diagnostic-review-modal">
-    <div class="modal-content" style="max-width: 700px;">
-      <div class="modal-title">🔍 Diagnostic Review</div>
-      <div class="modal-body">
-        
-        <!-- Critical Issues -->
-        <div id="review-critical-section" class="hidden">
-          <div class="status bad">
-            <span>⚠️</span>
-            <span><strong>Critical Issues Detected</strong></span>
-          </div>
-          <div id="review-critical-list"></div>
-        </div>
-        
-        <!-- Findings -->
-        <div id="review-findings-section" class="hidden">
-          <div class="status warn">
-            <span>🔍</span>
-            <span><strong>Diagnostic Findings</strong></span>
-          </div>
-          <div id="review-findings-list"></div>
-        </div>
-        
-        <!-- Warnings -->
-        <div id="review-warnings-section" class="hidden">
-          <div class="status info">
-            <span>ℹ️</span>
-            <span><strong>Items to Verify</strong></span>
-          </div>
-          <div id="review-warnings-list"></div>
-        </div>
-        
-        <!-- All Clear -->
-        <div id="review-allclear-section" class="hidden">
-          <div class="status good">
-            <span>✓</span>
-            <span><strong>All Systems Check Out</strong></span>
-          </div>
-          <p>No diagnostic issues detected. Readings are within acceptable parameters.</p>
-        </div>
-        
-      </div>
-      <div class="modal-actions">
-        <button class="secondary" onclick="closeReviewModal()">
-          ← Go Back & Correct
-        </button>
-        <button class="success" onclick="proceedToReportGeneration()">
-          Proceed to Report →
-        </button>
-      </div>
-    </div>
-  </div>
-
   <div class="toast-notification" id="toast-notification">
     Message here
   </div>
 
-<script>
-    // ===================================================================
-    // ==================== v1.5 LOGIC - (MERGED) ====================
-    // ===================================================================
-
-    // ==================== HVAC RULES DATABASE (v1.5) ====================
-    const HVAC_RULES = {
-      refrigerant: {
-        'r-410a': {
-          superheat: { min: 8, max: 15, unit: '°F' },
-          subcool: { min: 8, max: 12, unit: '°F' },
-          pressureTemp: {
-            90: 44.7, 95: 47.1, 100: 49.6, 105: 52.2, 110: 54.9, 115: 57.7, 120: 60.6,
-            125: 63.6, 130: 66.7, 135: 69.9, 140: 73.2, 145: 76.6, 150: 80.1, 155: 83.7,
-            160: 87.4, 165: 91.3, 170: 95.2, 175: 99.3, 180: 103.5, 185: 107.8, 190: 112.2,
-            195: 116.7, 200: 121.4, 205: 126.1, 210: 131.0
-          }
-        },
-        'r-22': {
-          superheat: { min: 10, max: 20, unit: '°F' },
-          subcool: { min: 10, max: 15, unit: '°F' },
-          // R-22 PT chart would go here if needed
-        }
-      },
-      
-      airflow: {
-        deltaT: {
-          cooling: { min: 16, max: 22, unit: '°F' },
-          heating: { min: 30, max: 80, unit: '°F' }
-        },
-        staticPressure: {
-          acceptable: { max: 0.50, unit: 'in w.c.' },
-          elevated: { max: 0.70, unit: 'in w.c.' },
-          // Above 0.70 = excessive
-        }
-      },
-      
-      electrical: {
-        voltage: {
-          nominal: { min: 208, max: 240, unit: 'V' },
-          acceptable: { min: 200, max: 250, unit: 'V' }
-        },
-        control: {
-          nominal: 24,
-          acceptable: { min: 22, max: 26, unit: 'V' }
-        }
-      },
-      
-      components: {
-        capacitor: {
-          tolerance: 0.06, // 6% of rated value
-        }
-      }
-    };
-
-    const DIAGNOSTIC_PATTERNS = {
-      undercharge: {
-        name: 'System Undercharged',
-        checks: [
-          'Check for refrigerant leaks at evap coil',
-          'Inspect service valve connections',
-          'Look for oil residue at brazed joints',
-          'Check line set for damage/leaks'
-        ],
-        severity: 'critical',
-        category: 'refrigerant'
-      },
-      
-      overcharge: {
-        name: 'System Overcharged',
-        checks: [
-          'Verify charge was not added incorrectly',
-          'Check for non-condensables in system',
-          'Confirm outdoor unit has adequate airflow'
-        ],
-        severity: 'warning',
-        category: 'refrigerant'
-      },
-      
-      airflowRestriction: {
-        name: 'Airflow Restriction Detected',
-        checks: [
-          'Verify filter is ACTUALLY clean (not just looks ok)',
-          'Check evap coil for dirt/restriction',
-          'Inspect blower wheel for buildup',
-          'Check for crushed/kinked flex duct',
-          'Verify all supply vents are open'
-        ],
-        severity: 'critical',
-        category: 'airflow'
-      },
-      
-      txvFailure: {
-        name: 'Possible TXV Issue',
-        checks: [
-          'Check TXV bulb attachment and insulation',
-          'Verify sensing bulb location',
-          'Check for restricted liquid line filter/drier',
-          'TXV may be stuck or failed'
-        ],
-        severity: 'warning',
-        category: 'refrigerant'
-      },
-      
-      compressorNotPumping: {
-        name: 'Compressor Not Pumping',
-        checks: [
-          'Compressor running but pressures equalized',
-          'Internal valve failure likely',
-          'Check compressor amp draw vs RLA',
-          'Compressor replacement may be needed'
-        ],
-        severity: 'critical',
-        category: 'mechanical'
-      },
-      
-      weakCapacitor: {
-        name: 'Weak/Failed Capacitor',
-        checks: [
-          'Replace capacitor - below acceptable tolerance',
-          'Check for bulging or leaking',
-          'Verify correct voltage rating'
-        ],
-        severity: 'critical',
-        category: 'electrical'
-      },
-      
-      lowVoltage: {
-        name: 'Low Voltage Detected',
-        checks: [
-          'Check main breaker and connections',
-          'Test voltage at disconnect and at unit',
-          'Look for loose wire connections',
-          'May need utility company involvement'
-        ],
-        severity: 'critical',
-        category: 'electrical'
-      }
-    };
-    
-    // ==================== DIAGNOSTIC ENGINE (v1.5) ====================
-    class DiagnosticEngine {
-      constructor() {
-        this.findings = [];
-        this.warnings = [];
-        this.criticalIssues = [];
-      }
-
-      parseCapacitorReading(readingStr) {
-        if (!readingStr) return null;
-        // Updated regex to handle "32/35" or "32 / 35"
-        const matches = readingStr.match(/(\d+\.?\d*)[^\d]*(\d+\.?\d*)/);
-        if (matches && matches[1] && matches[2]) {
-          // Assumes smaller number is actual, larger is rated
-          const n1 = parseFloat(matches[1]);
-          const n2 = parseFloat(matches[2]);
-          return {
-            actual: Math.min(n1, n2),
-            rated: Math.max(n1, n2)
-          };
-        }
-        return null;
-      }
-      
-      lookupSatTemp(pressure, refrigType) {
-        const ptChart = HVAC_RULES.refrigerant[refrigType.toLowerCase()]?.pressureTemp;
-        if (!ptChart) return null;
-        
-        let closest = null;
-        let minDiff = Infinity;
-        
-        for (let temp in ptChart) {
-          const diff = Math.abs(ptChart[temp] - pressure);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closest = parseFloat(temp);
-          }
-        }
-        return closest;
-      }
-
-      analyzeServiceData(serviceData) {
-        this.findings = [];
-        this.warnings = [];
-        this.criticalIssues = [];
-
-        this.checkRefrigerantCircuit(serviceData);
-        this.checkAirflow(serviceData);
-        this.checkElectrical(serviceData);
-        this.checkComponents(serviceData);
-        this.checkSafety(serviceData);
-
-        return {
-          findings: this.findings,
-          warnings: this.warnings,
-          critical: this.criticalIssues,
-          overallStatus: this.calculateOverallStatus()
-        };
-      }
-      
-      addFinding(finding) {
-        this.findings.push(finding);
-        if (finding.severity === 'critical') {
-          this.criticalIssues.push(finding);
-        }
-      }
-      addWarning(warning) { this.warnings.push(warning); }
-      addCritical(critical) { this.criticalIssues.push(critical); }
-
-      checkRefrigerantCircuit(data) {
-        if (!data.equipment.refrigerant || !data.service.operating || data.meta.heatCoolMode !== 'cooling') return;
-        
-        const refrigType = data.equipment.refrigerant.toLowerCase();
-        const rules = HVAC_RULES.refrigerant[refrigType];
-        if (!rules) return; // No rules for this refrigerant
-
-        const readings = data.service.operating;
-        if (readings.suctionPressure && readings.suctionTemp && readings.liquidPressure && readings.liquidTemp) {
-          const satTempSuction = this.lookupSatTemp(readings.suctionPressure, refrigType);
-          const satTempLiquid = this.lookupSatTemp(readings.liquidPressure, refrigType);
-
-          if (satTempSuction === null || satTempLiquid === null) return; // Can't calculate
-
-          const superheat = readings.suctionTemp - satTempSuction;
-          const subcool = satTempLiquid - readings.liquidTemp;
-          
-          this.matchRefrigerantPattern({
-            superheat: superheat.toFixed(1),
-            subcool: subcool.toFixed(1),
-            suctionPressure: readings.suctionPressure,
-            dischargePressure: readings.liquidPressure
-          });
-        }
-      }
-
-      matchRefrigerantPattern(m) {
-        // Check for undercharge
-        if (m.superheat > 20 && m.subcool && m.subcool < 8) {
-          this.addFinding({
-            pattern: 'undercharge', severity: 'critical', measurements: m,
-            checks: DIAGNOSTIC_PATTERNS.undercharge.checks
-          });
-        }
-        // Check for overcharge
-        else if (m.superheat < 5 && m.subcool && m.subcool > 15) {
-          this.addFinding({
-            pattern: 'overcharge', severity: 'warning', measurements: m,
-            checks: DIAGNOSTIC_PATTERNS.overcharge.checks
-          });
-        }
-        // Check for TXV issues
-        else if (m.superheat > 25 && m.subcool && (m.subcool >= 8 && m.subcool <= 12)) {
-          this.addFinding({
-            pattern: 'txvFailure', severity: 'warning', measurements: m,
-            checks: DIAGNOSTIC_PATTERNS.txvFailure.checks
-          });
-        }
-        
-        // Check for compressor not pumping
-        if (m.suctionPressure > 100 && m.dischargePressure < 250) {
-          this.addFinding({
-            pattern: 'compressorNotPumping', severity: 'critical', measurements: m,
-            checks: DIAGNOSTIC_PATTERNS.compressorNotPumping.checks
-          });
-        }
-      }
-
-      checkAirflow(data) {
-        if (!data.service.operating) return;
-        const { deltaT, totalStatic } = data.service.operating;
-        const mode = data.meta.heatCoolMode;
-        const dtNum = parseFloat(deltaT);
-        const tsNum = parseFloat(totalStatic);
-        
-        if (!dtNum || !tsNum) return;
-
-        if (mode === 'cooling' && dtNum < 14 && tsNum > 0.7) {
-          this.addFinding({
-            pattern: 'airflowRestriction', severity: 'critical',
-            measurements: { "Delta-T": dtNum, "Total Static": tsNum },
-            checks: DIAGNOSTIC_PATTERNS.airflowRestriction.checks
-          });
-        }
-        else if (mode === 'cooling' && dtNum > 24) {
-          this.addWarning({
-            issue: 'High Temperature Split',
-            description: `Delta-T at ${dtNum}°F (above 24°F) suggests possible airflow restriction.`,
-            checks: ['Verify blower speed setting', 'Check for blocked return', 'Inspect evap coil']
-          });
-        }
-      }
-
-      checkElectrical(data) {
-        if (!data.service.operating) return;
-        const { voltageLine, controlVoltage } = data.service.operating;
-        
-        if (voltageLine && voltageLine < 200) {
-          this.addCritical({
-            issue: 'Low Line Voltage', 
-            description: `Voltage measured at ${voltageLine}V.`,
-            checks: DIAGNOSTIC_PATTERNS.lowVoltage.checks
-          });
-        }
-        
-        if (controlVoltage && controlVoltage < 22) {
-          this.addWarning({
-            issue: 'Low Control Voltage', 
-            description: `Voltage measured at ${controlVoltage}V.`,
-            checks: ['Check transformer output', 'Test for voltage drop in control circuit']
-          });
-        }
-      }
-
-      checkComponents(data) {
-        if (!data.service.components) return;
-        const { capacitorReading, contactorCondition } = data.service.components;
-        
-        if (capacitorReading) {
-          const reading = this.parseCapacitorReading(capacitorReading);
-          
-          if (reading && reading.actual < (reading.rated * (1 - HVAC_RULES.components.capacitor.tolerance))) {
-            this.addFinding({
-              pattern: 'weakCapacitor', severity: 'critical',
-              measurements: {
-                Actual: reading.actual + "µF",
-                Rated: reading.rated + "µF",
-                Percentage: ((reading.actual / reading.rated) * 100).toFixed(0) + '%'
-              },
-              checks: DIAGNOSTIC_PATTERNS.weakCapacitor.checks
-            });
-          }
-        }
-        
-        if (contactorCondition === 'burned' || contactorCondition === 'heavy-pitting') {
-          this.addCritical({
-            issue: 'Contactor Failure', 
-            description: `Contactor condition reported as: ${contactorCondition}`,
-            checks: ['Replace contactor immediately', 'Inspect wire connections']
-          });
-        }
-      }
-
-      checkSafety(data) {
-        if (!data.service.safety) return;
-        
-        const criticalSafety = [
-          { key: 'disconnect', label: 'Disconnect present & functional' },
-          { key: 'clearances', label: 'Clearances adequate' },
-          { key: 'drain', label: 'Drain trapped & flowing' }
-        ];
-        
-        criticalSafety.forEach(item => {
-          if (data.service.safety[item.key] === false) { // Check if it's explicitly false (unchecked)
-            this.addCritical({
-              issue: `Safety Check Failed`,
-              description: `Item not checked: "${item.label}"`,
-              checks: [`Address ${item.label} immediately`]
-            });
-          }
-        });
-      }
-      
-      calculateOverallStatus() {
-        if (this.criticalIssues.length > 0) return 'critical';
-        if (this.findings.length > 0) return 'attention'; // Merged findings and warnings
-        if (this.warnings.length > 0) return 'attention';
-        return 'good';
-      }
-    }
-
-    // ==================== CONTEXT MANAGER (v1.5) ====================
-    class ContextManager {
-      constructor() {
-        this.context = {
-          job: { customer: '', address: '', date: '', technician: '', jobType: '' },
-          equipment: { 
-            brand: '', unitType: '', tonnage: '', refrigerant: '', 
-            mfgDate: '', indoorData: '', outdoorData: '', age: '' 
-          },
-          service: {
-            complaint: '',
-            time: {},
-            safety: {},
-            operating: {},
-            components: {},
-            review: {}
-          },
-          materials: { 
-            selectedMaterials: [], // This will be the v1.0 global 'selectedMaterials'
-            serviceMaterials: {} 
-          },
-          photos: [], // This will be the v1.0 global 'photos'
-          signature: { tech: '', customer: '' },
-          diagnosticAnalysis: null,
-          currentMode: 'service',
-          heatCoolMode: 'cooling'
-        };
-      }
-
-      // Helper to get value
-      _val(id) { return document.getElementById(id)?.value || ''; }
-      _chk(id) { return document.getElementById(id)?.checked || false; }
-
-      saveCurrentMode(mode) {
-        if (mode === 'service') {
-          this.context.service = this.gatherServiceData();
-          this.context.materials.serviceMaterials = this.gatherServiceMaterials();
-        } else if (mode === 'materials') {
-          this.context.materials.selectedMaterials = selectedMaterials; // 'selectedMaterials' is global in v1.0
-        }
-        
-        this.context.job = this.gatherJobData(mode);
-        this.context.equipment = this.gatherEquipmentData();
-        this.context.photos = photos; // 'photos' is global in v1.0
-        this.context.signature = this.gatherSignatureData();
-      }
-
-      loadContextToForm(mode) {
-        this.loadJobData(mode);
-        this.loadEquipmentData();
-        this.loadPhotos();
-        this.loadSignatureData();
-        
-        if (mode === 'service') {
-          this.loadServiceData();
-          this.loadServiceMaterials();
-        } else if (mode === 'materials') {
-          this.loadMaterialsData();
-          if (this.context.diagnosticAnalysis) {
-            this.generateMaterialSuggestions();
-          }
-        }
-      }
-      
-      // --- GATHER FUNCTIONS ---
-      gatherJobData(mode) {
-        if (mode === 'service') {
-          return {
-            customer: this._val('customer'), address: this._val('address'),
-            date: this._val('date'), technician: this._val('sales-tech'),
-            jobType: this._val('job-type')
-          };
-        } else {
-          // When in materials mode, pull from materials form
-          return {
-            customer: this._val('mat-customer'), address: this._val('mat-address'),
-            date: this._val('mat-date'), technician: this._val('mat-tech'),
-            jobType: this.context.job.jobType // Preserve from service mode
-          };
-        }
-      }
-
-      gatherEquipmentData() {
-        return {
-          brand: this._val('brand'), unitType: this._val('unit-type'),
-          tonnage: this._val('tonnage'), refrigerant: this._val('refrigerant'),
-          mfgDate: this._val('mfg-date'), age: document.getElementById('equipment-age').textContent,
-          indoorData: this._val('indoor-data'), outdoorData: this._val('outdoor-data')
-        };
-      }
-      
-      gatherSignatureData() {
-        return {
-          tech: this._val('tech-name'),
-          customer: this._val('customer-signature')
-        };
-      }
-
-      gatherServiceMaterials() {
-        return {
-          refrigerant: { 
-            type: this._val('refrigerant-added-type'), amount: this._val('refrigerant-amount'),
-            recovered: this._val('refrigerant-recovered') 
-          },
-          filter: { size: this._val('filter-size'), merv: this._val('filter-merv') },
-          capacitor: { type: this._val('capacitor-type'), qty: this._val('capacitor-qty') },
-          contactor: { rating: this._val('contactor-rating'), qty: this._val('contactor-qty') },
-          other: this._val('other-parts')
-        };
-      }
-
-      gatherServiceData() {
-        return {
-          complaint: this._val('complaint'),
-          time: {
-            arrival: this._val('arrival-time'), completion: this._val('completion-time'),
-            travel: this._val('travel-time'), total: this._val('total-hours')
-          },
-          safety: {
-            disconnect: this._chk('safety-disconnect'), clearances: this._chk('safety-clearances'),
-            drain: this._chk('safety-drain'), floats: this._chk('safety-floats'),
-            gas: this._chk('safety-gas'), vent: this._chk('safety-vent'),
-            co: this._chk('safety-co'), flameSensor: this._chk('safety-flame-sensor')
-          },
-          operating: {
-            outdoorTemp: this._val('outdoor-temp'), outdoorHumidity: this._val('outdoor-humidity'),
-            returnTemp: this._val('return-temp'), supplyTemp: this._val('supply-temp'),
-            deltaT: this._val('delta-t'), returnStatic: this._val('return-static'),
-            supplyStatic: this._val('supply-static'), totalStatic: this._val('total-static'),
-            voltageLine: this._val('voltage-line'), controlVoltage: this._val('control-voltage'),
-            blowerAmps: this._val('blower-amps'), suctionPressure: this._val('suction-pressure'),
-            liquidPressure: this._val('liquid-pressure'), suctionTemp: this._val('suction-temp'),
-            liquidTemp: this._val('liquid-temp'), superheat: this._val('superheat'),
-            subcool: this._val('subcool'), compAmps: this._val('comp-amps'),
-            inducerAmps: this._val('inducer-amps'), heatExchanger: this._val('heat-exchanger'),
-            flameAppearance: this._val('flame-appearance')
-          },
-          components: {
-            filter: this._val('filter'), evapCoil: this._val('evap-coil'),
-            condCoil: this._val('cond-coil'), capacitorReading: this._val('capacitor-reading'),
-            contactorCondition: this._val('contactor-condition'), blowerCondition: this._val('blower-condition')
-          },
-          review: {
-            findings: this._val('findings'),
-            recommendations: this._val('recommendations'),
-            workPerformed: this._val('work-performed')
-          }
-        };
-      }
-      
-      // --- LOAD FUNCTIONS ---
-      loadJobData(mode) {
-        if (mode === 'service') {
-          $('customer').value = this.context.job.customer;
-          $('address').value = this.context.job.address;
-          $('date').value = this.context.job.date || new Date().toISOString().split('T')[0];
-          $('sales-tech').value = this.context.job.technician;
-          $('job-type').value = this.context.job.jobType;
-        } else {
-          $('mat-customer').value = this.context.job.customer;
-          $('mat-address').value = this.context.job.address;
-          $('mat-date').value = this.context.job.date || new Date().toISOString().split('T')[0];
-          $('mat-tech').value = this.context.job.technician;
-        }
-      }
-
-      loadEquipmentData() {
-        if ($('brand')) { // Check if service form elements exist
-          $('brand').value = this.context.equipment.brand;
-          $('unit-type').value = this.context.equipment.unitType;
-          $('tonnage').value = this.context.equipment.tonnage;
-          $('refrigerant').value = this.context.equipment.refrigerant;
-          $('mfg-date').value = this.context.equipment.mfgDate;
-          $('equipment-age').textContent = this.context.equipment.age;
-          $('indoor-data').value = this.context.equipment.indoorData;
-          $('outdoor-data').value = this.context.equipment.outdoorData;
-          toggleUnitData(); // Ensure UI consistency
-        }
-      }
-      
-      loadSignatureData() {
-        $('tech-name').value = this.context.signature.tech || '';
-        $('customer-signature').value = this.context.signature.customer || '';
-      }
-
-      loadPhotos() {
-        photos = this.context.photos; // 'photos' is global
-        updatePhotoPreview(); // 'updatePhotoPreview' is global
-      }
-
-      loadServiceData() {
-        // This is a comprehensive load to restore the service form
-        const service = this.context.service;
-        $('complaint').value = service.complaint || '';
-        
-        if (service.time) {
-          $('arrival-time').value = service.time.arrival || '';
-          $('completion-time').value = service.time.completion || '';
-          $('travel-time').value = service.time.travel || '';
-          $('total-hours').value = service.time.total || '';
-        }
-        
-        if (service.safety) {
-          Object.keys(service.safety).forEach(key => {
-            const el = document.getElementById(`safety-${key}`);
-            if(el) el.checked = service.safety[key];
-          });
-        }
-        
-        if (service.operating) {
-          Object.keys(service.operating).forEach(key => {
-            // Convert camelCase to kebab-case for element IDs
-            const elId = key.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`);
-            const el = document.getElementById(elId);
-            if(el) el.value = service.operating[key];
-          });
-        }
-
-        if(service.components) {
-          $('filter').value = service.components.filter || '';
-          $('evap-coil').value = service.components.evapCoil || '';
-          $('cond-coil').value = service.components.condCoil || '';
-          $('capacitor-reading').value = service.components.capacitorReading || '';
-          $('contactor-condition').value = service.components.contactorCondition || '';
-          $('blower-condition').value = service.components.blowerCondition || '';
-        }
-
-        if(service.review) {
-          $('findings').value = service.review.findings || '';
-          $('recommendations').value = service.review.recommendations || '';
-          $('work-performed').value = service.review.workPerformed || '';
-        }
-      }
-      
-      loadServiceMaterials() {
-        const mat = this.context.materials.serviceMaterials;
-        if (mat) {
-          $('refrigerant-added-type').value = mat.refrigerant?.type || '';
-          $('refrigerant-amount').value = mat.refrigerant?.amount || '';
-          $('refrigerant-recovered').value = mat.refrigerant?.recovered || '';
-          $('filter-size').value = mat.filter?.size || '';
-          $('filter-merv').value = mat.filter?.merv || '';
-          $('capacitor-type').value = mat.capacitor?.type || '';
-          $('capacitor-qty').value = mat.capacitor?.qty || '0';
-          $('contactor-rating').value = mat.contactor?.rating || '';
-          $('contactor-qty').value = mat.contactor?.qty || '0';
-          $('other-parts').value = mat.other || '';
-        }
-      }
-
-      loadMaterialsData() {
-        selectedMaterials = this.context.materials.selectedMaterials; // 'selectedMaterials' is global
-        renderSelectedMaterials(); // 'renderSelectedMaterials' is global
-      }
-      
-      generateMaterialSuggestions() {
-        const analysis = this.context.diagnosticAnalysis;
-        if (!analysis || !analysis.criticalIssues) return;
-        
-        let suggestions = [];
-        
-        // Use criticalIssues and findings from analysis
-        const allIssues = [...analysis.criticalIssues, ...analysis.findings];
-        
-        allIssues.forEach(issue => {
-          if (issue.pattern === 'weakCapacitor' && issue.measurements) {
-            const rated = issue.measurements.Rated.replace('µF','');
-            suggestions.push({
-              category: 'electrical',
-              item: { id: 'capacitor', name: `Run Capacitor (~${rated}µF)` },
-              reason: `Weak capacitor detected (${issue.measurements.Percentage} of rated)`
-            });
-          }
-          if (issue.pattern === 'undercharge') {
-            const refrig = this.context.equipment.refrigerant || 'R-410A';
-            suggestions.push({
-              category: 'refrigerant',
-              item: { id: refrig.toLowerCase().replace('-', ''), name: `${refrig} Refrigerant` },
-              reason: `System undercharged (SH: ${issue.measurements.superheat}°F)`
-            });
-          }
-          if (issue.pattern === 'airflowRestriction') {
-             suggestions.push({
-              category: 'iaq', // Use IAQ category for filters
-              item: { id: 'media-cleaner', name: `Filter (Check Size)` }, // Generic filter
-              reason: `Airflow restriction detected (Static: ${issue.measurements["Total Static"]})`
-            });
-          }
-        });
-        
-        this.displayMaterialSuggestions(suggestions);
-      }
-
-      displayMaterialSuggestions(suggestions) {
-        if (suggestions.length === 0) {
-            $('suggestions-container').classList.add('hidden');
-            return;
-        }
-        
-        const container = $('suggestions-container');
-        const list = $('suggestions-list');
-        
-        container.classList.remove('hidden');
-        list.innerHTML = suggestions.map((s, idx) => `
-          <div class="suggestion-item">
-            <div class="suggestion-info">
-              <div class="suggestion-name">${s.item.name}</div>
-              <div class="suggestion-reason">${s.reason}</div>
-            </div>
-            <button class="material-add-btn" onclick="addSuggestedMaterial(${idx})">+ Add</button>
-          </div>
-        `).join('');
-        
-        window.currentSuggestions = suggestions;
-      }
-    }
-
-    // ===================================================================
-    // ==================== v1.0 APP LOGIC (MODIFIED) ====================
-    // ===================================================================
-
-    // ==================== GLOBAL STATE & INSTANTIATION (v1.5) ====================
+  <script>
+    // ==================== GLOBAL STATE ====================
     const $ = (id) => document.getElementById(id);
     const num = val => { const n = parseFloat(val); return isNaN(n) ? null : n; };
     
@@ -2113,27 +1307,34 @@
     let heatCoolMode = 'cooling';
     let photos = [];
     let selectedMaterials = [];
-    window.currentSuggestions = []; // For suggestion-adding function
     
-    // NEW v1.5 Instantiations
-    const contextManager = new ContextManager();
-    const diagnosticEngine = new DiagnosticEngine();
-
-    // v1.0 Materials Catalog
+    // Materials Catalog (NO PRICING)
     const materialsCatalog = {
       equipment: {
         name: 'Equipment',
         items: [
           { id: 'furnace-gas', name: 'Gas Furnace', sizes: ['60K BTU', '80K BTU', '100K BTU', '120K BTU'], category: 'furnace' },
+          { id: 'furnace-electric', name: 'Electric Furnace', sizes: ['10kW', '15kW', '20kW', '25kW'], category: 'furnace' },
           { id: 'ac-unit', name: 'Air Conditioner', sizes: ['1.5 Ton', '2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
           { id: 'heat-pump', name: 'Heat Pump', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
+          { id: 'evap-coil', name: 'Evaporator Coil', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
+          { id: 'air-handler', name: 'Air Handler', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton'], category: 'cooling' },
+          { id: 'package-unit', name: 'Package Unit', sizes: ['2 Ton', '3 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true }
         ]
       },
       ductwork: {
         name: 'Ductwork & Fittings',
         items: [
+          { id: 'trunk-duct', name: 'Trunk Duct (Rectangular)', sizes: ['12x8', '14x8', '16x8', '18x10', '20x10', '24x12'], unit: 'ft' },
           { id: 'flex-duct', name: 'Flexible Duct', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'], unit: 'ft' },
           { id: 'plenum-supply', name: 'Supply Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
+          { id: 'plenum-return', name: 'Return Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
+          { id: 'collar', name: 'Starting Collar', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'] },
+          { id: 'register', name: 'Supply Register', sizes: ['4x10', '4x12', '6x10', '6x12', '8x10', '10x10'] },
+          { id: 'grille', name: 'Return Grille', sizes: ['10x10', '12x12', '14x14', '16x16', '20x20', '24x24'] },
+          { id: 'damper', name: 'Balancing Damper', sizes: ['4"', '6"', '8"', '10"', '12"'] },
+          { id: 'transition', name: 'Transition', sizes: ['Various'] },
+          { id: 'elbow-90', name: '90° Elbow', sizes: ['6"', '8"', '10"', '12"'] }
         ]
       },
       refrigerant: {
@@ -2141,15 +1342,24 @@
         items: [
           { id: 'lineset-small', name: 'Line Set (1.5-2.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '1/4" x 3/8"', tonnageRange: [1.5, 2.5] },
           { id: 'lineset-medium', name: 'Line Set (3-3.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 3/4"', tonnageRange: [3, 3.5] },
+          { id: 'lineset-large', name: 'Line Set (4-5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 7/8"', tonnageRange: [4, 5] },
           { id: 'r410a', name: 'R-410A Refrigerant', sizes: ['25 lb', '50 lb'], unit: 'cylinder' },
-          { id: 'r22', name: 'R-22 Refrigerant', sizes: ['30 lb'], unit: 'cylinder' },
+          { id: 'r32', name: 'R-32 Refrigerant', sizes: ['20 lb'], unit: 'cylinder' },
+          { id: 'nitrogen', name: 'Nitrogen (Pressure Test)', sizes: ['Small', 'Large'], unit: 'tank' },
+          { id: 'linecover', name: 'Line Set Cover/Insulation', sizes: ['15 ft', '25 ft', '50 ft'] }
         ]
       },
       electrical: {
         name: 'Electrical',
         items: [
           { id: 'disconnect-30', name: 'Disconnect Box (30A)', sizes: ['30A'], amperage: 30 },
+          { id: 'disconnect-60', name: 'Disconnect Box (60A)', sizes: ['60A'], amperage: 60 },
           { id: 'whip', name: 'Electrical Whip', sizes: ['3 ft', '6 ft', '10 ft'] },
+          { id: 'breaker', name: 'Circuit Breaker', sizes: ['15A', '20A', '30A', '40A', '50A', '60A'] },
+          { id: 'wire-lv', name: 'Low Voltage Wire (18ga)', sizes: ['18/5', '18/8'], unit: 'ft' },
+          { id: 'wire-hv', name: 'High Voltage Wire', sizes: ['10/2', '10/3', '8/2', '8/3', '6/2', '6/3'], unit: 'ft' },
+          { id: 'condensate-switch', name: 'Condensate Safety Switch', sizes: ['Standard'] },
+          { id: 'relay', name: 'Relay', sizes: ['24V', '120V', '240V'] },
           { id: 'capacitor', name: 'Capacitor', sizes: ['5µF', '7.5µF', '10µF', '15µF', '20µF', '25µF', '30µF', '35µF', '40µF', '45µF', '50µF'] },
           { id: 'contactor', name: 'Contactor', sizes: ['1-Pole', '2-Pole', '3-Pole'] }
         ]
@@ -2158,22 +1368,68 @@
         name: 'IAQ & Filtration',
         items: [
           { id: 'media-cleaner', name: 'Media Air Cleaner', sizes: ['16x25', '20x25', '20x20'] },
+          { id: 'electronic-cleaner', name: 'Electronic Air Cleaner', sizes: ['16x25', '20x25'] },
+          { id: 'hepa-filter', name: 'HEPA Filter Box', sizes: ['Standard'] },
+          { id: 'humidifier', name: 'Whole-Home Humidifier', sizes: ['Bypass', 'Fan-Powered', 'Steam'] },
+          { id: 'dehumidifier', name: 'Whole-Home Dehumidifier', sizes: ['90 Pint', '120 Pint', '150 Pint'] },
           { id: 'uv-light', name: 'UV Light System', sizes: ['Single Lamp', 'Dual Lamp'] },
+          { id: 'erv', name: 'ERV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] },
+          { id: 'hrv', name: 'HRV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] },
+          { id: 'reme-halo', name: 'REME HALO Air Purifier', sizes: ['24V'] }
         ]
       },
-      venting: { name: 'Venting (Gas/Oil)', items: [ /* ... */ ] },
-      drainage: { name: 'Drainage', items: [ /* ... */ ] },
-      consumables: { name: 'Consumables & Supplies', items: [ /* ... */ ] }
+      venting: {
+        name: 'Venting (Gas/Oil)',
+        items: [
+          { id: 'bvent', name: 'B-Vent Pipe', sizes: ['3"', '4"', '5"', '6"', '7"'], unit: 'ft' },
+          { id: 'pvc-vent', name: 'PVC Vent Pipe', sizes: ['2"', '3"', '4"'], unit: 'ft' },
+          { id: 'vent-cap', name: 'Vent Cap/Termination', sizes: ['2"', '3"', '4"', '5"', '6"'] },
+          { id: 'vent-connector', name: 'Vent Connector', sizes: ['3"', '4"', '5"', '6"'] },
+          { id: 'vent-elbow', name: 'Vent Elbow (45°/90°)', sizes: ['2"', '3"', '4"', '5"'] },
+          { id: 'inducer', name: 'Inducer Motor', sizes: ['Standard', 'High Efficiency'] }
+        ]
+      },
+      drainage: {
+        name: 'Drainage',
+        items: [
+          { id: 'condensate-pump', name: 'Condensate Pump', sizes: ['Standard', 'Heavy Duty'] },
+          { id: 'drain-pvc', name: 'PVC Drain Pipe (3/4")', sizes: ['10 ft', '20 ft'], unit: 'length' },
+          { id: 'drain-pan', name: 'Drain Pan', sizes: ['Primary', 'Secondary', 'Auxiliary'] },
+          { id: 'ptrap', name: 'P-Trap', sizes: ['3/4"', '1"'] },
+          { id: 'float-switch', name: 'Float Switch', sizes: ['Standard'] },
+          { id: 'drain-fitting', name: 'Drain Fittings Kit', sizes: ['Standard'] }
+        ]
+      },
+      consumables: {
+        name: 'Consumables & Supplies',
+        items: [
+          { id: 'mastic', name: 'Duct Mastic', sizes: ['1 Gallon', '5 Gallon'] },
+          { id: 'foil-tape', name: 'Foil Tape', sizes: ['2"', '3"'], unit: 'roll' },
+          { id: 'duct-tape', name: 'Duct Tape', sizes: ['Standard'], unit: 'roll' },
+          { id: 'screws-tap', name: 'Self-Tapping Screws', sizes: ['#8 x 1/2"', '#10 x 3/4"', '#12 x 1"'], unit: 'box' },
+          { id: 'screws-sheet', name: 'Sheet Metal Screws', sizes: ['#8', '#10'], unit: 'box' },
+          { id: 'hangers', name: 'Duct Hangers/Strapping', sizes: ['Standard'], unit: 'roll' },
+          { id: 'insulation-duct', name: 'Duct Insulation', sizes: ['R-6', 'R-8'], unit: 'roll' },
+          { id: 'insulation-pipe', name: 'Pipe Insulation', sizes: ['1/4"', '3/8"', '1/2"', '3/4"'], unit: 'ft' },
+          { id: 'refrig-oil', name: 'Refrigerant Oil', sizes: ['8 oz', '16 oz'] },
+          { id: 'leak-seal', name: 'Leak Sealant', sizes: ['Standard'] },
+          { id: 'cleaning', name: 'Coil Cleaner', sizes: ['Aerosol', '1 Gallon'] },
+          { id: 'wire-nuts', name: 'Wire Nuts Assortment', sizes: ['Standard'], unit: 'pack' },
+          { id: 'zip-ties', name: 'Zip Ties', sizes: ['Assorted'], unit: 'pack' }
+        ]
+      }
     };
     
-    // v1.0 R410A PT Chart
+    // Enhanced R-410A PT chart
     const R410A_PT = {
-      90: 44.7, 95: 47.1, 100: 49.6, 105: 52.2, 110: 54.9, 115: 57.7, 120: 60.6, 125: 63.6, 130: 66.7, 135: 69.9,
-      140: 73.2, 145: 76.6, 150: 80.1, 155: 83.7, 160: 87.4, 165: 91.3, 170: 95.2, 175: 99.3, 180: 103.5, 185: 107.8,
-      190: 112.2, 195: 116.7, 200: 121.4, 205: 126.1, 210: 131.0, 215: 135.9, 220: 140.9
+      90: 44.7, 95: 47.1, 100: 49.6, 105: 52.2, 110: 54.9, 115: 57.7,
+      120: 60.6, 125: 63.6, 130: 66.7, 135: 69.9, 140: 73.2, 145: 76.6,
+      150: 80.1, 155: 83.7, 160: 87.4, 165: 91.3, 170: 95.2, 175: 99.3,
+      180: 103.5, 185: 107.8, 190: 112.2, 195: 116.7, 200: 121.4, 205: 126.1,
+      210: 131.0, 215: 135.9, 220: 140.9
     };
     
-    // ==================== MODAL & TOAST (v1.0) ====================
+    // ==================== MODAL & TOAST ====================
     const modalContainer = $('modal-container');
     const modalTitle = $('modal-title');
     const modalBody = $('modal-body');
@@ -2212,25 +1468,18 @@
       }, 2500);
     }
 
-    // ==================== MODE SWITCHING (v1.5) ====================
+    // ==================== MODE SWITCHING ====================
     function setMode(mode) {
-      // Save current mode data before switching
-      contextManager.saveCurrentMode(currentMode);
-      
       currentMode = mode;
-      contextManager.context.currentMode = mode;
       document.body.className = `mode-${mode}`;
       
       // Update mode toggle buttons
       document.querySelectorAll('.mode-toggle button').forEach(btn => btn.classList.remove('active'));
       $(`btn-${mode}`).classList.add('active');
       
-      // Load context into new mode
-      contextManager.loadContextToForm(mode);
-      
       // Re-apply heat/cool mode for service
       if (mode === 'service') {
-        setHeatCoolMode(contextManager.context.heatCoolMode); // Load previous H/C mode
+        setHeatCoolMode(heatCoolMode);
       }
       
       // Update generate button text
@@ -2240,13 +1489,10 @@
       } else if (mode === 'materials') {
         btnText.innerHTML = '<span>✓</span> Generate Materials List';
       }
-      
-      showToast(`Switched to ${mode.charAt(0).toUpperCase() + mode.slice(1)} Mode`, 'info');
     }
     
     function setHeatCoolMode(mode) {
       heatCoolMode = mode;
-      contextManager.context.heatCoolMode = mode; // Save to context
       
       // Remove previous heat/cool classes
       document.body.classList.remove('mode-cooling', 'mode-heating');
@@ -2283,7 +1529,7 @@
       }
     }
 
-    // ==================== CALCULATIONS (v1.0) ====================
+    // ==================== CALCULATIONS ====================
     function clearRefrigerantCalculations() {
       const sh = $('superheat');
       const sc = $('subcool');
@@ -2299,63 +1545,59 @@
     function calcDelta() {
       const ret = num($('return-temp').value);
       const sup = num($('supply-temp').value);
-      if (ret === null || sup === null) {
-        $('delta-t').value = '';
-        $('delta-status').innerHTML = '';
-        return;
-      }
+      if (ret === null || sup === null) return;
       
       const delta = heatCoolMode === 'cooling' ? ret - sup : sup - ret;
       $('delta-t').value = delta.toFixed(1) + ' °F';
       
       const statusDiv = $('delta-status');
       if (heatCoolMode === 'cooling') {
-        const rules = HVAC_RULES.airflow.deltaT.cooling;
-        if (delta < rules.min - 2) statusDiv.innerHTML = `<div class="status bad">⚠️ Low delta (${delta.toFixed(1)}°F) - check airflow or low charge</div>`;
-        else if (delta >= rules.min && delta <= rules.max) statusDiv.innerHTML = `<div class="status good">✓ Delta T in optimal range (${rules.min}-${rules.max}°F)</div>`;
-        else if (delta > rules.max + 2) statusDiv.innerHTML = `<div class="status bad">⚠️ High delta (${delta.toFixed(1)}°F) - possible restriction</div>`;
-        else statusDiv.innerHTML = `<div class="status warn">⚠️ Delta T marginal - verify charge</div>`;
+        if (delta < 14) statusDiv.innerHTML = '<div class="status bad">⚠️ Low delta - check airflow or low charge</div>';
+        else if (delta >= 16 && delta <= 22) statusDiv.innerHTML = '<div class="status good">✓ Delta T in optimal range (16-22°F)</div>';
+        else if (delta > 24) statusDiv.innerHTML = '<div class="status bad">⚠️ High delta - possible restriction</div>';
+        else statusDiv.innerHTML = '<div class="status warn">⚠️ Delta T marginal - verify charge</div>';
       } else {
-        // Heating
-        const rules = HVAC_RULES.airflow.deltaT.heating;
-        if (delta < rules.min) statusDiv.innerHTML = `<div class="status bad">⚠️ Low rise - check gas input or airflow</div>`;
-        else if (delta >= rules.min && delta <= rules.max) statusDiv.innerHTML = `<div class="status good">✓ Temperature rise in range (${rules.min}-${rules.max}°F)</div>`;
-        else if (delta > rules.max) statusDiv.innerHTML = `<div class="status bad">⚠️ Excessive rise - airflow restriction</div>`;
-        else statusDiv.innerHTML = `<div class="status warn">⚠️ Temperature rise marginal</div>`;
+        if (delta < 25) statusDiv.innerHTML = '<div class="status bad">⚠️ Low rise - check gas input or airflow</div>';
+        else if (delta >= 30 && delta <= 80) statusDiv.innerHTML = '<div class="status good">✓ Temperature rise in range (30-80°F)</div>';
+        else if (delta > 90) statusDiv.innerHTML = '<div class="status bad">⚠️ Excessive rise - airflow restriction</div>';
+        else statusDiv.innerHTML = '<div class="status warn">⚠️ Temperature rise marginal</div>';
       }
     }
     
     function calcStatic() {
       const ret = num($('return-static').value);
       const sup = num($('supply-static').value);
-      if (ret === null || sup === null) {
-        $('total-static').value = '';
-        $('static-status').innerHTML = '';
-        return;
-      }
+      if (ret === null || sup === null) return;
       
       const total = Math.abs(ret) + Math.abs(sup);
       $('total-static').value = total.toFixed(2) + ' in w.c.';
       
       const statusDiv = $('static-status');
-      const rules = HVAC_RULES.airflow.staticPressure;
-      if (total <= rules.acceptable.max) statusDiv.innerHTML = `<div class="status good">✓ Static pressure acceptable (≤${rules.acceptable.max})</div>`;
-      else if (total <= rules.elevated.max) statusDiv.innerHTML = `<div class="status warn">⚠️ Static elevated (${rules.acceptable.max}-${rules.elevated.max})</div>`;
-      else statusDiv.innerHTML = `<div class="status bad">⚠️ Static excessive (>${rules.elevated.max}) - duct issues likely</div>`;
+      if (total <= 0.50) statusDiv.innerHTML = '<div class="status good">✓ Static pressure acceptable (≤0.50)</div>';
+      else if (total <= 0.70) statusDiv.innerHTML = '<div class="status warn">⚠️ Static elevated (0.50-0.70)</div>';
+      else statusDiv.innerHTML = '<div class="status bad">⚠️ Static excessive (>0.70) - duct issues likely</div>';
     }
     
     function validateVoltage() {
       const lineVoltage = num($('voltage-line').value);
-      if (!lineVoltage) {
-        $('voltage-status').innerHTML = '';
-        return;
-      }
+      if (!lineVoltage) return;
       
       const statusDiv = $('voltage-status');
-      const rules = HVAC_RULES.electrical.voltage.acceptable;
-      if (lineVoltage < rules.min) statusDiv.innerHTML = `<div class="status bad">⚠️ Low voltage (<${rules.min}V)</div>`;
-      else if (lineVoltage > rules.max) statusDiv.innerHTML = `<div class="status bad">⚠️ High voltage (>${rules.max}V)</div>`;
-      else statusDiv.innerHTML = `<div class="status good">✓ Voltage in acceptable range</div>`;
+      if (lineVoltage < 200) statusDiv.innerHTML = '<div class="status bad">⚠️ Low voltage (<200V)</div>';
+      else if (lineVoltage > 250) statusDiv.innerHTML = '<div class="status bad">⚠️ High voltage (>250V)</div>';
+      else if (lineVoltage >= 208 && lineVoltage <= 240) statusDiv.innerHTML = '<div class="status good">✓ Voltage in acceptable range</div>';
+      else statusDiv.innerHTML = '<div class="status warn">⚠️ Voltage marginal</div>';
+    }
+    
+    function lookupSatTemp(psig) {
+      const refrigerant = $('refrigerant').value;
+      if (refrigerant !== 'R-410A') return null;
+      let closest = null, minDiff = Infinity;
+      for (let pressure in R410A_PT) {
+        const diff = Math.abs(pressure - psig);
+        if (diff < minDiff) { minDiff = diff; closest = R410A_PT[pressure]; }
+      }
+      return closest;
     }
     
     function calcRefrigerant() {
@@ -2363,48 +1605,39 @@
       const suctT = num($('suction-temp').value);
       const liqP = num($('liquid-pressure').value);
       const liqT = num($('liquid-temp').value);
-      const refrigType = $('refrigerant').value.toLowerCase();
       
-      if (heatCoolMode !== 'cooling' || !refrigType || !HVAC_RULES.refrigerant[refrigType]) {
-        clearRefrigerantCalculations();
-        return;
-      }
-      
-      const rules = HVAC_RULES.refrigerant[refrigType];
+      if (heatCoolMode !== 'cooling') return;
 
       if (suctP && suctT) {
-        const satTemp = diagnosticEngine.lookupSatTemp(suctP, refrigType); // Use engine's lookup
+        const satTemp = lookupSatTemp(suctP);
         if (satTemp) {
           const superheat = suctT - satTemp;
           $('superheat').value = superheat.toFixed(1) + ' °F';
           const statusDiv = $('superheat-status');
-          if (superheat < rules.superheat.min - 3) statusDiv.innerHTML = `<div class="status bad">⚠️ Low SH (<${rules.superheat.min - 3}°F) - possible overcharge</div>`;
-          else if (superheat >= rules.superheat.min && superheat <= rules.superheat.max) statusDiv.innerHTML = `<div class="status good">✓ Superheat in target range (${rules.superheat.min}-${rules.superheat.max}°F)</div>`;
-          else if (superheat > rules.superheat.max + 5) statusDiv.innerHTML = `<div class="status bad">⚠️ High SH (>${rules.superheat.max + 5}°F) - possible undercharge</div>`;
-          else statusDiv.innerHTML = `<div class="status warn">⚠️ Superheat marginal</div>`;
+          if (superheat < 5) statusDiv.innerHTML = '<div class="status bad">⚠️ Low SH (<5°F) - possible overcharge</div>';
+          else if (superheat >= 8 && superheat <= 18) statusDiv.innerHTML = '<div class="status good">✓ Superheat in target range (8-18°F)</div>';
+          else if (superheat > 25) statusDiv.innerHTML = '<div class="status bad">⚠️ High SH (>25°F) - possible undercharge</div>';
+          else statusDiv.innerHTML = '<div class="status warn">⚠️ Superheat marginal</div>';
         }
       }
       
       if (liqP && liqT) {
-        const satTemp = diagnosticEngine.lookupSatTemp(liqP, refrigType); // Use engine's lookup
+        const satTemp = lookupSatTemp(liqP);
         if (satTemp) {
           const subcool = satTemp - liqT;
           $('subcool').value = subcool.toFixed(1) + ' °F';
           const statusDiv = $('subcool-status');
-          if (subcool < rules.subcool.min - 3) statusDiv.innerHTML = `<div class="status bad">⚠️ Low SC (<${rules.subcool.min - 3}°F) - possible undercharge</div>`;
-          else if (subcool >= rules.subcool.min && subcool <= rules.subcool.max) statusDiv.innerHTML = `<div class="status good">✓ Subcool in target range (${rules.subcool.min}-${rules.subcool.max}°F)</div>`;
-          else if (subcool > rules.subcool.max + 5) statusDiv.innerHTML = `<div class="status bad">⚠️ High SC (>${rules.subcool.max + 5}°F) - possible overcharge</div>`;
-          else statusDiv.innerHTML = `<div class="status warn">⚠️ Subcool marginal</div>`;
+          if (subcool < 5) statusDiv.innerHTML = '<div class="status bad">⚠️ Low SC (<5°F) - possible undercharge</div>';
+          else if (subcool >= 8 && subcool <= 15) statusDiv.innerHTML = '<div class="status good">✓ Subcool in target range (8-15°F)</div>';
+          else if (subcool > 20) statusDiv.innerHTML = '<div class="status bad">⚠️ High SC (>20°F) - possible overcharge</div>';
+          else statusDiv.innerHTML = '<div class="status warn">⚠️ Subcool marginal</div>';
         }
       }
     }
     
     function calculateAge() {
       const mfgDate = $('mfg-date').value;
-      if (!mfgDate) {
-        $('equipment-age').textContent = '';
-        return;
-      }
+      if (!mfgDate) return;
       const mfg = new Date(mfgDate);
       const years = (Date.now() - mfg.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
       $('equipment-age').textContent = `Equipment Age: ${years.toFixed(1)} years`;
@@ -2422,7 +1655,7 @@
       $('total-hours').value = hours.toFixed(2) + ' hours';
     }
     
-    // ==================== VOICE INPUT (v1.0) ====================
+    // ==================== VOICE INPUT ====================
     let recognition = null;
     let currentVoiceTarget = null;
     
@@ -2477,7 +1710,7 @@
       }
     });
     
-    // ==================== PHOTOS (v1.0) ====================
+    // ==================== PHOTOS ====================
     function takePhoto(purpose) {
       const input = document.createElement('input');
       input.type = 'file';
@@ -2522,7 +1755,8 @@
       ).join('');
     }
     
-    // ==================== MATERIALS MANAGEMENT (v1.0) ====================
+    // ==================== MATERIALS MANAGEMENT ====================
+    
     function updateMaterialsList() {
       const category = $('material-category').value;
       const container = $('materials-catalog-container');
@@ -2551,15 +1785,6 @@
       const item = catalogData.items.find(i => i.id === itemId);
       if (!item) return;
       
-      // Check if already added
-      const existing = selectedMaterials.find(m => m.itemId === itemId);
-      if (existing) {
-        existing.quantity++;
-        renderSelectedMaterials();
-        showToast('Increased quantity', 'info');
-        return;
-      }
-      
       const materialId = `mat-${Date.now()}-${Math.random()}`;
       selectedMaterials.push({
         id: materialId,
@@ -2576,7 +1801,7 @@
       });
       
       renderSelectedMaterials();
-      updateSuggestions(); // v1.0 suggestions
+      updateSuggestions();
       showToast('Material added', 'success');
     }
     
@@ -2639,227 +1864,217 @@
       `).join('');
     }
     
-    // v1.0 Suggestions (now co-exists with v1.5 suggestions)
+    function getTonnageFromSize(sizeStr) {
+      const match = sizeStr.match(/(\d+\.?\d*)\s*Ton/i);
+      return match ? parseFloat(match[1]) : null;
+    }
+    
     function updateSuggestions() {
-      // This is the v1.0 suggestion logic, based on *selected* items
-      // The v1.5 logic is based on *service diagnostics*
       const suggestions = [];
+      
+      // Check if cooling equipment selected
       const coolingEquipment = selectedMaterials.find(m => m.tonnage);
       
       if (coolingEquipment) {
-        const tonnage = parseFloat(coolingEquipment.size);
+        const tonnage = getTonnageFromSize(coolingEquipment.size);
+        
         if (tonnage) {
+          // Suggest lineset
           const hasLineset = selectedMaterials.some(m => m.itemId && m.itemId.includes('lineset'));
           if (!hasLineset) {
-            let linesetId = tonnage <= 2.5 ? 'lineset-small' : (tonnage <= 3.5 ? 'lineset-medium' : 'lineset-large');
+            let linesetId;
+            if (tonnage <= 2.5) linesetId = 'lineset-small';
+            else if (tonnage <= 3.5) linesetId = 'lineset-medium';
+            else linesetId = 'lineset-large';
+            
+            const linesetItem = materialsCatalog.refrigerant.items.find(i => i.id === linesetId);
+            if (linesetItem) {
+              suggestions.push({
+                category: 'refrigerant',
+                item: linesetItem,
+                reason: `Matches ${tonnage} ton system`
+              });
+            }
+          }
+          
+          // Suggest disconnect
+          const hasDisconnect = selectedMaterials.some(m => m.itemId && m.itemId.includes('disconnect'));
+          if (!hasDisconnect) {
+            const disconnectId = tonnage >= 4 ? 'disconnect-60' : 'disconnect-30';
+            const disconnectItem = materialsCatalog.electrical.items.find(i => i.id === disconnectId);
+            if (disconnectItem) {
+              suggestions.push({
+                category: 'electrical',
+                item: disconnectItem,
+                reason: `Required for ${tonnage} ton unit`
+              });
+            }
+          }
+        }
+      }
+      
+      // Check if any equipment selected
+      const hasEquipment = selectedMaterials.some(m => m.category === 'Equipment');
+      
+      if (hasEquipment) {
+        // Suggest plenum
+        const hasPlenum = selectedMaterials.some(m => m.name && m.name.includes('Plenum'));
+        if (!hasPlenum) {
+          const plenumItem = materialsCatalog.ductwork.items.find(i => i.id === 'plenum-supply');
+          if (plenumItem) {
             suggestions.push({
-              category: 'refrigerant',
-              item: materialsCatalog.refrigerant.items.find(i => i.id === linesetId),
-              reason: `Matches ${tonnage} ton system`
+              category: 'ductwork',
+              item: plenumItem,
+              reason: 'Required for equipment installation'
+            });
+          }
+        }
+        
+        // Suggest drain
+        const hasDrain = selectedMaterials.some(m => m.itemId && (m.itemId.includes('drain') || m.itemId.includes('ptrap')));
+        if (!hasDrain) {
+          const drainItem = materialsCatalog.drainage.items.find(i => i.id === 'ptrap');
+          if (drainItem) {
+            suggestions.push({
+              category: 'drainage',
+              item: drainItem,
+              reason: 'Required for condensate drainage'
             });
           }
         }
       }
-      // This logic could be expanded, but we'll keep it simple
-    }
-
-    // v1.5 Function to add suggested material
-    function addSuggestedMaterial(idx) {
-      if (!window.currentSuggestions || !window.currentSuggestions[idx]) return;
       
-      const suggestion = window.currentSuggestions[idx];
+      // Render suggestions
+      const suggestionsContainer = $('suggestions-container');
+      const suggestionsList = $('suggestions-list');
       
-      // Find the catalog item to add
-      const catalogItem = materialsCatalog[suggestion.category]?.items.find(
-        item => item.id === suggestion.item.id
-      );
-      
-      if (catalogItem) {
-        addMaterial(suggestion.category, suggestion.item.id);
-        
-        // Mark as added in UI
-        const suggestionElements = document.querySelectorAll('.suggestion-item');
-        if (suggestionElements[idx]) {
-          const btn = suggestionElements[idx].querySelector('.material-add-btn');
-          btn.textContent = '✓ Added';
-          btn.style.background = '#34C759'; // success color
-          btn.disabled = true;
-        }
+      if (suggestions.length > 0) {
+        suggestionsContainer.classList.remove('hidden');
+        suggestionsList.innerHTML = suggestions.map(s => `
+          <div class="suggestion-item">
+            <div class="suggestion-info">
+              <div class="suggestion-name">${s.item.name}</div>
+              <div class="suggestion-reason">${s.reason}</div>
+            </div>
+            <button class="material-add-btn" onclick="addMaterial('${s.category}', '${s.item.id}')">+ Add</button>
+          </div>
+        `).join('');
       } else {
-        showToast(`Item ${suggestion.item.name} not in catalog.`, 'danger');
+        suggestionsContainer.classList.add('hidden');
       }
     }
     
-    // ==================== REPORT GENERATION (v1.5) ====================
+    // ==================== REPORT GENERATION ====================
     
-    // v1.5 GATHER (uses ContextManager)
     function gatherServiceData() {
-      contextManager.saveCurrentMode('service'); // Save all form data to context
-      
-      // Build the data object from the context
-      const ctx = contextManager.context;
       return {
-        meta: {
-          tech: ctx.signature.tech || '[Technician]',
-          mode: 'Service',
-          heatCoolMode: ctx.heatCoolMode
+        meta: { tech: $('tech-name').value || '[Technician]', mode: 'Service', heatCoolMode: heatCoolMode },
+        job: {
+          customer: $('customer').value,
+          address: $('address').value,
+          jobType: $('job-type').value,
+          complaint: $('complaint')?.value,
         },
-        job: ctx.job,
-        equipment: ctx.equipment,
-        time: ctx.service.time,
-        materials: ctx.materials.serviceMaterials,
+        equipment: {
+          brand: $('brand').value,
+          unitType: $('unit-type')?.value,
+          indoor: $('indoor-data').value,
+          outdoor: $('outdoor-data').value,
+          tonnage: $('tonnage').value,
+          refrigerant: $('refrigerant').value,
+          mfgDate: $('mfg-date').value,
+          age: $('equipment-age').textContent
+        },
+        time: {
+          arrival: $('arrival-time').value,
+          completion: $('completion-time').value,
+          travel: $('travel-time').value,
+          total: $('total-hours').value
+        },
+        materials: {
+          refrigerant: { 
+            type: $('refrigerant-added-type').value, 
+            amount: $('refrigerant-amount').value, 
+            recovered: $('refrigerant-recovered').value 
+          },
+          filter: { size: $('filter-size').value, merv: $('filter-merv').value },
+          capacitor: { type: $('capacitor-type').value, qty: $('capacitor-qty').value },
+          contactor: { rating: $('contactor-rating').value, qty: $('contactor-qty').value },
+          other: $('other-parts').value
+        },
         service: {
-          safety: ctx.service.safety,
-          operating: ctx.service.operating,
-          components: ctx.service.components,
-          complaint: ctx.service.complaint, // Added complaint
-          findings: ctx.service.review.findings,
-          recommendations: ctx.service.review.recommendations,
-          workPerformed: ctx.service.review.workPerformed
+          safety: {
+            disconnect: $('safety-disconnect').checked, 
+            clearances: $('safety-clearances').checked,
+            drain: $('safety-drain').checked, 
+            floats: $('safety-floats').checked,
+            gas: $('safety-gas')?.checked, 
+            vent: $('safety-vent')?.checked,
+            co: $('safety-co')?.checked, 
+            flameSensor: $('safety-flame-sensor')?.checked
+          },
+          operating: {
+            outdoorTemp: $('outdoor-temp').value, 
+            outdoorHumidity: $('outdoor-humidity').value,
+            returnTemp: $('return-temp').value, 
+            supplyTemp: $('supply-temp').value,
+            deltaT: $('delta-t').value, 
+            returnStatic: $('return-static').value,
+            supplyStatic: $('supply-static').value, 
+            totalStatic: $('total-static').value,
+            voltageLine: $('voltage-line').value, 
+            controlVoltage: $('control-voltage').value,
+            blowerAmps: $('blower-amps').value, 
+            suctionPressure: $('suction-pressure').value,
+            liquidPressure: $('liquid-pressure')?.value, 
+            suctionTemp: $('suction-temp')?.value,
+            liquidTemp: $('liquid-temp')?.value, 
+            superheat: $('superheat')?.value,
+            subcool: $('subcool')?.value, 
+            compAmps: $('comp-amps')?.value,
+            inducerAmps: $('inducer-amps')?.value, 
+            heatExchanger: $('heat-exchanger')?.value,
+            flameAppearance: $('flame-appearance')?.value
+          },
+          components: {
+            filter: $('filter').value, 
+            evapCoil: $('evap-coil').value,
+            condCoil: $('cond-coil').value, 
+            capacitorReading: $('capacitor-reading').value,
+            contactorCondition: $('contactor-condition').value, 
+            blowerCondition: $('blower-condition').value
+          },
+          findings: $('findings').value,
+          recommendations: $('recommendations').value,
+          workPerformed: $('work-performed').value
         },
-        photos: ctx.photos,
-        signature: ctx.signature
+        photos: photos,
+        signature: { 
+          tech: $('tech-name').value, 
+          customer: $('customer-signature').value 
+        }
       };
     }
     
-    // v1.0 GATHER
     function gatherMaterialsData() {
-      contextManager.saveCurrentMode('materials'); // Save material form data
-      const ctx = contextManager.context;
-      
       return {
-        meta: { tech: ctx.signature.tech || '[Technician]', mode: 'Materials' },
-        job: ctx.job,
-        materials: ctx.materials.selectedMaterials,
-        photos: ctx.photos,
-        signature: ctx.signature
+        meta: { tech: $('mat-tech').value || '[Technician]', mode: 'Materials' },
+        job: {
+          customer: $('mat-customer').value,
+          address: $('mat-address').value,
+          date: $('mat-date').value,
+          notes: $('mat-notes').value
+        },
+        materials: selectedMaterials,
+        photos: photos,
+        signature: {
+          tech: $('tech-name').value,
+          customer: $('customer-signature').value
+        }
       };
     }
     
-    // v1.5 GENERATE (Main Entry Point)
-    function generate() {
-      const existing = document.querySelector('.report-preview')?.closest('.card');
-      if (existing) existing.remove();
-      
-      if (currentMode === 'service') {
-        const serviceData = gatherServiceData();
-        const analysisResults = diagnosticEngine.analyzeServiceData(serviceData);
-        
-        // Store in context and session
-        contextManager.context.diagnosticAnalysis = analysisResults;
-        sessionStorage.setItem('diagnosticAnalysis', JSON.stringify(analysisResults));
-        sessionStorage.setItem('currentServiceData', JSON.stringify(serviceData));
-        
-        // Show review modal if there are findings
-        if (analysisResults.critical.length > 0 || 
-            analysisResults.findings.length > 0 || 
-            analysisResults.warnings.length > 0) {
-          showDiagnosticReviewModal(analysisResults);
-        } else {
-          // No issues - proceed directly
-          proceedToReportGeneration();
-        }
-        
-      } else if (currentMode === 'materials') {
-        const reportData = gatherMaterialsData();
-        const reportText = generateMaterialsList(reportData);
-        sessionStorage.setItem('currentReport', JSON.stringify(reportData));
-        sessionStorage.setItem('currentReportText', reportText);
-        displayReport(reportText, '📋 Materials List Generated');
-        showToast('Materials List Generated!', 'success');
-      }
-    }
-    
-    // v1.5 New Modal/Report Functions
-    function showDiagnosticReviewModal(results) {
-      const modal = $('diagnostic-review-modal');
-      
-      const populate = (sectionId, listId, items, type) => {
-        const section = $(sectionId);
-        const list = $(listId);
-        if (items.length > 0) {
-          section.classList.remove('hidden');
-          list.innerHTML = items.map((item, idx) => 
-            generateReviewItemHTML(item, idx, type)
-          ).join('');
-        } else {
-          section.classList.add('hidden');
-        }
-      };
-
-      populate('review-critical-section', 'review-critical-list', results.critical, 'critical');
-      // Combine findings and warnings into one "Findings" section
-      const allFindings = [...results.findings, ...results.warnings];
-      populate('review-findings-section', 'review-findings-list', allFindings, 'finding');
-      
-      $('review-warnings-section').classList.add('hidden'); // Hide the separate warnings section
-
-      if (results.critical.length === 0 && allFindings.length === 0) {
-        $('review-allclear-section').classList.remove('hidden');
-      } else {
-        $('review-allclear-section').classList.add('hidden');
-      }
-      
-      modal.classList.add('visible');
-    }
-
-    function generateReviewItemHTML(item, idx, type) {
-      const patternInfo = DIAGNOSTIC_PATTERNS[item.pattern];
-      let title = item.issue || (patternInfo ? patternInfo.name : 'Diagnostic Finding');
-      
-      // Determine class: critical is 'bad', finding/warning is 'warn'
-      let itemClass = 'info';
-      if (type === 'critical') itemClass = 'bad';
-      if (type === 'finding') itemClass = 'warn';
-
-      let html = `<div class="review-item ${itemClass}">`;
-      html += `<div class="review-item-header">${title}</div>`;
-
-      if (item.measurements) {
-        html += `<div class="review-item-measurements">`;
-        for (let key in item.measurements) {
-          html += `<strong>${key}:</strong> ${item.measureMENTS[key]}<br>`;
-        }
-        html += `</div>`;
-      }
-      
-      if (item.description) {
-        html += `<p style="margin: 8px 0; font-size: 14px; line-height: 1.5;">${item.description}</p>`;
-      }
-      
-      const checks = item.checks || [];
-      if (checks.length > 0) {
-        html += `<div class="review-item-checks">`;
-        html += `<strong style="display: block; margin-bottom: 8px; font-size: 13px; color: #666;">Verification Steps:</strong>`;
-        checks.forEach((check, checkIdx) => {
-          html += `<label><input type="checkbox" id="check-${idx}-${checkIdx}"><span>${check}</span></label>`;
-        });
-        html += `</div>`;
-      }
-      
-      html += `</div>`;
-      return html;
-    }
-
-    function closeReviewModal() {
-      $('diagnostic-review-modal').classList.remove('visible');
-    }
-
-    function proceedToReportGeneration() {
-      closeReviewModal();
-      
-      const serviceData = JSON.parse(sessionStorage.getItem('currentServiceData'));
-      const diagnosticAnalysis = JSON.parse(sessionStorage.getItem('diagnosticAnalysis'));
-      
-      const reportText = generateServiceReport(serviceData, diagnosticAnalysis);
-      
-      sessionStorage.setItem('currentReportText', reportText);
-      displayReport(reportText, '📋 Service Report Generated');
-      showToast('Service Report Generated!', 'success');
-    }
-
-    // v1.5 modified generateServiceReport
-    function generateServiceReport(data, diagnosticAnalysis) {
+    function generateServiceReport(data) {
       let report = `
 HVAC SERVICE REPORT
 ======================================================
@@ -2872,16 +2087,16 @@ Address: ${data.job.address}
 Job Type: ${data.job.jobType}
 
 CUSTOMER COMPLAINT:
-  ${data.service.complaint || 'N/A'}
+  ${data.job.complaint || 'N/A'}
 
 EQUIPMENT IDENTITY
 ------------------
 Brand: ${data.equipment.brand}
 Type: ${data.equipment.unitType}
-Indoor: ${data.equipment.indoorData}
-Outdoor: ${data.equipment.outdoorData}
+Indoor: ${data.equipment.indoor}
+Outdoor: ${data.equipment.outdoor}
 Tonnage: ${data.equipment.tonnage} | Refrigerant: ${data.equipment.refrigerant}
-Mfg Date: ${data.equipment.mfgDate} ${data.equipment.age ? `${data.equipment.age}` : ''}
+Mfg Date: ${data.equipment.mfgDate} ${data.equipment.age ? `(${data.equipment.age})` : ''}
 
 TIME TRACKING
 -------------
@@ -2902,8 +2117,7 @@ Electrical:
   Control: ${data.service.operating.controlVoltage}V
   Blower Amps: ${data.service.operating.blowerAmps}
 
-${data.meta.heatCoolMode === 'cooling' ? 
-`Refrigerant Circuit (COOLING):
+${data.meta.heatCoolMode === 'cooling' ? `Refrigerant Circuit (COOLING):
   Suction: ${data.service.operating.suctionPressure} psig @ ${data.service.operating.suctionTemp}°F
   Liquid: ${data.service.operating.liquidPressure} psig @ ${data.service.operating.liquidTemp}°F
   Superheat: ${data.service.operating.superheat} | Subcool: ${data.service.operating.subcool}
@@ -2920,43 +2134,7 @@ Evap Coil: ${data.service.components.evapCoil} | Cond Coil: ${data.service.compo
 Capacitor: ${data.service.components.capacitorReading}
 Contactor: ${data.service.components.contactorCondition}
 Blower: ${data.service.components.blowerCondition}
-`;
 
-      // NEW v1.5 SECTION
-      if (diagnosticAnalysis) {
-        report += `
-DIAGNOSTIC ANALYSIS
---------------------
-Status: ${diagnosticAnalysis.overallStatus.toUpperCase()}
-`;
-        if (diagnosticAnalysis.critical.length > 0) {
-          report += `\nCRITICAL ISSUES:\n`;
-          diagnosticAnalysis.critical.forEach((item, idx) => {
-            let title = item.issue || DIAGNOSTIC_PATTERNS[item.pattern]?.name || 'Critical Issue';
-            report += `  ${idx + 1}. ${title}\n`;
-            if(item.measurements) {
-                report += `     ${Object.entries(item.measurements).map(([k, v]) => `${k}: ${v}`).join(', ')}\n`;
-            }
-            if(item.description) {
-                report += `     ${item.description}\n`;
-            }
-          });
-        }
-        
-        const allFindings = [...diagnosticAnalysis.findings, ...diagnosticAnalysis.warnings];
-        if (allFindings.length > 0) {
-          report += `\nFINDINGS & WARNINGS:\n`;
-          allFindings.forEach((item, idx) => {
-            let title = item.issue || DIAGNOSTIC_PATTERNS[item.pattern]?.name || 'Finding';
-            report += `  ${idx + 1}. ${title}\n`;
-            if(item.description) {
-                report += `     ${item.description}\n`;
-            }
-          });
-        }
-      }
-
-      report += `
 MATERIALS USED
 --------------
 ${formatServiceMaterials(data.materials)}
@@ -2984,7 +2162,6 @@ Customer Acknowledged: ${data.signature.customer}
       return report.replace(/\n\s+\n/g, '\n\n');
     }
     
-    // v1.0 function
     function formatServiceMaterials(materials) {
       let text = '  ';
       if (materials.refrigerant?.type) text += `Refrigerant: ${materials.refrigerant.type} - ${materials.refrigerant.amount}\n  `;
@@ -2995,7 +2172,6 @@ Customer Acknowledged: ${data.signature.customer}
       return text.trim() || 'None';
     }
     
-    // v1.0 function
     function generateMaterialsList(data) {
       let list = '';
       list += '╔════════════════════════════════════════════════════════════╗\n';
@@ -3013,6 +2189,7 @@ Customer Acknowledged: ${data.signature.customer}
       if (data.materials.length === 0) {
         list += 'No materials added to list.\n\n';
       } else {
+        // Group materials by category
         const groupedMaterials = data.materials.reduce((acc, m) => {
           if (!acc[m.category]) acc[m.category] = [];
           acc[m.category].push(m);
@@ -3054,7 +2231,31 @@ Customer Acknowledged: ${data.signature.customer}
       return list;
     }
     
-    // v1.0 function
+    function generate() {
+      const existing = document.querySelector('.report-preview')?.closest('.card');
+      if (existing) existing.remove();
+      
+      let reportText = '';
+      let reportData = {};
+      
+      if (currentMode === 'service') {
+        reportData = gatherServiceData();
+        reportText = generateServiceReport(reportData);
+        sessionStorage.setItem('currentReport', JSON.stringify(reportData));
+        sessionStorage.setItem('currentReportText', reportText);
+        displayReport(reportText, '📋 Service Report Generated');
+        showToast('Service Report Generated!', 'success');
+        
+      } else if (currentMode === 'materials') {
+        reportData = gatherMaterialsData();
+        reportText = generateMaterialsList(reportData);
+        sessionStorage.setItem('currentReport', JSON.stringify(reportData));
+        sessionStorage.setItem('currentReportText', reportText);
+        displayReport(reportText, '📋 Materials List Generated');
+        showToast('Materials List Generated!', 'success');
+      }
+    }
+    
     function displayReport(text, title) {
       const card = document.createElement('div');
       card.className = 'card';
@@ -3077,7 +2278,6 @@ Customer Acknowledged: ${data.signature.customer}
       card.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     
-    // v1.0 function
     function copyToClipboard() {
       const text = document.getElementById('report-pre')?.textContent;
       if (!text) {
@@ -3106,7 +2306,6 @@ Customer Acknowledged: ${data.signature.customer}
       document.body.removeChild(textArea);
     }
     
-    // v1.0 function
     function printReport() {
       const text = document.getElementById('report-pre')?.textContent;
       if (!text) {
@@ -3128,7 +2327,6 @@ Customer Acknowledged: ${data.signature.customer}
       }, 250);
     }
     
-    // v1.0 function
     function exportReport() {
       const text = sessionStorage.getItem('currentReportText');
       const dataStr = sessionStorage.getItem('currentReport');
@@ -3157,7 +2355,6 @@ Customer Acknowledged: ${data.signature.customer}
       showToast('Exporting file...', 'success');
     }
     
-    // v1.0 function
     async function clearForm() {
       const confirmed = await showModal(
         'Clear Form', 
@@ -3175,17 +2372,12 @@ Customer Acknowledged: ${data.signature.customer}
       updatePhotoPreview();
       renderSelectedMaterials();
       updateSuggestions();
-      $('suggestions-container').classList.add('hidden'); // Also hide v1.5 suggestions
       
       const existing = document.querySelector('.report-preview')?.closest('.card');
       if (existing) existing.remove();
       
-      // Clear context
-      contextManager.context = new ContextManager().context; // Reset context
       sessionStorage.removeItem('currentReport');
       sessionStorage.removeItem('currentReportText');
-      sessionStorage.removeItem('currentServiceData');
-      sessionStorage.removeItem('diagnosticAnalysis');
       
       $('date').value = new Date().toISOString().split('T')[0];
       $('mat-date').value = new Date().toISOString().split('T')[0];
@@ -3193,7 +2385,7 @@ Customer Acknowledged: ${data.signature.customer}
       showToast('Form cleared', 'success');
     }
     
-    // ==================== CHECKBOX STYLING (v1.0) ====================
+    // ==================== CHECKBOX STYLING ====================
     document.addEventListener('input', (e) => {
       if (e.target.type === 'checkbox') {
         const label = e.target.closest('label.check');
@@ -3203,17 +2395,16 @@ Customer Acknowledged: ${data.signature.customer}
       }
     });
     
-    // ==================== INITIALIZATION (v1.0) ====================
+    // ==================== INITIALIZATION ====================
     window.addEventListener('load', () => {
       $('date').value = new Date().toISOString().split('T')[0];
       $('mat-date').value = new Date().toISOString().split('T')[0];
       
-      setMode('service'); // This will also load context
+      setMode('service');
       
-      console.log('%c📦 Field Buddy Pro v1.5 - Intelligent Validation Loaded', 'color:#007AFF; font-size:14px; font-weight:bold');
+      console.log('%c📦 Field Buddy Pro - Service & Materials System Loaded', 'color:#007AFF; font-size:14px; font-weight:bold');
     });
     
-</script>
+  </script>
 </body>
 </html>
-
