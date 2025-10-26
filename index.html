@@ -633,12 +633,12 @@
     
     <div class="grid-2">
       <div>
-        <label for="sales-tech">Sold By (Field Tech)</label>
-        <input type="text" id="sales-tech" placeholder="Field tech name">
+        <label for="sales-tech">Sold By (Sales Tech)</label>
+        <input type="text" id="sales-tech" placeholder="Sales tech name">
       </div>
       <div>
-        <label for="sale-date">Date</label>
-        <input type="date" id="date">
+        <label for="sale-date">Sale Date</label>
+        <input type="date" id="sale-date">
       </div>
     </div>
     
@@ -1266,4 +1266,2111 @@
             <span>P-Trap Required</span>
           </label>
           <label class="check">
-            <input type="checkbox" id="pvc-stra
+            <input type="checkbox" id="pvc-straps">
+            <span>Hanging Straps / Clamps</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section" id="section-electrical">
+      <button class="section-toggle" onclick="toggleSection('section-electrical')">
+        <span>⚡ Electrical Materials</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="section-content">
+        <label class="check">
+          <input type="checkbox" id="elec-disconnect" onchange="toggleSubSection('disconnect-fields')">
+          <span>Disconnect Box</span>
+        </label>
+        <div id="disconnect-fields" class="hidden mt-8">
+          <label for="disconnect-rating">Disconnect Rating</label>
+          <select id="disconnect-rating">
+            <option value="">Select...</option>
+            <option value="30A (Non-fused)">30A (Non-fused)</option>
+            <option value="30A (Fused)">30A (Fused)</option>
+            <option value="60A (Non-fused)">60A (Non-fused)</option>
+            <option value="60A (Fused)">60A (Fused)</option>
+          </select>
+          <label class="check">
+            <input type="checkbox" id="elec-whip">
+            <span>Electrical Whip (e.g., 6ft 1/2")</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" id="elec-surge">
+            <span>AC Surge Protector (at disconnect)</span>
+          </label>
+        </div>
+        
+        <label class="check">
+          <input type="checkbox" id="elec-breaker" onchange="toggleSubSection('breaker-fields')">
+          <span>Breaker</span>
+        </label>
+        <div id="breaker-fields" class="hidden mt-8">
+          <label for="breaker-size">Breaker Size</label>
+          <select id="breaker-size">
+            <option value="">Select...</option>
+            <option value="15A Single Pole">15A Single Pole</option>
+            <option value="20A Double Pole">20A Double Pole</option>
+            <option value="30A Double Pole">30A Double Pole</option>
+            <option value="40A Double Pole">40A Double Pole</option>
+            <option value="50A Double Pole">50A Double Pole</option>
+            <option value="60A Double Pole">60A Double Pole</option>
+          </select>
+        </div>
+        
+        <label class="check">
+          <input type="checkbox" id="elec-wire-run" onchange="toggleSubSection('wire-run-fields')">
+          <span>High Voltage Wire Run</span>
+        </label>
+        <div id="wire-run-fields" class="hidden mt-8">
+          <div class="grid-3">
+            <div>
+              <label for="wire-gauge">Gauge</label>
+              <select id="wire-gauge">
+                <option value="14">14</option>
+                <option value="12">12</option>
+                <option value="10">10</option>
+                <option value="8">8</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            <div>
+              <label for="wire-type">Type</label>
+              <select id="wire-type">
+                <option value="THHN (stranded)">THHN (stranded)</option>
+                <option value="Romex (solid)">Romex (solid)</option>
+              </select>
+            </div>
+            <div>
+              <label for="wire-length">Length (ft)</label>
+              <input type="number" id="wire-length" placeholder="e.g., 50" min="1">
+            </div>
+          </div>
+        </div>
+        
+        <label class="check">
+          <input type="checkbox" id="elec-tstat-wire" onchange="toggleSubSection('tstat-wire-fields')">
+          <span>Thermostat Wire Run</span>
+        </label>
+        <div id="tstat-wire-fields" class="hidden mt-8">
+          <div class="grid-2">
+            <div>
+              <label for="tstat-wire-type">Type</label>
+              <select id="tstat-wire-type">
+                <option value="18/2">18/2</option>
+                <option value="18/3">18/3</option>
+                <option value="18/5">18/5</option>
+                <option value="18/7">18/7</option>
+                <option value="18/8">18/8</option>
+                <option value="18/10">18/10</option>
+              </select>
+            </div>
+            <div>
+              <label for="tstat-wire-length">Length (ft)</label>
+              <input type="number" id="tstat-wire-length" placeholder="e.g., 75" min="1">
+            </div>
+          </div>
+        </div>
+        
+        <label class="check">
+          <input type="checkbox" id="elec-thermostat" onchange="toggleSubSection('thermostat-fields')">
+          <span>Thermostat</span>
+        </label>
+        <div id="thermostat-fields" class="hidden mt-8">
+          <label for="thermostat-model">Thermostat Model</label>
+          <input type="text" id="thermostat-model" placeholder="e.g., Honeywell T6, Ecobee">
+        </div>
+      </div>
+    </div>
+    
+    <div class="section" id="section-mounting-accessories">
+      <button class="section-toggle" onclick="toggleSection('section-mounting-accessories')">
+        <span>🔩 Mounting & Accessories</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="section-content">
+        <label class="check">
+          <input type="checkbox" id="mount-pad">
+          <span>Condenser Pad / Stand</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="mount-vibration">
+          <span>Vibration Isolators (Pad or Hangers)</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="mount-hangers">
+          <span>Duct Hangers / Straps</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="mount-refrigerant">
+          <span>Refrigerant (R-410A) - 1 Jug</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="mount-brazing">
+          <span>Brazing Rods</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="mount-nitrogen">
+          <span>Nitrogen (for brazing)</span>
+        </label>
+        
+        <div class="grid-2">
+          <div>
+            <label for="mount-mastic">Mastic (quarts)</label>
+            <input type="number" id="mount-mastic" placeholder="Qty" min="1">
+          </div>
+          <div>
+            <label for="mount-foil-tape">Foil Tape (rolls)</label>
+            <input type="number" id="mount-foil-tape" placeholder="Qty" min="1">
+          </div>
+        </div>
+        
+        <label for="mount-other" class="mt-16">Other Supplies</label>
+        <textarea id="mount-other" placeholder="e.g., Zip ties, Pookie, Sheet metal screws..." rows="2"></textarea>
+      </div>
+    </div>
+    
+    <div class="section" id="section-site-conditions">
+      <button class="section-toggle" onclick="toggleSection('section-site-conditions')">
+        <span>📍 Site Conditions & Access</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="section-content">
+        <label for="site-location">Equipment Location</label>
+        <select id="site-location">
+          <option value="">Select...</option>
+          <option value="Attic">Attic</option>
+          <option value="Crawlspace">Crawlspace</option>
+          <option value="Garage">Garage</option>
+          <option value="Basement">Basement</option>
+          <option value="Closet">Closet</option>
+          <option value="Rooftop">Rooftop</option>
+        </select>
+        
+        <label for="site-access-type">Access Type</label>
+        <select id="site-access-type">
+          <option value="">Select...</option>
+          <option value="Attic Pull-Down Ladder">Attic Pull-Down Ladder</option>
+          <option value="Scuttle Hole">Scuttle Hole</option>
+          <option value="Stairs">Stairs</option>
+          <option value="Door">Door</option>
+          <option value="Hatch">Hatch</option>
+          <option value="Ladder (External)">Ladder (External)</option>
+        </select>
+        
+        <label for="site-access-size">Access Opening Size</label>
+        <input type="text" id="site-access-size" placeholder="e.g., 22&quot; x 30&quot;">
+        
+        <label for="site-workspace">Workspace Condition</label>
+        <select id="site-workspace">
+          <option value="">Select...</option>
+          <option value="Adequate - No Issues">Adequate - No Issues</option>
+          <option value="Tight - Be Careful">Tight - Be Careful</option>
+          <option value="Floored">Floored</option>
+          <option value="Trusses Only - Bring Planks">Trusses Only - Bring Planks</option>
+        </select>
+        
+        <label for="site-parking">Parking Situation</label>
+        <input type="text" id="site-parking" placeholder="e.g., Driveway, Street, Garage">
+        
+        <label class="check mt-16">
+          <input type="checkbox" id="site-customer-home">
+          <span>Customer will be home</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="site-power-off">
+          <span>Main power shutoff required</span>
+        </label>
+        
+        <label for="site-notes" class="mt-16">Site Notes</label>
+        <textarea id="site-notes" placeholder="e.g., Watch out for dog, cover new carpet, long walk from truck..." rows="3"></textarea>
+      </div>
+    </div>
+    
+    <div class="section" id="section-special-instructions">
+      <button class="section-toggle" onclick="toggleSection('section-special-instructions')">
+        <span>❗ Special Instructions for Crew</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="section-content">
+        <label for="instruct-reason">Reason for Replacement</label>
+        <textarea id="instruct-reason" placeholder="e.g., Compressor failed, heat exchanger cracked..." rows="2"></textarea>
+        
+        <label for="instruct-concerns">Customer Concerns</label>
+        <textarea id="instruct-concerns" placeholder="e.g., Worried about noise, wants better airflow in master..." rows="3"></textarea>
+        
+        <label for="instruct-pre-install">Pre-Install Checks</label>
+        <textarea id="instruct-pre-install" placeholder="e.g., Verify duct sizing, double-check line set..." rows="2"></textarea>
+        
+        <label for="instruct-post-install">Post-Install Testing</label>
+        <textarea id="instruct-post-install" placeholder="e.g., Commission system, check static pressure, walk customer through thermostat..." rows="3"></textarea>
+      </div>
+    </div>
+  </div>
+  
+  <!-- SERVICE MODE: On-Site Sections -->
+  <div class="service-only">
+    
+    <div class="section" id="section-materials-service">
+      <button class="section-toggle" onclick="toggleSection('section-materials-service')">
+        <span>🔧 Parts & Materials Used</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="section-content">
+        <label>Refrigerant</label>
+        <div class="grid-2">
+          <select id="refrigerant-added-type">
+            <option value="">Type...</option>
+            <option value="R-410A">R-410A</option>
+            <option value="R-22">R-22</option>
+            <option value="R-32">R-32</option>
+            <option value="R-454B">R-454B</option>
+          </select>
+          <input type="text" id="refrigerant-amount" placeholder="Amount (lbs/oz)">
+        </div>
+        <input type="text" id="refrigerant-recovered" placeholder="Amount Recovered (if any)">
+        
+        <label>Filter Replaced</label>
+        <div class="grid-2">
+          <select id="filter-size">
+            <option value="">Size...</option>
+            <option value="16x25x1">16x25x1</option>
+            <option value="20x25x1">20x25x1</option>
+            <option value="20x25x4">20x25x4 (Media)</option>
+            <option value="other">Other Size</option>
+          </select>
+          <select id="filter-merv">
+            <option value="">MERV...</option>
+            <option value="8">MERV 8</option>
+            <option value="11">MERV 11</option>
+            <option value="13">MERV 13</option>
+          </select>
+        </div>
+        
+        <label>Capacitor Replaced</label>
+        <div class="grid-2">
+          <select id="capacitor-type">
+            <option value="">Type...</option>
+            <option value="dual-35/5">Dual 35/5µF</option>
+            <option value="dual-40/5">Dual 40/5µF</option>
+            <option value="dual-45/5">Dual 45/5µF</option>
+            <option value="other">Other Rating</option>
+          </select>
+          <input type="number" id="capacitor-qty" placeholder="Qty" min="0" value="0">
+        </div>
+        
+        <label>Contactor Replaced</label>
+        <div class="grid-2">
+          <select id="contactor-rating">
+            <option value="">Rating...</option>
+            <option value="30A-2P">30A Double Pole</option>
+            <option value="40A-2P">40A Double Pole</option>
+            <option value="other">Other Rating</option>
+          </select>
+          <input type="number" id="contactor-qty" placeholder="Qty" min="0" value="0">
+        </div>
+        
+        <label>Other Parts Used</label>
+        <textarea id="other-parts" rows="3" placeholder="List any other materials: fuses, relays, transformers, etc."></textarea>
+      </div>
+    </div>
+    
+    <div class="section" id="section-service-diagnostics">
+      <button class="section-toggle" onclick="toggleSection('section-service-diagnostics')">
+        <span>📊 Full Diagnostic Measurements</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="status info">
+          <span>ℹ️</span>
+          <span>Diagnostic Method: Power → Airflow → Electrical → Refrigerant → Controls</span>
+        </div>
+        
+        <div class="card-subheader">General Readings</div>
+        <div class="grid-2">
+          <div><label>Outdoor Temp (°F)</label><input type="number" id="outdoor-temp" step="0.1"></div>
+          <div><label>Outdoor Humidity (%)</label><input type="number" id="outdoor-humidity" min="0" max="100"></div>
+        </div>
+        <div class="grid-2">
+          <div><label>Return Air (°F)</label><input type="number" id="return-temp" step="0.1" oninput="calcDelta()"></div>
+          <div><label>Supply Air (°F)</label><input type="number" id="supply-temp" step="0.1" oninput="calcDelta()"></div>
+        </div>
+        <div class="grid-2">
+          <div><label>Return Static (in w.c.)</label><input type="number" id="return-static" step="0.01" oninput="calcStatic()"></div>
+          <div><label>Supply Static (in w.c.)</label><input type="number" id="supply-static" step="0.01" oninput="calcStatic()"></div>
+        </div>
+        <div class="grid-2 mb-8">
+          <div><label>Delta T (auto)</label><input type="text" id="delta-t" readonly></div>
+          <div><label>Total Static (auto)</label><input type="text" id="total-static" readonly></div>
+        </div>
+        <div id="delta-status"></div>
+        <div id="static-status"></div>
+        
+        <div class="card-subheader mt-16">Electrical Measurements</div>
+        <div class="grid-2">
+          <div><label>Voltage L1-L2</label><input type="number" id="voltage-line" step="0.1" oninput="validateVoltage()"></div>
+          <div><label>Control Voltage (24V)</label><input type="number" id="control-voltage" step="0.1"></div>
+        </div>
+        <div id="voltage-status"></div>
+        
+        <div class="grid-2 mt-8">
+          <div><label>Blower Amps</label><input type="text" id="blower-amps" placeholder="Actual/Rated"></div>
+          <div class="cooling-only"><label>Compressor Amps</label><input type="text" id="comp-amps" placeholder="Actual/Rated"></div>
+          <div class="heating-only"><label>Inducer Amps</label><input type="number" id="inducer-amps" step="0.1"></div>
+        </div>
+        
+        <div class="cooling-only">
+          <div class="card-subheader mt-16">Refrigerant Circuit</div>
+          <div class="grid-2">
+            <div><label>Suction P (psig)</label><input type="number" id="suction-pressure" step="0.1" oninput="calcRefrigerant()"></div>
+            <div><label>Liquid P (psig)</label><input type="number" id="liquid-pressure" step="0.1" oninput="calcRefrigerant()"></div>
+          </div>
+          <div class="grid-2">
+            <div><label>Suction T (°F)</label><input type="number" id="suction-temp" step="0.1" oninput="calcRefrigerant()"></div>
+            <div><label>Liquid T (°F)</label><input type="number" id="liquid-temp" step="0.1" oninput="calcRefrigerant()"></div>
+          </div>
+          <div class="grid-2 mt-8">
+              <div><label>Superheat (auto)</label><input type="text" id="superheat" readonly></div>
+              <div><label>Subcool (auto)</label><input type="text" id="subcool" readonly></div>
+          </div>
+          <div id="superheat-status"></div>
+          <div id="subcool-status"></div>
+        </div>
+        
+        <div class="heating-only">
+          <div class="card-subheader mt-16">Heating Circuit</div>
+          <div class="grid-2">
+            <div><label>Heat Exchanger</label>
+              <select id="heat-exchanger">
+                <option value="">Inspect...</option>
+                <option value="clean">Clean - OK</option>
+                <option value="sooted">Sooted</option>
+                <option value="cracked">Cracked - DANGER</option>
+              </select>
+            </div>
+            <div><label>Flame Appearance</label>
+              <select id="flame-appearance">
+                <option value="">Inspect...</option>
+                <option value="blue">Blue - Normal</option>
+                <option value="yellow">Yellow - Incomplete Combustion</option>
+                <option value="lazy">Lazy/Rolling</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section" id="section-service-component">
+      <button class="section-toggle" onclick="toggleSection('section-service-component')">
+        <span>🔍 Component Inspection & Safety</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="card-subheader">Safety Checklist</div>
+        <div class="grid-2">
+          <label class="check"><input type="checkbox" id="safety-disconnect"> Disconnect present & functional</label>
+          <label class="check"><input type="checkbox" id="safety-clearances"> Clearances adequate</label>
+          <label class="check"><input type="checkbox" id="safety-drain"> Drain trapped & flowing</label>
+          <label class="check"><input type="checkbox" id="safety-floats"> Float switches tested</label>
+        </div>
+        <div class="heating-only grid-2">
+          <label class="check"><input type="checkbox" id="safety-gas"> Gas piping OK</label>
+          <label class="check"><input type="checkbox" id="safety-vent"> Vent termination secure</label>
+          <label class="check"><input type="checkbox" id="safety-co"> No CO detected</label>
+          <label class="check"><input type="checkbox" id="safety-flame-sensor"> Flame sensor clean</label>
+        </div>
+        
+        <div class="card-subheader mt-16">Component Health</div>
+        <label>Filter Condition</label>
+        <div class="voice-wrapper">
+          <input type="text" id="filter" placeholder="Size and condition (e.g., 16x25x1 - Light Dust)">
+          <button class="voice-btn" data-voice="filter">🎤</button>
+        </div>
+        
+        <div class="grid-2">
+          <div>
+            <label>Evaporator Coil</label>
+            <select id="evap-coil">
+              <option value="">Evap coil condition...</option>
+              <option value="clean">Clean</option>
+              <option value="light-dust">Light dust</option>
+              <option value="restricted">Restricted - needs cleaning</option>
+              <option value="frozen">Frozen</option>
+              <option value="corroded">Corroded</option>
+              <option value="leaking">Leaking</option>
+            </select>
+          </div>
+          <div>
+            <label>Condenser Coil</label>
+            <select id="cond-coil">
+              <option value="">Cond coil condition...</option>
+              <option value="clean">Clean</option>
+              <option value="light-debris">Light debris</option>
+              <option value="restricted">Restricted - needs cleaning</option>
+              <option value="bent-fins">Bent fins</option>
+              <option value="corroded">Corroded</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="grid-2">
+          <div>
+            <label>Capacitor (µF)</label>
+            <div class="voice-wrapper">
+              <input type="text" id="capacitor-reading" placeholder="Actual/Rated µF">
+              <button class="voice-btn" data-voice="capacitor-reading">🎤</button>
+            </div>
+          </div>
+          <div>
+            <label>Contactor</label>
+            <select id="contactor-condition">
+              <option value="">Contactor condition...</option>
+              <option value="excellent">Good - clean contacts</option>
+              <option value="light-pitting">Light pitting</option>
+              <option value="heavy-pitting">Heavy pitting - recommend replacement</option>
+              <option value="burned">Burned/welded</option>
+            </select>
+          </div>
+        </div>
+        
+        <label>Blower Motor Condition</label>
+        <select id="blower-condition">
+          <option value="">Blower condition...</option>
+          <option value="clean-quiet">Clean, runs quietly</option>
+          <option value="dusty">Dusty but functional</option>
+          <option value="noisy">Noisy - bearings worn</option>
+          <option value="struggling">Struggling to start</option>
+          <option value="failed">Failed/not running</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  
+  <!-- INSTALL MODE: On-Site Sections -->
+  <div class="install-only">
+    
+    <div class="card" id="card-install-checklist">
+      <div class="card-header">
+          <span>✅ Installation Checklist</span>
+      </div>
+      <div class="status info">
+        <span>ℹ️</span>
+        <span>Complete all items before startup</span>
+      </div>
+      <div class="grid-2">
+        <label class="check"><input type="checkbox" id="install-pads"> Pads/Stands Level & Secure</label>
+        <label class="check"><input type="checkbox" id="install-vacuum"> Line-set Evacuated (500 microns)</label>
+        <label class="check"><input type="checkbox" id="install-nitrogen"> Nitrogen Purge During Brazing</label>
+        <label class="check"><input type="checkbox" id="install-leak-test"> Leak Test Passed</label>
+        <label class="check"><input type="checkbox" id="install-drain-primary"> Primary Drain Installed & Tested</label>
+        <label class="check"><input type="checkbox" id="install-drain-aux"> Auxiliary Drain Installed</label>
+        <label class="check"><input type="checkbox" id="install-electrical"> Electrical Connections Torqued</label>
+        <label class="check"><input type="checkbox" id="install-disconnect"> Disconnect Box Installed</label>
+        <label class="check"><input type="checkbox" id="install-tstat"> Thermostat Wired & Programmed</label>
+        <label class="check"><input type="checkbox" id="install-filter"> Filter Installed</label>
+        <label class="check"><input type="checkbox" id="install-plenum"> Plenum Sealed & Secured</label>
+        <label class="check"><input type="checkbox" id="install-startup"> Startup Measurements Recorded</label>
+      </div>
+      
+      <label class="mt-8">Final Superheat/Subcool at Startup</label>
+      <div class="grid-2">
+        <input type="text" id="startup-superheat" placeholder="Superheat (°F)">
+        <input type="text" id="startup-subcool" placeholder="Subcool (°F)">
+      </div>
+      
+      <label>Startup Notes</label>
+      <div class="voice-wrapper">
+        <textarea id="startup-notes" placeholder="Final pressures, voltages, AHRI match confirmation, etc." rows="3"></textarea>
+        <button class="voice-btn" data-voice="startup-notes">🎤</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- DUCTWORK MODE: On-Site Sections -->
+  <div class="ductwork-only">
+    
+    <div class="section" id="section-materials-duct">
+      <button class="section-toggle" onclick="toggleSection('section-materials-duct')">
+        <span>🌬️ Ductwork Materials Used</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="card-subheader">Flex Duct</div>
+        <div class="grid-3">
+          <select id="flex-duct-size">
+            <option value="">Diameter...</option>
+            <option value="6">6"</option>
+            <option value="8">8"</option>
+            <option value="10">10"</option>
+            <option value="12">12"</option>
+          </select>
+          <select id="flex-duct-r-value">
+            <option value="">R-Value...</option>
+            <option value="R-6">R-6</option>
+            <option value="R-8">R-8</option>
+          </select>
+          <input type="number" id="flex-duct-length" placeholder="Length (ft)" min="0">
+        </div>
+        
+        <div class="card-subheader mt-16">Sealing & Insulation</div>
+        <div class="grid-2">
+          <input type="number" id="mastic-gallons" placeholder="Mastic (gallons)" min="0" step="0.5">
+          <input type="number" id="foil-tape-rolls" placeholder="Foil Tape (rolls)" min="0">
+        </div>
+        
+        <label>Other Materials</label>
+        <textarea id="other-duct-materials" rows="2" placeholder="Dampers, boots, collars, etc."></textarea>
+      </div>
+    </div>
+    
+    <div class="card" id="card-ductwork-audit">
+      <div class="card-header">
+        <span>📐 Ductwork & Air Audit</span>
+      </div>
+      <label>Duct Material</label>
+      <select id="duct-material">
+        <option value="">Select material...</option>
+        <option value="flex-r6">Flex Duct (R-6)</option>
+        <option value="flex-r8">Flex Duct (R-8)</option>
+        <option value="fiberglass">Fiberglass Board</option>
+        <option value="sheet-metal">Sheet Metal</option>
+        <option value="mixed">Mixed Materials</option>
+      </select>
+      
+      <label>Sealing Condition</label>
+      <select id="duct-sealing">
+        <option value="">Select condition...</option>
+        <option value="excellent">Excellent - fully mastic sealed</option>
+        <option value="good">Good - metallic tape used</option>
+        <option value="fair">Fair - some visible gaps</option>
+        <option value="poor">Poor - significant leakage</option>
+      </select>
+      
+      <div class="grid-2">
+        <div>
+          <label>Number of Supply Vents</label>
+          <input type="number" id="num-supply-vents" min="0">
+        </div>
+        <div>
+          <label>Number of Return Grilles</label>
+          <input type="number" id="num-return-grilles" min="0">
+        </div>
+      </div>
+      
+      <label>Ductwork Issues Found</label>
+      <div class="grid-2">
+        <label class="check"><input type="checkbox" id="duct-issue-leaks"> Air leaks detected</label>
+        <label class="check"><input type="checkbox" id="duct-issue-crushed"> Crushed/kinked ducts</label>
+        <label class="check"><input type="checkbox" id="duct-issue-disconnected"> Disconnected sections</label>
+        <label class="check"><input type="checkbox" id="duct-issue-insulation"> Missing insulation</label>
+      </div>
+      
+      <label>Airflow Audit Notes</label>
+      <div class="voice-wrapper">
+        <textarea id="airflow-audit-notes" rows="2" placeholder="Note static issues, room temps, register velocities"></textarea>
+        <button class="voice-btn" data-voice="airflow-audit-notes">🎤</button>
+      </div>
+      
+      <label>Ductwork Repair/Install Summary</label>
+      <div class="voice-wrapper">
+        <textarea id="duct-repair-summary" placeholder="Work performed and final status" rows="3"></textarea>
+        <button class="voice-btn" data-voice="duct-repair-summary">🎤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL: Photo Documentation -->
+  <div class="card">
+    <div class="card-header">
+      <span>📸 Photo Documentation</span>
+    </div>
+    
+    <div class="status info">
+      <span>📷</span>
+      <span>Take photos: Nameplate, before/after, problem areas, final install</span>
+    </div>
+
+    <div class="grid-4">
+      <button onclick="takePhoto('Nameplate')" class="secondary small">📷 Nameplate</button>
+      <button onclick="takePhoto('Problem')" class="secondary small">📷 Problem</button>
+      <button onclick="takePhoto('Before')" class="secondary small">📷 Before</button>
+      <button onclick="takePhoto('After')" class="secondary small">📷 After</button>
+      <button onclick="takePhoto('Electrical')" class="secondary small">📷 Electrical</button>
+      <button onclick="takePhoto('Coils')" class="secondary small">📷 Coils</button>
+      <button onclick="takePhoto('Drain')" class="secondary small">📷 Drain</button>
+      <button onclick="takePhoto('Ductwork')" class="secondary small">📷 Ductwork</button>
+    </div>
+    <div class="photo-grid" id="photo-preview"></div>
+  </div>
+
+  <!-- GLOBAL: Final Review -->
+  <div class="card" id="card-final-review">
+    <div class="card-header">
+      <span>📝 Final Review & Sign-Off</span>
+    </div>
+    
+    <div class="service-only">
+        <label>Primary Findings Summary</label>
+        <div class="voice-wrapper">
+            <textarea id="findings" placeholder="What's wrong and why - be specific" rows="3"></textarea>
+            <button class="voice-btn" data-voice="findings">🎤</button>
+        </div>
+        
+        <label>Repair Recommendations</label>
+        <div class="voice-wrapper">
+            <textarea id="recommendations" placeholder="Repair options and next steps" rows="3"></textarea>
+            <button class="voice-btn" data-voice="recommendations">🎤</button>
+        </div>
+
+        <label>Work Performed Today</label>
+        <div class="voice-wrapper">
+            <textarea id="work-performed" placeholder="What was done during this service call" rows="2"></textarea>
+            <button class="voice-btn" data-voice="work-performed">🎤</button>
+        </div>
+    </div>
+
+    <div class="install-only">
+        <label>Final System Status</label>
+        <div class="voice-wrapper">
+            <textarea id="install-final-status" placeholder="Confirm all checks passed, system operational" rows="3"></textarea>
+            <button class="voice-btn" data-voice="install-final-status">🎤</button>
+        </div>
+    </div>
+    
+    <div class="ductwork-only">
+        <label>Work Completion Summary</label>
+        <div class="voice-wrapper">
+            <textarea id="duct-completion" placeholder="Final ductwork status and improvements" rows="3"></textarea>
+            <button class="voice-btn" data-voice="duct-completion">🎤</button>
+        </div>
+    </div>
+
+    <div class="mt-16">
+        <label for="tech-name">Technician Name</label>
+        <input type="text" id="tech-name" placeholder="Your name">
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <label for="tech-signature-date">Tech Signature Date</label>
+        <input type="date" id="tech-signature-date">
+      </div>
+      <div>
+        <label for="customer-signature">Customer Signature</label>
+        <input type="text" id="customer-signature" placeholder="Customer name">
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL: Sticky Action Bar -->
+  <div class="actions">
+    <button class="success" onclick="generate()" id="generate-btn">
+      <span>✓</span> Generate
+    </button>
+    <button class="warning" onclick="exportReport()">
+      <span>🗎</span> Export
+    </button>
+    <button class="danger" onclick="clearForm()">
+      <span>✕</span> Clear All
+    </button>
+  </div>
+  
+  <!-- GLOBAL: Modal & Toast -->
+  <div class="modal-overlay" id="modal-container">
+    <div class="modal-content">
+      <div class="modal-title" id="modal-title">Confirmation</div>
+      <div class="modal-body" id="modal-body">Are you sure?</div>
+      <div class="modal-actions">
+        <button class="secondary" id="modal-cancel">Cancel</button>
+        <button class="danger" id="modal-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="toast-notification" id="toast-notification">
+    Message here
+  </div>
+
+  <script>
+    // ==================== GLOBAL STATE ====================
+    const $ = (id) => document.getElementById(id);
+    const num = val => { const n = parseFloat(val); return isNaN(n) ? null : n; };
+    
+    let currentMode = 'service';
+    let heatCoolMode = 'cooling';
+    let photos = [];
+    
+    // Dynamic list arrays
+    let collars = [];
+    let flexDucts = [];
+    let registers = [];
+    
+    // Enhanced R-410A PT chart
+    const R410A_PT = {
+      90: 44.7, 95: 47.1, 100: 49.6, 105: 52.2, 110: 54.9, 115: 57.7,
+      120: 60.6, 125: 63.6, 130: 66.7, 135: 69.9, 140: 73.2, 145: 76.6,
+      150: 80.1, 155: 83.7, 160: 87.4, 165: 91.3, 170: 95.2, 175: 99.3,
+      180: 103.5, 185: 107.8, 190: 112.2, 195: 116.7, 200: 121.4, 205: 126.1,
+      210: 131.0, 215: 135.9, 220: 140.9
+    };
+    
+    // ==================== MODAL & TOAST ====================
+    let modalConfirmCallback = null;
+    const modalContainer = $('modal-container');
+    const modalTitle = $('modal-title');
+    const modalBody = $('modal-body');
+    
+    function showModal(title, message) {
+      return new Promise((resolve) => {
+        modalTitle.textContent = title;
+        modalBody.textContent = message;
+        
+        $('modal-confirm').onclick = () => {
+          modalContainer.classList.remove('visible');
+          resolve(true);
+        };
+        
+        $('modal-cancel').onclick = () => {
+          modalContainer.classList.remove('visible');
+          resolve(false);
+        };
+        
+        modalContainer.classList.add('visible');
+      });
+    }
+
+    function showToast(message, type = 'info') {
+      const toast = $('toast-notification');
+      toast.textContent = message;
+      toast.className = 'toast-notification';
+      if (type !== 'info') {
+        toast.classList.add(type);
+      }
+      
+      toast.classList.add('visible');
+      
+      setTimeout(() => {
+        toast.classList.remove('visible');
+      }, 2500);
+    }
+
+    // ==================== MODE SWITCHING ====================
+    function setMode(mode) {
+      currentMode = mode;
+      document.body.className = `mode-${mode}`;
+      
+      // Update mode toggle buttons
+      document.querySelectorAll('.mode-toggle button').forEach(btn => btn.classList.remove('active'));
+      $(`btn-${mode}`).classList.add('active');
+      
+      // Update generate button text
+      const btnText = $('generate-btn');
+      if (mode === 'install') {
+        btnText.innerHTML = '<span>✓</span> Generate Material List';
+      } else if (mode === 'service') {
+        btnText.innerHTML = '<span>✓</span> Generate Service Report';
+      } else if (mode === 'ductwork') {
+        btnText.innerHTML = '<span>✓</span> Generate Duct Report';
+      }
+      
+      // Re-apply heat/cool mode for service and install
+      if (mode === 'service' || mode === 'install') {
+        setHeatCoolMode(heatCoolMode);
+      }
+    }
+    
+    function setHeatCoolMode(mode) {
+      heatCoolMode = mode;
+      
+      // Remove previous heat/cool classes
+      document.body.classList.remove('mode-cooling', 'mode-heating');
+      
+      // Add new heat/cool class if in service or install mode
+      if (document.body.classList.contains('mode-service') || 
+          document.body.classList.contains('mode-install')) {
+        document.body.classList.add(`mode-${mode}`);
+      }
+      
+      // Update buttons
+      $('btn-hc-cooling').className = mode === 'cooling' ? 'active secondary' : 'secondary';
+      $('btn-hc-heating').className = mode === 'heating' ? 'active secondary' : 'secondary';
+      
+      // Clear refrigerant calculations if in service mode
+      if (document.body.classList.contains('mode-service')) {
+        calcDelta();
+        clearRefrigerantCalculations();
+      }
+    }
+    
+    function toggleUnitData() {
+      const type = $('unit-type').value;
+      if (type === 'minisplit' || type === 'package') {
+        $('indoor-data').placeholder = "Unit Data (All-in-one system)";
+        $('outdoor-unit-fields').classList.add('hidden');
+      } else {
+        $('indoor-data').placeholder = "Model/Serial/Tonnage";
+        $('outdoor-unit-fields').classList.remove('hidden');
+      }
+    }
+    
+    function toggleSection(sectionId) {
+      const section = $(sectionId);
+      if (section && section.classList.contains('section')) {
+        section.classList.toggle('open');
+      }
+    }
+
+    function toggleSubSection(elementId) {
+      const el = $(elementId);
+      if (el) {
+        el.classList.toggle('hidden');
+      }
+    }
+
+    function toggleEquipmentSection(type) {
+      const section = $(`section-${type}`);
+      const checkbox = $(`equip-${type}`);
+      if (section && checkbox) {
+        if (checkbox.checked) {
+          section.classList.remove('hidden');
+        } else {
+          section.classList.add('hidden');
+        }
+      }
+    }
+
+    // ==================== DYNAMIC LISTS ====================
+    function addCollar() {
+      const collarId = `collar-${Date.now()}`;
+      collars.push(collarId);
+      
+      const item = document.createElement('div');
+      item.className = 'dynamic-item';
+      item.id = collarId;
+      item.innerHTML = `
+        <button class="remove-btn" onclick="removeItem('${collarId}', 'collars')">&times;</button>
+        <div class="grid-3">
+          <div>
+            <label for="${collarId}-size">Size (in)</label>
+            <input type="number" id="${collarId}-size" placeholder="e.g., 10" min="4" max="20">
+          </div>
+          <div>
+            <label for="${collarId}-qty">Qty</label>
+            <input type="number" id="${collarId}-qty" placeholder="e.g., 4" min="1">
+          </div>
+          <div>
+            <label for="${collarId}-type">Type</label>
+            <select id="${collarId}-type">
+              <option value="Start">Start Collar</option>
+              <option value="Tab">Tab Collar</option>
+            </select>
+          </div>
+        </div>
+        <label for="${collarId}-notes">Notes</label>
+        <input type="text" id="${collarId}-notes" placeholder="e.g., Supply runs to bedrooms">
+      `;
+      $('collar-list').appendChild(item);
+    }
+    
+    function addFlexDuct() {
+      const ductId = `flex-${Date.now()}`;
+      flexDucts.push(ductId);
+      
+      const item = document.createElement('div');
+      item.className = 'dynamic-item';
+      item.id = ductId;
+      item.innerHTML = `
+        <button class="remove-btn" onclick="removeItem('${ductId}', 'flexDucts')">&times;</button>
+        <div class="grid-3">
+          <div>
+            <label for="${ductId}-size">Size (in)</label>
+            <input type="number" id="${ductId}-size" placeholder="e.g., 10" min="4" max="20">
+          </div>
+          <div>
+            <label for="${ductId}-rating">R-Rating</label>
+            <select id="${ductId}-rating">
+              <option value="R-6">R-6</option>
+              <option value="R-8">R-8</option>
+            </select>
+          </div>
+          <div>
+            <label for="${ductId}-length">Length (ft)</label>
+            <input type="number" id="${ductId}-length" value="25" min="1">
+          </div>
+        </div>
+        <label class="check" style="background: #f1f1f1;">
+          <input type="checkbox" id="${ductId}-damper">
+          <span>Add Manual Damper</span>
+        </label>
+        <label for="${ductId}-notes">Notes</label>
+        <input type="text" id="${ductId}-notes" placeholder="e.g., New run to master bedroom">
+      `;
+      $('flex-duct-list').appendChild(item);
+    }
+    
+    function addRegister() {
+      const regId = `reg-${Date.now()}`;
+      registers.push(regId);
+      
+      const item = document.createElement('div');
+      item.className = 'dynamic-item';
+      item.id = regId;
+      item.innerHTML = `
+        <button class="remove-btn" onclick="removeItem('${regId}', 'registers')">&times;</button>
+        <div class="grid-2">
+          <div>
+            <label for="${regId}-type">Type</label>
+            <select id="${regId}-type">
+              <option value="Supply Register">Supply Register</option>
+              <option value="Return Grille">Return Grille</option>
+              <option value="Filter Grille">Filter Grille</option>
+            </select>
+          </div>
+          <div>
+            <label for="${regId}-size">Size (in)</label>
+            <input type="text" id="${regId}-size" placeholder="e.g., 14x6 or 10 Rnd">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <label for="${regId}-style">Style</label>
+            <select id="${regId}-style">
+              <option value="2-Way">2-Way</option>
+              <option value="3-Way">3-Way</option>
+              <option value="4-Way">4-Way</option>
+              <option value="Louvered">Louvered</option>
+              <option value="Bar-type">Bar-type</option>
+            </select>
+          </div>
+          <div>
+            <label for="${regId}-qty">Qty</label>
+            <input type="number" id="${regId}-qty" value="1" min="1">
+          </div>
+        </div>
+      `;
+      $('register-list').appendChild(item);
+    }
+
+    function removeItem(id, arrayName) {
+      if (arrayName === 'collars') collars = collars.filter(i => i !== id);
+      if (arrayName === 'flexDucts') flexDucts = flexDucts.filter(i => i !== id);
+      if (arrayName === 'registers') registers = registers.filter(i => i !== id);
+      const el = $(id);
+      if (el) el.remove();
+    }
+    
+    // ==================== CALCULATIONS ====================
+    function clearRefrigerantCalculations() {
+      const sh = $('superheat');
+      const sc = $('subcool');
+      const shStatus = $('superheat-status');
+      const scStatus = $('subcool-status');
+      
+      if (sh) sh.value = '';
+      if (sc) sc.value = '';
+      if (shStatus) shStatus.innerHTML = '';
+      if (scStatus) scStatus.innerHTML = '';
+    }
+    
+    function calcDelta() {
+      const ret = num($('return-temp').value);
+      const sup = num($('supply-temp').value);
+      if (ret === null || sup === null) return;
+      
+      const delta = heatCoolMode === 'cooling' ? ret - sup : sup - ret;
+      $('delta-t').value = delta.toFixed(1) + ' °F';
+      
+      const statusDiv = $('delta-status');
+      if (heatCoolMode === 'cooling') {
+        if (delta < 14) statusDiv.innerHTML = '<div class="status bad">⚠️ Low delta - check airflow or low charge</div>';
+        else if (delta >= 16 && delta <= 22) statusDiv.innerHTML = '<div class="status good">✓ Delta T in optimal range (16-22°F)</div>';
+        else if (delta > 24) statusDiv.innerHTML = '<div class="status bad">⚠️ High delta - possible restriction</div>';
+        else statusDiv.innerHTML = '<div class="status warn">⚠️ Delta T marginal - verify charge</div>';
+      } else {
+        if (delta < 25) statusDiv.innerHTML = '<div class="status bad">⚠️ Low rise - check gas input or airflow</div>';
+        else if (delta >= 30 && delta <= 80) statusDiv.innerHTML = '<div class="status good">✓ Temperature rise in range (30-80°F)</div>';
+        else if (delta > 90) statusDiv.innerHTML = '<div class="status bad">⚠️ Excessive rise - airflow restriction</div>';
+        else statusDiv.innerHTML = '<div class="status warn">⚠️ Temperature rise marginal</div>';
+      }
+    }
+    
+    function calcStatic() {
+      const ret = num($('return-static').value);
+      const sup = num($('supply-static').value);
+      if (ret === null || sup === null) return;
+      
+      const total = Math.abs(ret) + Math.abs(sup);
+      $('total-static').value = total.toFixed(2) + ' in w.c.';
+      
+      const statusDiv = $('static-status');
+      if (total <= 0.50) statusDiv.innerHTML = '<div class="status good">✓ Static pressure acceptable (≤0.50)</div>';
+      else if (total <= 0.70) statusDiv.innerHTML = '<div class="status warn">⚠️ Static elevated (0.50-0.70)</div>';
+      else statusDiv.innerHTML = '<div class="status bad">⚠️ Static excessive (>0.70) - duct issues likely</div>';
+    }
+    
+    function validateVoltage() {
+      const lineVoltage = num($('voltage-line').value);
+      if (!lineVoltage) return;
+      
+      const statusDiv = $('voltage-status');
+      if (lineVoltage < 200) statusDiv.innerHTML = '<div class="status bad">⚠️ Low voltage (<200V)</div>';
+      else if (lineVoltage > 250) statusDiv.innerHTML = '<div class="status bad">⚠️ High voltage (>250V)</div>';
+      else if (lineVoltage >= 208 && lineVoltage <= 240) statusDiv.innerHTML = '<div class="status good">✓ Voltage in acceptable range</div>';
+      else statusDiv.innerHTML = '<div class="status warn">⚠️ Voltage marginal</div>';
+    }
+    
+    function lookupSatTemp(psig) {
+      const refrigerant = $('refrigerant').value;
+      if (refrigerant !== 'R-410A') return null;
+      let closest = null, minDiff = Infinity;
+      for (let pressure in R410A_PT) {
+        const diff = Math.abs(pressure - psig);
+        if (diff < minDiff) { minDiff = diff; closest = R410A_PT[pressure]; }
+      }
+      return closest;
+    }
+    
+    function calcRefrigerant() {
+      const suctP = num($('suction-pressure').value);
+      const suctT = num($('suction-temp').value);
+      const liqP = num($('liquid-pressure').value);
+      const liqT = num($('liquid-temp').value);
+      
+      if (heatCoolMode !== 'cooling') return;
+
+      if (suctP && suctT) {
+        const satTemp = lookupSatTemp(suctP);
+        if (satTemp) {
+          const superheat = suctT - satTemp;
+          $('superheat').value = superheat.toFixed(1) + ' °F';
+          const statusDiv = $('superheat-status');
+          if (superheat < 5) statusDiv.innerHTML = '<div class="status bad">⚠️ Low SH (<5°F) - possible overcharge</div>';
+          else if (superheat >= 8 && superheat <= 18) statusDiv.innerHTML = '<div class="status good">✓ Superheat in target range (8-18°F)</div>';
+          else if (superheat > 25) statusDiv.innerHTML = '<div class="status bad">⚠️ High SH (>25°F) - possible undercharge</div>';
+          else statusDiv.innerHTML = '<div class="status warn">⚠️ Superheat marginal</div>';
+        }
+      }
+      
+      if (liqP && liqT) {
+        const satTemp = lookupSatTemp(liqP);
+        if (satTemp) {
+          const subcool = satTemp - liqT;
+          $('subcool').value = subcool.toFixed(1) + ' °F';
+          const statusDiv = $('subcool-status');
+          if (subcool < 5) statusDiv.innerHTML = '<div class="status bad">⚠️ Low SC (<5°F) - possible undercharge</div>';
+          else if (subcool >= 8 && subcool <= 15) statusDiv.innerHTML = '<div class="status good">✓ Subcool in target range (8-15°F)</div>';
+          else if (subcool > 20) statusDiv.innerHTML = '<div class="status bad">⚠️ High SC (>20°F) - possible overcharge</div>';
+          else statusDiv.innerHTML = '<div class="status warn">⚠️ Subcool marginal</div>';
+        }
+      }
+    }
+    
+    function calculateAge() {
+      const mfgDate = $('mfg-date').value;
+      if (!mfgDate) return;
+      const mfg = new Date(mfgDate);
+      const years = (Date.now() - mfg.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
+      $('equipment-age').textContent = `Equipment Age: ${years.toFixed(1)} years`;
+    }
+    
+    function calculateLaborHours() {
+      const arrival = $('arrival-time').value;
+      const completion = $('completion-time').value;
+      if (!arrival || !completion) return;
+      const arrivalDate = new Date(`2000-01-01T${arrival}`);
+      const completionDate = new Date(`2000-01-01T${completion}`);
+      let diffMs = completionDate - arrivalDate;
+      if (diffMs < 0) diffMs += 24 * 60 * 60 * 1000;
+      const hours = diffMs / (1000 * 60 * 60);
+      $('total-hours').value = hours.toFixed(2) + ' hours';
+    }
+    
+    // ==================== VOICE INPUT ====================
+    let recognition = null;
+    let currentVoiceTarget = null;
+    
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      
+      recognition.onresult = (e) => {
+        if (currentVoiceTarget && e.results[0]) {
+          const transcript = e.results[0][0].transcript;
+          currentVoiceTarget.value = transcript;
+          currentVoiceTarget.dispatchEvent(new Event('input'));
+          currentVoiceTarget.dispatchEvent(new Event('change'));
+        }
+      };
+      
+      recognition.onend = () => {
+        document.querySelectorAll('.voice-btn.listening').forEach(btn => {
+          btn.classList.remove('listening');
+        });
+      };
+      
+      recognition.onerror = (e) => {
+        console.error('Speech recognition error:', e.error);
+        showToast(`Voice Error: ${e.error}`, 'danger');
+        document.querySelectorAll('.voice-btn.listening').forEach(btn => {
+          btn.classList.remove('listening');
+        });
+      };
+    }
+    
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('voice-btn')) {
+        const targetId = e.target.dataset.voice;
+        currentVoiceTarget = $(targetId);
+        
+        if (recognition && currentVoiceTarget) {
+          try { recognition.stop(); } catch (err) {}
+          document.querySelectorAll('.voice-btn').forEach(btn => btn.classList.remove('listening'));
+          e.target.classList.add('listening');
+          try {
+            recognition.start();
+          } catch (err) {
+            console.error('Could not start recognition:', err);
+            showToast('Voice input failed to start', 'danger');
+          }
+        } else if (!recognition) {
+          showToast('Voice input not supported on this device', 'danger');
+        }
+      }
+    });
+    
+    // ==================== PHOTOS ====================
+    function takePhoto(purpose) {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.capture = 'environment';
+      
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          photos.push({
+            purpose: purpose,
+            data: event.target.result,
+            timestamp: new Date().toISOString(),
+            id: Date.now()
+          });
+          updatePhotoPreview();
+        };
+        reader.readAsDataURL(file);
+      };
+      
+      input.click();
+    }
+    
+    async function deletePhoto(photoId) {
+      const confirmed = await showModal('Delete Photo', 'Are you sure you want to delete this photo?');
+      if (confirmed) {
+        photos = photos.filter(p => p.id !== photoId);
+        updatePhotoPreview();
+      }
+    }
+    
+    function updatePhotoPreview() {
+      $('photo-preview').innerHTML = photos.map(p => 
+        `<div class="photo-item">
+            <img src="${p.data}" alt="${p.purpose}">
+            <div class="photo-label">${p.purpose}</div>
+            <button class="photo-delete" onclick="deletePhoto(${p.id})">×</button>
+        </div>`
+      ).join('');
+    }
+    
+    // ==================== DATA GATHERING ====================
+    
+    function gatherInstallData() {
+      return {
+        job: {
+          customer: $('customer').value,
+          address: $('address').value,
+          salesTech: $('sales-tech').value,
+          saleDate: $('sale-date').value,
+          installDate: $('install-date').value,
+          laborHours: $('labor-hours').value,
+        },
+        equipment: {
+          condenser: $('equip-condenser').checked ? {
+            brand: $('condenser-brand').value,
+            tonnage: $('condenser-tonnage').value,
+            seer: $('condenser-seer').value,
+            model: $('condenser-model').value,
+            lineSetSize: $('condenser-lineset-size').value,
+            lineSetLength: $('condenser-lineset-length').value,
+          } : null,
+          evapCoil: $('equip-evap-coil').checked ? {
+            brand: $('evap-brand').value,
+            tonnage: $('evap-tonnage').value,
+            orientation: $('evap-orientation').value,
+            model: $('evap-model').value,
+          } : null,
+          airHandler: $('equip-air-handler').checked ? {
+            brand: $('air-handler-brand').value,
+            tonnage: $('air-handler-tonnage').value,
+            type: $('air-handler-type').value,
+            model: $('air-handler-model').value,
+          } : null,
+          furnace: $('equip-furnace').checked ? {
+            brand: $('furnace-brand').value,
+            btu: $('furnace-btu').value,
+            efficiency: $('furnace-efficiency').value,
+            model: $('furnace-model').value,
+          } : null,
+        },
+        ductwork: {
+          supplyPlenum: $('plenum-supply').checked ? {
+            w: $('supply-width').value,
+            h: $('supply-height').value,
+            l: $('supply-length').value,
+            gauge: $('supply-gauge').value,
+          } : null,
+          returnPlenum: $('plenum-return').checked ? {
+            w: $('return-width').value,
+            h: $('return-height').value,
+            l: $('return-length').value,
+            gauge: $('return-gauge').value,
+          } : null,
+          ductBoard: $('duct-board').checked,
+          cleats: $('duct-cleats').checked,
+          collars: collars.map(id => ({
+            size: $(`${id}-size`).value,
+            qty: $(`${id}-qty`).value,
+            type: $(`${id}-type`).value,
+            notes: $(`${id}-notes`).value,
+          })),
+          flexDucts: flexDucts.map(id => ({
+            size: $(`${id}-size`).value,
+            rating: $(`${id}-rating`).value,
+            length: $(`${id}-length`).value,
+            damper: $(`${id}-damper`).checked,
+            notes: $(`${id}-notes`).value,
+          })),
+          registers: registers.map(id => ({
+            type: $(`${id}-type`).value,
+            size: $(`${id}-size`).value,
+            style: $(`${id}-style`).value,
+            qty: $(`${id}-qty`).value,
+          })),
+        },
+        gasVenting: {
+          pipeType: $('gas-pipe-type').value,
+          pipeSize: $('gas-pipe-size').value,
+          pipeLength: $('gas-pipe-length').value,
+          shutoff: $('gas-shutoff').checked,
+          dripLeg: $('gas-drip-leg').checked,
+          fittings: $('gas-fittings').checked,
+          sealant: $('gas-sealant').checked,
+          flueType: $('flue-type').value,
+          flueSize: $('flue-size').value,
+          flueLength: $('flue-length').value,
+          termination: $('flue-termination').checked,
+          cement: $('flue-cement').checked,
+        },
+        iaq: {
+          remeHalo: $('iaq-reme-halo').checked,
+          remeHaloLed: $('iaq-reme-halo-led').checked,
+          uvLight: $('iaq-uv-light').checked,
+          mediaFilter: $('iaq-media-filter').checked ? {
+            size: $('media-filter-size').value,
+            merv: $('media-filter-merv').value,
+          } : null,
+          bipolar: $('iaq-bipolar').checked,
+          other: $('iaq-other').value,
+        },
+        drainSafety: {
+          pan: $('drain-emergency-pan').checked,
+          floatPrimary: $('drain-float-primary').checked,
+          floatSecondary: $('drain-float-secondary').checked,
+          pump: $('drain-pump').checked ? {
+            tubingLength: $('pump-tubing-length').value,
+          } : null,
+          pvc: $('drain-pvc-work').checked ? {
+            size: $('pvc-size').value,
+            length: $('pvc-length').value,
+            trap: $('pvc-trap').checked,
+            straps: $('pvc-straps').checked,
+          } : null,
+        },
+        electrical: {
+          disconnect: $('elec-disconnect').checked ? {
+            rating: $('disconnect-rating').value,
+            whip: $('elec-whip').checked,
+            surge: $('elec-surge').checked,
+          } : null,
+          breaker: $('elec-breaker').checked ? {
+            size: $('breaker-size').value,
+          } : null,
+          wireRun: $('elec-wire-run').checked ? {
+            gauge: $('wire-gauge').value,
+            type: $('wire-type').value,
+            length: $('wire-length').value,
+          } : null,
+          tstatWire: $('elec-tstat-wire').checked ? {
+            type: $('tstat-wire-type').value,
+            length: $('tstat-wire-length').value,
+          } : null,
+          thermostat: $('elec-thermostat').checked ? {
+            model: $('thermostat-model').value,
+          } : null,
+        },
+        mounting: {
+          pad: $('mount-pad').checked,
+          vibration: $('mount-vibration').checked,
+          hangers: $('mount-hangers').checked,
+          refrigerant: $('mount-refrigerant').checked,
+          brazing: $('mount-brazing').checked,
+          nitrogen: $('mount-nitrogen').checked,
+          mastic: $('mount-mastic').value,
+          foilTape: $('mount-foil-tape').value,
+          other: $('mount-other').value,
+        },
+        site: {
+          location: $('site-location').value,
+          accessType: $('site-access-type').value,
+          accessSize: $('site-access-size').value,
+          workspace: $('site-workspace').value,
+          parking: $('site-parking').value,
+          customerHome: $('site-customer-home').checked,
+          powerOff: $('site-power-off').checked,
+          notes: $('site-notes').value,
+        },
+        instructions: {
+          reason: $('instruct-reason').value,
+          concerns: $('instruct-concerns').value,
+          preInstall: $('instruct-pre-install').value,
+          postInstall: $('instruct-post-install').value,
+        },
+        installChecklist: {
+          checklist: [
+            'install-pads', 'install-vacuum', 'install-nitrogen', 'install-leak-test',
+            'install-drain-primary', 'install-drain-aux', 'install-electrical', 
+            'install-disconnect', 'install-tstat', 'install-filter', 
+            'install-plenum', 'install-startup'
+          ].filter(id => $(id).checked).map(id => id.replace('install-', '')),
+          startupSuperheat: $('startup-superheat').value,
+          startupSubcool: $('startup-subcool').value,
+          startupNotes: $('startup-notes').value,
+          finalStatus: $('install-final-status').value
+        }
+      };
+    }
+    
+    function gatherServiceData() {
+      return {
+        meta: { tech: $('tech-name').value || '[Technician]', mode: 'Service', heatCoolMode: heatCoolMode },
+        job: {
+          customer: $('customer').value,
+          address: $('address').value,
+          jobType: $('job-type').value,
+          complaint: $('complaint')?.value,
+        },
+        equipment: {
+          brand: $('brand').value,
+          unitType: $('unit-type')?.value,
+          indoor: $('indoor-data').value,
+          outdoor: $('outdoor-data').value,
+          tonnage: $('tonnage').value,
+          refrigerant: $('refrigerant').value,
+          mfgDate: $('mfg-date').value,
+          age: $('equipment-age').textContent
+        },
+        time: {
+          arrival: $('arrival-time').value,
+          completion: $('completion-time').value,
+          travel: $('travel-time').value,
+          total: $('total-hours').value
+        },
+        materials: {
+          refrigerant: { 
+            type: $('refrigerant-added-type').value, 
+            amount: $('refrigerant-amount').value, 
+            recovered: $('refrigerant-recovered').value 
+          },
+          filter: { size: $('filter-size').value, merv: $('filter-merv').value },
+          capacitor: { type: $('capacitor-type').value, qty: $('capacitor-qty').value },
+          contactor: { rating: $('contactor-rating').value, qty: $('contactor-qty').value },
+          other: $('other-parts').value
+        },
+        service: {
+          safety: {
+            disconnect: $('safety-disconnect').checked, 
+            clearances: $('safety-clearances').checked,
+            drain: $('safety-drain').checked, 
+            floats: $('safety-floats').checked,
+            gas: $('safety-gas')?.checked, 
+            vent: $('safety-vent')?.checked,
+            co: $('safety-co')?.checked, 
+            flameSensor: $('safety-flame-sensor')?.checked
+          },
+          operating: {
+            outdoorTemp: $('outdoor-temp').value, 
+            outdoorHumidity: $('outdoor-humidity').value,
+            returnTemp: $('return-temp').value, 
+            supplyTemp: $('supply-temp').value,
+            deltaT: $('delta-t').value, 
+            returnStatic: $('return-static').value,
+            supplyStatic: $('supply-static').value, 
+            totalStatic: $('total-static').value,
+            voltageLine: $('voltage-line').value, 
+            controlVoltage: $('control-voltage').value,
+            blowerAmps: $('blower-amps').value, 
+            suctionPressure: $('suction-pressure')?.value,
+            liquidPressure: $('liquid-pressure')?.value, 
+            suctionTemp: $('suction-temp')?.value,
+            liquidTemp: $('liquid-temp')?.value, 
+            superheat: $('superheat')?.value,
+            subcool: $('subcool')?.value, 
+            compAmps: $('comp-amps')?.value,
+            inducerAmps: $('inducer-amps')?.value, 
+            heatExchanger: $('heat-exchanger')?.value,
+            flameAppearance: $('flame-appearance')?.value
+          },
+          components: {
+            filter: $('filter').value, 
+            evapCoil: $('evap-coil').value,
+            condCoil: $('cond-coil').value, 
+            capacitorReading: $('capacitor-reading').value,
+            contactorCondition: $('contactor-condition').value, 
+            blowerCondition: $('blower-condition').value
+          },
+          findings: $('findings').value,
+          recommendations: $('recommendations').value,
+          workPerformed: $('work-performed').value
+        },
+        photos: photos,
+        signature: { 
+          tech: $('tech-name').value, 
+          date: $('tech-signature-date').value, 
+          customer: $('customer-signature').value 
+        }
+      };
+    }
+    
+    function gatherDuctworkData() {
+      return {
+        meta: { tech: $('tech-name').value || '[Technician]', mode: 'Ductwork', heatCoolMode: 'N/A' },
+        job: {
+          customer: $('customer').value,
+          address: $('address').value,
+          jobType: $('job-type').value,
+        },
+        equipment: {
+          brand: $('brand').value,
+          unitType: $('unit-type')?.value,
+          indoor: $('indoor-data').value,
+          outdoor: $('outdoor-data').value,
+          tonnage: $('tonnage').value,
+        },
+        time: {
+          arrival: $('arrival-time').value,
+          completion: $('completion-time').value,
+          travel: $('travel-time').value,
+          total: $('total-hours').value
+        },
+        materials: {
+          flexDuct: { 
+            size: $('flex-duct-size').value, 
+            rValue: $('flex-duct-r-value').value, 
+            length: $('flex-duct-length').value 
+          },
+          sealing: { 
+            mastic: $('mastic-gallons').value, 
+            foilTape: $('foil-tape-rolls').value 
+          },
+          other: $('other-duct-materials').value
+        },
+        ductwork: {
+          material: $('duct-material').value,
+          sealing: $('duct-sealing').value,
+          numSupply: $('num-supply-vents').value,
+          numReturn: $('num-return-grilles').value,
+          issues: [
+            'duct-issue-leaks', 'duct-issue-crushed', 
+            'duct-issue-disconnected', 'duct-issue-insulation'
+          ].filter(id => $(id).checked).map(id => $(id).closest('label').textContent.trim()),
+          auditNotes: $('airflow-audit-notes').value,
+          repairSummary: $('duct-repair-summary').value,
+          completion: $('duct-completion').value
+        },
+        photos: photos,
+        signature: { 
+          tech: $('tech-name').value, 
+          date: $('tech-signature-date').value, 
+          customer: $('customer-signature').value 
+        }
+      };
+    }
+
+    // ==================== MASTER GENERATE FUNCTION ====================
+    
+    function generate() {
+      const existing = document.querySelector('.report-preview')?.closest('.card');
+      if (existing) existing.remove();
+      
+      let reportText = '';
+      let reportData = {};
+      
+      if (currentMode === 'install') {
+        reportData = gatherInstallData();
+        reportText = formatMaterialList(reportData);
+        sessionStorage.setItem('currentReport', JSON.stringify(reportData));
+        sessionStorage.setItem('currentReportText', reportText);
+        displayReport(reportText, '📋 Generated Material List');
+        showToast('Material List Generated!', 'success');
+        
+      } else if (currentMode === 'service') {
+        reportData = gatherServiceData();
+        reportText = generateServiceReportSummary(reportData);
+        sessionStorage.setItem('currentReport', JSON.stringify(reportData));
+        sessionStorage.setItem('currentReportText', reportText);
+        displayReport(reportText, '📋 Generated Service Report');
+        showToast('Service Report Generated!', 'success');
+        
+      } else if (currentMode === 'ductwork') {
+        reportData = gatherDuctworkData();
+        reportText = generateDuctworkReportSummary(reportData);
+        sessionStorage.setItem('currentReport', JSON.stringify(reportData));
+        sessionStorage.setItem('currentReportText', reportText);
+        displayReport(reportText, '📋 Generated Ductwork Report');
+        showToast('Ductwork Report Generated!', 'success');
+      }
+    }
+    
+    function displayReport(listText, title) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-header">
+          <span>${title}</span>
+        </div>
+        <div class="status good">
+          <span>✓</span>
+          <span>Report ready - review before exporting</span>
+        </div>
+        <pre class="report-preview" id="report-pre">${listText}</pre>
+        <div class="grid-2 mt-8">
+          <button onclick="copyToClipboard()" class="success">📋 Copy to Clipboard</button>
+          <button onclick="printList()" class="secondary">🖨️ Print</button>
+        </div>
+      `;
+      
+      document.querySelector('.actions').before(card);
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    // ==================== REPORT FORMATTING ====================
+
+    function formatMaterialList(data) {
+      let text = '';
+      text += '╔════════════════════════════════════════════════════════════╗\n';
+      text += '║          INSTALL MATERIALS LIST & JOB SHEET                ║\n';
+      text += '╚════════════════════════════════════════════════════════════╝\n\n';
+      
+      text += 'JOB INFORMATION\n───────────────────────────────────────────────────────────────\n';
+      text += `Customer: ${data.job.customer || 'N/A'}\n`;
+      text += `Address: ${data.job.address || 'N/A'}\n`;
+      text += `Sold By: ${data.job.salesTech || 'N/A'}\n`;
+      text += `Sale Date: ${data.job.saleDate || 'N/A'}\n`;
+      text += `Scheduled Install: ${data.job.installDate || 'N/A'}\n`;
+      text += `Estimated Labor: ${data.job.laborHours ? data.job.laborHours + ' hours' : 'N/A'}\n\n`;
+
+      let equipText = '';
+      const e = data.equipment;
+      if (e.condenser) {
+        equipText += `☐ CONDENSER: ${e.condenser.brand || ''} ${e.condenser.tonnage || ''} Ton ${e.condenser.seer || ''} SEER\n`;
+        if (e.condenser.model) equipText += `  Model: ${e.condenser.model}\n`;
+        if (e.condenser.lineSetSize && e.condenser.lineSetLength) {
+          equipText += `  → Line Set: ${e.condenser.lineSetSize} x ${e.condenser.lineSetLength}ft\n`;
+        }
+        equipText += '\n';
+      }
+      if (e.evapCoil) {
+        equipText += `☐ EVAPORATOR COIL: ${e.evapCoil.brand || ''} ${e.evapCoil.tonnage || ''} Ton ${e.evapCoil.orientation || ''}\n`;
+        if (e.evapCoil.model) equipText += `  Model: ${e.evapCoil.model}\n`;
+        equipText += '\n';
+      }
+      if (e.airHandler) {
+        equipText += `☐ AIR HANDLER: ${e.airHandler.brand || ''} ${e.airHandler.tonnage || ''} Ton ${e.airHandler.type || ''}\n`;
+        if (e.airHandler.model) equipText += `  Model: ${e.airHandler.model}\n`;
+        equipText += '\n';
+      }
+      if (e.furnace) {
+        equipText += `☐ FURNACE: ${e.furnace.brand || ''} ${e.furnace.btu ? e.furnace.btu + ' BTU' : ''} ${e.furnace.efficiency ? e.furnace.efficiency + '%' : ''}\n`;
+        if (e.furnace.model) equipText += `  Model: ${e.furnace.model}\n`;
+        equipText += '\n';
+      }
+      if (equipText) text += `EQUIPMENT TO INSTALL\n───────────────────────────────────────────────────────────────\n` + equipText;
+
+      let ductText = '';
+      const d = data.ductwork;
+      if (d.supplyPlenum) ductText += `☐ Supply Plenum: ${d.supplyPlenum.w}" x ${d.supplyPlenum.h}" x ${d.supplyPlenum.l}" (${d.supplyPlenum.gauge})\n`;
+      if (d.returnPlenum) ductText += `☐ Return Plenum: ${d.returnPlenum.w}" x ${d.returnPlenum.h}" x ${d.returnPlenum.l}" (${d.returnPlenum.gauge})\n`;
+      if (d.ductBoard) ductText += `☐ Ductboard (1" 4x10 Sheet)\n`;
+      if (d.cleats) ductText += `☐ Drive / S-Cleats (for transitions)\n`;
+      if (d.collars.length > 0) {
+        ductText += `\nCollars (Crimp/Drive):\n`;
+        d.collars.forEach(c => { if (c.size && c.qty) ductText += `  ☐ ${c.size}" ${c.type} - Qty: ${c.qty}${c.notes ? ' (' + c.notes + ')' : ''}\n`; });
+      }
+      if (d.flexDucts.length > 0) {
+        ductText += `\nFlex Duct Runs:\n`;
+        d.flexDucts.forEach(f => { if (f.size && f.length) ductText += `  ☐ ${f.size}" ${f.rating} - ${f.length}ft${f.damper ? ' w/ Damper' : ''}${f.notes ? ' (' + f.notes + ')' : ''}\n`; });
+      }
+      if (d.registers.length > 0) {
+        ductText += `\nRegisters & Grilles:\n`;
+        d.registers.forEach(r => { if (r.size && r.qty) ductText += `  ☐ ${r.type} ${r.size} ${r.style} - Qty: ${r.qty}\n`; });
+      }
+      if (ductText) text += `DUCTWORK MATERIALS\n───────────────────────────────────────────────────────────────\n` + ductText + '\n';
+      
+      let gasText = '';
+      const g = data.gasVenting;
+      if (g.pipeType && g.pipeSize && g.pipeLength) gasText += `☐ Gas Pipe: ${g.pipeSize}" ${g.pipeType} - ${g.pipeLength}ft\n`;
+      if (g.shutoff) gasText += `☐ Gas Shutoff Valve\n`;
+      if (g.dripLeg) gasText += `☐ Drip Leg / Sediment Trap\n`;
+      if (g.fittings) gasText += `☐ Gas Fittings Kit\n`;
+      if (g.sealant) gasText += `☐ Pipe Dope / Thread Sealant\n`;
+      if (g.flueType && g.flueSize && g.flueLength) gasText += `\n☐ Venting/Flue: ${g.flueSize}" ${g.flueType} - ${g.flueLength}ft\n`;
+      if (g.termination) gasText += `☐ Vent Termination Kit\n`;
+      if (g.cement) gasText += `☐ Flue Cement / PVC Primer & Glue\n`;
+      if (gasText) text += `GAS & VENTING MATERIALS\n───────────────────────────────────────────────────────────────\n` + gasText + '\n';
+      
+      let iaqText = '';
+      const i = data.iaq;
+      if (i.remeHalo) iaqText += `☐ REME HALO (Standard) - Mount in supply plenum\n`;
+      if (i.remeHaloLed) iaqText += `☐ REME HALO LED - Mount in supply plenum\n`;
+      if (i.uvLight) iaqText += `☐ UV Light System\n`;
+      if (i.mediaFilter) iaqText += `☐ Media Filter Cabinet: ${i.mediaFilter.size || ''} (MERV ${i.mediaFilter.merv || '11'})\n`;
+      if (i.bipolar) iaqText += `☐ Bipolar Ionization\n`;
+      if (i.other) iaqText += `☐ Other IAQ: ${i.other}\n`;
+      if (iaqText) text += `INDOOR AIR QUALITY UPGRADES\n───────────────────────────────────────────────────────────────\n` + iaqText + '\n';
+      
+      let drainText = '';
+      const ds = data.drainSafety;
+      if (ds.pan) drainText += `☐ Emergency Drain Pan\n`;
+      if (ds.floatPrimary) drainText += `☐ Float Switch (Primary)\n`;
+      if (ds.floatSecondary) drainText += `☐ Float Switch (Secondary/Pan)\n`;
+      if (ds.pump) {
+        drainText += `☐ Condensate Pump\n`;
+        if (ds.pump.tubingLength) drainText += `  → Clear Vinyl Tubing: ${ds.pump.tubingLength}ft\n`;
+      }
+      if (ds.pvc) {
+        drainText += `☐ PVC Pipe: ${ds.pvc.size || '3/4'}" - ${ds.pvc.length || '10'}ft\n`;
+        if (ds.pvc.trap) drainText += `☐ PVC P-Trap (${ds.pvc.size || '3/4'}")\n`;
+        if (ds.pvc.straps) drainText += `☐ PVC Hanging Straps / Clamps\n`;
+      }
+      if (ds.pvc || ds.pump) drainText += `☐ PVC Primer & Cement\n`;
+      if (drainText) text += `DRAIN SYSTEM & SAFETY\n───────────────────────────────────────────────────────────────\n` + drainText + '\n';
+      
+      let elecText = '';
+      const el = data.electrical;
+      if (el.disconnect) {
+        elecText += `☐ Disconnect Box: ${el.disconnect.rating}\n`;
+        if (el.disconnect.whip) elecText += `  → Electrical Whip (6ft)\n`;
+        if (el.disconnect.surge) elecText += `  → AC Surge Protector\n`;
+      }
+      if (el.breaker) elecText += `☐ Breaker: ${el.breaker.size}\n`;
+      if (el.wireRun) elecText += `☐ Power Wire: ${el.wireRun.gauge}ga ${el.wireRun.type} - ${el.wireRun.length}ft\n`;
+      if (el.tstatWire) elecText += `☐ Thermostat Wire: ${el.tstatWire.type} - ${el.tstatWire.length}ft\n`;
+      if (el.thermostat) elecText += `☐ Thermostat: ${el.thermostat.model}\n`;
+      if (elecText) {
+        elecText += `☐ Wire Nuts (Assorted)\n`;
+        elecText += `☐ Electrical Tape\n`;
+        text += `ELECTRICAL MATERIALS\n───────────────────────────────────────────────────────────────\n` + elecText + '\n';
+      }
+      
+      let mountText = '';
+      const m = data.mounting;
+      if (m.pad) mountText += `☐ Equipment Pad/Stand\n`;
+      if (m.vibration) mountText += `☐ Vibration Isolators\n`;
+      if (m.hangers) mountText += `☐ Duct Hangers/Straps\n`;
+      if (m.refrigerant) mountText += `☐ Refrigerant (R-410A) - 1 Jug\n`;
+      if (m.brazing) mountText += `☐ Brazing Rods\n`;
+      if (m.nitrogen) mountText += `☐ Nitrogen (for brazing)\n`;
+      if (m.mastic) mountText += `☐ Mastic: ${m.mastic} quart(s)\n`;
+      if (m.foilTape) mountText += `☐ Foil Tape: ${m.foilTape} roll(s)\n`;
+      if (m.other) mountText += `☐ Other: ${m.other}\n`;
+      if (mountText) {
+        mountText += `☐ Sheet Metal Screws (1 lb box)\n`;
+        mountText += `☐ Zip Ties (bag)\n`;
+        text += `MOUNTING & ACCESSORIES\n───────────────────────────────────────────────────────────────\n` + mountText + '\n';
+      }
+
+      text += `SITE CONDITIONS & ACCESS\n───────────────────────────────────────────────────────────────\n`;
+      text += `Location: ${data.site.location || 'N/A'}\n`;
+      text += `Access Type: ${data.site.accessType || 'N/A'}\n`;
+      if (data.site.accessSize) text += `Access Opening: ${data.site.accessSize}\n`;
+      text += `Workspace: ${data.site.workspace || 'N/A'}\n`;
+      text += `Parking: ${data.site.parking || 'N/A'}\n`;
+      if (data.site.customerHome) text += `✓ Customer will be home during install\n`;
+      if (data.site.powerOff) text += `✓ Power shutoff required\n`;
+      if (data.site.notes) text += `\nSite Notes:\n${data.site.notes}\n`;
+      text += '\n';
+
+      let insText = '';
+      const ins = data.instructions;
+      if (ins.reason) insText += `Reason for Replacement:\n${ins.reason}\n\n`;
+      if (ins.concerns) insText += `Customer Concerns:\n${ins.concerns}\n\n`;
+      if (ins.preInstall) insText += `Pre-Install Checks:\n${ins.preInstall}\n\n`;
+      if (ins.postInstall) insText += `Post-Install Testing:\n${ins.postInstall}\n\n`;
+      if (insText) text += `SPECIAL INSTRUCTIONS FOR CREW\n───────────────────────────────────────────────────────────────\n` + insText;
+
+      text += `\n═══════════════════════════════════════════════════════════════\n`;
+      text += `>>> STAGE ALL MATERIALS BEFORE LEAVING SHOP <<<\n`;
+      text += `>>> VERIFY EQUIPMENT MATCH AND AHRI CERTIFICATION <<<\n\n`;
+      text += `Installer Sign-Off: _____________________ Date: __________\n\n`;
+      text += `Material List Generated: ${new Date().toLocaleString()}\n`;
+      text += `Sales Tech: ${data.job.salesTech || 'N/A'}\n`;
+      text += `═══════════════════════════════════════════════════════════════\n`;
+      
+      return text.replace(/\n\n\n/g, '\n\n');
+    }
+    
+    function generateServiceReportSummary(report) {
+      let summary = `
+HVAC SERVICE REPORT
+======================================================
+Date: ${new Date().toLocaleString()}
+Technician: ${report.meta.tech}
+Mode: ${report.meta.mode} - ${report.meta.heatCoolMode.toUpperCase()}
+------------------------------------------------------
+Customer: ${report.job.customer}
+Address: ${report.job.address}
+Job Type: ${report.job.jobType}
+
+CUSTOMER COMPLAINT:
+  ${report.job.complaint || 'N/A'}
+
+EQUIPMENT IDENTITY
+------------------
+Brand: ${report.equipment.brand}
+Type: ${report.equipment.unitType}
+Indoor: ${report.equipment.indoor}
+Outdoor: ${report.equipment.outdoor}
+Tonnage: ${report.equipment.tonnage} | Refrigerant: ${report.equipment.refrigerant}
+Mfg Date: ${report.equipment.mfgDate} ${report.equipment.age ? `(${report.equipment.age})` : ''}
+
+TIME TRACKING
+-------------
+Arrival: ${report.time.arrival} | Completion: ${report.time.completion}
+Total: ${report.time.total}
+
+OPERATING CONDITIONS
+--------------------
+Outdoor: ${report.service.operating.outdoorTemp}°F, ${report.service.operating.outdoorHumidity}% RH
+Airflow:
+  Return: ${report.service.operating.returnTemp}°F | Supply: ${report.service.operating.supplyTemp}°F
+  Delta T: ${report.service.operating.deltaT}
+  Return Static: ${report.service.operating.returnStatic} | Supply: ${report.service.operating.supplyStatic}
+  Total Static: ${report.service.operating.totalStatic}
+
+Electrical:
+  Line Voltage: ${report.service.operating.voltageLine}V
+  Control: ${report.service.operating.controlVoltage}V
+  Blower Amps: ${report.service.operating.blowerAmps}
+
+${report.meta.heatCoolMode === 'cooling' ? `Refrigerant Circuit (COOLING):
+  Suction: ${report.service.operating.suctionPressure} psig @ ${report.service.operating.suctionTemp}°F
+  Liquid: ${report.service.operating.liquidPressure} psig @ ${report.service.operating.liquidTemp}°F
+  Superheat: ${report.service.operating.superheat} | Subcool: ${report.service.operating.subcool}
+  Compressor: ${report.service.operating.compAmps}` : 
+`Heating Circuit:
+  Heat Exchanger: ${report.service.operating.heatExchanger}
+  Flame: ${report.service.operating.flameAppearance}
+  Inducer: ${report.service.operating.inducerAmps}A`}
+
+COMPONENT INSPECTION
+--------------------
+Filter: ${report.service.components.filter}
+Evap Coil: ${report.service.components.evapCoil} | Cond Coil: ${report.service.components.condCoil}
+Capacitor: ${report.service.components.capacitorReading}
+Contactor: ${report.service.components.contactorCondition}
+Blower: ${report.service.components.blowerCondition}
+
+MATERIALS USED
+--------------
+${formatMaterials(report.materials, 'Service')}
+
+FINDINGS & RECOMMENDATIONS
+--------------------------
+Findings:
+${report.service.findings}
+
+Recommendations:
+${report.service.recommendations}
+
+Work Performed:
+${report.service.workPerformed}
+
+PHOTO DOCUMENTATION
+-------------------
+${report.photos.length} Photo(s): ${report.photos.map(p => p.purpose).join(', ')}
+
+TECHNICIAN CERTIFICATION
+------------------------
+${report.signature.tech} | Date: ${report.signature.date}
+Customer Acknowledged: ${report.signature.customer}
+`;
+      return summary.replace(/\n\s+\n/g, '\n\n');
+    }
+    
+    function generateDuctworkReportSummary(report) {
+      let summary = `
+HVAC DUCTWORK REPORT
+======================================================
+Date: ${new Date().toLocaleString()}
+Technician: ${report.meta.tech}
+------------------------------------------------------
+Customer: ${report.job.customer}
+Address: ${report.job.address}
+Job Type: ${report.job.jobType}
+
+EQUIPMENT IDENTITY
+------------------
+Brand: ${report.equipment.brand}
+Type: ${report.equipment.unitType}
+Tonnage: ${report.equipment.tonnage}
+
+AIR DISTRIBUTION AUDIT
+----------------------
+Material: ${report.ductwork.material}
+Sealing: ${report.ductwork.sealing}
+Vents: ${report.ductwork.numSupply} Supply / ${report.ductwork.numReturn} Return
+
+Issues Found:
+${report.ductwork.issues.length > 0 ? report.ductwork.issues.map(i => `  - ${i}`).join('\n') : '  None Noted'}
+
+Audit Notes:
+${report.ductwork.auditNotes || 'N/A'}
+
+MATERIALS USED
+--------------
+${formatMaterials(report.materials, 'Ductwork')}
+
+WORK COMPLETION SUMMARY
+-----------------------
+Repair/Install Summary:
+${report.ductwork.repairSummary || 'N/A'}
+
+Final Status:
+${report.ductwork.completion || 'N/A'}
+
+PHOTO DOCUMENTATION
+-------------------
+${report.photos.length} Photo(s): ${report.photos.map(p => p.purpose).join(', ')}
+
+TECHNICIAN CERTIFICATION
+------------------------
+${report.signature.tech} | Date: ${report.signature.date}
+Customer Acknowledged: ${report.signature.customer}
+`;
+      return summary.replace(/\n\s+\n/g, '\n\n');
+    }
+    
+    function formatMaterials(materials, mode) {
+      let text = '  ';
+      if (mode === 'Service') {
+        if (materials.refrigerant?.type) text += `Refrigerant: ${materials.refrigerant.type} - ${materials.refrigerant.amount}\n  `;
+        if (materials.filter?.size) text += `Filter: ${materials.filter.size} MERV ${materials.filter.merv}\n  `;
+        if (materials.capacitor?.qty > 0) text += `Capacitor: ${materials.capacitor.type} (${materials.capacitor.qty})\n  `;
+        if (materials.contactor?.qty > 0) text += `Contactor: ${materials.contactor.rating} (${materials.contactor.qty})\n  `;
+        if (materials.other) text += `Other: ${materials.other}\n  `;
+      } else if (mode === 'Ductwork') {
+        if (materials.flexDuct?.length) text += `Flex Duct: ${materials.flexDuct.size}" ${materials.flexDuct.rValue} - ${materials.flexDuct.length}ft\n  `;
+        if (materials.sealing?.mastic) text += `Mastic: ${materials.sealing.mastic} gal\n  `;
+        if (materials.sealing?.foilTape) text += `Foil Tape: ${materials.sealing.foilTape} rolls\n  `;
+        if (materials.other) text += `Other: ${materials.other}\n  `;
+      }
+      return text.trim() || 'None';
+    }
+
+    // ==================== CLIPBOARD & PRINT ====================
+    
+    function copyToClipboard() {
+      const text = document.getElementById('report-pre')?.textContent;
+      if (!text) {
+        showToast('Generate a report or list first!', 'danger');
+        return;
+      }
+      
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showToast('✓ Copied to clipboard!', 'success');
+        } else {
+          showToast('Copy failed. Please copy manually.', 'danger');
+        }
+      } catch (err) {
+        showToast('Copy failed. Please copy manually.', 'danger');
+      }
+      document.body.removeChild(textArea);
+    }
+    
+    function printList() {
+      const text = document.getElementById('report-pre')?.textContent;
+      if (!text) {
+        showToast('Generate a report or list first!', 'danger');
+        return;
+      }
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <html><head><title>Field Buddy Report</title><style>
+            body { font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4; margin: 0.5in; white-space: pre-wrap; }
+            @media print { body { margin: 0.25in; } }
+        </style></head><body>${text}</body></html>
+      `);
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+      }, 250);
+    }
+    
+    function exportReport() {
+      const text = sessionStorage.getItem('currentReportText');
+      const dataStr = sessionStorage.getItem('currentReport');
+      if (!text || !dataStr) {
+        showToast('Generate a report or list first', 'danger');
+        return;
+      }
+      
+      const data = JSON.parse(dataStr);
+      const customer = data.job.customer.replace(/\s/g, '_') || 'Job';
+      const date = (data.signature?.date || new Date().toISOString().split('T')[0]).replace(/\//g, '-');
+      const fileName = `FieldBuddy_${currentMode.toUpperCase()}_${customer}_${date}.txt`;
+
+      const blob = new Blob([text], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Exporting file...', 'success');
+    }
+    
+    // ==================== FORM MANAGEMENT ====================
+    async function clearForm() {
+      const confirmed = await showModal(
+        'Clear Form', 
+        'Are you sure you want to clear all data? This cannot be undone.'
+      );
+      if (!confirmed) return;
+      
+      document.querySelectorAll('input, select, textarea').forEach(el => {
+        if (el.type === 'checkbox') el.checked = false;
+        else el.value = '';
+      });
+      
+      collars = [];
+      flexDucts = [];
+      registers = [];
+      $('collar-list').innerHTML = '';
+      $('flex-duct-list').innerHTML = '';
+      $('register-list').innerHTML = '';
+      
+      photos = [];
+      updatePhotoPreview();
+      
+      document.querySelectorAll('[id$="-fields"]').forEach(s => s.classList.add('hidden'));
+      document.querySelectorAll('[id^="section-condenser"], [id^="section-evap-coil"], [id^="section-air-handler"], [id^="section-furnace"]').forEach(s => s.classList.add('hidden'));
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('open'));
+      
+      const existing = document.querySelector('.report-preview')?.closest('.card');
+      if (existing) existing.remove();
+      
+      sessionStorage.removeItem('currentReport');
+      sessionStorage.removeItem('currentReportText');
+      localStorage.removeItem('fieldBuddyHybridDraft');
+      
+      $('sale-date').value = new Date().toISOString().split('T')[0];
+      $('tech-signature-date').value = new Date().toISOString().split('T')[0];
+      
+      showToast('Form cleared', 'success');
+    }
+    
+    // ==================== AUTO-SAVE & LOAD ====================
+    function gatherAllDataForSave() {
+      return {
+        customer: $('customer').value,
+        address: $('address').value,
+        salesTech: $('sales-tech').value,
+        complaint: $('complaint')?.value,
+        findings: $('findings')?.value,
+        recommendations: $('recommendations')?.value,
+        timestamp: Date.now()
+      };
+    }
+    
+    let saveTimer;
+    document.addEventListener('input', (e) => {
+      if (e.target.type === 'checkbox') {
+        const label = e.target.closest('label.check');
+        if (label) {
+          label.classList.toggle('checked', e.target.checked);
+        }
+      }
+      
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        const draft = gatherAllDataForSave();
+        localStorage.setItem('fieldBuddyHybridDraft', JSON.stringify(draft));
+      }, 2500);
+    });
+    
+    // ==================== INITIALIZATION ====================
+    window.addEventListener('load', async () => {
+      $('sale-date').value = new Date().toISOString().split('T')[0];
+      $('tech-signature-date').value = new Date().toISOString().split('T')[0];
+      
+      const draftStr = localStorage.getItem('fieldBuddyHybridDraft');
+      if (draftStr) {
+        const data = JSON.parse(draftStr);
+        const ageMinutes = (Date.now() - (data.timestamp || 0)) / 60000;
+        
+        if (ageMinutes < 1440) {
+          const confirmed = await showModal(
+            'Resume Session?',
+            `We found a saved draft from ${Math.floor(ageMinutes)} minutes ago. Would you like to load it?`
+          );
+          if (confirmed) {
+            $('customer').value = data.customer || '';
+            $('address').value = data.address || '';
+            $('sales-tech').value = data.salesTech || '';
+            if ($('complaint')) $('complaint').value = data.complaint || '';
+            if ($('findings')) $('findings').value = data.findings || '';
+            if ($('recommendations')) $('recommendations').value = data.recommendations || '';
+            showToast('Previous draft loaded', 'success');
+          } else {
+            localStorage.removeItem('fieldBuddyHybridDraft');
+          }
+        } else {
+          localStorage.removeItem('fieldBuddyHybridDraft');
+        }
+      }
+      
+      setMode('service');
+      
+      console.log('%c📦 Field Buddy - HYBRID Job System Loaded', 'color:#007AFF; font-size:14px; font-weight:bold');
+    });
+    
+  </script>
+</body>
+</html>
