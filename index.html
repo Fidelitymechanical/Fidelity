@@ -6,7 +6,6 @@
   <meta name="description" content="Professional HVAC field documentation and materials system">
   <title>Field Buddy Pro - Service & Materials</title>
   <style>
-    /* ==================== BASE STYLES ==================== */
     * { 
       box-sizing: border-box; 
       margin: 0; 
@@ -25,7 +24,6 @@
       color: #1a1a1a;
     }
     
-    /* ==================== INPUTS ==================== */
     input, select, textarea, button {
       font-size: 16px;
       padding: 14px;
@@ -65,6 +63,16 @@
       flex-shrink: 0;
     }
     
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
     label {
       display: block;
       font-size: 13px;
@@ -101,7 +109,6 @@
       border-color: #34C759;
     }
     
-    /* ==================== BUTTONS ==================== */
     button {
       background: #007AFF;
       color: white;
@@ -116,7 +123,12 @@
       transition: all 0.2s;
     }
     
-    button:active {
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    button:active:not(:disabled) {
       opacity: 0.7;
       transform: scale(0.98);
     }
@@ -131,7 +143,6 @@
       min-height: 40px;
     }
     
-    /* ==================== CARDS ==================== */
     .card {
       background: white;
       border-radius: 12px;
@@ -160,7 +171,6 @@
       border-top: 1px solid #e0e0e0;
     }
     
-    /* ==================== GRID LAYOUTS ==================== */
     .grid-2 { 
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -185,7 +195,6 @@
       }
     }
     
-    /* ==================== MODE TOGGLE ==================== */
     .mode-toggle {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -208,7 +217,6 @@
       border-color: #007AFF;
     }
     
-    /* ==================== STATUS INDICATORS ==================== */
     .status {
       padding: 10px 14px;
       border-radius: 8px;
@@ -245,7 +253,6 @@
       border-left: 4px solid #007AFF;
     }
     
-    /* ==================== VOICE INPUT ==================== */
     .voice-wrapper {
       position: relative;
     }
@@ -285,7 +292,6 @@
       padding-right: 50px;
     }
 
-    /* ==================== DYNAMIC FIELDS ==================== */
     .dynamic-item {
       background: #f8f9fa;
       padding: 12px;
@@ -320,7 +326,6 @@
       margin-top: 8px;
     }
     
-    /* ==================== COLLAPSIBLE SECTIONS ==================== */
     .section {
       margin: 16px 0;
     }
@@ -350,7 +355,7 @@
     
     .section-toggle .arrow {
       font-size: 18px;
-      transition: transform 0.2s;
+      transition: transform 0.3s ease;
       transform-origin: center;
     }
     
@@ -359,9 +364,12 @@
     }
     
     .section-content {
-      display: none;
+      display: block;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+      padding: 0 16px;
       background: white;
-      padding: 16px;
       border-radius: 0 0 8px 8px;
       border: 2px solid #ddd;
       border-top: none;
@@ -369,10 +377,10 @@
     }
     
     .section.open .section-content {
-      display: block;
+      max-height: 5000px;
+      padding: 16px;
     }
     
-    /* ==================== MODE-SPECIFIC VISIBILITY ==================== */
     .service-only,
     .materials-only,
     .cooling-only,
@@ -386,7 +394,6 @@
     body.mode-service.mode-cooling .cooling-only { display: block; }
     body.mode-service.mode-heating .heating-only { display: block; }
 
-    /* Grid override for mode-specific items */
     .grid-2 .cooling-only,
     .grid-2 .heating-only,
     .grid-3 .cooling-only,
@@ -404,7 +411,6 @@
       display: block;
     }
     
-    /* ==================== PHOTOS ==================== */
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -465,7 +471,6 @@
       margin: 0;
     }
     
-    /* ==================== MATERIALS LIST SPECIFIC ==================== */
     .material-catalog {
       max-height: 400px;
       overflow-y: auto;
@@ -581,7 +586,6 @@
       margin-top: 2px;
     }
     
-    /* ==================== REPORT PREVIEW ==================== */
     .report-preview {
       background: #f8f8f8;
       padding: 16px;
@@ -595,7 +599,6 @@
       border: 1px solid #ddd;
     }
     
-    /* ==================== STICKY ACTION BAR ==================== */
     .actions {
       position: fixed;
       bottom: 0;
@@ -615,7 +618,6 @@
       padding: 12px 8px;
     }
     
-    /* ==================== MODAL & TOAST ==================== */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -663,6 +665,7 @@
       color: #333;
       margin-bottom: 20px;
       line-height: 1.5;
+      white-space: pre-line;
     }
     
     .modal-actions {
@@ -689,6 +692,8 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s, visibility 0.3s, top 0.3s;
+      max-width: 90%;
+      text-align: center;
     }
     
     .toast-notification.visible {
@@ -699,18 +704,25 @@
     
     .toast-notification.success { background: #34C759; }
     .toast-notification.danger { background: #FF3B30; }
+    .toast-notification.warn { background: #FF9500; }
     
-    /* ==================== HIDDEN / UTILITY ==================== */
     .hidden { display: none !important; }
     .mt-8 { margin-top: 8px; }
     .mt-16 { margin-top: 16px; }
     .mb-8 { margin-bottom: 8px; }
     .text-muted { color: #666; font-size: 13px; }
+    
+    @media print {
+      body { padding: 0; background: white; }
+      .actions, .mode-toggle, button:not(.print-only), .voice-btn { display: none !important; }
+      .card { box-shadow: none; page-break-inside: avoid; }
+      .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+      .photo-item img { border: 1px solid #ccc; }
+    }
   </style>
 </head>
 <body class="mode-service mode-cooling">
 
-  <!-- Header -->
   <div class="card">
     <div class="card-header">
       <div>
@@ -725,19 +737,17 @@
     </div>
   </div>
 
-  <!-- ==================== SERVICE MODE ==================== -->
   <div class="service-only">
     
-    <!-- Job Info -->
     <div class="card">
       <div class="card-header">
         <span>📋 Job Information</span>
       </div>
       
-      <label for="customer">Customer Name</label>
+      <label for="customer">Customer Name *</label>
       <input type="text" id="customer" placeholder="Full name">
       
-      <label for="address">Address</label>
+      <label for="address">Address *</label>
       <input type="text" id="address" placeholder="Street, City, State">
       
       <div class="grid-2">
@@ -751,13 +761,14 @@
         </div>
       </div>
       
-      <label>Job Type</label>
+      <label>Job Type *</label>
       <select id="job-type">
         <option value="">Select job type...</option>
         <option value="maintenance">Maintenance</option>
         <option value="repair">Repair</option>
         <option value="diagnostic">Diagnostic</option>
         <option value="emergency">Emergency</option>
+        <option value="installation">Installation</option>
       </select>
       
       <label>Customer Complaint</label>
@@ -767,7 +778,6 @@
       </div>
     </div>
     
-    <!-- On-Site Time Tracking -->
     <div class="card">
       <div class="card-header">
         <span>⏱️ Time Tracking</span>
@@ -787,7 +797,7 @@
       <div class="grid-2">
         <div>
           <label>Travel Time (minutes)</label>
-          <input type="number" id="travel-time" min="0" step="5">
+          <input type="number" inputmode="numeric" id="travel-time" min="0" step="5">
         </div>
         <div>
           <label>Total Labor Hours (auto)</label>
@@ -796,13 +806,11 @@
       </div>
     </div>
     
-    <!-- Equipment Section -->
     <div class="card">
       <div class="card-header">
         <span>⚙️ Equipment</span>
       </div>
 
-      <!-- Heat/Cool Toggle -->
       <div class="mode-toggle" style="grid-template-columns: 1fr 1fr; margin-bottom: 12px;">
         <button onclick="setHeatCoolMode('cooling')" id="btn-hc-cooling" class="active secondary">❄️ Cooling</button>
         <button onclick="setHeatCoolMode('heating')" id="btn-hc-heating" class="secondary">🔥 Heating</button>
@@ -817,7 +825,7 @@
           <option value="heatpump">Heat Pump</option>
       </select>
       
-      <label for="brand">Brand</label>
+      <label for="brand">Brand *</label>
       <select id="brand">
         <option value="">Select brand...</option>
         <option value="Carrier">Carrier</option>
@@ -880,7 +888,6 @@
       <div id="equipment-age" class="text-muted"></div>
     </div>
     
-    <!-- Materials & Parts Used -->
     <div class="section" id="section-materials-service">
       <button class="section-toggle" onclick="toggleSection('section-materials-service')">
         <span>🔧 Parts & Materials Used</span>
@@ -926,7 +933,7 @@
             <option value="dual-45/5">Dual 45/5µF</option>
             <option value="other">Other Rating</option>
           </select>
-          <input type="number" id="capacitor-qty" placeholder="Qty" min="0" value="0">
+          <input type="number" inputmode="numeric" id="capacitor-qty" placeholder="Qty" min="0" value="0">
         </div>
         
         <label>Contactor Replaced</label>
@@ -937,7 +944,7 @@
             <option value="40A-2P">40A Double Pole</option>
             <option value="other">Other Rating</option>
           </select>
-          <input type="number" id="contactor-qty" placeholder="Qty" min="0" value="0">
+          <input type="number" inputmode="numeric" id="contactor-qty" placeholder="Qty" min="0" value="0">
         </div>
         
         <label>Other Parts Used</label>
@@ -945,7 +952,6 @@
       </div>
     </div>
     
-    <!-- Full Diagnostic Measurements -->
     <div class="section" id="section-service-diagnostics">
       <button class="section-toggle" onclick="toggleSection('section-service-diagnostics')">
         <span>📊 Full Diagnostic Measurements</span>
@@ -959,16 +965,16 @@
         
         <div class="card-subheader">General Readings</div>
         <div class="grid-2">
-          <div><label>Outdoor Temp (°F)</label><input type="number" id="outdoor-temp" step="0.1"></div>
-          <div><label>Outdoor Humidity (%)</label><input type="number" id="outdoor-humidity" min="0" max="100"></div>
+          <div><label>Outdoor Temp (°F)</label><input type="number" inputmode="decimal" id="outdoor-temp" step="0.1"></div>
+          <div><label>Outdoor Humidity (%)</label><input type="number" inputmode="numeric" id="outdoor-humidity" min="0" max="100"></div>
         </div>
         <div class="grid-2">
-          <div><label>Return Air (°F)</label><input type="number" id="return-temp" step="0.1" oninput="calcDelta()"></div>
-          <div><label>Supply Air (°F)</label><input type="number" id="supply-temp" step="0.1" oninput="calcDelta()"></div>
+          <div><label>Return Air (°F)</label><input type="number" inputmode="decimal" id="return-temp" step="0.1" oninput="calcDelta()"></div>
+          <div><label>Supply Air (°F)</label><input type="number" inputmode="decimal" id="supply-temp" step="0.1" oninput="calcDelta()"></div>
         </div>
         <div class="grid-2">
-          <div><label>Return Static (in w.c.)</label><input type="number" id="return-static" step="0.01" oninput="calcStatic()"></div>
-          <div><label>Supply Static (in w.c.)</label><input type="number" id="supply-static" step="0.01" oninput="calcStatic()"></div>
+          <div><label>Return Static (in w.c.)</label><input type="number" inputmode="decimal" id="return-static" step="0.01" oninput="calcStatic()"></div>
+          <div><label>Supply Static (in w.c.)</label><input type="number" inputmode="decimal" id="supply-static" step="0.01" oninput="calcStatic()"></div>
         </div>
         <div class="grid-2 mb-8">
           <div><label>Delta T (auto)</label><input type="text" id="delta-t" readonly></div>
@@ -979,26 +985,26 @@
         
         <div class="card-subheader mt-16">Electrical Measurements</div>
         <div class="grid-2">
-          <div><label>Voltage L1-L2</label><input type="number" id="voltage-line" step="0.1" oninput="validateVoltage()"></div>
-          <div><label>Control Voltage (24V)</label><input type="number" id="control-voltage" step="0.1"></div>
+          <div><label>Voltage L1-L2</label><input type="number" inputmode="decimal" id="voltage-line" step="0.1" oninput="validateVoltage()"></div>
+          <div><label>Control Voltage (24V)</label><input type="number" inputmode="decimal" id="control-voltage" step="0.1"></div>
         </div>
         <div id="voltage-status"></div>
         
         <div class="grid-2 mt-8">
           <div><label>Blower Amps</label><input type="text" id="blower-amps" placeholder="Actual/Rated"></div>
           <div class="cooling-only"><label>Compressor Amps</label><input type="text" id="comp-amps" placeholder="Actual/Rated"></div>
-          <div class="heating-only"><label>Inducer Amps</label><input type="number" id="inducer-amps" step="0.1"></div>
+          <div class="heating-only"><label>Inducer Amps</label><input type="number" inputmode="decimal" id="inducer-amps" step="0.1"></div>
         </div>
         
         <div class="cooling-only">
           <div class="card-subheader mt-16">Refrigerant Circuit</div>
           <div class="grid-2">
-            <div><label>Suction P (psig)</label><input type="number" id="suction-pressure" step="0.1" oninput="calcRefrigerant()"></div>
-            <div><label>Liquid P (psig)</label><input type="number" id="liquid-pressure" step="0.1" oninput="calcRefrigerant()"></div>
+            <div><label>Suction P (psig)</label><input type="number" inputmode="decimal" id="suction-pressure" step="0.1" oninput="calcRefrigerant()"></div>
+            <div><label>Liquid P (psig)</label><input type="number" inputmode="decimal" id="liquid-pressure" step="0.1" oninput="calcRefrigerant()"></div>
           </div>
           <div class="grid-2">
-            <div><label>Suction T (°F)</label><input type="number" id="suction-temp" step="0.1" oninput="calcRefrigerant()"></div>
-            <div><label>Liquid T (°F)</label><input type="number" id="liquid-temp" step="0.1" oninput="calcRefrigerant()"></div>
+            <div><label>Suction T (°F)</label><input type="number" inputmode="decimal" id="suction-temp" step="0.1" oninput="calcRefrigerant()"></div>
+            <div><label>Liquid T (°F)</label><input type="number" inputmode="decimal" id="liquid-temp" step="0.1" oninput="calcRefrigerant()"></div>
           </div>
           <div class="grid-2 mt-8">
               <div><label>Superheat (auto)</label><input type="text" id="superheat" readonly></div>
@@ -1032,7 +1038,6 @@
       </div>
     </div>
     
-    <!-- Component Inspection & Safety -->
     <div class="section" id="section-service-component">
       <button class="section-toggle" onclick="toggleSection('section-service-component')">
         <span>🔍 Component Inspection & Safety</span>
@@ -1118,7 +1123,6 @@
       </div>
     </div>
     
-    <!-- Final Review -->
     <div class="card">
       <div class="card-header">
         <span>📝 Final Review & Findings</span>
@@ -1145,10 +1149,8 @@
     
   </div>
 
-  <!-- ==================== MATERIALS MODE ==================== -->
   <div class="materials-only">
     
-    <!-- Materials Job Info -->
     <div class="card">
       <div class="card-header">
         <span>📋 Materials Job Info</span>
@@ -1175,7 +1177,6 @@
       <textarea id="mat-notes" rows="2" placeholder="Special requirements, access notes, etc."></textarea>
     </div>
     
-    <!-- Smart Suggestions -->
     <div id="suggestions-container" class="hidden">
       <div class="card">
         <div class="card-header">
@@ -1189,7 +1190,6 @@
       </div>
     </div>
     
-    <!-- Materials Selection -->
     <div class="card">
       <div class="card-header">
         <span>🛠️ Add Materials</span>
@@ -1199,19 +1199,28 @@
       <select id="material-category" onchange="updateMaterialsList()">
         <option value="">Choose a category...</option>
         <option value="equipment">Equipment</option>
-        <option value="ductwork">Ductwork & Fittings</option>
-        <option value="refrigerant">Refrigerant & Line Sets</option>
-        <option value="electrical">Electrical</option>
-        <option value="iaq">IAQ & Filtration</option>
+        <option value="electrical">Electrical Components</option>
+        <option value="controls">Controls & Thermostats</option>
+        <option value="ductwork">Ductwork & Air Distribution</option>
+        <option value="iaq">Ventilation & IAQ</option>
+        <option value="refrigeration">Refrigeration Components</option>
+        <option value="drainage">Condensate Management</option>
         <option value="venting">Venting (Gas/Oil)</option>
-        <option value="drainage">Drainage</option>
-        <option value="consumables">Consumables & Supplies</option>
+        <option value="insulation">Insulation & Sealants</option>
+        <option value="sheetmetal">Sheet Metal & Fasteners</option>
+        <option value="tools">Tools & Instruments</option>
+        <option value="safety">Safety & PPE</option>
+        <option value="accessories">Accessories & Misc</option>
       </select>
+      
+      <div class="mt-8">
+        <label>Search Materials</label>
+        <input type="text" id="material-search" placeholder="Type to filter materials..." oninput="filterMaterialsList()">
+      </div>
       
       <div id="materials-catalog-container" class="material-catalog mt-8"></div>
     </div>
     
-    <!-- Selected Materials List -->
     <div class="card">
       <div class="card-header">
         <span>📝 Materials List</span>
@@ -1227,7 +1236,6 @@
     
   </div>
 
-  <!-- GLOBAL: Photo Documentation -->
   <div class="card">
     <div class="card-header">
       <span>📸 Photo Documentation</span>
@@ -1251,7 +1259,6 @@
     <div class="photo-grid" id="photo-preview"></div>
   </div>
 
-  <!-- GLOBAL: Signature -->
   <div class="card">
     <div class="card-header">
       <span>✍️ Signature</span>
@@ -1269,7 +1276,6 @@
     </div>
   </div>
 
-  <!-- GLOBAL: Sticky Action Bar -->
   <div class="actions">
     <button class="success" onclick="generate()" id="generate-btn">
       <span>✓</span> Generate
@@ -1282,7 +1288,6 @@
     </button>
   </div>
   
-  <!-- GLOBAL: Modal & Toast -->
   <div class="modal-overlay" id="modal-container">
     <div class="modal-content">
       <div class="modal-title" id="modal-title">Confirmation</div>
@@ -1299,7 +1304,6 @@
   </div>
 
   <script>
-    // ==================== GLOBAL STATE ====================
     const $ = (id) => document.getElementById(id);
     const num = val => { const n = parseFloat(val); return isNaN(n) ? null : n; };
     
@@ -1307,75 +1311,156 @@
     let heatCoolMode = 'cooling';
     let photos = [];
     let selectedMaterials = [];
+    let recognitionActive = false;
     
-    // Materials Catalog (NO PRICING)
     const materialsCatalog = {
       equipment: {
         name: 'Equipment',
         items: [
-          { id: 'furnace-gas', name: 'Gas Furnace', sizes: ['60K BTU', '80K BTU', '100K BTU', '120K BTU'], category: 'furnace' },
+          { id: 'furnace-gas', name: 'Gas Furnace', sizes: ['40K BTU', '60K BTU', '80K BTU', '100K BTU', '120K BTU'], category: 'furnace' },
           { id: 'furnace-electric', name: 'Electric Furnace', sizes: ['10kW', '15kW', '20kW', '25kW'], category: 'furnace' },
           { id: 'ac-unit', name: 'Air Conditioner', sizes: ['1.5 Ton', '2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
           { id: 'heat-pump', name: 'Heat Pump', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
           { id: 'evap-coil', name: 'Evaporator Coil', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
           { id: 'air-handler', name: 'Air Handler', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton'], category: 'cooling' },
-          { id: 'package-unit', name: 'Package Unit', sizes: ['2 Ton', '3 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true }
+          { id: 'package-unit', name: 'Package Unit', sizes: ['2 Ton', '3 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
+          { id: 'minisplit', name: 'Mini-Split System', sizes: ['9K BTU', '12K BTU', '18K BTU', '24K BTU', '36K BTU'], category: 'cooling' },
+          { id: 'boiler', name: 'Boiler', sizes: ['80K BTU', '100K BTU', '150K BTU', '200K BTU'], category: 'heating' },
+          { id: 'dual-fuel', name: 'Dual Fuel System', sizes: ['2 Ton', '3 Ton', '4 Ton', '5 Ton'], category: 'heating', tonnage: true },
+          { id: 'rooftop-unit', name: 'Rooftop Unit (RTU)', sizes: ['3 Ton', '4 Ton', '5 Ton', '7.5 Ton', '10 Ton'], category: 'cooling', tonnage: true }
+        ]
+      },
+      electrical: {
+        name: 'Electrical Components',
+        items: [
+          { id: 'contactor', name: 'Contactor', sizes: ['1-Pole 30A', '2-Pole 30A', '2-Pole 40A', '3-Pole 30A', '3-Pole 40A'] },
+          { id: 'capacitor-single', name: 'Run Capacitor (Single)', sizes: ['5µF', '7.5µF', '10µF', '15µF', '20µF', '25µF', '30µF', '35µF', '40µF', '45µF', '50µF', '60µF'] },
+          { id: 'capacitor-dual', name: 'Dual Run Capacitor', sizes: ['35/5µF', '40/5µF', '45/5µF', '50/5µF', '55/5µF', '60/5µF'] },
+          { id: 'relay-general', name: 'General Purpose Relay', sizes: ['24V SPST', '24V DPDT', '120V SPST', '240V DPST'] },
+          { id: 'relay-potential', name: 'Potential Relay', sizes: ['190V', '265V', '332V', '370V'] },
+          { id: 'relay-current', name: 'Current Relay', sizes: ['Standard'] },
+          { id: 'hard-start', name: 'Hard Start Kit', sizes: ['1-2 Ton', '2-3 Ton', '3-5 Ton'] },
+          { id: 'soft-start', name: 'Soft Start Device', sizes: ['Universal'] },
+          { id: 'disconnect-30', name: 'Disconnect Box (30A)', sizes: ['30A Non-Fused', '30A Fused'], amperage: 30 },
+          { id: 'disconnect-60', name: 'Disconnect Box (60A)', sizes: ['60A Non-Fused', '60A Fused'], amperage: 60 },
+          { id: 'breaker', name: 'Circuit Breaker', sizes: ['15A', '20A', '25A', '30A', '40A', '50A', '60A'] },
+          { id: 'fuse', name: 'Fuse', sizes: ['3A', '5A', '10A', '15A', '20A', '25A', '30A'] },
+          { id: 'surge-protector', name: 'Surge Protector', sizes: ['Whole House', 'Equipment Level'] },
+          { id: 'voltage-monitor', name: 'Voltage Monitor/Protector', sizes: ['Single Phase', 'Three Phase'] },
+          { id: 'whip', name: 'Electrical Whip', sizes: ['3 ft', '6 ft', '10 ft'] },
+          { id: 'wire-lv', name: 'Low Voltage Wire (18ga)', sizes: ['18/2', '18/3', '18/5', '18/8'], unit: 'ft' },
+          { id: 'wire-hv', name: 'High Voltage Wire', sizes: ['14/2', '12/2', '10/2', '10/3', '8/2', '8/3', '6/2', '6/3'], unit: 'ft' },
+          { id: 'wire-nuts', name: 'Wire Nuts Assortment', sizes: ['Standard Kit'], unit: 'pack' },
+          { id: 'crimp-terminals', name: 'Crimp Terminals', sizes: ['Assorted Kit'], unit: 'pack' },
+          { id: 'lv-splice', name: 'Low Voltage Splice Kit', sizes: ['Standard'] },
+          { id: 'condensate-switch', name: 'Condensate Safety Switch', sizes: ['Standard'] },
+          { id: 'transformer', name: 'Control Transformer', sizes: ['24V 40VA', '24V 75VA', '24V 100VA'] }
+        ]
+      },
+      controls: {
+        name: 'Controls & Thermostats',
+        items: [
+          { id: 'tstat-nest', name: 'Nest Smart Thermostat', sizes: ['Learning', 'E (Budget)'] },
+          { id: 'tstat-ecobee', name: 'Ecobee Smart Thermostat', sizes: ['Premium', 'Lite'] },
+          { id: 'tstat-honeywell-smart', name: 'Honeywell Smart Thermostat', sizes: ['T9', 'T6', 'T5'] },
+          { id: 'tstat-programmable', name: 'Programmable Thermostat', sizes: ['5-2 Day', '7 Day'] },
+          { id: 'tstat-nonprog', name: 'Non-Programmable Thermostat', sizes: ['Standard', 'Mercury Free'] },
+          { id: 'zone-control-panel', name: 'Zone Control Panel', sizes: ['2 Zone', '3 Zone', '4 Zone', '6 Zone'] },
+          { id: 'zone-damper', name: 'Zone Damper', sizes: ['6" Round', '8" Round', '10" Round', '6x10 Rect', '8x12 Rect'] },
+          { id: 'humidistat', name: 'Humidistat Control', sizes: ['Digital', 'Mechanical'] },
+          { id: 'dehumidistat', name: 'Dehumidistat Control', sizes: ['Digital', 'Mechanical'] },
+          { id: 'thermostat-guard', name: 'Thermostat Guard/Cover', sizes: ['Clear Locking', 'Vented'] }
         ]
       },
       ductwork: {
-        name: 'Ductwork & Fittings',
+        name: 'Ductwork & Air Distribution',
         items: [
           { id: 'trunk-duct', name: 'Trunk Duct (Rectangular)', sizes: ['12x8', '14x8', '16x8', '18x10', '20x10', '24x12'], unit: 'ft' },
-          { id: 'flex-duct', name: 'Flexible Duct', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'], unit: 'ft' },
+          { id: 'flex-duct-std', name: 'Flex Duct (Standard)', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'], unit: 'ft' },
+          { id: 'flex-duct-insulated', name: 'Flex Duct (Insulated R6)', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'], unit: 'ft' },
+          { id: 'rigid-galv', name: 'Rigid Galvanized Duct', sizes: ['4"', '6"', '8"', '10"', '12"'], unit: 'ft' },
+          { id: 'aluminum-duct', name: 'Aluminum Flexible Duct', sizes: ['4"', '5"', '6"', '7"', '8"'], unit: 'ft' },
           { id: 'plenum-supply', name: 'Supply Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
           { id: 'plenum-return', name: 'Return Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
           { id: 'collar', name: 'Starting Collar', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'] },
+          { id: 'takeoff', name: 'Duct Take-Off', sizes: ['4"', '5"', '6"', '7"', '8"'] },
           { id: 'register', name: 'Supply Register', sizes: ['4x10', '4x12', '6x10', '6x12', '8x10', '10x10'] },
           { id: 'grille', name: 'Return Grille', sizes: ['10x10', '12x12', '14x14', '16x16', '20x20', '24x24'] },
-          { id: 'damper', name: 'Balancing Damper', sizes: ['4"', '6"', '8"', '10"', '12"'] },
-          { id: 'transition', name: 'Transition', sizes: ['Various'] },
-          { id: 'elbow-90', name: '90° Elbow', sizes: ['6"', '8"', '10"', '12"'] }
+          { id: 'diffuser', name: 'Ceiling Diffuser', sizes: ['6" Round', '8" Round', '10" Round', '12" Round'] },
+          { id: 'damper-manual', name: 'Manual Balancing Damper', sizes: ['4"', '6"', '8"', '10"', '12"'] },
+          { id: 'damper-auto', name: 'Automatic Damper (Motorized)', sizes: ['6"', '8"', '10"', '12"'] },
+          { id: 'damper-barometric', name: 'Barometric Bypass Damper', sizes: ['6"', '8"', '10"'] },
+          { id: 'transition', name: 'Duct Transition', sizes: ['Various'] },
+          { id: 'elbow-90', name: '90° Elbow', sizes: ['6"', '8"', '10"', '12"'] },
+          { id: 'tee-fitting', name: 'Tee Fitting', sizes: ['6"', '8"', '10"'] },
+          { id: 'end-cap', name: 'End Cap', sizes: ['4"', '6"', '8"', '10"'] }
         ]
       },
-      refrigerant: {
-        name: 'Refrigerant & Line Sets',
+      iaq: {
+        name: 'Ventilation & IAQ',
+        items: [
+          { id: 'filter-disposable', name: 'Disposable Filter', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1', '24x24x1'], unit: 'pack' },
+          { id: 'filter-pleated', name: 'Pleated Filter', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1', '24x24x1'], unit: 'pack' },
+          { id: 'filter-hepa', name: 'HEPA Filter', sizes: ['16x20', '16x25', '20x20', '20x25'] },
+          { id: 'filter-electrostatic', name: 'Electrostatic Filter (Washable)', sizes: ['16x20x1', '16x25x1', '20x25x1'] },
+          { id: 'media-cleaner', name: 'Media Air Cleaner', sizes: ['16x25', '20x25', '20x20'] },
+          { id: 'electronic-cleaner', name: 'Electronic Air Cleaner', sizes: ['16x25', '20x25'] },
+          { id: 'hepa-box', name: 'HEPA Filter Box', sizes: ['Standard'] },
+          { id: 'uv-light-single', name: 'UV Light System (Single)', sizes: ['24V'] },
+          { id: 'uv-light-dual', name: 'UV Light System (Dual)', sizes: ['24V'] },
+          { id: 'ionizer', name: 'Air Ionizer', sizes: ['In-Duct'] },
+          { id: 'pco-device', name: 'PCO Air Purifier', sizes: ['Standard'] },
+          { id: 'reme-halo', name: 'REME HALO Air Purifier', sizes: ['24V'] },
+          { id: 'humidifier-bypass', name: 'Bypass Humidifier', sizes: ['12 GPD', '17 GPD'] },
+          { id: 'humidifier-fan', name: 'Fan-Powered Humidifier', sizes: ['12 GPD', '18 GPD'] },
+          { id: 'humidifier-steam', name: 'Steam Humidifier', sizes: ['11.5 GPD', '13 GPD'] },
+          { id: 'dehumidifier-90', name: 'Whole-Home Dehumidifier (90 Pint)', sizes: ['90 Pint'] },
+          { id: 'dehumidifier-120', name: 'Whole-Home Dehumidifier (120 Pint)', sizes: ['120 Pint'] },
+          { id: 'dehumidifier-portable', name: 'Portable Dehumidifier', sizes: ['50 Pint', '70 Pint'] },
+          { id: 'erv', name: 'ERV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] },
+          { id: 'hrv', name: 'HRV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] }
+        ]
+      },
+      refrigeration: {
+        name: 'Refrigeration Components',
         items: [
           { id: 'lineset-small', name: 'Line Set (1.5-2.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '1/4" x 3/8"', tonnageRange: [1.5, 2.5] },
           { id: 'lineset-medium', name: 'Line Set (3-3.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 3/4"', tonnageRange: [3, 3.5] },
           { id: 'lineset-large', name: 'Line Set (4-5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 7/8"', tonnageRange: [4, 5] },
+          { id: 'copper-tubing', name: 'Copper Tubing (ACR)', sizes: ['1/4"', '3/8"', '1/2"', '5/8"', '3/4"', '7/8"'], unit: 'ft' },
           { id: 'r410a', name: 'R-410A Refrigerant', sizes: ['25 lb', '50 lb'], unit: 'cylinder' },
+          { id: 'r22', name: 'R-22 Refrigerant (Legacy)', sizes: ['30 lb'], unit: 'cylinder' },
           { id: 'r32', name: 'R-32 Refrigerant', sizes: ['20 lb'], unit: 'cylinder' },
+          { id: 'r454b', name: 'R-454B Refrigerant', sizes: ['25 lb'], unit: 'cylinder' },
+          { id: 'recovery-cylinder', name: 'Recovery Cylinder', sizes: ['30 lb', '50 lb'] },
           { id: 'nitrogen', name: 'Nitrogen (Pressure Test)', sizes: ['Small', 'Large'], unit: 'tank' },
-          { id: 'linecover', name: 'Line Set Cover/Insulation', sizes: ['15 ft', '25 ft', '50 ft'] }
+          { id: 'schrader-valve', name: 'Schrader Valve', sizes: ['1/4"', '5/16"'] },
+          { id: 'service-valve', name: 'Service Valve', sizes: ['1/4"', '3/8"', '1/2"'] },
+          { id: 'ball-valve', name: 'Ball Valve', sizes: ['1/4"', '3/8"', '1/2"', '5/8"'] },
+          { id: 'txv', name: 'TXV (Thermostatic Expansion Valve)', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'] },
+          { id: 'filter-drier', name: 'Filter Drier', sizes: ['1/2"', '5/8"', '3/4"'] },
+          { id: 'sight-glass', name: 'Sight Glass', sizes: ['1/4"', '3/8"', '1/2"'] },
+          { id: 'manifold-gauge', name: 'Manifold Gauge Set', sizes: ['2-Way', '4-Way'] },
+          { id: 'charging-hose', name: 'Charging Hoses', sizes: ['36"', '60"', '72"'], unit: 'set' },
+          { id: 'core-tool', name: 'Valve Core Tool', sizes: ['Standard'] },
+          { id: 'linecover', name: 'Line Set Cover/Insulation', sizes: ['15 ft', '25 ft', '50 ft'] },
+          { id: 'refrig-oil', name: 'Refrigerant Oil', sizes: ['POE 8oz', 'POE 16oz', 'Mineral 8oz'] },
+          { id: 'leak-seal', name: 'Leak Sealant', sizes: ['Standard'] }
         ]
       },
-      electrical: {
-        name: 'Electrical',
+      drainage: {
+        name: 'Condensate Management',
         items: [
-          { id: 'disconnect-30', name: 'Disconnect Box (30A)', sizes: ['30A'], amperage: 30 },
-          { id: 'disconnect-60', name: 'Disconnect Box (60A)', sizes: ['60A'], amperage: 60 },
-          { id: 'whip', name: 'Electrical Whip', sizes: ['3 ft', '6 ft', '10 ft'] },
-          { id: 'breaker', name: 'Circuit Breaker', sizes: ['15A', '20A', '30A', '40A', '50A', '60A'] },
-          { id: 'wire-lv', name: 'Low Voltage Wire (18ga)', sizes: ['18/5', '18/8'], unit: 'ft' },
-          { id: 'wire-hv', name: 'High Voltage Wire', sizes: ['10/2', '10/3', '8/2', '8/3', '6/2', '6/3'], unit: 'ft' },
-          { id: 'condensate-switch', name: 'Condensate Safety Switch', sizes: ['Standard'] },
-          { id: 'relay', name: 'Relay', sizes: ['24V', '120V', '240V'] },
-          { id: 'capacitor', name: 'Capacitor', sizes: ['5µF', '7.5µF', '10µF', '15µF', '20µF', '25µF', '30µF', '35µF', '40µF', '45µF', '50µF'] },
-          { id: 'contactor', name: 'Contactor', sizes: ['1-Pole', '2-Pole', '3-Pole'] }
-        ]
-      },
-      iaq: {
-        name: 'IAQ & Filtration',
-        items: [
-          { id: 'media-cleaner', name: 'Media Air Cleaner', sizes: ['16x25', '20x25', '20x20'] },
-          { id: 'electronic-cleaner', name: 'Electronic Air Cleaner', sizes: ['16x25', '20x25'] },
-          { id: 'hepa-filter', name: 'HEPA Filter Box', sizes: ['Standard'] },
-          { id: 'humidifier', name: 'Whole-Home Humidifier', sizes: ['Bypass', 'Fan-Powered', 'Steam'] },
-          { id: 'dehumidifier', name: 'Whole-Home Dehumidifier', sizes: ['90 Pint', '120 Pint', '150 Pint'] },
-          { id: 'uv-light', name: 'UV Light System', sizes: ['Single Lamp', 'Dual Lamp'] },
-          { id: 'erv', name: 'ERV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] },
-          { id: 'hrv', name: 'HRV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] },
-          { id: 'reme-halo', name: 'REME HALO Air Purifier', sizes: ['24V'] }
+          { id: 'condensate-pump', name: 'Condensate Pump', sizes: ['Standard', 'Heavy Duty'] },
+          { id: 'drain-pvc', name: 'PVC Drain Pipe (3/4")', sizes: ['10 ft', '20 ft'], unit: 'length' },
+          { id: 'drain-pvc-1', name: 'PVC Drain Pipe (1")', sizes: ['10 ft', '20 ft'], unit: 'length' },
+          { id: 'drain-pan-primary', name: 'Drain Pan (Primary)', sizes: ['24x24', '30x30', '36x36'] },
+          { id: 'drain-pan-secondary', name: 'Drain Pan (Secondary)', sizes: ['24x24', '30x30', '36x36'] },
+          { id: 'ptrap-3-4', name: 'P-Trap (3/4")', sizes: ['3/4"'] },
+          { id: 'ptrap-1', name: 'P-Trap (1")', sizes: ['1"'] },
+          { id: 'float-switch', name: 'Float Switch', sizes: ['Standard'] },
+          { id: 'drain-fitting', name: 'Drain Fittings Kit', sizes: ['Standard'] },
+          { id: 'drain-tubing', name: 'Clear Vinyl Drain Tubing', sizes: ['3/8"', '1/2"', '5/8"'], unit: 'ft' }
         ]
       },
       venting: {
@@ -1383,44 +1468,104 @@
         items: [
           { id: 'bvent', name: 'B-Vent Pipe', sizes: ['3"', '4"', '5"', '6"', '7"'], unit: 'ft' },
           { id: 'pvc-vent', name: 'PVC Vent Pipe', sizes: ['2"', '3"', '4"'], unit: 'ft' },
+          { id: 'cpvc-vent', name: 'CPVC Vent Pipe', sizes: ['2"', '3"'], unit: 'ft' },
           { id: 'vent-cap', name: 'Vent Cap/Termination', sizes: ['2"', '3"', '4"', '5"', '6"'] },
           { id: 'vent-connector', name: 'Vent Connector', sizes: ['3"', '4"', '5"', '6"'] },
-          { id: 'vent-elbow', name: 'Vent Elbow (45°/90°)', sizes: ['2"', '3"', '4"', '5"'] },
-          { id: 'inducer', name: 'Inducer Motor', sizes: ['Standard', 'High Efficiency'] }
+          { id: 'vent-elbow-45', name: 'Vent Elbow (45°)', sizes: ['2"', '3"', '4"', '5"'] },
+          { id: 'vent-elbow-90', name: 'Vent Elbow (90°)', sizes: ['2"', '3"', '4"', '5"'] },
+          { id: 'vent-tee', name: 'Vent Tee', sizes: ['3"', '4"', '5"'] },
+          { id: 'inducer', name: 'Inducer Motor', sizes: ['Standard', 'High Efficiency'] },
+          { id: 'flue-damper', name: 'Flue Damper', sizes: ['4"', '5"', '6"'] }
         ]
       },
-      drainage: {
-        name: 'Drainage',
+      insulation: {
+        name: 'Insulation & Sealants',
         items: [
-          { id: 'condensate-pump', name: 'Condensate Pump', sizes: ['Standard', 'Heavy Duty'] },
-          { id: 'drain-pvc', name: 'PVC Drain Pipe (3/4")', sizes: ['10 ft', '20 ft'], unit: 'length' },
-          { id: 'drain-pan', name: 'Drain Pan', sizes: ['Primary', 'Secondary', 'Auxiliary'] },
-          { id: 'ptrap', name: 'P-Trap', sizes: ['3/4"', '1"'] },
-          { id: 'float-switch', name: 'Float Switch', sizes: ['Standard'] },
-          { id: 'drain-fitting', name: 'Drain Fittings Kit', sizes: ['Standard'] }
-        ]
-      },
-      consumables: {
-        name: 'Consumables & Supplies',
-        items: [
+          { id: 'duct-insulation-fiberglass', name: 'Fiberglass Duct Wrap', sizes: ['R-6', 'R-8'], unit: 'roll' },
+          { id: 'duct-insulation-bubble', name: 'Bubble Foil Insulation', sizes: ['Single', 'Double'], unit: 'roll' },
+          { id: 'duct-insulation-reflective', name: 'Reflective Duct Wrap', sizes: ['Standard'], unit: 'roll' },
+          { id: 'pipe-insulation-foam', name: 'Foam Pipe Insulation', sizes: ['1/4"', '3/8"', '1/2"', '5/8"', '3/4"', '7/8"'], unit: 'ft' },
+          { id: 'pipe-insulation-rubber', name: 'Rubber Pipe Insulation', sizes: ['1/4"', '3/8"', '1/2"', '5/8"', '3/4"'], unit: 'ft' },
           { id: 'mastic', name: 'Duct Mastic', sizes: ['1 Gallon', '5 Gallon'] },
           { id: 'foil-tape', name: 'Foil Tape', sizes: ['2"', '3"'], unit: 'roll' },
           { id: 'duct-tape', name: 'Duct Tape', sizes: ['Standard'], unit: 'roll' },
+          { id: 'silicone-caulk', name: 'Silicone Caulk', sizes: ['Clear', 'White', 'Aluminum'], unit: 'tube' },
+          { id: 'foam-sealant', name: 'Expanding Foam Sealant', sizes: ['Standard', 'Fire-Rated'], unit: 'can' }
+        ]
+      },
+      sheetmetal: {
+        name: 'Sheet Metal & Fasteners',
+        items: [
+          { id: 'sheet-metal-26', name: 'Sheet Metal (26 Gauge)', sizes: ['24x48', '36x48'], unit: 'sheet' },
+          { id: 'sheet-metal-28', name: 'Sheet Metal (28 Gauge)', sizes: ['24x48', '36x48'], unit: 'sheet' },
+          { id: 'sheet-metal-30', name: 'Sheet Metal (30 Gauge)', sizes: ['24x48', '36x48'], unit: 'sheet' },
+          { id: 'drive-cleat', name: 'Drive Cleats', sizes: ['Standard'], unit: 'pack' },
+          { id: 's-cleat', name: 'S-Cleats', sizes: ['Standard'], unit: 'pack' },
+          { id: 'turning-vane', name: 'Turning Vanes', sizes: ['Standard'], unit: 'pack' },
           { id: 'screws-tap', name: 'Self-Tapping Screws', sizes: ['#8 x 1/2"', '#10 x 3/4"', '#12 x 1"'], unit: 'box' },
           { id: 'screws-sheet', name: 'Sheet Metal Screws', sizes: ['#8', '#10'], unit: 'box' },
+          { id: 'pop-rivets', name: 'Pop Rivets', sizes: ['1/8"', '3/16"'], unit: 'box' },
           { id: 'hangers', name: 'Duct Hangers/Strapping', sizes: ['Standard'], unit: 'roll' },
-          { id: 'insulation-duct', name: 'Duct Insulation', sizes: ['R-6', 'R-8'], unit: 'roll' },
-          { id: 'insulation-pipe', name: 'Pipe Insulation', sizes: ['1/4"', '3/8"', '1/2"', '3/4"'], unit: 'ft' },
-          { id: 'refrig-oil', name: 'Refrigerant Oil', sizes: ['8 oz', '16 oz'] },
-          { id: 'leak-seal', name: 'Leak Sealant', sizes: ['Standard'] },
-          { id: 'cleaning', name: 'Coil Cleaner', sizes: ['Aerosol', '1 Gallon'] },
-          { id: 'wire-nuts', name: 'Wire Nuts Assortment', sizes: ['Standard'], unit: 'pack' },
+          { id: 'duct-supports', name: 'Duct Support Brackets', sizes: ['Adjustable'], unit: 'pack' },
           { id: 'zip-ties', name: 'Zip Ties', sizes: ['Assorted'], unit: 'pack' }
+        ]
+      },
+      tools: {
+        name: 'Tools & Instruments',
+        items: [
+          { id: 'tin-snips', name: 'Tin Snips Set', sizes: ['Left/Right/Straight'], unit: 'set' },
+          { id: 'crimper', name: 'Duct Crimper', sizes: ['Standard'] },
+          { id: 'flaring-tool', name: 'Flaring Tool', sizes: ['Standard'] },
+          { id: 'tubing-cutter', name: 'Tubing Cutter', sizes: ['1/8"-7/8"', '1/8"-1 1/8"'] },
+          { id: 'drill-cordless', name: 'Cordless Drill', sizes: ['12V', '18V', '20V'] },
+          { id: 'impact-driver', name: 'Impact Driver', sizes: ['12V', '18V', '20V'] },
+          { id: 'vacuum-pump', name: 'Vacuum Pump', sizes: ['3 CFM', '6 CFM', '10 CFM'] },
+          { id: 'multimeter', name: 'Multimeter', sizes: ['Digital'] },
+          { id: 'clamp-meter', name: 'Clamp Meter', sizes: ['Digital'] },
+          { id: 'manometer-digital', name: 'Digital Manometer', sizes: ['Dual Port'] },
+          { id: 'leak-detector', name: 'Refrigerant Leak Detector', sizes: ['Electronic'] },
+          { id: 'thermometer-infrared', name: 'Infrared Thermometer', sizes: ['Standard'] },
+          { id: 'psychrometer', name: 'Psychrometer', sizes: ['Digital'] },
+          { id: 'micron-gauge', name: 'Micron Gauge', sizes: ['Digital'] },
+          { id: 'anemometer', name: 'Anemometer', sizes: ['Digital'] },
+          { id: 'torque-wrench', name: 'Torque Wrench', sizes: ['1/4"', '3/8"', '1/2"'] }
+        ]
+      },
+      safety: {
+        name: 'Safety & PPE',
+        items: [
+          { id: 'safety-glasses', name: 'Safety Glasses', sizes: ['Clear', 'Tinted'], unit: 'each' },
+          { id: 'gloves-work', name: 'Work Gloves', sizes: ['S', 'M', 'L', 'XL'], unit: 'pair' },
+          { id: 'gloves-insulated', name: 'Insulated Gloves', sizes: ['M', 'L', 'XL'], unit: 'pair' },
+          { id: 'knee-pads', name: 'Knee Pads', sizes: ['Standard'], unit: 'pair' },
+          { id: 'respirator', name: 'Respirator', sizes: ['Half-Face', 'Full-Face'] },
+          { id: 'respirator-filters', name: 'Respirator Filters', sizes: ['P100', 'Organic Vapor'], unit: 'pair' },
+          { id: 'ear-protection', name: 'Ear Protection', sizes: ['Plugs', 'Muffs'] },
+          { id: 'hard-hat', name: 'Hard Hat', sizes: ['Standard'] },
+          { id: 'fire-extinguisher', name: 'Fire Extinguisher', sizes: ['5 lb ABC', '10 lb ABC'] },
+          { id: 'first-aid', name: 'First Aid Kit', sizes: ['Basic', 'Complete'] },
+          { id: 'lockout-tagout', name: 'Lockout/Tagout Kit', sizes: ['Standard'] },
+          { id: 'fall-protection', name: 'Fall Protection Harness', sizes: ['Standard'] }
+        ]
+      },
+      accessories: {
+        name: 'Accessories & Misc',
+        items: [
+          { id: 'condenser-pad', name: 'Condenser Pad', sizes: ['24x24', '30x30', '36x36'] },
+          { id: 'condenser-riser', name: 'Condenser Risers', sizes: ['2"', '3"'], unit: 'set' },
+          { id: 'vibration-isolator', name: 'Vibration Isolators', sizes: ['Standard'], unit: 'set' },
+          { id: 'wall-sleeve', name: 'Wall Sleeve', sizes: ['3"', '4"', '6"'] },
+          { id: 'line-hide', name: 'Line Hide/Line Set Cover', sizes: ['3"', '4"', '6"'], unit: 'ft' },
+          { id: 'labels', name: 'Equipment Labels', sizes: ['Voltage', 'Refrigerant', 'Warning'], unit: 'pack' },
+          { id: 'markers', name: 'Permanent Markers', sizes: ['Black', 'Red', 'Blue'], unit: 'pack' },
+          { id: 'wire-identifiers', name: 'Wire Identifiers', sizes: ['Standard'], unit: 'pack' },
+          { id: 'cleaning-coil', name: 'Coil Cleaner', sizes: ['Aerosol', '1 Gallon'] },
+          { id: 'cleaning-evap', name: 'Evaporator Coil Cleaner (No-Rinse)', sizes: ['Aerosol', '32 oz'] },
+          { id: 'cleaning-cond', name: 'Condenser Coil Cleaner', sizes: ['1 Gallon', '5 Gallon'] }
         ]
       }
     };
     
-    // Enhanced R-410A PT chart
     const R410A_PT = {
       90: 44.7, 95: 47.1, 100: 49.6, 105: 52.2, 110: 54.9, 115: 57.7,
       120: 60.6, 125: 63.6, 130: 66.7, 135: 69.9, 140: 73.2, 145: 76.6,
@@ -1429,7 +1574,6 @@
       210: 131.0, 215: 135.9, 220: 140.9
     };
     
-    // ==================== MODAL & TOAST ====================
     const modalContainer = $('modal-container');
     const modalTitle = $('modal-title');
     const modalBody = $('modal-body');
@@ -1452,6 +1596,12 @@
         modalContainer.classList.add('visible');
       });
     }
+    
+    modalContainer.addEventListener('click', (e) => {
+      if (e.target === modalContainer) {
+        modalContainer.classList.remove('visible');
+      }
+    });
 
     function showToast(message, type = 'info') {
       const toast = $('toast-notification');
@@ -1468,57 +1618,56 @@
       }, 2500);
     }
 
-    // ==================== MODE SWITCHING ====================
     function setMode(mode) {
       currentMode = mode;
       document.body.className = `mode-${mode}`;
       
-      // Update mode toggle buttons
       document.querySelectorAll('.mode-toggle button').forEach(btn => btn.classList.remove('active'));
       $(`btn-${mode}`).classList.add('active');
       
-      // Re-apply heat/cool mode for service
       if (mode === 'service') {
         setHeatCoolMode(heatCoolMode);
       }
       
-      // Update generate button text
       const btnText = $('generate-btn');
       if (mode === 'service') {
         btnText.innerHTML = '<span>✓</span> Generate Service Report';
       } else if (mode === 'materials') {
         btnText.innerHTML = '<span>✓</span> Generate Materials List';
       }
+      
+      autoSaveForm();
     }
     
     function setHeatCoolMode(mode) {
       heatCoolMode = mode;
       
-      // Remove previous heat/cool classes
       document.body.classList.remove('mode-cooling', 'mode-heating');
       
-      // Add new heat/cool class if in service mode
       if (document.body.classList.contains('mode-service')) {
         document.body.classList.add(`mode-${mode}`);
       }
       
-      // Update buttons
       $('btn-hc-cooling').className = mode === 'cooling' ? 'active secondary' : 'secondary';
       $('btn-hc-heating').className = mode === 'heating' ? 'active secondary' : 'secondary';
       
-      // Clear refrigerant calculations
-      calcDelta();
       clearRefrigerantCalculations();
+      calcDelta();
+      
+      autoSaveForm();
     }
     
     function toggleUnitData() {
       const type = $('unit-type').value;
+      const outdoorFields = $('outdoor-unit-fields');
+      
       if (type === 'minisplit' || type === 'package') {
         $('indoor-data').placeholder = "Unit Data (All-in-one system)";
-        $('outdoor-unit-fields').classList.add('hidden');
+        outdoorFields.classList.add('hidden');
+        $('outdoor-data').value = '';
       } else {
         $('indoor-data').placeholder = "Model/Serial/Tonnage";
-        $('outdoor-unit-fields').classList.remove('hidden');
+        outdoorFields.classList.remove('hidden');
       }
     }
     
@@ -1529,7 +1678,16 @@
       }
     }
 
-    // ==================== CALCULATIONS ====================
+    function validateTemp(value, min = -50, max = 200) {
+      const temp = parseFloat(value);
+      if (isNaN(temp)) return null;
+      if (temp < min || temp > max) {
+        showToast(`Temperature ${temp}°F outside valid range (${min}-${max}°F)`, 'warn');
+        return null;
+      }
+      return temp;
+    }
+
     function clearRefrigerantCalculations() {
       const sh = $('superheat');
       const sc = $('subcool');
@@ -1543,14 +1701,21 @@
     }
     
     function calcDelta() {
-      const ret = num($('return-temp').value);
-      const sup = num($('supply-temp').value);
-      if (ret === null || sup === null) return;
-      
-      const delta = heatCoolMode === 'cooling' ? ret - sup : sup - ret;
-      $('delta-t').value = delta.toFixed(1) + ' °F';
+      const ret = validateTemp($('return-temp').value);
+      const sup = validateTemp($('supply-temp').value);
       
       const statusDiv = $('delta-status');
+      const deltaField = $('delta-t');
+      
+      if (ret === null || sup === null) {
+        if (deltaField) deltaField.value = '';
+        if (statusDiv) statusDiv.innerHTML = '';
+        return;
+      }
+      
+      const delta = heatCoolMode === 'cooling' ? ret - sup : sup - ret;
+      deltaField.value = delta.toFixed(1) + ' °F';
+      
       if (heatCoolMode === 'cooling') {
         if (delta < 14) statusDiv.innerHTML = '<div class="status bad">⚠️ Low delta - check airflow or low charge</div>';
         else if (delta >= 16 && delta <= 22) statusDiv.innerHTML = '<div class="status good">✓ Delta T in optimal range (16-22°F)</div>';
@@ -1567,12 +1732,19 @@
     function calcStatic() {
       const ret = num($('return-static').value);
       const sup = num($('supply-static').value);
-      if (ret === null || sup === null) return;
-      
-      const total = Math.abs(ret) + Math.abs(sup);
-      $('total-static').value = total.toFixed(2) + ' in w.c.';
       
       const statusDiv = $('static-status');
+      const staticField = $('total-static');
+      
+      if (ret === null || sup === null) {
+        if (staticField) staticField.value = '';
+        if (statusDiv) statusDiv.innerHTML = '';
+        return;
+      }
+      
+      const total = Math.abs(ret) + Math.abs(sup);
+      staticField.value = total.toFixed(2) + ' in w.c.';
+      
       if (total <= 0.50) statusDiv.innerHTML = '<div class="status good">✓ Static pressure acceptable (≤0.50)</div>';
       else if (total <= 0.70) statusDiv.innerHTML = '<div class="status warn">⚠️ Static elevated (0.50-0.70)</div>';
       else statusDiv.innerHTML = '<div class="status bad">⚠️ Static excessive (>0.70) - duct issues likely</div>';
@@ -1580,7 +1752,10 @@
     
     function validateVoltage() {
       const lineVoltage = num($('voltage-line').value);
-      if (!lineVoltage) return;
+      if (!lineVoltage) {
+        $('voltage-status').innerHTML = '';
+        return;
+      }
       
       const statusDiv = $('voltage-status');
       if (lineVoltage < 200) statusDiv.innerHTML = '<div class="status bad">⚠️ Low voltage (<200V)</div>';
@@ -1591,7 +1766,13 @@
     
     function lookupSatTemp(psig) {
       const refrigerant = $('refrigerant').value;
-      if (refrigerant !== 'R-410A') return null;
+      if (refrigerant !== 'R-410A') {
+        const statusDiv = $('superheat-status');
+        if (statusDiv) {
+          statusDiv.innerHTML = '<div class="status warn">⚠️ PT chart only available for R-410A. Manual calculation required.</div>';
+        }
+        return null;
+      }
       let closest = null, minDiff = Infinity;
       for (let pressure in R410A_PT) {
         const diff = Math.abs(pressure - psig);
@@ -1637,25 +1818,57 @@
     
     function calculateAge() {
       const mfgDate = $('mfg-date').value;
-      if (!mfgDate) return;
+      const ageDiv = $('equipment-age');
+      if (!mfgDate) {
+        ageDiv.textContent = '';
+        return;
+      }
+      
       const mfg = new Date(mfgDate);
       const years = (Date.now() - mfg.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
-      $('equipment-age').textContent = `Equipment Age: ${years.toFixed(1)} years`;
+      
+      let ageText = `Equipment Age: ${years.toFixed(1)} years`;
+      ageDiv.textContent = ageText;
+      
+      if (years > 20) {
+        ageDiv.style.color = '#FF3B30';
+        ageDiv.style.fontWeight = '600';
+        ageDiv.textContent += ' ⚠️ CRITICAL AGE';
+      } else if (years > 15) {
+        ageDiv.style.color = '#FF9500';
+        ageDiv.style.fontWeight = '600';
+        ageDiv.textContent += ' ⚠️ Consider Replacement';
+      } else {
+        ageDiv.style.color = '#666';
+        ageDiv.style.fontWeight = '400';
+      }
     }
     
     function calculateLaborHours() {
       const arrival = $('arrival-time').value;
       const completion = $('completion-time').value;
       if (!arrival || !completion) return;
+      
       const arrivalDate = new Date(`2000-01-01T${arrival}`);
-      const completionDate = new Date(`2000-01-01T${completion}`);
+      let completionDate = new Date(`2000-01-01T${completion}`);
+      
       let diffMs = completionDate - arrivalDate;
-      if (diffMs < 0) diffMs += 24 * 60 * 60 * 1000;
+      
+      if (diffMs < 0) {
+        diffMs += 24 * 60 * 60 * 1000;
+      }
+      
       const hours = diffMs / (1000 * 60 * 60);
+      
+      if (hours > 24) {
+        $('total-hours').value = 'ERROR: Check times';
+        showToast('Service call duration exceeds 24 hours. Verify times.', 'warn');
+        return;
+      }
+      
       $('total-hours').value = hours.toFixed(2) + ' hours';
     }
     
-    // ==================== VOICE INPUT ====================
     let recognition = null;
     let currentVoiceTarget = null;
     
@@ -1663,25 +1876,36 @@
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       recognition = new SpeechRecognition();
       recognition.continuous = false;
-      recognition.interimResults = false;
+      recognition.interimResults = true;
       
       recognition.onresult = (e) => {
-        if (currentVoiceTarget && e.results[0]) {
-          const transcript = e.results[0][0].transcript;
-          currentVoiceTarget.value = transcript;
-          currentVoiceTarget.dispatchEvent(new Event('input'));
-          currentVoiceTarget.dispatchEvent(new Event('change'));
+        if (currentVoiceTarget) {
+          if (e.results[0].isFinal) {
+            const transcript = e.results[0][0].transcript;
+            currentVoiceTarget.value = transcript;
+            currentVoiceTarget.dispatchEvent(new Event('input'));
+            currentVoiceTarget.dispatchEvent(new Event('change'));
+            currentVoiceTarget.placeholder = '';
+          } else {
+            const interim = e.results[0][0].transcript;
+            currentVoiceTarget.placeholder = `Listening: "${interim}"...`;
+          }
         }
       };
       
       recognition.onend = () => {
+        recognitionActive = false;
         document.querySelectorAll('.voice-btn.listening').forEach(btn => {
           btn.classList.remove('listening');
         });
+        if (currentVoiceTarget) {
+          currentVoiceTarget.placeholder = '';
+        }
       };
       
       recognition.onerror = (e) => {
         console.error('Speech recognition error:', e.error);
+        recognitionActive = false;
         showToast(`Voice Error: ${e.error}`, 'danger');
         document.querySelectorAll('.voice-btn.listening').forEach(btn => {
           btn.classList.remove('listening');
@@ -1695,22 +1919,31 @@
         currentVoiceTarget = $(targetId);
         
         if (recognition && currentVoiceTarget) {
-          try { recognition.stop(); } catch (err) {}
           document.querySelectorAll('.voice-btn').forEach(btn => btn.classList.remove('listening'));
-          e.target.classList.add('listening');
-          try {
-            recognition.start();
-          } catch (err) {
-            console.error('Could not start recognition:', err);
-            showToast('Voice input failed to start', 'danger');
+          
+          if (recognitionActive) {
+            try { recognition.stop(); } catch (err) {}
+            recognitionActive = false;
           }
+          
+          setTimeout(() => {
+            e.target.classList.add('listening');
+            try {
+              recognition.start();
+              recognitionActive = true;
+            } catch (err) {
+              console.error('Could not start recognition:', err);
+              e.target.classList.remove('listening');
+              showToast('Voice input failed to start', 'danger');
+            }
+          }, 100);
+          
         } else if (!recognition) {
-          showToast('Voice input not supported on this device', 'danger');
+          showToast('Voice input not supported on this browser', 'danger');
         }
       }
     });
     
-    // ==================== PHOTOS ====================
     function takePhoto(purpose) {
       const input = document.createElement('input');
       input.type = 'file';
@@ -1730,6 +1963,7 @@
             id: Date.now()
           });
           updatePhotoPreview();
+          autoSaveForm();
         };
         reader.readAsDataURL(file);
       };
@@ -1742,6 +1976,7 @@
       if (confirmed) {
         photos = photos.filter(p => p.id !== photoId);
         updatePhotoPreview();
+        autoSaveForm();
       }
     }
     
@@ -1754,8 +1989,6 @@
         </div>`
       ).join('');
     }
-    
-    // ==================== MATERIALS MANAGEMENT ====================
     
     function updateMaterialsList() {
       const category = $('material-category').value;
@@ -1770,7 +2003,7 @@
       if (!catalogData) return;
       
       container.innerHTML = catalogData.items.map(item => `
-        <div class="material-item">
+        <div class="material-item" data-search="${item.name.toLowerCase()}">
           <div class="material-item-info">
             <div class="material-item-name">${item.name}</div>
             <div class="material-item-spec">${item.sizes ? item.sizes.slice(0, 3).join(', ') + (item.sizes.length > 3 ? ' +more' : '') : 'Standard'}</div>
@@ -1778,6 +2011,16 @@
           <button class="material-add-btn" onclick="addMaterial('${category}', '${item.id}')">+ Add</button>
         </div>
       `).join('');
+    }
+    
+    function filterMaterialsList() {
+      const search = $('material-search').value.toLowerCase();
+      const items = document.querySelectorAll('.material-item');
+      
+      items.forEach(item => {
+        const searchText = item.dataset.search || '';
+        item.style.display = searchText.includes(search) ? 'flex' : 'none';
+      });
     }
     
     function addMaterial(category, itemId) {
@@ -1802,14 +2045,22 @@
       
       renderSelectedMaterials();
       updateSuggestions();
+      autoSaveForm();
       showToast('Material added', 'success');
     }
     
     function updateMaterialQuantity(id, qty) {
       const material = selectedMaterials.find(m => m.id === id);
       if (material) {
-        material.quantity = Math.max(1, parseInt(qty) || 1);
+        const newQty = parseInt(qty) || 1;
+        if (newQty < 1) {
+          showToast('Quantity must be at least 1', 'warn');
+          material.quantity = 1;
+        } else {
+          material.quantity = newQty;
+        }
         renderSelectedMaterials();
+        autoSaveForm();
       }
     }
     
@@ -1819,6 +2070,7 @@
         material.size = size;
         renderSelectedMaterials();
         updateSuggestions();
+        autoSaveForm();
       }
     }
     
@@ -1826,6 +2078,7 @@
       selectedMaterials = selectedMaterials.filter(m => m.id !== id);
       renderSelectedMaterials();
       updateSuggestions();
+      autoSaveForm();
     }
     
     function renderSelectedMaterials() {
@@ -1872,14 +2125,12 @@
     function updateSuggestions() {
       const suggestions = [];
       
-      // Check if cooling equipment selected
       const coolingEquipment = selectedMaterials.find(m => m.tonnage);
       
       if (coolingEquipment) {
         const tonnage = getTonnageFromSize(coolingEquipment.size);
         
         if (tonnage) {
-          // Suggest lineset
           const hasLineset = selectedMaterials.some(m => m.itemId && m.itemId.includes('lineset'));
           if (!hasLineset) {
             let linesetId;
@@ -1887,17 +2138,16 @@
             else if (tonnage <= 3.5) linesetId = 'lineset-medium';
             else linesetId = 'lineset-large';
             
-            const linesetItem = materialsCatalog.refrigerant.items.find(i => i.id === linesetId);
+            const linesetItem = materialsCatalog.refrigeration.items.find(i => i.id === linesetId);
             if (linesetItem) {
               suggestions.push({
-                category: 'refrigerant',
+                category: 'refrigeration',
                 item: linesetItem,
                 reason: `Matches ${tonnage} ton system`
               });
             }
           }
           
-          // Suggest disconnect
           const hasDisconnect = selectedMaterials.some(m => m.itemId && m.itemId.includes('disconnect'));
           if (!hasDisconnect) {
             const disconnectId = tonnage >= 4 ? 'disconnect-60' : 'disconnect-30';
@@ -1913,11 +2163,9 @@
         }
       }
       
-      // Check if any equipment selected
       const hasEquipment = selectedMaterials.some(m => m.category === 'Equipment');
       
       if (hasEquipment) {
-        // Suggest plenum
         const hasPlenum = selectedMaterials.some(m => m.name && m.name.includes('Plenum'));
         if (!hasPlenum) {
           const plenumItem = materialsCatalog.ductwork.items.find(i => i.id === 'plenum-supply');
@@ -1930,10 +2178,9 @@
           }
         }
         
-        // Suggest drain
         const hasDrain = selectedMaterials.some(m => m.itemId && (m.itemId.includes('drain') || m.itemId.includes('ptrap')));
         if (!hasDrain) {
-          const drainItem = materialsCatalog.drainage.items.find(i => i.id === 'ptrap');
+          const drainItem = materialsCatalog.drainage.items.find(i => i.id === 'ptrap-3-4');
           if (drainItem) {
             suggestions.push({
               category: 'drainage',
@@ -1944,7 +2191,6 @@
         }
       }
       
-      // Render suggestions
       const suggestionsContainer = $('suggestions-container');
       const suggestionsList = $('suggestions-list');
       
@@ -1964,9 +2210,25 @@
       }
     }
     
-    // ==================== REPORT GENERATION ====================
+    function validateServiceForm() {
+      const errors = [];
+      
+      if (!$('customer').value) errors.push('Customer name is required');
+      if (!$('address').value) errors.push('Address is required');
+      if (!$('job-type').value) errors.push('Job type is required');
+      if (!$('brand').value) errors.push('Equipment brand is required');
+      
+      if (errors.length > 0) {
+        showModal('Missing Required Fields', errors.join('\n'));
+        return false;
+      }
+      return true;
+    }
     
     function gatherServiceData() {
+      const unitType = $('unit-type').value;
+      const isPackage = unitType === 'package' || unitType === 'minisplit';
+      
       return {
         meta: { tech: $('tech-name').value || '[Technician]', mode: 'Service', heatCoolMode: heatCoolMode },
         job: {
@@ -1977,9 +2239,9 @@
         },
         equipment: {
           brand: $('brand').value,
-          unitType: $('unit-type')?.value,
+          unitType: unitType,
           indoor: $('indoor-data').value,
-          outdoor: $('outdoor-data').value,
+          outdoor: isPackage ? 'N/A (Package Unit)' : $('outdoor-data').value,
           tonnage: $('tonnage').value,
           refrigerant: $('refrigerant').value,
           mfgDate: $('mfg-date').value,
@@ -2189,7 +2451,6 @@ Customer Acknowledged: ${data.signature.customer}
       if (data.materials.length === 0) {
         list += 'No materials added to list.\n\n';
       } else {
-        // Group materials by category
         const groupedMaterials = data.materials.reduce((acc, m) => {
           if (!acc[m.category]) acc[m.category] = [];
           acc[m.category].push(m);
@@ -2232,28 +2493,43 @@ Customer Acknowledged: ${data.signature.customer}
     }
     
     function generate() {
-      const existing = document.querySelector('.report-preview')?.closest('.card');
-      if (existing) existing.remove();
-      
-      let reportText = '';
-      let reportData = {};
-      
-      if (currentMode === 'service') {
-        reportData = gatherServiceData();
-        reportText = generateServiceReport(reportData);
-        sessionStorage.setItem('currentReport', JSON.stringify(reportData));
-        sessionStorage.setItem('currentReportText', reportText);
-        displayReport(reportText, '📋 Service Report Generated');
-        showToast('Service Report Generated!', 'success');
-        
-      } else if (currentMode === 'materials') {
-        reportData = gatherMaterialsData();
-        reportText = generateMaterialsList(reportData);
-        sessionStorage.setItem('currentReport', JSON.stringify(reportData));
-        sessionStorage.setItem('currentReportText', reportText);
-        displayReport(reportText, '📋 Materials List Generated');
-        showToast('Materials List Generated!', 'success');
+      if (currentMode === 'service' && !validateServiceForm()) {
+        showToast('Please complete required fields', 'danger');
+        return;
       }
+      
+      const generateBtn = $('generate-btn');
+      const originalHTML = generateBtn.innerHTML;
+      generateBtn.disabled = true;
+      generateBtn.innerHTML = '<span>⏳</span> Generating...';
+      
+      setTimeout(() => {
+        const existing = document.querySelector('.report-preview')?.closest('.card');
+        if (existing) existing.remove();
+        
+        let reportText = '';
+        let reportData = {};
+        
+        if (currentMode === 'service') {
+          reportData = gatherServiceData();
+          reportText = generateServiceReport(reportData);
+          sessionStorage.setItem('currentReport', JSON.stringify(reportData));
+          sessionStorage.setItem('currentReportText', reportText);
+          displayReport(reportText, '📋 Service Report Generated');
+          showToast('Service Report Generated!', 'success');
+          
+        } else if (currentMode === 'materials') {
+          reportData = gatherMaterialsData();
+          reportText = generateMaterialsList(reportData);
+          sessionStorage.setItem('currentReport', JSON.stringify(reportData));
+          sessionStorage.setItem('currentReportText', reportText);
+          displayReport(reportText, '📋 Materials List Generated');
+          showToast('Materials List Generated!', 'success');
+        }
+        
+        generateBtn.disabled = false;
+        generateBtn.innerHTML = originalHTML;
+      }, 50);
     }
     
     function displayReport(text, title) {
@@ -2378,14 +2654,87 @@ Customer Acknowledged: ${data.signature.customer}
       
       sessionStorage.removeItem('currentReport');
       sessionStorage.removeItem('currentReportText');
+      localStorage.removeItem('fieldBuddyAutoSave');
       
       $('date').value = new Date().toISOString().split('T')[0];
       $('mat-date').value = new Date().toISOString().split('T')[0];
       
+      document.querySelectorAll('.status').forEach(s => s.innerHTML = '');
+      
       showToast('Form cleared', 'success');
     }
     
-    // ==================== CHECKBOX STYLING ====================
+    function autoSaveForm() {
+      const formData = {
+        mode: currentMode,
+        heatCoolMode: heatCoolMode,
+        timestamp: new Date().toISOString(),
+        service: currentMode === 'service' ? gatherServiceData() : null,
+        materials: currentMode === 'materials' ? gatherMaterialsData() : null,
+        photos: photos,
+        selectedMaterials: selectedMaterials
+      };
+      localStorage.setItem('fieldBuddyAutoSave', JSON.stringify(formData));
+    }
+    
+    function restoreFormData(data) {
+      if (!data) return;
+      
+      try {
+        if (data.mode) {
+          setMode(data.mode);
+        }
+        
+        if (data.heatCoolMode) {
+          setHeatCoolMode(data.heatCoolMode);
+        }
+        
+        if (data.photos) {
+          photos = data.photos;
+          updatePhotoPreview();
+        }
+        
+        if (data.mode === 'service' && data.service) {
+          const s = data.service;
+          if (s.job) {
+            if ($('customer')) $('customer').value = s.job.customer || '';
+            if ($('address')) $('address').value = s.job.address || '';
+            if ($('job-type')) $('job-type').value = s.job.jobType || '';
+            if ($('complaint')) $('complaint').value = s.job.complaint || '';
+          }
+          if (s.equipment) {
+            if ($('brand')) $('brand').value = s.equipment.brand || '';
+            if ($('unit-type')) $('unit-type').value = s.equipment.unitType || '';
+            if ($('indoor-data')) $('indoor-data').value = s.equipment.indoor || '';
+            if ($('outdoor-data')) $('outdoor-data').value = s.equipment.outdoor || '';
+            if ($('tonnage')) $('tonnage').value = s.equipment.tonnage || '';
+            if ($('refrigerant')) $('refrigerant').value = s.equipment.refrigerant || '';
+            if ($('mfg-date')) $('mfg-date').value = s.equipment.mfgDate || '';
+          }
+        }
+        
+        if (data.mode === 'materials' && data.materials) {
+          const m = data.materials;
+          if (m.job) {
+            if ($('mat-customer')) $('mat-customer').value = m.job.customer || '';
+            if ($('mat-address')) $('mat-address').value = m.job.address || '';
+            if ($('mat-date')) $('mat-date').value = m.job.date || '';
+            if ($('mat-notes')) $('mat-notes').value = m.job.notes || '';
+          }
+          if (data.selectedMaterials) {
+            selectedMaterials = data.selectedMaterials;
+            renderSelectedMaterials();
+            updateSuggestions();
+          }
+        }
+        
+        showToast('Previous session restored', 'success');
+      } catch (err) {
+        console.error('Error restoring form data:', err);
+        showToast('Could not restore previous session', 'warn');
+      }
+    }
+    
     document.addEventListener('input', (e) => {
       if (e.target.type === 'checkbox') {
         const label = e.target.closest('label.check');
@@ -2393,749 +2742,60 @@ Customer Acknowledged: ${data.signature.customer}
           label.classList.toggle('checked', e.target.checked);
         }
       }
+      
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
+        autoSaveForm();
+      }
     });
     
-    // ==================== INITIALIZATION ====================
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        generate();
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+        e.preventDefault();
+        exportReport();
+      }
+    });
+    
     window.addEventListener('load', () => {
       $('date').value = new Date().toISOString().split('T')[0];
       $('mat-date').value = new Date().toISOString().split('T')[0];
       
       setMode('service');
       
+      const autoSave = localStorage.getItem('fieldBuddyAutoSave');
+      if (autoSave) {
+        try {
+          const data = JSON.parse(autoSave);
+          const autoSaveDate = new Date(data.timestamp);
+          const hoursSince = (Date.now() - autoSaveDate.getTime()) / (1000 * 60 * 60);
+          
+          if (hoursSince < 24) {
+            setTimeout(() => {
+              const shouldRestore = confirm('Found unsaved work from ' + autoSaveDate.toLocaleString() + '. Restore previous session?');
+              if (shouldRestore) {
+                restoreFormData(data);
+              } else {
+                localStorage.removeItem('fieldBuddyAutoSave');
+              }
+            }, 500);
+          } else {
+            localStorage.removeItem('fieldBuddyAutoSave');
+          }
+        } catch (err) {
+          console.error('Error loading auto-save:', err);
+        }
+      }
+      
       console.log('%c📦 Field Buddy Pro - Service & Materials System Loaded', 'color:#007AFF; font-size:14px; font-weight:bold');
     });
+    
+    setInterval(() => {
+      autoSaveForm();
+    }, 30000);
     
   </script>
 </body>
 </html>
-<script>
-  
-import React, { useState, useMemo, useCallback } from 'react';
-import { Plus, Trash2, Printer, FileDown, Mail, Camera, X, Check, AlertCircle } from 'lucide-react';
-
-const HVACMaterialsList = () => {
-  const [jobType, setJobType] = useState('');
-  const [selectedMaterials, setSelectedMaterials] = useState([]);
-  const [attachedPhotos, setAttachedPhotos] = useState([]);
-  const [showEmailModal, setShowEmailModal] = useState(false);
-  const [emailAddress, setEmailAddress] = useState('');
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const [jobDetails, setJobDetails] = useState({
-    jobName: '',
-    technician: '',
-    date: new Date().toISOString().split('T')[0],
-    notes: ''
-  });
-
-  const jobTypes = [
-    { id: 'full-replacement', name: 'Full System Replacement', icon: '🏠' },
-    { id: 'piece-work', name: 'Piece Work', icon: '🔧' },
-    { id: 'repair', name: 'Repair/Service', icon: '⚙️' },
-    { id: 'upgrade', name: 'Upgrades & IAQ', icon: '⬆️' }
-  ];
-
-  const materialsCatalog = {
-    equipment: {
-      name: 'Equipment',
-      items: [
-        { id: 'furnace-gas', name: 'Gas Furnace', sizes: ['60K BTU', '80K BTU', '100K BTU', '120K BTU'], category: 'furnace' },
-        { id: 'furnace-electric', name: 'Electric Furnace', sizes: ['10kW', '15kW', '20kW', '25kW'], category: 'furnace' },
-        { id: 'ac-unit', name: 'Air Conditioner', sizes: ['1.5 Ton', '2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
-        { id: 'heat-pump', name: 'Heat Pump', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
-        { id: 'evap-coil', name: 'Evaporator Coil', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
-        { id: 'air-handler', name: 'Air Handler', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton'], category: 'cooling' },
-        { id: 'package-unit', name: 'Package Unit', sizes: ['2 Ton', '3 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true }
-      ]
-    },
-    ductwork: {
-      name: 'Ductwork & Fittings',
-      items: [
-        { id: 'trunk-duct', name: 'Trunk Duct (Rectangular)', sizes: ['12x8', '14x8', '16x8', '18x10', '20x10', '24x12'], unit: 'ft' },
-        { id: 'flex-duct', name: 'Flexible Duct', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'], unit: 'ft' },
-        { id: 'plenum-supply', name: 'Supply Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
-        { id: 'plenum-return', name: 'Return Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
-        { id: 'collar', name: 'Starting Collar', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'] },
-        { id: 'register', name: 'Supply Register', sizes: ['4x10', '4x12', '6x10', '6x12', '8x10', '10x10'] },
-        { id: 'grille', name: 'Return Grille', sizes: ['10x10', '12x12', '14x14', '16x16', '20x20', '24x24'] },
-        { id: 'damper', name: 'Balancing Damper', sizes: ['4"', '6"', '8"', '10"', '12"'] },
-        { id: 'transition', name: 'Transition', sizes: ['Various'] },
-        { id: 'elbow-90', name: '90° Elbow', sizes: ['6"', '8"', '10"', '12"'] }
-      ]
-    },
-    refrigerant: {
-      name: 'Refrigerant & Line Sets',
-      items: [
-        { id: 'lineset-small', name: 'Line Set (1.5-2.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '1/4" x 3/8"', tonnageRange: [1.5, 2.5] },
-        { id: 'lineset-medium', name: 'Line Set (3-3.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 3/4"', tonnageRange: [3, 3.5] },
-        { id: 'lineset-large', name: 'Line Set (4-5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 7/8"', tonnageRange: [4, 5] },
-        { id: 'r410a', name: 'R-410A Refrigerant', sizes: ['25 lb', '50 lb'], unit: 'cylinder' },
-        { id: 'r32', name: 'R-32 Refrigerant', sizes: ['20 lb'], unit: 'cylinder' },
-        { id: 'nitrogen', name: 'Nitrogen (Pressure Test)', sizes: ['Small', 'Large'], unit: 'tank' },
-        { id: 'linecover', name: 'Line Set Cover/Insulation', sizes: ['15 ft', '25 ft', '50 ft'] }
-      ]
-    },
-    electrical: {
-      name: 'Electrical',
-      items: [
-        { id: 'disconnect-30', name: 'Disconnect Box (30A)', sizes: ['30A'], amperage: 30 },
-        { id: 'disconnect-60', name: 'Disconnect Box (60A)', sizes: ['60A'], amperage: 60 },
-        { id: 'whip', name: 'Electrical Whip', sizes: ['3 ft', '6 ft', '10 ft'] },
-        { id: 'breaker', name: 'Circuit Breaker', sizes: ['15A', '20A', '30A', '40A', '50A', '60A'] },
-        { id: 'wire-lv', name: 'Low Voltage Wire (18ga)', sizes: ['18/5', '18/8'], unit: 'ft' },
-        { id: 'wire-hv', name: 'High Voltage Wire', sizes: ['10/2', '10/3', '8/2', '8/3', '6/2', '6/3'], unit: 'ft' },
-        { id: 'condensate-switch', name: 'Condensate Safety Switch', sizes: ['Standard'] },
-        { id: 'relay', name: 'Relay', sizes: ['24V', '120V', '240V'] },
-        { id: 'capacitor', name: 'Capacitor', sizes: ['5µF', '7.5µF', '10µF', '15µF', '20µF', '25µF', '30µF', '35µF', '40µF', '45µF', '50µF'] },
-        { id: 'contactor', name: 'Contactor', sizes: ['1-Pole', '2-Pole', '3-Pole'] }
-      ]
-    },
-    iaq: {
-      name: 'IAQ & Filtration',
-      items: [
-        { id: 'media-cleaner', name: 'Media Air Cleaner', sizes: ['16x25', '20x25', '20x20'] },
-        { id: 'electronic-cleaner', name: 'Electronic Air Cleaner', sizes: ['16x25', '20x25'] },
-        { id: 'hepa-filter', name: 'HEPA Filter Box', sizes: ['Standard'] },
-        { id: 'humidifier', name: 'Whole-Home Humidifier', sizes: ['Bypass', 'Fan-Powered', 'Steam'] },
-        { id: 'dehumidifier', name: 'Whole-Home Dehumidifier', sizes: ['90 Pint', '120 Pint', '150 Pint'] },
-        { id: 'uv-light', name: 'UV Light System', sizes: ['Single Lamp', 'Dual Lamp'] },
-        { id: 'erv', name: 'ERV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] },
-        { id: 'hrv', name: 'HRV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] },
-        { id: 'reme-halo', name: 'REME HALO Air Purifier', sizes: ['24V'] }
-      ]
-    },
-    modernTech: {
-      name: 'Modern Tech & Protection',
-      items: [
-        { id: 'soft-start-small', name: 'Soft Start Kit (1-2.5 Ton)', sizes: ['1-2.5 Ton'], tonnageRange: [1, 2.5] },
-        { id: 'soft-start-medium', name: 'Soft Start Kit (3-3.5 Ton)', sizes: ['3-3.5 Ton'], tonnageRange: [3, 3.5] },
-        { id: 'soft-start-large', name: 'Soft Start Kit (4-5 Ton)', sizes: ['4-5 Ton'], tonnageRange: [4, 5] },
-        { id: 'hard-start', name: 'Hard Start Capacitor', sizes: ['Universal'] },
-        { id: 'surge-whole', name: 'Whole-Home Surge Protector', sizes: ['Type 1', 'Type 2'] },
-        { id: 'surge-equip', name: 'Equipment Surge Protector', sizes: ['120V', '240V'] },
-        { id: 'voltage-reg', name: 'Voltage Regulator/Stabilizer', sizes: ['15A', '30A', '50A'] },
-        { id: 'smart-thermo', name: 'Smart Thermostat', sizes: ['Ecobee', 'Nest', 'Honeywell'] },
-        { id: 'zoning', name: 'Zoning System', sizes: ['2-Zone', '3-Zone', '4-Zone', '6-Zone'] },
-        { id: 'ecm-motor', name: 'ECM Motor Upgrade', sizes: ['1/3 HP', '1/2 HP', '3/4 HP', '1 HP'] },
-        { id: 'variable-speed', name: 'Variable Speed Control', sizes: ['Standard'] }
-      ]
-    },
-    venting: {
-      name: 'Venting (Gas/Oil)',
-      items: [
-        { id: 'bvent', name: 'B-Vent Pipe', sizes: ['3"', '4"', '5"', '6"', '7"'], unit: 'ft' },
-        { id: 'pvc-vent', name: 'PVC Vent Pipe', sizes: ['2"', '3"', '4"'], unit: 'ft' },
-        { id: 'vent-cap', name: 'Vent Cap/Termination', sizes: ['2"', '3"', '4"', '5"', '6"'] },
-        { id: 'vent-connector', name: 'Vent Connector', sizes: ['3"', '4"', '5"', '6"'] },
-        { id: 'vent-elbow', name: 'Vent Elbow (45°/90°)', sizes: ['2"', '3"', '4"', '5"'] },
-        { id: 'inducer', name: 'Inducer Motor', sizes: ['Standard', 'High Efficiency'] }
-      ]
-    },
-    drainage: {
-      name: 'Drainage',
-      items: [
-        { id: 'condensate-pump', name: 'Condensate Pump', sizes: ['Standard', 'Heavy Duty'] },
-        { id: 'drain-pvc', name: 'PVC Drain Pipe (3/4")', sizes: ['10 ft', '20 ft'], unit: 'length' },
-        { id: 'drain-pan', name: 'Drain Pan', sizes: ['Primary', 'Secondary', 'Auxiliary'] },
-        { id: 'ptrap', name: 'P-Trap', sizes: ['3/4"', '1"'] },
-        { id: 'float-switch', name: 'Float Switch', sizes: ['Standard'] },
-        { id: 'drain-fitting', name: 'Drain Fittings Kit', sizes: ['Standard'] }
-      ]
-    },
-    consumables: {
-      name: 'Consumables & Supplies',
-      items: [
-        { id: 'mastic', name: 'Duct Mastic', sizes: ['1 Gallon', '5 Gallon'] },
-        { id: 'foil-tape', name: 'Foil Tape', sizes: ['2"', '3"'], unit: 'roll' },
-        { id: 'duct-tape', name: 'Duct Tape', sizes: ['Standard'], unit: 'roll' },
-        { id: 'screws-tap', name: 'Self-Tapping Screws', sizes: ['#8 x 1/2"', '#10 x 3/4"', '#12 x 1"'], unit: 'box' },
-        { id: 'screws-sheet', name: 'Sheet Metal Screws', sizes: ['#8', '#10'], unit: 'box' },
-        { id: 'hangers', name: 'Duct Hangers/Strapping', sizes: ['Standard'], unit: 'roll' },
-        { id: 'insulation-duct', name: 'Duct Insulation', sizes: ['R-6', 'R-8'], unit: 'roll' },
-        { id: 'insulation-pipe', name: 'Pipe Insulation', sizes: ['1/4"', '3/8"', '1/2"', '3/4"'], unit: 'ft' },
-        { id: 'refrig-oil', name: 'Refrigerant Oil', sizes: ['8 oz', '16 oz'] },
-        { id: 'leak-seal', name: 'Leak Sealant', sizes: ['Standard'] },
-        { id: 'cleaning', name: 'Coil Cleaner', sizes: ['Aerosol', '1 Gallon'] },
-        { id: 'wire-nuts', name: 'Wire Nuts Assortment', sizes: ['Standard'], unit: 'pack' },
-        { id: 'zip-ties', name: 'Zip Ties', sizes: ['Assorted'], unit: 'pack' }
-      ]
-    }
-  };
-
-  const getTonnageFromSize = (sizeStr) => {
-    const match = sizeStr.match(/(\d+\.?\d*)\s*Ton/i);
-    return match ? parseFloat(match[1]) : null;
-  };
-
-  const generateSuggestions = useCallback((materials) => {
-    const suggestions = [];
-    const hasCoolingEquipment = materials.some(m => 
-      materialsCatalog.equipment.items.some(item => 
-        item.id === m.itemId && item.category === 'cooling'
-      )
-    );
-    const hasFurnace = materials.some(m => 
-      materialsCatalog.equipment.items.some(item => 
-        item.id === m.itemId && item.category === 'furnace'
-      )
-    );
-
-    const coolingEquipment = materials.find(m => {
-      const item = materialsCatalog.equipment.items.find(i => i.id === m.itemId);
-      return item && item.tonnage;
-    });
-
-    if (coolingEquipment) {
-      const tonnage = getTonnageFromSize(coolingEquipment.size);
-      
-      if (tonnage) {
-        const hasLineset = materials.some(m => m.itemId && m.itemId.includes('lineset'));
-        if (!hasLineset) {
-          let linesetItem;
-          if (tonnage <= 2.5) {
-            linesetItem = materialsCatalog.refrigerant.items.find(i => i.id === 'lineset-small');
-          } else if (tonnage <= 3.5) {
-            linesetItem = materialsCatalog.refrigerant.items.find(i => i.id === 'lineset-medium');
-          } else {
-            linesetItem = materialsCatalog.refrigerant.items.find(i => i.id === 'lineset-large');
-          }
-          if (linesetItem) {
-            suggestions.push({
-              category: 'refrigerant',
-              item: linesetItem,
-              reason: `Matches ${tonnage} ton system`
-            });
-          }
-        }
-
-        const hasSoftStart = materials.some(m => m.itemId && m.itemId.includes('soft-start'));
-        if (!hasSoftStart) {
-          let softStartItem;
-          if (tonnage <= 2.5) {
-            softStartItem = materialsCatalog.modernTech.items.find(i => i.id === 'soft-start-small');
-          } else if (tonnage <= 3.5) {
-            softStartItem = materialsCatalog.modernTech.items.find(i => i.id === 'soft-start-medium');
-          } else {
-            softStartItem = materialsCatalog.modernTech.items.find(i => i.id === 'soft-start-large');
-          }
-          if (softStartItem) {
-            suggestions.push({
-              category: 'modernTech',
-              item: softStartItem,
-              reason: 'Recommended for equipment protection'
-            });
-          }
-        }
-
-        const hasDisconnect = materials.some(m => m.itemId && m.itemId.includes('disconnect'));
-        if (!hasDisconnect) {
-          const disconnectItem = tonnage >= 4 
-            ? materialsCatalog.electrical.items.find(i => i.id === 'disconnect-60')
-            : materialsCatalog.electrical.items.find(i => i.id === 'disconnect-30');
-          if (disconnectItem) {
-            suggestions.push({
-              category: 'electrical',
-              item: disconnectItem,
-              reason: `Required for ${tonnage} ton unit`
-            });
-          }
-        }
-      }
-    }
-
-    if (hasCoolingEquipment || hasFurnace) {
-      const hasPlenum = materials.some(m => m.name && m.name.includes('Plenum'));
-      if (!hasPlenum) {
-        suggestions.push({
-          category: 'ductwork',
-          item: materialsCatalog.ductwork.items.find(i => i.id === 'plenum-supply'),
-          reason: 'Required for equipment installation'
-        });
-      }
-
-      const hasDrain = materials.some(m => m.itemId && (m.itemId.includes('drain') || m.itemId.includes('ptrap')));
-      if (!hasDrain) {
-        suggestions.push({
-          category: 'drainage',
-          item: materialsCatalog.drainage.items.find(i => i.id === 'ptrap'),
-          reason: 'Required for condensate drainage'
-        });
-      }
-
-      const hasSurge = materials.some(m => m.itemId && m.itemId.includes('surge'));
-      if (!hasSurge) {
-        suggestions.push({
-          category: 'modernTech',
-          item: materialsCatalog.modernTech.items.find(i => i.id === 'surge-equip'),
-          reason: 'Protects equipment from power surges'
-        });
-      }
-    }
-
-    if (hasFurnace) {
-      const hasVenting = materials.some(m => m.itemId && m.itemId.includes('vent'));
-      if (!hasVenting) {
-        suggestions.push({
-          category: 'venting',
-          item: materialsCatalog.venting.items.find(i => i.id === 'pvc-vent'),
-          reason: 'Required for gas furnace exhaust'
-        });
-      }
-    }
-
-    return suggestions;
-  }, []);
-
-  const smartSuggestions = useMemo(() => {
-    return generateSuggestions(selectedMaterials);
-  }, [selectedMaterials, generateSuggestions]);
-
-  const addMaterial = useCallback((category, item, size = null, spec = null) => {
-    const newMaterial = {
-      id: `${item.id}-${Date.now()}-${Math.random()}`,
-      itemId: item.id,
-      category: materialsCatalog[category].name,
-      name: item.name,
-      size: size || (item.sizes && item.sizes[0]) || 'Standard',
-      spec: spec || item.spec || null,
-      quantity: 1,
-      unit: item.unit || 'ea'
-    };
-    setSelectedMaterials(prev => [...prev, newMaterial]);
-  }, []);
-
-  const updateQuantity = useCallback((id, quantity) => {
-    setSelectedMaterials(prev => prev.map(m => 
-      m.id === id ? { ...m, quantity: Math.max(1, parseInt(quantity) || 1) } : m
-    ));
-  }, []);
-
-  const updateSize = useCallback((id, size) => {
-    setSelectedMaterials(prev => prev.map(m => 
-      m.id === id ? { ...m, size } : m
-    ));
-  }, []);
-
-  const removeMaterial = useCallback((id) => {
-    setSelectedMaterials(prev => prev.filter(m => m.id !== id));
-  }, []);
-
-  const handlePhotoUpload = useCallback((e) => {
-    const files = Array.from(e.target.files);
-    files.forEach(file => {
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          setAttachedPhotos(prev => [...prev, {
-            id: `photo-${Date.now()}-${Math.random()}`,
-            name: file.name,
-            dataUrl: event.target.result
-          }]);
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-    e.target.value = '';
-  }, []);
-
-  const removePhoto = useCallback((id) => {
-    setAttachedPhotos(prev => prev.filter(p => p.id !== id));
-  }, []);
-
-  const resetForm = useCallback(() => {
-    setJobType('');
-    setSelectedMaterials([]);
-    setAttachedPhotos([]);
-    setJobDetails({
-      jobName: '',
-      technician: '',
-      date: new Date().toISOString().split('T')[0],
-      notes: ''
-    });
-  }, []);
-
-  const printList = useCallback(() => {
-    window.print();
-  }, []);
-
-  const exportCSV = useCallback(() => {
-    const headers = ['Category', 'Item', 'Size/Spec', 'Quantity', 'Unit'];
-    const rows = selectedMaterials.map(m => [
-      m.category,
-      m.name,
-      m.spec ? `${m.size} - ${m.spec}` : m.size,
-      m.quantity,
-      m.unit
-    ]);
-    
-    const csv = [headers, ...rows]
-      .map(row => row.map(cell => `"${cell}"`).join(','))
-      .join('\n');
-    
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `hvac-materials-${jobDetails.jobName || 'list'}-${jobDetails.date}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
-  }, [selectedMaterials, jobDetails]);
-
-  const sendEmail = useCallback(() => {
-    const subject = `HVAC Materials List - ${jobDetails.jobName || 'Job'} - ${jobDetails.date}`;
-    
-    let body = `HVAC PRE-INSTALL MATERIALS LIST\n\n`;
-    body += `Job: ${jobDetails.jobName}\n`;
-    body += `Technician: ${jobDetails.technician}\n`;
-    body += `Date: ${jobDetails.date}\n`;
-    body += `Job Type: ${jobTypes.find(jt => jt.id === jobType)?.name || 'Not specified'}\n\n`;
-    
-    if (jobDetails.notes) {
-      body += `Notes: ${jobDetails.notes}\n\n`;
-    }
-    
-    body += `MATERIALS:\n`;
-    body += `${'='.repeat(60)}\n\n`;
-    
-    const groupedMaterials = selectedMaterials.reduce((acc, m) => {
-      if (!acc[m.category]) acc[m.category] = [];
-      acc[m.category].push(m);
-      return acc;
-    }, {});
-    
-    Object.entries(groupedMaterials).forEach(([category, items]) => {
-      body += `${category}:\n`;
-      items.forEach(m => {
-        const sizeInfo = m.spec ? `${m.size} - ${m.spec}` : m.size;
-        body += `  - ${m.name} | ${sizeInfo} | Qty: ${m.quantity} ${m.unit}\n`;
-      });
-      body += `\n`;
-    });
-    
-    body += `${'='.repeat(60)}\n`;
-    body += `Total Items: ${selectedMaterials.reduce((sum, m) => sum + m.quantity, 0)}\n`;
-    
-    if (attachedPhotos.length > 0) {
-      body += `\nAttached Photos: ${attachedPhotos.length} image(s)\n`;
-    }
-    
-    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
-    setShowEmailModal(false);
-    setEmailAddress('');
-  }, [selectedMaterials, jobDetails, jobType, attachedPhotos, emailAddress, jobTypes]);
-
-  return (
-    <div className="min-h-screen bg-gray-50 p-4 print:p-0 print:bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white shadow-sm border-b border-gray-200 rounded-lg mb-6 p-6 print:shadow-none print:border-b-2">
-          <h1 className="text-3xl font-semibold text-gray-900 mb-2">HVAC Pre-Install Materials List</h1>
-          <p className="text-gray-600">Generate comprehensive materials lists for installations and repairs</p>
-        </div>
-
-        <div className="bg-white shadow-sm rounded-lg p-6 mb-6 print:shadow-none print:mb-4">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Job Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Job Name/Number</label>
-              <input
-                type="text"
-                value={jobDetails.jobName}
-                onChange={(e) => setJobDetails(prev => ({...prev, jobName: e.target.value}))}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent print:border-gray-400"
-                placeholder="Enter job identifier"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Technician</label>
-              <input
-                type="text"
-                value={jobDetails.technician}
-                onChange={(e) => setJobDetails(prev => ({...prev, technician: e.target.value}))}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent print:border-gray-400"
-                placeholder="Enter technician name"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
-              <input
-                type="date"
-                value={jobDetails.date}
-                onChange={(e) => setJobDetails(prev => ({...prev, date: e.target.value}))}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent print:border-gray-400"
-              />
-            </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Notes</label>
-            <textarea
-              value={jobDetails.notes}
-              onChange={(e) => setJobDetails(prev => ({...prev, notes: e.target.value}))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent print:border-gray-400"
-              rows="2"
-              placeholder="Additional notes or special requirements"
-            />
-          </div>
-        </div>
-
-        <div className="bg-white shadow-sm rounded-lg p-6 mb-6 print:shadow-none print:mb-4">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Job Type</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {jobTypes.map(type => (
-              <button
-                key={type.id}
-                onClick={() => setJobType(type.id)}
-                className={`p-4 rounded-lg border-2 transition-all print:border ${
-                  jobType === type.id
-                    ? 'border-blue-500 bg-blue-50 text-blue-700'
-                    : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                <div className="text-3xl mb-2">{type.icon}</div>
-                <div className="font-medium text-sm">{type.name}</div>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {smartSuggestions.length > 0 && (
-          <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-6 print:hidden">
-            <div className="flex items-start">
-              <AlertCircle className="text-blue-500 mt-0.5 mr-3 flex-shrink-0" size={20} />
-              <div className="flex-1">
-                <h3 className="font-semibold text-blue-900 mb-2">Smart Suggestions</h3>
-                <div className="space-y-2">
-                  {smartSuggestions.map((suggestion, idx) => (
-                    <div key={idx} className="flex items-center justify-between bg-white rounded p-2">
-                      <div>
-                        <div className="font-medium text-sm text-gray-900">{suggestion.item.name}</div>
-                        <div className="text-xs text-gray-600">{suggestion.reason}</div>
-                      </div>
-                      <button
-                        onClick={() => addMaterial(suggestion.category, suggestion.item)}
-                        className="ml-2 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
-                      >
-                        Add
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="space-y-4 print:hidden">
-            <h2 className="text-xl font-semibold text-gray-900 bg-white shadow-sm rounded-lg p-4">Materials Catalog</h2>
-            
-            {Object.entries(materialsCatalog).map(([categoryId, category]) => (
-              <div key={categoryId} className="bg-white shadow-sm rounded-lg p-4">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center justify-between">
-                  {category.name}
-                  <span className="text-xs text-gray-500 font-normal">{category.items.length} items</span>
-                </h3>
-                <div className="space-y-2">
-                  {category.items.map(item => (
-                    <div key={item.id} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg transition-colors">
-                      <div className="flex-1">
-                        <div className="font-medium text-sm text-gray-900">{item.name}</div>
-                        {item.sizes && (
-                          <div className="text-xs text-gray-500 mt-1">
-                            {item.sizes.slice(0, 3).join(', ')}
-                            {item.sizes.length > 3 && ` +${item.sizes.length - 3} more`}
-                          </div>
-                        )}
-                      </div>
-                      <button
-                        onClick={() => addMaterial(categoryId, item)}
-                        className="ml-2 p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                        title="Add to list"
-                      >
-                        <Plus size={18} />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="space-y-4">
-            <div className="bg-white shadow-sm rounded-lg p-4 print:shadow-none">
-              <div className="flex items-center justify-between mb-4 print:mb-2">
-                <h2 className="text-xl font-semibold text-gray-900">Materials List</h2>
-                <div className="flex gap-2 print:hidden">
-                  <label className="cursor-pointer">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      multiple
-                      onChange={handlePhotoUpload}
-                      className="hidden"
-                    />
-                    <div className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2">
-                      <Camera size={18} />
-                      <span className="text-sm">Photos</span>
-                    </div>
-                  </label>
-                  <button
-                    onClick={printList}
-                    className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
-                    title="Print list"
-                  >
-                    <Printer size={18} />
-                  </button>
-                  <button
-                    onClick={exportCSV}
-                    className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
-                    title="Export as CSV"
-                  >
-                    <FileDown size={18} />
-                  </button>
-                  <button
-                    onClick={() => setShowEmailModal(true)}
-                    className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
-                    title="Email list"
-                  >
-                    <Mail size={18} />
-                  </button>
-                </div>
-              </div>
-
-              {attachedPhotos.length > 0 && (
-                <div className="mb-4 print:mb-2">
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">Attached Photos ({attachedPhotos.length})</h3>
-                  <div className="grid grid-cols-3 gap-2">
-                    {attachedPhotos.map(photo => (
-                      <div key={photo.id} className="relative group">
-                        <img
-                          src={photo.dataUrl}
-                          alt={photo.name}
-                          className="w-full h-24 object-cover rounded border border-gray-200"
-                        />
-                        <button
-                          onClick={() => removePhoto(photo.id)}
-                          className="absolute top-1 right-1 p-1 bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity print:hidden"
-                        >
-                          <X size={14} />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {selectedMaterials.length === 0 ? (
-                <div className="text-center py-12 text-gray-500 print:hidden">
-                  <p className="text-lg">No materials selected yet</p>
-                  <p className="text-sm mt-2">Add items from the catalog to build your materials list</p>
-                </div>
-              ) : (
-                <div className="space-y-2">
-                  {selectedMaterials.map(material => {
-                    const catalogItem = Object.values(materialsCatalog)
-                      .flatMap(cat => cat.items)
-                      .find(item => item.id === material.itemId);
-                    
-                    return (
-                      <div key={material.id} className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg print:border-gray-300 print:p-2">
-                        <div className="flex-1">
-                          <div className="font-medium text-gray-900">{material.name}</div>
-                          <div className="flex items-center gap-2 mt-1">
-                            {catalogItem && catalogItem.sizes && catalogItem.sizes.length > 1 ? (
-                              <select
-                                value={material.size}
-                                onChange={(e) => updateSize(material.id, e.target.value)}
-                                className="text-sm border border-gray-300 rounded px-2 py-1 print:border-none print:p-0"
-                              >
-                                {catalogItem.sizes.map(size => (
-                                  <option key={size} value={size}>{size}</option>
-                                ))}
-                              </select>
-                            ) : (
-                              <span className="text-sm text-gray-600">
-                                {material.spec ? `${material.size} - ${material.spec}` : material.size}
-                              </span>
-                            )}
-                          </div>
-                          <div className="text-xs text-gray-500 mt-1">{material.category}</div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <input
-                            type="number"
-                            min="1"
-                            value={material.quantity}
-                            onChange={(e) => updateQuantity(material.id, e.target.value)}
-                            className="w-16 px-2 py-1 border border-gray-300 rounded text-center print:border-gray-400 print:w-12"
-                          />
-                          <span className="text-sm text-gray-600 w-8">{material.unit}</span>
-                          <button
-                            onClick={() => removeMaterial(material.id)}
-                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors print:hidden"
-                            title="Remove item"
-                          >
-                            <Trash2 size={18} />
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-
-              {selectedMaterials.length > 0 && (
-                <div className="mt-6 pt-4 border-t border-gray-200 print:mt-4 print:pt-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-lg font-semibold text-gray-900">Total Items:</span>
-                    <span className="text-lg font-semibold text-blue-600">
-                      {selectedMaterials.reduce((sum, m) => sum + m.quantity, 0)}
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {showEmailModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Email Materials List</h3>
-            <p className="text-sm text-gray-600 mb-4">
-              Enter the email address to send this materials list. Your default email client will open with the list prepared.
-            </p>
-            <input
-              type="email"
-              value={emailAddress}
-              onChange={(e) => setEmailAddress(e.target.value)}
-              placeholder="recipient@example.com"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-4"
-              autoFocus
-            />
-            <div className="flex gap-3">
-              <button
-                onClick={() => {
-                  setShowEmailModal(false);
-                  setEmailAddress('');
-                }}
-                className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={sendEmail}
-                disabled={!emailAddress}
-                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Send Email
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default HVACMaterialsList;
