@@ -2408,3 +2408,734 @@ Customer Acknowledged: ${data.signature.customer}
   </script>
 </body>
 </html>
+<script>
+  
+import React, { useState, useMemo, useCallback } from 'react';
+import { Plus, Trash2, Printer, FileDown, Mail, Camera, X, Check, AlertCircle } from 'lucide-react';
+
+const HVACMaterialsList = () => {
+  const [jobType, setJobType] = useState('');
+  const [selectedMaterials, setSelectedMaterials] = useState([]);
+  const [attachedPhotos, setAttachedPhotos] = useState([]);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [emailAddress, setEmailAddress] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [jobDetails, setJobDetails] = useState({
+    jobName: '',
+    technician: '',
+    date: new Date().toISOString().split('T')[0],
+    notes: ''
+  });
+
+  const jobTypes = [
+    { id: 'full-replacement', name: 'Full System Replacement', icon: '🏠' },
+    { id: 'piece-work', name: 'Piece Work', icon: '🔧' },
+    { id: 'repair', name: 'Repair/Service', icon: '⚙️' },
+    { id: 'upgrade', name: 'Upgrades & IAQ', icon: '⬆️' }
+  ];
+
+  const materialsCatalog = {
+    equipment: {
+      name: 'Equipment',
+      items: [
+        { id: 'furnace-gas', name: 'Gas Furnace', sizes: ['60K BTU', '80K BTU', '100K BTU', '120K BTU'], category: 'furnace' },
+        { id: 'furnace-electric', name: 'Electric Furnace', sizes: ['10kW', '15kW', '20kW', '25kW'], category: 'furnace' },
+        { id: 'ac-unit', name: 'Air Conditioner', sizes: ['1.5 Ton', '2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
+        { id: 'heat-pump', name: 'Heat Pump', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
+        { id: 'evap-coil', name: 'Evaporator Coil', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
+        { id: 'air-handler', name: 'Air Handler', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton'], category: 'cooling' },
+        { id: 'package-unit', name: 'Package Unit', sizes: ['2 Ton', '3 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true }
+      ]
+    },
+    ductwork: {
+      name: 'Ductwork & Fittings',
+      items: [
+        { id: 'trunk-duct', name: 'Trunk Duct (Rectangular)', sizes: ['12x8', '14x8', '16x8', '18x10', '20x10', '24x12'], unit: 'ft' },
+        { id: 'flex-duct', name: 'Flexible Duct', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'], unit: 'ft' },
+        { id: 'plenum-supply', name: 'Supply Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
+        { id: 'plenum-return', name: 'Return Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
+        { id: 'collar', name: 'Starting Collar', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'] },
+        { id: 'register', name: 'Supply Register', sizes: ['4x10', '4x12', '6x10', '6x12', '8x10', '10x10'] },
+        { id: 'grille', name: 'Return Grille', sizes: ['10x10', '12x12', '14x14', '16x16', '20x20', '24x24'] },
+        { id: 'damper', name: 'Balancing Damper', sizes: ['4"', '6"', '8"', '10"', '12"'] },
+        { id: 'transition', name: 'Transition', sizes: ['Various'] },
+        { id: 'elbow-90', name: '90° Elbow', sizes: ['6"', '8"', '10"', '12"'] }
+      ]
+    },
+    refrigerant: {
+      name: 'Refrigerant & Line Sets',
+      items: [
+        { id: 'lineset-small', name: 'Line Set (1.5-2.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '1/4" x 3/8"', tonnageRange: [1.5, 2.5] },
+        { id: 'lineset-medium', name: 'Line Set (3-3.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 3/4"', tonnageRange: [3, 3.5] },
+        { id: 'lineset-large', name: 'Line Set (4-5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 7/8"', tonnageRange: [4, 5] },
+        { id: 'r410a', name: 'R-410A Refrigerant', sizes: ['25 lb', '50 lb'], unit: 'cylinder' },
+        { id: 'r32', name: 'R-32 Refrigerant', sizes: ['20 lb'], unit: 'cylinder' },
+        { id: 'nitrogen', name: 'Nitrogen (Pressure Test)', sizes: ['Small', 'Large'], unit: 'tank' },
+        { id: 'linecover', name: 'Line Set Cover/Insulation', sizes: ['15 ft', '25 ft', '50 ft'] }
+      ]
+    },
+    electrical: {
+      name: 'Electrical',
+      items: [
+        { id: 'disconnect-30', name: 'Disconnect Box (30A)', sizes: ['30A'], amperage: 30 },
+        { id: 'disconnect-60', name: 'Disconnect Box (60A)', sizes: ['60A'], amperage: 60 },
+        { id: 'whip', name: 'Electrical Whip', sizes: ['3 ft', '6 ft', '10 ft'] },
+        { id: 'breaker', name: 'Circuit Breaker', sizes: ['15A', '20A', '30A', '40A', '50A', '60A'] },
+        { id: 'wire-lv', name: 'Low Voltage Wire (18ga)', sizes: ['18/5', '18/8'], unit: 'ft' },
+        { id: 'wire-hv', name: 'High Voltage Wire', sizes: ['10/2', '10/3', '8/2', '8/3', '6/2', '6/3'], unit: 'ft' },
+        { id: 'condensate-switch', name: 'Condensate Safety Switch', sizes: ['Standard'] },
+        { id: 'relay', name: 'Relay', sizes: ['24V', '120V', '240V'] },
+        { id: 'capacitor', name: 'Capacitor', sizes: ['5µF', '7.5µF', '10µF', '15µF', '20µF', '25µF', '30µF', '35µF', '40µF', '45µF', '50µF'] },
+        { id: 'contactor', name: 'Contactor', sizes: ['1-Pole', '2-Pole', '3-Pole'] }
+      ]
+    },
+    iaq: {
+      name: 'IAQ & Filtration',
+      items: [
+        { id: 'media-cleaner', name: 'Media Air Cleaner', sizes: ['16x25', '20x25', '20x20'] },
+        { id: 'electronic-cleaner', name: 'Electronic Air Cleaner', sizes: ['16x25', '20x25'] },
+        { id: 'hepa-filter', name: 'HEPA Filter Box', sizes: ['Standard'] },
+        { id: 'humidifier', name: 'Whole-Home Humidifier', sizes: ['Bypass', 'Fan-Powered', 'Steam'] },
+        { id: 'dehumidifier', name: 'Whole-Home Dehumidifier', sizes: ['90 Pint', '120 Pint', '150 Pint'] },
+        { id: 'uv-light', name: 'UV Light System', sizes: ['Single Lamp', 'Dual Lamp'] },
+        { id: 'erv', name: 'ERV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] },
+        { id: 'hrv', name: 'HRV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] },
+        { id: 'reme-halo', name: 'REME HALO Air Purifier', sizes: ['24V'] }
+      ]
+    },
+    modernTech: {
+      name: 'Modern Tech & Protection',
+      items: [
+        { id: 'soft-start-small', name: 'Soft Start Kit (1-2.5 Ton)', sizes: ['1-2.5 Ton'], tonnageRange: [1, 2.5] },
+        { id: 'soft-start-medium', name: 'Soft Start Kit (3-3.5 Ton)', sizes: ['3-3.5 Ton'], tonnageRange: [3, 3.5] },
+        { id: 'soft-start-large', name: 'Soft Start Kit (4-5 Ton)', sizes: ['4-5 Ton'], tonnageRange: [4, 5] },
+        { id: 'hard-start', name: 'Hard Start Capacitor', sizes: ['Universal'] },
+        { id: 'surge-whole', name: 'Whole-Home Surge Protector', sizes: ['Type 1', 'Type 2'] },
+        { id: 'surge-equip', name: 'Equipment Surge Protector', sizes: ['120V', '240V'] },
+        { id: 'voltage-reg', name: 'Voltage Regulator/Stabilizer', sizes: ['15A', '30A', '50A'] },
+        { id: 'smart-thermo', name: 'Smart Thermostat', sizes: ['Ecobee', 'Nest', 'Honeywell'] },
+        { id: 'zoning', name: 'Zoning System', sizes: ['2-Zone', '3-Zone', '4-Zone', '6-Zone'] },
+        { id: 'ecm-motor', name: 'ECM Motor Upgrade', sizes: ['1/3 HP', '1/2 HP', '3/4 HP', '1 HP'] },
+        { id: 'variable-speed', name: 'Variable Speed Control', sizes: ['Standard'] }
+      ]
+    },
+    venting: {
+      name: 'Venting (Gas/Oil)',
+      items: [
+        { id: 'bvent', name: 'B-Vent Pipe', sizes: ['3"', '4"', '5"', '6"', '7"'], unit: 'ft' },
+        { id: 'pvc-vent', name: 'PVC Vent Pipe', sizes: ['2"', '3"', '4"'], unit: 'ft' },
+        { id: 'vent-cap', name: 'Vent Cap/Termination', sizes: ['2"', '3"', '4"', '5"', '6"'] },
+        { id: 'vent-connector', name: 'Vent Connector', sizes: ['3"', '4"', '5"', '6"'] },
+        { id: 'vent-elbow', name: 'Vent Elbow (45°/90°)', sizes: ['2"', '3"', '4"', '5"'] },
+        { id: 'inducer', name: 'Inducer Motor', sizes: ['Standard', 'High Efficiency'] }
+      ]
+    },
+    drainage: {
+      name: 'Drainage',
+      items: [
+        { id: 'condensate-pump', name: 'Condensate Pump', sizes: ['Standard', 'Heavy Duty'] },
+        { id: 'drain-pvc', name: 'PVC Drain Pipe (3/4")', sizes: ['10 ft', '20 ft'], unit: 'length' },
+        { id: 'drain-pan', name: 'Drain Pan', sizes: ['Primary', 'Secondary', 'Auxiliary'] },
+        { id: 'ptrap', name: 'P-Trap', sizes: ['3/4"', '1"'] },
+        { id: 'float-switch', name: 'Float Switch', sizes: ['Standard'] },
+        { id: 'drain-fitting', name: 'Drain Fittings Kit', sizes: ['Standard'] }
+      ]
+    },
+    consumables: {
+      name: 'Consumables & Supplies',
+      items: [
+        { id: 'mastic', name: 'Duct Mastic', sizes: ['1 Gallon', '5 Gallon'] },
+        { id: 'foil-tape', name: 'Foil Tape', sizes: ['2"', '3"'], unit: 'roll' },
+        { id: 'duct-tape', name: 'Duct Tape', sizes: ['Standard'], unit: 'roll' },
+        { id: 'screws-tap', name: 'Self-Tapping Screws', sizes: ['#8 x 1/2"', '#10 x 3/4"', '#12 x 1"'], unit: 'box' },
+        { id: 'screws-sheet', name: 'Sheet Metal Screws', sizes: ['#8', '#10'], unit: 'box' },
+        { id: 'hangers', name: 'Duct Hangers/Strapping', sizes: ['Standard'], unit: 'roll' },
+        { id: 'insulation-duct', name: 'Duct Insulation', sizes: ['R-6', 'R-8'], unit: 'roll' },
+        { id: 'insulation-pipe', name: 'Pipe Insulation', sizes: ['1/4"', '3/8"', '1/2"', '3/4"'], unit: 'ft' },
+        { id: 'refrig-oil', name: 'Refrigerant Oil', sizes: ['8 oz', '16 oz'] },
+        { id: 'leak-seal', name: 'Leak Sealant', sizes: ['Standard'] },
+        { id: 'cleaning', name: 'Coil Cleaner', sizes: ['Aerosol', '1 Gallon'] },
+        { id: 'wire-nuts', name: 'Wire Nuts Assortment', sizes: ['Standard'], unit: 'pack' },
+        { id: 'zip-ties', name: 'Zip Ties', sizes: ['Assorted'], unit: 'pack' }
+      ]
+    }
+  };
+
+  const getTonnageFromSize = (sizeStr) => {
+    const match = sizeStr.match(/(\d+\.?\d*)\s*Ton/i);
+    return match ? parseFloat(match[1]) : null;
+  };
+
+  const generateSuggestions = useCallback((materials) => {
+    const suggestions = [];
+    const hasCoolingEquipment = materials.some(m => 
+      materialsCatalog.equipment.items.some(item => 
+        item.id === m.itemId && item.category === 'cooling'
+      )
+    );
+    const hasFurnace = materials.some(m => 
+      materialsCatalog.equipment.items.some(item => 
+        item.id === m.itemId && item.category === 'furnace'
+      )
+    );
+
+    const coolingEquipment = materials.find(m => {
+      const item = materialsCatalog.equipment.items.find(i => i.id === m.itemId);
+      return item && item.tonnage;
+    });
+
+    if (coolingEquipment) {
+      const tonnage = getTonnageFromSize(coolingEquipment.size);
+      
+      if (tonnage) {
+        const hasLineset = materials.some(m => m.itemId && m.itemId.includes('lineset'));
+        if (!hasLineset) {
+          let linesetItem;
+          if (tonnage <= 2.5) {
+            linesetItem = materialsCatalog.refrigerant.items.find(i => i.id === 'lineset-small');
+          } else if (tonnage <= 3.5) {
+            linesetItem = materialsCatalog.refrigerant.items.find(i => i.id === 'lineset-medium');
+          } else {
+            linesetItem = materialsCatalog.refrigerant.items.find(i => i.id === 'lineset-large');
+          }
+          if (linesetItem) {
+            suggestions.push({
+              category: 'refrigerant',
+              item: linesetItem,
+              reason: `Matches ${tonnage} ton system`
+            });
+          }
+        }
+
+        const hasSoftStart = materials.some(m => m.itemId && m.itemId.includes('soft-start'));
+        if (!hasSoftStart) {
+          let softStartItem;
+          if (tonnage <= 2.5) {
+            softStartItem = materialsCatalog.modernTech.items.find(i => i.id === 'soft-start-small');
+          } else if (tonnage <= 3.5) {
+            softStartItem = materialsCatalog.modernTech.items.find(i => i.id === 'soft-start-medium');
+          } else {
+            softStartItem = materialsCatalog.modernTech.items.find(i => i.id === 'soft-start-large');
+          }
+          if (softStartItem) {
+            suggestions.push({
+              category: 'modernTech',
+              item: softStartItem,
+              reason: 'Recommended for equipment protection'
+            });
+          }
+        }
+
+        const hasDisconnect = materials.some(m => m.itemId && m.itemId.includes('disconnect'));
+        if (!hasDisconnect) {
+          const disconnectItem = tonnage >= 4 
+            ? materialsCatalog.electrical.items.find(i => i.id === 'disconnect-60')
+            : materialsCatalog.electrical.items.find(i => i.id === 'disconnect-30');
+          if (disconnectItem) {
+            suggestions.push({
+              category: 'electrical',
+              item: disconnectItem,
+              reason: `Required for ${tonnage} ton unit`
+            });
+          }
+        }
+      }
+    }
+
+    if (hasCoolingEquipment || hasFurnace) {
+      const hasPlenum = materials.some(m => m.name && m.name.includes('Plenum'));
+      if (!hasPlenum) {
+        suggestions.push({
+          category: 'ductwork',
+          item: materialsCatalog.ductwork.items.find(i => i.id === 'plenum-supply'),
+          reason: 'Required for equipment installation'
+        });
+      }
+
+      const hasDrain = materials.some(m => m.itemId && (m.itemId.includes('drain') || m.itemId.includes('ptrap')));
+      if (!hasDrain) {
+        suggestions.push({
+          category: 'drainage',
+          item: materialsCatalog.drainage.items.find(i => i.id === 'ptrap'),
+          reason: 'Required for condensate drainage'
+        });
+      }
+
+      const hasSurge = materials.some(m => m.itemId && m.itemId.includes('surge'));
+      if (!hasSurge) {
+        suggestions.push({
+          category: 'modernTech',
+          item: materialsCatalog.modernTech.items.find(i => i.id === 'surge-equip'),
+          reason: 'Protects equipment from power surges'
+        });
+      }
+    }
+
+    if (hasFurnace) {
+      const hasVenting = materials.some(m => m.itemId && m.itemId.includes('vent'));
+      if (!hasVenting) {
+        suggestions.push({
+          category: 'venting',
+          item: materialsCatalog.venting.items.find(i => i.id === 'pvc-vent'),
+          reason: 'Required for gas furnace exhaust'
+        });
+      }
+    }
+
+    return suggestions;
+  }, []);
+
+  const smartSuggestions = useMemo(() => {
+    return generateSuggestions(selectedMaterials);
+  }, [selectedMaterials, generateSuggestions]);
+
+  const addMaterial = useCallback((category, item, size = null, spec = null) => {
+    const newMaterial = {
+      id: `${item.id}-${Date.now()}-${Math.random()}`,
+      itemId: item.id,
+      category: materialsCatalog[category].name,
+      name: item.name,
+      size: size || (item.sizes && item.sizes[0]) || 'Standard',
+      spec: spec || item.spec || null,
+      quantity: 1,
+      unit: item.unit || 'ea'
+    };
+    setSelectedMaterials(prev => [...prev, newMaterial]);
+  }, []);
+
+  const updateQuantity = useCallback((id, quantity) => {
+    setSelectedMaterials(prev => prev.map(m => 
+      m.id === id ? { ...m, quantity: Math.max(1, parseInt(quantity) || 1) } : m
+    ));
+  }, []);
+
+  const updateSize = useCallback((id, size) => {
+    setSelectedMaterials(prev => prev.map(m => 
+      m.id === id ? { ...m, size } : m
+    ));
+  }, []);
+
+  const removeMaterial = useCallback((id) => {
+    setSelectedMaterials(prev => prev.filter(m => m.id !== id));
+  }, []);
+
+  const handlePhotoUpload = useCallback((e) => {
+    const files = Array.from(e.target.files);
+    files.forEach(file => {
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          setAttachedPhotos(prev => [...prev, {
+            id: `photo-${Date.now()}-${Math.random()}`,
+            name: file.name,
+            dataUrl: event.target.result
+          }]);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    e.target.value = '';
+  }, []);
+
+  const removePhoto = useCallback((id) => {
+    setAttachedPhotos(prev => prev.filter(p => p.id !== id));
+  }, []);
+
+  const resetForm = useCallback(() => {
+    setJobType('');
+    setSelectedMaterials([]);
+    setAttachedPhotos([]);
+    setJobDetails({
+      jobName: '',
+      technician: '',
+      date: new Date().toISOString().split('T')[0],
+      notes: ''
+    });
+  }, []);
+
+  const printList = useCallback(() => {
+    window.print();
+  }, []);
+
+  const exportCSV = useCallback(() => {
+    const headers = ['Category', 'Item', 'Size/Spec', 'Quantity', 'Unit'];
+    const rows = selectedMaterials.map(m => [
+      m.category,
+      m.name,
+      m.spec ? `${m.size} - ${m.spec}` : m.size,
+      m.quantity,
+      m.unit
+    ]);
+    
+    const csv = [headers, ...rows]
+      .map(row => row.map(cell => `"${cell}"`).join(','))
+      .join('\n');
+    
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `hvac-materials-${jobDetails.jobName || 'list'}-${jobDetails.date}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [selectedMaterials, jobDetails]);
+
+  const sendEmail = useCallback(() => {
+    const subject = `HVAC Materials List - ${jobDetails.jobName || 'Job'} - ${jobDetails.date}`;
+    
+    let body = `HVAC PRE-INSTALL MATERIALS LIST\n\n`;
+    body += `Job: ${jobDetails.jobName}\n`;
+    body += `Technician: ${jobDetails.technician}\n`;
+    body += `Date: ${jobDetails.date}\n`;
+    body += `Job Type: ${jobTypes.find(jt => jt.id === jobType)?.name || 'Not specified'}\n\n`;
+    
+    if (jobDetails.notes) {
+      body += `Notes: ${jobDetails.notes}\n\n`;
+    }
+    
+    body += `MATERIALS:\n`;
+    body += `${'='.repeat(60)}\n\n`;
+    
+    const groupedMaterials = selectedMaterials.reduce((acc, m) => {
+      if (!acc[m.category]) acc[m.category] = [];
+      acc[m.category].push(m);
+      return acc;
+    }, {});
+    
+    Object.entries(groupedMaterials).forEach(([category, items]) => {
+      body += `${category}:\n`;
+      items.forEach(m => {
+        const sizeInfo = m.spec ? `${m.size} - ${m.spec}` : m.size;
+        body += `  - ${m.name} | ${sizeInfo} | Qty: ${m.quantity} ${m.unit}\n`;
+      });
+      body += `\n`;
+    });
+    
+    body += `${'='.repeat(60)}\n`;
+    body += `Total Items: ${selectedMaterials.reduce((sum, m) => sum + m.quantity, 0)}\n`;
+    
+    if (attachedPhotos.length > 0) {
+      body += `\nAttached Photos: ${attachedPhotos.length} image(s)\n`;
+    }
+    
+    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+    setShowEmailModal(false);
+    setEmailAddress('');
+  }, [selectedMaterials, jobDetails, jobType, attachedPhotos, emailAddress, jobTypes]);
+
+  return (
+    <div className="min-h-screen bg-gray-50 p-4 print:p-0 print:bg-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="bg-white shadow-sm border-b border-gray-200 rounded-lg mb-6 p-6 print:shadow-none print:border-b-2">
+          <h1 className="text-3xl font-semibold text-gray-900 mb-2">HVAC Pre-Install Materials List</h1>
+          <p className="text-gray-600">Generate comprehensive materials lists for installations and repairs</p>
+        </div>
+
+        <div className="bg-white shadow-sm rounded-lg p-6 mb-6 print:shadow-none print:mb-4">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Job Details</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Job Name/Number</label>
+              <input
+                type="text"
+                value={jobDetails.jobName}
+                onChange={(e) => setJobDetails(prev => ({...prev, jobName: e.target.value}))}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent print:border-gray-400"
+                placeholder="Enter job identifier"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Technician</label>
+              <input
+                type="text"
+                value={jobDetails.technician}
+                onChange={(e) => setJobDetails(prev => ({...prev, technician: e.target.value}))}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent print:border-gray-400"
+                placeholder="Enter technician name"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
+              <input
+                type="date"
+                value={jobDetails.date}
+                onChange={(e) => setJobDetails(prev => ({...prev, date: e.target.value}))}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent print:border-gray-400"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Notes</label>
+            <textarea
+              value={jobDetails.notes}
+              onChange={(e) => setJobDetails(prev => ({...prev, notes: e.target.value}))}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent print:border-gray-400"
+              rows="2"
+              placeholder="Additional notes or special requirements"
+            />
+          </div>
+        </div>
+
+        <div className="bg-white shadow-sm rounded-lg p-6 mb-6 print:shadow-none print:mb-4">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Job Type</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {jobTypes.map(type => (
+              <button
+                key={type.id}
+                onClick={() => setJobType(type.id)}
+                className={`p-4 rounded-lg border-2 transition-all print:border ${
+                  jobType === type.id
+                    ? 'border-blue-500 bg-blue-50 text-blue-700'
+                    : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                <div className="text-3xl mb-2">{type.icon}</div>
+                <div className="font-medium text-sm">{type.name}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {smartSuggestions.length > 0 && (
+          <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-6 print:hidden">
+            <div className="flex items-start">
+              <AlertCircle className="text-blue-500 mt-0.5 mr-3 flex-shrink-0" size={20} />
+              <div className="flex-1">
+                <h3 className="font-semibold text-blue-900 mb-2">Smart Suggestions</h3>
+                <div className="space-y-2">
+                  {smartSuggestions.map((suggestion, idx) => (
+                    <div key={idx} className="flex items-center justify-between bg-white rounded p-2">
+                      <div>
+                        <div className="font-medium text-sm text-gray-900">{suggestion.item.name}</div>
+                        <div className="text-xs text-gray-600">{suggestion.reason}</div>
+                      </div>
+                      <button
+                        onClick={() => addMaterial(suggestion.category, suggestion.item)}
+                        className="ml-2 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
+                      >
+                        Add
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-4 print:hidden">
+            <h2 className="text-xl font-semibold text-gray-900 bg-white shadow-sm rounded-lg p-4">Materials Catalog</h2>
+            
+            {Object.entries(materialsCatalog).map(([categoryId, category]) => (
+              <div key={categoryId} className="bg-white shadow-sm rounded-lg p-4">
+                <h3 className="font-semibold text-gray-900 mb-3 flex items-center justify-between">
+                  {category.name}
+                  <span className="text-xs text-gray-500 font-normal">{category.items.length} items</span>
+                </h3>
+                <div className="space-y-2">
+                  {category.items.map(item => (
+                    <div key={item.id} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                      <div className="flex-1">
+                        <div className="font-medium text-sm text-gray-900">{item.name}</div>
+                        {item.sizes && (
+                          <div className="text-xs text-gray-500 mt-1">
+                            {item.sizes.slice(0, 3).join(', ')}
+                            {item.sizes.length > 3 && ` +${item.sizes.length - 3} more`}
+                          </div>
+                        )}
+                      </div>
+                      <button
+                        onClick={() => addMaterial(categoryId, item)}
+                        className="ml-2 p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        title="Add to list"
+                      >
+                        <Plus size={18} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-white shadow-sm rounded-lg p-4 print:shadow-none">
+              <div className="flex items-center justify-between mb-4 print:mb-2">
+                <h2 className="text-xl font-semibold text-gray-900">Materials List</h2>
+                <div className="flex gap-2 print:hidden">
+                  <label className="cursor-pointer">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={handlePhotoUpload}
+                      className="hidden"
+                    />
+                    <div className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2">
+                      <Camera size={18} />
+                      <span className="text-sm">Photos</span>
+                    </div>
+                  </label>
+                  <button
+                    onClick={printList}
+                    className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
+                    title="Print list"
+                  >
+                    <Printer size={18} />
+                  </button>
+                  <button
+                    onClick={exportCSV}
+                    className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
+                    title="Export as CSV"
+                  >
+                    <FileDown size={18} />
+                  </button>
+                  <button
+                    onClick={() => setShowEmailModal(true)}
+                    className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                    title="Email list"
+                  >
+                    <Mail size={18} />
+                  </button>
+                </div>
+              </div>
+
+              {attachedPhotos.length > 0 && (
+                <div className="mb-4 print:mb-2">
+                  <h3 className="text-sm font-medium text-gray-700 mb-2">Attached Photos ({attachedPhotos.length})</h3>
+                  <div className="grid grid-cols-3 gap-2">
+                    {attachedPhotos.map(photo => (
+                      <div key={photo.id} className="relative group">
+                        <img
+                          src={photo.dataUrl}
+                          alt={photo.name}
+                          className="w-full h-24 object-cover rounded border border-gray-200"
+                        />
+                        <button
+                          onClick={() => removePhoto(photo.id)}
+                          className="absolute top-1 right-1 p-1 bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity print:hidden"
+                        >
+                          <X size={14} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {selectedMaterials.length === 0 ? (
+                <div className="text-center py-12 text-gray-500 print:hidden">
+                  <p className="text-lg">No materials selected yet</p>
+                  <p className="text-sm mt-2">Add items from the catalog to build your materials list</p>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {selectedMaterials.map(material => {
+                    const catalogItem = Object.values(materialsCatalog)
+                      .flatMap(cat => cat.items)
+                      .find(item => item.id === material.itemId);
+                    
+                    return (
+                      <div key={material.id} className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg print:border-gray-300 print:p-2">
+                        <div className="flex-1">
+                          <div className="font-medium text-gray-900">{material.name}</div>
+                          <div className="flex items-center gap-2 mt-1">
+                            {catalogItem && catalogItem.sizes && catalogItem.sizes.length > 1 ? (
+                              <select
+                                value={material.size}
+                                onChange={(e) => updateSize(material.id, e.target.value)}
+                                className="text-sm border border-gray-300 rounded px-2 py-1 print:border-none print:p-0"
+                              >
+                                {catalogItem.sizes.map(size => (
+                                  <option key={size} value={size}>{size}</option>
+                                ))}
+                              </select>
+                            ) : (
+                              <span className="text-sm text-gray-600">
+                                {material.spec ? `${material.size} - ${material.spec}` : material.size}
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1">{material.category}</div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="number"
+                            min="1"
+                            value={material.quantity}
+                            onChange={(e) => updateQuantity(material.id, e.target.value)}
+                            className="w-16 px-2 py-1 border border-gray-300 rounded text-center print:border-gray-400 print:w-12"
+                          />
+                          <span className="text-sm text-gray-600 w-8">{material.unit}</span>
+                          <button
+                            onClick={() => removeMaterial(material.id)}
+                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors print:hidden"
+                            title="Remove item"
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {selectedMaterials.length > 0 && (
+                <div className="mt-6 pt-4 border-t border-gray-200 print:mt-4 print:pt-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-semibold text-gray-900">Total Items:</span>
+                    <span className="text-lg font-semibold text-blue-600">
+                      {selectedMaterials.reduce((sum, m) => sum + m.quantity, 0)}
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {showEmailModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Email Materials List</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Enter the email address to send this materials list. Your default email client will open with the list prepared.
+            </p>
+            <input
+              type="email"
+              value={emailAddress}
+              onChange={(e) => setEmailAddress(e.target.value)}
+              placeholder="recipient@example.com"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-4"
+              autoFocus
+            />
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  setShowEmailModal(false);
+                  setEmailAddress('');
+                }}
+                className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={sendEmail}
+                disabled={!emailAddress}
+                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Send Email
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default HVACMaterialsList;
