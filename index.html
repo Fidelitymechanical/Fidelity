@@ -1,624 +1,608 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <meta name="description" content="Professional HVAC field documentation and materials system">
-  <title>Field Buddy Pro - Service & Materials</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="Field Buddy Pro v2.0 - Master Tech Edition: Professional HVAC diagnostics, materials management, and intelligent field documentation">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Field Buddy Pro v2.0 - Master Tech Edition</title>
+  
   <style>
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
+    /* ==================== DESIGN SYSTEM ==================== */
+    :root {
+      --primary: #0066FF;
+      --primary-dark: #0052CC;
+      --primary-light: #3385FF;
+      --secondary: #5856D6;
+      --success: #34C759;
+      --warning: #FF9500;
+      --danger: #FF3B30;
+      --info: #5AC8FA;
+      
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-300: #D1D5DB;
+      --gray-400: #9CA3AF;
+      --gray-500: #6B7280;
+      --gray-600: #4B5563;
+      --gray-700: #374151;
+      --gray-800: #1F2937;
+      --gray-900: #111827;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      
+      --radius-sm: 6px;
+      --radius: 8px;
+      --radius-md: 10px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-2xl: 32px;
+      
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* ==================== BASE RESET ==================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     
     html {
-      scroll-padding-top: 20px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
     }
     
-    body { 
-      font: 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #f5f5f5;
-      padding: 8px;
-      padding-bottom: 90px;
-      color: #1a1a1a;
-    }
-    
-    input, select, textarea, button {
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: var(--gray-900);
       font-size: 16px;
-      padding: 14px;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      width: 100%;
-      margin: 8px 0;
-      font-family: inherit;
-      -webkit-appearance: none;
-      background: white;
-    }
-    
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #007AFF;
-      box-shadow: 0 0 0 2px rgba(0,122,255,0.2);
-    }
-    
-    textarea {
-      resize: vertical;
-      min-height: 80px;
       line-height: 1.5;
+      padding-bottom: 100px;
     }
     
-    input[readonly] {
-      background: #f8f8f8;
-      color: #666;
-      cursor: not-allowed;
+    /* ==================== HEADER ==================== */
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
     
-    input[type="checkbox"] {
-      width: 24px;
-      height: 24px;
-      margin-right: 12px;
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-lg) var(--spacing-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--gray-900);
+    }
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    
+    .version-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    /* ==================== CONTAINER ==================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-xl);
+    }
+    
+    /* ==================== MODE SELECTOR ==================== */
+    .mode-selector {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-sm);
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .mode-btn {
+      padding: var(--spacing-lg);
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-lg);
+      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
-      accent-color: #007AFF;
-      flex-shrink: 0;
+      transition: var(--transition);
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
     }
     
-    input[type="number"] {
-      -moz-appearance: textfield;
+    .mode-btn:hover {
+      background: var(--gray-50);
+      color: var(--gray-900);
     }
     
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+    .mode-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+    
+    /* ==================== CARDS ==================== */
+    .card {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+    }
+    
+    .card:hover {
+      box-shadow: var(--shadow-xl);
+      transform: translateY(-2px);
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 2px solid var(--gray-100);
+    }
+    
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gray-900);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .card-subtitle {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary);
+      margin: var(--spacing-lg) 0 var(--spacing-md);
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--gray-100);
+    }
+    
+    /* ==================== TOGGLE SWITCHES ==================== */
+    .toggle-group {
+      display: inline-flex;
+      background: var(--gray-100);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xs);
+      gap: var(--spacing-xs);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .toggle-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border: none;
+      background: transparent;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--gray-600);
+    }
+    
+    .toggle-btn.active {
+      background: white;
+      color: var(--gray-900);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .toggle-btn.cooling.active {
+      color: #0066FF;
+    }
+    
+    .toggle-btn.heating.active {
+      color: #FF6B00;
+    }
+    
+    /* ==================== FORM ELEMENTS ==================== */
+    .form-group {
+      margin-bottom: var(--spacing-lg);
     }
     
     label {
       display: block;
       font-size: 13px;
-      color: #666;
-      margin-bottom: 4px;
-      font-weight: 500;
-    }
-    
-    label.check {
-      display: flex;
-      align-items: center;
-      font-size: 15px;
-      color: #1a1a1a;
-      margin: 10px 0;
-      padding: 12px;
-      background: white;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 2px solid #e0e0e0;
-      transition: all 0.2s;
-    }
-    
-    label.check:hover {
-      background: #f8f8f8;
-      border-color: #007AFF;
-    }
-    
-    label.check input:checked {
-      accent-color: #34C759;
-    }
-    
-    label.check.checked {
-      background: #e6f7ec;
-      border-color: #34C759;
-    }
-    
-    button {
-      background: #007AFF;
-      color: white;
       font-weight: 600;
-      border: none;
-      cursor: pointer;
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s;
+      color: var(--gray-700);
+      margin-bottom: var(--spacing-sm);
+      letter-spacing: 0.3px;
     }
     
-    button:disabled {
-      opacity: 0.5;
+    input, select, textarea {
+      width: 100%;
+      padding: var(--spacing-md) var(--spacing-lg);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-family: inherit;
+      background: white;
+      transition: var(--transition);
+      -webkit-appearance: none;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+    }
+    
+    input[readonly] {
+      background: var(--gray-50);
+      color: var(--gray-600);
       cursor: not-allowed;
     }
     
-    button:active:not(:disabled) {
-      opacity: 0.7;
-      transform: scale(0.98);
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.6;
     }
     
-    button.secondary { background: #8E8E93; }
-    button.success { background: #34C759; }
-    button.danger { background: #FF3B30; }
-    button.warning { background: #FF9500; }
-    button.small { 
-      padding: 10px 14px;
-      font-size: 14px;
-      min-height: 40px;
-    }
-    
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 12px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    
-    .card-header {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #f0f0f0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    .card-subheader {
-      font-size: 15px;
-      font-weight: 600;
-      color: #007AFF;
-      margin: 16px 0 8px 0;
-      padding-top: 12px;
-      border-top: 1px solid #e0e0e0;
-    }
-    
-    .grid-2 { 
+    /* ==================== GRID LAYOUTS ==================== */
+    .grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: var(--spacing-lg);
     }
     
-    .grid-3 { 
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-    }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
     
-    .grid-4 { 
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-    }
-    
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       .grid-2, .grid-3, .grid-4 {
         grid-template-columns: 1fr;
       }
     }
     
-    .mode-toggle {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin: 12px 0;
-    }
-    
-    .mode-toggle button {
-      background: white;
-      color: #666;
-      border: 2px solid #ddd;
+    /* ==================== BUTTONS ==================== */
+    .btn {
+      padding: var(--spacing-md) var(--spacing-xl);
+      border: none;
+      border-radius: var(--radius-md);
       font-size: 15px;
-      padding: 12px;
-      min-height: 44px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      min-height: 48px;
+      width: 100%;
     }
     
-    .mode-toggle button.active {
-      background: #007AFF;
+    .btn:active {
+      transform: scale(0.98);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
-      border-color: #007AFF;
+      box-shadow: var(--shadow-md);
     }
     
-    .status {
-      padding: 10px 14px;
-      border-radius: 8px;
+    .btn-primary:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-1px);
+    }
+    
+    .btn-success {
+      background: linear-gradient(135deg, #34C759, #28A745);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-danger {
+      background: linear-gradient(135deg, #FF3B30, #DC2626);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-secondary {
+      background: var(--gray-100);
+      color: var(--gray-700);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--gray-200);
+    }
+    
+    /* ==================== STATUS INDICATORS ==================== */
+    .status-indicator {
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius-md);
       font-size: 14px;
       font-weight: 600;
-      margin: 10px 0;
       display: flex;
       align-items: center;
-      gap: 8px;
-      line-height: 1.4;
+      gap: var(--spacing-sm);
+      margin: var(--spacing-md) 0;
+      border-left: 4px solid;
     }
     
-    .status.good { 
-      background: #D1F4E0; 
-      color: #0F5132; 
-      border-left: 4px solid #34C759;
+    .status-good {
+      background: #D1F4E0;
+      color: #0F5132;
+      border-color: var(--success);
     }
     
-    .status.warn { 
-      background: #FFF3CD; 
-      color: #664D03; 
-      border-left: 4px solid #FF9500;
+    .status-warning {
+      background: #FFF3CD;
+      color: #664D03;
+      border-color: var(--warning);
     }
     
-    .status.bad { 
-      background: #F8D7DA; 
-      color: #842029; 
-      border-left: 4px solid #FF3B30;
+    .status-critical {
+      background: #F8D7DA;
+      color: #842029;
+      border-color: var(--danger);
     }
     
-    .status.info {
+    .status-info {
       background: #D1ECF1;
       color: #0C5460;
-      border-left: 4px solid #007AFF;
+      border-color: var(--info);
     }
     
-    .voice-wrapper {
-      position: relative;
+    /* ==================== DIAGNOSTIC RESULTS ==================== */
+    .diagnostic-panel {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-xl) 0;
+      box-shadow: var(--shadow-xl);
     }
     
-    .voice-btn {
-      position: absolute;
-      right: 4px;
-      top: 12px;
-      transform: translateY(0);
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      background: #007AFF;
-      border-radius: 50%;
-      font-size: 20px;
-      z-index: 2;
-      min-height: unset;
-      margin: 0;
-    }
-
-    textarea + .voice-btn {
-      top: 12px;
-    }
-    
-    .voice-btn.listening { 
-      background: #FF3B30;
-      animation: pulse 1s infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-    }
-    
-    .voice-wrapper input,
-    .voice-wrapper textarea {
-      padding-right: 50px;
-    }
-
-    .dynamic-item {
-      background: #f8f9fa;
-      padding: 12px;
-      border-radius: 8px;
-      margin: 8px 0;
-      border: 1px solid #e0e0e0;
-      position: relative;
-    }
-    
-    .dynamic-item .remove-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: #FF3B30;
+    .diagnostic-title {
       color: white;
-      border: none;
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
       font-size: 18px;
-      cursor: pointer;
+      font-weight: 700;
+      margin-bottom: var(--spacing-lg);
       display: flex;
       align-items: center;
-      justify-content: center;
-      min-height: unset;
-      padding: 0;
-      margin: 0;
+      gap: var(--spacing-sm);
     }
     
-    .add-btn {
-      background: #34C759;
-      margin-top: 8px;
+    .diagnostic-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
     }
     
-    .section {
-      margin: 16px 0;
+    .diagnostic-card:last-child {
+      margin-bottom: 0;
     }
     
-    .section-toggle {
-      background: white;
-      border: 2px solid #ddd;
-      color: #1a1a1a;
-      font-weight: 600;
-      padding: 14px;
+    .diagnostic-card-header {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      border-radius: 8px;
-      margin: 8px 0;
-      transition: all 0.2s;
-      width: 100%;
-      text-align: left;
-      min-height: 48px;
+      margin-bottom: var(--spacing-sm);
     }
     
-    .section-toggle:hover {
-      background: #f8f8f8;
-      border-color: #007AFF;
+    .diagnostic-card-title {
+      font-weight: 700;
+      font-size: 15px;
     }
     
-    .section-toggle .arrow {
-      font-size: 18px;
-      transition: transform 0.3s ease;
-      transform-origin: center;
-    }
-    
-    .section.open .arrow {
-      transform: rotate(180deg);
-    }
-    
-    .section-content {
-      display: block;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-      padding: 0 16px;
-      background: white;
-      border-radius: 0 0 8px 8px;
-      border: 2px solid #ddd;
-      border-top: none;
-      margin-top: -8px;
-    }
-    
-    .section.open .section-content {
-      max-height: 5000px;
-      padding: 16px;
-    }
-    
-    .service-only,
-    .materials-only,
-    .cooling-only,
-    .heating-only { 
-      display: none; 
-    }
-    
-    body.mode-service .service-only { display: block; }
-    body.mode-materials .materials-only { display: block; }
-    
-    body.mode-service.mode-cooling .cooling-only { display: block; }
-    body.mode-service.mode-heating .heating-only { display: block; }
-
-    .grid-2 .cooling-only,
-    .grid-2 .heating-only,
-    .grid-3 .cooling-only,
-    .grid-3 .heating-only {
-      display: none;
-    }
-    
-    body.mode-service.mode-cooling .grid-2 .cooling-only,
-    body.mode-service.mode-cooling .grid-3 .cooling-only {
-      display: block;
-    }
-    
-    body.mode-service.mode-heating .grid-2 .heating-only,
-    body.mode-service.mode-heating .grid-3 .heating-only {
-      display: block;
-    }
-    
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-      gap: 8px;
-      margin-top: 12px;
-    }
-    
-    .photo-item {
-      position: relative;
-      aspect-ratio: 1;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #f0f0f0;
-    }
-    
-    .photo-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .photo-label {
-      position: absolute;
-      bottom: 4px;
-      left: 4px;
-      right: 4px;
-      background: rgba(0,0,0,0.75);
-      color: white;
-      padding: 4px 6px;
-      border-radius: 4px;
-      font-size: 10px;
-      font-weight: 600;
-      text-align: center;
+    .severity-badge {
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
       text-transform: uppercase;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      letter-spacing: 0.5px;
     }
     
-    .photo-delete {
-      position: absolute;
-      top: 4px;
-      right: 4px;
-      background: #FF3B30;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      font-size: 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0.9;
-      min-height: unset;
-      padding: 0;
-      margin: 0;
+    .severity-good { background: var(--success); color: white; }
+    .severity-warning { background: var(--warning); color: white; }
+    .severity-critical { background: var(--danger); color: white; }
+    
+    .recommendations {
+      margin-top: var(--spacing-md);
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--gray-200);
     }
     
-    .material-catalog {
-      max-height: 400px;
-      overflow-y: auto;
+    .recommendations ul {
+      margin: var(--spacing-sm) 0;
+      padding-left: var(--spacing-xl);
     }
     
+    .recommendations li {
+      margin: var(--spacing-xs) 0;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+    
+    /* ==================== MATERIALS LIST ==================== */
     .material-item {
+      background: var(--gray-50);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-sm);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px;
-      border: 1px solid #e0e0e0;
-      border-radius: 6px;
-      margin: 6px 0;
-      background: white;
-      transition: all 0.2s;
+      transition: var(--transition);
     }
     
     .material-item:hover {
-      background: #f8f8f8;
-      border-color: #007AFF;
+      background: var(--gray-100);
     }
     
-    .material-item-info {
+    .material-info {
       flex: 1;
     }
     
-    .material-item-name {
+    .material-name {
       font-weight: 600;
-      font-size: 14px;
-      color: #1a1a1a;
+      color: var(--gray-900);
     }
     
-    .material-item-spec {
-      font-size: 12px;
-      color: #666;
-      margin-top: 2px;
-    }
-    
-    .material-add-btn {
-      padding: 6px 12px;
-      font-size: 14px;
-      min-height: 32px;
-      margin: 0;
-      border-radius: 6px;
-    }
-    
-    .selected-material {
-      background: #f8f9fa;
-      padding: 12px;
-      border-radius: 8px;
-      margin: 8px 0;
-      border: 2px solid #e0e0e0;
-    }
-    
-    .selected-material-header {
-      display: flex;
-      align-items: start;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
-    
-    .selected-material-title {
-      font-weight: 600;
-      font-size: 15px;
-      color: #1a1a1a;
-    }
-    
-    .selected-material-category {
-      font-size: 11px;
-      color: #666;
-      text-transform: uppercase;
-      margin-top: 2px;
-    }
-    
-    .selected-material-controls {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    
-    .qty-input {
-      width: 60px;
-      padding: 6px;
-      text-align: center;
-      margin: 0;
-      font-weight: 600;
-    }
-    
-    .suggestion-item {
-      background: white;
-      padding: 10px;
-      border-radius: 6px;
-      margin: 6px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border: 1px solid #e0e0e0;
-    }
-    
-    .suggestion-info {
-      flex: 1;
-    }
-    
-    .suggestion-name {
-      font-weight: 600;
-      font-size: 14px;
-      color: #1a1a1a;
-    }
-    
-    .suggestion-reason {
-      font-size: 12px;
-      color: #666;
-      margin-top: 2px;
-    }
-    
-    .report-preview {
-      background: #f8f8f8;
-      padding: 16px;
-      border-radius: 8px;
-      font-family: 'Courier New', monospace;
+    .material-spec {
       font-size: 13px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      overflow-x: auto;
-      margin: 12px 0;
-      border: 1px solid #ddd;
+      color: var(--gray-600);
+      margin-top: var(--spacing-xs);
     }
     
-    .actions {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      padding: 10px;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-      display: flex;
-      gap: 8px;
-      z-index: 100;
-    }
-    
-    .actions button {
-      flex: 1;
+    .material-quantity {
       font-size: 14px;
-      padding: 12px 8px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 6px 12px;
+      background: white;
+      border-radius: var(--radius);
     }
     
+    /* ==================== CHECKBOXES ==================== */
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-md);
+      background: white;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .checkbox-label:hover {
+      border-color: var(--primary);
+      background: var(--gray-50);
+    }
+    
+    .checkbox-label.checked {
+      border-color: var(--success);
+      background: #E6F7EC;
+    }
+    
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-right: var(--spacing-md);
+      accent-color: var(--success);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    
+    /* ==================== SEARCH ==================== */
+    .search-box {
+      position: relative;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .search-box input {
+      padding-left: 40px;
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      pointer-events: none;
+    }
+    
+    /* ==================== TOAST NOTIFICATIONS ==================== */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--gray-900);
+      color: white;
+      padding: var(--spacing-lg) var(--spacing-xl);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      z-index: 9999;
+      font-weight: 600;
+      opacity: 0;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      max-width: 90%;
+    }
+    
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    .toast.success { background: var(--success); }
+    .toast.danger { background: var(--danger); }
+    .toast.warning { background: var(--warning); }
+    
+    /* ==================== MODAL ==================== */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -626,694 +610,648 @@
       right: 0;
       bottom: 0;
       background: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      display: flex;
+      backdrop-filter: blur(4px);
+      display: none;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.2s, visibility 0.2s;
+      z-index: 10000;
+      padding: var(--spacing-xl);
     }
     
-    .modal-content {
+    .modal-overlay.show {
+      display: flex;
+    }
+    
+    .modal {
       background: white;
-      border-radius: 12px;
-      padding: 20px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transform: scale(0.95);
-      transition: transform 0.2s;
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-xl);
+      max-width: 500px;
+      width: 100%;
+      box-shadow: var(--shadow-xl);
+      transform: scale(0.9);
+      transition: var(--transition);
     }
     
-    .modal-overlay.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .modal-overlay.visible .modal-content {
+    .modal-overlay.show .modal {
       transform: scale(1);
     }
     
     .modal-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: var(--spacing-md);
+      color: var(--gray-900);
     }
     
-    .modal-body {
-      font-size: 15px;
-      color: #333;
-      margin-bottom: 20px;
-      line-height: 1.5;
-      white-space: pre-line;
+    .modal-content {
+      color: var(--gray-700);
+      margin-bottom: var(--spacing-xl);
+      line-height: 1.6;
     }
     
     .modal-actions {
-      display: flex;
-      gap: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
     }
     
-    .modal-actions button {
-      flex: 1;
+    /* ==================== REPORT PREVIEW ==================== */
+    .report-preview {
+      background: var(--gray-50);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      max-height: 600px;
+      overflow-y: auto;
     }
     
-    .toast-notification {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #333;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s, top 0.3s;
-      max-width: 90%;
-      text-align: center;
+    /* ==================== HIDDEN ELEMENTS ==================== */
+    .hidden {
+      display: none !important;
     }
     
-    .toast-notification.visible {
-      opacity: 1;
-      visibility: visible;
-      top: 30px;
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 768px) {
+      .container {
+        padding: var(--spacing-md);
+      }
+      
+      .card {
+        padding: var(--spacing-lg);
+      }
+      
+      .header-inner {
+        padding: var(--spacing-md);
+      }
+      
+      .logo {
+        font-size: 16px;
+      }
+      
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+      }
     }
     
-    .toast-notification.success { background: #34C759; }
-    .toast-notification.danger { background: #FF3B30; }
-    .toast-notification.warn { background: #FF9500; }
+    /* ==================== ANIMATIONS ==================== */
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     
-    .hidden { display: none !important; }
-    .mt-8 { margin-top: 8px; }
-    .mt-16 { margin-top: 16px; }
-    .mb-8 { margin-bottom: 8px; }
-    .text-muted { color: #666; font-size: 13px; }
+    .animate-in {
+      animation: slideIn 0.3s ease-out;
+    }
     
-    @media print {
-      body { padding: 0; background: white; }
-      .actions, .mode-toggle, button:not(.print-only), .voice-btn { display: none !important; }
-      .card { box-shadow: none; page-break-inside: avoid; }
-      .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-      .photo-item img { border: 1px solid #ccc; }
+    /* ==================== SCROLLBAR ==================== */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--gray-100);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--gray-400);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gray-500);
     }
   </style>
 </head>
-<body class="mode-service mode-cooling">
 
-  <div class="card">
-    <div class="card-header">
-      <div>
-        <div style="font-size: 20px;">⚡ Field Buddy Pro</div>
-        <div style="font-size: 12px; color: #666; font-weight: 400; margin-top: 4px;">Service & Materials System</div>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">🔧</div>
+        <div>
+          <div>Field Buddy Pro</div>
+          <span class="version-badge">v2.0 Master</span>
+        </div>
       </div>
     </div>
-    
-    <div class="mode-toggle">
-      <button onclick="setMode('service')" id="btn-service" class="active">🔧 Service</button>
-      <button onclick="setMode('materials')" id="btn-materials">📦 Materials</button>
-    </div>
-  </div>
+  </header>
 
-  <div class="service-only">
+  <!-- MAIN CONTAINER -->
+  <div class="container">
     
-    <div class="card">
-      <div class="card-header">
-        <span>📋 Job Information</span>
-      </div>
-      
-      <label for="customer">Customer Name *</label>
-      <input type="text" id="customer" placeholder="Full name">
-      
-      <label for="address">Address *</label>
-      <input type="text" id="address" placeholder="Street, City, State">
-      
-      <div class="grid-2">
-        <div>
-          <label for="sales-tech">Technician</label>
-          <input type="text" id="sales-tech" placeholder="Your name">
-        </div>
-        <div>
-          <label for="date">Date</label>
-          <input type="date" id="date">
-        </div>
-      </div>
-      
-      <label>Job Type *</label>
-      <select id="job-type">
-        <option value="">Select job type...</option>
-        <option value="maintenance">Maintenance</option>
-        <option value="repair">Repair</option>
-        <option value="diagnostic">Diagnostic</option>
-        <option value="emergency">Emergency</option>
-        <option value="installation">Installation</option>
-      </select>
-      
-      <label>Customer Complaint</label>
-      <div class="voice-wrapper">
-        <textarea id="complaint" placeholder="What's the issue? (in customer's words)" rows="3"></textarea>
-        <button class="voice-btn" data-voice="complaint">🎤</button>
-      </div>
-    </div>
-    
-    <div class="card">
-      <div class="card-header">
-        <span>⏱️ Time Tracking</span>
-      </div>
-      
-      <div class="grid-2">
-        <div>
-          <label>Arrival Time</label>
-          <input type="time" id="arrival-time">
-        </div>
-        <div>
-          <label>Completion Time</label>
-          <input type="time" id="completion-time" onchange="calculateLaborHours()">
-        </div>
-      </div>
-      
-      <div class="grid-2">
-        <div>
-          <label>Travel Time (minutes)</label>
-          <input type="number" inputmode="numeric" id="travel-time" min="0" step="5">
-        </div>
-        <div>
-          <label>Total Labor Hours (auto)</label>
-          <input type="text" id="total-hours" readonly>
-        </div>
-      </div>
-    </div>
-    
-    <div class="card">
-      <div class="card-header">
-        <span>⚙️ Equipment</span>
-      </div>
-
-      <div class="mode-toggle" style="grid-template-columns: 1fr 1fr; margin-bottom: 12px;">
-        <button onclick="setHeatCoolMode('cooling')" id="btn-hc-cooling" class="active secondary">❄️ Cooling</button>
-        <button onclick="setHeatCoolMode('heating')" id="btn-hc-heating" class="secondary">🔥 Heating</button>
-      </div>
-      
-      <label>Unit Type</label>
-      <select id="unit-type" onchange="toggleUnitData()">
-          <option value="">Select unit type...</option>
-          <option value="split">Split System</option>
-          <option value="package">Package Unit</option>
-          <option value="minisplit">Mini-Split</option>
-          <option value="heatpump">Heat Pump</option>
-      </select>
-      
-      <label for="brand">Brand *</label>
-      <select id="brand">
-        <option value="">Select brand...</option>
-        <option value="Carrier">Carrier</option>
-        <option value="Trane">Trane</option>
-        <option value="Lennox">Lennox</option>
-        <option value="Rheem">Rheem</option>
-        <option value="Goodman">Goodman</option>
-        <option value="York">York</option>
-        <option value="American Standard">American Standard</option>
-        <option value="Bryant">Bryant</option>
-        <option value="Daikin">Daikin</option>
-        <option value="Mitsubishi">Mitsubishi</option>
-        <option value="Other">Other</option>
-      </select>
-      
-      <div id="indoor-unit-fields" class="mt-8">
-          <label>Indoor Unit Data (Nameplate)</label>
-          <div class="voice-wrapper mb-8">
-              <input type="text" id="indoor-data" placeholder="Model/Serial/Tonnage">
-              <button class="voice-btn" data-voice="indoor-data">🎤</button>
-          </div>
-      </div>
-
-      <div id="outdoor-unit-fields">
-          <label>Outdoor Unit Data (Nameplate)</label>
-          <div class="voice-wrapper mb-8">
-              <input type="text" id="outdoor-data" placeholder="Model/Serial/SEER-BTU">
-              <button class="voice-btn" data-voice="outdoor-data">🎤</button>
-          </div>
-      </div>
-      
-      <div class="grid-2">
-        <div>
-          <label for="tonnage">System Tonnage</label>
-          <select id="tonnage">
-            <option value="">Select...</option>
-            <option value="1.5">1.5 Ton</option>
-            <option value="2">2 Ton</option>
-            <option value="2.5">2.5 Ton</option>
-            <option value="3">3 Ton</option>
-            <option value="3.5">3.5 Ton</option>
-            <option value="4">4 Ton</option>
-            <option value="5">5 Ton</option>
-          </select>
-        </div>
-        <div>
-          <label for="refrigerant">Refrigerant Type</label>
-          <select id="refrigerant" onchange="clearRefrigerantCalculations()">
-            <option value="">Select...</option>
-            <option value="R-410A">R-410A</option>
-            <option value="R-22">R-22 (Legacy)</option>
-            <option value="R-32">R-32</option>
-            <option value="R-454B">R-454B (A2L)</option>
-          </select>
-        </div>
-      </div>
-      
-      <label for="mfg-date">Manufacture Date</label>
-      <input type="date" id="mfg-date" onchange="calculateAge()">
-      <div id="equipment-age" class="text-muted"></div>
-    </div>
-    
-    <div class="section" id="section-materials-service">
-      <button class="section-toggle" onclick="toggleSection('section-materials-service')">
-        <span>🔧 Parts & Materials Used</span>
-        <span class="arrow">▼</span>
+    <!-- MODE SELECTOR -->
+    <div class="mode-selector">
+      <button class="mode-btn active" id="btn-service" onclick="setMode('service')">
+        <span>🔧</span>
+        <span>Service Call</span>
       </button>
-      <div class="section-content">
-        <label>Refrigerant</label>
-        <div class="grid-2">
-          <select id="refrigerant-added-type">
-            <option value="">Type...</option>
-            <option value="R-410A">R-410A</option>
-            <option value="R-22">R-22</option>
-            <option value="R-32">R-32</option>
-            <option value="R-454B">R-454B</option>
-          </select>
-          <input type="text" id="refrigerant-amount" placeholder="Amount (lbs/oz)">
-        </div>
-        <input type="text" id="refrigerant-recovered" placeholder="Amount Recovered (if any)">
-        
-        <label>Filter Replaced</label>
-        <div class="grid-2">
-          <select id="filter-size">
-            <option value="">Size...</option>
-            <option value="16x25x1">16x25x1</option>
-            <option value="20x25x1">20x25x1</option>
-            <option value="20x25x4">20x25x4 (Media)</option>
-            <option value="other">Other Size</option>
-          </select>
-          <select id="filter-merv">
-            <option value="">MERV...</option>
-            <option value="8">MERV 8</option>
-            <option value="11">MERV 11</option>
-            <option value="13">MERV 13</option>
-          </select>
-        </div>
-        
-        <label>Capacitor Replaced</label>
-        <div class="grid-2">
-          <select id="capacitor-type">
-            <option value="">Type...</option>
-            <option value="dual-35/5">Dual 35/5µF</option>
-            <option value="dual-40/5">Dual 40/5µF</option>
-            <option value="dual-45/5">Dual 45/5µF</option>
-            <option value="other">Other Rating</option>
-          </select>
-          <input type="number" inputmode="numeric" id="capacitor-qty" placeholder="Qty" min="0" value="0">
-        </div>
-        
-        <label>Contactor Replaced</label>
-        <div class="grid-2">
-          <select id="contactor-rating">
-            <option value="">Rating...</option>
-            <option value="30A-2P">30A Double Pole</option>
-            <option value="40A-2P">40A Double Pole</option>
-            <option value="other">Other Rating</option>
-          </select>
-          <input type="number" inputmode="numeric" id="contactor-qty" placeholder="Qty" min="0" value="0">
-        </div>
-        
-        <label>Other Parts Used</label>
-        <textarea id="other-parts" rows="3" placeholder="List any other materials: fuses, relays, transformers, etc."></textarea>
-      </div>
-    </div>
-    
-    <div class="section" id="section-service-diagnostics">
-      <button class="section-toggle" onclick="toggleSection('section-service-diagnostics')">
-        <span>📊 Full Diagnostic Measurements</span>
-        <span class="arrow">▼</span>
+      <button class="mode-btn" id="btn-materials" onclick="setMode('materials')">
+        <span>📦</span>
+        <span>Materials List</span>
       </button>
-      <div class="section-content">
-        <div class="status info">
-          <span>ℹ️</span>
-          <span>Diagnostic Method: Power → Airflow → Electrical → Refrigerant → Controls</span>
-        </div>
-        
-        <div class="card-subheader">General Readings</div>
-        <div class="grid-2">
-          <div><label>Outdoor Temp (°F)</label><input type="number" inputmode="decimal" id="outdoor-temp" step="0.1"></div>
-          <div><label>Outdoor Humidity (%)</label><input type="number" inputmode="numeric" id="outdoor-humidity" min="0" max="100"></div>
-        </div>
-        <div class="grid-2">
-          <div><label>Return Air (°F)</label><input type="number" inputmode="decimal" id="return-temp" step="0.1" oninput="calcDelta()"></div>
-          <div><label>Supply Air (°F)</label><input type="number" inputmode="decimal" id="supply-temp" step="0.1" oninput="calcDelta()"></div>
-        </div>
-        <div class="grid-2">
-          <div><label>Return Static (in w.c.)</label><input type="number" inputmode="decimal" id="return-static" step="0.01" oninput="calcStatic()"></div>
-          <div><label>Supply Static (in w.c.)</label><input type="number" inputmode="decimal" id="supply-static" step="0.01" oninput="calcStatic()"></div>
-        </div>
-        <div class="grid-2 mb-8">
-          <div><label>Delta T (auto)</label><input type="text" id="delta-t" readonly></div>
-          <div><label>Total Static (auto)</label><input type="text" id="total-static" readonly></div>
-        </div>
-        <div id="delta-status"></div>
-        <div id="static-status"></div>
-        
-        <div class="card-subheader mt-16">Electrical Measurements</div>
-        <div class="grid-2">
-          <div><label>Voltage L1-L2</label><input type="number" inputmode="decimal" id="voltage-line" step="0.1" oninput="validateVoltage()"></div>
-          <div><label>Control Voltage (24V)</label><input type="number" inputmode="decimal" id="control-voltage" step="0.1"></div>
-        </div>
-        <div id="voltage-status"></div>
-        
-        <div class="grid-2 mt-8">
-          <div><label>Blower Amps</label><input type="text" id="blower-amps" placeholder="Actual/Rated"></div>
-          <div class="cooling-only"><label>Compressor Amps</label><input type="text" id="comp-amps" placeholder="Actual/Rated"></div>
-          <div class="heating-only"><label>Inducer Amps</label><input type="number" inputmode="decimal" id="inducer-amps" step="0.1"></div>
-        </div>
-        
-        <div class="cooling-only">
-          <div class="card-subheader mt-16">Refrigerant Circuit</div>
-          <div class="grid-2">
-            <div><label>Suction P (psig)</label><input type="number" inputmode="decimal" id="suction-pressure" step="0.1" oninput="calcRefrigerant()"></div>
-            <div><label>Liquid P (psig)</label><input type="number" inputmode="decimal" id="liquid-pressure" step="0.1" oninput="calcRefrigerant()"></div>
-          </div>
-          <div class="grid-2">
-            <div><label>Suction T (°F)</label><input type="number" inputmode="decimal" id="suction-temp" step="0.1" oninput="calcRefrigerant()"></div>
-            <div><label>Liquid T (°F)</label><input type="number" inputmode="decimal" id="liquid-temp" step="0.1" oninput="calcRefrigerant()"></div>
-          </div>
-          <div class="grid-2 mt-8">
-              <div><label>Superheat (auto)</label><input type="text" id="superheat" readonly></div>
-              <div><label>Subcool (auto)</label><input type="text" id="subcool" readonly></div>
-          </div>
-          <div id="superheat-status"></div>
-          <div id="subcool-status"></div>
-        </div>
-        
-        <div class="heating-only">
-          <div class="card-subheader mt-16">Heating Circuit</div>
-          <div class="grid-2">
-            <div><label>Heat Exchanger</label>
-              <select id="heat-exchanger">
-                <option value="">Inspect...</option>
-                <option value="clean">Clean - OK</option>
-                <option value="sooted">Sooted</option>
-                <option value="cracked">Cracked - DANGER</option>
-              </select>
-            </div>
-            <div><label>Flame Appearance</label>
-              <select id="flame-appearance">
-                <option value="">Inspect...</option>
-                <option value="blue">Blue - Normal</option>
-                <option value="yellow">Yellow - Incomplete Combustion</option>
-                <option value="lazy">Lazy/Rolling</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    
-    <div class="section" id="section-service-component">
-      <button class="section-toggle" onclick="toggleSection('section-service-component')">
-        <span>🔍 Component Inspection & Safety</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="section-content">
-        <div class="card-subheader">Safety Checklist</div>
-        <div class="grid-2">
-          <label class="check"><input type="checkbox" id="safety-disconnect"> Disconnect present & functional</label>
-          <label class="check"><input type="checkbox" id="safety-clearances"> Clearances adequate</label>
-          <label class="check"><input type="checkbox" id="safety-drain"> Drain trapped & flowing</label>
-          <label class="check"><input type="checkbox" id="safety-floats"> Float switches tested</label>
-        </div>
-        <div class="heating-only grid-2">
-          <label class="check"><input type="checkbox" id="safety-gas"> Gas piping OK</label>
-          <label class="check"><input type="checkbox" id="safety-vent"> Vent termination secure</label>
-          <label class="check"><input type="checkbox" id="safety-co"> No CO detected</label>
-          <label class="check"><input type="checkbox" id="safety-flame-sensor"> Flame sensor clean</label>
-        </div>
-        
-        <div class="card-subheader mt-16">Component Health</div>
-        <label>Filter Condition</label>
-        <div class="voice-wrapper">
-          <input type="text" id="filter" placeholder="Size and condition (e.g., 16x25x1 - Light Dust)">
-          <button class="voice-btn" data-voice="filter">🎤</button>
-        </div>
-        
-        <div class="grid-2">
-          <div>
-            <label>Evaporator Coil</label>
-            <select id="evap-coil">
-              <option value="">Evap coil condition...</option>
-              <option value="clean">Clean</option>
-              <option value="light-dust">Light dust</option>
-              <option value="restricted">Restricted - needs cleaning</option>
-              <option value="frozen">Frozen</option>
-              <option value="corroded">Corroded</option>
-              <option value="leaking">Leaking</option>
-            </select>
-          </div>
-          <div>
-            <label>Condenser Coil</label>
-            <select id="cond-coil">
-              <option value="">Cond coil condition...</option>
-              <option value="clean">Clean</option>
-              <option value="light-debris">Light debris</option>
-              <option value="restricted">Restricted - needs cleaning</option>
-              <option value="bent-fins">Bent fins</option>
-              <option value="corroded">Corroded</option>
-            </select>
-          </div>
-        </div>
-        
-        <div class="grid-2">
-          <div>
-            <label>Capacitor (µF)</label>
-            <div class="voice-wrapper">
-              <input type="text" id="capacitor-reading" placeholder="Actual/Rated µF">
-              <button class="voice-btn" data-voice="capacitor-reading">🎤</button>
-            </div>
-          </div>
-          <div>
-            <label>Contactor</label>
-            <select id="contactor-condition">
-              <option value="">Contactor condition...</option>
-              <option value="excellent">Good - clean contacts</option>
-              <option value="light-pitting">Light pitting</option>
-              <option value="heavy-pitting">Heavy pitting - recommend replacement</option>
-              <option value="burned">Burned/welded</option>
-            </select>
-          </div>
-        </div>
-        
-        <label>Blower Motor Condition</label>
-        <select id="blower-condition">
-          <option value="">Blower condition...</option>
-          <option value="clean-quiet">Clean, runs quietly</option>
-          <option value="dusty">Dusty but functional</option>
-          <option value="noisy">Noisy - bearings worn</option>
-          <option value="struggling">Struggling to start</option>
-          <option value="failed">Failed/not running</option>
-        </select>
-      </div>
-    </div>
-    
-    <div class="card">
-      <div class="card-header">
-        <span>📝 Final Review & Findings</span>
-      </div>
-      
-      <label>Primary Findings Summary</label>
-      <div class="voice-wrapper">
-          <textarea id="findings" placeholder="What's wrong and why - be specific" rows="3"></textarea>
-          <button class="voice-btn" data-voice="findings">🎤</button>
-      </div>
-      
-      <label>Repair Recommendations</label>
-      <div class="voice-wrapper">
-          <textarea id="recommendations" placeholder="Repair options and next steps" rows="3"></textarea>
-          <button class="voice-btn" data-voice="recommendations">🎤</button>
-      </div>
 
-      <label>Work Performed Today</label>
-      <div class="voice-wrapper">
-          <textarea id="work-performed" placeholder="What was done during this service call" rows="2"></textarea>
-          <button class="voice-btn" data-voice="work-performed">🎤</button>
-      </div>
-    </div>
-    
-  </div>
-
-  <div class="materials-only">
-    
-    <div class="card">
-      <div class="card-header">
-        <span>📋 Materials Job Info</span>
-      </div>
+    <!-- SERVICE MODE -->
+    <div id="service-mode" class="mode-content">
       
-      <label for="mat-customer">Customer/Job Name</label>
-      <input type="text" id="mat-customer" placeholder="Enter customer or job identifier">
-      
-      <label for="mat-address">Job Address</label>
-      <input type="text" id="mat-address" placeholder="Installation address">
-      
-      <div class="grid-2">
-        <div>
-          <label for="mat-tech">Technician</label>
-          <input type="text" id="mat-tech" placeholder="Your name">
-        </div>
-        <div>
-          <label for="mat-date">Date</label>
-          <input type="date" id="mat-date">
-        </div>
-      </div>
-      
-      <label for="mat-notes">Job Notes</label>
-      <textarea id="mat-notes" rows="2" placeholder="Special requirements, access notes, etc."></textarea>
-    </div>
-    
-    <div id="suggestions-container" class="hidden">
-      <div class="card">
+      <!-- JOB INFORMATION -->
+      <div class="card animate-in">
         <div class="card-header">
-          <span>💡 Smart Suggestions</span>
+          <div class="card-title">
+            <span>📋</span>
+            <span>Job Information</span>
+          </div>
         </div>
-        <div class="status info">
-          <span>ℹ️</span>
-          <span>Based on your selections, you may need these items</span>
+        
+        <div class="form-group">
+          <label>Call Type</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="call-trouble" onclick="setCallType('trouble')">Trouble Call</button>
+            <button class="toggle-btn" id="call-maintenance" onclick="setCallType('maintenance')">Maintenance</button>
+          </div>
         </div>
-        <div id="suggestions-list"></div>
-      </div>
-    </div>
-    
-    <div class="card">
-      <div class="card-header">
-        <span>🛠️ Add Materials</span>
-      </div>
-      
-      <label>Select Category</label>
-      <select id="material-category" onchange="updateMaterialsList()">
-        <option value="">Choose a category...</option>
-        <option value="equipment">Equipment</option>
-        <option value="electrical">Electrical Components</option>
-        <option value="controls">Controls & Thermostats</option>
-        <option value="ductwork">Ductwork & Air Distribution</option>
-        <option value="iaq">Ventilation & IAQ</option>
-        <option value="refrigeration">Refrigeration Components</option>
-        <option value="drainage">Condensate Management</option>
-        <option value="venting">Venting (Gas/Oil)</option>
-        <option value="insulation">Insulation & Sealants</option>
-        <option value="sheetmetal">Sheet Metal & Fasteners</option>
-        <option value="tools">Tools & Instruments</option>
-        <option value="safety">Safety & PPE</option>
-        <option value="accessories">Accessories & Misc</option>
-      </select>
-      
-      <div class="mt-8">
-        <label>Search Materials</label>
-        <input type="text" id="material-search" placeholder="Type to filter materials..." oninput="filterMaterialsList()">
-      </div>
-      
-      <div id="materials-catalog-container" class="material-catalog mt-8"></div>
-    </div>
-    
-    <div class="card">
-      <div class="card-header">
-        <span>📝 Materials List</span>
-        <span id="total-items-badge" class="text-muted">0 items</span>
-      </div>
-      
-      <div id="selected-materials-list">
-        <div class="text-muted" style="text-align: center; padding: 20px;">
-          No materials selected yet. Add items from the catalog above.
+        
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" id="customer-name" placeholder="Enter customer name">
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="service-date">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Service Address</label>
+          <input type="text" id="service-address" placeholder="123 Main St, City, State ZIP">
+        </div>
+        
+        <div class="form-group">
+          <label>Customer Complaint / Reason for Service</label>
+          <textarea id="customer-complaint" placeholder="Describe the issue or maintenance reason..."></textarea>
         </div>
       </div>
-    </div>
-    
-  </div>
 
-  <div class="card">
-    <div class="card-header">
-      <span>📸 Photo Documentation</span>
-    </div>
-    
-    <div class="status info">
-      <span>📷</span>
-      <span>Take photos: Nameplate, before/after, problem areas, materials needed</span>
-    </div>
-
-    <div class="grid-4">
-      <button onclick="takePhoto('Nameplate')" class="secondary small">📷 Nameplate</button>
-      <button onclick="takePhoto('Problem')" class="secondary small">📷 Problem</button>
-      <button onclick="takePhoto('Before')" class="secondary small">📷 Before</button>
-      <button onclick="takePhoto('After')" class="secondary small">📷 After</button>
-      <button onclick="takePhoto('Electrical')" class="secondary small">📷 Electrical</button>
-      <button onclick="takePhoto('Coils')" class="secondary small">📷 Coils</button>
-      <button onclick="takePhoto('Materials')" class="secondary small">📷 Materials</button>
-      <button onclick="takePhoto('Other')" class="secondary small">📷 Other</button>
-    </div>
-    <div class="photo-grid" id="photo-preview"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <span>✍️ Signature</span>
-    </div>
-    
-    <div class="grid-2">
-      <div>
-        <label for="tech-name">Technician Name</label>
-        <input type="text" id="tech-name" placeholder="Your name">
+      <!-- SYSTEM MODE TOGGLE -->
+      <div class="card animate-in">
+        <div class="card-header">
+          <div class="card-title">
+            <span>❄️</span>
+            <span>System Mode</span>
+          </div>
+        </div>
+        
+        <div class="toggle-group">
+          <button class="toggle-btn cooling active" id="mode-cooling" onclick="setSystemMode('cooling')">
+            <span>❄️</span>
+            <span>Cooling</span>
+          </button>
+          <button class="toggle-btn heating" id="mode-heating" onclick="setSystemMode('heating')">
+            <span>🔥</span>
+            <span>Heating</span>
+          </button>
+        </div>
       </div>
-      <div>
-        <label for="customer-signature">Customer Signature</label>
-        <input type="text" id="customer-signature" placeholder="Customer name">
+
+      <!-- EQUIPMENT INFORMATION -->
+      <div class="card animate-in">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🏠</span>
+            <span>Equipment Information</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Unit Type</label>
+          <select id="unit-type" onchange="updateUnitFields()">
+            <option value="">Select unit type...</option>
+            <option value="split">Split System</option>
+            <option value="package">Package Unit</option>
+            <option value="mini-split">Mini-Split</option>
+            <option value="heat-pump">Heat Pump</option>
+          </select>
+        </div>
+        
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label>Indoor Unit (Model/Serial)</label>
+            <input type="text" id="indoor-unit" placeholder="Model & Serial Number">
+          </div>
+          <div class="form-group" id="outdoor-unit-group">
+            <label>Outdoor Unit (Model/Serial)</label>
+            <input type="text" id="outdoor-unit" placeholder="Model & Serial Number">
+          </div>
+        </div>
+        
+        <div class="grid grid-3">
+          <div class="form-group">
+            <label>Tonnage</label>
+            <select id="tonnage">
+              <option value="">Select...</option>
+              <option value="1.5">1.5 Ton</option>
+              <option value="2">2 Ton</option>
+              <option value="2.5">2.5 Ton</option>
+              <option value="3">3 Ton</option>
+              <option value="3.5">3.5 Ton</option>
+              <option value="4">4 Ton</option>
+              <option value="5">5 Ton</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Refrigerant Type</label>
+            <select id="refrigerant-type">
+              <option value="R410A">R-410A</option>
+              <option value="R22">R-22</option>
+              <option value="R454B">R-454B</option>
+              <option value="R32">R-32</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Filter Size</label>
+            <input type="text" id="filter-size" placeholder="e.g., 16x25x1">
+          </div>
+        </div>
+      </div>
+
+      <!-- MEASUREMENTS - COOLING MODE -->
+      <div class="card animate-in" id="cooling-measurements">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📊</span>
+            <span>Diagnostic Measurements</span>
+          </div>
+        </div>
+        
+        <div class="card-subtitle">Temperature Readings</div>
+        <div class="grid grid-3">
+          <div class="form-group">
+            <label>Ambient Temp (°F)</label>
+            <input type="number" step="0.1" id="ambient-temp" oninput="calculateDiagnostics()">
+          </div>
+          <div class="form-group">
+            <label>Return Temp (°F)</label>
+            <input type="number" step="0.1" id="return-temp" oninput="calculateDiagnostics()">
+          </div>
+          <div class="form-group">
+            <label>Supply Temp (°F)</label>
+            <input type="number" step="0.1" id="supply-temp" oninput="calculateDiagnostics()">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Delta-T</label>
+          <input type="text" id="delta-t" readonly>
+        </div>
+        
+        <div class="card-subtitle">Refrigerant Pressures & Temps</div>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label>Suction Pressure (PSI)</label>
+            <input type="number" step="0.1" id="suction-pressure" oninput="calculateDiagnostics()">
+          </div>
+          <div class="form-group">
+            <label>Suction Line Temp (°F)</label>
+            <input type="number" step="0.1" id="suction-temp" oninput="calculateDiagnostics()">
+          </div>
+          <div class="form-group">
+            <label>Liquid Pressure (PSI)</label>
+            <input type="number" step="0.1" id="liquid-pressure" oninput="calculateDiagnostics()">
+          </div>
+          <div class="form-group">
+            <label>Liquid Line Temp (°F)</label>
+            <input type="number" step="0.1" id="liquid-temp" oninput="calculateDiagnostics()">
+          </div>
+        </div>
+        
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label>Superheat (°F)</label>
+            <input type="text" id="superheat" readonly>
+          </div>
+          <div class="form-group">
+            <label>Subcool (°F)</label>
+            <input type="text" id="subcool" readonly>
+          </div>
+        </div>
+        
+        <div class="card-subtitle">Airflow & Electrical</div>
+        <div class="grid grid-3">
+          <div class="form-group">
+            <label>Static Pressure (in w.c.)</label>
+            <input type="number" step="0.01" id="static-pressure" oninput="calculateDiagnostics()">
+          </div>
+          <div class="form-group">
+            <label>Voltage (V)</label>
+            <input type="number" step="0.1" id="voltage">
+          </div>
+          <div class="form-group">
+            <label>Amperage (A)</label>
+            <input type="number" step="0.1" id="amperage">
+          </div>
+        </div>
+      </div>
+
+      <!-- MEASUREMENTS - HEATING MODE -->
+      <div class="card animate-in hidden" id="heating-measurements">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📊</span>
+            <span>Heating Diagnostic Measurements</span>
+          </div>
+        </div>
+        
+        <div class="card-subtitle">Temperature Readings</div>
+        <div class="grid grid-3">
+          <div class="form-group">
+            <label>Return Temp (°F)</label>
+            <input type="number" step="0.1" id="return-temp-heat" oninput="calculateDiagnostics()">
+          </div>
+          <div class="form-group">
+            <label>Supply Temp (°F)</label>
+            <input type="number" step="0.1" id="supply-temp-heat" oninput="calculateDiagnostics()">
+          </div>
+          <div class="form-group">
+            <label>Temp Rise (°F)</label>
+            <input type="text" id="temp-rise" readonly>
+          </div>
+        </div>
+        
+        <div class="card-subtitle">Gas Furnace / Heat Measurements</div>
+        <div class="grid grid-3">
+          <div class="form-group">
+            <label>Manifold Pressure (in w.c.)</label>
+            <input type="number" step="0.01" id="manifold-pressure">
+          </div>
+          <div class="form-group">
+            <label>Voltage (V)</label>
+            <input type="number" step="0.1" id="voltage-heat">
+          </div>
+          <div class="form-group">
+            <label>Amperage (A)</label>
+            <input type="number" step="0.1" id="amperage-heat">
+          </div>
+        </div>
+      </div>
+
+      <!-- VISUAL INSPECTION CHECKLIST -->
+      <div class="card animate-in">
+        <div class="card-header">
+          <div class="card-title">
+            <span>👁️</span>
+            <span>Visual Inspection Checklist</span>
+          </div>
+        </div>
+        
+        <div class="card-subtitle">Filter & Airflow</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-filter" onchange="updateCheckbox(this)">
+          <span>Filter inspected (clean/dirty?)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-coil" onchange="updateCheckbox(this)">
+          <span>Evaporator coil inspected (clean/restricted?)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-blower" onchange="updateCheckbox(this)">
+          <span>Blower wheel inspected (clean/buildup?)</span>
+        </label>
+        
+        <div class="card-subtitle">Condensing Unit</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-condenser" onchange="updateCheckbox(this)">
+          <span>Condenser coil inspected (clean/dirty?)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-fan" onchange="updateCheckbox(this)">
+          <span>Condenser fan operation checked</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-capacitor" onchange="updateCheckbox(this)">
+          <span>Capacitor(s) tested</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-contactor" onchange="updateCheckbox(this)">
+          <span>Contactor inspected (pitting/burning?)</span>
+        </label>
+        
+        <div class="card-subtitle">Electrical & Safety</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-wiring" onchange="updateCheckbox(this)">
+          <span>Wiring connections inspected</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-disconnect" onchange="updateCheckbox(this)">
+          <span>Disconnect switch checked</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-drain" onchange="updateCheckbox(this)">
+          <span>Condensate drain inspected</span>
+        </label>
+      </div>
+
+      <!-- DIAGNOSTIC RESULTS -->
+      <div id="diagnostic-results" class="hidden"></div>
+
+      <!-- FINDINGS & WORK PERFORMED -->
+      <div class="card animate-in">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📝</span>
+            <span>Findings & Work Performed</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Findings</label>
+          <textarea id="findings" placeholder="Describe what you found during the service call..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Recommendations</label>
+          <textarea id="recommendations" placeholder="What do you recommend to the customer?"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Work Performed</label>
+          <textarea id="work-performed" placeholder="Detail the work you completed..."></textarea>
+        </div>
+      </div>
+
+      <!-- TECHNICIAN INFO -->
+      <div class="card animate-in">
+        <div class="card-header">
+          <div class="card-title">
+            <span>👤</span>
+            <span>Technician Information</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Technician Name</label>
+          <input type="text" id="tech-name" placeholder="Your name">
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="grid grid-2">
+        <button class="btn btn-success" onclick="generateServiceReport()">
+          <span>✓</span>
+          <span>Generate Report</span>
+        </button>
+        <button class="btn btn-secondary" onclick="clearForm()">
+          <span>🗑️</span>
+          <span>Clear Form</span>
+        </button>
       </div>
     </div>
+
+    <!-- MATERIALS MODE -->
+    <div id="materials-mode" class="mode-content hidden">
+      
+      <!-- JOB INFO -->
+      <div class="card animate-in">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📋</span>
+            <span>Job Information</span>
+          </div>
+        </div>
+        
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label>Customer/Job Name</label>
+            <input type="text" id="mat-customer" placeholder="Enter customer or job name">
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="mat-date">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Job Address</label>
+          <input type="text" id="mat-address" placeholder="123 Main St, City, State ZIP">
+        </div>
+        
+        <div class="form-group">
+          <label>Job Notes</label>
+          <textarea id="mat-notes" placeholder="Special instructions, access codes, etc."></textarea>
+        </div>
+      </div>
+
+      <!-- MATERIALS CATALOG -->
+      <div class="card animate-in">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📦</span>
+            <span>Materials Catalog (2025)</span>
+          </div>
+        </div>
+        
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="material-search" placeholder="Search materials..." oninput="filterMaterials()">
+        </div>
+        
+        <div id="materials-catalog">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- SELECTED MATERIALS -->
+      <div class="card animate-in">
+        <div class="card-header">
+          <div class="card-title">
+            <span>✓</span>
+            <span>Selected Materials</span>
+          </div>
+        </div>
+        
+        <div id="selected-materials">
+          <div class="status-info">
+            <span>ℹ️</span>
+            <span>No materials selected yet. Use the catalog above to add items.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TECHNICIAN INFO -->
+      <div class="card animate-in">
+        <div class="card-header">
+          <div class="card-title">
+            <span>👤</span>
+            <span>Technician Information</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Technician Name</label>
+          <input type="text" id="mat-tech-name" placeholder="Your name">
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="grid grid-2">
+        <button class="btn btn-success" onclick="generateMaterialsList()">
+          <span>✓</span>
+          <span>Generate Materials List</span>
+        </button>
+        <button class="btn btn-secondary" onclick="clearForm()">
+          <span>🗑️</span>
+          <span>Clear Form</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- REPORT PREVIEW (populated dynamically) -->
+    <div id="report-container"></div>
+
   </div>
 
-  <div class="actions">
-    <button class="success" onclick="generate()" id="generate-btn">
-      <span>✓</span> Generate
-    </button>
-    <button class="warning" onclick="exportReport()">
-      <span>📤</span> Export
-    </button>
-    <button class="danger" onclick="clearForm()">
-      <span>✕</span> Clear
-    </button>
-  </div>
-  
-  <div class="modal-overlay" id="modal-container">
-    <div class="modal-content">
-      <div class="modal-title" id="modal-title">Confirmation</div>
-      <div class="modal-body" id="modal-body">Are you sure?</div>
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-title" id="modal-title">Confirm Action</div>
+      <div class="modal-content" id="modal-content">Are you sure?</div>
       <div class="modal-actions">
-        <button class="secondary" id="modal-cancel">Cancel</button>
-        <button class="danger" id="modal-confirm">Confirm</button>
+        <button class="btn btn-secondary" onclick="closeModal(false)">Cancel</button>
+        <button class="btn btn-primary" onclick="closeModal(true)">Confirm</button>
       </div>
     </div>
-  </div>
-  
-  <div class="toast-notification" id="toast-notification">
-    Message here
   </div>
 
   <script>
-    const $ = (id) => document.getElementById(id);
-    const num = val => { const n = parseFloat(val); return isNaN(n) ? null : n; };
-    
+    // ==================== STATE MANAGEMENT ====================
     let currentMode = 'service';
-    let heatCoolMode = 'cooling';
-    let photos = [];
+    let callType = 'trouble';
+    let systemMode = 'cooling';
     let selectedMaterials = [];
-    let recognitionActive = false;
+    let diagnosticResults = [];
     
+    // ==================== FULL 2025 MATERIALS CATALOG ====================
     const materialsCatalog = {
       equipment: {
         name: 'Equipment',
@@ -1567,1034 +1505,749 @@
       }
     };
     
+    // ==================== R410A PRESSURE-TEMPERATURE CHART ====================
     const R410A_PT = {
-      90: 44.7, 95: 47.1, 100: 49.6, 105: 52.2, 110: 54.9, 115: 57.7,
-      120: 60.6, 125: 63.6, 130: 66.7, 135: 69.9, 140: 73.2, 145: 76.6,
-      150: 80.1, 155: 83.7, 160: 87.4, 165: 91.3, 170: 95.2, 175: 99.3,
-      180: 103.5, 185: 107.8, 190: 112.2, 195: 116.7, 200: 121.4, 205: 126.1,
-      210: 131.0, 215: 135.9, 220: 140.9
+      85: 40.4, 90: 44.7, 95: 47.1, 100: 49.6, 105: 52.2, 110: 54.9,
+      115: 57.7, 120: 60.6, 125: 63.6, 130: 66.7, 135: 69.9, 140: 73.2,
+      145: 76.6, 150: 80.1, 155: 83.7, 160: 87.4, 165: 91.3, 170: 95.2,
+      175: 99.3, 180: 103.5, 185: 107.8, 190: 112.2, 195: 116.7, 200: 121.4,
+      205: 126.1, 210: 131.0, 215: 135.9, 220: 140.9
     };
     
-    const modalContainer = $('modal-container');
-    const modalTitle = $('modal-title');
-    const modalBody = $('modal-body');
+    // ==================== HELPER FUNCTIONS ====================
+    function $(id) {
+      return document.getElementById(id);
+    }
     
-    function showModal(title, message) {
+    function showToast(message, type = 'success') {
+      const toast = $('toast');
+      toast.textContent = message;
+      toast.className = `toast show ${type}`;
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+    
+    function showModal(title, content) {
       return new Promise((resolve) => {
-        modalTitle.textContent = title;
-        modalBody.textContent = message;
-        
-        $('modal-confirm').onclick = () => {
-          modalContainer.classList.remove('visible');
-          resolve(true);
-        };
-        
-        $('modal-cancel').onclick = () => {
-          modalContainer.classList.remove('visible');
-          resolve(false);
-        };
-        
-        modalContainer.classList.add('visible');
+        $('modal-title').textContent = title;
+        $('modal-content').textContent = content;
+        $('modal-overlay').classList.add('show');
+        window.modalResolve = resolve;
       });
     }
     
-    modalContainer.addEventListener('click', (e) => {
-      if (e.target === modalContainer) {
-        modalContainer.classList.remove('visible');
+    function closeModal(result) {
+      $('modal-overlay').classList.remove('show');
+      if (window.modalResolve) {
+        window.modalResolve(result);
+        window.modalResolve = null;
       }
-    });
-
-    function showToast(message, type = 'info') {
-      const toast = $('toast-notification');
-      toast.textContent = message;
-      toast.className = 'toast-notification';
-      if (type !== 'info') {
-        toast.classList.add(type);
-      }
-      
-      toast.classList.add('visible');
-      
-      setTimeout(() => {
-        toast.classList.remove('visible');
-      }, 2500);
     }
-
+    
+    // ==================== MODE SWITCHING ====================
     function setMode(mode) {
       currentMode = mode;
-      document.body.className = `mode-${mode}`;
-      
-      document.querySelectorAll('.mode-toggle button').forEach(btn => btn.classList.remove('active'));
-      $(`btn-${mode}`).classList.add('active');
-      
-      if (mode === 'service') {
-        setHeatCoolMode(heatCoolMode);
-      }
-      
-      const btnText = $('generate-btn');
-      if (mode === 'service') {
-        btnText.innerHTML = '<span>✓</span> Generate Service Report';
-      } else if (mode === 'materials') {
-        btnText.innerHTML = '<span>✓</span> Generate Materials List';
-      }
-      
-      autoSaveForm();
+      $('service-mode').classList.toggle('hidden', mode !== 'service');
+      $('materials-mode').classList.toggle('hidden', mode !== 'materials');
+      $('btn-service').classList.toggle('active', mode === 'service');
+      $('btn-materials').classList.toggle('active', mode === 'materials');
+      showToast(`Switched to ${mode === 'service' ? 'Service Call' : 'Materials'} mode`);
     }
     
-    function setHeatCoolMode(mode) {
-      heatCoolMode = mode;
-      
-      document.body.classList.remove('mode-cooling', 'mode-heating');
-      
-      if (document.body.classList.contains('mode-service')) {
-        document.body.classList.add(`mode-${mode}`);
-      }
-      
-      $('btn-hc-cooling').className = mode === 'cooling' ? 'active secondary' : 'secondary';
-      $('btn-hc-heating').className = mode === 'heating' ? 'active secondary' : 'secondary';
-      
-      clearRefrigerantCalculations();
-      calcDelta();
-      
-      autoSaveForm();
+    function setCallType(type) {
+      callType = type;
+      $('call-trouble').classList.toggle('active', type === 'trouble');
+      $('call-maintenance').classList.toggle('active', type === 'maintenance');
     }
     
-    function toggleUnitData() {
-      const type = $('unit-type').value;
-      const outdoorFields = $('outdoor-unit-fields');
-      
-      if (type === 'minisplit' || type === 'package') {
-        $('indoor-data').placeholder = "Unit Data (All-in-one system)";
-        outdoorFields.classList.add('hidden');
-        $('outdoor-data').value = '';
+    function setSystemMode(mode) {
+      systemMode = mode;
+      $('mode-cooling').classList.toggle('active', mode === 'cooling');
+      $('mode-heating').classList.toggle('active', mode === 'heating');
+      $('cooling-measurements').classList.toggle('hidden', mode !== 'cooling');
+      $('heating-measurements').classList.toggle('hidden', mode !== 'heating');
+      calculateDiagnostics();
+    }
+    
+    function updateUnitFields() {
+      const unitType = $('unit-type').value;
+      const outdoorGroup = $('outdoor-unit-group');
+      if (unitType === 'package' || unitType === 'mini-split') {
+        outdoorGroup.classList.add('hidden');
       } else {
-        $('indoor-data').placeholder = "Model/Serial/Tonnage";
-        outdoorFields.classList.remove('hidden');
+        outdoorGroup.classList.remove('hidden');
       }
     }
     
-    function toggleSection(sectionId) {
-      const section = $(sectionId);
-      if (section && section.classList.contains('section')) {
-        section.classList.toggle('open');
-      }
-    }
-
-    function validateTemp(value, min = -50, max = 200) {
-      const temp = parseFloat(value);
-      if (isNaN(temp)) return null;
-      if (temp < min || temp > max) {
-        showToast(`Temperature ${temp}°F outside valid range (${min}-${max}°F)`, 'warn');
-        return null;
-      }
-      return temp;
-    }
-
-    function clearRefrigerantCalculations() {
-      const sh = $('superheat');
-      const sc = $('subcool');
-      const shStatus = $('superheat-status');
-      const scStatus = $('subcool-status');
-      
-      if (sh) sh.value = '';
-      if (sc) sc.value = '';
-      if (shStatus) shStatus.innerHTML = '';
-      if (scStatus) scStatus.innerHTML = '';
+    function updateCheckbox(checkbox) {
+      const label = checkbox.closest('.checkbox-label');
+      label.classList.toggle('checked', checkbox.checked);
     }
     
-    function calcDelta() {
-      const ret = validateTemp($('return-temp').value);
-      const sup = validateTemp($('supply-temp').value);
-      
-      const statusDiv = $('delta-status');
-      const deltaField = $('delta-t');
-      
-      if (ret === null || sup === null) {
-        if (deltaField) deltaField.value = '';
-        if (statusDiv) statusDiv.innerHTML = '';
-        return;
-      }
-      
-      const delta = heatCoolMode === 'cooling' ? ret - sup : sup - ret;
-      deltaField.value = delta.toFixed(1) + ' °F';
-      
-      if (heatCoolMode === 'cooling') {
-        if (delta < 14) statusDiv.innerHTML = '<div class="status bad">⚠️ Low delta - check airflow or low charge</div>';
-        else if (delta >= 16 && delta <= 22) statusDiv.innerHTML = '<div class="status good">✓ Delta T in optimal range (16-22°F)</div>';
-        else if (delta > 24) statusDiv.innerHTML = '<div class="status bad">⚠️ High delta - possible restriction</div>';
-        else statusDiv.innerHTML = '<div class="status warn">⚠️ Delta T marginal - verify charge</div>';
+    // ==================== DIAGNOSTIC CALCULATIONS ====================
+    function calculateDiagnostics() {
+      if (systemMode === 'cooling') {
+        calculateCoolingDiagnostics();
       } else {
-        if (delta < 25) statusDiv.innerHTML = '<div class="status bad">⚠️ Low rise - check gas input or airflow</div>';
-        else if (delta >= 30 && delta <= 80) statusDiv.innerHTML = '<div class="status good">✓ Temperature rise in range (30-80°F)</div>';
-        else if (delta > 90) statusDiv.innerHTML = '<div class="status bad">⚠️ Excessive rise - airflow restriction</div>';
-        else statusDiv.innerHTML = '<div class="status warn">⚠️ Temperature rise marginal</div>';
+        calculateHeatingDiagnostics();
       }
     }
     
-    function calcStatic() {
-      const ret = num($('return-static').value);
-      const sup = num($('supply-static').value);
+    function calculateCoolingDiagnostics() {
+      const returnTemp = parseFloat($('return-temp').value);
+      const supplyTemp = parseFloat($('supply-temp').value);
+      const suctionPressure = parseFloat($('suction-pressure').value);
+      const suctionTemp = parseFloat($('suction-temp').value);
+      const liquidPressure = parseFloat($('liquid-pressure').value);
+      const liquidTemp = parseFloat($('liquid-temp').value);
       
-      const statusDiv = $('static-status');
-      const staticField = $('total-static');
-      
-      if (ret === null || sup === null) {
-        if (staticField) staticField.value = '';
-        if (statusDiv) statusDiv.innerHTML = '';
-        return;
+      // Calculate Delta-T
+      if (!isNaN(returnTemp) && !isNaN(supplyTemp)) {
+        const deltaT = returnTemp - supplyTemp;
+        $('delta-t').value = `${deltaT.toFixed(1)}°F`;
       }
       
-      const total = Math.abs(ret) + Math.abs(sup);
-      staticField.value = total.toFixed(2) + ' in w.c.';
-      
-      if (total <= 0.50) statusDiv.innerHTML = '<div class="status good">✓ Static pressure acceptable (≤0.50)</div>';
-      else if (total <= 0.70) statusDiv.innerHTML = '<div class="status warn">⚠️ Static elevated (0.50-0.70)</div>';
-      else statusDiv.innerHTML = '<div class="status bad">⚠️ Static excessive (>0.70) - duct issues likely</div>';
-    }
-    
-    function validateVoltage() {
-      const lineVoltage = num($('voltage-line').value);
-      if (!lineVoltage) {
-        $('voltage-status').innerHTML = '';
-        return;
-      }
-      
-      const statusDiv = $('voltage-status');
-      if (lineVoltage < 200) statusDiv.innerHTML = '<div class="status bad">⚠️ Low voltage (<200V)</div>';
-      else if (lineVoltage > 250) statusDiv.innerHTML = '<div class="status bad">⚠️ High voltage (>250V)</div>';
-      else if (lineVoltage >= 208 && lineVoltage <= 240) statusDiv.innerHTML = '<div class="status good">✓ Voltage in acceptable range</div>';
-      else statusDiv.innerHTML = '<div class="status warn">⚠️ Voltage marginal</div>';
-    }
-    
-    function lookupSatTemp(psig) {
-      const refrigerant = $('refrigerant').value;
-      if (refrigerant !== 'R-410A') {
-        const statusDiv = $('superheat-status');
-        if (statusDiv) {
-          statusDiv.innerHTML = '<div class="status warn">⚠️ PT chart only available for R-410A. Manual calculation required.</div>';
-        }
-        return null;
-      }
-      let closest = null, minDiff = Infinity;
-      for (let pressure in R410A_PT) {
-        const diff = Math.abs(pressure - psig);
-        if (diff < minDiff) { minDiff = diff; closest = R410A_PT[pressure]; }
-      }
-      return closest;
-    }
-    
-    function calcRefrigerant() {
-      const suctP = num($('suction-pressure').value);
-      const suctT = num($('suction-temp').value);
-      const liqP = num($('liquid-pressure').value);
-      const liqT = num($('liquid-temp').value);
-      
-      if (heatCoolMode !== 'cooling') return;
-
-      if (suctP && suctT) {
-        const satTemp = lookupSatTemp(suctP);
+      // Calculate Superheat
+      if (!isNaN(suctionPressure) && !isNaN(suctionTemp)) {
+        const satTemp = getSaturationTemp(suctionPressure);
         if (satTemp) {
-          const superheat = suctT - satTemp;
-          $('superheat').value = superheat.toFixed(1) + ' °F';
-          const statusDiv = $('superheat-status');
-          if (superheat < 5) statusDiv.innerHTML = '<div class="status bad">⚠️ Low SH (<5°F) - possible overcharge</div>';
-          else if (superheat >= 8 && superheat <= 18) statusDiv.innerHTML = '<div class="status good">✓ Superheat in target range (8-18°F)</div>';
-          else if (superheat > 25) statusDiv.innerHTML = '<div class="status bad">⚠️ High SH (>25°F) - possible undercharge</div>';
-          else statusDiv.innerHTML = '<div class="status warn">⚠️ Superheat marginal</div>';
+          const superheat = suctionTemp - satTemp;
+          $('superheat').value = `${superheat.toFixed(1)}°F`;
         }
       }
       
-      if (liqP && liqT) {
-        const satTemp = lookupSatTemp(liqP);
+      // Calculate Subcool
+      if (!isNaN(liquidPressure) && !isNaN(liquidTemp)) {
+        const satTemp = getSaturationTemp(liquidPressure);
         if (satTemp) {
-          const subcool = satTemp - liqT;
-          $('subcool').value = subcool.toFixed(1) + ' °F';
-          const statusDiv = $('subcool-status');
-          if (subcool < 5) statusDiv.innerHTML = '<div class="status bad">⚠️ Low SC (<5°F) - possible undercharge</div>';
-          else if (subcool >= 8 && subcool <= 15) statusDiv.innerHTML = '<div class="status good">✓ Subcool in target range (8-15°F)</div>';
-          else if (subcool > 20) statusDiv.innerHTML = '<div class="status bad">⚠️ High SC (>20°F) - possible overcharge</div>';
-          else statusDiv.innerHTML = '<div class="status warn">⚠️ Subcool marginal</div>';
+          const subcool = satTemp - liquidTemp;
+          $('subcool').value = `${subcool.toFixed(1)}°F`;
         }
       }
+      
+      // Run diagnostic analysis
+      runDiagnosticAnalysis();
     }
     
-    function calculateAge() {
-      const mfgDate = $('mfg-date').value;
-      const ageDiv = $('equipment-age');
-      if (!mfgDate) {
-        ageDiv.textContent = '';
-        return;
+    function calculateHeatingDiagnostics() {
+      const returnTemp = parseFloat($('return-temp-heat').value);
+      const supplyTemp = parseFloat($('supply-temp-heat').value);
+      
+      if (!isNaN(returnTemp) && !isNaN(supplyTemp)) {
+        const tempRise = supplyTemp - returnTemp;
+        $('temp-rise').value = `${tempRise.toFixed(1)}°F`;
       }
       
-      const mfg = new Date(mfgDate);
-      const years = (Date.now() - mfg.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
+      runDiagnosticAnalysis();
+    }
+    
+    function getSaturationTemp(pressure) {
+      const pressures = Object.keys(R410A_PT).map(Number);
+      const closest = pressures.reduce((prev, curr) => 
+        Math.abs(curr - pressure) < Math.abs(prev - pressure) ? curr : prev
+      );
+      return R410A_PT[closest];
+    }
+    
+    // ==================== MASTER TECH DIAGNOSTIC ENGINE ====================
+    function runDiagnosticAnalysis() {
+      diagnosticResults = [];
       
-      let ageText = `Equipment Age: ${years.toFixed(1)} years`;
-      ageDiv.textContent = ageText;
-      
-      if (years > 20) {
-        ageDiv.style.color = '#FF3B30';
-        ageDiv.style.fontWeight = '600';
-        ageDiv.textContent += ' ⚠️ CRITICAL AGE';
-      } else if (years > 15) {
-        ageDiv.style.color = '#FF9500';
-        ageDiv.style.fontWeight = '600';
-        ageDiv.textContent += ' ⚠️ Consider Replacement';
+      if (systemMode === 'cooling') {
+        analyzeCoolingSystem();
       } else {
-        ageDiv.style.color = '#666';
-        ageDiv.style.fontWeight = '400';
+        analyzeHeatingSystem();
       }
+      
+      displayDiagnosticResults();
     }
     
-    function calculateLaborHours() {
-      const arrival = $('arrival-time').value;
-      const completion = $('completion-time').value;
-      if (!arrival || !completion) return;
+    function analyzeCoolingSystem() {
+      const returnTemp = parseFloat($('return-temp').value);
+      const supplyTemp = parseFloat($('supply-temp').value);
+      const deltaT = returnTemp && supplyTemp ? returnTemp - supplyTemp : null;
+      const staticPressure = parseFloat($('static-pressure').value);
+      const superheat = parseFloat($('superheat').value.replace('°F', ''));
+      const subcool = parseFloat($('subcool').value.replace('°F', ''));
       
-      const arrivalDate = new Date(`2000-01-01T${arrival}`);
-      let completionDate = new Date(`2000-01-01T${completion}`);
-      
-      let diffMs = completionDate - arrivalDate;
-      
-      if (diffMs < 0) {
-        diffMs += 24 * 60 * 60 * 1000;
-      }
-      
-      const hours = diffMs / (1000 * 60 * 60);
-      
-      if (hours > 24) {
-        $('total-hours').value = 'ERROR: Check times';
-        showToast('Service call duration exceeds 24 hours. Verify times.', 'warn');
-        return;
-      }
-      
-      $('total-hours').value = hours.toFixed(2) + ' hours';
-    }
-    
-    let recognition = null;
-    let currentVoiceTarget = null;
-    
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognition = new SpeechRecognition();
-      recognition.continuous = false;
-      recognition.interimResults = true;
-      
-      recognition.onresult = (e) => {
-        if (currentVoiceTarget) {
-          if (e.results[0].isFinal) {
-            const transcript = e.results[0][0].transcript;
-            currentVoiceTarget.value = transcript;
-            currentVoiceTarget.dispatchEvent(new Event('input'));
-            currentVoiceTarget.dispatchEvent(new Event('change'));
-            currentVoiceTarget.placeholder = '';
-          } else {
-            const interim = e.results[0][0].transcript;
-            currentVoiceTarget.placeholder = `Listening: "${interim}"...`;
-          }
-        }
-      };
-      
-      recognition.onend = () => {
-        recognitionActive = false;
-        document.querySelectorAll('.voice-btn.listening').forEach(btn => {
-          btn.classList.remove('listening');
-        });
-        if (currentVoiceTarget) {
-          currentVoiceTarget.placeholder = '';
-        }
-      };
-      
-      recognition.onerror = (e) => {
-        console.error('Speech recognition error:', e.error);
-        recognitionActive = false;
-        showToast(`Voice Error: ${e.error}`, 'danger');
-        document.querySelectorAll('.voice-btn.listening').forEach(btn => {
-          btn.classList.remove('listening');
-        });
-      };
-    }
-    
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('voice-btn')) {
-        const targetId = e.target.dataset.voice;
-        currentVoiceTarget = $(targetId);
-        
-        if (recognition && currentVoiceTarget) {
-          document.querySelectorAll('.voice-btn').forEach(btn => btn.classList.remove('listening'));
-          
-          if (recognitionActive) {
-            try { recognition.stop(); } catch (err) {}
-            recognitionActive = false;
-          }
-          
-          setTimeout(() => {
-            e.target.classList.add('listening');
-            try {
-              recognition.start();
-              recognitionActive = true;
-            } catch (err) {
-              console.error('Could not start recognition:', err);
-              e.target.classList.remove('listening');
-              showToast('Voice input failed to start', 'danger');
-            }
-          }, 100);
-          
-        } else if (!recognition) {
-          showToast('Voice input not supported on this browser', 'danger');
-        }
-      }
-    });
-    
-    function takePhoto(purpose) {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'image/*';
-      input.capture = 'environment';
-      
-      input.onchange = (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          photos.push({
-            purpose: purpose,
-            data: event.target.result,
-            timestamp: new Date().toISOString(),
-            id: Date.now()
+      // Airflow Analysis
+      if (deltaT !== null) {
+        if (deltaT < 14) {
+          diagnosticResults.push({
+            category: 'Airflow',
+            severity: 'critical',
+            title: 'Low Delta-T Detected',
+            message: `Delta-T is ${deltaT.toFixed(1)}°F (Expected: 16-22°F)`,
+            recommendations: [
+              'Check filter condition - replace if dirty',
+              'Inspect evaporator coil for dirt/restrictions',
+              'Verify blower motor operation and speed',
+              'Check for closed or blocked supply vents',
+              'Measure static pressure to confirm restriction',
+              'Consider refrigerant charge if airflow is confirmed good'
+            ]
           });
-          updatePhotoPreview();
-          autoSaveForm();
-        };
-        reader.readAsDataURL(file);
-      };
+        } else if (deltaT >= 16 && deltaT <= 22) {
+          diagnosticResults.push({
+            category: 'Airflow',
+            severity: 'good',
+            title: 'Delta-T in Optimal Range',
+            message: `Delta-T is ${deltaT.toFixed(1)}°F - System airflow is good`,
+            recommendations: []
+          });
+        } else if (deltaT > 24) {
+          diagnosticResults.push({
+            category: 'Airflow',
+            severity: 'warning',
+            title: 'High Delta-T - Possible Restriction',
+            message: `Delta-T is ${deltaT.toFixed(1)}°F (Expected: 16-22°F)`,
+            recommendations: [
+              'Check filter immediately - likely very dirty',
+              'Inspect ductwork for kinks or crushing',
+              'Check blower speed settings',
+              'Verify return air path is unrestricted'
+            ]
+          });
+        }
+      }
       
-      input.click();
-    }
-    
-    async function deletePhoto(photoId) {
-      const confirmed = await showModal('Delete Photo', 'Are you sure you want to delete this photo?');
-      if (confirmed) {
-        photos = photos.filter(p => p.id !== photoId);
-        updatePhotoPreview();
-        autoSaveForm();
+      // Static Pressure Analysis
+      if (!isNaN(staticPressure)) {
+        if (staticPressure > 0.7) {
+          diagnosticResults.push({
+            category: 'Airflow',
+            severity: 'critical',
+            title: 'High Static Pressure',
+            message: `Static pressure is ${staticPressure.toFixed(2)} in w.c. (Max: 0.50 acceptable)`,
+            recommendations: [
+              'Replace filter immediately if dirty',
+              'Inspect ductwork for restrictions',
+              'Check for closed dampers',
+              'Verify proper duct sizing for tonnage'
+            ]
+          });
+        } else if (staticPressure <= 0.5) {
+          diagnosticResults.push({
+            category: 'Airflow',
+            severity: 'good',
+            title: 'Static Pressure Acceptable',
+            message: `Static pressure is ${staticPressure.toFixed(2)} in w.c.`,
+            recommendations: []
+          });
+        }
+      }
+      
+      // Refrigerant Charge Analysis
+      if (!isNaN(superheat) && !isNaN(subcool)) {
+        if (superheat > 20 && subcool < 8) {
+          diagnosticResults.push({
+            category: 'Refrigerant',
+            severity: 'critical',
+            title: 'System Appears Undercharged',
+            message: `Superheat: ${superheat.toFixed(1)}°F, Subcool: ${subcool.toFixed(1)}°F`,
+            recommendations: [
+              'Check for refrigerant leaks at evaporator coil',
+              'Inspect service valve connections',
+              'Look for oil residue at brazed joints',
+              'Check line set for damage/leaks',
+              'Add refrigerant by weight or subcool method',
+              'Re-verify charge after adding refrigerant'
+            ]
+          });
+        } else if (superheat < 5 && subcool > 15) {
+          diagnosticResults.push({
+            category: 'Refrigerant',
+            severity: 'warning',
+            title: 'System May Be Overcharged',
+            message: `Superheat: ${superheat.toFixed(1)}°F, Subcool: ${subcool.toFixed(1)}°F`,
+            recommendations: [
+              'Verify charge was not added incorrectly',
+              'Check for non-condensables in system',
+              'Confirm outdoor unit has adequate airflow',
+              'Consider recovering excess refrigerant'
+            ]
+          });
+        } else if (superheat >= 8 && superheat <= 15 && subcool >= 8 && subcool <= 12) {
+          diagnosticResults.push({
+            category: 'Refrigerant',
+            severity: 'good',
+            title: 'Refrigerant Charge Within Range',
+            message: `Superheat: ${superheat.toFixed(1)}°F, Subcool: ${subcool.toFixed(1)}°F`,
+            recommendations: []
+          });
+        } else if (superheat > 25 && subcool >= 8) {
+          diagnosticResults.push({
+            category: 'Refrigerant',
+            severity: 'critical',
+            title: 'Possible TXV Failure',
+            message: `High superheat with normal subcool suggests TXV issue`,
+            recommendations: [
+              'Check TXV bulb placement and contact',
+              'Verify TXV is not stuck closed',
+              'Inspect sensing bulb for damage',
+              'Consider TXV replacement'
+            ]
+          });
+        }
       }
     }
     
-    function updatePhotoPreview() {
-      $('photo-preview').innerHTML = photos.map(p => 
-        `<div class="photo-item">
-            <img src="${p.data}" alt="${p.purpose}">
-            <div class="photo-label">${p.purpose}</div>
-            <button class="photo-delete" onclick="deletePhoto(${p.id})">×</button>
-        </div>`
-      ).join('');
+    function analyzeHeatingSystem() {
+      const returnTemp = parseFloat($('return-temp-heat').value);
+      const supplyTemp = parseFloat($('supply-temp-heat').value);
+      const tempRise = supplyTemp && returnTemp ? supplyTemp - returnTemp : null;
+      const manifoldPressure = parseFloat($('manifold-pressure').value);
+      
+      // Temperature Rise Analysis
+      if (tempRise !== null) {
+        if (tempRise < 35) {
+          diagnosticResults.push({
+            category: 'Heating',
+            severity: 'critical',
+            title: 'Low Temperature Rise',
+            message: `Temp rise is ${tempRise.toFixed(1)}°F (Expected: 35-65°F)`,
+            recommendations: [
+              'Check gas input - verify manifold pressure',
+              'Inspect burners for proper flame pattern',
+              'Check for excessive airflow (blower speed too high)',
+              'Verify gas valve is fully opening'
+            ]
+          });
+        } else if (tempRise > 65) {
+          diagnosticResults.push({
+            category: 'Heating',
+            severity: 'critical',
+            title: 'High Temperature Rise',
+            message: `Temp rise is ${tempRise.toFixed(1)}°F (Expected: 35-65°F)`,
+            recommendations: [
+              'Check airflow - possible restriction',
+              'Verify blower speed is correct',
+              'Inspect heat exchanger for restrictions',
+              'Check limit switches for proper operation'
+            ]
+          });
+        } else {
+          diagnosticResults.push({
+            category: 'Heating',
+            severity: 'good',
+            title: 'Temperature Rise in Range',
+            message: `Temp rise is ${tempRise.toFixed(1)}°F`,
+            recommendations: []
+          });
+        }
+      }
+      
+      // Manifold Pressure Analysis
+      if (!isNaN(manifoldPressure)) {
+        if (manifoldPressure < 3.3 || manifoldPressure > 3.8) {
+          diagnosticResults.push({
+            category: 'Heating',
+            severity: 'warning',
+            title: 'Manifold Pressure Out of Range',
+            message: `Manifold pressure is ${manifoldPressure.toFixed(2)} in w.c. (Expected: 3.3-3.8)`,
+            recommendations: [
+              'Adjust gas valve regulator',
+              'Check gas supply pressure',
+              'Verify proper orifice size for gas type',
+              'Consult furnace specifications'
+            ]
+          });
+        } else {
+          diagnosticResults.push({
+            category: 'Heating',
+            severity: 'good',
+            title: 'Manifold Pressure Acceptable',
+            message: `Manifold pressure is ${manifoldPressure.toFixed(2)} in w.c.`,
+            recommendations: []
+          });
+        }
+      }
     }
     
-    function updateMaterialsList() {
-      const category = $('material-category').value;
-      const container = $('materials-catalog-container');
+    function displayDiagnosticResults() {
+      const container = $('diagnostic-results');
       
-      if (!category) {
-        container.innerHTML = '<div class="text-muted" style="padding: 20px; text-align: center;">Select a category to view materials</div>';
+      if (diagnosticResults.length === 0) {
+        container.classList.add('hidden');
         return;
       }
       
-      const catalogData = materialsCatalog[category];
-      if (!catalogData) return;
+      container.classList.remove('hidden');
       
-      container.innerHTML = catalogData.items.map(item => `
-        <div class="material-item" data-search="${item.name.toLowerCase()}">
-          <div class="material-item-info">
-            <div class="material-item-name">${item.name}</div>
-            <div class="material-item-spec">${item.sizes ? item.sizes.slice(0, 3).join(', ') + (item.sizes.length > 3 ? ' +more' : '') : 'Standard'}</div>
-          </div>
-          <button class="material-add-btn" onclick="addMaterial('${category}', '${item.id}')">+ Add</button>
-        </div>
-      `).join('');
+      let html = '<div class="diagnostic-panel animate-in">';
+      html += '<div class="diagnostic-title">🎯 Master Tech Diagnostic Analysis</div>';
+      
+      diagnosticResults.forEach(result => {
+        html += '<div class="diagnostic-card">';
+        html += '<div class="diagnostic-card-header">';
+        html += `<div class="diagnostic-card-title">${result.title}</div>`;
+        html += `<span class="severity-badge severity-${result.severity}">${result.severity}</span>`;
+        html += '</div>';
+        html += `<p style="color: var(--gray-700); margin-bottom: var(--spacing-sm);">${result.message}</p>`;
+        
+        if (result.recommendations.length > 0) {
+          html += '<div class="recommendations">';
+          html += '<strong style="font-size: 13px; color: var(--gray-700);">Recommended Actions:</strong>';
+          html += '<ul>';
+          result.recommendations.forEach(rec => {
+            html += `<li>${rec}</li>`;
+          });
+          html += '</ul>';
+          html += '</div>';
+        }
+        
+        html += '</div>';
+      });
+      
+      html += '</div>';
+      container.innerHTML = html;
     }
     
-    function filterMaterialsList() {
-      const search = $('material-search').value.toLowerCase();
-      const items = document.querySelectorAll('.material-item');
+    // ==================== MATERIALS MANAGEMENT ====================
+    function initMaterialsCatalog() {
+      const catalog = $('materials-catalog');
+      let html = '';
       
-      items.forEach(item => {
-        const searchText = item.dataset.search || '';
-        item.style.display = searchText.includes(search) ? 'flex' : 'none';
+      Object.keys(materialsCatalog).forEach(categoryKey => {
+        const category = materialsCatalog[categoryKey];
+        html += `<div class="card-subtitle">${category.name}</div>`;
+        
+        category.items.forEach(item => {
+          const itemId = `${categoryKey}-${item.id}`;
+          const sizeDisplay = item.sizes ? item.sizes.slice(0, 3).join(', ') + (item.sizes.length > 3 ? ' +more' : '') : 'Standard';
+          
+          html += `<label class="checkbox-label" data-search="${item.name.toLowerCase()} ${category.name.toLowerCase()}">`;
+          html += `<input type="checkbox" id="${itemId}" onchange="toggleMaterial('${categoryKey}', '${item.id}')">`;
+          html += '<div style="flex: 1;">';
+          html += `<div class="material-name">${item.name}</div>`;
+          html += `<div class="material-spec">${item.spec || sizeDisplay}</div>`;
+          html += '</div>';
+          html += '</label>';
+        });
+      });
+      
+      catalog.innerHTML = html;
+    }
+    
+    function filterMaterials() {
+      const search = $('material-search').value.toLowerCase();
+      const labels = document.querySelectorAll('#materials-catalog .checkbox-label');
+      
+      labels.forEach(label => {
+        const searchText = label.dataset.search || '';
+        label.style.display = searchText.includes(search) ? 'flex' : 'none';
       });
     }
     
-    function addMaterial(category, itemId) {
-      const catalogData = materialsCatalog[category];
-      const item = catalogData.items.find(i => i.id === itemId);
+    function toggleMaterial(categoryKey, itemId) {
+      const category = materialsCatalog[categoryKey];
+      const item = category.items.find(i => i.id === itemId);
       if (!item) return;
       
-      const materialId = `mat-${Date.now()}-${Math.random()}`;
-      selectedMaterials.push({
-        id: materialId,
-        itemId: item.id,
-        category: catalogData.name,
-        name: item.name,
-        size: item.sizes ? item.sizes[0] : 'Standard',
-        sizes: item.sizes || ['Standard'],
-        spec: item.spec || null,
-        quantity: 1,
-        unit: item.unit || 'ea',
-        tonnage: item.tonnage || false,
-        tonnageRange: item.tonnageRange || null
-      });
+      const checkboxId = `${categoryKey}-${itemId}`;
+      const checkbox = $(checkboxId);
       
-      renderSelectedMaterials();
-      updateSuggestions();
-      autoSaveForm();
-      showToast('Material added', 'success');
-    }
-    
-    function updateMaterialQuantity(id, qty) {
-      const material = selectedMaterials.find(m => m.id === id);
-      if (material) {
-        const newQty = parseInt(qty) || 1;
-        if (newQty < 1) {
-          showToast('Quantity must be at least 1', 'warn');
-          material.quantity = 1;
-        } else {
-          material.quantity = newQty;
-        }
-        renderSelectedMaterials();
-        autoSaveForm();
+      if (checkbox.checked) {
+        selectedMaterials.push({
+          categoryKey: categoryKey,
+          categoryName: category.name,
+          itemId: item.id,
+          name: item.name,
+          spec: item.spec || (item.sizes ? item.sizes[0] : 'Standard'),
+          sizes: item.sizes || ['Standard'],
+          unit: item.unit || 'ea',
+          quantity: 1
+        });
+      } else {
+        selectedMaterials = selectedMaterials.filter(m => !(m.categoryKey === categoryKey && m.itemId === itemId));
       }
-    }
-    
-    function updateMaterialSize(id, size) {
-      const material = selectedMaterials.find(m => m.id === id);
-      if (material) {
-        material.size = size;
-        renderSelectedMaterials();
-        updateSuggestions();
-        autoSaveForm();
-      }
-    }
-    
-    function removeMaterial(id) {
-      selectedMaterials = selectedMaterials.filter(m => m.id !== id);
-      renderSelectedMaterials();
-      updateSuggestions();
-      autoSaveForm();
-    }
-    
-    function renderSelectedMaterials() {
-      const container = $('selected-materials-list');
-      const totalBadge = $('total-items-badge');
       
-      const totalItems = selectedMaterials.reduce((sum, m) => sum + m.quantity, 0);
-      totalBadge.textContent = `${totalItems} item${totalItems !== 1 ? 's' : ''}`;
+      displaySelectedMaterials();
+    }
+    
+    function displaySelectedMaterials() {
+      const container = $('selected-materials');
       
       if (selectedMaterials.length === 0) {
-        container.innerHTML = '<div class="text-muted" style="text-align: center; padding: 20px;">No materials selected yet. Add items from the catalog above.</div>';
+        container.innerHTML = '<div class="status-info"><span>ℹ️</span><span>No materials selected yet. Use the catalog above to add items.</span></div>';
         return;
       }
       
-      container.innerHTML = selectedMaterials.map(m => `
-        <div class="selected-material">
-          <div class="selected-material-header">
-            <div>
-              <div class="selected-material-title">${m.name}</div>
-              <div class="selected-material-category">${m.category}</div>
-            </div>
-            <button class="remove-btn" onclick="removeMaterial('${m.id}')">×</button>
-          </div>
-          <div class="selected-material-controls">
-            ${m.sizes.length > 1 ? `
-              <select style="flex: 1; margin: 0;" onchange="updateMaterialSize('${m.id}', this.value)">
-                ${m.sizes.map(size => `<option value="${size}" ${m.size === size ? 'selected' : ''}>${size}</option>`).join('')}
-              </select>
-            ` : `
-              <div style="flex: 1; font-size: 14px; color: #666;">${m.spec ? `${m.size} - ${m.spec}` : m.size}</div>
-            `}
-            <input type="number" min="1" value="${m.quantity}" class="qty-input" onchange="updateMaterialQuantity('${m.id}', this.value)">
-            <div style="min-width: 30px; font-size: 14px; color: #666;">${m.unit}</div>
-          </div>
-        </div>
-      `).join('');
-    }
-    
-    function getTonnageFromSize(sizeStr) {
-      const match = sizeStr.match(/(\d+\.?\d*)\s*Ton/i);
-      return match ? parseFloat(match[1]) : null;
-    }
-    
-    function updateSuggestions() {
-      const suggestions = [];
-      
-      const coolingEquipment = selectedMaterials.find(m => m.tonnage);
-      
-      if (coolingEquipment) {
-        const tonnage = getTonnageFromSize(coolingEquipment.size);
+      let html = '';
+      selectedMaterials.forEach((item, index) => {
+        html += '<div class="material-item">';
+        html += '<div class="material-info">';
+        html += `<div class="material-name">${item.name}</div>`;
+        html += `<div class="material-spec">${item.spec}</div>`;
+        html += '</div>';
+        html += '<div style="display: flex; align-items: center; gap: 8px;">';
         
-        if (tonnage) {
-          const hasLineset = selectedMaterials.some(m => m.itemId && m.itemId.includes('lineset'));
-          if (!hasLineset) {
-            let linesetId;
-            if (tonnage <= 2.5) linesetId = 'lineset-small';
-            else if (tonnage <= 3.5) linesetId = 'lineset-medium';
-            else linesetId = 'lineset-large';
-            
-            const linesetItem = materialsCatalog.refrigeration.items.find(i => i.id === linesetId);
-            if (linesetItem) {
-              suggestions.push({
-                category: 'refrigeration',
-                item: linesetItem,
-                reason: `Matches ${tonnage} ton system`
-              });
-            }
-          }
-          
-          const hasDisconnect = selectedMaterials.some(m => m.itemId && m.itemId.includes('disconnect'));
-          if (!hasDisconnect) {
-            const disconnectId = tonnage >= 4 ? 'disconnect-60' : 'disconnect-30';
-            const disconnectItem = materialsCatalog.electrical.items.find(i => i.id === disconnectId);
-            if (disconnectItem) {
-              suggestions.push({
-                category: 'electrical',
-                item: disconnectItem,
-                reason: `Required for ${tonnage} ton unit`
-              });
-            }
-          }
-        }
-      }
-      
-      const hasEquipment = selectedMaterials.some(m => m.category === 'Equipment');
-      
-      if (hasEquipment) {
-        const hasPlenum = selectedMaterials.some(m => m.name && m.name.includes('Plenum'));
-        if (!hasPlenum) {
-          const plenumItem = materialsCatalog.ductwork.items.find(i => i.id === 'plenum-supply');
-          if (plenumItem) {
-            suggestions.push({
-              category: 'ductwork',
-              item: plenumItem,
-              reason: 'Required for equipment installation'
-            });
-          }
+        if (item.sizes.length > 1) {
+          html += `<select style="width: 150px; padding: 8px; margin: 0; font-size: 14px;" onchange="updateMaterialSize(${index}, this.value)">`;
+          item.sizes.forEach(size => {
+            html += `<option value="${size}" ${item.spec === size ? 'selected' : ''}>${size}</option>`;
+          });
+          html += '</select>';
         }
         
-        const hasDrain = selectedMaterials.some(m => m.itemId && (m.itemId.includes('drain') || m.itemId.includes('ptrap')));
-        if (!hasDrain) {
-          const drainItem = materialsCatalog.drainage.items.find(i => i.id === 'ptrap-3-4');
-          if (drainItem) {
-            suggestions.push({
-              category: 'drainage',
-              item: drainItem,
-              reason: 'Required for condensate drainage'
-            });
-          }
-        }
-      }
+        html += `<input type="number" class="material-quantity" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)" style="width: 70px; margin: 0; padding: 8px; text-align: center; font-weight: 600;">`;
+        html += `<span style="font-size: 14px; color: var(--gray-600); min-width: 30px;">${item.unit}</span>`;
+        html += '</div>';
+        html += '</div>';
+      });
       
-      const suggestionsContainer = $('suggestions-container');
-      const suggestionsList = $('suggestions-list');
+      container.innerHTML = html;
+    }
+    
+    function updateQuantity(index, value) {
+      selectedMaterials[index].quantity = parseInt(value) || 1;
+    }
+    
+    function updateMaterialSize(index, size) {
+      selectedMaterials[index].spec = size;
+    }
+    
+    // ==================== REPORT GENERATION ====================
+    function generateServiceReport() {
+      const customer = $('customer-name').value || 'N/A';
+      const date = $('service-date').value || new Date().toISOString().split('T')[0];
+      const address = $('service-address').value || 'N/A';
+      const complaint = $('customer-complaint').value || 'N/A';
+      const tech = $('tech-name').value || 'Technician';
       
-      if (suggestions.length > 0) {
-        suggestionsContainer.classList.remove('hidden');
-        suggestionsList.innerHTML = suggestions.map(s => `
-          <div class="suggestion-item">
-            <div class="suggestion-info">
-              <div class="suggestion-name">${s.item.name}</div>
-              <div class="suggestion-reason">${s.reason}</div>
-            </div>
-            <button class="material-add-btn" onclick="addMaterial('${s.category}', '${s.item.id}')">+ Add</button>
-          </div>
-        `).join('');
+      let report = `╔════════════════════════════════════════════════════════════╗
+║       FIELD BUDDY PRO - SERVICE REPORT (v2.0)              ║
+╚════════════════════════════════════════════════════════════╝
+
+JOB INFORMATION
+───────────────────────────────────────────────────────────────
+Customer: ${customer}
+Date: ${date}
+Address: ${address}
+Call Type: ${callType === 'trouble' ? 'Trouble Call' : 'Maintenance'}
+System Mode: ${systemMode === 'cooling' ? 'Cooling' : 'Heating'}
+
+Customer Complaint:
+${complaint}
+
+EQUIPMENT INFORMATION
+───────────────────────────────────────────────────────────────
+Unit Type: ${$('unit-type').value || 'N/A'}
+Indoor Unit: ${$('indoor-unit').value || 'N/A'}
+Outdoor Unit: ${$('outdoor-unit').value || 'N/A'}
+Tonnage: ${$('tonnage').value || 'N/A'} Ton
+Refrigerant: ${$('refrigerant-type').value || 'R-410A'}
+Filter Size: ${$('filter-size').value || 'N/A'}
+
+`;
+
+      // Add measurements
+      if (systemMode === 'cooling') {
+        report += `COOLING MEASUREMENTS
+───────────────────────────────────────────────────────────────
+Ambient Temp: ${$('ambient-temp').value || 'N/A'}°F
+Return Air Temp: ${$('return-temp').value || 'N/A'}°F
+Supply Air Temp: ${$('supply-temp').value || 'N/A'}°F
+Delta-T: ${$('delta-t').value || 'N/A'}
+
+Suction Pressure: ${$('suction-pressure').value || 'N/A'} PSI
+Suction Line Temp: ${$('suction-temp').value || 'N/A'}°F
+Superheat: ${$('superheat').value || 'N/A'}
+
+Liquid Pressure: ${$('liquid-pressure').value || 'N/A'} PSI
+Liquid Line Temp: ${$('liquid-temp').value || 'N/A'}°F
+Subcool: ${$('subcool').value || 'N/A'}
+
+Static Pressure: ${$('static-pressure').value || 'N/A'} in w.c.
+Voltage: ${$('voltage').value || 'N/A'} V
+Amperage: ${$('amperage').value || 'N/A'} A
+
+`;
       } else {
-        suggestionsContainer.classList.add('hidden');
+        report += `HEATING MEASUREMENTS
+───────────────────────────────────────────────────────────────
+Return Air Temp: ${$('return-temp-heat').value || 'N/A'}°F
+Supply Air Temp: ${$('supply-temp-heat').value || 'N/A'}°F
+Temperature Rise: ${$('temp-rise').value || 'N/A'}
+
+Manifold Pressure: ${$('manifold-pressure').value || 'N/A'} in w.c.
+Voltage: ${$('voltage-heat').value || 'N/A'} V
+Amperage: ${$('amperage-heat').value || 'N/A'} A
+
+`;
       }
-    }
-    
-    function validateServiceForm() {
-      const errors = [];
-      
-      if (!$('customer').value) errors.push('Customer name is required');
-      if (!$('address').value) errors.push('Address is required');
-      if (!$('job-type').value) errors.push('Job type is required');
-      if (!$('brand').value) errors.push('Equipment brand is required');
-      
-      if (errors.length > 0) {
-        showModal('Missing Required Fields', errors.join('\n'));
-        return false;
+
+      // Add diagnostic results
+      if (diagnosticResults.length > 0) {
+        report += `DIAGNOSTIC ANALYSIS
+═══════════════════════════════════════════════════════════════
+
+`;
+        diagnosticResults.forEach(result => {
+          report += `${result.category.toUpperCase()} - ${result.title}
+Severity: ${result.severity.toUpperCase()}
+${result.message}
+
+`;
+          if (result.recommendations.length > 0) {
+            report += 'Recommended Actions:\n';
+            result.recommendations.forEach(rec => {
+              report += `  • ${rec}\n`;
+            });
+            report += '\n';
+          }
+        });
       }
-      return true;
-    }
-    
-    function gatherServiceData() {
-      const unitType = $('unit-type').value;
-      const isPackage = unitType === 'package' || unitType === 'minisplit';
-      
-      return {
-        meta: { tech: $('tech-name').value || '[Technician]', mode: 'Service', heatCoolMode: heatCoolMode },
-        job: {
-          customer: $('customer').value,
-          address: $('address').value,
-          jobType: $('job-type').value,
-          complaint: $('complaint')?.value,
-        },
-        equipment: {
-          brand: $('brand').value,
-          unitType: unitType,
-          indoor: $('indoor-data').value,
-          outdoor: isPackage ? 'N/A (Package Unit)' : $('outdoor-data').value,
-          tonnage: $('tonnage').value,
-          refrigerant: $('refrigerant').value,
-          mfgDate: $('mfg-date').value,
-          age: $('equipment-age').textContent
-        },
-        time: {
-          arrival: $('arrival-time').value,
-          completion: $('completion-time').value,
-          travel: $('travel-time').value,
-          total: $('total-hours').value
-        },
-        materials: {
-          refrigerant: { 
-            type: $('refrigerant-added-type').value, 
-            amount: $('refrigerant-amount').value, 
-            recovered: $('refrigerant-recovered').value 
-          },
-          filter: { size: $('filter-size').value, merv: $('filter-merv').value },
-          capacitor: { type: $('capacitor-type').value, qty: $('capacitor-qty').value },
-          contactor: { rating: $('contactor-rating').value, qty: $('contactor-qty').value },
-          other: $('other-parts').value
-        },
-        service: {
-          safety: {
-            disconnect: $('safety-disconnect').checked, 
-            clearances: $('safety-clearances').checked,
-            drain: $('safety-drain').checked, 
-            floats: $('safety-floats').checked,
-            gas: $('safety-gas')?.checked, 
-            vent: $('safety-vent')?.checked,
-            co: $('safety-co')?.checked, 
-            flameSensor: $('safety-flame-sensor')?.checked
-          },
-          operating: {
-            outdoorTemp: $('outdoor-temp').value, 
-            outdoorHumidity: $('outdoor-humidity').value,
-            returnTemp: $('return-temp').value, 
-            supplyTemp: $('supply-temp').value,
-            deltaT: $('delta-t').value, 
-            returnStatic: $('return-static').value,
-            supplyStatic: $('supply-static').value, 
-            totalStatic: $('total-static').value,
-            voltageLine: $('voltage-line').value, 
-            controlVoltage: $('control-voltage').value,
-            blowerAmps: $('blower-amps').value, 
-            suctionPressure: $('suction-pressure').value,
-            liquidPressure: $('liquid-pressure')?.value, 
-            suctionTemp: $('suction-temp')?.value,
-            liquidTemp: $('liquid-temp')?.value, 
-            superheat: $('superheat')?.value,
-            subcool: $('subcool')?.value, 
-            compAmps: $('comp-amps')?.value,
-            inducerAmps: $('inducer-amps')?.value, 
-            heatExchanger: $('heat-exchanger')?.value,
-            flameAppearance: $('flame-appearance')?.value
-          },
-          components: {
-            filter: $('filter').value, 
-            evapCoil: $('evap-coil').value,
-            condCoil: $('cond-coil').value, 
-            capacitorReading: $('capacitor-reading').value,
-            contactorCondition: $('contactor-condition').value, 
-            blowerCondition: $('blower-condition').value
-          },
-          findings: $('findings').value,
-          recommendations: $('recommendations').value,
-          workPerformed: $('work-performed').value
-        },
-        photos: photos,
-        signature: { 
-          tech: $('tech-name').value, 
-          customer: $('customer-signature').value 
-        }
-      };
-    }
-    
-    function gatherMaterialsData() {
-      return {
-        meta: { tech: $('mat-tech').value || '[Technician]', mode: 'Materials' },
-        job: {
-          customer: $('mat-customer').value,
-          address: $('mat-address').value,
-          date: $('mat-date').value,
-          notes: $('mat-notes').value
-        },
-        materials: selectedMaterials,
-        photos: photos,
-        signature: {
-          tech: $('tech-name').value,
-          customer: $('customer-signature').value
-        }
-      };
-    }
-    
-    function generateServiceReport(data) {
-      let report = `
-HVAC SERVICE REPORT
-======================================================
-Date: ${new Date().toLocaleString()}
-Technician: ${data.meta.tech}
-Mode: ${data.meta.mode} - ${data.meta.heatCoolMode.toUpperCase()}
-------------------------------------------------------
-Customer: ${data.job.customer}
-Address: ${data.job.address}
-Job Type: ${data.job.jobType}
 
-CUSTOMER COMPLAINT:
-  ${data.job.complaint || 'N/A'}
-
-EQUIPMENT IDENTITY
-------------------
-Brand: ${data.equipment.brand}
-Type: ${data.equipment.unitType}
-Indoor: ${data.equipment.indoor}
-Outdoor: ${data.equipment.outdoor}
-Tonnage: ${data.equipment.tonnage} | Refrigerant: ${data.equipment.refrigerant}
-Mfg Date: ${data.equipment.mfgDate} ${data.equipment.age ? `(${data.equipment.age})` : ''}
-
-TIME TRACKING
--------------
-Arrival: ${data.time.arrival} | Completion: ${data.time.completion}
-Total: ${data.time.total}
-
-OPERATING CONDITIONS
---------------------
-Outdoor: ${data.service.operating.outdoorTemp}°F, ${data.service.operating.outdoorHumidity}% RH
-Airflow:
-  Return: ${data.service.operating.returnTemp}°F | Supply: ${data.service.operating.supplyTemp}°F
-  Delta T: ${data.service.operating.deltaT}
-  Return Static: ${data.service.operating.returnStatic} | Supply: ${data.service.operating.supplyStatic}
-  Total Static: ${data.service.operating.totalStatic}
-
-Electrical:
-  Line Voltage: ${data.service.operating.voltageLine}V
-  Control: ${data.service.operating.controlVoltage}V
-  Blower Amps: ${data.service.operating.blowerAmps}
-
-${data.meta.heatCoolMode === 'cooling' ? `Refrigerant Circuit (COOLING):
-  Suction: ${data.service.operating.suctionPressure} psig @ ${data.service.operating.suctionTemp}°F
-  Liquid: ${data.service.operating.liquidPressure} psig @ ${data.service.operating.liquidTemp}°F
-  Superheat: ${data.service.operating.superheat} | Subcool: ${data.service.operating.subcool}
-  Compressor: ${data.service.operating.compAmps}` : 
-`Heating Circuit:
-  Heat Exchanger: ${data.service.operating.heatExchanger}
-  Flame: ${data.service.operating.flameAppearance}
-  Inducer: ${data.service.operating.inducerAmps}A`}
-
-COMPONENT INSPECTION
---------------------
-Filter: ${data.service.components.filter}
-Evap Coil: ${data.service.components.evapCoil} | Cond Coil: ${data.service.components.condCoil}
-Capacitor: ${data.service.components.capacitorReading}
-Contactor: ${data.service.components.contactorCondition}
-Blower: ${data.service.components.blowerCondition}
-
-MATERIALS USED
---------------
-${formatServiceMaterials(data.materials)}
-
-FINDINGS & RECOMMENDATIONS
---------------------------
+      // Add findings and work performed
+      report += `FINDINGS & RECOMMENDATIONS
+───────────────────────────────────────────────────────────────
 Findings:
-${data.service.findings}
+${$('findings').value || 'See diagnostic analysis above.'}
 
 Recommendations:
-${data.service.recommendations}
+${$('recommendations').value || 'N/A'}
 
 Work Performed:
-${data.service.workPerformed}
+${$('work-performed').value || 'N/A'}
 
-PHOTO DOCUMENTATION
--------------------
-${data.photos.length} Photo(s): ${data.photos.map(p => p.purpose).join(', ')}
+TECHNICIAN INFORMATION
+───────────────────────────────────────────────────────────────
+Technician: ${tech}
+Generated: ${new Date().toLocaleString()}
 
-TECHNICIAN CERTIFICATION
-------------------------
-${data.signature.tech}
-Customer Acknowledged: ${data.signature.customer}
+───────────────────────────────────────────────────────────────
+This report was generated by Field Buddy Pro v2.0 Master Tech Edition
 `;
-      return report.replace(/\n\s+\n/g, '\n\n');
+
+      displayReport(report, '✓ Service Report Generated');
+      showToast('Service report generated successfully!', 'success');
     }
     
-    function formatServiceMaterials(materials) {
-      let text = '  ';
-      if (materials.refrigerant?.type) text += `Refrigerant: ${materials.refrigerant.type} - ${materials.refrigerant.amount}\n  `;
-      if (materials.filter?.size) text += `Filter: ${materials.filter.size} MERV ${materials.filter.merv}\n  `;
-      if (materials.capacitor?.qty > 0) text += `Capacitor: ${materials.capacitor.type} (${materials.capacitor.qty})\n  `;
-      if (materials.contactor?.qty > 0) text += `Contactor: ${materials.contactor.rating} (${materials.contactor.qty})\n  `;
-      if (materials.other) text += `Other: ${materials.other}\n  `;
-      return text.trim() || 'None';
-    }
-    
-    function generateMaterialsList(data) {
-      let list = '';
-      list += '╔════════════════════════════════════════════════════════════╗\n';
-      list += '║          HVAC MATERIALS LIST - PRE-INSTALL                 ║\n';
-      list += '╚════════════════════════════════════════════════════════════╝\n\n';
+    function generateMaterialsList() {
+      const customer = $('mat-customer').value || 'N/A';
+      const date = $('mat-date').value || new Date().toISOString().split('T')[0];
+      const address = $('mat-address').value || 'N/A';
+      const notes = $('mat-notes').value || 'N/A';
+      const tech = $('mat-tech-name').value || 'Technician';
       
-      list += 'JOB INFORMATION\n───────────────────────────────────────────────────────────────\n';
-      list += `Customer/Job: ${data.job.customer || 'N/A'}\n`;
-      list += `Address: ${data.job.address || 'N/A'}\n`;
-      list += `Technician: ${data.meta.tech}\n`;
-      list += `Date: ${data.job.date || new Date().toISOString().split('T')[0]}\n`;
-      if (data.job.notes) list += `Notes: ${data.job.notes}\n`;
-      list += '\n';
-      
-      if (data.materials.length === 0) {
-        list += 'No materials added to list.\n\n';
+      let report = `╔════════════════════════════════════════════════════════════╗
+║       FIELD BUDDY PRO - MATERIALS LIST (v2.0)              ║
+╚════════════════════════════════════════════════════════════╝
+
+JOB INFORMATION
+───────────────────────────────────────────────────────────────
+Customer/Job: ${customer}
+Date: ${date}
+Address: ${address}
+Notes: ${notes}
+
+MATERIALS NEEDED
+═══════════════════════════════════════════════════════════════
+
+`;
+
+      if (selectedMaterials.length === 0) {
+        report += 'No materials added to list.\n\n';
       } else {
-        const groupedMaterials = data.materials.reduce((acc, m) => {
-          if (!acc[m.category]) acc[m.category] = [];
-          acc[m.category].push(m);
-          return acc;
-        }, {});
-        
-        list += 'MATERIALS\n═══════════════════════════════════════════════════════════════\n\n';
-        
-        Object.entries(groupedMaterials).forEach(([category, items]) => {
-          list += `${category}:\n`;
-          list += '─'.repeat(60) + '\n';
-          items.forEach(m => {
-            const sizeInfo = m.spec ? `${m.size} - ${m.spec}` : m.size;
-            list += `☐ ${m.name}\n`;
-            list += `  Size/Spec: ${sizeInfo}\n`;
-            list += `  Quantity: ${m.quantity} ${m.unit}\n`;
-            list += '\n';
-          });
-          list += '\n';
+        // Group by category
+        const grouped = {};
+        selectedMaterials.forEach(item => {
+          if (!grouped[item.categoryName]) grouped[item.categoryName] = [];
+          grouped[item.categoryName].push(item);
         });
         
-        list += '═══════════════════════════════════════════════════════════════\n';
-        const totalItems = data.materials.reduce((sum, m) => sum + m.quantity, 0);
-        list += `TOTAL ITEMS: ${totalItems}\n`;
-        list += `TOTAL LINE ITEMS: ${data.materials.length}\n`;
-        list += '═══════════════════════════════════════════════════════════════\n';
-      }
-      
-      if (data.photos.length > 0) {
-        list += `\nATTACHED PHOTOS: ${data.photos.length}\n`;
-        list += data.photos.map(p => `  - ${p.purpose}`).join('\n') + '\n';
-      }
-      
-      list += `\n───────────────────────────────────────────────────────────────\n`;
-      list += `Generated: ${new Date().toLocaleString()}\n`;
-      list += `Technician: ${data.meta.tech}\n`;
-      list += `───────────────────────────────────────────────────────────────\n`;
-      
-      return list;
-    }
-    
-    function generate() {
-      if (currentMode === 'service' && !validateServiceForm()) {
-        showToast('Please complete required fields', 'danger');
-        return;
-      }
-      
-      const generateBtn = $('generate-btn');
-      const originalHTML = generateBtn.innerHTML;
-      generateBtn.disabled = true;
-      generateBtn.innerHTML = '<span>⏳</span> Generating...';
-      
-      setTimeout(() => {
-        const existing = document.querySelector('.report-preview')?.closest('.card');
-        if (existing) existing.remove();
+        Object.keys(grouped).forEach(category => {
+          report += `${category}:\n`;
+          report += '─'.repeat(60) + '\n';
+          grouped[category].forEach(item => {
+            report += `☐ ${item.name}\n`;
+            report += `  Spec: ${item.spec}\n`;
+            report += `  Quantity: ${item.quantity} ${item.unit}\n\n`;
+          });
+          report += '\n';
+        });
         
-        let reportText = '';
-        let reportData = {};
-        
-        if (currentMode === 'service') {
-          reportData = gatherServiceData();
-          reportText = generateServiceReport(reportData);
-          sessionStorage.setItem('currentReport', JSON.stringify(reportData));
-          sessionStorage.setItem('currentReportText', reportText);
-          displayReport(reportText, '📋 Service Report Generated');
-          showToast('Service Report Generated!', 'success');
-          
-        } else if (currentMode === 'materials') {
-          reportData = gatherMaterialsData();
-          reportText = generateMaterialsList(reportData);
-          sessionStorage.setItem('currentReport', JSON.stringify(reportData));
-          sessionStorage.setItem('currentReportText', reportText);
-          displayReport(reportText, '📋 Materials List Generated');
-          showToast('Materials List Generated!', 'success');
-        }
-        
-        generateBtn.disabled = false;
-        generateBtn.innerHTML = originalHTML;
-      }, 50);
+        const totalQty = selectedMaterials.reduce((sum, m) => sum + m.quantity, 0);
+        report += '═'.repeat(60) + '\n';
+        report += `TOTAL ITEMS: ${totalQty}\n`;
+        report += `TOTAL LINE ITEMS: ${selectedMaterials.length}\n`;
+        report += '═'.repeat(60) + '\n';
+      }
+
+      report += `\nTECHNICIAN INFORMATION
+───────────────────────────────────────────────────────────────
+Technician: ${tech}
+Generated: ${new Date().toLocaleString()}
+
+───────────────────────────────────────────────────────────────
+This list was generated by Field Buddy Pro v2.0 Master Tech Edition
+`;
+
+      displayReport(report, '✓ Materials List Generated');
+      showToast('Materials list generated successfully!', 'success');
     }
     
     function displayReport(text, title) {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <div class="card-header">
-          <span>${title}</span>
-        </div>
-        <div class="status good">
-          <span>✓</span>
-          <span>Ready to export or share</span>
-        </div>
-        <pre class="report-preview" id="report-pre">${text}</pre>
-        <div class="grid-2 mt-8">
-          <button onclick="copyToClipboard()" class="success">📋 Copy</button>
-          <button onclick="printReport()" class="secondary">🖨️ Print</button>
-        </div>
-      `;
+      const container = $('report-container');
       
-      document.querySelector('.actions').before(card);
-      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      let html = '<div class="card animate-in">';
+      html += '<div class="card-header">';
+      html += `<div class="card-title"><span>📄</span><span>${title}</span></div>`;
+      html += '</div>';
+      html += '<div class="status-good"><span>✓</span><span>Report ready to copy or print</span></div>';
+      html += `<pre class="report-preview">${text}</pre>`;
+      html += '<div class="grid grid-2" style="margin-top: var(--spacing-lg);">';
+      html += '<button class="btn btn-success" onclick="copyReport()"><span>📋</span><span>Copy to Clipboard</span></button>';
+      html += '<button class="btn btn-secondary" onclick="printReport()"><span>🖨️</span><span>Print Report</span></button>';
+      html += '</div>';
+      html += '</div>';
+      
+      container.innerHTML = html;
+      container.scrollIntoView({ behavior: 'smooth' });
     }
     
-    function copyToClipboard() {
-      const text = document.getElementById('report-pre')?.textContent;
-      if (!text) {
-        showToast('Generate a report first!', 'danger');
-        return;
-      }
+    function copyReport() {
+      const text = document.querySelector('.report-preview').textContent;
       
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      textArea.style.position = 'fixed';
-      textArea.style.left = '-9999px';
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
       
       try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-          showToast('✓ Copied to clipboard!', 'success');
-        } else {
-          showToast('Copy failed. Please copy manually.', 'danger');
-        }
+        document.execCommand('copy');
+        showToast('✓ Copied to clipboard!', 'success');
       } catch (err) {
-        showToast('Copy failed. Please copy manually.', 'danger');
+        showToast('Failed to copy. Please copy manually.', 'danger');
       }
-      document.body.removeChild(textArea);
+      
+      document.body.removeChild(textarea);
     }
     
     function printReport() {
-      const text = document.getElementById('report-pre')?.textContent;
-      if (!text) {
-        showToast('Generate a report first!', 'danger');
-        return;
-      }
+      const text = document.querySelector('.report-preview').textContent;
       const printWindow = window.open('', '_blank');
       printWindow.document.write(`
-        <html><head><title>Field Buddy Report</title><style>
-            body { font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4; margin: 0.5in; white-space: pre-wrap; }
-            @media print { body { margin: 0.25in; } }
-        </style></head><body>${text}</body></html>
+        <html>
+        <head>
+          <title>Field Buddy Pro Report</title>
+          <style>
+            body {
+              font-family: 'Courier New', monospace;
+              font-size: 12px;
+              line-height: 1.4;
+              margin: 0.5in;
+              white-space: pre-wrap;
+            }
+            @media print {
+              body { margin: 0.25in; }
+            }
+          </style>
+        </head>
+        <body>${text}</body>
+        </html>
       `);
       printWindow.document.close();
       printWindow.focus();
@@ -2604,199 +2257,47 @@ Customer Acknowledged: ${data.signature.customer}
       }, 250);
     }
     
-    function exportReport() {
-      const text = sessionStorage.getItem('currentReportText');
-      const dataStr = sessionStorage.getItem('currentReport');
-      if (!text || !dataStr) {
-        showToast('Generate a report first', 'danger');
-        return;
-      }
-      
-      const data = JSON.parse(dataStr);
-      let customer = 'Job';
-      if (currentMode === 'service') {
-        customer = data.job.customer.replace(/\s/g, '_') || 'ServiceJob';
-      } else {
-        customer = data.job.customer.replace(/\s/g, '_') || 'MaterialsList';
-      }
-      const date = (data.job.date || new Date().toISOString().split('T')[0]).replace(/\//g, '-');
-      const fileName = `FieldBuddy_${currentMode.toUpperCase()}_${customer}_${date}.txt`;
-
-      const blob = new Blob([text], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = fileName;
-      a.click();
-      URL.revokeObjectURL(url);
-      showToast('Exporting file...', 'success');
-    }
-    
+    // ==================== CLEAR FORM ====================
     async function clearForm() {
       const confirmed = await showModal(
-        'Clear Form', 
+        'Clear Form',
         'Are you sure you want to clear all data? This cannot be undone.'
       );
+      
       if (!confirmed) return;
       
       document.querySelectorAll('input, select, textarea').forEach(el => {
-        if (el.type === 'checkbox') el.checked = false;
-        else el.value = '';
+        if (el.type === 'checkbox') {
+          el.checked = false;
+          const label = el.closest('.checkbox-label');
+          if (label) label.classList.remove('checked');
+        } else if (el.id !== 'service-date' && el.id !== 'mat-date') {
+          el.value = '';
+        }
       });
       
       selectedMaterials = [];
-      photos = [];
-      updatePhotoPreview();
-      renderSelectedMaterials();
-      updateSuggestions();
+      diagnosticResults = [];
+      displaySelectedMaterials();
+      $('diagnostic-results').classList.add('hidden');
+      $('report-container').innerHTML = '';
       
-      const existing = document.querySelector('.report-preview')?.closest('.card');
-      if (existing) existing.remove();
-      
-      sessionStorage.removeItem('currentReport');
-      sessionStorage.removeItem('currentReportText');
-      localStorage.removeItem('fieldBuddyAutoSave');
-      
-      $('date').value = new Date().toISOString().split('T')[0];
-      $('mat-date').value = new Date().toISOString().split('T')[0];
-      
-      document.querySelectorAll('.status').forEach(s => s.innerHTML = '');
-      
-      showToast('Form cleared', 'success');
+      showToast('Form cleared successfully', 'success');
     }
     
-    function autoSaveForm() {
-      const formData = {
-        mode: currentMode,
-        heatCoolMode: heatCoolMode,
-        timestamp: new Date().toISOString(),
-        service: currentMode === 'service' ? gatherServiceData() : null,
-        materials: currentMode === 'materials' ? gatherMaterialsData() : null,
-        photos: photos,
-        selectedMaterials: selectedMaterials
-      };
-      localStorage.setItem('fieldBuddyAutoSave', JSON.stringify(formData));
-    }
-    
-    function restoreFormData(data) {
-      if (!data) return;
-      
-      try {
-        if (data.mode) {
-          setMode(data.mode);
-        }
-        
-        if (data.heatCoolMode) {
-          setHeatCoolMode(data.heatCoolMode);
-        }
-        
-        if (data.photos) {
-          photos = data.photos;
-          updatePhotoPreview();
-        }
-        
-        if (data.mode === 'service' && data.service) {
-          const s = data.service;
-          if (s.job) {
-            if ($('customer')) $('customer').value = s.job.customer || '';
-            if ($('address')) $('address').value = s.job.address || '';
-            if ($('job-type')) $('job-type').value = s.job.jobType || '';
-            if ($('complaint')) $('complaint').value = s.job.complaint || '';
-          }
-          if (s.equipment) {
-            if ($('brand')) $('brand').value = s.equipment.brand || '';
-            if ($('unit-type')) $('unit-type').value = s.equipment.unitType || '';
-            if ($('indoor-data')) $('indoor-data').value = s.equipment.indoor || '';
-            if ($('outdoor-data')) $('outdoor-data').value = s.equipment.outdoor || '';
-            if ($('tonnage')) $('tonnage').value = s.equipment.tonnage || '';
-            if ($('refrigerant')) $('refrigerant').value = s.equipment.refrigerant || '';
-            if ($('mfg-date')) $('mfg-date').value = s.equipment.mfgDate || '';
-          }
-        }
-        
-        if (data.mode === 'materials' && data.materials) {
-          const m = data.materials;
-          if (m.job) {
-            if ($('mat-customer')) $('mat-customer').value = m.job.customer || '';
-            if ($('mat-address')) $('mat-address').value = m.job.address || '';
-            if ($('mat-date')) $('mat-date').value = m.job.date || '';
-            if ($('mat-notes')) $('mat-notes').value = m.job.notes || '';
-          }
-          if (data.selectedMaterials) {
-            selectedMaterials = data.selectedMaterials;
-            renderSelectedMaterials();
-            updateSuggestions();
-          }
-        }
-        
-        showToast('Previous session restored', 'success');
-      } catch (err) {
-        console.error('Error restoring form data:', err);
-        showToast('Could not restore previous session', 'warn');
-      }
-    }
-    
-    document.addEventListener('input', (e) => {
-      if (e.target.type === 'checkbox') {
-        const label = e.target.closest('label.check');
-        if (label) {
-          label.classList.toggle('checked', e.target.checked);
-        }
-      }
-      
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
-        autoSaveForm();
-      }
-    });
-    
-    document.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-        e.preventDefault();
-        generate();
-      }
-      if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
-        e.preventDefault();
-        exportReport();
-      }
-    });
-    
+    // ==================== INITIALIZATION ====================
     window.addEventListener('load', () => {
-      $('date').value = new Date().toISOString().split('T')[0];
-      $('mat-date').value = new Date().toISOString().split('T')[0];
+      const today = new Date().toISOString().split('T')[0];
+      $('service-date').value = today;
+      $('mat-date').value = today;
       
-      setMode('service');
+      initMaterialsCatalog();
       
-      const autoSave = localStorage.getItem('fieldBuddyAutoSave');
-      if (autoSave) {
-        try {
-          const data = JSON.parse(autoSave);
-          const autoSaveDate = new Date(data.timestamp);
-          const hoursSince = (Date.now() - autoSaveDate.getTime()) / (1000 * 60 * 60);
-          
-          if (hoursSince < 24) {
-            setTimeout(() => {
-              const shouldRestore = confirm('Found unsaved work from ' + autoSaveDate.toLocaleString() + '. Restore previous session?');
-              if (shouldRestore) {
-                restoreFormData(data);
-              } else {
-                localStorage.removeItem('fieldBuddyAutoSave');
-              }
-            }, 500);
-          } else {
-            localStorage.removeItem('fieldBuddyAutoSave');
-          }
-        } catch (err) {
-          console.error('Error loading auto-save:', err);
-        }
-      }
-      
-      console.log('%c📦 Field Buddy Pro - Service & Materials System Loaded', 'color:#007AFF; font-size:14px; font-weight:bold');
+      console.log('%c🔧 Field Buddy Pro v2.0 - Master Tech Edition Loaded', 
+        'color: #0066FF; font-size: 16px; font-weight: bold;');
+      console.log('%cFeatures: Master-level diagnostics, full 2025 materials catalog, intelligent analysis', 
+        'color: #666; font-size: 12px;');
     });
-    
-    setInterval(() => {
-      autoSaveForm();
-    }, 30000);
-    
   </script>
 </body>
 </html>
