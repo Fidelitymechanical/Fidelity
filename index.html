@@ -371,6 +371,12 @@
       background: var(--gray-200);
     }
     
+    .btn-small {
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-size: 13px;
+      min-height: 36px;
+    }
+    
     /* ==================== STATUS INDICATORS ==================== */
     .status-indicator {
       padding: var(--spacing-md) var(--spacing-lg);
@@ -521,6 +527,90 @@
       border-radius: var(--radius);
     }
     
+    /* ==================== COLLAPSIBLE CATEGORIES ==================== */
+    .category-section {
+      margin-bottom: var(--spacing-md);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .category-section:hover {
+      border-color: var(--gray-300);
+    }
+    
+    .category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-lg);
+      background: var(--gray-50);
+      cursor: pointer;
+      user-select: none;
+      transition: var(--transition);
+    }
+    
+    .category-header:hover {
+      background: var(--gray-100);
+    }
+    
+    .category-header:active {
+      background: var(--gray-200);
+    }
+    
+    .category-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+    
+    .category-count {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-500);
+      background: white;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+    
+    .category-selected {
+      font-size: 12px;
+      font-weight: 600;
+      color: white;
+      background: var(--success);
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-left: var(--spacing-sm);
+    }
+    
+    .category-arrow {
+      font-size: 18px;
+      transition: transform 0.3s ease;
+      color: var(--gray-600);
+    }
+    
+    .category-section.expanded .category-arrow {
+      transform: rotate(180deg);
+    }
+    
+    .category-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .category-section.expanded .category-content {
+      max-height: 10000px;
+    }
+    
+    .category-items {
+      padding: var(--spacing-md);
+    }
+    
     /* ==================== CHECKBOXES ==================== */
     .checkbox-label {
       display: flex;
@@ -570,6 +660,12 @@
       transform: translateY(-50%);
       color: var(--gray-400);
       pointer-events: none;
+    }
+    
+    .catalog-actions {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
     }
     
     /* ==================== TOAST NOTIFICATIONS ==================== */
@@ -699,6 +795,10 @@
         width: 32px;
         height: 32px;
         font-size: 16px;
+      }
+      
+      .catalog-actions {
+        flex-direction: column;
       }
     }
     
@@ -1173,6 +1273,17 @@
           <input type="text" id="material-search" placeholder="Search materials..." oninput="filterMaterials()">
         </div>
         
+        <div class="catalog-actions">
+          <button class="btn btn-secondary btn-small" onclick="expandAllCategories()">
+            <span>📂</span>
+            <span>Expand All</span>
+          </button>
+          <button class="btn btn-secondary btn-small" onclick="collapseAllCategories()">
+            <span>📁</span>
+            <span>Collapse All</span>
+          </button>
+        </div>
+        
         <div id="materials-catalog">
           <!-- Populated dynamically -->
         </div>
@@ -1250,11 +1361,13 @@
     let systemMode = 'cooling';
     let selectedMaterials = [];
     let diagnosticResults = [];
+    let categoryStates = {}; // Track expanded/collapsed state
     
     // ==================== FULL 2025 MATERIALS CATALOG ====================
     const materialsCatalog = {
       equipment: {
         name: 'Equipment',
+        icon: '🏠',
         items: [
           { id: 'furnace-gas', name: 'Gas Furnace', sizes: ['40K BTU', '60K BTU', '80K BTU', '100K BTU', '120K BTU'], category: 'furnace' },
           { id: 'furnace-electric', name: 'Electric Furnace', sizes: ['10kW', '15kW', '20kW', '25kW'], category: 'furnace' },
@@ -1263,244 +1376,155 @@
           { id: 'evap-coil', name: 'Evaporator Coil', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
           { id: 'air-handler', name: 'Air Handler', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton'], category: 'cooling' },
           { id: 'package-unit', name: 'Package Unit', sizes: ['2 Ton', '3 Ton', '4 Ton', '5 Ton'], category: 'cooling', tonnage: true },
-          { id: 'minisplit', name: 'Mini-Split System', sizes: ['9K BTU', '12K BTU', '18K BTU', '24K BTU', '36K BTU'], category: 'cooling' },
-          { id: 'boiler', name: 'Boiler', sizes: ['80K BTU', '100K BTU', '150K BTU', '200K BTU'], category: 'heating' },
-          { id: 'dual-fuel', name: 'Dual Fuel System', sizes: ['2 Ton', '3 Ton', '4 Ton', '5 Ton'], category: 'heating', tonnage: true },
-          { id: 'rooftop-unit', name: 'Rooftop Unit (RTU)', sizes: ['3 Ton', '4 Ton', '5 Ton', '7.5 Ton', '10 Ton'], category: 'cooling', tonnage: true }
+          { id: 'minisplit', name: 'Mini-Split System', sizes: ['9K BTU', '12K BTU', '18K BTU', '24K BTU', '36K BTU'], category: 'cooling' }
         ]
       },
       electrical: {
         name: 'Electrical Components',
+        icon: '⚡',
         items: [
           { id: 'contactor', name: 'Contactor', sizes: ['1-Pole 30A', '2-Pole 30A', '2-Pole 40A', '3-Pole 30A', '3-Pole 40A'] },
           { id: 'capacitor-single', name: 'Run Capacitor (Single)', sizes: ['5µF', '7.5µF', '10µF', '15µF', '20µF', '25µF', '30µF', '35µF', '40µF', '45µF', '50µF', '60µF'] },
           { id: 'capacitor-dual', name: 'Dual Run Capacitor', sizes: ['35/5µF', '40/5µF', '45/5µF', '50/5µF', '55/5µF', '60/5µF'] },
-          { id: 'relay-general', name: 'General Purpose Relay', sizes: ['24V SPST', '24V DPDT', '120V SPST', '240V DPST'] },
-          { id: 'relay-potential', name: 'Potential Relay', sizes: ['190V', '265V', '332V', '370V'] },
-          { id: 'relay-current', name: 'Current Relay', sizes: ['Standard'] },
           { id: 'hard-start', name: 'Hard Start Kit', sizes: ['1-2 Ton', '2-3 Ton', '3-5 Ton'] },
-          { id: 'soft-start', name: 'Soft Start Device', sizes: ['Universal'] },
           { id: 'disconnect-30', name: 'Disconnect Box (30A)', sizes: ['30A Non-Fused', '30A Fused'], amperage: 30 },
           { id: 'disconnect-60', name: 'Disconnect Box (60A)', sizes: ['60A Non-Fused', '60A Fused'], amperage: 60 },
           { id: 'breaker', name: 'Circuit Breaker', sizes: ['15A', '20A', '25A', '30A', '40A', '50A', '60A'] },
-          { id: 'fuse', name: 'Fuse', sizes: ['3A', '5A', '10A', '15A', '20A', '25A', '30A'] },
-          { id: 'surge-protector', name: 'Surge Protector', sizes: ['Whole House', 'Equipment Level'] },
-          { id: 'voltage-monitor', name: 'Voltage Monitor/Protector', sizes: ['Single Phase', 'Three Phase'] },
           { id: 'whip', name: 'Electrical Whip', sizes: ['3 ft', '6 ft', '10 ft'] },
           { id: 'wire-lv', name: 'Low Voltage Wire (18ga)', sizes: ['18/2', '18/3', '18/5', '18/8'], unit: 'ft' },
-          { id: 'wire-hv', name: 'High Voltage Wire', sizes: ['14/2', '12/2', '10/2', '10/3', '8/2', '8/3', '6/2', '6/3'], unit: 'ft' },
-          { id: 'wire-nuts', name: 'Wire Nuts Assortment', sizes: ['Standard Kit'], unit: 'pack' },
-          { id: 'crimp-terminals', name: 'Crimp Terminals', sizes: ['Assorted Kit'], unit: 'pack' },
-          { id: 'lv-splice', name: 'Low Voltage Splice Kit', sizes: ['Standard'] },
-          { id: 'condensate-switch', name: 'Condensate Safety Switch', sizes: ['Standard'] },
+          { id: 'wire-hv', name: 'High Voltage Wire', sizes: ['14/2', '12/2', '10/2', '10/3', '8/2', '8/3'], unit: 'ft' },
           { id: 'transformer', name: 'Control Transformer', sizes: ['24V 40VA', '24V 75VA', '24V 100VA'] }
         ]
       },
       controls: {
         name: 'Controls & Thermostats',
+        icon: '🌡️',
         items: [
-          { id: 'tstat-nest', name: 'Nest Smart Thermostat', sizes: ['Learning', 'E (Budget)'] },
-          { id: 'tstat-ecobee', name: 'Ecobee Smart Thermostat', sizes: ['Premium', 'Lite'] },
-          { id: 'tstat-honeywell-smart', name: 'Honeywell Smart Thermostat', sizes: ['T9', 'T6', 'T5'] },
+          { id: 'tstat-smart', name: 'WiFi Smart Thermostat', sizes: ['Nest', 'Ecobee', 'Honeywell T9'] },
           { id: 'tstat-programmable', name: 'Programmable Thermostat', sizes: ['5-2 Day', '7 Day'] },
-          { id: 'tstat-nonprog', name: 'Non-Programmable Thermostat', sizes: ['Standard', 'Mercury Free'] },
-          { id: 'zone-control-panel', name: 'Zone Control Panel', sizes: ['2 Zone', '3 Zone', '4 Zone', '6 Zone'] },
-          { id: 'zone-damper', name: 'Zone Damper', sizes: ['6" Round', '8" Round', '10" Round', '6x10 Rect', '8x12 Rect'] },
-          { id: 'humidistat', name: 'Humidistat Control', sizes: ['Digital', 'Mechanical'] },
-          { id: 'dehumidistat', name: 'Dehumidistat Control', sizes: ['Digital', 'Mechanical'] },
-          { id: 'thermostat-guard', name: 'Thermostat Guard/Cover', sizes: ['Clear Locking', 'Vented'] }
+          { id: 'tstat-nonprog', name: 'Non-Programmable Thermostat', sizes: ['Digital', 'Mercury Free'] },
+          { id: 'zone-control-panel', name: 'Zone Control Panel', sizes: ['2 Zone', '3 Zone', '4 Zone'] },
+          { id: 'zone-damper', name: 'Zone Damper', sizes: ['6" Round', '8" Round', '10" Round', '6x10 Rect'] },
+          { id: 'humidistat', name: 'Humidistat Control', sizes: ['Digital', 'Mechanical'] }
         ]
       },
       ductwork: {
-        name: 'Ductwork & Air Distribution',
+        name: 'Ductwork & Distribution',
+        icon: '🌬️',
         items: [
-          { id: 'trunk-duct', name: 'Trunk Duct (Rectangular)', sizes: ['12x8', '14x8', '16x8', '18x10', '20x10', '24x12'], unit: 'ft' },
-          { id: 'flex-duct-std', name: 'Flex Duct (Standard)', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'], unit: 'ft' },
           { id: 'flex-duct-insulated', name: 'Flex Duct (Insulated R6)', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'], unit: 'ft' },
           { id: 'rigid-galv', name: 'Rigid Galvanized Duct', sizes: ['4"', '6"', '8"', '10"', '12"'], unit: 'ft' },
-          { id: 'aluminum-duct', name: 'Aluminum Flexible Duct', sizes: ['4"', '5"', '6"', '7"', '8"'], unit: 'ft' },
           { id: 'plenum-supply', name: 'Supply Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
           { id: 'plenum-return', name: 'Return Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
-          { id: 'collar', name: 'Starting Collar', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'] },
-          { id: 'takeoff', name: 'Duct Take-Off', sizes: ['4"', '5"', '6"', '7"', '8"'] },
           { id: 'register', name: 'Supply Register', sizes: ['4x10', '4x12', '6x10', '6x12', '8x10', '10x10'] },
           { id: 'grille', name: 'Return Grille', sizes: ['10x10', '12x12', '14x14', '16x16', '20x20', '24x24'] },
           { id: 'diffuser', name: 'Ceiling Diffuser', sizes: ['6" Round', '8" Round', '10" Round', '12" Round'] },
-          { id: 'damper-manual', name: 'Manual Balancing Damper', sizes: ['4"', '6"', '8"', '10"', '12"'] },
-          { id: 'damper-auto', name: 'Automatic Damper (Motorized)', sizes: ['6"', '8"', '10"', '12"'] },
-          { id: 'damper-barometric', name: 'Barometric Bypass Damper', sizes: ['6"', '8"', '10"'] },
-          { id: 'transition', name: 'Duct Transition', sizes: ['Various'] },
-          { id: 'elbow-90', name: '90° Elbow', sizes: ['6"', '8"', '10"', '12"'] },
-          { id: 'tee-fitting', name: 'Tee Fitting', sizes: ['6"', '8"', '10"'] },
-          { id: 'end-cap', name: 'End Cap', sizes: ['4"', '6"', '8"', '10"'] }
+          { id: 'damper-manual', name: 'Manual Balancing Damper', sizes: ['4"', '6"', '8"', '10"', '12"'] }
         ]
       },
       iaq: {
-        name: 'Ventilation & IAQ',
+        name: 'Air Quality & Filtration',
+        icon: '💨',
         items: [
           { id: 'filter-disposable', name: 'Disposable Filter', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1', '24x24x1'], unit: 'pack' },
-          { id: 'filter-pleated', name: 'Pleated Filter', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1', '24x24x1'], unit: 'pack' },
-          { id: 'filter-hepa', name: 'HEPA Filter', sizes: ['16x20', '16x25', '20x20', '20x25'] },
-          { id: 'filter-electrostatic', name: 'Electrostatic Filter (Washable)', sizes: ['16x20x1', '16x25x1', '20x25x1'] },
-          { id: 'media-cleaner', name: 'Media Air Cleaner', sizes: ['16x25', '20x25', '20x20'] },
-          { id: 'electronic-cleaner', name: 'Electronic Air Cleaner', sizes: ['16x25', '20x25'] },
-          { id: 'hepa-box', name: 'HEPA Filter Box', sizes: ['Standard'] },
+          { id: 'filter-pleated', name: 'Pleated Filter (MERV 11)', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1'], unit: 'pack' },
+          { id: 'filter-hepa', name: 'HEPA Filter (MERV 13)', sizes: ['16x20', '16x25', '20x20', '20x25'] },
+          { id: 'media-cleaner', name: 'Media Air Cleaner', sizes: ['16x25', '20x25'] },
           { id: 'uv-light-single', name: 'UV Light System (Single)', sizes: ['24V'] },
           { id: 'uv-light-dual', name: 'UV Light System (Dual)', sizes: ['24V'] },
-          { id: 'ionizer', name: 'Air Ionizer', sizes: ['In-Duct'] },
-          { id: 'pco-device', name: 'PCO Air Purifier', sizes: ['Standard'] },
           { id: 'reme-halo', name: 'REME HALO Air Purifier', sizes: ['24V'] },
           { id: 'humidifier-bypass', name: 'Bypass Humidifier', sizes: ['12 GPD', '17 GPD'] },
-          { id: 'humidifier-fan', name: 'Fan-Powered Humidifier', sizes: ['12 GPD', '18 GPD'] },
-          { id: 'humidifier-steam', name: 'Steam Humidifier', sizes: ['11.5 GPD', '13 GPD'] },
-          { id: 'dehumidifier-90', name: 'Whole-Home Dehumidifier (90 Pint)', sizes: ['90 Pint'] },
-          { id: 'dehumidifier-120', name: 'Whole-Home Dehumidifier (120 Pint)', sizes: ['120 Pint'] },
-          { id: 'dehumidifier-portable', name: 'Portable Dehumidifier', sizes: ['50 Pint', '70 Pint'] },
-          { id: 'erv', name: 'ERV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] },
-          { id: 'hrv', name: 'HRV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] }
+          { id: 'dehumidifier-90', name: 'Whole-Home Dehumidifier', sizes: ['90 Pint', '120 Pint'] },
+          { id: 'erv', name: 'ERV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] }
         ]
       },
       refrigeration: {
-        name: 'Refrigeration Components',
+        name: 'Refrigeration',
+        icon: '❄️',
         items: [
-          { id: 'lineset-small', name: 'Line Set (1.5-2.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '1/4" x 3/8"', tonnageRange: [1.5, 2.5] },
-          { id: 'lineset-medium', name: 'Line Set (3-3.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 3/4"', tonnageRange: [3, 3.5] },
-          { id: 'lineset-large', name: 'Line Set (4-5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 7/8"', tonnageRange: [4, 5] },
+          { id: 'lineset-small', name: 'Line Set (1.5-2.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '1/4" x 3/8"' },
+          { id: 'lineset-medium', name: 'Line Set (3-3.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 3/4"' },
+          { id: 'lineset-large', name: 'Line Set (4-5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 7/8"' },
           { id: 'copper-tubing', name: 'Copper Tubing (ACR)', sizes: ['1/4"', '3/8"', '1/2"', '5/8"', '3/4"', '7/8"'], unit: 'ft' },
           { id: 'r410a', name: 'R-410A Refrigerant', sizes: ['25 lb', '50 lb'], unit: 'cylinder' },
-          { id: 'r22', name: 'R-22 Refrigerant (Legacy)', sizes: ['30 lb'], unit: 'cylinder' },
+          { id: 'r22', name: 'R-22 Refrigerant', sizes: ['30 lb'], unit: 'cylinder' },
           { id: 'r32', name: 'R-32 Refrigerant', sizes: ['20 lb'], unit: 'cylinder' },
           { id: 'r454b', name: 'R-454B Refrigerant', sizes: ['25 lb'], unit: 'cylinder' },
-          { id: 'recovery-cylinder', name: 'Recovery Cylinder', sizes: ['30 lb', '50 lb'] },
-          { id: 'nitrogen', name: 'Nitrogen (Pressure Test)', sizes: ['Small', 'Large'], unit: 'tank' },
-          { id: 'schrader-valve', name: 'Schrader Valve', sizes: ['1/4"', '5/16"'] },
-          { id: 'service-valve', name: 'Service Valve', sizes: ['1/4"', '3/8"', '1/2"'] },
-          { id: 'ball-valve', name: 'Ball Valve', sizes: ['1/4"', '3/8"', '1/2"', '5/8"'] },
-          { id: 'txv', name: 'TXV (Thermostatic Expansion Valve)', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'] },
+          { id: 'txv', name: 'TXV (Expansion Valve)', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'] },
           { id: 'filter-drier', name: 'Filter Drier', sizes: ['1/2"', '5/8"', '3/4"'] },
-          { id: 'sight-glass', name: 'Sight Glass', sizes: ['1/4"', '3/8"', '1/2"'] },
-          { id: 'manifold-gauge', name: 'Manifold Gauge Set', sizes: ['2-Way', '4-Way'] },
-          { id: 'charging-hose', name: 'Charging Hoses', sizes: ['36"', '60"', '72"'], unit: 'set' },
-          { id: 'core-tool', name: 'Valve Core Tool', sizes: ['Standard'] },
-          { id: 'linecover', name: 'Line Set Cover/Insulation', sizes: ['15 ft', '25 ft', '50 ft'] },
-          { id: 'refrig-oil', name: 'Refrigerant Oil', sizes: ['POE 8oz', 'POE 16oz', 'Mineral 8oz'] },
-          { id: 'leak-seal', name: 'Leak Sealant', sizes: ['Standard'] }
+          { id: 'refrig-oil', name: 'Refrigerant Oil', sizes: ['POE 8oz', 'POE 16oz'] }
         ]
       },
       drainage: {
         name: 'Condensate Management',
+        icon: '💧',
         items: [
           { id: 'condensate-pump', name: 'Condensate Pump', sizes: ['Standard', 'Heavy Duty'] },
           { id: 'drain-pvc', name: 'PVC Drain Pipe (3/4")', sizes: ['10 ft', '20 ft'], unit: 'length' },
-          { id: 'drain-pvc-1', name: 'PVC Drain Pipe (1")', sizes: ['10 ft', '20 ft'], unit: 'length' },
           { id: 'drain-pan-primary', name: 'Drain Pan (Primary)', sizes: ['24x24', '30x30', '36x36'] },
           { id: 'drain-pan-secondary', name: 'Drain Pan (Secondary)', sizes: ['24x24', '30x30', '36x36'] },
-          { id: 'ptrap-3-4', name: 'P-Trap (3/4")', sizes: ['3/4"'] },
-          { id: 'ptrap-1', name: 'P-Trap (1")', sizes: ['1"'] },
+          { id: 'ptrap', name: 'P-Trap', sizes: ['3/4"', '1"'] },
           { id: 'float-switch', name: 'Float Switch', sizes: ['Standard'] },
-          { id: 'drain-fitting', name: 'Drain Fittings Kit', sizes: ['Standard'] },
           { id: 'drain-tubing', name: 'Clear Vinyl Drain Tubing', sizes: ['3/8"', '1/2"', '5/8"'], unit: 'ft' }
         ]
       },
       venting: {
         name: 'Venting (Gas/Oil)',
+        icon: '🔥',
         items: [
           { id: 'bvent', name: 'B-Vent Pipe', sizes: ['3"', '4"', '5"', '6"', '7"'], unit: 'ft' },
           { id: 'pvc-vent', name: 'PVC Vent Pipe', sizes: ['2"', '3"', '4"'], unit: 'ft' },
-          { id: 'cpvc-vent', name: 'CPVC Vent Pipe', sizes: ['2"', '3"'], unit: 'ft' },
           { id: 'vent-cap', name: 'Vent Cap/Termination', sizes: ['2"', '3"', '4"', '5"', '6"'] },
-          { id: 'vent-connector', name: 'Vent Connector', sizes: ['3"', '4"', '5"', '6"'] },
-          { id: 'vent-elbow-45', name: 'Vent Elbow (45°)', sizes: ['2"', '3"', '4"', '5"'] },
           { id: 'vent-elbow-90', name: 'Vent Elbow (90°)', sizes: ['2"', '3"', '4"', '5"'] },
-          { id: 'vent-tee', name: 'Vent Tee', sizes: ['3"', '4"', '5"'] },
-          { id: 'inducer', name: 'Inducer Motor', sizes: ['Standard', 'High Efficiency'] },
-          { id: 'flue-damper', name: 'Flue Damper', sizes: ['4"', '5"', '6"'] }
+          { id: 'inducer', name: 'Inducer Motor', sizes: ['Standard', 'High Efficiency'] }
         ]
       },
       insulation: {
         name: 'Insulation & Sealants',
+        icon: '🧱',
         items: [
           { id: 'duct-insulation-fiberglass', name: 'Fiberglass Duct Wrap', sizes: ['R-6', 'R-8'], unit: 'roll' },
-          { id: 'duct-insulation-bubble', name: 'Bubble Foil Insulation', sizes: ['Single', 'Double'], unit: 'roll' },
-          { id: 'duct-insulation-reflective', name: 'Reflective Duct Wrap', sizes: ['Standard'], unit: 'roll' },
           { id: 'pipe-insulation-foam', name: 'Foam Pipe Insulation', sizes: ['1/4"', '3/8"', '1/2"', '5/8"', '3/4"', '7/8"'], unit: 'ft' },
-          { id: 'pipe-insulation-rubber', name: 'Rubber Pipe Insulation', sizes: ['1/4"', '3/8"', '1/2"', '5/8"', '3/4"'], unit: 'ft' },
           { id: 'mastic', name: 'Duct Mastic', sizes: ['1 Gallon', '5 Gallon'] },
           { id: 'foil-tape', name: 'Foil Tape', sizes: ['2"', '3"'], unit: 'roll' },
-          { id: 'duct-tape', name: 'Duct Tape', sizes: ['Standard'], unit: 'roll' },
           { id: 'silicone-caulk', name: 'Silicone Caulk', sizes: ['Clear', 'White', 'Aluminum'], unit: 'tube' },
           { id: 'foam-sealant', name: 'Expanding Foam Sealant', sizes: ['Standard', 'Fire-Rated'], unit: 'can' }
         ]
       },
-      sheetmetal: {
-        name: 'Sheet Metal & Fasteners',
-        items: [
-          { id: 'sheet-metal-26', name: 'Sheet Metal (26 Gauge)', sizes: ['24x48', '36x48'], unit: 'sheet' },
-          { id: 'sheet-metal-28', name: 'Sheet Metal (28 Gauge)', sizes: ['24x48', '36x48'], unit: 'sheet' },
-          { id: 'sheet-metal-30', name: 'Sheet Metal (30 Gauge)', sizes: ['24x48', '36x48'], unit: 'sheet' },
-          { id: 'drive-cleat', name: 'Drive Cleats', sizes: ['Standard'], unit: 'pack' },
-          { id: 's-cleat', name: 'S-Cleats', sizes: ['Standard'], unit: 'pack' },
-          { id: 'turning-vane', name: 'Turning Vanes', sizes: ['Standard'], unit: 'pack' },
-          { id: 'screws-tap', name: 'Self-Tapping Screws', sizes: ['#8 x 1/2"', '#10 x 3/4"', '#12 x 1"'], unit: 'box' },
-          { id: 'screws-sheet', name: 'Sheet Metal Screws', sizes: ['#8', '#10'], unit: 'box' },
-          { id: 'pop-rivets', name: 'Pop Rivets', sizes: ['1/8"', '3/16"'], unit: 'box' },
-          { id: 'hangers', name: 'Duct Hangers/Strapping', sizes: ['Standard'], unit: 'roll' },
-          { id: 'duct-supports', name: 'Duct Support Brackets', sizes: ['Adjustable'], unit: 'pack' },
-          { id: 'zip-ties', name: 'Zip Ties', sizes: ['Assorted'], unit: 'pack' }
-        ]
-      },
       tools: {
         name: 'Tools & Instruments',
+        icon: '🔧',
         items: [
-          { id: 'tin-snips', name: 'Tin Snips Set', sizes: ['Left/Right/Straight'], unit: 'set' },
-          { id: 'crimper', name: 'Duct Crimper', sizes: ['Standard'] },
-          { id: 'flaring-tool', name: 'Flaring Tool', sizes: ['Standard'] },
-          { id: 'tubing-cutter', name: 'Tubing Cutter', sizes: ['1/8"-7/8"', '1/8"-1 1/8"'] },
-          { id: 'drill-cordless', name: 'Cordless Drill', sizes: ['12V', '18V', '20V'] },
-          { id: 'impact-driver', name: 'Impact Driver', sizes: ['12V', '18V', '20V'] },
-          { id: 'vacuum-pump', name: 'Vacuum Pump', sizes: ['3 CFM', '6 CFM', '10 CFM'] },
-          { id: 'multimeter', name: 'Multimeter', sizes: ['Digital'] },
+          { id: 'multimeter', name: 'Digital Multimeter', sizes: ['Standard'] },
           { id: 'clamp-meter', name: 'Clamp Meter', sizes: ['Digital'] },
           { id: 'manometer-digital', name: 'Digital Manometer', sizes: ['Dual Port'] },
           { id: 'leak-detector', name: 'Refrigerant Leak Detector', sizes: ['Electronic'] },
           { id: 'thermometer-infrared', name: 'Infrared Thermometer', sizes: ['Standard'] },
-          { id: 'psychrometer', name: 'Psychrometer', sizes: ['Digital'] },
-          { id: 'micron-gauge', name: 'Micron Gauge', sizes: ['Digital'] },
-          { id: 'anemometer', name: 'Anemometer', sizes: ['Digital'] },
-          { id: 'torque-wrench', name: 'Torque Wrench', sizes: ['1/4"', '3/8"', '1/2"'] }
+          { id: 'vacuum-pump', name: 'Vacuum Pump', sizes: ['3 CFM', '6 CFM'] },
+          { id: 'tubing-cutter', name: 'Tubing Cutter', sizes: ['1/8"-7/8"', '1/8"-1 1/8"'] }
         ]
       },
       safety: {
         name: 'Safety & PPE',
+        icon: '🦺',
         items: [
           { id: 'safety-glasses', name: 'Safety Glasses', sizes: ['Clear', 'Tinted'], unit: 'each' },
           { id: 'gloves-work', name: 'Work Gloves', sizes: ['S', 'M', 'L', 'XL'], unit: 'pair' },
-          { id: 'gloves-insulated', name: 'Insulated Gloves', sizes: ['M', 'L', 'XL'], unit: 'pair' },
-          { id: 'knee-pads', name: 'Knee Pads', sizes: ['Standard'], unit: 'pair' },
           { id: 'respirator', name: 'Respirator', sizes: ['Half-Face', 'Full-Face'] },
-          { id: 'respirator-filters', name: 'Respirator Filters', sizes: ['P100', 'Organic Vapor'], unit: 'pair' },
           { id: 'ear-protection', name: 'Ear Protection', sizes: ['Plugs', 'Muffs'] },
-          { id: 'hard-hat', name: 'Hard Hat', sizes: ['Standard'] },
           { id: 'fire-extinguisher', name: 'Fire Extinguisher', sizes: ['5 lb ABC', '10 lb ABC'] },
-          { id: 'first-aid', name: 'First Aid Kit', sizes: ['Basic', 'Complete'] },
-          { id: 'lockout-tagout', name: 'Lockout/Tagout Kit', sizes: ['Standard'] },
-          { id: 'fall-protection', name: 'Fall Protection Harness', sizes: ['Standard'] }
+          { id: 'first-aid', name: 'First Aid Kit', sizes: ['Basic', 'Complete'] }
         ]
       },
       accessories: {
         name: 'Accessories & Misc',
+        icon: '🛠️',
         items: [
           { id: 'condenser-pad', name: 'Condenser Pad', sizes: ['24x24', '30x30', '36x36'] },
-          { id: 'condenser-riser', name: 'Condenser Risers', sizes: ['2"', '3"'], unit: 'set' },
           { id: 'vibration-isolator', name: 'Vibration Isolators', sizes: ['Standard'], unit: 'set' },
-          { id: 'wall-sleeve', name: 'Wall Sleeve', sizes: ['3"', '4"', '6"'] },
-          { id: 'line-hide', name: 'Line Hide/Line Set Cover', sizes: ['3"', '4"', '6"'], unit: 'ft' },
-          { id: 'labels', name: 'Equipment Labels', sizes: ['Voltage', 'Refrigerant', 'Warning'], unit: 'pack' },
-          { id: 'markers', name: 'Permanent Markers', sizes: ['Black', 'Red', 'Blue'], unit: 'pack' },
-          { id: 'wire-identifiers', name: 'Wire Identifiers', sizes: ['Standard'], unit: 'pack' },
+          { id: 'line-hide', name: 'Line Set Cover', sizes: ['3"', '4"', '6"'], unit: 'ft' },
           { id: 'cleaning-coil', name: 'Coil Cleaner', sizes: ['Aerosol', '1 Gallon'] },
-          { id: 'cleaning-evap', name: 'Evaporator Coil Cleaner (No-Rinse)', sizes: ['Aerosol', '32 oz'] },
-          { id: 'cleaning-cond', name: 'Condenser Coil Cleaner', sizes: ['1 Gallon', '5 Gallon'] }
+          { id: 'cleaning-evap', name: 'Evaporator Coil Cleaner (No-Rinse)', sizes: ['Aerosol', '32 oz'] }
         ]
       }
     };
@@ -1907,15 +1931,35 @@
       const catalog = $('materials-catalog');
       let html = '';
       
+      // Initialize all categories as collapsed
+      Object.keys(materialsCatalog).forEach(categoryKey => {
+        categoryStates[categoryKey] = false;
+      });
+      
       Object.keys(materialsCatalog).forEach(categoryKey => {
         const category = materialsCatalog[categoryKey];
-        html += `<div class="card-subtitle">${category.name}</div>`;
+        const itemCount = category.items.length;
+        const selectedCount = selectedMaterials.filter(m => m.categoryKey === categoryKey).length;
+        
+        html += `<div class="category-section" id="cat-${categoryKey}">`;
+        html += `<div class="category-header" onclick="toggleCategory('${categoryKey}')">`;
+        html += '<div style="display: flex; align-items: center; gap: 12px;">';
+        html += `<div class="category-title"><span>${category.icon}</span><span>${category.name}</span></div>`;
+        html += `<div class="category-count">${itemCount} items</div>`;
+        if (selectedCount > 0) {
+          html += `<div class="category-selected" id="cat-selected-${categoryKey}">${selectedCount} selected</div>`;
+        }
+        html += '</div>';
+        html += '<div class="category-arrow">▼</div>';
+        html += '</div>';
+        html += '<div class="category-content">';
+        html += '<div class="category-items">';
         
         category.items.forEach(item => {
           const itemId = `${categoryKey}-${item.id}`;
           const sizeDisplay = item.sizes ? item.sizes.slice(0, 3).join(', ') + (item.sizes.length > 3 ? ' +more' : '') : 'Standard';
           
-          html += `<label class="checkbox-label" data-search="${item.name.toLowerCase()} ${category.name.toLowerCase()}">`;
+          html += `<label class="checkbox-label" data-search="${item.name.toLowerCase()} ${category.name.toLowerCase()}" data-category="${categoryKey}">`;
           html += `<input type="checkbox" id="${itemId}" onchange="toggleMaterial('${categoryKey}', '${item.id}')">`;
           html += '<div style="flex: 1;">';
           html += `<div class="material-name">${item.name}</div>`;
@@ -1923,19 +1967,87 @@
           html += '</div>';
           html += '</label>';
         });
+        
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
       });
       
       catalog.innerHTML = html;
     }
     
+    function toggleCategory(categoryKey) {
+      const section = document.getElementById(`cat-${categoryKey}`);
+      const isExpanded = section.classList.contains('expanded');
+      
+      if (isExpanded) {
+        section.classList.remove('expanded');
+        categoryStates[categoryKey] = false;
+      } else {
+        section.classList.add('expanded');
+        categoryStates[categoryKey] = true;
+      }
+    }
+    
+    function expandAllCategories() {
+      Object.keys(materialsCatalog).forEach(categoryKey => {
+        const section = document.getElementById(`cat-${categoryKey}`);
+        section.classList.add('expanded');
+        categoryStates[categoryKey] = true;
+      });
+      showToast('All categories expanded');
+    }
+    
+    function collapseAllCategories() {
+      Object.keys(materialsCatalog).forEach(categoryKey => {
+        const section = document.getElementById(`cat-${categoryKey}`);
+        section.classList.remove('expanded');
+        categoryStates[categoryKey] = false;
+      });
+      showToast('All categories collapsed');
+    }
+    
     function filterMaterials() {
       const search = $('material-search').value.toLowerCase();
       const labels = document.querySelectorAll('#materials-catalog .checkbox-label');
+      let hasVisibleItems = {};
       
-      labels.forEach(label => {
-        const searchText = label.dataset.search || '';
-        label.style.display = searchText.includes(search) ? 'flex' : 'none';
-      });
+      // If searching, expand all categories and show matching items
+      if (search) {
+        labels.forEach(label => {
+          const searchText = label.dataset.search || '';
+          const categoryKey = label.dataset.category;
+          const isMatch = searchText.includes(search);
+          label.style.display = isMatch ? 'flex' : 'none';
+          
+          if (isMatch) {
+            hasVisibleItems[categoryKey] = true;
+          }
+        });
+        
+        // Expand categories that have matches, hide others
+        Object.keys(materialsCatalog).forEach(categoryKey => {
+          const section = document.getElementById(`cat-${categoryKey}`);
+          if (hasVisibleItems[categoryKey]) {
+            section.classList.add('expanded');
+            section.style.display = 'block';
+          } else {
+            section.style.display = 'none';
+          }
+        });
+      } else {
+        // No search, show all and restore collapsed state
+        labels.forEach(label => {
+          label.style.display = 'flex';
+        });
+        Object.keys(materialsCatalog).forEach(categoryKey => {
+          const section = document.getElementById(`cat-${categoryKey}`);
+          section.style.display = 'block';
+          if (!categoryStates[categoryKey]) {
+            section.classList.remove('expanded');
+          }
+        });
+      }
     }
     
     function toggleMaterial(categoryKey, itemId) {
@@ -1961,7 +2073,28 @@
         selectedMaterials = selectedMaterials.filter(m => !(m.categoryKey === categoryKey && m.itemId === itemId));
       }
       
+      updateCategorySelectedCount(categoryKey);
       displaySelectedMaterials();
+    }
+    
+    function updateCategorySelectedCount(categoryKey) {
+      const selectedCount = selectedMaterials.filter(m => m.categoryKey === categoryKey).length;
+      let badge = document.getElementById(`cat-selected-${categoryKey}`);
+      const header = document.querySelector(`#cat-${categoryKey} .category-header > div`);
+      
+      if (selectedCount > 0) {
+        if (!badge) {
+          badge = document.createElement('div');
+          badge.id = `cat-selected-${categoryKey}`;
+          badge.className = 'category-selected';
+          header.appendChild(badge);
+        }
+        badge.textContent = `${selectedCount} selected`;
+      } else {
+        if (badge) {
+          badge.remove();
+        }
+      }
     }
     
     function displaySelectedMaterials() {
@@ -1982,14 +2115,14 @@
         html += '<div style="display: flex; align-items: center; gap: 8px;">';
         
         if (item.sizes.length > 1) {
-          html += `<select style="width: 150px; padding: 8px; margin: 0; font-size: 14px;" onchange="updateMaterialSize(${index}, this.value)">`;
+          html += `<select style="width: 150px; padding: 8px; margin: 0; font-size: 14px; border: 2px solid var(--gray-200); border-radius: var(--radius);" onchange="updateMaterialSize(${index}, this.value)">`;
           item.sizes.forEach(size => {
             html += `<option value="${size}" ${item.spec === size ? 'selected' : ''}>${size}</option>`;
           });
           html += '</select>';
         }
         
-        html += `<input type="number" class="material-quantity" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)" style="width: 70px; margin: 0; padding: 8px; text-align: center; font-weight: 600;">`;
+        html += `<input type="number" class="material-quantity" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)" style="width: 70px; margin: 0; padding: 8px; text-align: center; font-weight: 600; border: 2px solid var(--gray-200); border-radius: var(--radius);">`;
         html += `<span style="font-size: 14px; color: var(--gray-600); min-width: 30px;">${item.unit}</span>`;
         html += '</div>';
         html += '</div>';
@@ -2271,7 +2404,7 @@ This list was generated by Field Buddy Pro v2.0 Master Tech Edition
           el.checked = false;
           const label = el.closest('.checkbox-label');
           if (label) label.classList.remove('checked');
-        } else if (el.id !== 'service-date' && el.id !== 'mat-date') {
+        } else if (el.id !== 'service-date' && el.id !== 'mat-date' && el.id !== 'material-search') {
           el.value = '';
         }
       });
@@ -2281,6 +2414,11 @@ This list was generated by Field Buddy Pro v2.0 Master Tech Edition
       displaySelectedMaterials();
       $('diagnostic-results').classList.add('hidden');
       $('report-container').innerHTML = '';
+      
+      // Update all category badges
+      Object.keys(materialsCatalog).forEach(categoryKey => {
+        updateCategorySelectedCount(categoryKey);
+      });
       
       showToast('Form cleared successfully', 'success');
     }
@@ -2295,7 +2433,7 @@ This list was generated by Field Buddy Pro v2.0 Master Tech Edition
       
       console.log('%c🔧 Field Buddy Pro v2.0 - Master Tech Edition Loaded', 
         'color: #0066FF; font-size: 16px; font-weight: bold;');
-      console.log('%cFeatures: Master-level diagnostics, full 2025 materials catalog, intelligent analysis', 
+      console.log('%cFeatures: Collapsible materials catalog, master diagnostics, 2025 updated', 
         'color: #666; font-size: 12px;');
     });
   </script>
