@@ -898,7 +898,7 @@
           <div class="sidebar-logo-icon">🔧</div>
           <div>
             <div>Field Buddy Pro</div>
-            <div class="sidebar-version">v2.0 Enterprise</div>
+            <div class="sidebar-version">v2.0 Complete</div>
           </div>
         </div>
       </div>
@@ -938,8 +938,8 @@
         <div class="header-title" id="page-title">Service Call</div>
         <div class="header-actions">
           <div class="header-user">
-            <div class="user-avatar">TC</div>
-            <span>Technician</span>
+            <div class="user-avatar">MP</div>
+            <span id="header-tech-name">Martín Perez</span>
           </div>
         </div>
       </header>
@@ -1224,6 +1224,10 @@
                   <input type="checkbox" id="cool-check-blower-amp" onchange="updateCheckbox(this)">
                   <label for="cool-check-blower-amp">Blower motor amperage checked</label>
                 </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-drain-pan" onchange="updateCheckbox(this)">
+                  <label for="cool-check-drain-pan">Drain pan inspected (clean, no standing water)</label>
+                </div>
               </div>
               
               <div class="card-section">
@@ -1239,6 +1243,10 @@
                 <div class="checklist-item">
                   <input type="checkbox" id="cool-check-float" onchange="updateCheckbox(this)">
                   <label for="cool-check-float">Float switch/safety switch tested</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-pump" onchange="updateCheckbox(this)">
+                  <label for="cool-check-pump">Condensate pump operation verified (if applicable)</label>
                 </div>
               </div>
               
@@ -1256,10 +1264,18 @@
                   <input type="checkbox" id="cool-check-fan-blade" onchange="updateCheckbox(this)">
                   <label for="cool-check-fan-blade">Fan blade inspected (no damage/proper clearance)</label>
                 </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-cabinet" onchange="updateCheckbox(this)">
+                  <label for="cool-check-cabinet">Cabinet/housing inspected for damage/debris</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-clearance" onchange="updateCheckbox(this)">
+                  <label for="cool-check-clearance">Airflow clearance verified (24" minimum all sides)</label>
+                </div>
               </div>
               
               <div class="card-section">
-                <div class="section-title">Electrical & Refrigerant</div>
+                <div class="section-title">Electrical Components</div>
                 <div class="checklist-item">
                   <input type="checkbox" id="cool-check-contactor" onchange="updateCheckbox(this)">
                   <label for="cool-check-contactor">Contactor inspected (pitting, burning, proper operation)</label>
@@ -1269,12 +1285,56 @@
                   <label for="cool-check-capacitor">Capacitor(s) tested with meter (µF reading within spec)</label>
                 </div>
                 <div class="checklist-item">
-                  <input type="checkbox" id="cool-check-pressures" onchange="updateCheckbox(this)">
-                  <label for="cool-check-pressures">Operating pressures verified (superheat/subcool)</label>
+                  <input type="checkbox" id="cool-check-disconnect" onchange="updateCheckbox(this)">
+                  <label for="cool-check-disconnect">Disconnect switch inspected and cycled</label>
                 </div>
                 <div class="checklist-item">
                   <input type="checkbox" id="cool-check-wiring" onchange="updateCheckbox(this)">
                   <label for="cool-check-wiring">All wiring connections tightened and inspected</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-voltage" onchange="updateCheckbox(this)">
+                  <label for="cool-check-voltage">Supply voltage checked (±10% of rated voltage)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-compressor-amp" onchange="updateCheckbox(this)">
+                  <label for="cool-check-compressor-amp">Compressor amperage checked (within nameplate specs)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Refrigerant System</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-pressures" onchange="updateCheckbox(this)">
+                  <label for="cool-check-pressures">Operating pressures verified (superheat/subcool)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-lineset" onchange="updateCheckbox(this)">
+                  <label for="cool-check-lineset">Line set insulation inspected (no deterioration)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-leak" onchange="updateCheckbox(this)">
+                  <label for="cool-check-leak">System leak checked (visual/electronic detector)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-txv" onchange="updateCheckbox(this)">
+                  <label for="cool-check-txv">TXV/metering device operation verified</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Thermostat & Controls</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-tstat" onchange="updateCheckbox(this)">
+                  <label for="cool-check-tstat">Thermostat calibration/operation verified</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-tstat-wiring" onchange="updateCheckbox(this)">
+                  <label for="cool-check-tstat-wiring">Thermostat wiring connections checked</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-cycle" onchange="updateCheckbox(this)">
+                  <label for="cool-check-cycle">System cycling tested (on/off operation normal)</label>
                 </div>
               </div>
             </div>
@@ -1300,6 +1360,10 @@
                   <input type="checkbox" id="heat-check-blower-motor" onchange="updateCheckbox(this)">
                   <label for="heat-check-blower-motor">Blower motor operation/amperage checked</label>
                 </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-static" onchange="updateCheckbox(this)">
+                  <label for="heat-check-static">Static pressure measured (supply & return)</label>
+                </div>
               </div>
               
               <div class="card-section">
@@ -1320,10 +1384,14 @@
                   <input type="checkbox" id="heat-check-igniter" onchange="updateCheckbox(this)">
                   <label for="heat-check-igniter">Hot surface igniter/ignition system inspected</label>
                 </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-burner-box" onchange="updateCheckbox(this)">
+                  <label for="heat-check-burner-box">Burner box/combustion chamber cleaned</label>
+                </div>
               </div>
               
               <div class="card-section">
-                <div class="section-title">Gas System</div>
+                <div class="section-title">Gas System (if applicable)</div>
                 <div class="checklist-item">
                   <input type="checkbox" id="heat-check-gas-valve" onchange="updateCheckbox(this)">
                   <label for="heat-check-gas-valve">Gas valve operation verified</label>
@@ -1335,6 +1403,34 @@
                 <div class="checklist-item">
                   <input type="checkbox" id="heat-check-gas-line" onchange="updateCheckbox(this)">
                   <label for="heat-check-gas-line">Gas line connections leak checked (soap test)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-gas-supply" onchange="updateCheckbox(this)">
+                  <label for="heat-check-gas-supply">Inlet gas pressure checked (incoming supply)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Venting & Exhaust</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-flue" onchange="updateCheckbox(this)">
+                  <label for="heat-check-flue">Flue pipe/vent system inspected (no obstructions/damage)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-inducer" onchange="updateCheckbox(this)">
+                  <label for="heat-check-inducer">Inducer motor operation and amperage checked</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-pressure-switch" onchange="updateCheckbox(this)">
+                  <label for="heat-check-pressure-switch">Pressure switch(es) tested and verified</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-condensate-trap" onchange="updateCheckbox(this)">
+                  <label for="heat-check-condensate-trap">Condensate trap cleaned (90%+ furnaces)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-co" onchange="updateCheckbox(this)">
+                  <label for="heat-check-co">Carbon monoxide levels tested (ambient & flue)</label>
                 </div>
               </div>
               
@@ -1349,12 +1445,52 @@
                   <label for="heat-check-limit">High limit switch(es) tested</label>
                 </div>
                 <div class="checklist-item">
-                  <input type="checkbox" id="heat-check-co" onchange="updateCheckbox(this)">
-                  <label for="heat-check-co">Carbon monoxide levels tested (ambient & flue)</label>
+                  <input type="checkbox" id="heat-check-safeties" onchange="updateCheckbox(this)">
+                  <label for="heat-check-safeties">All safety interlocks verified operational</label>
                 </div>
                 <div class="checklist-item">
-                  <input type="checkbox" id="heat-check-inducer" onchange="updateCheckbox(this)">
-                  <label for="heat-check-inducer">Inducer motor operation and amperage checked</label>
+                  <input type="checkbox" id="heat-check-sequence" onchange="updateCheckbox(this)">
+                  <label for="heat-check-sequence">Ignition sequence timing verified (proper lockout)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Electrical & Wiring</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-wiring" onchange="updateCheckbox(this)">
+                  <label for="heat-check-wiring">All electrical connections tightened</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-voltage" onchange="updateCheckbox(this)">
+                  <label for="heat-check-voltage">Supply voltage checked (115V or 230V ±10%)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-transformer" onchange="updateCheckbox(this)">
+                  <label for="heat-check-transformer">Control transformer voltage checked (24V AC)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-disconnect" onchange="updateCheckbox(this)">
+                  <label for="heat-check-disconnect">Disconnect/service switch inspected</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Thermostat & Controls</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-tstat" onchange="updateCheckbox(this)">
+                  <label for="heat-check-tstat">Thermostat calibration/operation verified</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-tstat-wiring" onchange="updateCheckbox(this)">
+                  <label for="heat-check-tstat-wiring">Thermostat wiring connections checked</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-cycle" onchange="updateCheckbox(this)">
+                  <label for="heat-check-cycle">Heating cycle tested (ignition to shutdown)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-fan-delay" onchange="updateCheckbox(this)">
+                  <label for="heat-check-fan-delay">Fan on/off delay times verified</label>
                 </div>
               </div>
             </div>
@@ -1395,9 +1531,21 @@
               <div class="card-title">Technician Information</div>
             </div>
             <div class="card-body">
-              <div class="form-group">
-                <label>Technician Name</label>
-                <input type="text" id="tech-name" placeholder="Your name">
+              <div class="form-grid form-grid-2">
+                <div class="form-group">
+                  <label>Technician Name</label>
+                  <input type="text" id="tech-name" value="Martín Perez">
+                </div>
+                <div class="form-group">
+                  <label>Contact Phone</label>
+                  <input type="tel" id="tech-phone" value="(346)451-0024">
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" id="tech-email" value="Mperez@villageplumbing.com">
+                </div>
               </div>
             </div>
           </div>
@@ -1456,7 +1604,7 @@
           <!-- Materials Catalog -->
           <div class="card">
             <div class="card-header">
-              <div class="card-title">Materials Catalog (2025)</div>
+              <div class="card-title">Materials Catalog (2025 Complete Edition)</div>
               <div class="btn-group">
                 <button class="btn btn-secondary" onclick="expandAllCategories()">
                   Expand All
@@ -1494,9 +1642,21 @@
               <div class="card-title">Technician Information</div>
             </div>
             <div class="card-body">
-              <div class="form-group">
-                <label>Technician Name</label>
-                <input type="text" id="mat-tech-name" placeholder="Your name">
+              <div class="form-grid form-grid-2">
+                <div class="form-group">
+                  <label>Technician Name</label>
+                  <input type="text" id="mat-tech-name" value="Martín Perez">
+                </div>
+                <div class="form-group">
+                  <label>Contact Phone</label>
+                  <input type="tel" id="mat-tech-phone" value="(346)451-0024">
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" id="mat-tech-email" value="Mperez@villageplumbing.com">
+                </div>
               </div>
             </div>
           </div>
@@ -1555,7 +1715,7 @@
       205: 126.1, 210: 131.0, 215: 135.9, 220: 140.9
     };
     
-    // ==================== FULL 2025 MATERIALS CATALOG ====================
+    // ==================== COMPLETE 2025 MATERIALS CATALOG ====================
     const materialsCatalog = {
       equipment: {
         name: 'Equipment',
@@ -1579,6 +1739,11 @@
           { id: 'capacitor-single', name: 'Run Capacitor (Single)', sizes: ['5µF', '7.5µF', '10µF', '15µF', '20µF', '25µF', '30µF', '35µF', '40µF', '45µF', '50µF', '60µF'] },
           { id: 'capacitor-dual', name: 'Dual Run Capacitor', sizes: ['35/5µF', '40/5µF', '45/5µF', '50/5µF', '55/5µF', '60/5µF'] },
           { id: 'hard-start', name: 'Hard Start Kit', sizes: ['1-2 Ton', '2-3 Ton', '3-5 Ton'] },
+          { id: 'soft-start', name: 'Soft Start Kit', sizes: ['1-2 Ton', '2-3 Ton', '3-5 Ton'] },
+          { id: 'compressor-saver', name: 'Compressor Saver', sizes: ['Universal'] },
+          { id: 'potential-relay', name: 'Potential Relay', sizes: ['Standard', 'Heavy Duty'] },
+          { id: 'voltage-regulator', name: 'Voltage Regulator/Stabilizer', sizes: ['240V 15A', '240V 30A', '240V 60A'] },
+          { id: 'surge-protector', name: 'Surge Protector (HVAC)', sizes: ['Whole Unit', 'Panel Mount'] },
           { id: 'disconnect-30', name: 'Disconnect Box (30A)', sizes: ['30A Non-Fused', '30A Fused'] },
           { id: 'disconnect-60', name: 'Disconnect Box (60A)', sizes: ['60A Non-Fused', '60A Fused'] },
           { id: 'breaker', name: 'Circuit Breaker', sizes: ['15A', '20A', '25A', '30A', '40A', '50A', '60A'] },
@@ -1716,7 +1881,7 @@
           { id: 'vibration-isolator', name: 'Vibration Isolators', sizes: ['Standard'], unit: 'set' },
           { id: 'line-hide', name: 'Line Set Cover', sizes: ['3"', '4"', '6"'], unit: 'ft' },
           { id: 'cleaning-coil', name: 'Coil Cleaner', sizes: ['Aerosol', '1 Gallon'] },
-          { id: 'cleaning-evap', name: 'Evaporator Coil Cleaner', sizes: ['Aerosol', '32 oz'] }
+          { id: 'cleaning-evap', name: 'Evaporator Coil Cleaner (No-Rinse)', sizes: ['Aerosol', '32 oz'] }
         ]
       }
     };
@@ -1874,7 +2039,7 @@
               severity: 'danger',
               title: 'Low Delta-T Detected',
               message: `Delta-T is ${deltaT.toFixed(1)}°F (Expected: 16-22°F)`,
-              recommendations: ['Check filter condition - replace if dirty', 'Inspect evaporator coil for dirt/restrictions', 'Verify blower motor operation and speed', 'Check for closed or blocked supply vents']
+              recommendations: ['Check filter condition - replace if dirty', 'Inspect evaporator coil for dirt/debris/restrictions', 'Verify blower motor operation and speed', 'Check for closed or blocked supply vents', 'Measure static pressure to confirm restriction', 'Consider refrigerant charge if airflow is confirmed good']
             });
           } else if (deltaT >= 16 && deltaT <= 22) {
             diagnosticResults.push({
@@ -1888,7 +2053,7 @@
               severity: 'warning',
               title: 'High Delta-T - Possible Restriction',
               message: `Delta-T is ${deltaT.toFixed(1)}°F (Expected: 16-22°F)`,
-              recommendations: ['Check filter immediately - likely very dirty', 'Inspect ductwork for kinks or crushing', 'Check blower speed settings']
+              recommendations: ['Check filter immediately - likely very dirty', 'Inspect ductwork for kinks or crushing', 'Check blower speed settings', 'Verify return air path is unrestricted']
             });
           }
         }
@@ -1917,14 +2082,14 @@
               severity: 'danger',
               title: 'System Appears Undercharged',
               message: `Superheat: ${superheat.toFixed(1)}°F, Subcool: ${subcool.toFixed(1)}°F`,
-              recommendations: ['Check for refrigerant leaks at evaporator coil', 'Inspect service valve connections', 'Look for oil residue at brazed joints', 'Add refrigerant by weight or subcool method']
+              recommendations: ['Check for refrigerant leaks at evaporator coil', 'Inspect service valve connections', 'Look for oil residue at brazed joints', 'Check line set for damage/leaks', 'Add refrigerant by weight or subcool method', 'Re-verify charge after adding refrigerant']
             });
           } else if (superheat < 5 && subcool > 15) {
             diagnosticResults.push({
               severity: 'warning',
               title: 'System May Be Overcharged',
               message: `Superheat: ${superheat.toFixed(1)}°F, Subcool: ${subcool.toFixed(1)}°F`,
-              recommendations: ['Verify charge was not added incorrectly', 'Check for non-condensables in system', 'Consider recovering excess refrigerant']
+              recommendations: ['Verify charge was not added incorrectly', 'Check for non-condensables in system', 'Confirm outdoor unit has adequate airflow', 'Consider recovering excess refrigerant']
             });
           } else if (superheat >= 8 && superheat <= 15 && subcool >= 8 && subcool <= 12) {
             diagnosticResults.push({
@@ -1938,7 +2103,7 @@
               severity: 'danger',
               title: 'Possible TXV Failure',
               message: `High superheat with normal subcool suggests TXV issue`,
-              recommendations: ['Check TXV bulb placement and contact', 'Verify TXV is not stuck closed', 'Consider TXV replacement']
+              recommendations: ['Check TXV bulb placement and contact', 'Verify TXV is not stuck closed', 'Inspect sensing bulb for damage', 'Consider TXV replacement']
             });
           }
         }
@@ -1955,14 +2120,14 @@
               severity: 'danger',
               title: 'Low Temperature Rise',
               message: `Temp rise is ${tempRise.toFixed(1)}°F (Expected: 35-65°F)`,
-              recommendations: ['Check gas input - verify manifold pressure', 'Inspect burners for proper flame pattern', 'Check for excessive airflow (blower speed too high)']
+              recommendations: ['Check gas input - verify manifold pressure', 'Inspect burners for proper flame pattern', 'Check for excessive airflow (blower speed too high)', 'Verify gas valve is fully opening']
             });
           } else if (tempRise > 65) {
             diagnosticResults.push({
               severity: 'danger',
               title: 'High Temperature Rise',
               message: `Temp rise is ${tempRise.toFixed(1)}°F (Expected: 35-65°F)`,
-              recommendations: ['Check airflow - possible restriction', 'Verify blower speed is correct', 'Inspect heat exchanger for restrictions']
+              recommendations: ['Check airflow - possible restriction', 'Verify blower speed is correct', 'Inspect heat exchanger for restrictions', 'Check limit switches for proper operation']
             });
           } else {
             diagnosticResults.push({
@@ -1980,7 +2145,7 @@
               severity: 'warning',
               title: 'Manifold Pressure Out of Range',
               message: `Manifold pressure is ${manifoldPressure.toFixed(2)} in w.c. (Expected: 3.3-3.8)`,
-              recommendations: ['Adjust gas valve regulator', 'Check gas supply pressure', 'Verify proper orifice size for gas type']
+              recommendations: ['Adjust gas valve regulator', 'Check gas supply pressure', 'Verify proper orifice size for gas type', 'Consult furnace specifications']
             });
           } else {
             diagnosticResults.push({
@@ -2215,7 +2380,9 @@
       const date = $('service-date').value || new Date().toISOString().split('T')[0];
       const address = $('service-address').value || 'N/A';
       const complaint = $('customer-complaint').value || 'N/A';
-      const tech = $('tech-name').value || 'Technician';
+      const tech = $('tech-name').value || 'Martín Perez';
+      const techPhone = $('tech-phone').value || '(346)451-0024';
+      const techEmail = $('tech-email').value || 'Mperez@villageplumbing.com';
       
       let report = `╔════════════════════════════════════════════════════════════╗
 ║       FIELD BUDDY PRO - SERVICE REPORT v2.0                ║
@@ -2313,10 +2480,13 @@ ${$('work-performed').value || 'N/A'}
 TECHNICIAN INFORMATION
 ───────────────────────────────────────────────────────────────
 Technician: ${tech}
+Phone: ${techPhone}
+Email: ${techEmail}
 Generated: ${new Date().toLocaleString()}
 
 ───────────────────────────────────────────────────────────────
-Field Buddy Pro v2.0 Enterprise Edition
+Field Buddy Pro v2.0 Complete Edition
+Village Plumbing - Professional Service Excellence
 `;
 
       displayReport(report, 'report-container');
@@ -2328,7 +2498,9 @@ Field Buddy Pro v2.0 Enterprise Edition
       const date = $('mat-date').value || new Date().toISOString().split('T')[0];
       const address = $('mat-address').value || 'N/A';
       const notes = $('mat-notes').value || 'N/A';
-      const tech = $('mat-tech-name').value || 'Technician';
+      const tech = $('mat-tech-name').value || 'Martín Perez';
+      const techPhone = $('mat-tech-phone').value || '(346)451-0024';
+      const techEmail = $('mat-tech-email').value || 'Mperez@villageplumbing.com';
       
       let report = `╔════════════════════════════════════════════════════════════╗
 ║       FIELD BUDDY PRO - MATERIALS LIST v2.0                ║
@@ -2376,10 +2548,13 @@ MATERIALS NEEDED
       report += `\nTECHNICIAN INFORMATION
 ───────────────────────────────────────────────────────────────
 Technician: ${tech}
+Phone: ${techPhone}
+Email: ${techEmail}
 Generated: ${new Date().toLocaleString()}
 
 ───────────────────────────────────────────────────────────────
-Field Buddy Pro v2.0 Enterprise Edition
+Field Buddy Pro v2.0 Complete Edition
+Village Plumbing - Professional Service Excellence
 `;
 
       displayReport(report, 'report-container-mat');
@@ -2449,6 +2624,12 @@ Field Buddy Pro v2.0 Enterprise Edition
           el.checked = false;
           const item = el.closest('.checklist-item');
           if (item) item.classList.remove('checked');
+        } else if (el.id === 'tech-name' || el.id === 'mat-tech-name') {
+          el.value = 'Martín Perez';
+        } else if (el.id === 'tech-phone' || el.id === 'mat-tech-phone') {
+          el.value = '(346)451-0024';
+        } else if (el.id === 'tech-email' || el.id === 'mat-tech-email') {
+          el.value = 'Mperez@villageplumbing.com';
         } else if (el.id !== 'service-date' && el.id !== 'mat-date' && el.id !== 'material-search') {
           el.value = '';
         }
@@ -2475,8 +2656,9 @@ Field Buddy Pro v2.0 Enterprise Edition
       $('mat-date').value = today;
       initMaterialsCatalog();
       
-      console.log('%c🔧 Field Buddy Pro v2.0 Enterprise Edition', 'color: #0066CC; font-size: 16px; font-weight: bold;');
-      console.log('%cServiceTitan-style UI with complete functionality', 'color: #666; font-size: 12px;');
+      console.log('%c🔧 Field Buddy Pro v2.0 Complete Edition', 'color: #0066CC; font-size: 16px; font-weight: bold;');
+      console.log('%cServiceTitan-style UI with Complete 2025 Materials Catalog', 'color: #666; font-size: 12px;');
+      console.log('%cDefault Tech: Martín Perez | Village Plumbing', 'color: #10B981; font-size: 12px;');
     });
   </script>
 </body>
