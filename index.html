@@ -1113,59 +1113,277 @@
         </div>
       </div>
 
-      <!-- VISUAL INSPECTION CHECKLIST -->
-      <div class="card animate-in">
+      <!-- VISUAL INSPECTION CHECKLIST - COOLING MODE -->
+      <div class="card animate-in" id="cooling-checklist">
         <div class="card-header">
           <div class="card-title">
             <span>👁️</span>
-            <span>Visual Inspection Checklist</span>
+            <span>Cooling Mode Inspection Checklist</span>
           </div>
         </div>
         
-        <div class="card-subtitle">Filter & Airflow</div>
+        <div class="card-subtitle">Air Filter & Indoor Unit</div>
         <label class="checkbox-label">
-          <input type="checkbox" id="check-filter" onchange="updateCheckbox(this)">
-          <span>Filter inspected (clean/dirty?)</span>
+          <input type="checkbox" id="cool-check-filter" onchange="updateCheckbox(this)">
+          <span>Air filter inspected/replaced (check size & MERV rating)</span>
         </label>
         <label class="checkbox-label">
-          <input type="checkbox" id="check-coil" onchange="updateCheckbox(this)">
-          <span>Evaporator coil inspected (clean/restricted?)</span>
+          <input type="checkbox" id="cool-check-evap-coil" onchange="updateCheckbox(this)">
+          <span>Evaporator coil inspected for dirt/debris/restrictions</span>
         </label>
         <label class="checkbox-label">
-          <input type="checkbox" id="check-blower" onchange="updateCheckbox(this)">
-          <span>Blower wheel inspected (clean/buildup?)</span>
-        </label>
-        
-        <div class="card-subtitle">Condensing Unit</div>
-        <label class="checkbox-label">
-          <input type="checkbox" id="check-condenser" onchange="updateCheckbox(this)">
-          <span>Condenser coil inspected (clean/dirty?)</span>
+          <input type="checkbox" id="cool-check-blower" onchange="updateCheckbox(this)">
+          <span>Blower wheel/motor inspected (clean, proper rotation)</span>
         </label>
         <label class="checkbox-label">
-          <input type="checkbox" id="check-fan" onchange="updateCheckbox(this)">
-          <span>Condenser fan operation checked</span>
+          <input type="checkbox" id="cool-check-blower-amp" onchange="updateCheckbox(this)">
+          <span>Blower motor amperage checked</span>
         </label>
         <label class="checkbox-label">
-          <input type="checkbox" id="check-capacitor" onchange="updateCheckbox(this)">
-          <span>Capacitor(s) tested</span>
-        </label>
-        <label class="checkbox-label">
-          <input type="checkbox" id="check-contactor" onchange="updateCheckbox(this)">
-          <span>Contactor inspected (pitting/burning?)</span>
+          <input type="checkbox" id="cool-check-drain-pan" onchange="updateCheckbox(this)">
+          <span>Drain pan inspected (clean, no standing water)</span>
         </label>
         
-        <div class="card-subtitle">Electrical & Safety</div>
+        <div class="card-subtitle">Condensate System</div>
         <label class="checkbox-label">
-          <input type="checkbox" id="check-wiring" onchange="updateCheckbox(this)">
-          <span>Wiring connections inspected</span>
+          <input type="checkbox" id="cool-check-drain-line" onchange="updateCheckbox(this)">
+          <span>Condensate drain line cleared/flushed</span>
         </label>
         <label class="checkbox-label">
-          <input type="checkbox" id="check-disconnect" onchange="updateCheckbox(this)">
-          <span>Disconnect switch checked</span>
+          <input type="checkbox" id="cool-check-ptrap" onchange="updateCheckbox(this)">
+          <span>P-trap inspected and water level checked</span>
         </label>
         <label class="checkbox-label">
-          <input type="checkbox" id="check-drain" onchange="updateCheckbox(this)">
-          <span>Condensate drain inspected</span>
+          <input type="checkbox" id="cool-check-float" onchange="updateCheckbox(this)">
+          <span>Float switch/safety switch tested</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-pump" onchange="updateCheckbox(this)">
+          <span>Condensate pump operation verified (if applicable)</span>
+        </label>
+        
+        <div class="card-subtitle">Outdoor Condensing Unit</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-condenser-coil" onchange="updateCheckbox(this)">
+          <span>Condenser coil cleaned (check fin condition)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-fan-motor" onchange="updateCheckbox(this)">
+          <span>Condenser fan motor operation checked</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-fan-blade" onchange="updateCheckbox(this)">
+          <span>Fan blade inspected (no damage/proper clearance)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-cabinet" onchange="updateCheckbox(this)">
+          <span>Cabinet/housing inspected for damage/debris</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-clearance" onchange="updateCheckbox(this)">
+          <span>Airflow clearance verified (24" minimum all sides)</span>
+        </label>
+        
+        <div class="card-subtitle">Electrical Components</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-contactor" onchange="updateCheckbox(this)">
+          <span>Contactor inspected (pitting, burning, proper operation)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-capacitor" onchange="updateCheckbox(this)">
+          <span>Capacitor(s) tested with meter (µF reading within spec)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-disconnect" onchange="updateCheckbox(this)">
+          <span>Disconnect switch inspected and cycled</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-wiring" onchange="updateCheckbox(this)">
+          <span>All wiring connections tightened and inspected</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-voltage" onchange="updateCheckbox(this)">
+          <span>Supply voltage checked (±10% of rated voltage)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-compressor-amp" onchange="updateCheckbox(this)">
+          <span>Compressor amperage checked (within nameplate specs)</span>
+        </label>
+        
+        <div class="card-subtitle">Refrigerant System</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-pressures" onchange="updateCheckbox(this)">
+          <span>Operating pressures verified (superheat/subcool)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-lineset" onchange="updateCheckbox(this)">
+          <span>Line set insulation inspected (no deterioration)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-leak" onchange="updateCheckbox(this)">
+          <span>System leak checked (visual/electronic detector)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-txv" onchange="updateCheckbox(this)">
+          <span>TXV/metering device operation verified</span>
+        </label>
+        
+        <div class="card-subtitle">Thermostat & Controls</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-tstat" onchange="updateCheckbox(this)">
+          <span>Thermostat calibration/operation verified</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-tstat-wiring" onchange="updateCheckbox(this)">
+          <span>Thermostat wiring connections checked</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cool-check-cycle" onchange="updateCheckbox(this)">
+          <span>System cycling tested (on/off operation normal)</span>
+        </label>
+      </div>
+
+      <!-- VISUAL INSPECTION CHECKLIST - HEATING MODE -->
+      <div class="card animate-in hidden" id="heating-checklist">
+        <div class="card-header">
+          <div class="card-title">
+            <span>👁️</span>
+            <span>Heating Mode Inspection Checklist</span>
+          </div>
+        </div>
+        
+        <div class="card-subtitle">Air Filter & Airflow</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-filter" onchange="updateCheckbox(this)">
+          <span>Air filter inspected/replaced (check size & MERV rating)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-blower" onchange="updateCheckbox(this)">
+          <span>Blower assembly cleaned and inspected</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-blower-motor" onchange="updateCheckbox(this)">
+          <span>Blower motor operation/amperage checked</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-static" onchange="updateCheckbox(this)">
+          <span>Static pressure measured (supply & return)</span>
+        </label>
+        
+        <div class="card-subtitle">Heat Exchanger & Combustion</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-exchanger" onchange="updateCheckbox(this)">
+          <span>Heat exchanger visually inspected (cracks, rust, deterioration)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-burners" onchange="updateCheckbox(this)">
+          <span>Burners cleaned and inspected (flame pattern checked)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-flame-sensor" onchange="updateCheckbox(this)">
+          <span>Flame sensor cleaned and tested (microamp reading)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-igniter" onchange="updateCheckbox(this)">
+          <span>Hot surface igniter/ignition system inspected</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-burner-box" onchange="updateCheckbox(this)">
+          <span>Burner box/combustion chamber cleaned</span>
+        </label>
+        
+        <div class="card-subtitle">Gas System (if applicable)</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-gas-valve" onchange="updateCheckbox(this)">
+          <span>Gas valve operation verified</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-manifold" onchange="updateCheckbox(this)">
+          <span>Manifold gas pressure measured (3.3-3.8" w.c.)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-gas-line" onchange="updateCheckbox(this)">
+          <span>Gas line connections leak checked (soap test)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-gas-supply" onchange="updateCheckbox(this)">
+          <span>Inlet gas pressure checked (incoming supply)</span>
+        </label>
+        
+        <div class="card-subtitle">Venting & Exhaust</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-flue" onchange="updateCheckbox(this)">
+          <span>Flue pipe/vent system inspected (no obstructions/damage)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-inducer" onchange="updateCheckbox(this)">
+          <span>Inducer motor operation and amperage checked</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-pressure-switch" onchange="updateCheckbox(this)">
+          <span>Pressure switch(es) tested and verified</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-condensate-trap" onchange="updateCheckbox(this)">
+          <span>Condensate trap cleaned (90%+ furnaces)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-co" onchange="updateCheckbox(this)">
+          <span>Carbon monoxide levels tested (ambient & flue)</span>
+        </label>
+        
+        <div class="card-subtitle">Safety Controls</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-rollout" onchange="updateCheckbox(this)">
+          <span>Rollout switches inspected and tested</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-limit" onchange="updateCheckbox(this)">
+          <span>High limit switch(es) tested</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-safeties" onchange="updateCheckbox(this)">
+          <span>All safety interlocks verified operational</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-sequence" onchange="updateCheckbox(this)">
+          <span>Ignition sequence timing verified (proper lockout)</span>
+        </label>
+        
+        <div class="card-subtitle">Electrical & Wiring</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-wiring" onchange="updateCheckbox(this)">
+          <span>All electrical connections tightened</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-voltage" onchange="updateCheckbox(this)">
+          <span>Supply voltage checked (115V or 230V ±10%)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-transformer" onchange="updateCheckbox(this)">
+          <span>Control transformer voltage checked (24V AC)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-disconnect" onchange="updateCheckbox(this)">
+          <span>Disconnect/service switch inspected</span>
+        </label>
+        
+        <div class="card-subtitle">Thermostat & Controls</div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-tstat" onchange="updateCheckbox(this)">
+          <span>Thermostat calibration/operation verified</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-tstat-wiring" onchange="updateCheckbox(this)">
+          <span>Thermostat wiring connections checked</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-cycle" onchange="updateCheckbox(this)">
+          <span>Heating cycle tested (ignition to shutdown)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heat-check-fan-delay" onchange="updateCheckbox(this)">
+          <span>Fan on/off delay times verified</span>
         </label>
       </div>
 
@@ -1589,6 +1807,8 @@
       $('mode-heating').classList.toggle('active', mode === 'heating');
       $('cooling-measurements').classList.toggle('hidden', mode !== 'cooling');
       $('heating-measurements').classList.toggle('hidden', mode !== 'heating');
+      $('cooling-checklist').classList.toggle('hidden', mode !== 'cooling');
+      $('heating-checklist').classList.toggle('hidden', mode !== 'heating');
       calculateDiagnostics();
     }
     
