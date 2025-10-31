@@ -1812,12 +1812,15 @@
     let categoryStates = {};
     
     // ==================== R410A PT CHART ====================
+    // Format: PRESSURE (PSI): SATURATION TEMPERATURE (°F)
+    // Industry-standard R-410A values (Honeywell/Chemours data)
     const R410A_PT = {
-      85: 40.4, 90: 44.7, 95: 47.1, 100: 49.6, 105: 52.2, 110: 54.9,
-      115: 57.7, 120: 60.6, 125: 63.6, 130: 66.7, 135: 69.9, 140: 73.2,
-      145: 76.6, 150: 80.1, 155: 83.7, 160: 87.4, 165: 91.3, 170: 95.2,
-      175: 99.3, 180: 103.5, 185: 107.8, 190: 112.2, 195: 116.7, 200: 121.4,
-      205: 126.1, 210: 131.0, 215: 135.9, 220: 140.9
+      // Suction side pressures
+      43: 0, 57: 10, 73: 20, 92: 30, 114: 40, 117: 41, 121: 42,
+      125: 43, 140: 50, 169: 60, 201: 70, 237: 80, 278: 90,
+      // Liquid side pressures
+      323: 100, 330: 102, 335: 103, 338: 104, 347: 105, 373: 110,
+      400: 115, 428: 120, 460: 125, 493: 130, 528: 135, 565: 140
     };
     
     // ==================== COMPLETE 2025 MATERIALS CATALOG ====================
@@ -2148,6 +2151,7 @@
     }
     
     function getSaturationTemp(pressure) {
+      // Find the closest pressure in our PT chart
       const pressures = Object.keys(R410A_PT).map(Number);
       const closest = pressures.reduce((prev, curr) => 
         Math.abs(curr - pressure) < Math.abs(prev - pressure) ? curr : prev
