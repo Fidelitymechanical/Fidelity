@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description" content="Field Buddy Pro v3.0 - Professional HVAC Field Service Management">
-  <title>Field Buddy Pro v3.0</title>
+  <meta name="description" content="Field Buddy Pro v3.0 - Complete Professional HVAC Field Service Management">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Field Buddy Pro v3.0 - Complete Edition</title>
   
   <!-- CDN Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -12,18 +14,46 @@
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
   
   <style>
+    /* ==================== DESIGN SYSTEM ==================== */
     :root {
       --primary: #0066CC;
+      --primary-dark: #004C99;
+      --primary-light: #3385DB;
       --success: #10B981;
       --warning: #F59E0B;
       --danger: #EF4444;
+      --info: #3B82F6;
+      
+      --sidebar-bg: #1E293B;
+      --sidebar-hover: #334155;
+      
       --gray-50: #F9FAFB;
       --gray-100: #F3F4F6;
       --gray-200: #E5E7EB;
+      --gray-300: #D1D5DB;
+      --gray-400: #9CA3AF;
+      --gray-500: #6B7280;
+      --gray-600: #4B5563;
       --gray-700: #374151;
+      --gray-800: #1F2937;
       --gray-900: #111827;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+      --shadow: 0 1px 3px 0 rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      
+      --radius: 6px;
+      --radius-lg: 8px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-2xl: 32px;
+      --transition: all 0.2s ease;
     }
     
+    /* ==================== RESET & BASE ==================== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
@@ -32,60 +62,312 @@
       color: var(--gray-900);
       font-size: 14px;
       line-height: 1.5;
+      overflow-x: hidden;
     }
     
-    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    /* ==================== LAYOUT ==================== */
+    .app-container { display: flex; min-height: 100vh; }
     
-    .header {
+    .sidebar {
+      width: 260px;
+      background: var(--sidebar-bg);
+      color: white;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      z-index: 100;
+      transition: var(--transition);
+    }
+    
+    .sidebar-header {
+      padding: var(--spacing-xl);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      font-size: 18px;
+      font-weight: 700;
+    }
+    
+    .sidebar-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    
+    .sidebar-version {
+      font-size: 10px;
+      color: var(--gray-400);
+      margin-top: 4px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .sidebar-nav { padding: var(--spacing-lg) 0; }
+    
+    .nav-section {
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .nav-section-title {
+      padding: var(--spacing-sm) var(--spacing-xl);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md) var(--spacing-xl);
+      color: var(--gray-300);
+      cursor: pointer;
+      transition: var(--transition);
+      border-left: 3px solid transparent;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .nav-item:hover {
+      background: var(--sidebar-hover);
+      color: white;
+    }
+    
+    .nav-item.active {
+      background: rgba(0,102,204,0.1);
+      color: white;
+      border-left-color: var(--primary);
+    }
+    
+    .nav-icon {
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
+    }
+    
+    .main-content {
+      margin-left: 260px;
+      flex: 1;
+      min-height: 100vh;
+    }
+    
+    .top-header {
       background: white;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 var(--spacing-2xl);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: var(--shadow-sm);
     }
     
-    .header h1 {
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-lg);
+    }
+    
+    .menu-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      background: var(--gray-100);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    
+    .header-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+    
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-lg);
+    }
+    
+    .header-user {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--gray-100);
+      border-radius: var(--radius-lg);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    
+    .workspace {
+      padding: var(--spacing-2xl);
+      max-width: 1400px;
+    }
+    
+    /* ==================== QUALITY DASHBOARD ==================== */
+    .quality-dashboard {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      color: white;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .quality-header {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .quality-score-large {
+      font-size: 48px;
+      font-weight: 700;
+      text-align: center;
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .quality-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+    
+    .quality-metric {
+      background: rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: var(--spacing-md);
+      text-align: center;
+    }
+    
+    .metric-value {
       font-size: 24px;
-      color: var(--primary);
-      margin-bottom: 5px;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
     
-    .header p { color: var(--gray-700); font-size: 13px; }
+    .metric-label {
+      font-size: 12px;
+      opacity: 0.9;
+    }
     
+    /* ==================== CARDS ==================== */
     .card {
       background: white;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-200);
+      margin-bottom: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .card-header {
+      padding: var(--spacing-lg) var(--spacing-xl);
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     
     .card-title {
       font-size: 16px;
       font-weight: 600;
-      margin-bottom: 15px;
       color: var(--gray-900);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
     }
     
-    .form-grid { display: grid; gap: 15px; grid-template-columns: 1fr; }
+    .card-body {
+      padding: var(--spacing-xl);
+    }
+    
+    .card-section {
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .card-section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: var(--spacing-md);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    
+    /* ==================== FORMS ==================== */
+    .form-grid {
+      display: grid;
+      gap: var(--spacing-lg);
+    }
+    
     .form-grid-2 { grid-template-columns: repeat(2, 1fr); }
     .form-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .form-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    
+    .form-group { margin-bottom: 0; }
     
     label {
       display: block;
       font-size: 13px;
       font-weight: 500;
-      margin-bottom: 5px;
       color: var(--gray-700);
+      margin-bottom: var(--spacing-sm);
     }
     
     input, select, textarea {
       width: 100%;
-      padding: 8px 12px;
-      border: 1px solid var(--gray-200);
-      border-radius: 6px;
-      font-family: inherit;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
       font-size: 14px;
+      font-family: inherit;
+      background: white;
+      transition: var(--transition);
+      color: var(--gray-900);
     }
     
     input:focus, select:focus, textarea:focus {
@@ -94,480 +376,1748 @@
       box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
     }
     
-    textarea { min-height: 80px; resize: vertical; }
+    input[readonly] {
+      background: var(--gray-100);
+      color: var(--gray-600);
+    }
     
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.5;
+    }
+    
+    /* ==================== BUTTONS ==================== */
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-lg);
       border: none;
-      border-radius: 6px;
+      border-radius: var(--radius);
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: var(--transition);
+      min-height: 36px;
     }
     
+    .btn:active { transform: scale(0.98); }
+    
     .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); }
     .btn-success { background: var(--success); color: white; }
+    .btn-success:hover { background: #059669; }
+    .btn-warning { background: var(--warning); color: white; }
+    .btn-warning:hover { background: #D97706; }
     .btn-secondary { background: var(--gray-200); color: var(--gray-700); }
-    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
+    .btn-secondary:hover { background: var(--gray-300); }
+    .btn-danger { background: var(--danger); color: white; }
+    .btn-danger:hover { background: #DC2626; }
     
-    .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-group {
+      display: flex;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+    }
     
+    /* ==================== TOGGLE BUTTONS ==================== */
     .toggle-group {
       display: inline-flex;
       background: var(--gray-100);
-      border-radius: 6px;
+      border-radius: var(--radius);
       padding: 2px;
       gap: 2px;
     }
     
     .toggle-btn {
-      padding: 8px 16px;
+      padding: var(--spacing-sm) var(--spacing-lg);
       border: none;
       background: transparent;
-      border-radius: 4px;
-      cursor: pointer;
+      border-radius: calc(var(--radius) - 2px);
       font-size: 13px;
-      color: var(--gray-700);
-      transition: all 0.2s;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--gray-600);
+      min-width: 100px;
     }
     
     .toggle-btn.active {
       background: white;
       color: var(--gray-900);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      box-shadow: var(--shadow-sm);
     }
     
+    /* ==================== BADGES ==================== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    
+    .badge-success { background: #D1FAE5; color: #065F46; }
+    .badge-warning { background: #FEF3C7; color: #92400E; }
+    .badge-danger { background: #FEE2E2; color: #991B1B; }
+    .badge-info { background: #DBEAFE; color: #1E40AF; }
+    
+    /* ==================== DIAGNOSTIC PANEL ==================== */
+    .diagnostic-panel {
+      background: linear-gradient(135deg, #0066CC 0%, #004C99 100%);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-xl) 0;
+      color: white;
+    }
+    
+    .diagnostic-header {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .diagnostic-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+      color: var(--gray-900);
+    }
+    
+    .diagnostic-card:last-child { margin-bottom: 0; }
+    
+    .diagnostic-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .diagnostic-card-title {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .diagnostic-recommendations {
+      margin-top: var(--spacing-md);
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--gray-200);
+    }
+    
+    .diagnostic-recommendations ul {
+      margin: var(--spacing-sm) 0;
+      padding-left: var(--spacing-xl);
+      font-size: 13px;
+    }
+    
+    .diagnostic-recommendations li {
+      margin: var(--spacing-sm) 0;
+      color: var(--gray-700);
+    }
+    
+    /* ==================== PHOTO GALLERY ==================== */
     .photo-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 12px;
-      margin-top: 12px;
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-md);
     }
     
     .photo-item {
       position: relative;
       aspect-ratio: 1;
-      border-radius: 6px;
+      border-radius: var(--radius);
       overflow: hidden;
       border: 2px solid var(--gray-200);
       cursor: pointer;
+      background: var(--gray-100);
     }
     
-    .photo-item img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .photo-item-actions {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      display: flex;
+      gap: 4px;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .photo-item:hover .photo-item-actions {
+      opacity: 1;
+    }
+    
+    .photo-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      border: none;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
     
     .photo-upload {
       aspect-ratio: 1;
-      border: 2px dashed var(--gray-200);
-      border-radius: 6px;
+      border: 2px dashed var(--gray-300);
+      border-radius: var(--radius);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       background: var(--gray-50);
+      transition: var(--transition);
     }
     
-    .photo-upload:hover { border-color: var(--primary); }
+    .photo-upload:hover {
+      border-color: var(--primary);
+      background: rgba(0,102,204,0.05);
+    }
     
+    /* ==================== SIGNATURE PAD ==================== */
     .signature-pad {
       width: 100%;
       height: 200px;
       border: 1px solid var(--gray-200);
-      border-radius: 6px;
+      border-radius: var(--radius);
       cursor: crosshair;
       background: white;
     }
     
-    .chart-container { height: 300px; margin: 20px 0; }
-    
-    .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
+    /* ==================== CHART ==================== */
+    .chart-container {
+      height: 300px;
+      margin: var(--spacing-lg) 0;
+      position: relative;
     }
     
-    .badge-success { background: #D1FAE5; color: #065F46; }
-    .badge-warning { background: #FEF3C7; color: #92400E; }
-    .badge-danger { background: #FEE2E2; color: #991B1B; }
-    
-    .diagnostic-panel {
-      background: linear-gradient(135deg, #0066CC, #004C99);
-      border-radius: 8px;
-      padding: 20px;
-      color: white;
-      margin: 20px 0;
+    /* ==================== CHECKLIST ==================== */
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      padding: var(--spacing-md);
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      margin-bottom: var(--spacing-sm);
+      cursor: pointer;
+      transition: var(--transition);
     }
     
-    .diagnostic-card {
+    .checklist-item:hover {
+      border-color: var(--primary);
       background: white;
-      border-radius: 6px;
-      padding: 15px;
-      margin-top: 12px;
+    }
+    
+    .checklist-item.checked {
+      border-color: var(--success);
+      background: #F0FDF4;
+    }
+    
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-right: var(--spacing-md);
+      accent-color: var(--success);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .checklist-item label {
+      margin: 0;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    
+    /* ==================== MATERIALS CATALOG ==================== */
+    .materials-category {
+      margin-bottom: var(--spacing-md);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: white;
+    }
+    
+    .category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: var(--gray-50);
+      cursor: pointer;
+      user-select: none;
+      transition: var(--transition);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    .category-header:hover {
+      background: var(--gray-100);
+    }
+    
+    .category-title-group {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+    
+    .category-icon { font-size: 20px; }
+    
+    .category-name {
+      font-weight: 600;
+      font-size: 14px;
       color: var(--gray-900);
     }
     
-    .quality-score {
+    .category-meta {
       display: flex;
       align-items: center;
-      gap: 15px;
-      padding: 15px;
-      background: var(--gray-50);
-      border-radius: 6px;
-      margin-bottom: 20px;
+      gap: var(--spacing-sm);
     }
     
-    .quality-score-value {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--success);
+    .category-count {
+      font-size: 11px;
+      color: var(--gray-600);
+      background: white;
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-weight: 500;
     }
     
-    .progress-bar {
-      height: 8px;
-      background: var(--gray-200);
-      border-radius: 4px;
-      flex: 1;
-      overflow: hidden;
-    }
-    
-    .progress-fill {
-      height: 100%;
+    .category-selected {
+      font-size: 11px;
+      color: white;
       background: var(--success);
-      transition: width 0.3s;
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-weight: 600;
     }
     
+    .category-arrow {
+      transition: transform 0.3s ease;
+      color: var(--gray-600);
+      font-size: 14px;
+    }
+    
+    .materials-category.expanded .category-arrow {
+      transform: rotate(180deg);
+    }
+    
+    .category-items {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .materials-category.expanded .category-items {
+      max-height: 10000px;
+    }
+    
+    .material-item {
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-top: 1px solid var(--gray-100);
+      background: white;
+      transition: var(--transition);
+    }
+    
+    .material-item:hover {
+      background: var(--gray-50);
+    }
+    
+    .material-item:first-child {
+      border-top: none;
+    }
+    
+    .material-info {
+      flex: 1;
+      margin-left: var(--spacing-sm);
+    }
+    
+    .material-name {
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--gray-900);
+    }
+    
+    .material-spec {
+      font-size: 12px;
+      color: var(--gray-600);
+      margin-top: 2px;
+    }
+    
+    /* ==================== SELECTED MATERIALS ==================== */
+    .selected-material {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .selected-material-info {
+      flex: 1;
+    }
+    
+    .selected-material-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .selected-material-controls select,
+    .selected-material-controls input {
+      padding: 6px 10px;
+      font-size: 13px;
+      border: 1px solid var(--gray-300);
+    }
+    
+    .selected-material-controls select {
+      width: 140px;
+    }
+    
+    .selected-material-controls input {
+      width: 60px;
+      text-align: center;
+    }
+    
+    /* ==================== STATUS CARDS ==================== */
+    .status-card {
+      padding: var(--spacing-md);
+      border-radius: var(--radius);
+      border-left: 4px solid;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .status-card.success {
+      background: #F0FDF4;
+      border-color: var(--success);
+      color: #166534;
+    }
+    
+    .status-card.warning {
+      background: #FFFBEB;
+      border-color: var(--warning);
+      color: #92400E;
+    }
+    
+    .status-card.danger {
+      background: #FEF2F2;
+      border-color: var(--danger);
+      color: #991B1B;
+    }
+    
+    .status-card.info {
+      background: #EFF6FF;
+      border-color: var(--info);
+      color: #1E40AF;
+    }
+    
+    /* ==================== TOAST ==================== */
     .toast {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 30px;
+      right: 30px;
       background: var(--gray-900);
       color: white;
-      padding: 12px 20px;
-      border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      z-index: 9999;
+      font-size: 13px;
+      font-weight: 500;
       opacity: 0;
       transform: translateY(20px);
-      transition: all 0.3s;
-      z-index: 1000;
+      transition: var(--transition);
+      min-width: 250px;
+      text-align: center;
     }
     
-    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
     .toast.success { background: var(--success); }
     .toast.danger { background: var(--danger); }
+    .toast.warning { background: var(--warning); }
     
+    /* ==================== MODAL ==================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      padding: var(--spacing-xl);
+    }
+    
+    .modal-overlay.show {
+      display: flex;
+    }
+    
+    .modal {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      max-width: 500px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+      color: var(--gray-900);
+    }
+    
+    .modal-content {
+      color: var(--gray-700);
+      margin-bottom: var(--spacing-xl);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    
+    .modal-actions {
+      display: flex;
+      gap: var(--spacing-sm);
+      justify-content: flex-end;
+    }
+    
+    /* ==================== UTILITIES ==================== */
     .hidden { display: none !important; }
+    .mt-lg { margin-top: var(--spacing-lg); }
+    .mb-lg { margin-bottom: var(--spacing-lg); }
+    
+    /* ==================== MOBILE MENU ==================== */
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 99;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .mobile-menu-overlay.show {
+      display: block;
+      opacity: 1;
+    }
+    
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      
+      .sidebar.mobile-open {
+        transform: translateX(0);
+      }
+      
+      .main-content {
+        margin-left: 0;
+      }
+      
+      .menu-toggle {
+        display: flex;
+      }
+      
+      .form-grid-2,
+      .form-grid-3,
+      .form-grid-4 {
+        grid-template-columns: 1fr;
+      }
+      
+      .quality-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
     
     @media (max-width: 768px) {
-      .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
+      .workspace {
+        padding: var(--spacing-lg);
+      }
+      
+      .top-header {
+        padding: 0 var(--spacing-lg);
+      }
+      
+      .header-title {
+        font-size: 16px;
+      }
+      
+      .quality-metrics {
+        grid-template-columns: 1fr;
+      }
+      
+      .photo-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="app-container">
     
-    <div class="header">
-      <h1>🔧 Field Buddy Pro v3.0</h1>
-      <p>Professional HVAC Service Management - Complete Edition with PDF Export, Photos, Signatures & More</p>
-    </div>
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
     
-    <!-- Quality Score -->
-    <div class="quality-score">
-      <strong>Report Quality:</strong>
-      <span class="quality-score-value" id="quality-score">0%</span>
-      <div class="progress-bar">
-        <div class="progress-fill" id="quality-progress" style="width: 0%;"></div>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-icon">🔧</div>
+          <div>
+            <div>Field Buddy Pro</div>
+            <div class="sidebar-version">v3.0 Ultimate</div>
+          </div>
+        </div>
       </div>
-    </div>
+      
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Main</div>
+          <div class="nav-item active" onclick="switchPage('service')">
+            <span class="nav-icon">📋</span>
+            <span>Service Calls</span>
+          </div>
+          <div class="nav-item" onclick="switchPage('materials')">
+            <span class="nav-icon">📦</span>
+            <span>Materials</span>
+          </div>
+          <div class="nav-item" onclick="switchPage('history')">
+            <span class="nav-icon">📊</span>
+            <span>History & Reports</span>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Tools</div>
+          <div class="nav-item" onclick="saveData()">
+            <span class="nav-icon">💾</span>
+            <span>Save Progress</span>
+          </div>
+          <div class="nav-item" onclick="loadData()">
+            <span class="nav-icon">📥</span>
+            <span>Load Saved Data</span>
+          </div>
+          <div class="nav-item" onclick="exportAllData()">
+            <span class="nav-icon">📤</span>
+            <span>Export All Data</span>
+          </div>
+        </div>
+      </nav>
+    </aside>
     
-    <!-- System Mode -->
-    <div class="card">
-      <div class="card-title">System Mode</div>
-      <div class="toggle-group">
-        <button class="toggle-btn active" id="mode-cooling" onclick="setSystemMode('cooling')">❄️ Cooling</button>
-        <button class="toggle-btn" id="mode-heating" onclick="setSystemMode('heating')">🔥 Heating</button>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      
+      <!-- TOP HEADER -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
+          <div class="header-title" id="page-title">Service Call</div>
+        </div>
+        <div class="header-actions">
+          <div class="header-user">
+            <div class="user-avatar">MP</div>
+            <span id="header-tech-name">Martín Perez</span>
+          </div>
+        </div>
+      </header>
+      
+      <!-- WORKSPACE -->
+      <div class="workspace">
+        
+        <!-- ==================== SERVICE CALL PAGE ==================== -->
+        <div id="service-page" class="page-content">
+          
+          <!-- Quality Dashboard -->
+          <div class="quality-dashboard" id="quality-dashboard">
+            <div class="quality-header">
+              <span>📊 Report Quality Score</span>
+              <span id="quality-badge" class="badge badge-info">In Progress</span>
+            </div>
+            <div class="quality-score-large" id="quality-score-large">0%</div>
+            <div class="quality-metrics">
+              <div class="quality-metric">
+                <div class="metric-value" id="metric-basic">0/5</div>
+                <div class="metric-label">Basic Info</div>
+              </div>
+              <div class="quality-metric">
+                <div class="metric-value" id="metric-diagnostics">0/3</div>
+                <div class="metric-label">Diagnostics</div>
+              </div>
+              <div class="quality-metric">
+                <div class="metric-value" id="metric-photos">0</div>
+                <div class="metric-label">Photos</div>
+              </div>
+              <div class="quality-metric">
+                <div class="metric-value" id="metric-signature">✗</div>
+                <div class="metric-label">Signature</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- System Mode Selector -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">System Mode</div>
+              <div class="toggle-group">
+                <button class="toggle-btn active" id="mode-cooling" onclick="setSystemMode('cooling')">
+                  ❄️ Cooling
+                </button>
+                <button class="toggle-btn" id="mode-heating" onclick="setSystemMode('heating')">
+                  🔥 Heating
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Job Information -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Job Information</div>
+            </div>
+            <div class="card-body">
+              <div class="card-section">
+                <label>Call Type</label>
+                <div class="toggle-group">
+                  <button class="toggle-btn active" id="call-trouble" onclick="setCallType('trouble')">
+                    Trouble Call
+                  </button>
+                  <button class="toggle-btn" id="call-maintenance" onclick="setCallType('maintenance')">
+                    Maintenance
+                  </button>
+                </div>
+              </div>
+              
+              <div class="form-grid form-grid-2">
+                <div class="form-group">
+                  <label>Customer Name</label>
+                  <input type="text" id="customer-name" placeholder="Enter customer name" oninput="calculateQuality()">
+                </div>
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="date" id="service-date" oninput="calculateQuality()">
+                </div>
+              </div>
+              
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Service Address</label>
+                  <input type="text" id="service-address" placeholder="123 Main St, City, State ZIP" oninput="calculateQuality()">
+                </div>
+              </div>
+              
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Customer Complaint / Reason for Service</label>
+                  <textarea id="customer-complaint" placeholder="Describe the issue or maintenance reason..." oninput="calculateQuality()"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Equipment Information -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Equipment Information</div>
+            </div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Unit Type</label>
+                  <select id="unit-type" onchange="updateUnitFields(); calculateQuality();">
+                    <option value="">Select unit type...</option>
+                    <option value="split">Split System</option>
+                    <option value="package">Package Unit</option>
+                    <option value="mini-split">Mini-Split</option>
+                    <option value="heat-pump">Heat Pump</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-grid form-grid-2">
+                <div class="form-group">
+                  <label>Indoor Unit (Model/Serial)</label>
+                  <input type="text" id="indoor-unit" placeholder="Model & Serial Number">
+                </div>
+                <div class="form-group" id="outdoor-unit-group">
+                  <label>Outdoor Unit (Model/Serial)</label>
+                  <input type="text" id="outdoor-unit" placeholder="Model & Serial Number">
+                </div>
+              </div>
+              
+              <div class="form-grid form-grid-3">
+                <div class="form-group">
+                  <label>Tonnage</label>
+                  <select id="tonnage">
+                    <option value="">Select...</option>
+                    <option value="1.5">1.5 Ton</option>
+                    <option value="2">2 Ton</option>
+                    <option value="2.5">2.5 Ton</option>
+                    <option value="3">3 Ton</option>
+                    <option value="3.5">3.5 Ton</option>
+                    <option value="4">4 Ton</option>
+                    <option value="5">5 Ton</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Refrigerant Type</label>
+                  <select id="refrigerant-type">
+                    <option value="R410A">R-410A</option>
+                    <option value="R22">R-22</option>
+                    <option value="R454B">R-454B</option>
+                    <option value="R32">R-32</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Filter Size</label>
+                  <input type="text" id="filter-size" placeholder="e.g., 16x25x1">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Cooling Measurements -->
+          <div class="card" id="cooling-measurements">
+            <div class="card-header">
+              <div class="card-title">Diagnostic Measurements (Cooling Mode)</div>
+            </div>
+            <div class="card-body">
+              <div class="card-section">
+                <div class="section-title">Temperature Readings</div>
+                <div class="form-grid form-grid-3">
+                  <div class="form-group">
+                    <label>Ambient Temp (°F)</label>
+                    <input type="number" step="0.1" id="ambient-temp" oninput="calculateDiagnostics()">
+                  </div>
+                  <div class="form-group">
+                    <label>Return Temp (°F)</label>
+                    <input type="number" step="0.1" id="return-temp" oninput="calculateDiagnostics()">
+                  </div>
+                  <div class="form-group">
+                    <label>Supply Temp (°F)</label>
+                    <input type="number" step="0.1" id="supply-temp" oninput="calculateDiagnostics()">
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Delta-T (Calculated)</label>
+                    <input type="text" id="delta-t" readonly>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Refrigerant Pressures & Temperatures</div>
+                <div class="form-grid form-grid-2">
+                  <div class="form-group">
+                    <label>Suction Pressure (PSI)</label>
+                    <input type="number" step="0.1" id="suction-pressure" oninput="calculateDiagnostics()">
+                  </div>
+                  <div class="form-group">
+                    <label>Suction Line Temp (°F)</label>
+                    <input type="number" step="0.1" id="suction-temp" oninput="calculateDiagnostics()">
+                  </div>
+                  <div class="form-group">
+                    <label>Liquid Pressure (PSI)</label>
+                    <input type="number" step="0.1" id="liquid-pressure" oninput="calculateDiagnostics()">
+                  </div>
+                  <div class="form-group">
+                    <label>Liquid Line Temp (°F)</label>
+                    <input type="number" step="0.1" id="liquid-temp" oninput="calculateDiagnostics()">
+                  </div>
+                </div>
+                <div class="form-grid form-grid-2">
+                  <div class="form-group">
+                    <label>Superheat (Calculated)</label>
+                    <input type="text" id="superheat" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label>Subcool (Calculated)</label>
+                    <input type="text" id="subcool" readonly>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Airflow & Electrical</div>
+                <div class="form-grid form-grid-3">
+                  <div class="form-group">
+                    <label>Static Pressure (in w.c.)</label>
+                    <input type="number" step="0.01" id="static-pressure" oninput="calculateDiagnostics()">
+                  </div>
+                  <div class="form-group">
+                    <label>Voltage (V)</label>
+                    <input type="number" step="0.1" id="voltage">
+                  </div>
+                  <div class="form-group">
+                    <label>Amperage (A)</label>
+                    <input type="number" step="0.1" id="amperage">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Pressure Chart -->
+              <div class="chart-container">
+                <canvas id="pressure-chart"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Heating Measurements -->
+          <div class="card hidden" id="heating-measurements">
+            <div class="card-header">
+              <div class="card-title">Diagnostic Measurements (Heating Mode)</div>
+            </div>
+            <div class="card-body">
+              <div class="card-section">
+                <div class="section-title">Temperature Readings</div>
+                <div class="form-grid form-grid-3">
+                  <div class="form-group">
+                    <label>Return Temp (°F)</label>
+                    <input type="number" step="0.1" id="return-temp-heat" oninput="calculateDiagnostics()">
+                  </div>
+                  <div class="form-group">
+                    <label>Supply Temp (°F)</label>
+                    <input type="number" step="0.1" id="supply-temp-heat" oninput="calculateDiagnostics()">
+                  </div>
+                  <div class="form-group">
+                    <label>Temp Rise (Calculated)</label>
+                    <input type="text" id="temp-rise" readonly>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Gas Furnace / Heat Measurements</div>
+                <div class="form-grid form-grid-3">
+                  <div class="form-group">
+                    <label>Manifold Pressure (in w.c.)</label>
+                    <input type="number" step="0.01" id="manifold-pressure" oninput="calculateDiagnostics()">
+                  </div>
+                  <div class="form-group">
+                    <label>Voltage (V)</label>
+                    <input type="number" step="0.1" id="voltage-heat">
+                  </div>
+                  <div class="form-group">
+                    <label>Amperage (A)</label>
+                    <input type="number" step="0.1" id="amperage-heat">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Temperature Rise Chart -->
+              <div class="chart-container">
+                <canvas id="heating-chart"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Diagnostic Results -->
+          <div id="diagnostic-results" class="hidden"></div>
+          
+          <!-- Photo Gallery -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📸 Job Photos</div>
+              <span class="badge badge-info" id="photo-count">0 photos</span>
+            </div>
+            <div class="card-body">
+              <div class="photo-gallery" id="photo-gallery">
+                <label class="photo-upload">
+                  <input type="file" accept="image/*" capture="camera" multiple onchange="handlePhotos(event)" style="display:none">
+                  <span style="font-size: 32px;">📷</span>
+                  <span>Add Photo</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Cooling Checklist -->
+          <div class="card" id="cooling-checklist">
+            <div class="card-header">
+              <div class="card-title">Cooling Mode Inspection Checklist</div>
+              <span class="badge badge-info" id="cooling-checklist-count">0/35</span>
+            </div>
+            <div class="card-body">
+              <div class="card-section">
+                <div class="section-title">Air Filter & Indoor Unit</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-filter" onchange="updateCheckbox(this)">
+                  <label for="cool-check-filter">Air filter inspected/replaced (check size & MERV rating)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-evap-coil" onchange="updateCheckbox(this)">
+                  <label for="cool-check-evap-coil">Evaporator coil inspected for dirt/debris/restrictions</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-blower" onchange="updateCheckbox(this)">
+                  <label for="cool-check-blower">Blower wheel/motor inspected (clean, proper rotation)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-blower-amp" onchange="updateCheckbox(this)">
+                  <label for="cool-check-blower-amp">Blower motor amperage checked</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-drain-pan" onchange="updateCheckbox(this)">
+                  <label for="cool-check-drain-pan">Drain pan inspected (clean, no standing water)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Condensate System</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-drain-line" onchange="updateCheckbox(this)">
+                  <label for="cool-check-drain-line">Condensate drain line cleared/flushed</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-ptrap" onchange="updateCheckbox(this)">
+                  <label for="cool-check-ptrap">P-trap inspected and water level checked</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-float" onchange="updateCheckbox(this)">
+                  <label for="cool-check-float">Float switch/safety switch tested</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-pump" onchange="updateCheckbox(this)">
+                  <label for="cool-check-pump">Condensate pump operation verified (if applicable)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Outdoor Condensing Unit</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-condenser-coil" onchange="updateCheckbox(this)">
+                  <label for="cool-check-condenser-coil">Condenser coil cleaned (check fin condition)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-fan-motor" onchange="updateCheckbox(this)">
+                  <label for="cool-check-fan-motor">Condenser fan motor operation checked</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-fan-blade" onchange="updateCheckbox(this)">
+                  <label for="cool-check-fan-blade">Fan blade inspected (no damage/proper clearance)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-cabinet" onchange="updateCheckbox(this)">
+                  <label for="cool-check-cabinet">Cabinet/housing inspected for damage/debris</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-clearance" onchange="updateCheckbox(this)">
+                  <label for="cool-check-clearance">Airflow clearance verified (24" minimum all sides)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Electrical Components</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-contactor" onchange="updateCheckbox(this)">
+                  <label for="cool-check-contactor">Contactor inspected (pitting, burning, proper operation)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-capacitor" onchange="updateCheckbox(this)">
+                  <label for="cool-check-capacitor">Capacitor(s) tested with meter (µF reading within spec)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-disconnect" onchange="updateCheckbox(this)">
+                  <label for="cool-check-disconnect">Disconnect switch inspected and cycled</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-wiring" onchange="updateCheckbox(this)">
+                  <label for="cool-check-wiring">All wiring connections tightened and inspected</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-voltage" onchange="updateCheckbox(this)">
+                  <label for="cool-check-voltage">Supply voltage checked (±10% of rated voltage)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-compressor-amp" onchange="updateCheckbox(this)">
+                  <label for="cool-check-compressor-amp">Compressor amperage checked (within nameplate specs)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Refrigerant System</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-pressures" onchange="updateCheckbox(this)">
+                  <label for="cool-check-pressures">Operating pressures verified (superheat/subcool)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-lineset" onchange="updateCheckbox(this)">
+                  <label for="cool-check-lineset">Line set insulation inspected (no deterioration)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-leak" onchange="updateCheckbox(this)">
+                  <label for="cool-check-leak">System leak checked (visual/electronic detector)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-txv" onchange="updateCheckbox(this)">
+                  <label for="cool-check-txv">TXV/metering device operation verified</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Thermostat & Controls</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-tstat" onchange="updateCheckbox(this)">
+                  <label for="cool-check-tstat">Thermostat calibration/operation verified</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-tstat-wiring" onchange="updateCheckbox(this)">
+                  <label for="cool-check-tstat-wiring">Thermostat wiring connections checked</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="cool-check-cycle" onchange="updateCheckbox(this)">
+                  <label for="cool-check-cycle">System cycling tested (on/off operation normal)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Heating Checklist -->
+          <div class="card hidden" id="heating-checklist">
+            <div class="card-header">
+              <div class="card-title">Heating Mode Inspection Checklist</div>
+              <span class="badge badge-info" id="heating-checklist-count">0/40</span>
+            </div>
+            <div class="card-body">
+              <div class="card-section">
+                <div class="section-title">Air Filter & Airflow</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-filter" onchange="updateCheckbox(this)">
+                  <label for="heat-check-filter">Air filter inspected/replaced (check size & MERV rating)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-blower" onchange="updateCheckbox(this)">
+                  <label for="heat-check-blower">Blower assembly cleaned and inspected</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-blower-motor" onchange="updateCheckbox(this)">
+                  <label for="heat-check-blower-motor">Blower motor operation/amperage checked</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-static" onchange="updateCheckbox(this)">
+                  <label for="heat-check-static">Static pressure measured (supply & return)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Heat Exchanger & Combustion</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-exchanger" onchange="updateCheckbox(this)">
+                  <label for="heat-check-exchanger">Heat exchanger visually inspected (cracks, rust, deterioration)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-burners" onchange="updateCheckbox(this)">
+                  <label for="heat-check-burners">Burners cleaned and inspected (flame pattern checked)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-flame-sensor" onchange="updateCheckbox(this)">
+                  <label for="heat-check-flame-sensor">Flame sensor cleaned and tested (microamp reading)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-igniter" onchange="updateCheckbox(this)">
+                  <label for="heat-check-igniter">Hot surface igniter/ignition system inspected</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-burner-box" onchange="updateCheckbox(this)">
+                  <label for="heat-check-burner-box">Burner box/combustion chamber cleaned</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Gas System (if applicable)</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-gas-valve" onchange="updateCheckbox(this)">
+                  <label for="heat-check-gas-valve">Gas valve operation verified</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-manifold" onchange="updateCheckbox(this)">
+                  <label for="heat-check-manifold">Manifold gas pressure measured (3.3-3.8" w.c.)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-gas-line" onchange="updateCheckbox(this)">
+                  <label for="heat-check-gas-line">Gas line connections leak checked (soap test)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-gas-supply" onchange="updateCheckbox(this)">
+                  <label for="heat-check-gas-supply">Inlet gas pressure checked (incoming supply)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Venting & Exhaust</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-flue" onchange="updateCheckbox(this)">
+                  <label for="heat-check-flue">Flue pipe/vent system inspected (no obstructions/damage)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-inducer" onchange="updateCheckbox(this)">
+                  <label for="heat-check-inducer">Inducer motor operation and amperage checked</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-pressure-switch" onchange="updateCheckbox(this)">
+                  <label for="heat-check-pressure-switch">Pressure switch(es) tested and verified</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-condensate-trap" onchange="updateCheckbox(this)">
+                  <label for="heat-check-condensate-trap">Condensate trap cleaned (90%+ furnaces)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-co" onchange="updateCheckbox(this)">
+                  <label for="heat-check-co">Carbon monoxide levels tested (ambient & flue)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Safety Controls</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-rollout" onchange="updateCheckbox(this)">
+                  <label for="heat-check-rollout">Rollout switches inspected and tested</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-limit" onchange="updateCheckbox(this)">
+                  <label for="heat-check-limit">High limit switch(es) tested</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-safeties" onchange="updateCheckbox(this)">
+                  <label for="heat-check-safeties">All safety interlocks verified operational</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-sequence" onchange="updateCheckbox(this)">
+                  <label for="heat-check-sequence">Ignition sequence timing verified (proper lockout)</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Electrical & Wiring</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-wiring" onchange="updateCheckbox(this)">
+                  <label for="heat-check-wiring">All electrical connections tightened</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-voltage" onchange="updateCheckbox(this)">
+                  <label for="heat-check-voltage">Supply voltage checked (115V or 230V ±10%)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-transformer" onchange="updateCheckbox(this)">
+                  <label for="heat-check-transformer">Control transformer voltage checked (24V AC)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-disconnect" onchange="updateCheckbox(this)">
+                  <label for="heat-check-disconnect">Disconnect/service switch inspected</label>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="section-title">Thermostat & Controls</div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-tstat" onchange="updateCheckbox(this)">
+                  <label for="heat-check-tstat">Thermostat calibration/operation verified</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-tstat-wiring" onchange="updateCheckbox(this)">
+                  <label for="heat-check-tstat-wiring">Thermostat wiring connections checked</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-cycle" onchange="updateCheckbox(this)">
+                  <label for="heat-check-cycle">Heating cycle tested (ignition to shutdown)</label>
+                </div>
+                <div class="checklist-item">
+                  <input type="checkbox" id="heat-check-fan-delay" onchange="updateCheckbox(this)">
+                  <label for="heat-check-fan-delay">Fan on/off delay times verified</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Findings & Work Performed -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Findings & Work Performed</div>
+            </div>
+            <div class="card-body">
+              <div class="card-section">
+                <div class="form-group">
+                  <label>Findings</label>
+                  <textarea id="findings" placeholder="Describe what you found during the service call..." oninput="calculateQuality()"></textarea>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="form-group">
+                  <label>Recommendations</label>
+                  <textarea id="recommendations" placeholder="What do you recommend to the customer?"></textarea>
+                </div>
+              </div>
+              
+              <div class="card-section">
+                <div class="form-group">
+                  <label>Work Performed</label>
+                  <textarea id="work-performed" placeholder="Detail the work you completed..." oninput="calculateQuality()"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Customer Signature -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">✍️ Customer Signature</div>
+            </div>
+            <div class="card-body">
+              <div class="form-grid form-grid-2">
+                <div class="form-group">
+                  <label>Customer Name</label>
+                  <input type="text" id="sig-name" placeholder="Customer name" oninput="calculateQuality()">
+                </div>
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="date" id="sig-date" oninput="calculateQuality()">
+                </div>
+              </div>
+              <canvas id="signature-pad" class="signature-pad"></canvas>
+              <div class="btn-group mt-lg">
+                <button class="btn btn-secondary" onclick="clearSignature()">Clear</button>
+                <button class="btn btn-primary" onclick="saveSignature()">Save Signature</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Technician Info -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Technician Information</div>
+            </div>
+            <div class="card-body">
+              <div class="form-grid form-grid-2">
+                <div class="form-group">
+                  <label>Technician Name</label>
+                  <input type="text" id="tech-name" value="Martín Perez">
+                </div>
+                <div class="form-group">
+                  <label>Contact Phone</label>
+                  <input type="tel" id="tech-phone" value="(346)451-0024">
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" id="tech-email" value="Mperez@villageplumbing.com">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div class="btn-group">
+            <button class="btn btn-success" onclick="generatePDF()">📄 Generate PDF</button>
+            <button class="btn btn-primary" onclick="generateTextReport()">📋 Text Report</button>
+            <button class="btn btn-secondary" onclick="saveData()">💾 Save Progress</button>
+            <button class="btn btn-danger" onclick="clearForm()">🗑️ Clear Form</button>
+          </div>
+          
+          <!-- Report Preview -->
+          <div id="report-container"></div>
+          
+        </div>
+        
+        <!-- ==================== MATERIALS PAGE ==================== -->
+        <div id="materials-page" class="page-content hidden">
+          
+          <!-- Job Info -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Job Information</div>
+            </div>
+            <div class="card-body">
+              <div class="form-grid form-grid-2">
+                <div class="form-group">
+                  <label>Customer/Job Name</label>
+                  <input type="text" id="mat-customer" placeholder="Enter customer or job name">
+                </div>
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="date" id="mat-date">
+                </div>
+              </div>
+              
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Job Address</label>
+                  <input type="text" id="mat-address" placeholder="123 Main St, City, State ZIP">
+                </div>
+              </div>
+              
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Job Notes</label>
+                  <textarea id="mat-notes" placeholder="Special instructions, access codes, etc."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Materials Catalog -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Materials Catalog (2025 Complete Edition)</div>
+              <div class="btn-group">
+                <button class="btn btn-secondary" onclick="expandAllCategories()">Expand All</button>
+                <button class="btn btn-secondary" onclick="collapseAllCategories()">Collapse All</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <input type="text" id="material-search" placeholder="🔍 Search materials..." oninput="filterMaterials()">
+              </div>
+              <div id="materials-catalog"></div>
+            </div>
+          </div>
+          
+          <!-- Selected Materials -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Selected Materials</div>
+              <span class="badge badge-info" id="selected-materials-count">0 items</span>
+            </div>
+            <div class="card-body">
+              <div id="selected-materials">
+                <div class="status-card info">
+                  ℹ️ No materials selected yet. Use the catalog above to add items.
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Technician Info -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Technician Information</div>
+            </div>
+            <div class="card-body">
+              <div class="form-grid form-grid-2">
+                <div class="form-group">
+                  <label>Technician Name</label>
+                  <input type="text" id="mat-tech-name" value="Martín Perez">
+                </div>
+                <div class="form-group">
+                  <label>Contact Phone</label>
+                  <input type="tel" id="mat-tech-phone" value="(346)451-0024">
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" id="mat-tech-email" value="Mperez@villageplumbing.com">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div class="btn-group">
+            <button class="btn btn-success" onclick="generateMaterialsPDF()">📄 Generate PDF</button>
+            <button class="btn btn-primary" onclick="generateMaterialsReport()">📋 Generate List</button>
+            <button class="btn btn-secondary" onclick="saveData()">💾 Save Progress</button>
+            <button class="btn btn-danger" onclick="clearForm()">🗑️ Clear Form</button>
+          </div>
+          
+          <!-- Report Preview -->
+          <div id="report-container-mat"></div>
+          
+        </div>
+        
+        <!-- ==================== HISTORY PAGE ==================== -->
+        <div id="history-page" class="page-content hidden">
+          
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📊 Saved Reports & History</div>
+              <button class="btn btn-primary" onclick="refreshHistory()">Refresh</button>
+            </div>
+            <div class="card-body">
+              <div id="history-list">
+                <div class="status-card info">
+                  ℹ️ No saved reports yet. Complete a service call and save your progress to see history here.
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Statistics -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📈 Statistics</div>
+            </div>
+            <div class="card-body">
+              <div class="quality-metrics">
+                <div class="quality-metric">
+                  <div class="metric-value" id="stat-total">0</div>
+                  <div class="metric-label">Total Reports</div>
+                </div>
+                <div class="quality-metric">
+                  <div class="metric-value" id="stat-this-month">0</div>
+                  <div class="metric-label">This Month</div>
+                </div>
+                <div class="quality-metric">
+                  <div class="metric-value" id="stat-avg-quality">0%</div>
+                  <div class="metric-label">Avg Quality</div>
+                </div>
+                <div class="quality-metric">
+                  <div class="metric-value" id="stat-photos">0</div>
+                  <div class="metric-label">Total Photos</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
       </div>
-    </div>
-    
-    <!-- Job Info -->
-    <div class="card">
-      <div class="card-title">Job Information</div>
-      <div class="form-grid">
-        <div class="toggle-group">
-          <button class="toggle-btn active" id="call-trouble" onclick="setCallType('trouble')">Trouble Call</button>
-          <button class="toggle-btn" id="call-maintenance" onclick="setCallType('maintenance')">Maintenance</button>
-        </div>
-      </div>
-      <div class="form-grid form-grid-2">
-        <div>
-          <label>Customer Name</label>
-          <input type="text" id="customer-name" placeholder="Enter customer name" oninput="calcQuality()">
-        </div>
-        <div>
-          <label>Date</label>
-          <input type="date" id="service-date" oninput="calcQuality()">
-        </div>
-      </div>
-      <div class="form-grid">
-        <div>
-          <label>Service Address</label>
-          <input type="text" id="service-address" placeholder="123 Main St" oninput="calcQuality()">
-        </div>
-      </div>
-      <div class="form-grid">
-        <div>
-          <label>Customer Complaint</label>
-          <textarea id="customer-complaint" placeholder="Describe the issue..." oninput="calcQuality()"></textarea>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Equipment -->
-    <div class="card">
-      <div class="card-title">Equipment Information</div>
-      <div class="form-grid form-grid-3">
-        <div>
-          <label>Unit Type</label>
-          <select id="unit-type" onchange="calcQuality()">
-            <option value="">Select...</option>
-            <option value="split">Split System</option>
-            <option value="package">Package Unit</option>
-            <option value="mini-split">Mini-Split</option>
-            <option value="heat-pump">Heat Pump</option>
-          </select>
-        </div>
-        <div>
-          <label>Tonnage</label>
-          <select id="tonnage" onchange="calcQuality()">
-            <option value="">Select...</option>
-            <option value="2">2 Ton</option>
-            <option value="2.5">2.5 Ton</option>
-            <option value="3">3 Ton</option>
-            <option value="3.5">3.5 Ton</option>
-            <option value="4">4 Ton</option>
-            <option value="5">5 Ton</option>
-          </select>
-        </div>
-        <div>
-          <label>Refrigerant</label>
-          <select id="refrigerant">
-            <option value="R410A">R-410A</option>
-            <option value="R22">R-22</option>
-            <option value="R454B">R-454B</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Cooling Measurements -->
-    <div class="card" id="cooling-section">
-      <div class="card-title">Diagnostic Measurements (Cooling)</div>
-      <div class="form-grid form-grid-3">
-        <div>
-          <label>Return Temp (°F)</label>
-          <input type="number" id="return-temp" oninput="calculate()">
-        </div>
-        <div>
-          <label>Supply Temp (°F)</label>
-          <input type="number" id="supply-temp" oninput="calculate()">
-        </div>
-        <div>
-          <label>Delta-T</label>
-          <input type="text" id="delta-t" readonly>
-        </div>
-      </div>
-      <div class="form-grid form-grid-2">
-        <div>
-          <label>Suction Pressure (PSI)</label>
-          <input type="number" id="suction-pressure" oninput="calculate()">
-        </div>
-        <div>
-          <label>Suction Temp (°F)</label>
-          <input type="number" id="suction-temp" oninput="calculate()">
-        </div>
-        <div>
-          <label>Liquid Pressure (PSI)</label>
-          <input type="number" id="liquid-pressure" oninput="calculate()">
-        </div>
-        <div>
-          <label>Liquid Temp (°F)</label>
-          <input type="number" id="liquid-temp" oninput="calculate()">
-        </div>
-      </div>
-      <div class="form-grid form-grid-2">
-        <div>
-          <label>Superheat (°F)</label>
-          <input type="text" id="superheat" readonly>
-        </div>
-        <div>
-          <label>Subcool (°F)</label>
-          <input type="text" id="subcool" readonly>
-        </div>
-      </div>
-      <div class="chart-container">
-        <canvas id="pressure-chart"></canvas>
-      </div>
-    </div>
-    
-    <!-- Heating Measurements -->
-    <div class="card hidden" id="heating-section">
-      <div class="card-title">Diagnostic Measurements (Heating)</div>
-      <div class="form-grid form-grid-3">
-        <div>
-          <label>Return Temp (°F)</label>
-          <input type="number" id="return-temp-heat" oninput="calculate()">
-        </div>
-        <div>
-          <label>Supply Temp (°F)</label>
-          <input type="number" id="supply-temp-heat" oninput="calculate()">
-        </div>
-        <div>
-          <label>Temp Rise</label>
-          <input type="text" id="temp-rise" readonly>
-        </div>
-      </div>
-      <div class="form-grid form-grid-2">
-        <div>
-          <label>Manifold Pressure (in w.c.)</label>
-          <input type="number" id="manifold-pressure" oninput="calculate()">
-        </div>
-        <div>
-          <label>Voltage (V)</label>
-          <input type="number" id="voltage-heat">
-        </div>
-      </div>
-    </div>
-    
-    <!-- Diagnostics -->
-    <div id="diagnostic-results"></div>
-    
-    <!-- Photos -->
-    <div class="card">
-      <div class="card-title">📸 Job Photos</div>
-      <div class="photo-gallery" id="photo-gallery">
-        <label class="photo-upload">
-          <input type="file" accept="image/*" capture="camera" multiple onchange="handlePhotos(event)" style="display:none">
-          <span style="font-size: 32px;">📷</span>
-          <span>Add Photo</span>
-        </label>
-      </div>
-    </div>
-    
-    <!-- Findings -->
-    <div class="card">
-      <div class="card-title">Findings & Work</div>
-      <div class="form-grid">
-        <div>
-          <label>Findings</label>
-          <textarea id="findings" placeholder="What you found..." oninput="calcQuality()"></textarea>
-        </div>
-        <div>
-          <label>Recommendations</label>
-          <textarea id="recommendations" placeholder="What you recommend..." oninput="calcQuality()"></textarea>
-        </div>
-        <div>
-          <label>Work Performed</label>
-          <textarea id="work-performed" placeholder="Work completed..." oninput="calcQuality()"></textarea>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Signature -->
-    <div class="card">
-      <div class="card-title">✍️ Customer Signature</div>
-      <div class="form-grid form-grid-2">
-        <div>
-          <label>Customer Name</label>
-          <input type="text" id="sig-name" placeholder="Customer name" oninput="calcQuality()">
-        </div>
-        <div>
-          <label>Date</label>
-          <input type="date" id="sig-date" oninput="calcQuality()">
-        </div>
-      </div>
-      <canvas id="signature-pad" class="signature-pad"></canvas>
-      <div class="btn-group" style="margin-top: 12px;">
-        <button class="btn btn-secondary" onclick="clearSig()">Clear</button>
-        <button class="btn btn-primary" onclick="saveSig()">Save Signature</button>
-      </div>
-    </div>
-    
-    <!-- Tech Info -->
-    <div class="card">
-      <div class="card-title">Technician</div>
-      <div class="form-grid form-grid-2">
-        <div>
-          <label>Name</label>
-          <input type="text" id="tech-name" value="Martín Perez">
-        </div>
-        <div>
-          <label>Phone</label>
-          <input type="tel" id="tech-phone" value="(346)451-0024">
-        </div>
-      </div>
-      <div class="form-grid">
-        <div>
-          <label>Email</label>
-          <input type="email" id="tech-email" value="Mperez@villageplumbing.com">
-        </div>
-      </div>
-    </div>
-    
-    <!-- Actions -->
-    <div class="btn-group">
-      <button class="btn btn-success" onclick="generateReport('pdf')">📄 Generate PDF</button>
-      <button class="btn btn-primary" onclick="generateReport('text')">📋 Text Report</button>
-      <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear Form</button>
-    </div>
-    
-    <!-- Report Output -->
-    <div id="report-output"></div>
+      
+    </main>
     
   </div>
   
+  <!-- TOAST NOTIFICATION -->
   <div class="toast" id="toast"></div>
   
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-title" id="modal-title">Confirm Action</div>
+      <div class="modal-content" id="modal-content">Are you sure?</div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal(false)">Cancel</button>
+        <button class="btn btn-primary" onclick="closeModal(true)">Confirm</button>
+      </div>
+    </div>
+  </div>
+  
   <script>
-    // ==================== STATE ====================
-    let systemMode = 'cooling';
+    // ==================== STATE MANAGEMENT ====================
+    let currentPage = 'service';
     let callType = 'trouble';
+    let systemMode = 'cooling';
+    let selectedMaterials = [];
+    let diagnosticResults = [];
+    let categoryStates = {};
     let photos = [];
     let signaturePad = null;
     let customerSignature = null;
-    let diagnosticResults = [];
-    let chart = null;
+    let pressureChart = null;
+    let heatingChart = null;
+    let savedReports = [];
     
+    // ==================== R410A PRESSURE-TEMPERATURE CHART ====================
     const R410A_PT = {
-      43: 0, 57: 10, 73: 20, 92: 30, 114: 40, 140: 50, 169: 60, 201: 70, 237: 80, 278: 90,
-      323: 100, 373: 110, 428: 120, 493: 130, 565: 140
+      43: 0, 57: 10, 73: 20, 92: 30, 114: 40, 117: 41, 121: 42, 125: 43,
+      140: 50, 169: 60, 201: 70, 237: 80, 278: 90, 323: 100, 330: 102,
+      335: 103, 338: 104, 347: 105, 373: 110, 400: 115, 428: 120,
+      460: 125, 493: 130, 528: 135, 565: 140
     };
     
-    // ==================== HELPERS ====================
-    function $(id) { return document.getElementById(id); }
+    // ==================== MATERIALS CATALOG ====================
+    const materialsCatalog = {
+      equipment: {
+        name: 'Equipment',
+        icon: '🏠',
+        items: [
+          { id: 'furnace-gas', name: 'Gas Furnace', sizes: ['40K BTU', '60K BTU', '80K BTU', '100K BTU', '120K BTU'] },
+          { id: 'furnace-electric', name: 'Electric Furnace', sizes: ['10kW', '15kW', '20kW', '25kW'] },
+          { id: 'ac-unit', name: 'Air Conditioner', sizes: ['1.5 Ton', '2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'] },
+          { id: 'heat-pump', name: 'Heat Pump', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'] },
+          { id: 'evap-coil', name: 'Evaporator Coil', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'] },
+          { id: 'air-handler', name: 'Air Handler', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton'] },
+          { id: 'package-unit', name: 'Package Unit', sizes: ['2 Ton', '3 Ton', '4 Ton', '5 Ton'] },
+          { id: 'minisplit', name: 'Mini-Split System', sizes: ['9K BTU', '12K BTU', '18K BTU', '24K BTU', '36K BTU'] }
+        ]
+      },
+      electrical: {
+        name: 'Electrical Components',
+        icon: '⚡',
+        items: [
+          { id: 'contactor', name: 'Contactor', sizes: ['1-Pole 30A', '2-Pole 30A', '2-Pole 40A', '3-Pole 30A', '3-Pole 40A'] },
+          { id: 'capacitor-single', name: 'Run Capacitor (Single)', sizes: ['5µF', '7.5µF', '10µF', '15µF', '20µF', '25µF', '30µF', '35µF', '40µF', '45µF', '50µF', '60µF'] },
+          { id: 'capacitor-dual', name: 'Dual Run Capacitor', sizes: ['35/5µF', '40/5µF', '45/5µF', '50/5µF', '55/5µF', '60/5µF'] },
+          { id: 'hard-start', name: 'Hard Start Kit', sizes: ['1-2 Ton', '2-3 Ton', '3-5 Ton'] },
+          { id: 'disconnect-30', name: 'Disconnect Box (30A)', sizes: ['30A Non-Fused', '30A Fused'] },
+          { id: 'disconnect-60', name: 'Disconnect Box (60A)', sizes: ['60A Non-Fused', '60A Fused'] },
+          { id: 'wire-lv', name: 'Low Voltage Wire (18ga)', sizes: ['18/2', '18/3', '18/5', '18/8'], unit: 'ft' },
+          { id: 'transformer', name: 'Control Transformer', sizes: ['24V 40VA', '24V 75VA', '24V 100VA'] }
+        ]
+      },
+      controls: {
+        name: 'Controls & Thermostats',
+        icon: '🌡️',
+        items: [
+          { id: 'tstat-smart', name: 'WiFi Smart Thermostat', sizes: ['Nest', 'Ecobee', 'Honeywell T9'] },
+          { id: 'tstat-programmable', name: 'Programmable Thermostat', sizes: ['5-2 Day', '7 Day'] },
+          { id: 'zone-control-panel', name: 'Zone Control Panel', sizes: ['2 Zone', '3 Zone', '4 Zone'] }
+        ]
+      },
+      ductwork: {
+        name: 'Ductwork & Distribution',
+        icon: '🌬️',
+        items: [
+          { id: 'flex-duct-insulated', name: 'Flex Duct (Insulated R6)', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'], unit: 'ft' },
+          { id: 'register', name: 'Supply Register', sizes: ['4x10', '4x12', '6x10', '6x12', '8x10', '10x10'] },
+          { id: 'grille', name: 'Return Grille', sizes: ['10x10', '12x12', '14x14', '16x16', '20x20'] },
+          { id: 'diffuser', name: 'Ceiling Diffuser', sizes: ['6" Round', '8" Round', '10" Round', '12" Round'] }
+        ]
+      },
+      iaq: {
+        name: 'Air Quality & Filtration',
+        icon: '💨',
+        items: [
+          { id: 'filter-disposable', name: 'Disposable Filter', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1', '24x24x1'] },
+          { id: 'filter-pleated', name: 'Pleated Filter (MERV 11)', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1'] },
+          { id: 'filter-hepa', name: 'HEPA Filter (MERV 13)', sizes: ['16x20', '16x25', '20x20', '20x25'] },
+          { id: 'uv-light-single', name: 'UV Light System (Single)', sizes: ['24V'] },
+          { id: 'humidifier-bypass', name: 'Bypass Humidifier', sizes: ['12 GPD', '17 GPD'] }
+        ]
+      },
+      refrigeration: {
+        name: 'Refrigeration',
+        icon: '❄️',
+        items: [
+          { id: 'lineset-small', name: 'Line Set (1.5-2.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '1/4" x 3/8"' },
+          { id: 'lineset-medium', name: 'Line Set (3-3.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 3/4"' },
+          { id: 'lineset-large', name: 'Line Set (4-5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 7/8"' },
+          { id: 'r410a', name: 'R-410A Refrigerant', sizes: ['25 lb'], unit: 'cylinder' },
+          { id: 'txv', name: 'TXV (Expansion Valve)', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'] },
+          { id: 'filter-drier', name: 'Filter Drier', sizes: ['1/2"', '5/8"', '3/4"'] }
+        ]
+      },
+      drainage: {
+        name: 'Condensate Management',
+        icon: '💧',
+        items: [
+          { id: 'condensate-pump', name: 'Condensate Pump', sizes: ['Standard', 'Heavy Duty'] },
+          { id: 'drain-pvc', name: 'PVC Drain Pipe (3/4")', sizes: ['10 ft', '20 ft'], unit: 'length' },
+          { id: 'ptrap', name: 'P-Trap', sizes: ['3/4"', '1"'] },
+          { id: 'float-switch', name: 'Float Switch', sizes: ['Standard'] }
+        ]
+      },
+      accessories: {
+        name: 'Accessories & Misc',
+        icon: '🛠️',
+        items: [
+          { id: 'condenser-pad', name: 'Condenser Pad', sizes: ['24x24', '30x30', '36x36'] },
+          { id: 'cleaning-coil', name: 'Coil Cleaner', sizes: ['Aerosol', '1 Gallon'] },
+          { id: 'cleaning-evap', name: 'Evaporator Coil Cleaner', sizes: ['Aerosol', '32 oz'] }
+        ]
+      }
+    };
     
-    function toast(msg, type = 'success') {
-      const t = $('toast');
-      t.textContent = msg;
-      t.className = `toast show ${type}`;
-      setTimeout(() => t.classList.remove('show'), 3000);
+    // ==================== HELPER FUNCTIONS ====================
+    function $(id) {
+      return document.getElementById(id);
+    }
+    
+    function showToast(message, type = 'success') {
+      const toast = $('toast');
+      toast.textContent = message;
+      toast.className = `toast show ${type}`;
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+    
+    function showModal(title, content) {
+      return new Promise((resolve) => {
+        $('modal-title').textContent = title;
+        $('modal-content').textContent = content;
+        $('modal-overlay').classList.add('show');
+        window.modalResolve = resolve;
+      });
+    }
+    
+    function closeModal(result) {
+      $('modal-overlay').classList.remove('show');
+      if (window.modalResolve) {
+        window.modalResolve(result);
+        window.modalResolve = null;
+      }
     }
     
     // ==================== NAVIGATION ====================
-    function setSystemMode(mode) {
-      systemMode = mode;
-      $('mode-cooling').classList.toggle('active', mode === 'cooling');
-      $('mode-heating').classList.toggle('active', mode === 'heating');
-      $('cooling-section').classList.toggle('hidden', mode !== 'cooling');
-      $('heating-section').classList.toggle('hidden', mode !== 'heating');
-      calculate();
+    function toggleMobileMenu() {
+      const sidebar = $('sidebar');
+      const overlay = $('mobile-menu-overlay');
+      sidebar.classList.toggle('mobile-open');
+      overlay.classList.toggle('show');
+    }
+    
+    function switchPage(page) {
+      currentPage = page;
+      $('service-page').classList.toggle('hidden', page !== 'service');
+      $('materials-page').classList.toggle('hidden', page !== 'materials');
+      $('history-page').classList.toggle('hidden', page !== 'history');
+      
+      // Update page title
+      const titles = { service: 'Service Call', materials: 'Materials', history: 'History & Reports' };
+      $('page-title').textContent = titles[page];
+      
+      // Update nav items
+      document.querySelectorAll('.nav-item').forEach((item, index) => {
+        item.classList.toggle('active', 
+          (index === 0 && page === 'service') || 
+          (index === 1 && page === 'materials') || 
+          (index === 2 && page === 'history')
+        );
+      });
+      
+      // Close mobile menu
+      const sidebar = $('sidebar');
+      const overlay = $('mobile-menu-overlay');
+      sidebar.classList.remove('mobile-open');
+      overlay.classList.remove('show');
+      
+      if (page === 'history') {
+        refreshHistory();
+      }
     }
     
     function setCallType(type) {
@@ -576,36 +2126,486 @@
       $('call-maintenance').classList.toggle('active', type === 'maintenance');
     }
     
+    function setSystemMode(mode) {
+      systemMode = mode;
+      $('mode-cooling').classList.toggle('active', mode === 'cooling');
+      $('mode-heating').classList.toggle('active', mode === 'heating');
+      $('cooling-measurements').classList.toggle('hidden', mode !== 'cooling');
+      $('heating-measurements').classList.toggle('hidden', mode !== 'heating');
+      $('cooling-checklist').classList.toggle('hidden', mode !== 'cooling');
+      $('heating-checklist').classList.toggle('hidden', mode !== 'heating');
+      calculateDiagnostics();
+    }
+    
+    function updateUnitFields() {
+      const unitType = $('unit-type').value;
+      const outdoorGroup = $('outdoor-unit-group');
+      if (unitType === 'package' || unitType === 'mini-split') {
+        outdoorGroup.classList.add('hidden');
+      } else {
+        outdoorGroup.classList.remove('hidden');
+      }
+    }
+    
+    function updateCheckbox(checkbox) {
+      const item = checkbox.closest('.checklist-item');
+      item.classList.toggle('checked', checkbox.checked);
+      updateChecklistCount();
+    }
+    
+    function updateChecklistCount() {
+      if (systemMode === 'cooling') {
+        const total = document.querySelectorAll('#cooling-checklist input[type="checkbox"]').length;
+        const checked = document.querySelectorAll('#cooling-checklist input[type="checkbox"]:checked').length;
+        $('cooling-checklist-count').textContent = `${checked}/${total}`;
+      } else {
+        const total = document.querySelectorAll('#heating-checklist input[type="checkbox"]').length;
+        const checked = document.querySelectorAll('#heating-checklist input[type="checkbox"]:checked').length;
+        $('heating-checklist-count').textContent = `${checked}/${total}`;
+      }
+      calculateQuality();
+    }
+    
     // ==================== QUALITY SCORE ====================
-    function calcQuality() {
-      let score = 0, total = 0;
+    function calculateQuality() {
+      let score = 0;
+      let basicInfo = 0;
+      let diagnostics = 0;
       
-      if ($('customer-name').value) score += 10;
-      total += 10;
-      if ($('service-date').value) score += 10;
-      total += 10;
-      if ($('service-address').value) score += 10;
-      total += 10;
-      if ($('customer-complaint').value) score += 10;
-      total += 10;
-      if ($('unit-type').value) score += 10;
-      total += 10;
+      // Basic info (out of 5)
+      if ($('customer-name').value) basicInfo++;
+      if ($('service-date').value) basicInfo++;
+      if ($('service-address').value) basicInfo++;
+      if ($('customer-complaint').value) basicInfo++;
+      if ($('unit-type').value) basicInfo++;
+      
+      score += (basicInfo / 5) * 30; // 30% weight
+      
+      // Diagnostics (out of 3)
+      if (systemMode === 'cooling') {
+        if ($('delta-t').value && $('delta-t').value !== 'N/A') diagnostics++;
+        if ($('superheat').value && $('superheat').value !== 'N/A') diagnostics++;
+        if ($('subcool').value && $('subcool').value !== 'N/A') diagnostics++;
+      } else {
+        if ($('temp-rise').value && $('temp-rise').value !== 'N/A') diagnostics++;
+        if ($('manifold-pressure').value) diagnostics++;
+        if ($('voltage-heat').value) diagnostics++;
+      }
+      
+      score += (diagnostics / 3) * 25; // 25% weight
+      
+      // Findings & Work (20% weight)
       if ($('findings').value) score += 10;
-      total += 10;
       if ($('work-performed').value) score += 10;
-      total += 10;
-      if (photos.length > 0) score += 15;
-      total += 15;
-      if (customerSignature) score += 15;
-      total += 15;
       
-      const pct = Math.round((score / total) * 100);
-      $('quality-score').textContent = `${pct}%`;
-      $('quality-progress').style.width = `${pct}%`;
+      // Photos (15% weight)
+      score += Math.min(photos.length * 3, 15);
       
-      if (pct >= 80) $('quality-score').style.color = 'var(--success)';
-      else if (pct >= 50) $('quality-score').style.color = 'var(--warning)';
-      else $('quality-score').style.color = 'var(--danger)';
+      // Signature (10% weight)
+      if (customerSignature) score += 10;
+      
+      const finalScore = Math.round(score);
+      
+      // Update UI
+      $('quality-score-large').textContent = `${finalScore}%`;
+      $('metric-basic').textContent = `${basicInfo}/5`;
+      $('metric-diagnostics').textContent = `${diagnostics}/3`;
+      $('metric-photos').textContent = photos.length;
+      $('metric-signature').textContent = customerSignature ? '✓' : '✗';
+      
+      // Update badge
+      const badge = $('quality-badge');
+      if (finalScore >= 80) {
+        badge.textContent = 'Excellent';
+        badge.className = 'badge badge-success';
+      } else if (finalScore >= 60) {
+        badge.textContent = 'Good';
+        badge.className = 'badge badge-info';
+      } else if (finalScore >= 40) {
+        badge.textContent = 'Fair';
+        badge.className = 'badge badge-warning';
+      } else {
+        badge.textContent = 'Incomplete';
+        badge.className = 'badge badge-danger';
+      }
+    }
+    
+    // ==================== DIAGNOSTICS ====================
+    function calculateDiagnostics() {
+      if (systemMode === 'cooling') {
+        calculateCoolingDiagnostics();
+      } else {
+        calculateHeatingDiagnostics();
+      }
+    }
+    
+    function calculateCoolingDiagnostics() {
+      const returnTemp = parseFloat($('return-temp').value);
+      const supplyTemp = parseFloat($('supply-temp').value);
+      const suctionPressure = parseFloat($('suction-pressure').value);
+      const suctionTemp = parseFloat($('suction-temp').value);
+      const liquidPressure = parseFloat($('liquid-pressure').value);
+      const liquidTemp = parseFloat($('liquid-temp').value);
+      
+      if (!isNaN(returnTemp) && !isNaN(supplyTemp)) {
+        const deltaT = returnTemp - supplyTemp;
+        $('delta-t').value = `${deltaT.toFixed(1)}°F`;
+      } else {
+        $('delta-t').value = '';
+      }
+      
+      if (!isNaN(suctionPressure) && !isNaN(suctionTemp)) {
+        const satTemp = getSaturationTemp(suctionPressure);
+        if (satTemp) {
+          const superheat = suctionTemp - satTemp;
+          $('superheat').value = `${superheat.toFixed(1)}°F`;
+        }
+      } else {
+        $('superheat').value = '';
+      }
+      
+      if (!isNaN(liquidPressure) && !isNaN(liquidTemp)) {
+        const satTemp = getSaturationTemp(liquidPressure);
+        if (satTemp) {
+          const subcool = satTemp - liquidTemp;
+          $('subcool').value = `${subcool.toFixed(1)}°F`;
+        }
+      } else {
+        $('subcool').value = '';
+      }
+      
+      runDiagnosticAnalysis();
+      updatePressureChart();
+      calculateQuality();
+    }
+    
+    function calculateHeatingDiagnostics() {
+      const returnTemp = parseFloat($('return-temp-heat').value);
+      const supplyTemp = parseFloat($('supply-temp-heat').value);
+      
+      if (!isNaN(returnTemp) && !isNaN(supplyTemp)) {
+        const tempRise = supplyTemp - returnTemp;
+        $('temp-rise').value = `${tempRise.toFixed(1)}°F`;
+      } else {
+        $('temp-rise').value = '';
+      }
+      
+      runDiagnosticAnalysis();
+      updateHeatingChart();
+      calculateQuality();
+    }
+    
+    function getSaturationTemp(pressure) {
+      const pressures = Object.keys(R410A_PT).map(Number);
+      const closest = pressures.reduce((prev, curr) => 
+        Math.abs(curr - pressure) < Math.abs(prev - pressure) ? curr : prev
+      );
+      return R410A_PT[closest];
+    }
+    
+    function runDiagnosticAnalysis() {
+      diagnosticResults = [];
+      
+      if (systemMode === 'cooling') {
+        const deltaT = parseFloat($('delta-t').value);
+        const superheat = parseFloat($('superheat').value);
+        const subcool = parseFloat($('subcool').value);
+        const staticPressure = parseFloat($('static-pressure').value);
+        
+        if (!isNaN(deltaT)) {
+          if (deltaT < 14) {
+            diagnosticResults.push({
+              severity: 'danger',
+              title: 'Low Delta-T Detected',
+              message: `Delta-T is ${deltaT.toFixed(1)}°F (Expected: 16-22°F)`,
+              recommendations: [
+                'Check air filter - replace if dirty',
+                'Inspect evaporator coil for restrictions',
+                'Verify blower motor operation and speed',
+                'Check for closed supply vents',
+                'Measure static pressure'
+              ]
+            });
+          } else if (deltaT >= 16 && deltaT <= 22) {
+            diagnosticResults.push({
+              severity: 'success',
+              title: 'Delta-T in Optimal Range',
+              message: `Delta-T is ${deltaT.toFixed(1)}°F - System airflow is good`
+            });
+          } else if (deltaT > 24) {
+            diagnosticResults.push({
+              severity: 'warning',
+              title: 'High Delta-T - Possible Restriction',
+              message: `Delta-T is ${deltaT.toFixed(1)}°F (Expected: 16-22°F)`,
+              recommendations: [
+                'Check filter immediately',
+                'Inspect ductwork for restrictions',
+                'Check blower speed settings'
+              ]
+            });
+          }
+        }
+        
+        if (!isNaN(staticPressure)) {
+          if (staticPressure > 0.7) {
+            diagnosticResults.push({
+              severity: 'danger',
+              title: 'High Static Pressure',
+              message: `Static pressure is ${staticPressure.toFixed(2)} in w.c. (Max: 0.50)`,
+              recommendations: [
+                'Replace filter immediately',
+                'Inspect ductwork for restrictions',
+                'Verify proper duct sizing'
+              ]
+            });
+          } else if (staticPressure <= 0.5) {
+            diagnosticResults.push({
+              severity: 'success',
+              title: 'Static Pressure Acceptable',
+              message: `Static pressure is ${staticPressure.toFixed(2)} in w.c.`
+            });
+          }
+        }
+        
+        if (!isNaN(superheat) && !isNaN(subcool)) {
+          if (superheat > 20 && subcool < 8) {
+            diagnosticResults.push({
+              severity: 'danger',
+              title: 'System Appears Undercharged',
+              message: `Superheat: ${superheat.toFixed(1)}°F, Subcool: ${subcool.toFixed(1)}°F`,
+              recommendations: [
+                'Check for refrigerant leaks',
+                'Inspect service valve connections',
+                'Look for oil residue at joints',
+                'Add refrigerant by weight'
+              ]
+            });
+          } else if (superheat < 5 && subcool > 15) {
+            diagnosticResults.push({
+              severity: 'warning',
+              title: 'System May Be Overcharged',
+              message: `Superheat: ${superheat.toFixed(1)}°F, Subcool: ${subcool.toFixed(1)}°F`,
+              recommendations: [
+                'Verify charge was not added incorrectly',
+                'Check for non-condensables',
+                'Consider recovering excess refrigerant'
+              ]
+            });
+          } else if (superheat >= 8 && superheat <= 15 && subcool >= 8 && subcool <= 12) {
+            diagnosticResults.push({
+              severity: 'success',
+              title: 'Refrigerant Charge Within Range',
+              message: `Superheat: ${superheat.toFixed(1)}°F, Subcool: ${subcool.toFixed(1)}°F`
+            });
+          } else if (superheat > 25 && subcool >= 8) {
+            diagnosticResults.push({
+              severity: 'danger',
+              title: 'Possible TXV Failure',
+              message: `High superheat with normal subcool suggests TXV issue`,
+              recommendations: [
+                'Check TXV bulb placement',
+                'Verify TXV is not stuck closed',
+                'Consider TXV replacement'
+              ]
+            });
+          }
+        }
+      } else {
+        // Heating diagnostics
+        const tempRise = parseFloat($('temp-rise').value);
+        const manifoldPressure = parseFloat($('manifold-pressure').value);
+        
+        if (!isNaN(tempRise)) {
+          if (tempRise < 35) {
+            diagnosticResults.push({
+              severity: 'danger',
+              title: 'Low Temperature Rise',
+              message: `Temp rise is ${tempRise.toFixed(1)}°F (Expected: 35-65°F)`,
+              recommendations: [
+                'Check gas input - verify manifold pressure',
+                'Inspect burners for proper flame pattern',
+                'Check for excessive airflow',
+                'Verify gas valve is fully opening'
+              ]
+            });
+          } else if (tempRise > 65) {
+            diagnosticResults.push({
+              severity: 'danger',
+              title: 'High Temperature Rise',
+              message: `Temp rise is ${tempRise.toFixed(1)}°F (Expected: 35-65°F)`,
+              recommendations: [
+                'Check airflow - possible restriction',
+                'Verify blower speed is correct',
+                'Inspect heat exchanger',
+                'Check limit switches'
+              ]
+            });
+          } else {
+            diagnosticResults.push({
+              severity: 'success',
+              title: 'Temperature Rise in Range',
+              message: `Temp rise is ${tempRise.toFixed(1)}°F`
+            });
+          }
+        }
+        
+        if (!isNaN(manifoldPressure)) {
+          if (manifoldPressure < 3.3 || manifoldPressure > 3.8) {
+            diagnosticResults.push({
+              severity: 'warning',
+              title: 'Manifold Pressure Out of Range',
+              message: `Manifold pressure is ${manifoldPressure.toFixed(2)} in w.c. (Expected: 3.3-3.8)`,
+              recommendations: [
+                'Adjust gas valve regulator',
+                'Check gas supply pressure',
+                'Verify proper orifice size'
+              ]
+            });
+          } else {
+            diagnosticResults.push({
+              severity: 'success',
+              title: 'Manifold Pressure Acceptable',
+              message: `Manifold pressure is ${manifoldPressure.toFixed(2)} in w.c.`
+            });
+          }
+        }
+      }
+      
+      displayDiagnosticResults();
+    }
+    
+    function displayDiagnosticResults() {
+      const container = $('diagnostic-results');
+      
+      if (diagnosticResults.length === 0) {
+        container.classList.add('hidden');
+        return;
+      }
+      
+      container.classList.remove('hidden');
+      
+      let html = '<div class="diagnostic-panel">';
+      html += '<div class="diagnostic-header">🎯 Master Tech Diagnostic Analysis</div>';
+      
+      diagnosticResults.forEach(result => {
+        html += '<div class="diagnostic-card">';
+        html += '<div class="diagnostic-card-header">';
+        html += `<div class="diagnostic-card-title">${result.title}</div>`;
+        html += `<span class="badge badge-${result.severity}">${result.severity}</span>`;
+        html += '</div>';
+        html += `<p style="margin-bottom: 8px; color: var(--gray-700);">${result.message}</p>`;
+        
+        if (result.recommendations && result.recommendations.length > 0) {
+          html += '<div class="diagnostic-recommendations">';
+          html += '<strong style="font-size: 12px;">Recommended Actions:</strong>';
+          html += '<ul>';
+          result.recommendations.forEach(rec => {
+            html += `<li>${rec}</li>`;
+          });
+          html += '</ul>';
+          html += '</div>';
+        }
+        
+        html += '</div>';
+      });
+      
+      html += '</div>';
+      container.innerHTML = html;
+    }
+    
+    // ==================== CHARTS ====================
+    function updatePressureChart() {
+      const ctx = $('pressure-chart').getContext('2d');
+      const suctionPressure = parseFloat($('suction-pressure').value) || 0;
+      const liquidPressure = parseFloat($('liquid-pressure').value) || 0;
+      
+      if (pressureChart) {
+        pressureChart.data.datasets[0].data = [suctionPressure, liquidPressure];
+        pressureChart.update();
+      } else {
+        pressureChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Suction', 'Liquid'],
+            datasets: [{
+              label: 'Pressure (PSI)',
+              data: [suctionPressure, liquidPressure],
+              backgroundColor: ['rgba(0,102,204,0.2)', 'rgba(239,68,68,0.2)'],
+              borderColor: ['rgb(0,102,204)', 'rgb(239,68,68)'],
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Pressure (PSI)'
+                }
+              }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: 'Refrigerant Pressures'
+              },
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
+      }
+    }
+    
+    function updateHeatingChart() {
+      const ctx = $('heating-chart').getContext('2d');
+      const returnTemp = parseFloat($('return-temp-heat').value) || 0;
+      const supplyTemp = parseFloat($('supply-temp-heat').value) || 0;
+      
+      if (heatingChart) {
+        heatingChart.data.datasets[0].data = [returnTemp, supplyTemp];
+        heatingChart.update();
+      } else {
+        heatingChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Return', 'Supply'],
+            datasets: [{
+              label: 'Temperature (°F)',
+              data: [returnTemp, supplyTemp],
+              backgroundColor: ['rgba(59,130,246,0.2)', 'rgba(239,68,68,0.2)'],
+              borderColor: ['rgb(59,130,246)', 'rgb(239,68,68)'],
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Temperature (°F)'
+                }
+              }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: 'Air Temperatures'
+              },
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
+      }
     }
     
     // ==================== PHOTOS ====================
@@ -613,10 +2613,14 @@
       Array.from(e.target.files).forEach(file => {
         const reader = new FileReader();
         reader.onload = (ev) => {
-          photos.push({ data: ev.target.result, name: file.name });
+          photos.push({
+            data: ev.target.result,
+            name: file.name,
+            timestamp: new Date().toISOString()
+          });
           displayPhotos();
-          calcQuality();
-          toast(`Photo "${file.name}" added`);
+          calculateQuality();
+          showToast(`Photo "${file.name}" added`);
         };
         reader.readAsDataURL(file);
       });
@@ -624,15 +2628,31 @@
     }
     
     function displayPhotos() {
-      let html = '<label class="photo-upload"><input type="file" accept="image/*" multiple onchange="handlePhotos(event)" style="display:none"><span style="font-size:32px">📷</span><span>Add Photo</span></label>';
-      photos.forEach((p, i) => {
-        html += `<div class="photo-item" onclick="viewPhoto(${i})"><img src="${p.data}"></div>`;
+      const gallery = $('photo-gallery');
+      let html = '<label class="photo-upload"><input type="file" accept="image/*" capture="camera" multiple onchange="handlePhotos(event)" style="display:none"><span style="font-size: 32px;">📷</span><span>Add Photo</span></label>';
+      
+      photos.forEach((photo, i) => {
+        html += `<div class="photo-item">`;
+        html += `<img src="${photo.data}" onclick="viewPhoto(${i})">`;
+        html += `<div class="photo-item-actions">`;
+        html += `<button class="photo-btn" onclick="deletePhoto(${i}); event.stopPropagation();">🗑️</button>`;
+        html += `</div>`;
+        html += `</div>`;
       });
-      $('photo-gallery').innerHTML = html;
+      
+      gallery.innerHTML = html;
+      $('photo-count').textContent = `${photos.length} photo${photos.length !== 1 ? 's' : ''}`;
     }
     
-    function viewPhoto(i) {
-      window.open(photos[i].data);
+    function viewPhoto(index) {
+      window.open(photos[index].data);
+    }
+    
+    function deletePhoto(index) {
+      photos.splice(index, 1);
+      displayPhotos();
+      calculateQuality();
+      showToast('Photo deleted');
     }
     
     // ==================== SIGNATURE ====================
@@ -659,189 +2679,448 @@
       resize();
     }
     
-    function clearSig() {
+    function clearSignature() {
       if (signaturePad) {
         signaturePad.clear();
         customerSignature = null;
-        calcQuality();
-        toast('Signature cleared');
+        calculateQuality();
+        showToast('Signature cleared');
       }
     }
     
-    function saveSig() {
+    function saveSignature() {
       if (!signaturePad || signaturePad.isEmpty()) {
-        toast('Please provide a signature first', 'danger');
+        showToast('Please provide a signature first', 'danger');
         return;
       }
       customerSignature = signaturePad.toDataURL();
-      calcQuality();
-      toast('Signature saved!');
+      calculateQuality();
+      showToast('Signature saved!');
     }
     
-    // ==================== CALCULATIONS ====================
-    function getSatTemp(pressure) {
-      const pressures = Object.keys(R410A_PT).map(Number);
-      const closest = pressures.reduce((p, c) => 
-        Math.abs(c - pressure) < Math.abs(p - pressure) ? c : p
-      );
-      return R410A_PT[closest];
-    }
-    
-    function calculate() {
-      if (systemMode === 'cooling') {
-        const ret = parseFloat($('return-temp').value);
-        const sup = parseFloat($('supply-temp').value);
-        if (!isNaN(ret) && !isNaN(sup)) {
-          $('delta-t').value = `${(ret - sup).toFixed(1)}°F`;
-        }
-        
-        const sP = parseFloat($('suction-pressure').value);
-        const sT = parseFloat($('suction-temp').value);
-        if (!isNaN(sP) && !isNaN(sT)) {
-          const sat = getSatTemp(sP);
-          if (sat) $('superheat').value = `${(sT - sat).toFixed(1)}°F`;
-        }
-        
-        const lP = parseFloat($('liquid-pressure').value);
-        const lT = parseFloat($('liquid-temp').value);
-        if (!isNaN(lP) && !isNaN(lT)) {
-          const sat = getSatTemp(lP);
-          if (sat) $('subcool').value = `${(sat - lT).toFixed(1)}°F`;
-        }
-        
-        runDiagnostics();
-        updateChart();
-      } else {
-        const ret = parseFloat($('return-temp-heat').value);
-        const sup = parseFloat($('supply-temp-heat').value);
-        if (!isNaN(ret) && !isNaN(sup)) {
-          $('temp-rise').value = `${(sup - ret).toFixed(1)}°F`;
-        }
-        runDiagnostics();
-      }
-    }
-    
-    function runDiagnostics() {
-      diagnosticResults = [];
+    // ==================== MATERIALS ====================
+    function initMaterialsCatalog() {
+      const catalog = $('materials-catalog');
+      let html = '';
       
-      if (systemMode === 'cooling') {
-        const deltaT = parseFloat($('delta-t').value);
-        if (!isNaN(deltaT)) {
-          if (deltaT < 14) {
-            diagnosticResults.push({
-              severity: 'danger',
-              title: 'Low Delta-T',
-              message: `Delta-T is ${deltaT.toFixed(1)}°F (Expected: 16-22°F)`,
-              recommendations: ['Check air filter', 'Inspect evaporator coil', 'Verify blower operation']
-            });
-          } else if (deltaT >= 16 && deltaT <= 22) {
-            diagnosticResults.push({
-              severity: 'success',
-              title: 'Delta-T Optimal',
-              message: `Delta-T is ${deltaT.toFixed(1)}°F - System airflow good`
-            });
-          }
-        }
+      Object.keys(materialsCatalog).forEach(catKey => {
+        const category = materialsCatalog[catKey];
+        categoryStates[catKey] = false;
         
-        const sh = parseFloat($('superheat').value);
-        const sc = parseFloat($('subcool').value);
-        if (!isNaN(sh) && !isNaN(sc)) {
-          if (sh > 20 && sc < 8) {
-            diagnosticResults.push({
-              severity: 'danger',
-              title: 'System Undercharged',
-              message: `SH: ${sh.toFixed(1)}°F, SC: ${sc.toFixed(1)}°F`,
-              recommendations: ['Check for leaks', 'Add refrigerant by weight']
-            });
-          } else if (sh >= 8 && sh <= 15 && sc >= 8 && sc <= 12) {
-            diagnosticResults.push({
-              severity: 'success',
-              title: 'Refrigerant Charge OK',
-              message: `SH: ${sh.toFixed(1)}°F, SC: ${sc.toFixed(1)}°F`
-            });
-          }
-        }
-      } else {
-        const rise = parseFloat($('temp-rise').value);
-        if (!isNaN(rise)) {
-          if (rise < 35) {
-            diagnosticResults.push({
-              severity: 'danger',
-              title: 'Low Temperature Rise',
-              message: `Temp rise is ${rise.toFixed(1)}°F (Expected: 35-65°F)`,
-              recommendations: ['Check gas pressure', 'Inspect burners']
-            });
-          } else if (rise >= 35 && rise <= 65) {
-            diagnosticResults.push({
-              severity: 'success',
-              title: 'Temperature Rise OK',
-              message: `Temp rise is ${rise.toFixed(1)}°F`
-            });
-          }
-        }
-      }
-      
-      displayDiagnostics();
-    }
-    
-    function displayDiagnostics() {
-      const container = $('diagnostic-results');
-      if (diagnosticResults.length === 0) {
-        container.innerHTML = '';
-        return;
-      }
-      
-      let html = '<div class="diagnostic-panel"><h3>🎯 Diagnostic Analysis</h3>';
-      diagnosticResults.forEach(r => {
-        html += `<div class="diagnostic-card">
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-            <strong>${r.title}</strong>
-            <span class="badge badge-${r.severity}">${r.severity}</span>
-          </div>
-          <p>${r.message}</p>`;
-        if (r.recommendations) {
-          html += '<ul style="margin-top:8px;padding-left:20px">';
-          r.recommendations.forEach(rec => html += `<li>${rec}</li>`);
-          html += '</ul>';
-        }
+        html += `<div class="materials-category" id="cat-${catKey}" data-category="${catKey}">`;
+        html += `<div class="category-header" onclick="toggleCategory('${catKey}')">`;
+        html += '<div class="category-title-group">';
+        html += `<span class="category-icon">${category.icon}</span>`;
+        html += `<span class="category-name">${category.name}</span>`;
+        html += '</div>';
+        html += '<div class="category-meta">';
+        html += `<span class="category-count">${category.items.length} items</span>`;
+        html += `<span class="category-selected hidden" id="cat-selected-${catKey}">0 selected</span>`;
+        html += '<span class="category-arrow">▼</span>';
+        html += '</div>';
+        html += '</div>';
+        html += '<div class="category-items">';
+        
+        category.items.forEach(item => {
+          const itemId = `${catKey}-${item.id}`;
+          const sizeDisplay = item.spec || item.sizes.slice(0, 3).join(', ') + (item.sizes.length > 3 ? ' +more' : '');
+          html += `<div class="material-item" data-search="${item.name.toLowerCase()} ${category.name.toLowerCase()}">`;
+          html += `<input type="checkbox" id="${itemId}" onchange="toggleMaterial('${catKey}', '${item.id}')">`;
+          html += '<div class="material-info">';
+          html += `<div class="material-name">${item.name}</div>`;
+          html += `<div class="material-spec">${sizeDisplay}</div>`;
+          html += '</div>';
+          html += '</div>';
+        });
+        
+        html += '</div>';
         html += '</div>';
       });
-      html += '</div>';
-      container.innerHTML = html;
+      
+      catalog.innerHTML = html;
     }
     
-    // ==================== CHART ====================
-    function updateChart() {
-      if (!chart) {
-        const ctx = $('pressure-chart').getContext('2d');
-        chart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Suction', 'Liquid'],
-            datasets: [{
-              label: 'Pressure (PSI)',
-              data: [0, 0],
-              backgroundColor: ['rgba(0,102,204,0.2)', 'rgba(239,68,68,0.2)'],
-              borderColor: ['rgb(0,102,204)', 'rgb(239,68,68)'],
-              borderWidth: 2
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: { y: { beginAtZero: true } }
+    function toggleCategory(catKey) {
+      const cat = $(`cat-${catKey}`);
+      cat.classList.toggle('expanded');
+      categoryStates[catKey] = !categoryStates[catKey];
+    }
+    
+    function expandAllCategories() {
+      Object.keys(materialsCatalog).forEach(catKey => {
+        $(`cat-${catKey}`).classList.add('expanded');
+        categoryStates[catKey] = true;
+      });
+      showToast('All categories expanded');
+    }
+    
+    function collapseAllCategories() {
+      Object.keys(materialsCatalog).forEach(catKey => {
+        $(`cat-${catKey}`).classList.remove('expanded');
+        categoryStates[catKey] = false;
+      });
+      showToast('All categories collapsed');
+    }
+    
+    function filterMaterials() {
+      const search = $('material-search').value.toLowerCase();
+      const items = document.querySelectorAll('.material-item');
+      let hasVisibleItems = {};
+      
+      if (search) {
+        items.forEach(item => {
+          const searchText = item.dataset.search || '';
+          const isMatch = searchText.includes(search);
+          item.style.display = isMatch ? 'flex' : 'none';
+          
+          if (isMatch) {
+            const category = item.closest('.materials-category');
+            const catKey = category.dataset.category;
+            hasVisibleItems[catKey] = true;
+          }
+        });
+        
+        Object.keys(materialsCatalog).forEach(catKey => {
+          const cat = $(`cat-${catKey}`);
+          if (hasVisibleItems[catKey]) {
+            cat.classList.add('expanded');
+            cat.style.display = 'block';
+          } else {
+            cat.style.display = 'none';
+          }
+        });
+      } else {
+        items.forEach(item => {
+          item.style.display = 'flex';
+        });
+        Object.keys(materialsCatalog).forEach(catKey => {
+          const cat = $(`cat-${catKey}`);
+          cat.style.display = 'block';
+          if (!categoryStates[catKey]) {
+            cat.classList.remove('expanded');
           }
         });
       }
+    }
+    
+    function toggleMaterial(catKey, itemId) {
+      const category = materialsCatalog[catKey];
+      const item = category.items.find(i => i.id === itemId);
+      const checkbox = $(`${catKey}-${itemId}`);
       
-      const sP = parseFloat($('suction-pressure').value) || 0;
-      const lP = parseFloat($('liquid-pressure').value) || 0;
-      chart.data.datasets[0].data = [sP, lP];
-      chart.update();
+      if (checkbox.checked) {
+        selectedMaterials.push({
+          catKey,
+          catName: category.name,
+          name: item.name,
+          spec: item.spec || item.sizes[0],
+          sizes: item.sizes,
+          unit: item.unit || 'ea',
+          quantity: 1
+        });
+      } else {
+        selectedMaterials = selectedMaterials.filter(m => !(m.catKey === catKey && m.name === item.name));
+      }
+      
+      updateCategorySelectedCount(catKey);
+      displaySelectedMaterials();
+    }
+    
+    function updateCategorySelectedCount(catKey) {
+      const count = selectedMaterials.filter(m => m.catKey === catKey).length;
+      const badge = $(`cat-selected-${catKey}`);
+      
+      if (count > 0) {
+        badge.textContent = `${count} selected`;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+    
+    function displaySelectedMaterials() {
+      const container = $('selected-materials');
+      
+      if (selectedMaterials.length === 0) {
+        container.innerHTML = '<div class="status-card info">ℹ️ No materials selected yet. Use the catalog above to add items.</div>';
+        $('selected-materials-count').textContent = '0 items';
+        return;
+      }
+      
+      let html = '';
+      selectedMaterials.forEach((item, idx) => {
+        html += '<div class="selected-material">';
+        html += '<div class="selected-material-info">';
+        html += `<div class="material-name">${item.name}</div>`;
+        html += `<div class="material-spec">${item.spec}</div>`;
+        html += '</div>';
+        html += '<div class="selected-material-controls">';
+        
+        if (item.sizes.length > 1) {
+          html += `<select onchange="selectedMaterials[${idx}].spec = this.value">`;
+          item.sizes.forEach(size => {
+            html += `<option value="${size}" ${item.spec === size ? 'selected' : ''}>${size}</option>`;
+          });
+          html += '</select>';
+        }
+        
+        html += `<input type="number" value="${item.quantity}" min="1" onchange="selectedMaterials[${idx}].quantity = parseInt(this.value); displaySelectedMaterials();">`;
+        html += `<span>${item.unit}</span>`;
+        html += `<button class="photo-btn" onclick="removeMaterial(${idx})">✕</button>`;
+        html += '</div>';
+        html += '</div>';
+      });
+      
+      container.innerHTML = html;
+      $('selected-materials-count').textContent = `${selectedMaterials.length} item${selectedMaterials.length !== 1 ? 's' : ''}`;
+    }
+    
+    function removeMaterial(index) {
+      const item = selectedMaterials[index];
+      const checkbox = $(`${item.catKey}-${materialsCatalog[item.catKey].items.find(i => i.name === item.name).id}`);
+      if (checkbox) checkbox.checked = false;
+      
+      selectedMaterials.splice(index, 1);
+      updateCategorySelectedCount(item.catKey);
+      displaySelectedMaterials();
+      showToast('Material removed');
+    }
+    
+    // ==================== DATA PERSISTENCE ====================
+    function saveData() {
+      const report = {
+        id: Date.now(),
+        timestamp: new Date().toISOString(),
+        customer: $('customer-name').value,
+        date: $('service-date').value,
+        callType,
+        systemMode,
+        data: {
+          // Job info
+          address: $('service-address').value,
+          complaint: $('customer-complaint').value,
+          unitType: $('unit-type').value,
+          indoorUnit: $('indoor-unit').value,
+          outdoorUnit: $('outdoor-unit').value,
+          tonnage: $('tonnage').value,
+          refrigerant: $('refrigerant-type').value,
+          filterSize: $('filter-size').value,
+          
+          // Cooling measurements
+          ambientTemp: $('ambient-temp').value,
+          returnTemp: $('return-temp').value,
+          supplyTemp: $('supply-temp').value,
+          deltaT: $('delta-t').value,
+          suctionPressure: $('suction-pressure').value,
+          suctionTemp: $('suction-temp').value,
+          superheat: $('superheat').value,
+          liquidPressure: $('liquid-pressure').value,
+          liquidTemp: $('liquid-temp').value,
+          subcool: $('subcool').value,
+          staticPressure: $('static-pressure').value,
+          voltage: $('voltage').value,
+          amperage: $('amperage').value,
+          
+          // Heating measurements
+          returnTempHeat: $('return-temp-heat').value,
+          supplyTempHeat: $('supply-temp-heat').value,
+          tempRise: $('temp-rise').value,
+          manifoldPressure: $('manifold-pressure').value,
+          voltageHeat: $('voltage-heat').value,
+          amperageHeat: $('amperage-heat').value,
+          
+          // Findings
+          findings: $('findings').value,
+          recommendations: $('recommendations').value,
+          workPerformed: $('work-performed').value,
+          
+          // Signature
+          sigName: $('sig-name').value,
+          sigDate: $('sig-date').value,
+          signature: customerSignature,
+          
+          // Tech info
+          techName: $('tech-name').value,
+          techPhone: $('tech-phone').value,
+          techEmail: $('tech-email').value
+        },
+        photos: photos,
+        diagnostics: diagnosticResults,
+        quality: parseInt($('quality-score-large').textContent)
+      };
+      
+      savedReports.push(report);
+      localStorage.setItem('fieldBuddyReports', JSON.stringify(savedReports));
+      showToast('Progress saved successfully!', 'success');
+    }
+    
+    function loadData() {
+      const stored = localStorage.getItem('fieldBuddyReports');
+      if (stored) {
+        savedReports = JSON.parse(stored);
+        showToast(`Loaded ${savedReports.length} saved report(s)`, 'info');
+        switchPage('history');
+      } else {
+        showToast('No saved data found', 'warning');
+      }
+    }
+    
+    function exportAllData() {
+      if (savedReports.length === 0) {
+        showToast('No data to export', 'warning');
+        return;
+      }
+      
+      const dataStr = JSON.stringify(savedReports, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `field-buddy-export-${new Date().toISOString().split('T')[0]}.json`;
+      link.click();
+      URL.revokeObjectURL(url);
+      showToast('Data exported successfully!', 'success');
+    }
+    
+    function refreshHistory() {
+      const stored = localStorage.getItem('fieldBuddyReports');
+      if (stored) {
+        savedReports = JSON.parse(stored);
+      }
+      
+      const container = $('history-list');
+      
+      if (savedReports.length === 0) {
+        container.innerHTML = '<div class="status-card info">ℹ️ No saved reports yet. Complete a service call and save your progress to see history here.</div>';
+        $('stat-total').textContent = '0';
+        $('stat-this-month').textContent = '0';
+        $('stat-avg-quality').textContent = '0%';
+        $('stat-photos').textContent = '0';
+        return;
+      }
+      
+      // Sort by most recent first
+      savedReports.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+      
+      let html = '';
+      savedReports.forEach((report, index) => {
+        const date = new Date(report.timestamp);
+        const qualityClass = report.quality >= 80 ? 'success' : report.quality >= 60 ? 'info' : 'warning';
+        
+        html += '<div class="card mb-lg">';
+        html += '<div class="card-header">';
+        html += `<div class="card-title">${report.customer || 'Unnamed'} - ${report.date}</div>`;
+        html += `<span class="badge badge-${qualityClass}">${report.quality}%</span>`;
+        html += '</div>';
+        html += '<div class="card-body">';
+        html += `<p><strong>Type:</strong> ${report.callType} | <strong>Mode:</strong> ${report.systemMode}</p>`;
+        html += `<p><strong>Photos:</strong> ${report.photos.length} | <strong>Saved:</strong> ${date.toLocaleString()}</p>`;
+        html += '<div class="btn-group mt-lg">';
+        html += `<button class="btn btn-primary" onclick="loadReport(${index})">Load</button>`;
+        html += `<button class="btn btn-danger" onclick="deleteReport(${index})">Delete</button>`;
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+      });
+      
+      container.innerHTML = html;
+      
+      // Calculate statistics
+      const thisMonth = savedReports.filter(r => {
+        const rDate = new Date(r.timestamp);
+        const now = new Date();
+        return rDate.getMonth() === now.getMonth() && rDate.getFullYear() === now.getFullYear();
+      });
+      
+      const avgQuality = savedReports.reduce((sum, r) => sum + r.quality, 0) / savedReports.length;
+      const totalPhotos = savedReports.reduce((sum, r) => sum + r.photos.length, 0);
+      
+      $('stat-total').textContent = savedReports.length;
+      $('stat-this-month').textContent = thisMonth.length;
+      $('stat-avg-quality').textContent = `${Math.round(avgQuality)}%`;
+      $('stat-photos').textContent = totalPhotos;
+    }
+    
+    function loadReport(index) {
+      const report = savedReports[index];
+      
+      // Load job info
+      $('customer-name').value = report.customer || '';
+      $('service-date').value = report.date || '';
+      $('service-address').value = report.data.address || '';
+      $('customer-complaint').value = report.data.complaint || '';
+      $('unit-type').value = report.data.unitType || '';
+      $('indoor-unit').value = report.data.indoorUnit || '';
+      $('outdoor-unit').value = report.data.outdoorUnit || '';
+      $('tonnage').value = report.data.tonnage || '';
+      $('refrigerant-type').value = report.data.refrigerant || 'R410A';
+      $('filter-size').value = report.data.filterSize || '';
+      
+      // Load measurements
+      if (report.systemMode === 'cooling') {
+        $('ambient-temp').value = report.data.ambientTemp || '';
+        $('return-temp').value = report.data.returnTemp || '';
+        $('supply-temp').value = report.data.supplyTemp || '';
+        $('suction-pressure').value = report.data.suctionPressure || '';
+        $('suction-temp').value = report.data.suctionTemp || '';
+        $('liquid-pressure').value = report.data.liquidPressure || '';
+        $('liquid-temp').value = report.data.liquidTemp || '';
+        $('static-pressure').value = report.data.staticPressure || '';
+        $('voltage').value = report.data.voltage || '';
+        $('amperage').value = report.data.amperage || '';
+      } else {
+        $('return-temp-heat').value = report.data.returnTempHeat || '';
+        $('supply-temp-heat').value = report.data.supplyTempHeat || '';
+        $('manifold-pressure').value = report.data.manifoldPressure || '';
+        $('voltage-heat').value = report.data.voltageHeat || '';
+        $('amperage-heat').value = report.data.amperageHeat || '';
+      }
+      
+      // Load findings
+      $('findings').value = report.data.findings || '';
+      $('recommendations').value = report.data.recommendations || '';
+      $('work-performed').value = report.data.workPerformed || '';
+      
+      // Load signature
+      $('sig-name').value = report.data.sigName || '';
+      $('sig-date').value = report.data.sigDate || '';
+      customerSignature = report.data.signature;
+      if (customerSignature && signaturePad) {
+        const img = new Image();
+        img.onload = () => signaturePad.fromDataURL(customerSignature);
+        img.src = customerSignature;
+      }
+      
+      // Load photos
+      photos = report.photos || [];
+      displayPhotos();
+      
+      // Set modes
+      callType = report.callType;
+      systemMode = report.systemMode;
+      setCallType(callType);
+      setSystemMode(systemMode);
+      
+      // Recalculate
+      calculateDiagnostics();
+      calculateQuality();
+      
+      switchPage('service');
+      showToast('Report loaded successfully!', 'success');
+    }
+    
+    async function deleteReport(index) {
+      const confirmed = await showModal('Delete Report', 'Are you sure you want to delete this report? This cannot be undone.');
+      if (!confirmed) return;
+      
+      savedReports.splice(index, 1);
+      localStorage.setItem('fieldBuddyReports', JSON.stringify(savedReports));
+      refreshHistory();
+      showToast('Report deleted', 'success');
     }
     
     // ==================== REPORT GENERATION ====================
-    function generateReport(format) {
+    function generateTextReport() {
       const customer = $('customer-name').value || 'N/A';
       const date = $('service-date').value || new Date().toISOString().split('T')[0];
       const address = $('service-address').value || 'N/A';
@@ -850,13 +3129,13 @@
       const techPhone = $('tech-phone').value;
       const techEmail = $('tech-email').value;
       
-      let report = `╔═════════════════════════════════════════════════════╗
-║      VILLAGE PLUMBING - SERVICE REPORT              ║
-║      Field Buddy Pro v3.0 Complete Edition          ║
-╚═════════════════════════════════════════════════════╝
+      let report = `╔════════════════════════════════════════════════════════════╗
+║       FIELD BUDDY PRO - SERVICE REPORT v3.0                ║
+║       Complete Professional Edition                        ║
+╚════════════════════════════════════════════════════════════╝
 
 JOB INFORMATION
-─────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────
 Customer: ${customer}
 Date: ${date}
 Address: ${address}
@@ -867,57 +3146,70 @@ Customer Complaint:
 ${complaint}
 
 EQUIPMENT INFORMATION
-─────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────
 Unit Type: ${$('unit-type').value || 'N/A'}
+Indoor Unit: ${$('indoor-unit').value || 'N/A'}
+Outdoor Unit: ${$('outdoor-unit').value || 'N/A'}
 Tonnage: ${$('tonnage').value || 'N/A'} Ton
-Refrigerant: ${$('refrigerant').value}
+Refrigerant: ${$('refrigerant-type').value}
+Filter Size: ${$('filter-size').value || 'N/A'}
 
 `;
 
       if (systemMode === 'cooling') {
         report += `COOLING MEASUREMENTS
-─────────────────────────────────────────────────────
-Return Temp: ${$('return-temp').value || 'N/A'}°F
-Supply Temp: ${$('supply-temp').value || 'N/A'}°F
+───────────────────────────────────────────────────────────────
+Ambient Temp: ${$('ambient-temp').value || 'N/A'}°F
+Return Air Temp: ${$('return-temp').value || 'N/A'}°F
+Supply Air Temp: ${$('supply-temp').value || 'N/A'}°F
 Delta-T: ${$('delta-t').value || 'N/A'}
 
 Suction Pressure: ${$('suction-pressure').value || 'N/A'} PSI
-Suction Temp: ${$('suction-temp').value || 'N/A'}°F
+Suction Line Temp: ${$('suction-temp').value || 'N/A'}°F
 Superheat: ${$('superheat').value || 'N/A'}
 
 Liquid Pressure: ${$('liquid-pressure').value || 'N/A'} PSI
-Liquid Temp: ${$('liquid-temp').value || 'N/A'}°F
+Liquid Line Temp: ${$('liquid-temp').value || 'N/A'}°F
 Subcool: ${$('subcool').value || 'N/A'}
+
+Static Pressure: ${$('static-pressure').value || 'N/A'} in w.c.
+Voltage: ${$('voltage').value || 'N/A'} V
+Amperage: ${$('amperage').value || 'N/A'} A
 
 `;
       } else {
         report += `HEATING MEASUREMENTS
-─────────────────────────────────────────────────────
-Return Temp: ${$('return-temp-heat').value || 'N/A'}°F
-Supply Temp: ${$('supply-temp-heat').value || 'N/A'}°F
+───────────────────────────────────────────────────────────────
+Return Air Temp: ${$('return-temp-heat').value || 'N/A'}°F
+Supply Air Temp: ${$('supply-temp-heat').value || 'N/A'}°F
 Temperature Rise: ${$('temp-rise').value || 'N/A'}
+
 Manifold Pressure: ${$('manifold-pressure').value || 'N/A'} in w.c.
+Voltage: ${$('voltage-heat').value || 'N/A'} V
+Amperage: ${$('amperage-heat').value || 'N/A'} A
 
 `;
       }
 
       if (diagnosticResults.length > 0) {
         report += `DIAGNOSTIC ANALYSIS
-═════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════════
 
 `;
-        diagnosticResults.forEach(r => {
-          report += `${r.title} [${r.severity.toUpperCase()}]\n${r.message}\n`;
-          if (r.recommendations) {
-            report += 'Recommendations:\n';
-            r.recommendations.forEach(rec => report += `  • ${rec}\n`);
+        diagnosticResults.forEach(result => {
+          report += `${result.title}\nSeverity: ${result.severity.toUpperCase()}\n${result.message}\n`;
+          if (result.recommendations && result.recommendations.length > 0) {
+            report += 'Recommended Actions:\n';
+            result.recommendations.forEach(rec => {
+              report += `  • ${rec}\n`;
+            });
           }
           report += '\n';
         });
       }
 
-      report += `FINDINGS & WORK PERFORMED
-─────────────────────────────────────────────────────
+      report += `FINDINGS & RECOMMENDATIONS
+───────────────────────────────────────────────────────────────
 Findings:
 ${$('findings').value || 'N/A'}
 
@@ -931,7 +3223,7 @@ ${$('work-performed').value || 'N/A'}
 
       if (photos.length > 0) {
         report += `JOB PHOTOS
-─────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────
 ${photos.length} photo(s) attached
 
 `;
@@ -939,7 +3231,7 @@ ${photos.length} photo(s) attached
 
       if (customerSignature) {
         report += `CUSTOMER SIGNATURE
-─────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────
 Customer: ${$('sig-name').value || 'N/A'}
 Date: ${$('sig-date').value || date}
 [Digital signature on file]
@@ -948,104 +3240,46 @@ Date: ${$('sig-date').value || date}
       }
 
       report += `TECHNICIAN INFORMATION
-─────────────────────────────────────────────────────
-Tech: ${tech}
+───────────────────────────────────────────────────────────────
+Technician: ${tech}
 Phone: ${techPhone}
 Email: ${techEmail}
 
 Generated: ${new Date().toLocaleString()}
-─────────────────────────────────────────────────────
-Field Buddy Pro v3.0 - Professional Edition
+
+Quality Score: ${$('quality-score-large').textContent}
+───────────────────────────────────────────────────────────────
+Field Buddy Pro v3.0 - Ultimate Professional Edition
+Village Plumbing - Excellence in HVAC Service
 `;
 
-      if (format === 'pdf') {
-        generatePDF(report);
-      } else {
-        displayTextReport(report);
-      }
-      
-      toast('Report generated successfully!');
+      displayTextReport(report);
+      showToast('Text report generated!');
     }
     
-    function generatePDF(textReport) {
-      try {
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF();
-        
-        pdf.setFontSize(14);
-        pdf.text('Village Plumbing - Service Report', 105, 20, { align: 'center' });
-        pdf.setFontSize(9);
-        pdf.text('Field Buddy Pro v3.0', 105, 27, { align: 'center' });
-        
-        pdf.setFontSize(8);
-        const lines = pdf.splitTextToSize(textReport, 180);
-        let y = 35;
-        
-        lines.forEach(line => {
-          if (y > 280) {
-            pdf.addPage();
-            y = 20;
-          }
-          pdf.text(line, 15, y);
-          y += 4;
-        });
-        
-        if (photos.length > 0) {
-          pdf.addPage();
-          pdf.setFontSize(12);
-          pdf.text('Job Photos', 105, 20, { align: 'center' });
-          
-          let pY = 30, pX = 15;
-          photos.forEach((photo, i) => {
-            if (pY > 200) {
-              pdf.addPage();
-              pY = 20;
-            }
-            try {
-              pdf.addImage(photo.data, 'JPEG', pX, pY, 80, 60);
-              pdf.setFontSize(7);
-              pdf.text(photo.name, pX, pY + 65);
-            } catch (e) {
-              console.error('Error adding photo:', e);
-            }
-            pX = (i % 2 === 0) ? 115 : 15;
-            if (i % 2 === 1) pY += 75;
-          });
-        }
-        
-        if (customerSignature) {
-          pdf.addPage();
-          pdf.setFontSize(12);
-          pdf.text('Customer Signature', 105, 20, { align: 'center' });
-          pdf.addImage(customerSignature, 'PNG', 40, 30, 130, 50);
-        }
-        
-        pdf.save(`service-report-${new Date().toISOString().split('T')[0]}.pdf`);
-        toast('PDF generated successfully!');
-      } catch (e) {
-        console.error('PDF generation error:', e);
-        toast('Error generating PDF', 'danger');
-      }
+    function displayTextReport(text) {
+      const container = $('report-container');
+      let html = '<div class="card mt-lg">';
+      html += '<div class="card-header"><div class="card-title">📄 Generated Report</div></div>';
+      html += '<div class="card-body">';
+      html += '<div class="status-card success">✓ Report ready to copy or print</div>';
+      html += `<pre style="background:var(--gray-50);padding:15px;border-radius:6px;overflow-x:auto;font-size:11px;line-height:1.4;font-family:monospace;">${text}</pre>`;
+      html += '<div class="btn-group mt-lg">';
+      html += '<button class="btn btn-primary" onclick="copyToClipboard()">📋 Copy to Clipboard</button>';
+      html += '<button class="btn btn-secondary" onclick="printReport()">🖨️ Print</button>';
+      html += '</div>';
+      html += '</div>';
+      html += '</div>';
+      container.innerHTML = html;
+      container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
     
-    function displayTextReport(report) {
-      const output = $('report-output');
-      output.innerHTML = `
-        <div class="card">
-          <div class="card-title">📄 Generated Report</div>
-          <pre style="background:var(--gray-50);padding:15px;border-radius:6px;overflow-x:auto;font-size:11px;line-height:1.4">${report}</pre>
-          <div class="btn-group">
-            <button class="btn btn-primary" onclick="copyReport()">📋 Copy to Clipboard</button>
-            <button class="btn btn-secondary" onclick="printReport()">🖨️ Print</button>
-          </div>
-        </div>
-      `;
-    }
-    
-    function copyReport() {
+    function copyToClipboard() {
       const text = document.querySelector('pre').textContent;
       navigator.clipboard.writeText(text).then(() => {
-        toast('Copied to clipboard!');
+        showToast('✓ Copied to clipboard!');
+      }).catch(() => {
+        showToast('Failed to copy', 'danger');
       });
     }
     
@@ -1060,36 +3294,259 @@ Field Buddy Pro v3.0 - Professional Edition
       }, 250);
     }
     
-    function clearAll() {
-      if (!confirm('Clear all form data?')) return;
+    function generatePDF() {
+      try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+        
+        // Title
+        pdf.setFontSize(16);
+        pdf.setFont(undefined, 'bold');
+        pdf.text('Village Plumbing - Service Report', 105, 20, { align: 'center' });
+        pdf.setFontSize(10);
+        pdf.setFont(undefined, 'normal');
+        pdf.text('Field Buddy Pro v3.0 Complete Professional Edition', 105, 27, { align: 'center' });
+        
+        // Generate full text report
+        generateTextReport();
+        const textReport = document.querySelector('pre').textContent;
+        
+        pdf.setFontSize(8);
+        const lines = pdf.splitTextToSize(textReport, 180);
+        let y = 35;
+        
+        lines.forEach(line => {
+          if (y > 280) {
+            pdf.addPage();
+            y = 20;
+          }
+          pdf.text(line, 15, y);
+          y += 4;
+        });
+        
+        // Add photos
+        if (photos.length > 0) {
+          pdf.addPage();
+          pdf.setFontSize(12);
+          pdf.setFont(undefined, 'bold');
+          pdf.text('Job Photos', 105, 20, { align: 'center' });
+          pdf.setFont(undefined, 'normal');
+          
+          let pY = 30;
+          let pX = 15;
+          photos.forEach((photo, i) => {
+            if (pY > 200) {
+              pdf.addPage();
+              pY = 20;
+            }
+            try {
+              pdf.addImage(photo.data, 'JPEG', pX, pY, 80, 60);
+              pdf.setFontSize(7);
+              pdf.text(photo.name || `Photo ${i + 1}`, pX, pY + 65);
+            } catch (e) {
+              console.error('Error adding photo:', e);
+            }
+            pX = (i % 2 === 0) ? 115 : 15;
+            if (i % 2 === 1) pY += 75;
+          });
+        }
+        
+        // Add signature
+        if (customerSignature) {
+          pdf.addPage();
+          pdf.setFontSize(12);
+          pdf.setFont(undefined, 'bold');
+          pdf.text('Customer Signature', 105, 20, { align: 'center' });
+          pdf.setFont(undefined, 'normal');
+          pdf.addImage(customerSignature, 'PNG', 40, 30, 130, 50);
+        }
+        
+        pdf.save(`service-report-${new Date().toISOString().split('T')[0]}.pdf`);
+        showToast('PDF generated successfully!');
+      } catch (e) {
+        console.error('PDF generation error:', e);
+        showToast('Error generating PDF', 'danger');
+      }
+    }
+    
+    function generateMaterialsReport() {
+      const customer = $('mat-customer').value || 'N/A';
+      const date = $('mat-date').value || new Date().toISOString().split('T')[0];
+      const address = $('mat-address').value || 'N/A';
+      const notes = $('mat-notes').value || 'N/A';
+      const tech = $('mat-tech-name').value;
+      const techPhone = $('mat-tech-phone').value;
+      const techEmail = $('mat-tech-email').value;
+      
+      let report = `╔════════════════════════════════════════════════════════════╗
+║       FIELD BUDDY PRO - MATERIALS LIST v3.0                ║
+╚════════════════════════════════════════════════════════════╝
+
+JOB INFORMATION
+───────────────────────────────────────────────────────────────
+Customer/Job: ${customer}
+Date: ${date}
+Address: ${address}
+Notes: ${notes}
+
+MATERIALS NEEDED
+═══════════════════════════════════════════════════════════════
+
+`;
+
+      if (selectedMaterials.length === 0) {
+        report += 'No materials added to list.\n\n';
+      } else {
+        const grouped = {};
+        selectedMaterials.forEach(item => {
+          if (!grouped[item.catName]) grouped[item.catName] = [];
+          grouped[item.catName].push(item);
+        });
+        
+        Object.keys(grouped).forEach(category => {
+          report += `${category}:\n`;
+          report += '─'.repeat(60) + '\n';
+          grouped[category].forEach(item => {
+            report += `☐ ${item.name}\n`;
+            report += `  Spec: ${item.spec}\n`;
+            report += `  Quantity: ${item.quantity} ${item.unit}\n\n`;
+          });
+          report += '\n';
+        });
+        
+        const totalQty = selectedMaterials.reduce((sum, m) => sum + m.quantity, 0);
+        report += '═'.repeat(60) + '\n';
+        report += `TOTAL ITEMS: ${totalQty}\n`;
+        report += `TOTAL LINE ITEMS: ${selectedMaterials.length}\n`;
+        report += '═'.repeat(60) + '\n';
+      }
+
+      report += `\nTECHNICIAN INFORMATION
+───────────────────────────────────────────────────────────────
+Technician: ${tech}
+Phone: ${techPhone}
+Email: ${techEmail}
+Generated: ${new Date().toLocaleString()}
+
+───────────────────────────────────────────────────────────────
+Field Buddy Pro v3.0 - Ultimate Professional Edition
+Village Plumbing - Excellence in HVAC Service
+`;
+
+      const container = $('report-container-mat');
+      let html = '<div class="card mt-lg">';
+      html += '<div class="card-header"><div class="card-title">📄 Materials List Generated</div></div>';
+      html += '<div class="card-body">';
+      html += '<div class="status-card success">✓ List ready to copy or print</div>';
+      html += `<pre style="background:var(--gray-50);padding:15px;border-radius:6px;overflow-x:auto;font-size:11px;line-height:1.4;font-family:monospace;">${report}</pre>`;
+      html += '<div class="btn-group mt-lg">';
+      html += '<button class="btn btn-primary" onclick="copyToClipboard()">📋 Copy to Clipboard</button>';
+      html += '<button class="btn btn-secondary" onclick="printReport()">🖨️ Print</button>';
+      html += '</div>';
+      html += '</div>';
+      html += '</div>';
+      container.innerHTML = html;
+      container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      showToast('Materials list generated!');
+    }
+    
+    function generateMaterialsPDF() {
+      try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+        
+        pdf.setFontSize(16);
+        pdf.setFont(undefined, 'bold');
+        pdf.text('Village Plumbing - Materials List', 105, 20, { align: 'center' });
+        pdf.setFontSize(10);
+        pdf.setFont(undefined, 'normal');
+        pdf.text('Field Buddy Pro v3.0', 105, 27, { align: 'center' });
+        
+        generateMaterialsReport();
+        const textReport = document.querySelector('#report-container-mat pre').textContent;
+        
+        pdf.setFontSize(8);
+        const lines = pdf.splitTextToSize(textReport, 180);
+        let y = 35;
+        
+        lines.forEach(line => {
+          if (y > 280) {
+            pdf.addPage();
+            y = 20;
+          }
+          pdf.text(line, 15, y);
+          y += 4;
+        });
+        
+        pdf.save(`materials-list-${new Date().toISOString().split('T')[0]}.pdf`);
+        showToast('Materials PDF generated!');
+      } catch (e) {
+        console.error('PDF generation error:', e);
+        showToast('Error generating PDF', 'danger');
+      }
+    }
+    
+    async function clearForm() {
+      const confirmed = await showModal('Clear Form', 'Are you sure you want to clear all data? This cannot be undone.');
+      if (!confirmed) return;
+      
       document.querySelectorAll('input, select, textarea').forEach(el => {
-        if (el.type === 'text' || el.type === 'number' || el.type === 'date' || el.type === 'email' || el.type === 'tel') {
-          if (!el.id.includes('tech-')) el.value = '';
-        } else if (el.tagName === 'TEXTAREA') {
+        if (el.type === 'checkbox') {
+          el.checked = false;
+          const item = el.closest('.checklist-item');
+          if (item) item.classList.remove('checked');
+        } else if (el.id.includes('tech-')) {
+          // Keep tech info
+        } else if (el.type === 'date') {
+          el.value = new Date().toISOString().split('T')[0];
+        } else {
           el.value = '';
-        } else if (el.tagName === 'SELECT') {
-          el.selectedIndex = 0;
         }
       });
+      
       photos = [];
-      displayPhotos();
-      clearSig();
+      selectedMaterials = [];
+      customerSignature = null;
       diagnosticResults = [];
-      displayDiagnostics();
-      $('report-output').innerHTML = '';
-      toast('Form cleared');
+      
+      displayPhotos();
+      displaySelectedMaterials();
+      if (signaturePad) signaturePad.clear();
+      $('diagnostic-results').classList.add('hidden');
+      $('report-container').innerHTML = '';
+      $('report-container-mat').innerHTML = '';
+      
+      Object.keys(materialsCatalog).forEach(catKey => {
+        updateCategorySelectedCount(catKey);
+      });
+      
+      calculateQuality();
+      showToast('Form cleared successfully');
     }
     
     // ==================== INIT ====================
     window.addEventListener('load', () => {
-      $('service-date').value = new Date().toISOString().split('T')[0];
-      $('sig-date').value = new Date().toISOString().split('T')[0];
-      initSignature();
-      calcQuality();
+      const today = new Date().toISOString().split('T')[0];
+      $('service-date').value = today;
+      $('sig-date').value = today;
+      $('mat-date').value = today;
       
-      console.log('%c🔧 Field Buddy Pro v3.0', 'color:#0066CC;font-size:16px;font-weight:bold');
-      console.log('%cProfessional HVAC Service Management', 'color:#666;font-size:12px');
-      toast('Field Buddy Pro v3.0 Ready!', 'success');
+      initSignature();
+      initMaterialsCatalog();
+      calculateQuality();
+      
+      // Load saved reports
+      const stored = localStorage.getItem('fieldBuddyReports');
+      if (stored) {
+        savedReports = JSON.parse(stored);
+      }
+      
+      console.log('%c🔧 Field Buddy Pro v3.0 Ultimate Edition', 'color: #0066CC; font-size: 18px; font-weight: bold;');
+      console.log('%c✨ Complete Professional HVAC Service Management System', 'color: #10B981; font-size: 14px;');
+      console.log('%c📋 Features: PDF Export, Photos, Signatures, Charts, Materials Catalog, Data Persistence', 'color: #666; font-size: 12px;');
+      console.log('%c👨‍🔧 Default Tech: Martín Perez | Village Plumbing', 'color: #F59E0B; font-size: 12px;');
+      
+      showToast('Field Buddy Pro v3.0 Ready!', 'success');
     });
   </script>
 </body>
