@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description" content="Field Buddy Pro v3.0 - Complete Professional HVAC Field Service Management">
+  <meta name="description" content="Field Buddy Pro v3.0 Complete - Professional HVAC Field Service Management">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Field Buddy Pro v3.0 - Complete Edition</title>
+  <title>Field Buddy Pro v3.0 Complete - Ultimate Edition</title>
   
   <!-- CDN Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -117,9 +117,7 @@
     
     .sidebar-nav { padding: var(--spacing-lg) 0; }
     
-    .nav-section {
-      margin-bottom: var(--spacing-lg);
-    }
+    .nav-section { margin-bottom: var(--spacing-lg); }
     
     .nav-section-title {
       padding: var(--spacing-sm) var(--spacing-xl);
@@ -1008,7 +1006,7 @@
           <div class="sidebar-logo-icon">🔧</div>
           <div>
             <div>Field Buddy Pro</div>
-            <div class="sidebar-version">v3.0 Ultimate</div>
+            <div class="sidebar-version">v3.0 Complete</div>
           </div>
         </div>
       </div>
@@ -1960,7 +1958,7 @@
       460: 125, 493: 130, 528: 135, 565: 140
     };
     
-    // ==================== MATERIALS CATALOG ====================
+    // ==================== COMPLETE 2025 MATERIALS CATALOG ====================
     const materialsCatalog = {
       equipment: {
         name: 'Equipment',
@@ -1984,9 +1982,17 @@
           { id: 'capacitor-single', name: 'Run Capacitor (Single)', sizes: ['5µF', '7.5µF', '10µF', '15µF', '20µF', '25µF', '30µF', '35µF', '40µF', '45µF', '50µF', '60µF'] },
           { id: 'capacitor-dual', name: 'Dual Run Capacitor', sizes: ['35/5µF', '40/5µF', '45/5µF', '50/5µF', '55/5µF', '60/5µF'] },
           { id: 'hard-start', name: 'Hard Start Kit', sizes: ['1-2 Ton', '2-3 Ton', '3-5 Ton'] },
+          { id: 'soft-start', name: 'Soft Start Kit', sizes: ['1-2 Ton', '2-3 Ton', '3-5 Ton'] },
+          { id: 'compressor-saver', name: 'Compressor Saver', sizes: ['Universal'] },
+          { id: 'potential-relay', name: 'Potential Relay', sizes: ['Standard', 'Heavy Duty'] },
+          { id: 'voltage-regulator', name: 'Voltage Regulator/Stabilizer', sizes: ['240V 15A', '240V 30A', '240V 60A'] },
+          { id: 'surge-protector', name: 'Surge Protector (HVAC)', sizes: ['Whole Unit', 'Panel Mount'] },
           { id: 'disconnect-30', name: 'Disconnect Box (30A)', sizes: ['30A Non-Fused', '30A Fused'] },
           { id: 'disconnect-60', name: 'Disconnect Box (60A)', sizes: ['60A Non-Fused', '60A Fused'] },
+          { id: 'breaker', name: 'Circuit Breaker', sizes: ['15A', '20A', '25A', '30A', '40A', '50A', '60A'] },
+          { id: 'whip', name: 'Electrical Whip', sizes: ['3 ft', '6 ft', '10 ft'] },
           { id: 'wire-lv', name: 'Low Voltage Wire (18ga)', sizes: ['18/2', '18/3', '18/5', '18/8'], unit: 'ft' },
+          { id: 'wire-hv', name: 'High Voltage Wire', sizes: ['14/2', '12/2', '10/2', '10/3', '8/2', '8/3'], unit: 'ft' },
           { id: 'transformer', name: 'Control Transformer', sizes: ['24V 40VA', '24V 75VA', '24V 100VA'] }
         ]
       },
@@ -1996,7 +2002,10 @@
         items: [
           { id: 'tstat-smart', name: 'WiFi Smart Thermostat', sizes: ['Nest', 'Ecobee', 'Honeywell T9'] },
           { id: 'tstat-programmable', name: 'Programmable Thermostat', sizes: ['5-2 Day', '7 Day'] },
-          { id: 'zone-control-panel', name: 'Zone Control Panel', sizes: ['2 Zone', '3 Zone', '4 Zone'] }
+          { id: 'tstat-nonprog', name: 'Non-Programmable Thermostat', sizes: ['Digital', 'Mercury Free'] },
+          { id: 'zone-control-panel', name: 'Zone Control Panel', sizes: ['2 Zone', '3 Zone', '4 Zone', '6 Zone'] },
+          { id: 'zone-damper', name: 'Zone Damper', sizes: ['6" Round', '8" Round', '10" Round', '6x10 Rect'] },
+          { id: 'humidistat', name: 'Humidistat Control', sizes: ['Digital', 'Mechanical'] }
         ]
       },
       ductwork: {
@@ -2004,20 +2013,29 @@
         icon: '🌬️',
         items: [
           { id: 'flex-duct-insulated', name: 'Flex Duct (Insulated R6)', sizes: ['4"', '5"', '6"', '7"', '8"', '10"', '12"'], unit: 'ft' },
+          { id: 'rigid-galv', name: 'Rigid Galvanized Duct', sizes: ['4"', '6"', '8"', '10"', '12"'], unit: 'ft' },
+          { id: 'plenum-supply', name: 'Supply Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
+          { id: 'plenum-return', name: 'Return Plenum', sizes: ['16x20', '18x24', '20x24', '24x24'] },
           { id: 'register', name: 'Supply Register', sizes: ['4x10', '4x12', '6x10', '6x12', '8x10', '10x10'] },
-          { id: 'grille', name: 'Return Grille', sizes: ['10x10', '12x12', '14x14', '16x16', '20x20'] },
-          { id: 'diffuser', name: 'Ceiling Diffuser', sizes: ['6" Round', '8" Round', '10" Round', '12" Round'] }
+          { id: 'grille', name: 'Return Grille', sizes: ['10x10', '12x12', '14x14', '16x16', '20x20', '24x24'] },
+          { id: 'diffuser', name: 'Ceiling Diffuser', sizes: ['6" Round', '8" Round', '10" Round', '12" Round'] },
+          { id: 'damper-manual', name: 'Manual Balancing Damper', sizes: ['4"', '6"', '8"', '10"', '12"'] }
         ]
       },
       iaq: {
         name: 'Air Quality & Filtration',
         icon: '💨',
         items: [
-          { id: 'filter-disposable', name: 'Disposable Filter', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1', '24x24x1'] },
-          { id: 'filter-pleated', name: 'Pleated Filter (MERV 11)', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1'] },
+          { id: 'filter-disposable', name: 'Disposable Filter', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1', '24x24x1'], unit: 'pack' },
+          { id: 'filter-pleated', name: 'Pleated Filter (MERV 11)', sizes: ['16x20x1', '16x25x1', '20x20x1', '20x25x1'], unit: 'pack' },
           { id: 'filter-hepa', name: 'HEPA Filter (MERV 13)', sizes: ['16x20', '16x25', '20x20', '20x25'] },
+          { id: 'media-cleaner', name: 'Media Air Cleaner', sizes: ['16x25', '20x25'] },
           { id: 'uv-light-single', name: 'UV Light System (Single)', sizes: ['24V'] },
-          { id: 'humidifier-bypass', name: 'Bypass Humidifier', sizes: ['12 GPD', '17 GPD'] }
+          { id: 'uv-light-dual', name: 'UV Light System (Dual)', sizes: ['24V'] },
+          { id: 'reme-halo', name: 'REME HALO Air Purifier', sizes: ['24V'] },
+          { id: 'humidifier-bypass', name: 'Bypass Humidifier', sizes: ['12 GPD', '17 GPD'] },
+          { id: 'dehumidifier-90', name: 'Whole-Home Dehumidifier', sizes: ['90 Pint', '120 Pint'] },
+          { id: 'erv', name: 'ERV System', sizes: ['100 CFM', '150 CFM', '200 CFM'] }
         ]
       },
       refrigeration: {
@@ -2027,9 +2045,14 @@
           { id: 'lineset-small', name: 'Line Set (1.5-2.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '1/4" x 3/8"' },
           { id: 'lineset-medium', name: 'Line Set (3-3.5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 3/4"' },
           { id: 'lineset-large', name: 'Line Set (4-5 Ton)', sizes: ['15 ft', '25 ft', '35 ft', '50 ft'], spec: '3/8" x 7/8"' },
-          { id: 'r410a', name: 'R-410A Refrigerant', sizes: ['25 lb'], unit: 'cylinder' },
+          { id: 'copper-tubing', name: 'Copper Tubing (ACR)', sizes: ['1/4"', '3/8"', '1/2"', '5/8"', '3/4"', '7/8"'], unit: 'ft' },
+          { id: 'r410a', name: 'R-410A Refrigerant', sizes: ['25 lb', '50 lb'], unit: 'cylinder' },
+          { id: 'r22', name: 'R-22 Refrigerant', sizes: ['30 lb'], unit: 'cylinder' },
+          { id: 'r32', name: 'R-32 Refrigerant', sizes: ['20 lb'], unit: 'cylinder' },
+          { id: 'r454b', name: 'R-454B Refrigerant', sizes: ['25 lb'], unit: 'cylinder' },
           { id: 'txv', name: 'TXV (Expansion Valve)', sizes: ['2 Ton', '2.5 Ton', '3 Ton', '3.5 Ton', '4 Ton', '5 Ton'] },
-          { id: 'filter-drier', name: 'Filter Drier', sizes: ['1/2"', '5/8"', '3/4"'] }
+          { id: 'filter-drier', name: 'Filter Drier', sizes: ['1/2"', '5/8"', '3/4"'] },
+          { id: 'refrig-oil', name: 'Refrigerant Oil', sizes: ['POE 8oz', 'POE 16oz'] }
         ]
       },
       drainage: {
@@ -2038,8 +2061,59 @@
         items: [
           { id: 'condensate-pump', name: 'Condensate Pump', sizes: ['Standard', 'Heavy Duty'] },
           { id: 'drain-pvc', name: 'PVC Drain Pipe (3/4")', sizes: ['10 ft', '20 ft'], unit: 'length' },
+          { id: 'drain-pan-primary', name: 'Drain Pan (Primary)', sizes: ['24x24', '30x30', '36x36'] },
+          { id: 'drain-pan-secondary', name: 'Drain Pan (Secondary)', sizes: ['24x24', '30x30', '36x36'] },
           { id: 'ptrap', name: 'P-Trap', sizes: ['3/4"', '1"'] },
-          { id: 'float-switch', name: 'Float Switch', sizes: ['Standard'] }
+          { id: 'float-switch', name: 'Float Switch', sizes: ['Standard'] },
+          { id: 'drain-tubing', name: 'Clear Vinyl Drain Tubing', sizes: ['3/8"', '1/2"', '5/8"'], unit: 'ft' }
+        ]
+      },
+      venting: {
+        name: 'Venting (Gas/Oil)',
+        icon: '🔥',
+        items: [
+          { id: 'bvent', name: 'B-Vent Pipe', sizes: ['3"', '4"', '5"', '6"', '7"'], unit: 'ft' },
+          { id: 'pvc-vent', name: 'PVC Vent Pipe', sizes: ['2"', '3"', '4"'], unit: 'ft' },
+          { id: 'vent-cap', name: 'Vent Cap/Termination', sizes: ['2"', '3"', '4"', '5"', '6"'] },
+          { id: 'vent-elbow-90', name: 'Vent Elbow (90°)', sizes: ['2"', '3"', '4"', '5"'] },
+          { id: 'inducer', name: 'Inducer Motor', sizes: ['Standard', 'High Efficiency'] }
+        ]
+      },
+      insulation: {
+        name: 'Insulation & Sealants',
+        icon: '🧱',
+        items: [
+          { id: 'duct-insulation-fiberglass', name: 'Fiberglass Duct Wrap', sizes: ['R-6', 'R-8'], unit: 'roll' },
+          { id: 'pipe-insulation-foam', name: 'Foam Pipe Insulation', sizes: ['1/4"', '3/8"', '1/2"', '5/8"', '3/4"', '7/8"'], unit: 'ft' },
+          { id: 'mastic', name: 'Duct Mastic', sizes: ['1 Gallon', '5 Gallon'] },
+          { id: 'foil-tape', name: 'Foil Tape', sizes: ['2"', '3"'], unit: 'roll' },
+          { id: 'silicone-caulk', name: 'Silicone Caulk', sizes: ['Clear', 'White', 'Aluminum'], unit: 'tube' },
+          { id: 'foam-sealant', name: 'Expanding Foam Sealant', sizes: ['Standard', 'Fire-Rated'], unit: 'can' }
+        ]
+      },
+      tools: {
+        name: 'Tools & Instruments',
+        icon: '🔧',
+        items: [
+          { id: 'multimeter', name: 'Digital Multimeter', sizes: ['Standard'] },
+          { id: 'clamp-meter', name: 'Clamp Meter', sizes: ['Digital'] },
+          { id: 'manometer-digital', name: 'Digital Manometer', sizes: ['Dual Port'] },
+          { id: 'leak-detector', name: 'Refrigerant Leak Detector', sizes: ['Electronic'] },
+          { id: 'thermometer-infrared', name: 'Infrared Thermometer', sizes: ['Standard'] },
+          { id: 'vacuum-pump', name: 'Vacuum Pump', sizes: ['3 CFM', '6 CFM'] },
+          { id: 'tubing-cutter', name: 'Tubing Cutter', sizes: ['1/8"-7/8"', '1/8"-1 1/8"'] }
+        ]
+      },
+      safety: {
+        name: 'Safety & PPE',
+        icon: '🦺',
+        items: [
+          { id: 'safety-glasses', name: 'Safety Glasses', sizes: ['Clear', 'Tinted'], unit: 'each' },
+          { id: 'gloves-work', name: 'Work Gloves', sizes: ['S', 'M', 'L', 'XL'], unit: 'pair' },
+          { id: 'respirator', name: 'Respirator', sizes: ['Half-Face', 'Full-Face'] },
+          { id: 'ear-protection', name: 'Ear Protection', sizes: ['Plugs', 'Muffs'] },
+          { id: 'fire-extinguisher', name: 'Fire Extinguisher', sizes: ['5 lb ABC', '10 lb ABC'] },
+          { id: 'first-aid', name: 'First Aid Kit', sizes: ['Basic', 'Complete'] }
         ]
       },
       accessories: {
@@ -2047,11 +2121,14 @@
         icon: '🛠️',
         items: [
           { id: 'condenser-pad', name: 'Condenser Pad', sizes: ['24x24', '30x30', '36x36'] },
+          { id: 'vibration-isolator', name: 'Vibration Isolators', sizes: ['Standard'], unit: 'set' },
+          { id: 'line-hide', name: 'Line Set Cover', sizes: ['3"', '4"', '6"'], unit: 'ft' },
           { id: 'cleaning-coil', name: 'Coil Cleaner', sizes: ['Aerosol', '1 Gallon'] },
-          { id: 'cleaning-evap', name: 'Evaporator Coil Cleaner', sizes: ['Aerosol', '32 oz'] }
+          { id: 'cleaning-evap', name: 'Evaporator Coil Cleaner (No-Rinse)', sizes: ['Aerosol', '32 oz'] }
         ]
       }
     };
+
     
     // ==================== HELPER FUNCTIONS ====================
     function $(id) {
@@ -2096,11 +2173,9 @@
       $('materials-page').classList.toggle('hidden', page !== 'materials');
       $('history-page').classList.toggle('hidden', page !== 'history');
       
-      // Update page title
       const titles = { service: 'Service Call', materials: 'Materials', history: 'History & Reports' };
       $('page-title').textContent = titles[page];
       
-      // Update nav items
       document.querySelectorAll('.nav-item').forEach((item, index) => {
         item.classList.toggle('active', 
           (index === 0 && page === 'service') || 
@@ -2109,7 +2184,6 @@
         );
       });
       
-      // Close mobile menu
       const sidebar = $('sidebar');
       const overlay = $('mobile-menu-overlay');
       sidebar.classList.remove('mobile-open');
@@ -2172,16 +2246,14 @@
       let basicInfo = 0;
       let diagnostics = 0;
       
-      // Basic info (out of 5)
       if ($('customer-name').value) basicInfo++;
       if ($('service-date').value) basicInfo++;
       if ($('service-address').value) basicInfo++;
       if ($('customer-complaint').value) basicInfo++;
       if ($('unit-type').value) basicInfo++;
       
-      score += (basicInfo / 5) * 30; // 30% weight
+      score += (basicInfo / 5) * 30;
       
-      // Diagnostics (out of 3)
       if (systemMode === 'cooling') {
         if ($('delta-t').value && $('delta-t').value !== 'N/A') diagnostics++;
         if ($('superheat').value && $('superheat').value !== 'N/A') diagnostics++;
@@ -2192,28 +2264,21 @@
         if ($('voltage-heat').value) diagnostics++;
       }
       
-      score += (diagnostics / 3) * 25; // 25% weight
+      score += (diagnostics / 3) * 25;
       
-      // Findings & Work (20% weight)
       if ($('findings').value) score += 10;
       if ($('work-performed').value) score += 10;
-      
-      // Photos (15% weight)
       score += Math.min(photos.length * 3, 15);
-      
-      // Signature (10% weight)
       if (customerSignature) score += 10;
       
       const finalScore = Math.round(score);
       
-      // Update UI
       $('quality-score-large').textContent = `${finalScore}%`;
       $('metric-basic').textContent = `${basicInfo}/5`;
       $('metric-diagnostics').textContent = `${diagnostics}/3`;
       $('metric-photos').textContent = photos.length;
       $('metric-signature').textContent = customerSignature ? '✓' : '✗';
       
-      // Update badge
       const badge = $('quality-badge');
       if (finalScore >= 80) {
         badge.textContent = 'Excellent';
@@ -2374,10 +2439,12 @@
               title: 'System Appears Undercharged',
               message: `Superheat: ${superheat.toFixed(1)}°F, Subcool: ${subcool.toFixed(1)}°F`,
               recommendations: [
-                'Check for refrigerant leaks',
+                'Check for refrigerant leaks at evaporator coil',
                 'Inspect service valve connections',
-                'Look for oil residue at joints',
-                'Add refrigerant by weight'
+                'Look for oil residue at brazed joints',
+                'Check line set for damage/leaks',
+                'Add refrigerant by weight or subcool method',
+                'Re-verify charge after adding refrigerant'
               ]
             });
           } else if (superheat < 5 && subcool > 15) {
@@ -2387,7 +2454,8 @@
               message: `Superheat: ${superheat.toFixed(1)}°F, Subcool: ${subcool.toFixed(1)}°F`,
               recommendations: [
                 'Verify charge was not added incorrectly',
-                'Check for non-condensables',
+                'Check for non-condensables in system',
+                'Confirm outdoor unit has adequate airflow',
                 'Consider recovering excess refrigerant'
               ]
             });
@@ -2403,15 +2471,15 @@
               title: 'Possible TXV Failure',
               message: `High superheat with normal subcool suggests TXV issue`,
               recommendations: [
-                'Check TXV bulb placement',
+                'Check TXV bulb placement and contact',
                 'Verify TXV is not stuck closed',
+                'Inspect sensing bulb for damage',
                 'Consider TXV replacement'
               ]
             });
           }
         }
       } else {
-        // Heating diagnostics
         const tempRise = parseFloat($('temp-rise').value);
         const manifoldPressure = parseFloat($('manifold-pressure').value);
         
@@ -2424,7 +2492,7 @@
               recommendations: [
                 'Check gas input - verify manifold pressure',
                 'Inspect burners for proper flame pattern',
-                'Check for excessive airflow',
+                'Check for excessive airflow (blower speed too high)',
                 'Verify gas valve is fully opening'
               ]
             });
@@ -2436,8 +2504,8 @@
               recommendations: [
                 'Check airflow - possible restriction',
                 'Verify blower speed is correct',
-                'Inspect heat exchanger',
-                'Check limit switches'
+                'Inspect heat exchanger for restrictions',
+                'Check limit switches for proper operation'
               ]
             });
           } else {
@@ -2458,7 +2526,8 @@
               recommendations: [
                 'Adjust gas valve regulator',
                 'Check gas supply pressure',
-                'Verify proper orifice size'
+                'Verify proper orifice size for gas type',
+                'Consult furnace specifications'
               ]
             });
           } else {
@@ -2896,7 +2965,6 @@
         callType,
         systemMode,
         data: {
-          // Job info
           address: $('service-address').value,
           complaint: $('customer-complaint').value,
           unitType: $('unit-type').value,
@@ -2905,8 +2973,6 @@
           tonnage: $('tonnage').value,
           refrigerant: $('refrigerant-type').value,
           filterSize: $('filter-size').value,
-          
-          // Cooling measurements
           ambientTemp: $('ambient-temp').value,
           returnTemp: $('return-temp').value,
           supplyTemp: $('supply-temp').value,
@@ -2920,26 +2986,18 @@
           staticPressure: $('static-pressure').value,
           voltage: $('voltage').value,
           amperage: $('amperage').value,
-          
-          // Heating measurements
           returnTempHeat: $('return-temp-heat').value,
           supplyTempHeat: $('supply-temp-heat').value,
           tempRise: $('temp-rise').value,
           manifoldPressure: $('manifold-pressure').value,
           voltageHeat: $('voltage-heat').value,
           amperageHeat: $('amperage-heat').value,
-          
-          // Findings
           findings: $('findings').value,
           recommendations: $('recommendations').value,
           workPerformed: $('work-performed').value,
-          
-          // Signature
           sigName: $('sig-name').value,
           sigDate: $('sig-date').value,
           signature: customerSignature,
-          
-          // Tech info
           techName: $('tech-name').value,
           techPhone: $('tech-phone').value,
           techEmail: $('tech-email').value
@@ -2999,7 +3057,6 @@
         return;
       }
       
-      // Sort by most recent first
       savedReports.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
       
       let html = '';
@@ -3025,7 +3082,6 @@
       
       container.innerHTML = html;
       
-      // Calculate statistics
       const thisMonth = savedReports.filter(r => {
         const rDate = new Date(r.timestamp);
         const now = new Date();
@@ -3044,7 +3100,6 @@
     function loadReport(index) {
       const report = savedReports[index];
       
-      // Load job info
       $('customer-name').value = report.customer || '';
       $('service-date').value = report.date || '';
       $('service-address').value = report.data.address || '';
@@ -3056,7 +3111,6 @@
       $('refrigerant-type').value = report.data.refrigerant || 'R410A';
       $('filter-size').value = report.data.filterSize || '';
       
-      // Load measurements
       if (report.systemMode === 'cooling') {
         $('ambient-temp').value = report.data.ambientTemp || '';
         $('return-temp').value = report.data.returnTemp || '';
@@ -3076,12 +3130,9 @@
         $('amperage-heat').value = report.data.amperageHeat || '';
       }
       
-      // Load findings
       $('findings').value = report.data.findings || '';
       $('recommendations').value = report.data.recommendations || '';
       $('work-performed').value = report.data.workPerformed || '';
-      
-      // Load signature
       $('sig-name').value = report.data.sigName || '';
       $('sig-date').value = report.data.sigDate || '';
       customerSignature = report.data.signature;
@@ -3091,17 +3142,14 @@
         img.src = customerSignature;
       }
       
-      // Load photos
       photos = report.photos || [];
       displayPhotos();
       
-      // Set modes
       callType = report.callType;
       systemMode = report.systemMode;
       setCallType(callType);
       setSystemMode(systemMode);
       
-      // Recalculate
       calculateDiagnostics();
       calculateQuality();
       
@@ -3130,8 +3178,8 @@
       const techEmail = $('tech-email').value;
       
       let report = `╔════════════════════════════════════════════════════════════╗
-║       FIELD BUDDY PRO - SERVICE REPORT v3.0                ║
-║       Complete Professional Edition                        ║
+║       FIELD BUDDY PRO - SERVICE REPORT v3.0 COMPLETE       ║
+║       Professional Edition with Full Features              ║
 ╚════════════════════════════════════════════════════════════╝
 
 JOB INFORMATION
@@ -3246,10 +3294,10 @@ Phone: ${techPhone}
 Email: ${techEmail}
 
 Generated: ${new Date().toLocaleString()}
-
 Quality Score: ${$('quality-score-large').textContent}
+
 ───────────────────────────────────────────────────────────────
-Field Buddy Pro v3.0 - Ultimate Professional Edition
+Field Buddy Pro v3.0 Complete - Ultimate Professional Edition
 Village Plumbing - Excellence in HVAC Service
 `;
 
@@ -3299,7 +3347,6 @@ Village Plumbing - Excellence in HVAC Service
         const { jsPDF } = window.jspdf;
         const pdf = new jsPDF();
         
-        // Title
         pdf.setFontSize(16);
         pdf.setFont(undefined, 'bold');
         pdf.text('Village Plumbing - Service Report', 105, 20, { align: 'center' });
@@ -3307,7 +3354,6 @@ Village Plumbing - Excellence in HVAC Service
         pdf.setFont(undefined, 'normal');
         pdf.text('Field Buddy Pro v3.0 Complete Professional Edition', 105, 27, { align: 'center' });
         
-        // Generate full text report
         generateTextReport();
         const textReport = document.querySelector('pre').textContent;
         
@@ -3324,7 +3370,6 @@ Village Plumbing - Excellence in HVAC Service
           y += 4;
         });
         
-        // Add photos
         if (photos.length > 0) {
           pdf.addPage();
           pdf.setFontSize(12);
@@ -3351,7 +3396,6 @@ Village Plumbing - Excellence in HVAC Service
           });
         }
         
-        // Add signature
         if (customerSignature) {
           pdf.addPage();
           pdf.setFontSize(12);
@@ -3379,7 +3423,7 @@ Village Plumbing - Excellence in HVAC Service
       const techEmail = $('mat-tech-email').value;
       
       let report = `╔════════════════════════════════════════════════════════════╗
-║       FIELD BUDDY PRO - MATERIALS LIST v3.0                ║
+║       FIELD BUDDY PRO - MATERIALS LIST v3.0 COMPLETE       ║
 ╚════════════════════════════════════════════════════════════╝
 
 JOB INFORMATION
@@ -3429,7 +3473,7 @@ Email: ${techEmail}
 Generated: ${new Date().toLocaleString()}
 
 ───────────────────────────────────────────────────────────────
-Field Buddy Pro v3.0 - Ultimate Professional Edition
+Field Buddy Pro v3.0 Complete - Ultimate Professional Edition
 Village Plumbing - Excellence in HVAC Service
 `;
 
@@ -3460,7 +3504,7 @@ Village Plumbing - Excellence in HVAC Service
         pdf.text('Village Plumbing - Materials List', 105, 20, { align: 'center' });
         pdf.setFontSize(10);
         pdf.setFont(undefined, 'normal');
-        pdf.text('Field Buddy Pro v3.0', 105, 27, { align: 'center' });
+        pdf.text('Field Buddy Pro v3.0 Complete', 105, 27, { align: 'center' });
         
         generateMaterialsReport();
         const textReport = document.querySelector('#report-container-mat pre').textContent;
@@ -3495,7 +3539,7 @@ Village Plumbing - Excellence in HVAC Service
           el.checked = false;
           const item = el.closest('.checklist-item');
           if (item) item.classList.remove('checked');
-        } else if (el.id.includes('tech-')) {
+        } else if (el.id.includes('tech-') || el.id.includes('mat-tech-')) {
           // Keep tech info
         } else if (el.type === 'date') {
           el.value = new Date().toISOString().split('T')[0];
@@ -3535,18 +3579,17 @@ Village Plumbing - Excellence in HVAC Service
       initMaterialsCatalog();
       calculateQuality();
       
-      // Load saved reports
       const stored = localStorage.getItem('fieldBuddyReports');
       if (stored) {
         savedReports = JSON.parse(stored);
       }
       
-      console.log('%c🔧 Field Buddy Pro v3.0 Ultimate Edition', 'color: #0066CC; font-size: 18px; font-weight: bold;');
-      console.log('%c✨ Complete Professional HVAC Service Management System', 'color: #10B981; font-size: 14px;');
-      console.log('%c📋 Features: PDF Export, Photos, Signatures, Charts, Materials Catalog, Data Persistence', 'color: #666; font-size: 12px;');
-      console.log('%c👨‍🔧 Default Tech: Martín Perez | Village Plumbing', 'color: #F59E0B; font-size: 12px;');
+      console.log('%c🔧 Field Buddy Pro v3.0 Complete Edition', 'color: #0066CC; font-size: 18px; font-weight: bold;');
+      console.log('%c✨ ALL Features: PDF Export, Photos, Signatures, Charts, Complete Materials Catalog, Data Persistence', 'color: #10B981; font-size: 14px;');
+      console.log('%c📦 Full 2025 Materials Catalog: 11 Categories, 100+ Items', 'color: #F59E0B; font-size: 12px;');
+      console.log('%c👨‍🔧 Default Tech: Martín Perez | Village Plumbing', 'color: #3B82F6; font-size: 12px;');
       
-      showToast('Field Buddy Pro v3.0 Ready!', 'success');
+      showToast('Field Buddy Pro v3.0 Complete Ready!', 'success');
     });
   </script>
 </body>
