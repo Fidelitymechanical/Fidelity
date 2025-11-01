@@ -1022,6 +1022,10 @@
             <span class="nav-icon">📦</span>
             <span>Materials</span>
           </div>
+          <div class="nav-item" onclick="switchPage('cfm')">
+            <span class="nav-icon">🌪️</span>
+            <span>CFM & Duct Design</span>
+          </div>
           <div class="nav-item" onclick="switchPage('history')">
             <span class="nav-icon">📊</span>
             <span>History & Reports</span>
@@ -1868,6 +1872,293 @@
           
         </div>
         
+        <!-- ==================== CFM & DUCT DESIGN PAGE ==================== -->
+        <div id="cfm-page" class="page-content hidden">
+          
+          <!-- CFM Calculators -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">🌪️ CFM Calculators</div>
+            </div>
+            <div class="card-body">
+              
+              <!-- By Tonnage -->
+              <div class="card-section">
+                <div class="section-title">Calculate CFM by System Tonnage</div>
+                <div class="form-grid form-grid-3">
+                  <div class="form-group">
+                    <label>System Tonnage</label>
+                    <select id="cfm-tonnage" onchange="calculateCFMByTonnage()">
+                      <option value="">Select...</option>
+                      <option value="1.5">1.5 Ton</option>
+                      <option value="2">2 Ton</option>
+                      <option value="2.5">2.5 Ton</option>
+                      <option value="3">3 Ton</option>
+                      <option value="3.5">3.5 Ton</option>
+                      <option value="4">4 Ton</option>
+                      <option value="5">5 Ton</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>CFM per Ton (Standard: 400)</label>
+                    <input type="number" id="cfm-per-ton" value="400" onchange="calculateCFMByTonnage()">
+                  </div>
+                  <div class="form-group">
+                    <label>Required CFM</label>
+                    <input type="text" id="cfm-result-tonnage" readonly style="font-weight: 600; font-size: 18px; color: var(--primary);">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- By Temperature -->
+              <div class="card-section">
+                <div class="section-title">Calculate CFM by Temperature & BTU</div>
+                <p style="font-size: 12px; color: var(--gray-600); margin-bottom: 12px;">
+                  Formula: CFM = BTU ÷ (1.08 × ΔT)
+                </p>
+                <div class="form-grid form-grid-3">
+                  <div class="form-group">
+                    <label>BTU/hr (Tonnage × 12,000)</label>
+                    <input type="number" id="cfm-btu" placeholder="e.g., 36000" onchange="calculateCFMByTemp()">
+                  </div>
+                  <div class="form-group">
+                    <label>Temperature Difference (°F)</label>
+                    <input type="number" step="0.1" id="cfm-delta-t" placeholder="e.g., 20" onchange="calculateCFMByTemp()">
+                  </div>
+                  <div class="form-group">
+                    <label>Required CFM</label>
+                    <input type="text" id="cfm-result-temp" readonly style="font-weight: 600; font-size: 18px; color: var(--primary);">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- By Room Size -->
+              <div class="card-section">
+                <div class="section-title">Calculate CFM by Room Size (ACH Method)</div>
+                <p style="font-size: 12px; color: var(--gray-600); margin-bottom: 12px;">
+                  Formula: CFM = (Room Volume × Air Changes per Hour) ÷ 60
+                </p>
+                <div class="form-grid form-grid-4">
+                  <div class="form-group">
+                    <label>Length (ft)</label>
+                    <input type="number" id="room-length" placeholder="e.g., 12" onchange="calculateCFMByRoom()">
+                  </div>
+                  <div class="form-group">
+                    <label>Width (ft)</label>
+                    <input type="number" id="room-width" placeholder="e.g., 10" onchange="calculateCFMByRoom()">
+                  </div>
+                  <div class="form-group">
+                    <label>Height (ft)</label>
+                    <input type="number" id="room-height" value="8" onchange="calculateCFMByRoom()">
+                  </div>
+                  <div class="form-group">
+                    <label>Air Changes/Hour</label>
+                    <select id="room-ach" onchange="calculateCFMByRoom()">
+                      <option value="4">4 (Bedroom)</option>
+                      <option value="6" selected>6 (Living Room)</option>
+                      <option value="8">8 (Kitchen)</option>
+                      <option value="10">10 (Bathroom)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-grid form-grid-2">
+                  <div class="form-group">
+                    <label>Room Volume (cu ft)</label>
+                    <input type="text" id="room-volume" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label>Required CFM</label>
+                    <input type="text" id="cfm-result-room" readonly style="font-weight: 600; font-size: 18px; color: var(--primary);">
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- Duct Sizing Calculator -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📏 Duct Sizing Calculator</div>
+            </div>
+            <div class="card-body">
+              
+              <!-- Input Parameters -->
+              <div class="card-section">
+                <div class="section-title">Input Parameters</div>
+                <div class="form-grid form-grid-3">
+                  <div class="form-group">
+                    <label>Airflow (CFM)</label>
+                    <input type="number" id="duct-cfm" placeholder="e.g., 1200" onchange="calculateDuctSize()">
+                  </div>
+                  <div class="form-group">
+                    <label>Target Velocity (FPM)</label>
+                    <select id="duct-velocity" onchange="calculateDuctSize()">
+                      <option value="600">600 (Residential Supply)</option>
+                      <option value="700" selected>700 (Standard)</option>
+                      <option value="800">800 (Commercial)</option>
+                      <option value="900">900 (High Velocity)</option>
+                      <option value="500">500 (Return Air)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Duct Type</label>
+                    <select id="duct-type" onchange="calculateDuctSize()">
+                      <option value="round">Round</option>
+                      <option value="rectangular">Rectangular</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Round Duct Results -->
+              <div class="card-section" id="round-duct-results">
+                <div class="section-title">Round Duct Sizing</div>
+                <div class="form-grid form-grid-3">
+                  <div class="form-group">
+                    <label>Required Diameter (inches)</label>
+                    <input type="text" id="round-diameter-calc" readonly style="font-weight: 600; color: var(--primary);">
+                  </div>
+                  <div class="form-group">
+                    <label>Recommended Standard Size</label>
+                    <input type="text" id="round-diameter-standard" readonly style="font-weight: 600; color: var(--success);">
+                  </div>
+                  <div class="form-group">
+                    <label>Actual Velocity (FPM)</label>
+                    <input type="text" id="round-velocity-actual" readonly>
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Cross-Sectional Area (sq in)</label>
+                    <input type="text" id="round-area" readonly>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Rectangular Duct Results -->
+              <div class="card-section hidden" id="rectangular-duct-results">
+                <div class="section-title">Rectangular Duct Sizing Options</div>
+                <div id="rectangular-options"></div>
+              </div>
+              
+              <!-- Velocity Chart -->
+              <div class="chart-container">
+                <canvas id="velocity-chart"></canvas>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- Duct Design Worksheet -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📐 Duct Design Worksheet</div>
+              <button class="btn btn-secondary" onclick="addRoom()">+ Add Room</button>
+            </div>
+            <div class="card-body">
+              <div id="duct-rooms">
+                <div class="status-card info">
+                  ℹ️ Click "Add Room" to start designing your duct system room by room.
+                </div>
+              </div>
+              
+              <!-- Summary -->
+              <div class="card-section" id="duct-summary" style="display: none;">
+                <div class="section-title">System Summary</div>
+                <div class="quality-metrics" style="margin-top: 0;">
+                  <div class="quality-metric" style="background: white; border: 1px solid var(--gray-200);">
+                    <div class="metric-value" style="color: var(--primary);" id="total-cfm">0</div>
+                    <div class="metric-label">Total CFM Required</div>
+                  </div>
+                  <div class="quality-metric" style="background: white; border: 1px solid var(--gray-200);">
+                    <div class="metric-value" style="color: var(--success);" id="recommended-tonnage">0</div>
+                    <div class="metric-label">Recommended Tonnage</div>
+                  </div>
+                  <div class="quality-metric" style="background: white; border: 1px solid var(--gray-200);">
+                    <div class="metric-value" style="color: var(--info);" id="room-count">0</div>
+                    <div class="metric-label">Rooms Designed</div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Action Buttons -->
+              <div class="btn-group mt-lg" id="duct-actions" style="display: none;">
+                <button class="btn btn-success" onclick="generateDuctReport()">📋 Generate Report</button>
+                <button class="btn btn-secondary" onclick="clearDuctDesign()">🗑️ Clear All</button>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- Quick Reference -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📚 Quick Reference Guide</div>
+            </div>
+            <div class="card-body">
+              <div class="form-grid form-grid-2">
+                <div>
+                  <div class="section-title">Standard CFM Guidelines</div>
+                  <ul style="font-size: 13px; line-height: 1.8; color: var(--gray-700);">
+                    <li><strong>Residential Cooling:</strong> 400 CFM per ton</li>
+                    <li><strong>High Efficiency:</strong> 450 CFM per ton</li>
+                    <li><strong>Dehumidification:</strong> 350 CFM per ton</li>
+                    <li><strong>Heating (Gas):</strong> Temperature rise 40-70°F</li>
+                    <li><strong>Heat Pump:</strong> 400-450 CFM per ton</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="section-title">Recommended Velocities (FPM)</div>
+                  <ul style="font-size: 13px; line-height: 1.8; color: var(--gray-700);">
+                    <li><strong>Main Supply Trunk:</strong> 900-1200</li>
+                    <li><strong>Branch Ducts:</strong> 600-900</li>
+                    <li><strong>Residential Supply:</strong> 600-800</li>
+                    <li><strong>Return Air:</strong> 500-700</li>
+                    <li><strong>Maximum (noise):</strong> 1200</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="section-title mt-lg">Standard Round Duct Sizes (inches)</div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px;">
+                <span class="badge badge-info">4"</span>
+                <span class="badge badge-info">5"</span>
+                <span class="badge badge-info">6"</span>
+                <span class="badge badge-info">7"</span>
+                <span class="badge badge-info">8"</span>
+                <span class="badge badge-info">9"</span>
+                <span class="badge badge-info">10"</span>
+                <span class="badge badge-info">12"</span>
+                <span class="badge badge-info">14"</span>
+                <span class="badge badge-info">16"</span>
+                <span class="badge badge-info">18"</span>
+                <span class="badge badge-info">20"</span>
+              </div>
+              
+              <div class="section-title mt-lg">Common Rectangular Duct Sizes (inches)</div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px;">
+                <span class="badge badge-info">6x8</span>
+                <span class="badge badge-info">6x10</span>
+                <span class="badge badge-info">6x12</span>
+                <span class="badge badge-info">8x10</span>
+                <span class="badge badge-info">8x12</span>
+                <span class="badge badge-info">10x12</span>
+                <span class="badge badge-info">10x14</span>
+                <span class="badge badge-info">12x14</span>
+                <span class="badge badge-info">12x16</span>
+                <span class="badge badge-info">14x16</span>
+                <span class="badge badge-info">16x20</span>
+                <span class="badge badge-info">18x24</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Report Container -->
+          <div id="duct-report-container"></div>
+          
+        </div>
+        
         <!-- ==================== HISTORY PAGE ==================== -->
         <div id="history-page" class="page-content hidden">
           
@@ -2171,16 +2462,18 @@
       currentPage = page;
       $('service-page').classList.toggle('hidden', page !== 'service');
       $('materials-page').classList.toggle('hidden', page !== 'materials');
+      $('cfm-page').classList.toggle('hidden', page !== 'cfm');
       $('history-page').classList.toggle('hidden', page !== 'history');
       
-      const titles = { service: 'Service Call', materials: 'Materials', history: 'History & Reports' };
+      const titles = { service: 'Service Call', materials: 'Materials', cfm: 'CFM & Duct Design', history: 'History & Reports' };
       $('page-title').textContent = titles[page];
       
       document.querySelectorAll('.nav-item').forEach((item, index) => {
         item.classList.toggle('active', 
           (index === 0 && page === 'service') || 
           (index === 1 && page === 'materials') || 
-          (index === 2 && page === 'history')
+          (index === 2 && page === 'cfm') ||
+          (index === 3 && page === 'history')
         );
       });
       
@@ -3530,6 +3823,469 @@ Village Plumbing - Excellence in HVAC Service
       }
     }
     
+    // ==================== CFM CALCULATIONS ====================
+    let velocityChart = null;
+    let ductRooms = [];
+    
+    function calculateCFMByTonnage() {
+      const tonnage = parseFloat($('cfm-tonnage').value);
+      const cfmPerTon = parseFloat($('cfm-per-ton').value) || 400;
+      
+      if (!isNaN(tonnage)) {
+        const cfm = tonnage * cfmPerTon;
+        $('cfm-result-tonnage').value = `${cfm.toFixed(0)} CFM`;
+        
+        // Auto-fill duct calculator
+        $('duct-cfm').value = cfm.toFixed(0);
+        calculateDuctSize();
+      } else {
+        $('cfm-result-tonnage').value = '';
+      }
+    }
+    
+    function calculateCFMByTemp() {
+      const btu = parseFloat($('cfm-btu').value);
+      const deltaT = parseFloat($('cfm-delta-t').value);
+      
+      if (!isNaN(btu) && !isNaN(deltaT) && deltaT !== 0) {
+        const cfm = btu / (1.08 * deltaT);
+        $('cfm-result-temp').value = `${cfm.toFixed(0)} CFM`;
+      } else {
+        $('cfm-result-temp').value = '';
+      }
+    }
+    
+    function calculateCFMByRoom() {
+      const length = parseFloat($('room-length').value);
+      const width = parseFloat($('room-width').value);
+      const height = parseFloat($('room-height').value);
+      const ach = parseFloat($('room-ach').value);
+      
+      if (!isNaN(length) && !isNaN(width) && !isNaN(height)) {
+        const volume = length * width * height;
+        $('room-volume').value = `${volume.toFixed(0)} cu ft`;
+        
+        if (!isNaN(ach)) {
+          const cfm = (volume * ach) / 60;
+          $('cfm-result-room').value = `${cfm.toFixed(0)} CFM`;
+        }
+      } else {
+        $('room-volume').value = '';
+        $('cfm-result-room').value = '';
+      }
+    }
+    
+    // ==================== DUCT SIZING ====================
+    function calculateDuctSize() {
+      const cfm = parseFloat($('duct-cfm').value);
+      const velocity = parseFloat($('duct-velocity').value);
+      const ductType = $('duct-type').value;
+      
+      if (isNaN(cfm) || isNaN(velocity)) return;
+      
+      // Required cross-sectional area in square inches
+      const area = (cfm * 144) / velocity;
+      
+      if (ductType === 'round') {
+        calculateRoundDuct(cfm, velocity, area);
+        $('round-duct-results').classList.remove('hidden');
+        $('rectangular-duct-results').classList.add('hidden');
+      } else {
+        calculateRectangularDuct(cfm, velocity, area);
+        $('round-duct-results').classList.add('hidden');
+        $('rectangular-duct-results').classList.remove('hidden');
+      }
+      
+      updateVelocityChart(cfm);
+    }
+    
+    function calculateRoundDuct(cfm, targetVelocity, area) {
+      // Calculate diameter: D = 2 * sqrt(A / π)
+      const diameter = 2 * Math.sqrt(area / Math.PI);
+      
+      // Standard duct sizes
+      const standardSizes = [4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 22, 24];
+      
+      // Find closest standard size (round up for safety)
+      let standardDiameter = standardSizes.find(size => size >= diameter);
+      if (!standardDiameter) standardDiameter = standardSizes[standardSizes.length - 1];
+      
+      // Calculate actual velocity with standard size
+      const standardArea = Math.PI * Math.pow(standardDiameter / 2, 2);
+      const actualVelocity = (cfm * 144) / standardArea;
+      
+      $('round-diameter-calc').value = `${diameter.toFixed(2)}"`;
+      $('round-diameter-standard').value = `${standardDiameter}"`;
+      $('round-velocity-actual').value = `${actualVelocity.toFixed(0)} FPM`;
+      $('round-area').value = `${standardArea.toFixed(1)} sq in`;
+    }
+    
+    function calculateRectangularDuct(cfm, targetVelocity, area) {
+      // Common aspect ratios and sizes
+      const commonSizes = [
+        [6, 8], [6, 10], [6, 12], [6, 14],
+        [8, 10], [8, 12], [8, 14], [8, 16],
+        [10, 12], [10, 14], [10, 16], [10, 18],
+        [12, 14], [12, 16], [12, 18], [12, 20],
+        [14, 16], [14, 18], [14, 20], [14, 24],
+        [16, 18], [16, 20], [16, 24], [18, 24],
+        [20, 24], [24, 24]
+      ];
+      
+      let options = [];
+      
+      commonSizes.forEach(([width, height]) => {
+        const ductArea = width * height;
+        const velocity = (cfm * 144) / ductArea;
+        const perimeter = 2 * (width + height);
+        
+        // Only show options within reasonable velocity range
+        if (velocity >= 400 && velocity <= 1500) {
+          options.push({
+            width,
+            height,
+            area: ductArea,
+            velocity: velocity.toFixed(0),
+            perimeter,
+            suitable: velocity >= targetVelocity * 0.8 && velocity <= targetVelocity * 1.2
+          });
+        }
+      });
+      
+      // Sort by how close to target velocity
+      options.sort((a, b) => {
+        const diffA = Math.abs(parseFloat(a.velocity) - targetVelocity);
+        const diffB = Math.abs(parseFloat(b.velocity) - targetVelocity);
+        return diffA - diffB;
+      });
+      
+      // Display top options
+      let html = '<div style="display: grid; gap: 12px;">';
+      options.slice(0, 6).forEach(opt => {
+        const badgeClass = opt.suitable ? 'badge-success' : 'badge-info';
+        html += `<div class="selected-material">`;
+        html += `<div class="selected-material-info">`;
+        html += `<div class="material-name">${opt.width}" × ${opt.height}"</div>`;
+        html += `<div class="material-spec">Area: ${opt.area} sq in | Perimeter: ${opt.perimeter}"</div>`;
+        html += `</div>`;
+        html += `<div style="display: flex; align-items: center; gap: 12px;">`;
+        html += `<span class="badge ${badgeClass}">${opt.velocity} FPM</span>`;
+        if (opt.suitable) html += `<span style="color: var(--success); font-weight: 600;">✓ Recommended</span>`;
+        html += `</div>`;
+        html += `</div>`;
+      });
+      html += '</div>';
+      
+      $('rectangular-options').innerHTML = html;
+    }
+    
+    function updateVelocityChart(cfm) {
+      const ctx = document.getElementById('velocity-chart');
+      if (!ctx) return;
+      
+      const sizes = [6, 7, 8, 9, 10, 12, 14, 16];
+      const velocities = sizes.map(diameter => {
+        const area = Math.PI * Math.pow(diameter / 2, 2);
+        return (cfm * 144) / area;
+      });
+      
+      const chartCtx = ctx.getContext('2d');
+      
+      if (velocityChart) {
+        velocityChart.data.labels = sizes.map(s => `${s}"`);
+        velocityChart.data.datasets[0].data = velocities;
+        velocityChart.update();
+      } else {
+        velocityChart = new Chart(chartCtx, {
+          type: 'line',
+          data: {
+            labels: sizes.map(s => `${s}"`),
+            datasets: [{
+              label: 'Velocity (FPM)',
+              data: velocities,
+              borderColor: 'rgb(0, 102, 204)',
+              backgroundColor: 'rgba(0, 102, 204, 0.1)',
+              tension: 0.4,
+              fill: true
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Velocity (FPM)'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Round Duct Diameter'
+                }
+              }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: `Velocity vs Duct Size (${cfm} CFM)`
+              },
+              annotation: {
+                annotations: {
+                  line1: {
+                    type: 'line',
+                    yMin: 700,
+                    yMax: 700,
+                    borderColor: 'rgb(16, 185, 129)',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    label: {
+                      content: 'Target: 700 FPM',
+                      enabled: true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+    }
+    
+    // ==================== DUCT DESIGN WORKSHEET ====================
+    function addRoom() {
+      const roomId = Date.now();
+      const room = {
+        id: roomId,
+        name: '',
+        length: '',
+        width: '',
+        height: 8,
+        cfm: 0,
+        ductSize: ''
+      };
+      
+      ductRooms.push(room);
+      displayDuctRooms();
+      showToast('Room added');
+    }
+    
+    function displayDuctRooms() {
+      const container = $('duct-rooms');
+      
+      if (ductRooms.length === 0) {
+        container.innerHTML = '<div class="status-card info">ℹ️ Click "Add Room" to start designing your duct system room by room.</div>';
+        $('duct-summary').style.display = 'none';
+        $('duct-actions').style.display = 'none';
+        return;
+      }
+      
+      let html = '';
+      ductRooms.forEach((room, index) => {
+        html += `<div class="card" style="margin-bottom: 16px;">`;
+        html += `<div class="card-header">`;
+        html += `<div class="card-title">Room ${index + 1}</div>`;
+        html += `<button class="btn btn-danger" onclick="removeRoom(${index})" style="padding: 4px 12px; min-height: 28px;">✕</button>`;
+        html += `</div>`;
+        html += `<div class="card-body">`;
+        html += `<div class="form-grid form-grid-4">`;
+        html += `<div class="form-group">`;
+        html += `<label>Room Name</label>`;
+        html += `<input type="text" value="${room.name}" onchange="ductRooms[${index}].name = this.value; updateDuctSummary();" placeholder="e.g., Living Room">`;
+        html += `</div>`;
+        html += `<div class="form-group">`;
+        html += `<label>Length (ft)</label>`;
+        html += `<input type="number" value="${room.length}" onchange="ductRooms[${index}].length = this.value; calculateRoomCFM(${index});" placeholder="12">`;
+        html += `</div>`;
+        html += `<div class="form-group">`;
+        html += `<label>Width (ft)</label>`;
+        html += `<input type="number" value="${room.width}" onchange="ductRooms[${index}].width = this.value; calculateRoomCFM(${index});" placeholder="10">`;
+        html += `</div>`;
+        html += `<div class="form-group">`;
+        html += `<label>Height (ft)</label>`;
+        html += `<input type="number" value="${room.height}" onchange="ductRooms[${index}].height = this.value; calculateRoomCFM(${index});" placeholder="8">`;
+        html += `</div>`;
+        html += `</div>`;
+        html += `<div class="form-grid form-grid-3">`;
+        html += `<div class="form-group">`;
+        html += `<label>Required CFM</label>`;
+        html += `<input type="text" value="${room.cfm ? room.cfm + ' CFM' : ''}" readonly style="font-weight: 600; color: var(--primary);">`;
+        html += `</div>`;
+        html += `<div class="form-group">`;
+        html += `<label>Recommended Round Duct</label>`;
+        html += `<input type="text" value="${room.ductSize}" readonly style="font-weight: 600; color: var(--success);">`;
+        html += `</div>`;
+        html += `<div class="form-group">`;
+        html += `<label>Register Size</label>`;
+        html += `<input type="text" value="${room.registerSize || ''}" readonly>`;
+        html += `</div>`;
+        html += `</div>`;
+        html += `</div>`;
+        html += `</div>`;
+      });
+      
+      container.innerHTML = html;
+      $('duct-summary').style.display = 'block';
+      $('duct-actions').style.display = 'flex';
+      updateDuctSummary();
+    }
+    
+    function calculateRoomCFM(index) {
+      const room = ductRooms[index];
+      const length = parseFloat(room.length);
+      const width = parseFloat(room.width);
+      const height = parseFloat(room.height);
+      
+      if (!isNaN(length) && !isNaN(width) && !isNaN(height)) {
+        const volume = length * width * height;
+        const ach = 6; // Default air changes per hour
+        const cfm = Math.round((volume * ach) / 60);
+        
+        room.cfm = cfm;
+        
+        // Calculate duct size (700 FPM target)
+        const area = (cfm * 144) / 700;
+        const diameter = 2 * Math.sqrt(area / Math.PI);
+        const standardSizes = [4, 5, 6, 7, 8, 9, 10, 12];
+        const standardDiameter = standardSizes.find(size => size >= diameter) || standardSizes[standardSizes.length - 1];
+        
+        room.ductSize = `${standardDiameter}"`;
+        
+        // Recommend register size
+        if (cfm < 75) room.registerSize = '4x10';
+        else if (cfm < 125) room.registerSize = '4x12';
+        else if (cfm < 175) room.registerSize = '6x10';
+        else if (cfm < 225) room.registerSize = '6x12';
+        else room.registerSize = '8x10';
+        
+        displayDuctRooms();
+      }
+    }
+    
+    function updateDuctSummary() {
+      const totalCFM = ductRooms.reduce((sum, room) => sum + (room.cfm || 0), 0);
+      const tonnage = (totalCFM / 400).toFixed(1);
+      
+      $('total-cfm').textContent = totalCFM;
+      $('recommended-tonnage').textContent = `${tonnage} Ton`;
+      $('room-count').textContent = ductRooms.length;
+    }
+    
+    function removeRoom(index) {
+      ductRooms.splice(index, 1);
+      displayDuctRooms();
+      showToast('Room removed');
+    }
+    
+    function clearDuctDesign() {
+      if (ductRooms.length === 0) return;
+      
+      showModal('Clear Duct Design', 'Are you sure you want to clear all rooms?').then(confirmed => {
+        if (confirmed) {
+          ductRooms = [];
+          displayDuctRooms();
+          showToast('Duct design cleared');
+        }
+      });
+    }
+    
+    function generateDuctReport() {
+      if (ductRooms.length === 0) {
+        showToast('Add rooms to generate a report', 'warning');
+        return;
+      }
+      
+      const totalCFM = ductRooms.reduce((sum, room) => sum + (room.cfm || 0), 0);
+      const tonnage = (totalCFM / 400).toFixed(1);
+      const date = new Date().toLocaleString();
+      
+      let report = `╔════════════════════════════════════════════════════════════╗
+║       FIELD BUDDY PRO - DUCT DESIGN REPORT                 ║
+╚════════════════════════════════════════════════════════════╝
+
+SYSTEM SUMMARY
+───────────────────────────────────────────────────────────────
+Total CFM Required: ${totalCFM} CFM
+Recommended System Size: ${tonnage} Ton (${tonnage * 12000} BTU/hr)
+Number of Rooms: ${ductRooms.length}
+Design Date: ${date}
+
+ROOM-BY-ROOM BREAKDOWN
+═══════════════════════════════════════════════════════════════
+
+`;
+
+      ductRooms.forEach((room, index) => {
+        report += `${index + 1}. ${room.name || 'Room ' + (index + 1)}
+   Dimensions: ${room.length}' × ${room.width}' × ${room.height}'
+   Volume: ${(room.length * room.width * room.height).toFixed(0)} cu ft
+   Required CFM: ${room.cfm} CFM
+   Recommended Duct Size: ${room.ductSize} Round
+   Register Size: ${room.registerSize}
+
+`;
+      });
+      
+      report += `EQUIPMENT RECOMMENDATIONS
+───────────────────────────────────────────────────────────────
+Air Handler/Furnace: ${tonnage} Ton capacity
+Blower Motor: Capable of ${totalCFM} CFM minimum
+Filter Size: Based on return air duct size
+Outdoor Unit: ${tonnage} Ton (if cooling required)
+
+DESIGN NOTES
+───────────────────────────────────────────────────────────────
+• All duct sizing based on 700 FPM target velocity
+• Air changes per hour: 6 ACH (standard residential)
+• CFM per ton: 400 (industry standard)
+• Main trunk should handle ${totalCFM} CFM at 900-1200 FPM
+• Use manual dampers for balancing individual runs
+• Consider acoustic liner for ducts near bedrooms
+
+───────────────────────────────────────────────────────────────
+Field Buddy Pro v3.0 Complete - CFM & Duct Design Module
+Village Plumbing - Professional HVAC Solutions
+`;
+
+      const container = $('duct-report-container');
+      let html = '<div class="card mt-lg">';
+      html += '<div class="card-header"><div class="card-title">📄 Duct Design Report</div></div>';
+      html += '<div class="card-body">';
+      html += '<div class="status-card success">✓ Report ready to copy or print</div>';
+      html += `<pre style="background:var(--gray-50);padding:15px;border-radius:6px;overflow-x:auto;font-size:11px;line-height:1.4;font-family:monospace;">${report}</pre>`;
+      html += '<div class="btn-group mt-lg">';
+      html += '<button class="btn btn-primary" onclick="copyDuctReport()">📋 Copy to Clipboard</button>';
+      html += '<button class="btn btn-secondary" onclick="printDuctReport()">🖨️ Print</button>';
+      html += '</div>';
+      html += '</div>';
+      html += '</div>';
+      container.innerHTML = html;
+      container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      showToast('Duct design report generated!');
+    }
+    
+    function copyDuctReport() {
+      const text = document.querySelector('#duct-report-container pre').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('✓ Copied to clipboard!');
+      }).catch(() => {
+        showToast('Failed to copy', 'danger');
+      });
+    }
+    
+    function printDuctReport() {
+      const text = document.querySelector('#duct-report-container pre').textContent;
+      const w = window.open('', '_blank');
+      w.document.write(`<html><head><title>Duct Design Report</title><style>body{font-family:monospace;font-size:12px;line-height:1.4;margin:0.5in;white-space:pre-wrap}</style></head><body>${text}</body></html>`);
+      w.document.close();
+      setTimeout(() => {
+        w.print();
+        w.close();
+      }, 250);
+    }
+    
     async function clearForm() {
       const confirmed = await showModal('Clear Form', 'Are you sure you want to clear all data? This cannot be undone.');
       if (!confirmed) return;
@@ -3578,6 +4334,7 @@ Village Plumbing - Excellence in HVAC Service
       initSignature();
       initMaterialsCatalog();
       calculateQuality();
+      displayDuctRooms();
       
       const stored = localStorage.getItem('fieldBuddyReports');
       if (stored) {
@@ -3585,9 +4342,10 @@ Village Plumbing - Excellence in HVAC Service
       }
       
       console.log('%c🔧 Field Buddy Pro v3.0 Complete Edition', 'color: #0066CC; font-size: 18px; font-weight: bold;');
-      console.log('%c✨ ALL Features: PDF Export, Photos, Signatures, Charts, Complete Materials Catalog, Data Persistence', 'color: #10B981; font-size: 14px;');
+      console.log('%c✨ ALL Features: PDF Export, Photos, Signatures, Charts, Complete Materials Catalog, Data Persistence, CFM Calculator & Duct Design', 'color: #10B981; font-size: 14px;');
       console.log('%c📦 Full 2025 Materials Catalog: 11 Categories, 100+ Items', 'color: #F59E0B; font-size: 12px;');
-      console.log('%c👨‍🔧 Default Tech: Martín Perez | Village Plumbing', 'color: #3B82F6; font-size: 12px;');
+      console.log('%c🌪️ NEW: CFM Calculator & Professional Duct Design Tools', 'color: #3B82F6; font-size: 12px; font-weight: bold;');
+      console.log('%c👨‍🔧 Default Tech: Martín Perez | Village Plumbing', 'color: #6B7280; font-size: 12px;');
       
       showToast('Field Buddy Pro v3.0 Complete Ready!', 'success');
     });
